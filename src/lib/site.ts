@@ -39,5 +39,8 @@ export const TRACKER = {
   project: 'pk_35a0d6dabc61e293c20a1f243568f00f',
 } as const;
 
+/* Date de dernière mise à jour du contenu des pages (sitemaps). À avancer quand une page change. */
+export const CONTENT_UPDATED = '2026-10-13T00:00:00+02:00';
+
 export const abs = (path = '/') => SITE_URL + (path.startsWith('/') ? path : '/' + path);
 export const img = (file: string) => '/images/' + file.split('/').map(encodeURIComponent).join('/');

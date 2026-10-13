@@ -230,26 +230,32 @@ export const GONE: string[] = [
 /** Les trois tables dans l'ordre d'application. */
 export const ALL_REDIRECTS: Record<string, string> = { ...THEME_REDIRECTS, ...BLOG_PRUNING, ...LEGACY_REDIRECTS };
 
-/* Chemins encodés : Google demande la forme percent-encodée, certains clients l'UTF-8 brut. */
-function variants(path: string): string[] {
-  const enc = encodeURI(path);
-  return enc === path ? [path] : [path, enc];
+/** Préfixes de l'ancien thème WordPress : images, vidéo, polices et sprite servis depuis /public. */
+export const PREFIX_REDIRECTS: [string, string][] = [
+  ['/wp-content/themes/kameo-theme/images/', '/images/'],
+  ['/wp-content/themes/kameo-theme/video/', '/video/'],
+  ['/wp-content/themes/kameo-theme/fonts/', '/fonts/'],
+  ['/wp-content/themes/kameo-theme/icons.svg', '/icons.svg'],
+];
+
+/** Redirections techniques héritées de WordPress / Rank Math. */
+export const TECHNICAL_REDIRECTS: Record<string, string> = {
+  '/sitemap.xml': '/sitemap_index.xml',
+  '/wp-sitemap.xml': '/sitemap_index.xml',
+  '/blog/page/1': '/blog/',
+  '/blog/feed': '/feed/',
+};
+
+const norm = (p: string) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
+const TABLE = new Map<string, string>(Object.entries({ ...ALL_REDIRECTS, ...TECHNICAL_REDIRECTS }).map(([k, v]) => [norm(k), v]));
+const GONE_SET = new Set(GONE.map(norm));
+
+/** Cible d'une redirection 301 pour un chemin (décodé), ou null. */
+export function redirectTarget(path: string): string | null {
+  const hit = TABLE.get(norm(path));
+  if (hit) return hit;
+  for (const [from, to] of PREFIX_REDIRECTS) if (path.startsWith(from)) return to + path.slice(from.length);
+  return null;
 }
 
-export function redirects() {
-  const out: { source: string; destination: string; statusCode: 301 }[] = [];
-  for (const [from, to] of Object.entries(ALL_REDIRECTS)) {
-    for (const v of variants(from)) {
-      // avec et sans barre finale (trailingSlash ajouterait sinon un saut 308 intermédiaire)
-      out.push({ source: v, destination: to, statusCode: 301 });
-      out.push({ source: v + '/', destination: to, statusCode: 301 });
-    }
-  }
-  // Fichiers de l'ancien thème : images, vidéo, polices et sprite servis depuis /public
-  for (const dir of ['images', 'video', 'fonts']) {
-    out.push({ source: `/wp-content/themes/kameo-theme/${dir}/:path*`, destination: `/${dir}/:path*`, statusCode: 301 });
-  }
-  out.push({ source: '/wp-content/themes/kameo-theme/icons.svg', destination: '/icons.svg', statusCode: 301 });
-  out.push({ source: '/blog/page/1', destination: '/blog/', statusCode: 301 });
-  return out;
-}
+export const isGone = (path: string) => GONE_SET.has(norm(path));

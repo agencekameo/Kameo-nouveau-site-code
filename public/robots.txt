@@ -1,0 +1,57 @@
+# robots.txt — Kameo — v2.10.0 (audit du 09/10/2026)
+#
+# CORRECTION APPORTÉE PAR L'AUDIT
+# La version précédente déclarait 16 groupes « User-agent: <bot IA> » suivis
+# d'un seul « Allow: / ». Or, d'après la RFC 9309, un robot applique le groupe
+# le PLUS SPÉCIFIQUE qui le nomme, et n'hérite donc pas des règles du groupe
+# « User-agent: * ». Conséquence : GPTBot, ClaudeBot, PerplexityBot et les
+# treize autres avaient accès à /wp-admin/, /wp-json/, aux URLs de recherche
+# et à /lp-rdv-v2/, c'est-à-dire exactement ce que le site ferme aux autres
+# robots. La page la moins fiable du site était la seule source privilégiée
+# des moteurs génératifs.
+#
+# Les bots IA sont désormais nommés DANS le même groupe que « * », ce qui est
+# la façon correcte de dire « vous êtes les bienvenus, aux mêmes conditions ».
+# Plusieurs lignes User-agent avant un même jeu de règles forment un seul
+# groupe : c'est prévu par la RFC 9309.
+#
+# Les pages /lp-rdv*/ ne sont plus en Disallow : elles sont déjà en
+# « noindex, follow » par le thème, et un Disallow empêcherait Google de lire
+# ce noindex, ce qui est contre-productif.
+
+# ------------------------------------------------------------------
+# Robots de recherche et robots IA : mêmes règles pour tout le monde
+# ------------------------------------------------------------------
+User-agent: *
+
+# Moteurs génératifs qui citent des sources en direct
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: DuckAssistBot
+User-agent: Mistral-User
+
+# Contrôles d'entraînement et collecteurs de corpus.
+# Ce ne sont pas des robots de citation : les autoriser alimente
+# l'entraînement des modèles sans rapporter de trafic ni de mention.
+# Les retirer de cette liste revient à refuser cet usage.
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Meta-ExternalAgent
+User-agent: Amazonbot
+User-agent: Bytespider
+
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-json/
+Disallow: /?s=
+Disallow: /*?replytocom=
+Allow: /wp-admin/admin-ajax.php
+
+Sitemap: https://agence-kameo.fr/sitemap_index.xml
