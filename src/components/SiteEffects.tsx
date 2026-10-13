@@ -40,8 +40,10 @@ function heroVideo(): Cleanup {
     offs.push(() => el.removeEventListener(ev, fn, opts));
   };
 
-  // Chargement différé : la source n'est posée qu'au dernier moment (poster = LCP)
-  let armed = false;
+  // Chargement différé : la source n'est posée qu'au dernier moment (poster = LCP).
+  // v3 — une vidéo déjà dotée de sa source (landing page) est « armée » d'emblée : en v2,
+  // le premier clic sur Lecture ne faisait rien.
+  let armed = !video.hasAttribute('data-src');
   const load = (play: boolean) => {
     if (armed) return;
     armed = true;
