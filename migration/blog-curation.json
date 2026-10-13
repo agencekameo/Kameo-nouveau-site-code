@@ -1,0 +1,21 @@
+{
+  "_comment": "Articles conservés après le tri d'octobre 2026 (Search Console 12 mois : au moins un clic ou une impression dans les réponses IA de Google, et pas de cannibalisation). Les articles supprimés et leur nouvelle adresse sont dans src/lib/redirects.ts (BLOG_PRUNING). Détail : docs/analyse-search-console.md.",
+  "keep": [
+    "signaler-probleme-google-my-business-corriger-fiche",
+    "contacter-support-google-my-business",
+    "connexion-google-my-business",
+    "fiche-google-my-business-pourquoi-en-creer-une",
+    "pre-audit-seo-comment-realiser",
+    "utiliser-google-search-console-audit-seo",
+    "audit-seo-technique-approfondi",
+    "modeles-audit-seo-structurer",
+    "tarifs-audit-seo-selon-taille-site",
+    "comment-auditer-seo-boutique-shopify",
+    "comment-optimiser-referencement-boutique-en-ligne",
+    "criteres-choisir-agence-creation-site-web",
+    "top-10-meilleures-agences-wordpress-paris-2026",
+    "creer-site-vitrine-pme-locale",
+    "creer-application-web-performante-entreprise",
+    "pourquoi-choisir-developpement-logiciel-metier-sur-mesure"
+  ]
+}

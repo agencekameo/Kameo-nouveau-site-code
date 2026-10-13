@@ -5,6 +5,7 @@ import JsonLd from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { pageSchemas } from './schema';
 import css from './styles';
+import { PROOF } from '@/lib/site';
 
 const PATH = '/agence-wordpress-paris/';
 const TITLE = 'Agence WordPress à Paris : notre expertise | Kameo';
@@ -42,7 +43,7 @@ export default function AgenceWordpressParisPage() {
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
-                <strong>★ 4,6/5</strong> sur Trustpilot · 21 avis
+                <strong>★ 4,6/5</strong> sur Trustpilot · {PROOF.avisNombre} avis
               </span>
               <span className="expertise-trust__sep" aria-hidden="true">
                 ·
@@ -387,7 +388,7 @@ export default function AgenceWordpressParisPage() {
                   </svg>
                 </span>
                 <span className="wp-stat__num">4,6/5</span>
-                <div className="wp-stat__lbl">note Trustpilot sur 21 avis vérifiés</div>
+                <div className="wp-stat__lbl">note Trustpilot sur {PROOF.avisNombre} avis vérifiés</div>
               </div>
               <div className="wp-stat">
                 <span className="wp-stat__icon" aria-hidden="true">

@@ -5,6 +5,7 @@ import JsonLd from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { pageSchemas } from './schema';
 import css from './styles';
+import { PROOF } from '@/lib/site';
 
 const PATH = '/refonte-wordpress/';
 const TITLE = 'Refonte de site WordPress à Paris : audit gratuit | Kameo';
@@ -60,7 +61,7 @@ export default function RefonteWordpressPage() {
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
-                <strong>★ 4,6/5</strong> sur Trustpilot · 21 avis
+                <strong>★ 4,6/5</strong> sur Trustpilot · {PROOF.avisNombre} avis
               </span>
               <span className="expertise-trust__sep" aria-hidden="true">
                 ·

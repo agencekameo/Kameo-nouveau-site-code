@@ -1,6 +1,7 @@
 /* Corps de la page, converti depuis le gabarit WordPress. */
 import Link from 'next/link';
 import LpHeader from '@/components/landing/LpHeader';
+import { PROOF } from '@/lib/site';
 
 const Body = () => (
   <>
@@ -28,7 +29,7 @@ const Body = () => (
               Identité visuelle premium<span className="lp2-cin__msep">✦</span>
             </span>
             <span className="lp2-cin__mitem">
-              +47 projets livrés<span className="lp2-cin__msep">✦</span>
+              +{PROOF.projetsTotal} projets livrés<span className="lp2-cin__msep">✦</span>
             </span>
             <span className="lp2-cin__mitem">
               Motion design<span className="lp2-cin__msep">✦</span>
@@ -47,7 +48,7 @@ const Body = () => (
               Identité visuelle premium<span className="lp2-cin__msep">✦</span>
             </span>
             <span className="lp2-cin__mitem">
-              +47 projets livrés<span className="lp2-cin__msep">✦</span>
+              +{PROOF.projetsTotal} projets livrés<span className="lp2-cin__msep">✦</span>
             </span>
             <span className="lp2-cin__mitem">
               Motion design<span className="lp2-cin__msep">✦</span>
@@ -138,7 +139,7 @@ const Body = () => (
             </div>
             <span className="tp-widget__text">
               <strong className="tp-widget__score">4,6</strong>
-              <span className="tp-widget__count">sur Trustpilot · +21 avis</span>
+              <span className="tp-widget__count">sur Trustpilot · {PROOF.avisNombre} avis</span>
             </span>
           </a>
           <h1 className="lp2-cin__h2" id="cin-h2">

@@ -24,7 +24,8 @@ function pages(current: number, total: number): (number | '…')[] {
 }
 
 export default function Pagination({ current, total }: { current: number; total: number }) {
-  if (total < 2) return null;
+  // Le conteneur est rendu même avec une seule page : son padding fait l'espacement avant le pied de page
+  if (total < 2) return <nav className="blog-pagination" aria-label="Navigation entre les pages" />;
   return (
     <nav className="blog-pagination" aria-label="Navigation entre les pages">
       {current > 1 && (
