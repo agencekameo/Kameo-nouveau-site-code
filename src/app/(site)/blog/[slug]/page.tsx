@@ -8,7 +8,7 @@ import JsonLd from '@/components/JsonLd';
 import ArticleToc from '@/components/blog/ArticleToc';
 import BlogCard from '@/components/blog/BlogCard';
 import { frDate, getAllPosts, getPost } from '@/lib/blog';
-import { blogPosting, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
+import { blogPosting, faqFromHtml, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
 import { CONTACT, SOCIAL, abs } from '@/lib/site';
 import { buildToc } from '@/lib/toc';
@@ -55,6 +55,7 @@ export default async function ArticlePage({ params }: Props) {
     { name: 'Blog', path: '/blog/' },
     { name: post.title, path: post.path },
   ];
+  const faq = faqFromHtml(post.html, post.path);
   const related = getAllPosts()
     .filter((p) => p.slug !== post.slug)
     .slice(0, 3);
@@ -164,6 +165,7 @@ export default async function ArticlePage({ params }: Props) {
               }),
             ],
           }),
+          ...(faq ? [faq] : []),
           websiteGraph({ path: post.path, title: post.seoTitle, description: post.description }),
         ]}
       />

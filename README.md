@@ -98,6 +98,9 @@ docs/                  analyse Search Console et décisions de tri du blog
 - Navigation entre pages sans rechargement complet (préchargement des liens).
 - Image `pattern-bg.png` absente du thème retirée du CSS.
 - Vidéo de la landing : le bouton lecture fonctionne dès le premier clic.
+- Liens des articles vers l'ancien domaine `agencekameo.fr` (sans tiret) réécrits vers les pages actuelles.
+- FAQ des articles publiées en données structurées FAQPage.
+- Les 4 illustrations manquantes de la landing page (`images/landing_page/illu_*.png`) ajoutées.
 
 ## Blog : tri des articles
 
@@ -107,16 +110,27 @@ service qui répond à la même intention (`BLOG_PRUNING` dans `src/lib/redirect
 
 ### Importer les articles
 
-Les articles sont dans la base WordPress, pas dans le thème. Une fois le site WordPress accessible :
+Les articles sont dans la base WordPress, pas dans le thème. Les 16 articles conservés ont été importés
+le 14/10/2026 depuis l'export WordPress (Outils → Exporter), WordPress 7.1.3. Pour relancer l'import :
 
 ```bash
+# depuis un export WordPress, avec le formatting.php de la même version de WordPress
+# (wp-includes/formatting.php) et le dossier uploads du site :
+node migration/import-wordpress.mjs --wxr export.xml --formatting formatting.php --uploads ./wp-content/uploads
+# ou directement depuis le site en ligne (API REST) :
 node migration/import-wordpress.mjs --site https://agence-kameo.fr
-# ou depuis un export WordPress (Outils → Exporter) et le dossier uploads :
-node migration/import-wordpress.mjs --wxr export.xml --uploads ./wp-content/uploads
 ```
 
-Le script écrit `src/content/blog/<slug>.md`, copie les images dans `public/wp-content/uploads/`
-et liste dans `migration/out/articles-non-classes.json` les articles publiés que le tri ne couvre pas.
+Le script :
+
+- rend le contenu comme WordPress l'affichait (typographie française, paragraphes) ;
+- réécrit les liens internes vers leur destination finale, y compris les liens vers l'ancien domaine
+  `agencekameo.fr` ;
+- copie les images dans `public/wp-content/uploads/` (mêmes adresses qu'en WordPress) et liste celles
+  qu'il n'a pas trouvées dans `migration/out/images-manquantes.json` ;
+- liste dans `migration/out/articles-non-classes.json` les articles publiés que le tri ne couvre pas.
+
+Les FAQ des articles (blocs `<details>`) sont aussi publiées en données structurées FAQPage.
 
 ## Mise en production
 
@@ -126,7 +140,8 @@ convient sans configuration ; un hébergement Node classique fonctionne aussi av
 Avant de basculer le DNS :
 
 1. Renseigner les variables SMTP et envoyer un message de test depuis `/contact/`.
-2. Lancer l'import des articles et relire `migration/out/articles-non-classes.json`.
+2. Déposer les images des articles dans `public/wp-content/uploads/` (relancer l'import avec `--uploads`)
+   et vérifier que `migration/out/images-manquantes.json` est vide.
 3. Vérifier quelques redirections (`curl -I https://…/blog/cout-maintenance-site-wordpress/`).
 
 Après la bascule :

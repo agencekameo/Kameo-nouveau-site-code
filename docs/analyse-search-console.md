@@ -118,6 +118,11 @@ Les articles publiés qui n'apparaissent pas du tout dans l'export (zéro impres
 pas performé : l'import les liste dans `migration/out/articles-non-classes.json` pour leur attribuer
 une redirection avant la mise en ligne.
 
+**Import du 14/10/2026** (export WordPress) : 91 articles publiés. Les 16 conservés sont importés. Un
+seul article publié n'avait aucune impression et n'était pas encore couvert :
+`creation-site-web-agence-specialisee`, redirigé vers `criteres-choisir-agence-creation-site-web`.
+Trois autres sont des pages piratées (voir section 6) et passent en 410.
+
 ## 4. Résultat
 
 | Lot                                   | Articles | Clics 12 mois | Impressions | Impressions IA |
@@ -182,3 +187,27 @@ La liste complète, avec la destination de chaque redirection, est dans `BLOG_PR
    conservés sont ceux qu'elles citent.
 6. **Mise en ligne** : resoumettre `sitemap_index.xml`, surveiller le rapport « Pages » pendant quatre
    semaines, et ne jamais laisser le site hors ligne comme en décembre-janvier.
+
+## 6. Sécurité : le WordPress en ligne a été piraté
+
+L'export du 14/10/2026 contient **trois articles publiés le 13/10/2026 à 15:50 sans auteur**, intitulés
+« Hacked by trenggalek6etar » (`/blog/2d75c88c8a26/`, `/blog/64931b0482a3/`,
+`/blog/64931b0482a3-2/`). Ce sont des pages de défiguration (fond noir, un titre), sans lien ni script.
+L'absence d'auteur indique une faille (extension ou thème vulnérable, ou accès à la base) plutôt qu'une
+connexion avec un compte.
+
+Les 16 articles conservés ont été vérifiés : contenu sain, non modifié depuis leur publication. Dans le
+site Next.js, les trois URLs piratées répondent 410 (contenu supprimé définitivement).
+
+À faire sur le WordPress tant qu'il est en ligne :
+
+1. Supprimer les trois articles et vider la corbeille.
+2. Changer tous les mots de passe : comptes WordPress, mots de passe d'application, FTP/SFTP, base de
+   données, hébergeur (PlanetHoster). Régénérer les clés de sécurité de `wp-config.php`.
+3. Vérifier la liste des utilisateurs administrateurs et supprimer tout compte inconnu.
+4. Mettre à jour WordPress, le thème et toutes les extensions ; supprimer celles qui ne servent plus.
+5. Faire analyser les fichiers (Wordfence ou l'outil de l'hébergeur) à la recherche de portes dérobées,
+   et prévenir l'hébergeur.
+6. Basculer vers le site Next.js dès que possible : il n'a ni base de données ni interface
+   d'administration, ce qui supprime l'essentiel de la surface d'attaque. Une fois la bascule faite,
+   fermer l'ancien WordPress.

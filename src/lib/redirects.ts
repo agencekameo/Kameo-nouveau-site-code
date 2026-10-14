@@ -158,6 +158,7 @@ export const BLOG_PRUNING: Record<string, string> = {
   '/blog/comment-trouver-agence-web-serieuse-projet-digital': CHOISIR_AGENCE,
   '/blog/pourquoi-confier-creation-site-web-professionnel': CHOISIR_AGENCE,
   '/blog/avantages-confier-site-web-agence-specialisee': CHOISIR_AGENCE,
+  '/blog/creation-site-web-agence-specialisee': CHOISIR_AGENCE, // publié le 20/09/2026, aucune impression
   // Google My Business : accès au compte
   '/blog/acceder-gerer-compte-google-my-business': GMB_CONNEXION,
   '/blog/acceder-espace-google-my-business-configuration': GMB_CONNEXION,
@@ -217,6 +218,10 @@ export const GONE: string[] = [
   '/blog/landing-pages-that-convert',
   '/blog/mastering-customer-journey',
   '/blog/smart-design-drives-growth',
+  // Pages de défiguration publiées lors du piratage du WordPress (13/10/2026)
+  '/blog/2d75c88c8a26',
+  '/blog/64931b0482a3',
+  '/blog/64931b0482a3-2',
   // Brouillons Elementor et anciennes offres abandonnées (réseaux sociaux, fiche Google, publicité)
   '/elementor-5166',
   '/elementor-5099',

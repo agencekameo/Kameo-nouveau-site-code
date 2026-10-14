@@ -250,6 +250,34 @@ export const blogPosting = (p: PostingInput): Json => ({
 });
 
 /**
+ * FAQPage généré depuis les questions-réponses visibles d'un contenu (<details><summary>),
+ * comme kameo_faq_jsonld_from_html() le faisait pour les pages de service : le balisage
+ * décrit exactement ce que lit le visiteur.
+ */
+export function faqFromHtml(html: string, path: string): Json | null {
+  const strip = (s: string) =>
+    s
+      .replace(/<[^>]*>/g, ' ')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&#8217;|&rsquo;/g, '’')
+      .replace(/&laquo;/g, '«')
+      .replace(/&raquo;/g, '»')
+      .replace(/&#8230;/g, '…')
+      .replace(/&amp;/g, '&')
+      .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+      .replace(/\s+/g, ' ')
+      .trim();
+  const items: Json[] = [];
+  for (const m of html.matchAll(/<details[^>]*>\s*<summary[^>]*>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/gi)) {
+    const q = strip(m[1]);
+    const a = strip(m[2]);
+    if (q && a) items.push({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } });
+  }
+  if (!items.length) return null;
+  return { '@context': 'https://schema.org', '@type': 'FAQPage', '@id': abs(path) + '#faq', inLanguage: 'fr-FR', mainEntity: items };
+}
+
+/**
  * Le bloc que le thème émettait dans le <head> de chaque page hors silo WordPress
  * (Person, Organization, LocalBusiness, BreadcrumbList puis nœuds propres au type).
  * Les 4 pages du silo WordPress portent à la place leur propre @graph unifié.
