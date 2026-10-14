@@ -97,10 +97,11 @@ La page d'accueil fait à elle seule 303 clics (marque). Le blog fait la moitié
    Elementor, articles publiés à la racine, archives de catégories) : désormais redirigées ou en 410.
 5. **Incohérences de chiffres** : 21 avis sur le silo WordPress contre 23 ailleurs, « +47 projets »
    sur la landing contre « plus de 50 » : corrigé.
-6. **Implantation** : la page « Notre agence » parle de « 2 villes (Toulouse & Paris) » alors que les
-   données structurées et le llms.txt affirment une adresse unique à Paris. La requête « agence web
-   toulouse » fait 621 impressions. **À trancher côté contenu** : soit assumer Toulouse (et l'ajouter
-   aux données structurées), soit retirer la mention.
+6. **Implantation** : la page « Notre agence » parlait de « 2 villes (Toulouse & Paris) » alors que les
+   données structurées et le llms.txt affirment une adresse unique à Paris. **Décision (14/10/2026) :
+   Paris uniquement**, la mention de Toulouse est retirée. Les impressions sur « agence web toulouse »
+   (621) vont disparaître : c'est voulu, ces visiteurs cherchent une agence locale à Toulouse. Les
+   mentions de Toulouse qui restent concernent le client Défikart (karting à Toulouse).
 
 ## 3. Règles du tri
 
@@ -146,11 +147,10 @@ une redirection avant la mise en ligne.
 | pourquoi-choisir-developpement-logiciel-metier-sur-mesure | 0 | 99 | 16,8 | 1 | soutient le pilier développement |
 | top-10-meilleures-agences-wordpress-paris-2026 | 0 | 11 | 5,5 | 1 | comparatif, utile en GEO |
 
-**Décision à valider : Google My Business.** Quatre des seize articles conservés parlent de Google My
-Business, que Kameo ne vend pas. Ils restent parce qu'ils performent (63 des 105 impressions IA du
-blog), mais ils n'apportent pas de clients. Le thème v2.10.0 les avait passés en noindex pour cette
-raison. Pour les retirer : déplacer leurs slugs de `migration/blog-curation.json` vers
-`BLOG_PRUNING` (cible conseillée : `/agence-wordpress-paris/`).
+**Google My Business : conservés (décision du 14/10/2026).** Quatre des seize articles conservés
+parlent de Google My Business, que Kameo ne vend pas. Ils restent parce qu'ils performent (63 des
+105 impressions IA du blog), et ils sont de nouveau indexables alors que le thème v2.10.0 les avait
+passés en noindex.
 
 ### Articles supprimés
 
