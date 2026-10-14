@@ -1,4 +1,4 @@
-import { getAllPosts } from './blog';
+import { getAllPostsOrRepo } from './blog';
 import { pageInfo } from '@/content/pages';
 import { REALISATIONS } from '@/content/realisations';
 import { CONTENT_UPDATED, abs } from './site';
@@ -34,23 +34,20 @@ function urlset(entries: Entry[]): string {
 export const pageEntries = (): Entry[] => INDEXABLE_PAGES.map((p) => ({ loc: abs(p), lastmod: pageInfo(p)?.modified ?? CONTENT_UPDATED }));
 
 /** Image à la une puis images du contenu, comme le sitemap d'articles de Rank Math. */
-function postImages(p: ReturnType<typeof getAllPosts>[number]): string[] {
-  const inline = [...p.html.matchAll(/<img\b[^>]*\ssrc="(\/wp-content\/uploads\/[^"]+)"/g)].map((m) => m[1]);
-  return [...new Set([...(p.image ? [p.image.src] : []), ...inline])].map(abs);
-}
-export const postEntries = (): Entry[] => getAllPosts().map((p) => ({ loc: abs(p.path), lastmod: p.modified, images: postImages(p) }));
+export const postEntries = async (): Promise<Entry[]> =>
+  (await getAllPostsOrRepo()).map((p) => ({ loc: abs(p.path), lastmod: p.modified, images: p.images.map(abs) }));
 export const realisationEntries = (): Entry[] =>
   REALISATIONS.map((r) => ({ loc: abs(`/realisations/${r.slug}/`), lastmod: r.modified, images: r.hero ? [abs(r.hero.src)] : [] }));
 
 export const pageSitemap = () => urlset(pageEntries());
-export const postSitemap = () => urlset(postEntries());
+export const postSitemap = async () => urlset(await postEntries());
 export const realisationSitemap = () => urlset(realisationEntries());
 
-export function sitemapIndex(): string {
-  const latest = (xs: Entry[]) => xs.map((x) => x.lastmod).sort().pop() || CONTENT_UPDATED;
+export async function sitemapIndex(): Promise<string> {
+  const latest = (xs: Entry[]) => xs.map((x) => x.lastmod).sort((a, b) => Date.parse(a) - Date.parse(b)).pop() || CONTENT_UPDATED;
   const maps: [string, Entry[]][] = [
     ['page-sitemap.xml', pageEntries()],
-    ['post-sitemap.xml', postEntries()],
+    ['post-sitemap.xml', await postEntries()],
     ['realisation-sitemap.xml', realisationEntries()],
   ];
   const body = maps

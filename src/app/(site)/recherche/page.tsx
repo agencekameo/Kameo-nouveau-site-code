@@ -13,7 +13,7 @@ type Props = { searchParams: Promise<{ s?: string | string[] }> };
 export default async function SearchPage({ searchParams }: Props) {
   const raw = (await searchParams).s; // « ?s=a&s=b » donne un tableau
   const q = (Array.isArray(raw) ? (raw[0] ?? '') : (raw ?? '')).slice(0, 100);
-  const results = search(q);
+  const results = await search(q);
   return (
     <main id="main">
       <section className="page-hero error-404">

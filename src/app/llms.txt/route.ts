@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/lib/blog';
+import { getAllPostsOrRepo } from '@/lib/blog';
 import { REALISATIONS } from '@/content/realisations';
 import { CONTACT, PROOF, SITE_URL, SOCIAL } from '@/lib/site';
 
@@ -6,16 +6,17 @@ import { CONTACT, PROOF, SITE_URL, SOCIAL } from '@/lib/site';
    Source unique, reprise de la section 0 de functions.php. v3 : ajout des articles de
    référence du blog, que les moteurs génératifs citent sur les requêtes informationnelles. */
 
-export const dynamic = 'force-static';
+// régénéré à chaque publication n8n (revalidatePath), 60 s au plus sinon
+export const revalidate = 60;
 
-export function GET() {
+export async function GET() {
   const home = SITE_URL + '/';
   const avis = PROOF.avisNote;
   const nbAvis = PROOF.avisNombre;
   const projets = PROOF.projetsTotal;
   const cas = REALISATIONS.length;
   const maj = new Date().toISOString().slice(0, 10);
-  const posts = getAllPosts();
+  const posts = await getAllPostsOrRepo();
   const blog = posts.length
     ? `\n## Articles de référence du blog\n\n${posts.map((p) => `- [${p.title}](${SITE_URL}${p.path}) : ${p.description}`).join('\n')}\n`
     : '';

@@ -1224,7 +1224,7 @@ export default function CreationSiteWordpressPage() {
                 <br />
                 Pour la majorité des e-commerces français entre 50 et 5 000 SKU,{' '}
                 <strong>WooCommerce reste le meilleur rapport contrôle / coût / SEO</strong>. Notre{' '}
-                <a href="agence-wordpress-paris.html" style={{ color: '#ED6E63', fontWeight: '700' }}>
+                <a href="/agence-wordpress-paris/" style={{ color: '#ED6E63', fontWeight: '700' }}>
                   agence WordPress à Paris
                 </a>{' '}
                 a livré plus de 15 e-commerces WooCommerce depuis 2023, voir notre cas{' '}

@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.github
+.vercel
+.env*
+!.env.example
+.blog-uploads
+migration/out
+**/*.log
+*.zip
+tsconfig.tsbuildinfo

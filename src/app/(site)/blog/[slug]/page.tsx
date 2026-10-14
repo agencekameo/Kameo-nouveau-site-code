@@ -13,20 +13,23 @@ import { blogPosting, faqFromHtml, themeSchemas, websiteGraph, type Crumb } from
 import { pageMetadata } from '@/lib/seo';
 import { CONTACT, SOCIAL, abs } from '@/lib/site';
 import { buildToc } from '@/lib/toc';
+import '@/styles/blog-api.css';
 
-/* Article de blog (single.php). */
+/* Article de blog (single.php) : articles du dépôt et articles publiés par n8n. */
 
-export const dynamicParams = false;
-export function generateStaticParams() {
-  const posts = getAllPosts();
-  // Next exige au moins un paramètre quand dynamicParams est désactivé
+/* Les articles publiés après le build sont générés à leur première visite, puis à chaque
+   publication (revalidatePath) ; 60 s : filet si la base manquait au build. */
+export const revalidate = 60;
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  // Next exige au moins un paramètre
   return posts.length ? posts.map((p) => ({ slug: p.slug })) : [{ slug: '__aucun-article' }];
 }
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = getPost((await params).slug);
+  const post = await getPost((await params).slug);
   if (!post) return {};
   return pageMetadata({
     path: post.path,
@@ -49,7 +52,7 @@ const DAY = 86_400_000;
 const AUTHOR_BOX = `<aside class="article-author"><img src="/images/benjamin.webp" alt="Benjamin Dayan, fondateur de Kameo" width="72" height="72" loading="lazy" class="article-author__img"/><div class="article-author__body"><p class="article-author__name"><a href="/benjamin-dayan/" rel="author">Benjamin Dayan</a></p><p class="article-author__role">Fondateur de Kameo, agence web au 9 rue des Colonnes à Paris 2e. Il conçoit des sites WordPress sur-mesure et des applications métier depuis 2023.</p><p class="article-author__links"><a href="/benjamin-dayan/">Son parcours</a> <span aria-hidden="true">·</span> <a href="${SOCIAL.founderLinkedin}" target="_blank" rel="noopener me">LinkedIn</a></p></div></aside>`;
 
 export default async function ArticlePage({ params }: Props) {
-  const post = getPost((await params).slug);
+  const post = await getPost((await params).slug);
   if (!post) notFound();
   if (post.image)
     ReactDOM.preload(post.image.src, {
@@ -66,9 +69,10 @@ export default async function ArticlePage({ params }: Props) {
     { name: post.title, path: post.path },
   ];
   const faq = faqFromHtml(post.html, post.path);
-  const related = getAllPosts()
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 3);
+  // les plus récents, ceux de la même catégorie d'abord (articles publiés par n8n)
+  const others = (await getAllPosts()).filter((p) => p.slug !== post.slug);
+  const sameCategory = (p: (typeof others)[number]) => !!post.category && p.category === post.category;
+  const related = [...others.filter(sameCategory), ...others.filter((p) => !sameCategory(p))].slice(0, 3);
 
   return (
     <>
@@ -123,7 +127,11 @@ export default async function ArticlePage({ params }: Props) {
           <div className="article-layout">
             {/* Le contenu est rendu directement dans .article-body : main.css le cible par
                 sélecteurs enfants (.article-body > p, > * + *), un conteneur intermédiaire les casserait. */}
-            <article className="article-body" id="article-content" dangerouslySetInnerHTML={{ __html: html + AUTHOR_BOX }} />
+            <article
+              className={post.source === 'api' ? 'article-body article-body--api' : 'article-body'}
+              id="article-content"
+              dangerouslySetInnerHTML={{ __html: html + AUTHOR_BOX }}
+            />
             <ArticleToc items={items} />
           </div>
           <div className="article-cta">

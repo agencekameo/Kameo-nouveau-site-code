@@ -14,8 +14,8 @@ const CRUMBS: Crumb[] = [
   { name: 'Blog', path: '/blog/' },
 ];
 
-export default function BlogListing({ page }: { page: number }) {
-  const posts = getPage(page);
+export default async function BlogListing({ page }: { page: number }) {
+  const [posts, total] = await Promise.all([getPage(page), pageCount()]);
   const path = page === 1 ? '/blog/' : `/blog/page/${page}/`;
   return (
     <>
@@ -47,7 +47,7 @@ export default function BlogListing({ page }: { page: number }) {
                     <BlogCard post={p} key={p.slug} />
                   ))}
                 </div>
-                <Pagination current={page} total={pageCount()} />
+                <Pagination current={page} total={total} />
               </>
             ) : (
               <p style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--c-muted)' }}>Aucun article publié pour le moment.</p>

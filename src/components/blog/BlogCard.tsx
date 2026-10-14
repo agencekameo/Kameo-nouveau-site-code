@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Icon from '../Icon';
-import { frDate, type Post } from '@/lib/blog';
+import { frDate, type PostSummary } from '@/lib/blog';
 import { SIZES } from '@/lib/sizes';
 import { trimWords } from '@/lib/text';
 
 /* Carte article (page-blog.php et « Articles recommandés » de single.php). */
-export default function BlogCard({ post }: { post: Post }) {
+export default function BlogCard({ post }: { post: PostSummary }) {
   const img = post.image;
   return (
     <article className="bcard">

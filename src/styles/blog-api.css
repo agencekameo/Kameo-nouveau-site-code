@@ -1,0 +1,26 @@
+/*
+ * Articles publiés par n8n (API /api/blog/publish/…). Leur HTML est nettoyé à l'écriture, attributs
+ * style compris : les images reçoivent ici le rendu que les articles importés de WordPress portaient
+ * en style en ligne (bandeau de 210 px recadré, coins arrondis). Une image placée dans un <figure>
+ * garde ses proportions (schéma, capture d'écran).
+ */
+.article-body--api > img,
+.article-body--api p > img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+  margin: 18px 0;
+}
+.article-body--api figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.article-body--api figcaption {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--c-muted);
+  text-align: center;
+}

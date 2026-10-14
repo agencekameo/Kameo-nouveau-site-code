@@ -777,11 +777,11 @@ export default function RefonteWordpressPage() {
               Notre approche : <strong>l'audit gratuit de 48 h cadre lequel des 3 niveaux est le bon pour vous</strong>.
               Pas de surfacturation, pas de refonte stratégique vendue quand une refonte technique suffit. Pour
               comprendre comment tout ça s'inscrit dans une démarche WordPress complète, voir aussi la{' '}
-              <a href="creation-site-wordpress.html" style={{ color: '#E14B89', fontWeight: '700' }}>
+              <a href="/creation-site-wordpress/" style={{ color: '#E14B89', fontWeight: '700' }}>
                 création de site WordPress
               </a>{' '}
               (si vous démarrez de zéro) et la{' '}
-              <a href="maintenance-wordpress.html" style={{ color: '#E14B89', fontWeight: '700' }}>
+              <a href="/maintenance-wordpress/" style={{ color: '#E14B89', fontWeight: '700' }}>
                 maintenance WordPress mensuelle
               </a>{' '}
               (qui prend le relai après la refonte).

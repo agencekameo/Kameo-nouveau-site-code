@@ -1,4 +1,5 @@
 import { postSitemap, xmlResponse } from '@/lib/sitemap';
 
-export const dynamic = 'force-static';
-export const GET = () => xmlResponse(postSitemap());
+// régénéré à chaque publication n8n (revalidatePath), 60 s au plus sinon
+export const revalidate = 60;
+export const GET = async () => xmlResponse(await postSitemap());

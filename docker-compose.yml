@@ -1,0 +1,74 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# agence-kameo.fr — site + base des articles publiés par n8n
+# ─────────────────────────────────────────────────────────────────────────────
+# Démarrage :
+#   cp .env.example .env.docker      # puis remplir les valeurs
+#   docker compose --env-file .env.docker up -d --build
+# Mise à jour :
+#   docker compose --env-file .env.docker up -d --build app
+#
+# Noms préfixés « kameo_ » (conteneurs, volumes, réseau) : aucune collision avec les
+# autres sites Docker de la machine (Omega utilise « omegacloud_ » et le port 4004).
+# Les tables du blog sont créées par le site au premier accès : pas de migration à lancer.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: kameo_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: kameo
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD manquant dans .env.docker}
+      POSTGRES_DB: kameo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - kameo_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kameo -d kameo"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+
+  app:
+    build:
+      context: .
+      target: runner
+    container_name: kameo_app
+    restart: unless-stopped
+    ports:
+      # exposé en local uniquement : à placer derrière nginx/caddy (HTTPS)
+      - "127.0.0.1:${APP_PORT:-4005}:3000"
+    environment:
+      DATABASE_URL: postgres://kameo:${POSTGRES_PASSWORD}@postgres:5432/kameo
+      BLOG_PUBLISH_USER: ${BLOG_PUBLISH_USER:?BLOG_PUBLISH_USER manquant dans .env.docker}
+      BLOG_PUBLISH_PASSWORD: ${BLOG_PUBLISH_PASSWORD:?BLOG_PUBLISH_PASSWORD manquant dans .env.docker}
+      BLOG_UPLOADS_ROOT: /uploads
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-465}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      CONTACT_TO: ${CONTACT_TO:-contact@agence-kameo.fr}
+      CONTACT_FROM: ${CONTACT_FROM:-}
+    volumes:
+      # images déposées par n8n : un volume, sinon elles disparaissent au redéploiement
+      - blog_uploads:/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - kameo_net
+
+volumes:
+  postgres_data:
+    name: kameo_postgres_data
+  blog_uploads:
+    name: kameo_blog_uploads
+
+networks:
+  kameo_net:
+    name: kameo_net
+    driver: bridge

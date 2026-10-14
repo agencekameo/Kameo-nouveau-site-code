@@ -117,7 +117,7 @@ export const REALISATIONS: Realisation[] = [
         title: "Donner une vitrine digitale à 20 ans d'expertise terrain",
         body: "CDP69 — Les Cars du Plateau — est une entreprise familiale spécialisée dans le transport collectif en région Auvergne-Rhône-Alpes depuis plus de 20 ans. Face à des groupes nationaux imposants, leur force réside dans leur double implantation stratégique (Vaulx-en-Velin et Plateau d'Hauteville), leur flotte Euro 6 renouvelée et la relation directe qu'ils entretiennent avec chaque client. Notre enjeu : construire un site qui reflète cette proximité et cette fiabilité terrain, tout en crédibilisant CDP69 face à des concurrents disposant de budgets marketing sans commune mesure.",
         img1: {
-          src: '/images/projects/Les%20cars%20du%20plateau/screen01%20%281%29.webp',
+          src: '/images/projects/Les%20cars%20du%20plateau/screen01%20(1).webp',
           width: 1600,
           height: 1066,
         },
@@ -131,7 +131,7 @@ export const REALISATIONS: Realisation[] = [
         title: 'Une architecture pensée pour trois segments clientèle distincts',
         body: "Le site structure les offres de CDP69 autour de trois axes métiers : transport scolaire (agrément officiel, conducteurs titulaires permis D et FIMO), transport événementiel et professionnel, et transferts aéroport Lyon Saint-Exupéry. Pour chaque segment, nous avons construit un argumentaire ciblé avec les éléments de réassurance décisifs — flotte 16 à 70 places, licence de transport de voyageurs, maintenance préventive rigoureuse, conformité Euro 6 — pour convertir aussi bien un directeur d'école qu'un responsable logistique d'entreprise.",
         img1: {
-          src: '/images/projects/Les%20cars%20du%20plateau/screen02%20%281%29.webp',
+          src: '/images/projects/Les%20cars%20du%20plateau/screen02%20(1).webp',
           width: 1600,
           height: 1066,
         },
@@ -149,7 +149,7 @@ export const REALISATIONS: Realisation[] = [
       },
     ],
     solo: {
-      src: '/images/projects/Les%20cars%20du%20plateau/screen03%20%281%29.webp',
+      src: '/images/projects/Les%20cars%20du%20plateau/screen03%20(1).webp',
       width: 1600,
       height: 1066,
     },
@@ -654,7 +654,7 @@ export const REALISATIONS: Realisation[] = [
         title: "Un site vitrine qui raconte l'histoire d'un artisanat local",
         body: "Nous avons structuré le site pour valoriser le savoir-faire artisanal et l'authenticité de Qunfil. Fabrication 100% française, fils tendus à la main sur cadre — chaque tableau est une pièce unique, fruit d'une technicité précise et d'un geste répété des centaines de fois. L'architecture du site guide le visiteur de la découverte du concept jusqu'aux collections (portraits, paysages, animaux, architecture), en passant par l'histoire de la marque — un parcours pensé pour susciter l'émotion et déclencher la prise de contact.",
         img1: {
-          src: '/images/projects/qunfil/siteWeb_LandingPage%20%281%29.webp',
+          src: '/images/projects/qunfil/siteWeb_LandingPage%20(1).webp',
           width: 1600,
           height: 1066,
         },
@@ -680,7 +680,7 @@ export const REALISATIONS: Realisation[] = [
       '"Excellent travail malgré un délai imposé de réalisation très court ! Des échanges constructifs tout au long de toute la prestation. Très professionnel et recommandé !"',
     quoteAuthor: 'Malcom Pereira, Fondateur & Gérant',
     fullImg: {
-      src: '/images/projects/qunfil/siteWeb_LandingPage%20%281%29.webp',
+      src: '/images/projects/qunfil/siteWeb_LandingPage%20(1).webp',
       width: 1600,
       height: 1066,
     },
@@ -706,7 +706,7 @@ export const REALISATIONS: Realisation[] = [
         title: "Un site élégant qui capture le luxe et l'exclusivité",
         body: "Nous avons développé un site vitrine haut de gamme pour Villa Luxe Bonifacio, présentant leurs propriétés d'exception au cœur du Golfe de Bonifacio, dans l'un des sites naturels et archéologiques les plus protégés du sud de la Corse. Le design raffiné et épuré s'harmonise avec le positionnement très premium des villas : mise en page photographique soignée, typographie élégante et navigation fluide pour capter immédiatement l'attention d'une clientèle internationale exigeante à la recherche d'un séjour d'exception.",
         img1: {
-          src: '/images/projects/villa-de-luxe-bonifacio/siteWeb_LandingPage%20%282%29.webp',
+          src: '/images/projects/villa-de-luxe-bonifacio/siteWeb_LandingPage%20(2).webp',
           width: 1600,
           height: 1066,
         },
@@ -771,12 +771,12 @@ export const REALISATIONS: Realisation[] = [
         title: 'Une maquette graphique créée de toutes pièces pour se démarquer',
         body: "Nous avons développé un site vitrine moderne et épuré pour Valeos, en partant d'une page blanche. Le design traduit le positionnement de la marque : sérieux, clarté et innovation au service des particuliers et professionnels qui cherchent à réduire leur facture énergétique grâce au solaire. Chaque choix graphique — palette, typographie, mise en page — renforce la crédibilité et la proximité que Valeos souhaitait projeter auprès de ses prospects.",
         img1: {
-          src: '/images/projects/valeo/siteWeb_LandingPage%20%283%29.webp',
+          src: '/images/projects/valeo/siteWeb_LandingPage%20(3).webp',
           width: 1600,
           height: 1066,
         },
         img2: {
-          src: '/images/projects/valeo/mobile_Ecrans%20%281%29.webp',
+          src: '/images/projects/valeo/mobile_Ecrans%20(1).webp',
           width: 1600,
           height: 1066,
         },
@@ -837,7 +837,7 @@ export const REALISATIONS: Realisation[] = [
         title: 'Une plateforme e-commerce élégante pour des produits lifestyle premium',
         body: "Nous avons développé un site e-commerce sur mesure pour Casa Jaïa, boutique en ligne proposant une sélection de produits pour la maison : vaisselle, couverts en bois, linge de table et accessoires. Le design épuré et sophistiqué met en valeur les collections avec une navigation claire bien structurée. Intégration des fonctionnalités essentielles d'un e-commerce moderne : gestion du catalogue, filtres produits, panier et paiement sécurisé Paypal, et système de fidélisation pour inspirer confiance.",
         img1: {
-          src: '/images/projects/casajaia/siteWeb_LandingPage%20%284%29.webp',
+          src: '/images/projects/casajaia/siteWeb_LandingPage%20(4).webp',
           width: 1600,
           height: 1066,
         },
@@ -856,7 +856,7 @@ export const REALISATIONS: Realisation[] = [
           height: 1066,
         },
         img2: {
-          src: '/images/projects/casajaia/siteWeb_APropos%20%281%29.webp',
+          src: '/images/projects/casajaia/siteWeb_APropos%20(1).webp',
           width: 1600,
           height: 1066,
         },
@@ -876,7 +876,7 @@ export const REALISATIONS: Realisation[] = [
     quote: '',
     quoteAuthor: '',
     fullImg: {
-      src: '/images/projects/casajaia/siteWeb_Contact%20%281%29.webp',
+      src: '/images/projects/casajaia/siteWeb_Contact%20(1).webp',
       width: 1600,
       height: 1066,
     },
@@ -903,7 +903,7 @@ export const REALISATIONS: Realisation[] = [
         title: 'Un site web sobre et élégant qui inspire confiance institutionnelle',
         body: "Nous avons développé un site vitrine professionnel et sobre pour Axistone Capital, fonds d'investissement spécialisé dans l'immobilier. L'enjeu était de construire une crédibilité visuelle immédiate auprès de partenaires financiers et d'investisseurs institutionnels. Chaque arbitrage graphique — palette sombre et sobre, typographie rigoureuse, mise en page structurée — véhicule sérieux, expertise et ambition, tout en se différenciant des acteurs logistiques et bâtiments réactifs institutionnels jusqu'à 15 000.",
         img1: {
-          src: '/images/projects/axistone-capital/siteWeb_LandingPage%20%285%29.webp',
+          src: '/images/projects/axistone-capital/siteWeb_LandingPage%20(5).webp',
           width: 1600,
           height: 1066,
         },
@@ -917,7 +917,7 @@ export const REALISATIONS: Realisation[] = [
         title: "Une présentation claire d'une approche technologique innovante",
         body: "Le site communique sur le positionnement différenciant d'Axistone Capital : l'alliance entre expertise immobilière et maîtrise technologique pour générer des rendements supérieurs au marché. Candidature à la plateforme de gestion propriétaire en ligne, tableaux de bord actifs, reporting dynamique — les outils technologiques d'Axistone sont mis en avant comme un avantage concurrentiel décisif. Les détails chiffrés et informationnels précis aident à renforcer la confiance et à accélérer la décision.",
         img1: {
-          src: '/images/projects/axistone-capital/siteWeb_NosForces%20%281%29.webp',
+          src: '/images/projects/axistone-capital/siteWeb_NosForces%20(1).webp',
           width: 1600,
           height: 1066,
         },
@@ -942,7 +942,7 @@ export const REALISATIONS: Realisation[] = [
     quote: '',
     quoteAuthor: '',
     fullImg: {
-      src: '/images/projects/axistone-capital/siteWeb_APropos%20%282%29.webp',
+      src: '/images/projects/axistone-capital/siteWeb_APropos%20(2).webp',
       width: 1600,
       height: 1066,
     },
@@ -969,12 +969,12 @@ export const REALISATIONS: Realisation[] = [
         title: 'Positionner un acteur de référence dans le secteur audiovisuel français',
         body: "Nous avons conçu un site vitrine professionnel et immersif pour Paris Production Services, société spécialisée dans l'accompagnement de tournages en France. L'enjeu était de refléter l'expertise et la polyvalence de l'équipe auprès d'une clientèle internationale — réalisateurs, producteurs, chaînes TV — à la recherche d'un partenaire local fiable. Chaque choix graphique communique sérieux, réactivité et maîtrise du terrain : typographie affirmée, mise en page dynamique, visuels immersifs.",
         img1: {
-          src: '/images/projects/paris-production-services/siteWeb_LandingPage%20%286%29.webp',
+          src: '/images/projects/paris-production-services/siteWeb_LandingPage%20(6).webp',
           width: 1600,
           height: 1066,
         },
         img2: {
-          src: '/images/projects/paris-production-services/mobile_Ecrans%20%282%29.webp',
+          src: '/images/projects/paris-production-services/mobile_Ecrans%20(2).webp',
           width: 1600,
           height: 1066,
         },
@@ -1008,7 +1008,7 @@ export const REALISATIONS: Realisation[] = [
     quote: '',
     quoteAuthor: '',
     fullImg: {
-      src: '/images/projects/paris-production-services/mobile_Contact%20%281%29.webp',
+      src: '/images/projects/paris-production-services/mobile_Contact%20(1).webp',
       width: 1600,
       height: 1066,
     },
@@ -1035,12 +1035,12 @@ export const REALISATIONS: Realisation[] = [
         title: "Un site web dynamique qui valorise l'univers de la compétition jeune",
         body: "Nous avons développé un site vitrine pour Ohvale France, distributeur officiel des mini-motos italiennes Ohvale en France. Le site est autant une plateforme d'information sur la compétition et le championnat qu'une vitrine digitale pour les jeunes pilotes de 4 à 14 ans. Le design saisit l'énergie et l'adrénaline de la course, tout en permettant aux parents et coachs de ces coureurs de comprendre l'univers pour les aider à se lancer.",
         img1: {
-          src: '/images/projects/ohvale/siteWeb_LandingPage%20%287%29.webp',
+          src: '/images/projects/ohvale/siteWeb_LandingPage%20(7).webp',
           width: 1600,
           height: 1066,
         },
         img2: {
-          src: '/images/projects/ohvale/mobile_Ecrans%20%283%29.webp',
+          src: '/images/projects/ohvale/mobile_Ecrans%20(3).webp',
           width: 1600,
           height: 1066,
         },

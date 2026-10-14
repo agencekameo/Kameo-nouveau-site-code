@@ -1,4 +1,4 @@
-import { getAllPosts } from './blog';
+import { getAllPostsOrRepo } from './blog';
 import { REALISATIONS } from '@/content/realisations';
 
 /* Index de la recherche interne (formulaire de la page 404). */
@@ -24,20 +24,21 @@ const PAGES: SearchDoc[] = [
   ['/blog/', 'Blog', 'Conseils web, branding et SEO.'],
 ].map(([path, title, text]) => ({ path, title, text, kind: 'Page' as const }));
 
-export function searchIndex(): SearchDoc[] {
+export async function searchIndex(): Promise<SearchDoc[]> {
+  const posts = await getAllPostsOrRepo();
   return [
     ...PAGES,
     ...REALISATIONS.map((r) => ({ path: `/realisations/${r.slug}/`, title: r.title, text: `${r.service} ${r.description}`, kind: 'Réalisation' as const })),
-    ...getAllPosts().map((p) => ({ path: p.path, title: p.title, text: `${p.description} ${p.excerpt}`, kind: 'Article' as const })),
+    ...posts.map((p) => ({ path: p.path, title: p.title, text: `${p.description} ${p.excerpt}`, kind: 'Article' as const })),
   ];
 }
 
 const fold = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
-export function search(q: string): SearchDoc[] {
+export async function search(q: string): Promise<SearchDoc[]> {
   const terms = fold(q).split(/\s+/).filter((t) => t.length > 1);
   if (!terms.length) return [];
-  return searchIndex()
+  return (await searchIndex())
     .map((d) => {
       const title = fold(d.title);
       const text = fold(d.text);

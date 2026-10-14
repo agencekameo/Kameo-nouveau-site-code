@@ -17,17 +17,23 @@ Node.js 20 ou plus récent.
 
 ## Variables d'environnement
 
-Seul le formulaire de contact en a besoin (`/api/contact`). Sans elles, le site fonctionne mais
-le formulaire répond par une erreur.
+Modèle commenté : `.env.example` (à copier en `.env.local` en développement, `.env.docker` avec Docker).
+Sans aucune variable, le site fonctionne : le formulaire de contact répond par une erreur et le blog
+n'affiche que les articles du dépôt.
 
-| Variable       | Rôle                                                   |
-| -------------- | ------------------------------------------------------ |
-| `SMTP_HOST`    | serveur SMTP (ex. celui de l'hébergeur de messagerie)  |
-| `SMTP_PORT`    | 465 par défaut (SSL), 587 pour STARTTLS                |
-| `SMTP_USER`    | identifiant SMTP                                       |
-| `SMTP_PASS`    | mot de passe SMTP                                      |
-| `CONTACT_TO`   | destinataire, `contact@agence-kameo.fr` par défaut     |
-| `CONTACT_FROM` | expéditeur, `SMTP_USER` par défaut                     |
+| Variable                | Rôle                                                              |
+| ----------------------- | ----------------------------------------------------------------- |
+| `SMTP_HOST`             | serveur SMTP (ex. celui de l'hébergeur de messagerie)             |
+| `SMTP_PORT`             | 465 par défaut (SSL), 587 pour STARTTLS                           |
+| `SMTP_USER`             | identifiant SMTP                                                  |
+| `SMTP_PASS`             | mot de passe SMTP                                                 |
+| `CONTACT_TO`            | destinataire, `contact@agence-kameo.fr` par défaut                |
+| `CONTACT_FROM`          | expéditeur, `SMTP_USER` par défaut                                |
+| `BLOG_PUBLISH_USER`     | identifiant de n8n pour l'API du blog (authentification Basic)    |
+| `BLOG_PUBLISH_PASSWORD` | mot de passe associé ; sans les deux, l'API refuse tout (401)     |
+| `DATABASE_URL`          | base PostgreSQL des articles n8n (construite par docker-compose)  |
+| `POSTGRES_PASSWORD`     | Docker : mot de passe de cette base (lettres et chiffres)         |
+| `BLOG_UPLOADS_ROOT`     | dossier des images déposées par n8n (`/uploads` sous Docker)      |
 
 ## Où modifier quoi
 
@@ -37,7 +43,7 @@ le formulaire répond par une erreur.
 | Une page (texte, sections)                                 | `src/app/(site)/<slug>/page.tsx`                |
 | En-tête, menu, pied de page                                | `src/components/Header.tsx`, `Footer.tsx`, `MobileNav.tsx` |
 | Études de cas (réalisations)                               | `src/content/realisations.ts`                   |
-| Articles du blog                                           | `src/content/blog/*.md` (voir le `README.md` du dossier) |
+| Articles du blog                                           | `src/content/blog/*.md` (voir le `README.md` du dossier), ou publiés par n8n (`docs/api-blog-n8n.md`) |
 | Landing page Ads / confirmation de RDV                     | `src/app/(standalone)/…`                        |
 | Titres et meta descriptions                                | constantes `TITLE` / `DESCRIPTION` de chaque page |
 | Données structurées (Organization, LocalBusiness, Service…) | `src/lib/schema.ts`                             |
@@ -56,6 +62,8 @@ src/
     (site)/            pages avec en-tête et pied de page
     (standalone)/      landing page Ads (/landingpage/) et /rdv-confirme/
     api/contact/       envoi du formulaire de contact
+    api/blog/publish/  API de publication des articles par n8n (docs/api-blog-n8n.md)
+    blog-media/        images déposées par n8n
     sitemap_index.xml/ page-sitemap.xml/ post-sitemap.xml/ realisation-sitemap.xml/
     llms.txt/ feed/    synthèse pour moteurs génératifs, flux RSS
     gone-410/          réponse des contenus supprimés
@@ -65,7 +73,8 @@ src/
   proxy.ts             redirections 301, 410, « / » final, recherche
 public/                images, polices, vidéo, sprite d'icônes, robots.txt, humans.txt
 migration/             outils de la migration (voir plus bas)
-docs/                  analyse Search Console et décisions de tri du blog
+docs/                  analyse Search Console, tri du blog, API de publication n8n
+Dockerfile, docker-compose.yml   mise en production avec la base des articles n8n
 ```
 
 ## SEO : ce qui est conservé
@@ -121,6 +130,10 @@ améliorations listées ci-dessous.
   qu'après accord ; « Tout refuser » aussi visible que « Tout accepter » ; choix conservé 6 mois et modifiable
   via « Gestion des cookies » en pied de page ; politique de confidentialité mise à jour (elle citait Google
   Analytics, absent du site). Calendly et Google Maps restent des services intégrés décrits dans la politique.
+- Images de 8 réalisations affichées : leurs noms contiennent des parenthèses, et leurs adresses encodées
+  (`%28…%29`) répondaient 404 sous Next.js (18 images ; corrigé le 14/10/2026 dans `src/content/realisations.ts`).
+- 3 liens internes des pages Création et Refonte WordPress (`agence-wordpress-paris.html`…) menaient à une
+  404 ; ils pointent vers les pages réelles.
 
 ## Blog : tri des articles
 
@@ -168,10 +181,36 @@ Les réalisations (`src/content/realisations.ts`) reprennent les textes, l'ordre
 dans la base WordPress en ligne : la version des textes présente dans le thème v2.10.7 (sans tirets
 cadratins) n'avait jamais été appliquée au site.
 
+## Blog automatisé (n8n)
+
+Le système de publication automatique du site Omega est repris à l'identique : n8n dépose l'image,
+crée l'article puis ses métadonnées SEO par l'API `/api/blog/publish/…` (authentification Basic,
+mêmes routes et mêmes champs qu'Omega). Les articles sont stockés dans PostgreSQL et affichés avec
+le gabarit des articles existants, mêlés à eux par date. Contrat complet, sécurité et comportement
+en cas de panne : **`docs/api-blog-n8n.md`**.
+
+Code : `src/app/api/blog/publish/` (routes), `src/lib/blog-api.ts` (authentification, débit,
+nettoyage du HTML, slugs, catégories), `src/lib/blog-db.ts` (lecture et mise en forme),
+`src/lib/blog-media.ts` (images et variantes WebP), `src/lib/db.ts` et `src/lib/db-tables.ts` (base).
+
 ## Mise en production
 
-Le site a besoin d'un serveur Node.js (proxy de redirections et formulaire de contact). **Vercel**
-convient sans configuration ; un hébergement Node classique fonctionne aussi avec `npm run build && npm start`.
+Le site a besoin d'un serveur Node.js (proxy de redirections, formulaire de contact, API du blog),
+d'une base PostgreSQL et d'un dossier persistant pour les images publiées par n8n. Le plus simple est
+Docker, comme pour Omega :
+
+```bash
+cp .env.example .env.docker      # puis remplir les valeurs
+docker compose --env-file .env.docker up -d --build
+```
+
+Le site écoute alors sur `127.0.0.1:4005` (`APP_PORT`), à placer derrière nginx en HTTPS avec
+`client_max_body_size 16m;` (dépôt des images par n8n). Base et images sont dans les volumes
+`kameo_postgres_data` et `kameo_blog_uploads` ; les tables se créent seules au premier accès.
+
+Sans Docker, `npm run build && npm start` fonctionne avec les mêmes variables (`DATABASE_URL` vers une
+base PostgreSQL, `BLOG_UPLOADS_ROOT` vers un dossier persistant). Vercel ne convient plus tel quel :
+son disque n'est pas persistant pour les images déposées.
 
 Avant de basculer le DNS :
 
@@ -203,7 +242,9 @@ Après la bascule :
   anti-robot (Cloudflare Turnstile) ou le pare-feu de l'hébergeur.
 - **Articles** : le build échoue si un article contient du code (`<script>`, `on…=`, `javascript:`), un
   contenu masqué ou une image d'un domaine inconnu (`src/lib/content-guard.ts`). L'en-tête des fichiers
-  Markdown est lu en YAML strict, sans exécution de code.
+  Markdown est lu en YAML strict, sans exécution de code. Les articles publiés par n8n sont nettoyés à l'écriture
+  (liste blanche de balises, ni script ni style), l'API exige une authentification comparée en temps
+  constant et limite le débit ; les images déposées sont vérifiées à leur signature.
 - **Dépendances** : `npm audit` sans vulnérabilité au 14/10/2026 (nodemailer 10, `gray-matter` remplacé).
 - **Secrets** : uniquement dans les variables d'environnement de l'hébergeur ; tous les fichiers `.env*`
   sont exclus de git.

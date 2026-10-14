@@ -55,6 +55,8 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  // tout sauf les ressources Next et les fichiers du dossier public
-  matcher: ['/((?!_next/|images/|fonts/|video/|wp-content/uploads/|icons\\.svg|robots\\.txt|humans\\.txt|\\.well-known/).*)'],
+  // tout sauf les ressources Next, les fichiers du dossier public, les images déposées par n8n
+  // (/blog-media/) et l'API (aucune redirection ; le proxy limiterait aussi le corps des
+  // requêtes à 10 Mo, sous la limite de 15 Mo du dépôt d'images)
+  matcher: ['/((?!_next/|api/|blog-media/|images/|fonts/|video/|wp-content/uploads/|icons\\.svg|robots\\.txt|humans\\.txt|\\.well-known/).*)'],
 };

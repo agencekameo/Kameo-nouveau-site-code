@@ -1,14 +1,15 @@
-import { getAllPosts } from '@/lib/blog';
+import { getAllPostsOrRepo } from '@/lib/blog';
 import { SITE_URL, abs } from '@/lib/site';
 
 /* Flux RSS du blog (/feed/, annoncé dans le <head> de chaque page). */
-export const dynamic = 'force-static';
+// régénéré à chaque publication n8n (revalidatePath), 60 s au plus sinon
+export const revalidate = 60;
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const cdata = (s: string) => `<![CDATA[${s.replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
 
-export function GET() {
-  const posts = getAllPosts().slice(0, 20);
+export async function GET() {
+  const posts = (await getAllPostsOrRepo()).slice(0, 20);
   const items = posts
     .map(
       (p) => `\t\t<item>

@@ -51,6 +51,8 @@ const SECURITY_HEADERS = [
 ];
 
 const nextConfig: NextConfig = {
+  // Image Docker (Dockerfile) : serveur autonome, sans node_modules complet. `npm start` reste inchangé.
+  ...(process.env.NEXT_OUTPUT_STANDALONE === '1' ? { output: 'standalone' as const } : {}),
   // URLs WordPress conservées à l'identique : /notre-agence/, /blog/mon-article/…
   trailingSlash: true,
   // Le « / » final et toutes les redirections sont gérés par src/proxy.ts, en un seul
