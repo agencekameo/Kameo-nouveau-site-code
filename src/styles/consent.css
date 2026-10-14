@@ -1,0 +1,114 @@
+/* Bandeau de consentement aux cookies (src/components/consent/CookieBanner.tsx). */
+.ckb {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 10000;
+  width: min(420px, calc(100vw - 40px));
+  padding: 20px 20px 18px;
+  background: #0f1115;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(15, 17, 21, 0.28);
+  font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  animation: ckb-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes ckb-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ckb { animation: none; }
+}
+.ckb__title { margin: 0 0 6px; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
+.ckb__text { margin: 0; color: rgba(255, 255, 255, 0.72); }
+.ckb__text a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.ckb__details { display: grid; gap: 10px; margin-top: 14px; }
+.ckb__opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+}
+.ckb__opt strong { display: block; font-size: 14px; }
+.ckb__opt span span { display: block; font-size: 12.5px; color: rgba(255, 255, 255, 0.62); }
+.ckb__opt input {
+  appearance: none;
+  flex: none;
+  position: relative;
+  width: 40px;
+  height: 22px;
+  margin: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ckb__opt input::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+.ckb__opt input:checked { background: #ff3429; }
+.ckb__opt input:checked::after { transform: translateX(18px); }
+.ckb__opt input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.ckb__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
+.ckb__btn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  background: #fff;
+  color: #0f1115;
+  font: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.ckb__btn:hover { opacity: 0.88; }
+.ckb__link {
+  padding: 10px 6px;
+  border: 0;
+  background: none;
+  color: rgba(255, 255, 255, 0.8);
+  font: inherit;
+  font-size: 13.5px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.ckb__btn:focus-visible,
+.ckb__link:focus-visible { outline: 2px solid #ff3429; outline-offset: 2px; }
+@media (max-width: 560px) {
+  .ckb { left: 12px; right: 12px; bottom: 12px; width: auto; padding: 16px; }
+  .ckb__actions { gap: 6px; }
+  .ckb__btn { padding: 10px 8px; font-size: 13.5px; }
+}
+
+/* Lien « Gestion des cookies » des pieds de page : même apparence que les liens voisins */
+.ckb-settings {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.ckb-settings:hover { color: #fff; }
+.lp2-footer__legal .ckb-settings { font-size: 12px; color: rgba(255, 255, 255, 0.28); transition: color 0.2s ease; }
+.lp2-footer__legal .ckb-settings:hover { color: rgba(255, 255, 255, 0.7); }

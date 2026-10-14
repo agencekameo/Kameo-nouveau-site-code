@@ -1,5 +1,6 @@
 /* Corps de la page, converti depuis le gabarit WordPress. */
 import Link from 'next/link';
+import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
 import LpHeader from '@/components/landing/LpHeader';
 import { PROOF } from '@/lib/site';
 
@@ -1955,6 +1956,7 @@ const Body = () => (
         <nav className="lp2-footer__legal" aria-label="Liens légaux">
           <Link href="/mentions-legales/">Mentions légales</Link>
           <Link href="/politique-de-confidentialite/">Politique de confidentialité</Link>
+          <CookieSettingsLink />
         </nav>
       </div>
     </footer>

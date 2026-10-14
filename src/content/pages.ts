@@ -25,7 +25,7 @@ export const PAGES: Record<string, PageInfo> = {
   '/contact/': { label: 'Contact', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
   '/blog/': { label: 'Blog', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
   '/mentions-legales/': { label: 'Mentions légales', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-17T15:24:01+00:00' },
-  '/politique-de-confidentialite/': { label: 'Politique de confidentialité', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-17T15:24:34+00:00' },
+  '/politique-de-confidentialite/': { label: 'Politique de confidentialité', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-14T14:00:00+00:00' }, // cookies (14/10/2026)
   '/landingpage/': { label: 'Landing Page', published: '2026-05-06T00:18:28+00:00', modified: '2026-05-26T16:41:51+00:00' },
   '/rdv-confirme/': { label: 'Rendez-vous confirmé', published: '2026-06-01T08:10:48+00:00', modified: '2026-06-11T11:08:43+00:00' },
 };

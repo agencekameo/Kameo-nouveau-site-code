@@ -43,6 +43,7 @@ le formulaire répond par une erreur.
 | Données structurées (Organization, LocalBusiness, Service…) | `src/lib/schema.ts`                             |
 | Redirections 301 et URLs supprimées (410)                  | `src/lib/redirects.ts`                          |
 | Styles                                                     | `src/styles/main.css` (CSS du thème, inchangé)  |
+| Bandeau cookies, traceurs soumis au consentement           | `src/components/consent/`, `src/lib/consent.ts` |
 
 Après une modification de contenu, avancer `CONTENT_UPDATED` dans `src/lib/site.ts`
 (date `lastmod` des sitemaps).
@@ -116,6 +117,10 @@ améliorations listées ci-dessous.
 - Sitemap des articles avec toutes les images du contenu ; `lastmod` = vraie date de modification.
 - Anciennes adresses de la landing (`/lp-rdv/`, `/lp-rdv-v2/`, en 404 sous WordPress) redirigées vers `/landingpage/`.
 - Titres d'articles corrects dans les données structurées (WordPress y laissait `&rsquo;` en toutes lettres).
+- **Bandeau cookies** conforme CNIL (le site n'en avait pas) : le tracker taap.it et le pixel Meta ne se chargent
+  qu'après accord ; « Tout refuser » aussi visible que « Tout accepter » ; choix conservé 6 mois et modifiable
+  via « Gestion des cookies » en pied de page ; politique de confidentialité mise à jour (elle citait Google
+  Analytics, absent du site). Calendly et Google Maps restent des services intégrés décrits dans la politique.
 
 ## Blog : tri des articles
 
@@ -132,12 +137,12 @@ le 14/10/2026 depuis l'export WordPress (Outils → Exporter), WordPress 7.1.3. 
 # depuis un export WordPress, avec le formatting.php de la même version de WordPress
 # (wp-includes/formatting.php) et le dossier uploads du site :
 node migration/import-wordpress.mjs --wxr export.xml --formatting formatting.php --uploads ./wp-content/uploads
-# ou directement depuis le site en ligne (API REST), UNIQUEMENT une fois le WordPress nettoyé :
+# ou directement depuis le site en ligne (API REST) :
 node migration/import-wordpress.mjs --site https://agence-kameo.fr
 ```
 
-Le WordPress en ligne a été piraté (voir `docs/analyse-search-console.md`, section 6) : tant qu'il n'est
-pas nettoyé, n'importer que depuis l'export du 14/10/2026, déjà vérifié. Prendre `formatting.php` dans le
+Le WordPress en ligne a été piraté puis nettoyé le 14/10/2026 (voir `docs/analyse-search-console.md`,
+section 6). En cas de doute, préférer l'export du 14/10/2026, déjà vérifié. Prendre `formatting.php` dans le
 dépôt officiel (`https://github.com/WordPress/WordPress/blob/7.1.3/wp-includes/formatting.php`), jamais
 sur le serveur piraté : le script l'exécute. L'importeur n'écrit que des images (signature vérifiée) et
 uniquement dans `public/wp-content/uploads/`.
@@ -171,7 +176,9 @@ convient sans configuration ; un hébergement Node classique fonctionne aussi av
 Avant de basculer le DNS :
 
 1. Renseigner les variables SMTP et envoyer un message de test depuis `/contact/`.
-2. Vérifier quelques redirections (`curl -I https://…/blog/cout-maintenance-site-wordpress/`).
+2. Mettre à jour le nom de l'hébergeur dans les mentions légales et la politique de confidentialité
+   (PlanetHoster aujourd'hui) si le site change d'hébergeur.
+3. Vérifier quelques redirections (`curl -I https://…/blog/cout-maintenance-site-wordpress/`).
 
 Après la bascule :
 

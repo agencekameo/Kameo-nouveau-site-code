@@ -1,17 +1,46 @@
-import Script from 'next/script';
+'use client';
 
-/* Meta Pixel (Facebook), ID 820736740875530 — uniquement sur la landing page et la confirmation. */
+import { useEffect } from 'react';
+import { onConsent, readConsent, type Consent } from '@/lib/consent';
+
+/* Meta Pixel (Facebook), ID 820736740875530 — uniquement sur la landing page et la confirmation,
+   et seulement après consentement « Publicité ». */
 const PIXEL_ID = '820736740875530';
 
+type Fbq = ((...args: unknown[]) => void) & { callMethod?: (...a: unknown[]) => void; queue: unknown[]; loaded: boolean; version: string; push: unknown };
+declare global {
+  interface Window {
+    fbq?: Fbq;
+    _fbq?: Fbq;
+  }
+}
+
+function loadPixel() {
+  if (window.fbq) return;
+  // équivalent du code d'installation fourni par Meta
+  const n = function (...args: unknown[]) {
+    if (n.callMethod) n.callMethod(...args);
+    else n.queue.push(args);
+  } as Fbq;
+  n.push = n;
+  n.loaded = true;
+  n.version = '2.0';
+  n.queue = [];
+  window.fbq = n;
+  if (!window._fbq) window._fbq = n;
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+  document.head.appendChild(s);
+  n('init', PIXEL_ID);
+  n('track', 'PageView');
+}
+
 export default function MetaPixel() {
-  return (
-    <>
-      <Script id="meta-pixel" strategy="afterInteractive">
-        {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${PIXEL_ID}');fbq('track','PageView');`}
-      </Script>
-      <noscript>
-        <img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`} />
-      </noscript>
-    </>
-  );
+  useEffect(() => {
+    const apply = (c: Consent | null) => c?.marketing && loadPixel();
+    apply(readConsent());
+    return onConsent(apply);
+  }, []);
+  return null;
 }

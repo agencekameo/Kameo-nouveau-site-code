@@ -7,7 +7,7 @@ const [,, refBase, nextBase, outDir, ...routes] = process.argv;
 const ORIGINS = [new URL(refBase).origin, new URL(nextBase).origin];
 const VPS = (process.env.VPS || '1440x900,390x844').split(',').map((s) => { const [w, h] = s.split('x').map(Number); return { width: w, height: h }; });
 const FREEZE = `*,*::before,*::after{animation-play-state:paused!important;animation-delay:0s!important;transition:none!important;caret-color:transparent!important}
-.cpop{display:none!important}`;
+.cpop,.ckb{display:none!important}`;
 
 async function shot(browser, url, vp, file) {
   const ctx = await browser.newContext({ viewport: vp, reducedMotion: 'reduce', deviceScaleFactor: 1 });

@@ -687,7 +687,7 @@ export default function HomePage() {
                 <span className="stat__number">Depuis 2023</span>
                 <h3 className="stat__title">Croissance continue</h3>
                 <p className="stat__text">
-                  Notre agence web parisienne grandit avec ses clients : 2 ans d’existence, plus de 50 sites livrés, et
+                  Notre agence web parisienne grandit avec ses clients : 3 ans d’existence, plus de 50 sites livrés, et
                   une roadmap pensée pour la conversion durable.
                 </p>
               </article>

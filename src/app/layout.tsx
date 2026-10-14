@@ -2,7 +2,10 @@ import type { Metadata, Viewport } from 'next';
 import ReactDOM from 'react-dom';
 import '@/styles/fonts.css';
 import '@/styles/main.css';
-import { GEO, SITE_ICON, SITE_NAME, SITE_URL, TRACKER } from '@/lib/site';
+import '@/styles/consent.css';
+import AudienceTracker from '@/components/consent/AudienceTracker';
+import CookieBanner from '@/components/consent/CookieBanner';
+import { GEO, SITE_ICON, SITE_NAME, SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -39,18 +42,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   for (const f of PRELOAD_FONTS) ReactDOM.preload(`/fonts/${f}`, { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
   return (
     <html lang="fr-FR">
-      <head>
-        <link rel="preconnect" href="https://taap.it" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://taap.it" />
-        <script
-          async
-          src={TRACKER.src}
-          data-project={TRACKER.project}
-          data-track-outbound="true"
-          data-track-forms="true"
-        />
-      </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* traceurs chargés seulement après consentement (taap.it ici, pixel Meta sur la landing) */}
+        <AudienceTracker />
+        <CookieBanner />
+      </body>
     </html>
   );
 }

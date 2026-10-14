@@ -337,7 +337,14 @@ export default function PolitiqueDeConfidentialitePage() {
                     <strong>Hébergeur&nbsp;:</strong> Planet Hoster Inc. (Canada), serveurs conformes RGPD
                   </li>
                   <li>
-                    <strong>Outils d’analyse&nbsp;:</strong> Google Analytics (avec anonymisation IP activée)
+                    <strong>Mesure d’audience&nbsp;:</strong> taap.it, uniquement avec votre consentement
+                  </li>
+                  <li>
+                    <strong>Mesure publicitaire&nbsp;:</strong> Meta Platforms (pixel Meta), uniquement avec votre
+                    consentement
+                  </li>
+                  <li>
+                    <strong>Prise de rendez-vous&nbsp;:</strong> Calendly
                   </li>
                   <li>
                     <strong>Service d’emailing&nbsp;:</strong> prestataire utilisé pour l’envoi de newsletters
@@ -689,31 +696,17 @@ export default function PolitiqueDeConfidentialitePage() {
                   <div className="legal__service-card">
                     <strong>Cookies strictement nécessaires</strong>
                     <ul>
-                      <li>Cookies de session</li>
-                      <li>Cookies de sécurité</li>
-                      <li>Préférence de langue</li>
+                      <li>Mémorisation de vos choix en matière de cookies (cookie kameo_consent, 6 mois)</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-muted)', marginTop: '6px' }}>
                       Base légale&nbsp;: Intérêt légitime, ne peuvent pas être désactivés
                     </p>
                   </div>
                   <div className="legal__service-card">
-                    <strong>Cookies d’analyse</strong>
+                    <strong>Mesure d’audience</strong>
                     <ul>
-                      <li>Google Analytics (IP anonymisée)</li>
-                      <li>Mesure d’audience</li>
-                      <li>Analyse du parcours utilisateur</li>
-                    </ul>
-                    <p style={{ fontSize: '12px', color: 'var(--c-accent)', marginTop: '6px', fontWeight: '600' }}>
-                      Base légale&nbsp;: Consentement
-                    </p>
-                  </div>
-                  <div className="legal__service-card">
-                    <strong>Cookies de fonctionnalité</strong>
-                    <ul>
-                      <li>Préférences d’affichage</li>
-                      <li>Personnalisation du contenu</li>
-                      <li>Mémorisation de vos choix</li>
+                      <li>taap.it&nbsp;: pages vues, clics et parcours sur le site</li>
+                      <li>Déposés uniquement après votre accord</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-accent)', marginTop: '6px', fontWeight: '600' }}>
                       Base légale&nbsp;: Consentement
@@ -722,19 +715,31 @@ export default function PolitiqueDeConfidentialitePage() {
                   <div className="legal__service-card">
                     <strong>Cookies publicitaires</strong>
                     <ul>
-                      <li>Affichage de publicités ciblées</li>
-                      <li>Mesure de l’efficacité des campagnes</li>
-                      <li>Retargeting</li>
+                      <li>Pixel Meta (Facebook, Instagram) sur nos pages de campagne</li>
+                      <li>Mesure de l’efficacité de nos publicités</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-accent)', marginTop: '6px', fontWeight: '600' }}>
                       Base légale&nbsp;: Consentement
                     </p>
                   </div>
+                  <div className="legal__service-card">
+                    <strong>Services tiers intégrés</strong>
+                    <ul>
+                      <li>Calendly&nbsp;: module de prise de rendez-vous</li>
+                      <li>Google Maps&nbsp;: carte d’accès à l’agence</li>
+                      <li>Ces services déposent leurs propres cookies lorsqu’ils s’affichent</li>
+                    </ul>
+                    <p style={{ fontSize: '12px', color: 'var(--c-muted)', marginTop: '6px' }}>
+                      Voir les politiques de Calendly et de Google
+                    </p>
+                  </div>
                 </div>
                 <h3 className="legal__h3">9.3 Gestion des cookies</h3>
                 <p className="legal__p">
-                  Vous pouvez accepter ou refuser les cookies via notre bandeau de gestion présent sur le site. Vous
-                  pouvez également les gérer directement via votre navigateur&nbsp;:
+                  Vous pouvez accepter ou refuser les cookies soumis à votre consentement via le bandeau affiché lors
+                  de votre première visite, et modifier votre choix à tout moment grâce au lien «&nbsp;Gestion des
+                  cookies&nbsp;» présent en bas de chaque page. Refuser n’empêche pas d’utiliser le site. Vous pouvez
+                  également gérer les cookies directement via votre navigateur&nbsp;:
                 </p>
                 <ul className="legal__list">
                   <li>
@@ -756,7 +761,8 @@ export default function PolitiqueDeConfidentialitePage() {
                 <h3 className="legal__h3">9.4 Durée de conservation des cookies</h3>
                 <p className="legal__p">
                   Les cookies sont conservés pour une durée maximale de <strong>13 mois</strong> à compter de leur dépôt
-                  sur votre terminal.
+                  sur votre terminal. Votre choix (acceptation ou refus) est conservé <strong>6 mois</strong>, après
+                  quoi il vous est de nouveau demandé.
                 </p>
               </div>
               {/* ,Section 10, */}

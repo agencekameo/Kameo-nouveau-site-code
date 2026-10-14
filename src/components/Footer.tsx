@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import CookieSettingsLink from './consent/CookieSettingsLink';
 import Icon from './Icon';
 import { CLIENT_LOGOS, logoSrc } from '@/lib/clients';
 import { CONTACT, SOCIAL } from '@/lib/site';
@@ -148,6 +149,7 @@ export default function Footer() {
         <div className="footer__legal-links">
           <Link href="/mentions-legales/">Mentions légales</Link>
           <Link href="/politique-de-confidentialite/">Politique de confidentialité</Link>
+          <CookieSettingsLink />
         </div>
       </div>
     </footer>
