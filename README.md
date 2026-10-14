@@ -132,9 +132,15 @@ le 14/10/2026 depuis l'export WordPress (Outils → Exporter), WordPress 7.1.3. 
 # depuis un export WordPress, avec le formatting.php de la même version de WordPress
 # (wp-includes/formatting.php) et le dossier uploads du site :
 node migration/import-wordpress.mjs --wxr export.xml --formatting formatting.php --uploads ./wp-content/uploads
-# ou directement depuis le site en ligne (API REST) :
+# ou directement depuis le site en ligne (API REST), UNIQUEMENT une fois le WordPress nettoyé :
 node migration/import-wordpress.mjs --site https://agence-kameo.fr
 ```
+
+Le WordPress en ligne a été piraté (voir `docs/analyse-search-console.md`, section 6) : tant qu'il n'est
+pas nettoyé, n'importer que depuis l'export du 14/10/2026, déjà vérifié. Prendre `formatting.php` dans le
+dépôt officiel (`https://github.com/WordPress/WordPress/blob/7.1.3/wp-includes/formatting.php`), jamais
+sur le serveur piraté : le script l'exécute. L'importeur n'écrit que des images (signature vérifiée) et
+uniquement dans `public/wp-content/uploads/`.
 
 Le script :
 
@@ -173,6 +179,27 @@ Après la bascule :
    reste validée (balise conservée sur l'accueil).
 2. Suivre le rapport « Pages » pendant 4 semaines (404 inattendues, redirections).
 3. Mettre à jour les URLs de la landing page dans Google Ads / Meta si elles pointaient vers `/wp-…`.
+
+## Sécurité
+
+- **En-têtes HTTP** (`next.config.ts`) : HSTS, `nosniff`, interdiction d'affichage dans un cadre,
+  `Referrer-Policy`, `Permissions-Policy`. La Content Security Policy complète est publiée en
+  **Report-Only** : après la mise en ligne, ouvrir les pages principales (accueil, contact, landing,
+  confirmation de rendez-vous) avec la console du navigateur ; si aucun signalement « Content Security
+  Policy » n'apparaît pour taap.it, le pixel Meta et Calendly, renommer l'en-tête en
+  `Content-Security-Policy` pour l'appliquer.
+- **Redirections** : uniquement vers le site lui-même (les chemins de l'ancien thème contenant `..`, `//`
+  ou un double encodage sont refusés).
+- **Formulaire de contact** : requête JSON du site lui-même uniquement, 20 Ko maximum, longueur des champs
+  bornée, champs d'une ligne nettoyés (pas d'en-tête ni de ligne ajoutés au mail), 5 envois par heure et
+  par adresse IP et 60 au total, STARTTLS obligatoire sur le port 587. Pour aller plus loin : un
+  anti-robot (Cloudflare Turnstile) ou le pare-feu de l'hébergeur.
+- **Articles** : le build échoue si un article contient du code (`<script>`, `on…=`, `javascript:`), un
+  contenu masqué ou une image d'un domaine inconnu (`src/lib/content-guard.ts`). L'en-tête des fichiers
+  Markdown est lu en YAML strict, sans exécution de code.
+- **Dépendances** : `npm audit` sans vulnérabilité au 14/10/2026 (nodemailer 10, `gray-matter` remplacé).
+- **Secrets** : uniquement dans les variables d'environnement de l'hébergeur ; tous les fichiers `.env*`
+  sont exclus de git.
 
 ## Outils de migration (`migration/`)
 

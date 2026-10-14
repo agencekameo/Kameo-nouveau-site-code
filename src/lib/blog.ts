@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import matter from 'gray-matter';
+import yaml from 'js-yaml';
 import { marked } from 'marked';
+import { assertSafeHtml } from './content-guard';
 import { addContentSrcset, uploadSrcset } from './images';
 import { addInternalLinks } from './internal-links';
 import { trimWords, wordCount } from './text';
@@ -32,6 +33,14 @@ const DIR = path.join(process.cwd(), 'src/content/blog');
 
 let cache: Post[] | null = null;
 
+/** En-tête YAML entre deux lignes « --- » (types YAML standard uniquement, aucun code exécuté). */
+function frontMatter(src: string): { data: Record<string, unknown>; content: string } {
+  const m = /^---\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(src);
+  if (!m) return { data: {}, content: src };
+  const data = yaml.load(m[1]);
+  return { data: data && typeof data === 'object' ? (data as Record<string, unknown>) : {}, content: src.slice(m[0].length) };
+}
+
 function load(): Post[] {
   if (cache) return cache;
   if (!fs.existsSync(DIR)) return (cache = []);
@@ -39,9 +48,10 @@ function load(): Post[] {
   for (const file of fs.readdirSync(DIR)) {
     if (!file.endsWith('.md') || file === 'README.md') continue;
     const slug = file.slice(0, -3);
-    const { data, content } = matter(fs.readFileSync(path.join(DIR, file), 'utf8'));
+    const { data, content } = frontMatter(fs.readFileSync(path.join(DIR, file), 'utf8'));
     if (data.draft) continue;
     const body = data.format === 'markdown' ? (marked.parse(content, { async: false }) as string) : content;
+    assertSafeHtml(body, file);
     const p = `/blog/${slug}/`;
     const html = addContentSrcset(addInternalLinks(body, p));
     const text = body.replace(/<[^>]*>/g, ' ');
@@ -60,8 +70,8 @@ function load(): Post[] {
       image: data.image
         ? {
             src: String(data.image),
-            width: data.imageWidth,
-            height: data.imageHeight,
+            width: data.imageWidth ? Number(data.imageWidth) : undefined,
+            height: data.imageHeight ? Number(data.imageHeight) : undefined,
             alt: data.imageAlt ? String(data.imageAlt) : undefined,
             srcset: uploadSrcset(String(data.image)),
           }

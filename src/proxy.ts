@@ -16,6 +16,12 @@ function decode(p: string): string {
   }
 }
 
+/** Redirection 301 vers le même site uniquement (défense en profondeur contre les redirections ouvertes). */
+function redirectSameOrigin(dest: URL, base: URL) {
+  if (dest.origin !== base.origin || dest.pathname.startsWith('//')) return new NextResponse(null, { status: 400 });
+  return NextResponse.redirect(dest, 301);
+}
+
 export function proxy(req: NextRequest) {
   const url = req.nextUrl;
   const path = decode(url.pathname);
@@ -24,7 +30,7 @@ export function proxy(req: NextRequest) {
   if (target) {
     const dest = new URL(target, url);
     dest.search = url.search;
-    return NextResponse.redirect(dest, 301);
+    return redirectSameOrigin(dest, url);
   }
 
   if (isGone(path)) {
@@ -37,7 +43,7 @@ export function proxy(req: NextRequest) {
   const last = url.pathname.split('/').pop() || '';
   if (!url.pathname.endsWith('/') && !last.includes('.') && !url.pathname.startsWith('/api/')) {
     // URL standard : le NextURL cloné reformate le chemin et retirerait le « / » ajouté
-    return NextResponse.redirect(new URL(url.pathname + '/' + url.search, req.url), 301);
+    return redirectSameOrigin(new URL(url.pathname + '/' + url.search, req.url), new URL(req.url));
   }
 
   if (url.pathname === '/' && url.searchParams.has('s')) {

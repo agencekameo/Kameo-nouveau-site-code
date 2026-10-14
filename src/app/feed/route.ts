@@ -5,6 +5,7 @@ import { SITE_URL, abs } from '@/lib/site';
 export const dynamic = 'force-static';
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const cdata = (s: string) => `<![CDATA[${s.replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
 
 export function GET() {
   const posts = getAllPosts().slice(0, 20);
@@ -16,7 +17,7 @@ export function GET() {
 \t\t\t<guid isPermaLink="true">${abs(p.path)}</guid>
 \t\t\t<dc:creator><![CDATA[Benjamin Dayan]]></dc:creator>
 \t\t\t<pubDate>${new Date(p.date).toUTCString()}</pubDate>
-\t\t\t<description><![CDATA[${p.excerpt}]]></description>
+\t\t\t<description>${cdata(p.excerpt)}</description>
 \t\t</item>`,
     )
     .join('\n');

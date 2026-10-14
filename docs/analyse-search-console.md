@@ -208,6 +208,15 @@ site Next.js, les trois URLs piratées répondent 410 (contenu supprimé défini
 4. Mettre à jour WordPress, le thème et toutes les extensions ; supprimer celles qui ne servent plus.
 5. Faire analyser les fichiers (Wordfence ou l'outil de l'hébergeur) à la recherche de portes dérobées,
    et prévenir l'hébergeur.
-6. Basculer vers le site Next.js dès que possible : il n'a ni base de données ni interface
+6. **Search Console** : dans Paramètres → Utilisateurs et autorisations, vérifier qu'aucun propriétaire
+   inconnu n'a été ajouté. La balise `google-site-verification` de l'accueil (reprise dans le site
+   Next.js, `GOOGLE_SITE_VERIFICATION` dans `src/lib/site.ts`) vient de la base WordPress et non du
+   thème : si elle n'appartient pas à l'agence, la retirer. Le pixel Meta et la clé taap.it, eux, viennent
+   du thème.
+7. Basculer vers le site Next.js dès que possible : il n'a ni base de données ni interface
    d'administration, ce qui supprime l'essentiel de la surface d'attaque. Une fois la bascule faite,
    fermer l'ancien WordPress.
+
+Le site Next.js a fait l'objet d'un audit de sécurité le 14/10/2026 : contenu et images importés sains
+(aucun script, lien caché ni fichier piégé), redirection ouverte et durcissement du formulaire corrigés
+(détail dans le README, section « Sécurité »).

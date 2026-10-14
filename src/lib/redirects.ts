@@ -256,7 +256,12 @@ export const TECHNICAL_REDIRECTS: Record<string, string> = {
   '/favicon.ico': '/wp-content/uploads/2026/05/cropped-favicon-dark-32x32.png',
 };
 
-const norm = (p: string) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
+/** Retire les « / » finaux (boucle linéaire : la regex /\/+$/ est quadratique sur « //////x »). */
+const norm = (p: string) => {
+  let end = p.length;
+  while (end > 1 && p.charCodeAt(end - 1) === 47) end--;
+  return p.slice(0, end);
+};
 const TABLE = new Map<string, string>(Object.entries({ ...ALL_REDIRECTS, ...TECHNICAL_REDIRECTS }).map(([k, v]) => [norm(k), v]));
 const GONE_SET = new Set(GONE.map(norm));
 
@@ -264,7 +269,14 @@ const GONE_SET = new Set(GONE.map(norm));
 export function redirectTarget(path: string): string | null {
   const hit = TABLE.get(norm(path));
   if (hit) return hit;
-  for (const [from, to] of PREFIX_REDIRECTS) if (path.startsWith(from)) return to + path.slice(from.length);
+  for (const [from, to] of PREFIX_REDIRECTS) {
+    if (!path.startsWith(from)) continue;
+    const rest = path.slice(from.length);
+    // Ni « . »/« .. », ni antislash, ni « % » (double encodage), ni « // », ni caractère de contrôle :
+    // « /images/..//evil.com » serait résolu en « //evil.com », une redirection vers un autre site.
+    if (/(^|\/)\.{1,2}(\/|$)|[\\%]|\/\/|[\u0000-\u001f\u007f]/.test(rest)) return null;
+    return to + rest;
+  }
   return null;
 }
 

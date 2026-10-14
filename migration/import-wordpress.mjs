@@ -59,25 +59,45 @@ async function getJson(url) {
 }
 
 const missingImages = new Set();
+const UPLOADS_ROOT = path.join(PUBLIC, 'wp-content', 'uploads') + path.sep;
+const IMG_EXT = /\.(png|jpe?g|webp|gif)$/i;
+/** Vraie image (signature PNG, JPEG, WebP ou GIF) : le site source a été piraté. */
+const isImage = (b) =>
+  b.subarray(0, 8).equals(Buffer.from('89504e470d0a1a0a', 'hex')) ||
+  b.subarray(0, 3).equals(Buffer.from('ffd8ff', 'hex')) ||
+  (b.toString('latin1', 0, 4) === 'RIFF' && b.toString('latin1', 8, 12) === 'WEBP') ||
+  b.toString('latin1', 0, 4) === 'GIF8';
+
 async function download(url) {
   const u = new URL(url, SITE);
   if (!/(^|\.)agence-?kameo\.fr$/.test(u.hostname) || !u.pathname.startsWith('/wp-content/uploads/')) return null;
-  const rel = decodeURIComponent(u.pathname);
-  const dest = path.join(PUBLIC, rel);
+  let rel;
+  try {
+    rel = decodeURIComponent(u.pathname);
+  } catch {
+    return null;
+  }
+  // images uniquement, et jamais hors de public/wp-content/uploads (« ..%2F » refusé)
+  if (/[\\\0]/.test(rel) || !IMG_EXT.test(rel)) return null;
+  const dest = path.resolve(PUBLIC, '.' + rel);
+  if (!dest.startsWith(UPLOADS_ROOT)) return null;
   const local = rel.split('/').map((s) => encodeURIComponent(s)).join('/');
   if (fs.existsSync(dest)) return local;
   try {
+    let buf;
     if (args.uploads) {
-      const src = path.join(args.uploads, rel.replace('/wp-content/uploads/', ''));
-      if (!fs.existsSync(src)) throw new Error('absente');
-      fs.mkdirSync(path.dirname(dest), { recursive: true });
-      fs.copyFileSync(src, dest);
+      const root = path.resolve(args.uploads) + path.sep;
+      const src = path.resolve(root, rel.slice('/wp-content/uploads/'.length));
+      if (!src.startsWith(root) || !fs.existsSync(src)) throw new Error('absente');
+      buf = fs.readFileSync(src);
     } else {
       const r = await fetch(SITE + u.pathname);
       if (!r.ok) throw new Error(String(r.status));
-      fs.mkdirSync(path.dirname(dest), { recursive: true });
-      fs.writeFileSync(dest, Buffer.from(await r.arrayBuffer()));
+      buf = Buffer.from(await r.arrayBuffer());
     }
+    if (!isImage(buf) || buf.length > 15e6) throw new Error('pas une image');
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.writeFileSync(dest, buf);
   } catch {
     // le chemin est conservé : il suffira de déposer le fichier dans public/
     missingImages.add(rel);

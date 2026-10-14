@@ -8,10 +8,11 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-type Props = { searchParams: Promise<{ s?: string }> };
+type Props = { searchParams: Promise<{ s?: string | string[] }> };
 
 export default async function SearchPage({ searchParams }: Props) {
-  const q = ((await searchParams).s || '').slice(0, 100);
+  const raw = (await searchParams).s; // « ?s=a&s=b » donne un tableau
+  const q = (Array.isArray(raw) ? (raw[0] ?? '') : (raw ?? '')).slice(0, 100);
   const results = search(q);
   return (
     <main id="main">
