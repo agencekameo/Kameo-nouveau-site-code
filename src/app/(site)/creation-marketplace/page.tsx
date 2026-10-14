@@ -496,7 +496,7 @@ export default function CreationMarketplacePage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'creation-marketplace' }),
           ...pageSchemas,
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

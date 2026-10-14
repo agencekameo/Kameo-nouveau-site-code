@@ -50,5 +50,5 @@ export function proxy(req: NextRequest) {
 
 export const config = {
   // tout sauf les ressources Next et les fichiers du dossier public
-  matcher: ['/((?!_next/|images/|fonts/|video/|icons\\.svg|favicon\\.ico|robots\\.txt|humans\\.txt|\\.well-known/).*)'],
+  matcher: ['/((?!_next/|images/|fonts/|video/|wp-content/uploads/|icons\\.svg|robots\\.txt|humans\\.txt|\\.well-known/).*)'],
 };

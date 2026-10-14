@@ -25,7 +25,9 @@ for (const f of fs.readdirSync(renderDir).filter((x) => x.endsWith('.meta.json')
   if (m.description && desc !== m.description && name !== 'realisations') issues.push(`description diff`);
   const noindex = m.robots.index === 'noindex' || name === 'rdv-confirme';
   if (noindex !== robots.includes('noindex')) issues.push(`robots « ${robots} »`);
-  if (canon !== m.canonical && !(name === 'rdv-confirme')) issues.push(`canonical ${canon} ≠ ${m.canonical}`);
+  // Rank Math ne publie pas de canonical sur les pages en noindex (vérifié sur le site en ligne)
+  const expCanon = noindex ? undefined : m.canonical;
+  if (canon !== expCanon && !(name === 'rdv-confirme')) issues.push(`canonical ${canon} ≠ ${expCanon}`);
   if (issues.length) { bad++; console.log(route, issues.join(' | ')); }
 }
 console.log(bad ? `${bad} page(s) en écart` : 'métadonnées identiques sur toutes les pages');

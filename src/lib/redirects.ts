@@ -249,6 +249,11 @@ export const TECHNICAL_REDIRECTS: Record<string, string> = {
   '/wp-sitemap.xml': '/sitemap_index.xml',
   '/blog/page/1': '/blog/',
   '/blog/feed': '/feed/',
+  // anciennes adresses de la landing page Ads (404 sur le WordPress en ligne)
+  '/lp-rdv': '/landingpage/',
+  '/lp-rdv-v2': '/landingpage/',
+  // WordPress redirige /favicon.ico vers l'icône du site
+  '/favicon.ico': '/wp-content/uploads/2026/05/cropped-favicon-dark-32x32.png',
 };
 
 const norm = (p: string) => (p.length > 1 ? p.replace(/\/+$/, '') : p);

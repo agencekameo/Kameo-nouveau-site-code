@@ -1,7 +1,9 @@
 /**
- * Études de cas du portfolio — données reprises du thème WordPress
- * (kameo_create_realisation_posts, functions.php section 11), avec les dimensions
- * réelles des images pour réserver l'espace à l'affichage.
+ * Études de cas du portfolio. Structure reprise du thème WordPress
+ * (kameo_create_realisation_posts, functions.php section 11) ; textes, ordre et dates
+ * tels qu'enregistrés dans la base du site en ligne au 14/10/2026 (le thème v2.10.7
+ * contenait une version retouchée des textes qui n'avait jamais été appliquée).
+ * Dimensions réelles des images pour réserver l'espace à l'affichage.
  */
 export type Img = { src: string; width: number; height: number };
 export type Section = { title: string; body: string; img1: Img | null; img2: Img | null };
@@ -9,6 +11,9 @@ export type Realisation = {
   slug: string;
   title: string;
   order: number;
+  /** Dates de publication et de modification WordPress (données structurées). */
+  date: string;
+  modified: string;
   description: string;
   siteUrl: string;
   client: string;
@@ -27,8 +32,10 @@ export const REALISATIONS: Realisation[] = [
     slug: 'dronespec',
     title: 'DroneSpec',
     order: 1,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-09T12:47:35+00:00',
     description:
-      'La donnée aérienne de précision. Relevés topographiques, inspections techniques et modélisation 3D par drone, pour les collectivités et les professionnels du BTP.',
+      'La donnée aérienne de précision. Relevés topographiques, inspections techniques et modélisation 3D par drone — pour les collectivités et les professionnels du BTP.',
     siteUrl: 'https://dronespec.fr/',
     client: 'DroneSpec',
     service: 'Direction Artistique, Site Web',
@@ -41,7 +48,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: 'Positionner un ingénieur de la donnée, pas un prestataire drone',
-        body: "DroneSpec est fondée par Nicolas Brière, ingénieur et chef de projet IT avec 20 ans d'expérience. Son positionnement tranche clairement avec les prestataires généralistes : DroneSpec ne se définit pas comme une agence de prises de vues aériennes, mais comme un cabinet d'ingénierie de la donnée dans l'espace. L'essentiel du travail réside dans le traitement de la donnée brute, relevés RTK, orthophotographies, nuages de points, pour produire des livrables directement exploitables par les géomètres, maîtres d'ouvrage et gestionnaires de collectivités. Notre enjeu : faire passer ce positionnement en quelques secondes à l'écran.",
+        body: "DroneSpec est fondée par Nicolas Brière, ingénieur et chef de projet IT avec 20 ans d'expérience. Son positionnement tranche clairement avec les prestataires généralistes : DroneSpec ne se définit pas comme une agence de prises de vues aériennes, mais comme un cabinet d'ingénierie de la donnée dans l'espace. L'essentiel du travail réside dans le traitement de la donnée brute — relevés RTK, orthophotographies, nuages de points — pour produire des livrables directement exploitables par les géomètres, maîtres d'ouvrage et gestionnaires de collectivités. Notre enjeu : faire passer ce positionnement en quelques secondes à l'écran.",
         img1: {
           src: '/images/projects/dronespec/screen01.webp',
           width: 1600,
@@ -55,7 +62,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Quatre domaines, un discours ciblé par interlocuteur métier',
-        body: "Le site structure quatre périmètres d'intervention : photogrammétrie & cartographie (orthophoto, plan de masse, livrables DXF / TIFF / SHP), inspection technique (toitures, façades, charpentes, ouvrages d'art), modélisation 3D et gestion funéraire via la solution CIMETI-R. Pour chaque service, nous avons construit un argumentaire adapté à l'interlocuteur cible, agent territorial, responsable BTP, bureau d'études, avec les blocs de réassurance indispensables : drone DJI Matrice Enterprise RTK, télépilote certifié DGAC/EASA, précision centimétrique, conformité RGPD, RC Pro spécifique drone en zone urbaine.",
+        body: "Le site structure quatre périmètres d'intervention : photogrammétrie & cartographie (orthophoto, plan de masse, livrables DXF / TIFF / SHP), inspection technique (toitures, façades, charpentes, ouvrages d'art), modélisation 3D et gestion funéraire via la solution CIMETI-R. Pour chaque service, nous avons construit un argumentaire adapté à l'interlocuteur cible — agent territorial, responsable BTP, bureau d'études — avec les blocs de réassurance indispensables : drone DJI Matrice Enterprise RTK, télépilote certifié DGAC/EASA, précision centimétrique, conformité RGPD, RC Pro spécifique drone en zone urbaine.",
         img1: {
           src: '/images/projects/dronespec/screen02.webp',
           width: 1600,
@@ -69,7 +76,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'CIMETI-R : une page dédiée pour une offre exclusive aux collectivités',
-        body: 'CIMETI-R est la solution propriétaire de DroneSpec destinée aux communes : cartographie géoréférencée haute définition de cimetières municipaux, conformité aux obligations CGCT et indexation numérique des concessions funéraires. Un marché de niche, mais à fort enjeu réglementaire : chaque commune est une cible potentielle. Nous avons conçu une landing dédiée qui articule les obligations légales, les livrables concrets (orthophotographies HD, modèles 3D, base de données concessions) et les réponses aux objections spécifiques des agents territoriaux.',
+        body: 'CIMETI-R est la solution propriétaire de DroneSpec destinée aux communes : cartographie géoréférencée haute définition de cimetières municipaux, conformité aux obligations CGCT et indexation numérique des concessions funéraires. Un marché de niche, mais à fort enjeu réglementaire — chaque commune est une cible potentielle. Nous avons conçu une landing dédiée qui articule les obligations légales, les livrables concrets (orthophotographies HD, modèles 3D, base de données concessions) et les réponses aux objections spécifiques des agents territoriaux.',
         img1: null,
         img2: null,
       },
@@ -80,7 +87,7 @@ export const REALISATIONS: Realisation[] = [
       height: 1066,
     },
     quote:
-      '"Kameo a su s\'approprier notre univers technique avec une vraie rigueur. Le résultat est un site qui parle directement à nos clients, collectivités et maîtres d\'ouvrage, avec le bon niveau de précision et de crédibilité."',
+      '"Kameo a su s\'approprier notre univers technique avec une vraie rigueur. Le résultat est un site qui parle directement à nos clients — collectivités et maîtres d\'ouvrage — avec le bon niveau de précision et de crédibilité."',
     quoteAuthor: 'Nicolas Brière, Fondateur de DroneSpec',
     fullImg: {
       src: '/images/projects/dronespec/mobile03.webp',
@@ -89,11 +96,76 @@ export const REALISATIONS: Realisation[] = [
     },
   },
   {
+    slug: 'les-cars-du-plateau',
+    title: 'Les Cars du Plateau',
+    order: 2,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description:
+      "20 ans d'expertise transport collectif en Auvergne-Rhône-Alpes — une présence digitale à la hauteur de leur fiabilité terrain.",
+    siteUrl: 'https://cdp69.com/',
+    client: 'Les Cars du Plateau (CDP69)',
+    service: 'Direction Artistique, Site Web',
+    duree: '3 semaines',
+    hero: {
+      src: '/images/projects/Les%20cars%20du%20plateau/hero-bg.webp',
+      width: 1535,
+      height: 829,
+    },
+    sections: [
+      {
+        title: "Donner une vitrine digitale à 20 ans d'expertise terrain",
+        body: "CDP69 — Les Cars du Plateau — est une entreprise familiale spécialisée dans le transport collectif en région Auvergne-Rhône-Alpes depuis plus de 20 ans. Face à des groupes nationaux imposants, leur force réside dans leur double implantation stratégique (Vaulx-en-Velin et Plateau d'Hauteville), leur flotte Euro 6 renouvelée et la relation directe qu'ils entretiennent avec chaque client. Notre enjeu : construire un site qui reflète cette proximité et cette fiabilité terrain, tout en crédibilisant CDP69 face à des concurrents disposant de budgets marketing sans commune mesure.",
+        img1: {
+          src: '/images/projects/Les%20cars%20du%20plateau/screen01%20%281%29.webp',
+          width: 1600,
+          height: 1066,
+        },
+        img2: {
+          src: '/images/projects/Les%20cars%20du%20plateau/mobilescreen01.webp',
+          width: 1600,
+          height: 1066,
+        },
+      },
+      {
+        title: 'Une architecture pensée pour trois segments clientèle distincts',
+        body: "Le site structure les offres de CDP69 autour de trois axes métiers : transport scolaire (agrément officiel, conducteurs titulaires permis D et FIMO), transport événementiel et professionnel, et transferts aéroport Lyon Saint-Exupéry. Pour chaque segment, nous avons construit un argumentaire ciblé avec les éléments de réassurance décisifs — flotte 16 à 70 places, licence de transport de voyageurs, maintenance préventive rigoureuse, conformité Euro 6 — pour convertir aussi bien un directeur d'école qu'un responsable logistique d'entreprise.",
+        img1: {
+          src: '/images/projects/Les%20cars%20du%20plateau/screen02%20%281%29.webp',
+          width: 1600,
+          height: 1066,
+        },
+        img2: {
+          src: '/images/projects/Les%20cars%20du%20plateau/fiche%20gmb%2001.webp',
+          width: 1600,
+          height: 1066,
+        },
+      },
+      {
+        title: 'Deux dépôts, une réactivité maximale sur toute la région',
+        body: "L'un des atouts différenciants de CDP69 est sa double implantation géographique : Vaulx-en-Velin aux portes de Lyon pour les accès métropole, A6/A7/A40 et aéroport, et le Plateau d'Hauteville dans l'Ain pour couvrir l'est de la région. Cette organisation unique optimise les trajets à vide, permet des tarifs plus compétitifs et assure une intervention rapide partout en Auvergne-Rhône-Alpes. Nous avons placé cette géographie stratégique comme axe de différenciation central dans le discours du site — un avantage concret là où les grands groupes nationaux ne peuvent pas suivre.",
+        img1: null,
+        img2: null,
+      },
+    ],
+    solo: {
+      src: '/images/projects/Les%20cars%20du%20plateau/screen03%20%281%29.webp',
+      width: 1600,
+      height: 1066,
+    },
+    quote:
+      '"Kameo a parfaitement cerné notre positionnement de proximité. Le site reflète enfin notre sérieux et notre façon de travailler — nos clients nous le disent dès le premier contact."',
+    quoteAuthor: 'Direction CDP69, Les Cars du Plateau',
+    fullImg: null,
+  },
+  {
     slug: 'defikart',
     title: 'Défikart',
-    order: 2,
+    order: 3,
+    date: '2026-07-20T12:50:59+00:00',
+    modified: '2026-07-20T12:50:59+00:00',
     description:
-      'Le plus grand karting indoor de Toulouse. Piste de 400 mètres, paintball, anniversaires et team-building, pour particuliers, familles et entreprises.',
+      'Le plus grand karting indoor de Toulouse. Piste de 400 mètres, paintball, anniversaires et team-building — pour particuliers, familles et entreprises.',
     siteUrl: 'https://defikart.fr/',
     client: 'Défikart Toulouse',
     service: 'Direction Artistique, Site Web',
@@ -106,7 +178,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: "Faire ressentir l'adrénaline dès la première seconde",
-        body: "Défikart, c'est plus de 20 ans d'existence, 4 000 m² d'infrastructure et une piste indoor de 400 mètres, la plus grande de Toulouse. Le site devait traduire cette échelle et cette énergie à l'écran. Nous avons construit une page d'accueil immersive qui plonge le visiteur dans l'univers du karting dès les premiers pixels : hero vidéo, palette punchy noir-jaune-rouge, typographie racing. L'objectif : que le visiteur ait envie de réserver sa session avant même d'avoir scrollé.",
+        body: "Défikart, c'est plus de 20 ans d'existence, 4 000 m² d'infrastructure et une piste indoor de 400 mètres — la plus grande de Toulouse. Le site devait traduire cette échelle et cette énergie à l'écran. Nous avons construit une page d'accueil immersive qui plonge le visiteur dans l'univers du karting dès les premiers pixels : hero vidéo, palette punchy noir-jaune-rouge, typographie racing. L'objectif : que le visiteur ait envie de réserver sa session avant même d'avoir scrollé.",
         img1: {
           src: '/images/projects/defikart/screen01.webp',
           width: 1600,
@@ -133,8 +205,8 @@ export const REALISATIONS: Realisation[] = [
         },
       },
       {
-        title: 'Une page contact qui convertit, pas juste un formulaire',
-        body: "La majorité des concurrents renvoient vers un formulaire sec avec 8 champs. Nous avons pris le contre-pied : sur la page contact de Défikart, le visiteur trouve d'abord l'essentiel, adresse, horaires, plan Google Maps, numéro de téléphone cliquable, avant même le formulaire. L'idée : lever tous les freins pour qu'un appel ou une visite se déclenche, même quand le client hésite à taper 8 lignes sur son mobile. Résultat : une expérience mobile fluide qui pousse à l'action, sans passer par la case remplissage laborieuse.",
+        title: 'Une page contact qui convertit — pas juste un formulaire',
+        body: "La majorité des concurrents renvoient vers un formulaire sec avec 8 champs. Nous avons pris le contre-pied : sur la page contact de Défikart, le visiteur trouve d'abord l'essentiel — adresse, horaires, plan Google Maps, numéro de téléphone cliquable — avant même le formulaire. L'idée : lever tous les freins pour qu'un appel ou une visite se déclenche, même quand le client hésite à taper 8 lignes sur son mobile. Résultat : une expérience mobile fluide qui pousse à l'action, sans passer par la case remplissage laborieuse.",
         img1: null,
         img2: null,
       },
@@ -145,7 +217,7 @@ export const REALISATIONS: Realisation[] = [
       height: 1066,
     },
     quote:
-      "\"Kameo a compris qu'un site pour Défikart, ce n'est pas juste montrer des photos de karts, c'est faire ressentir la vitesse et faciliter la réservation au maximum. Le nouveau site convertit visiblement mieux que l'ancien.\"",
+      '"Kameo a compris qu\'un site pour Défikart, ce n\'est pas juste montrer des photos de karts — c\'est faire ressentir la vitesse et faciliter la réservation au maximum. Le nouveau site convertit visiblement mieux que l\'ancien."',
     quoteAuthor: 'Direction Défikart Toulouse',
     fullImg: {
       src: '/images/projects/defikart/mobile03.webp',
@@ -154,70 +226,11 @@ export const REALISATIONS: Realisation[] = [
     },
   },
   {
-    slug: 'les-cars-du-plateau',
-    title: 'Les Cars du Plateau',
-    order: 3,
-    description:
-      "20 ans d'expertise transport collectif en Auvergne-Rhône-Alpes, une présence digitale à la hauteur de leur fiabilité terrain.",
-    siteUrl: 'https://cdp69.com/',
-    client: 'Les Cars du Plateau (CDP69)',
-    service: 'Direction Artistique, Site Web',
-    duree: '3 semaines',
-    hero: {
-      src: '/images/projects/Les%20cars%20du%20plateau/hero-bg.webp',
-      width: 1535,
-      height: 829,
-    },
-    sections: [
-      {
-        title: "Donner une vitrine digitale à 20 ans d'expertise terrain",
-        body: "CDP69, Les Cars du Plateau, est une entreprise familiale spécialisée dans le transport collectif en région Auvergne-Rhône-Alpes depuis plus de 20 ans. Face à des groupes nationaux imposants, leur force réside dans leur double implantation stratégique (Vaulx-en-Velin et Plateau d'Hauteville), leur flotte Euro 6 renouvelée et la relation directe qu'ils entretiennent avec chaque client. Notre enjeu : construire un site qui reflète cette proximité et cette fiabilité terrain, tout en crédibilisant CDP69 face à des concurrents disposant de budgets marketing sans commune mesure.",
-        img1: {
-          src: '/images/projects/Les%20cars%20du%20plateau/screen01%20%281%29.webp',
-          width: 1600,
-          height: 1066,
-        },
-        img2: {
-          src: '/images/projects/Les%20cars%20du%20plateau/mobilescreen01.webp',
-          width: 1600,
-          height: 1066,
-        },
-      },
-      {
-        title: 'Une architecture pensée pour trois segments clientèle distincts',
-        body: "Le site structure les offres de CDP69 autour de trois axes métiers : transport scolaire (agrément officiel, conducteurs titulaires permis D et FIMO), transport événementiel et professionnel, et transferts aéroport Lyon Saint-Exupéry. Pour chaque segment, nous avons construit un argumentaire ciblé avec les éléments de réassurance décisifs, flotte 16 à 70 places, licence de transport de voyageurs, maintenance préventive rigoureuse, conformité Euro 6, pour convertir aussi bien un directeur d'école qu'un responsable logistique d'entreprise.",
-        img1: {
-          src: '/images/projects/Les%20cars%20du%20plateau/screen02%20%281%29.webp',
-          width: 1600,
-          height: 1066,
-        },
-        img2: {
-          src: '/images/projects/Les%20cars%20du%20plateau/fiche%20gmb%2001.webp',
-          width: 1600,
-          height: 1066,
-        },
-      },
-      {
-        title: 'Deux dépôts, une réactivité maximale sur toute la région',
-        body: "L'un des atouts différenciants de CDP69 est sa double implantation géographique : Vaulx-en-Velin aux portes de Lyon pour les accès métropole, A6/A7/A40 et aéroport, et le Plateau d'Hauteville dans l'Ain pour couvrir l'est de la région. Cette organisation unique optimise les trajets à vide, permet des tarifs plus compétitifs et assure une intervention rapide partout en Auvergne-Rhône-Alpes. Nous avons placé cette géographie stratégique comme axe de différenciation central dans le discours du site, un avantage concret là où les grands groupes nationaux ne peuvent pas suivre.",
-        img1: null,
-        img2: null,
-      },
-    ],
-    solo: {
-      src: '/images/projects/Les%20cars%20du%20plateau/screen03%20%281%29.webp',
-      width: 1600,
-      height: 1066,
-    },
-    quote:
-      '"Kameo a parfaitement cerné notre positionnement de proximité. Le site reflète enfin notre sérieux et notre façon de travailler, nos clients nous le disent dès le premier contact."',
-    quoteAuthor: 'Direction CDP69, Les Cars du Plateau',
-    fullImg: null,
-  },
-  {
     slug: 'le-101',
     title: 'Le 101',
     order: 4,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
     description:
       "Du concept à l'assiette : nous avons orchestré le lancement complet du complexe du 101, de son identité visuelle à son site web, en passant par une stratégie d'influence et de relations presse sur-mesure.",
     siteUrl: 'https://www.complexe101.fr/',
@@ -282,8 +295,10 @@ export const REALISATIONS: Realisation[] = [
     slug: 'medical-market',
     title: 'Medical Market',
     order: 5,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
     description:
-      "Medical Market, une plateforme e-commerce complète au service de la santé : catalogue produit, expérience d'achat optimisée et stratégie digitale multi-canal pour maximiser la visibilité et les ventes en ligne.",
+      "Medical Market — une plateforme e-commerce complète au service de la santé : catalogue produit, expérience d'achat optimisée et stratégie digitale multi-canal pour maximiser la visibilité et les ventes en ligne.",
     siteUrl: 'https://medical-market.fr/',
     client: 'Medical Market',
     service: 'Site Web, RS, GMB, Shooting, Pub',
@@ -346,7 +361,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'claimz',
     title: 'Claimz',
     order: 6,
-    description: "Claimz, l'identité d'une expertise droite en gestion de sinistres.",
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: "Claimz — l'identité d'une expertise droite en gestion de sinistres.",
     siteUrl: 'https://claimz.fr/',
     client: 'Claimz',
     service: 'DA, Site Web, RS, RP',
@@ -409,7 +426,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'be-cherry',
     title: 'Be Cherry',
     order: 7,
-    description: 'Be Cherry Cosmetics, un e-commerce performant porté par une stratégie publicitaire créative.',
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: 'Be Cherry Cosmetics — un e-commerce performant porté par une stratégie publicitaire créative.',
     siteUrl: 'http://becherrycosmetics.com/',
     client: 'Be Cherry',
     service: 'Site web, Publicité',
@@ -472,7 +491,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'mobile-house',
     title: 'Mobile House',
     order: 8,
-    description: "Mobile House, un site vitrine immersif pour mettre en valeur des habitats mobiles d'exception.",
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: "Mobile House — un site vitrine immersif pour mettre en valeur des habitats mobiles d'exception.",
     siteUrl: 'https://www.mobilehouse.fr/',
     client: 'Mobile House',
     service: 'DA, Site Web, RS',
@@ -499,7 +520,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Une identité visuelle forte au service de la différenciation',
-        body: "Pour se démarquer sur un marché de niche, Mobile House avait besoin d'une identité visuelle claire et mémorable. Nous avons travaillé une direction artistique soignée, palette de couleurs, typographies, iconographie, pour exprimer le positionnement haut de gamme de la marque tout en restant accessible. Le résultat : une cohérence visuelle qui inspire confiance dès les premiers instants.",
+        body: "Pour se démarquer sur un marché de niche, Mobile House avait besoin d'une identité visuelle claire et mémorable. Nous avons travaillé une direction artistique soignée — palette de couleurs, typographies, iconographie — pour exprimer le positionnement haut de gamme de la marque tout en restant accessible. Le résultat : une cohérence visuelle qui inspire confiance dès les premiers instants.",
         img1: {
           src: '/images/projects/mobile-house/mockup3.webp',
           width: 1600,
@@ -536,7 +557,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'compagnie-des-autocars-lyonnais',
     title: 'Compagnie des Autocars Lyonnais',
     order: 9,
-    description: 'CAL, une présence digitale complète pour un acteur majeur du transport autocar.',
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: 'CAL — une présence digitale complète pour un acteur majeur du transport autocar.',
     siteUrl: 'https://cal69.fr/',
     client: 'Compagnie des Autocars Lyonnais',
     service: 'Site Web, Fiche GMB',
@@ -549,7 +572,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: "Un site web professionnel qui valorise l'offre de location d'autocars",
-        body: "Nous avons développé un site vitrine clair et structuré pour la Compagnie des Autocars Lyonnais, mettant en avant l'ensemble de leurs services de location d'autocars avec chauffeur : transport scolaire, voyages d'entreprise, transferts et excursions. L'enjeu était de donner à CAL une image professionnelle et rassurante face à une clientèle exigeante, directeurs d'établissements scolaires, responsables logistiques d'entreprises, comités d'entreprise : tout en simplifiant au maximum la prise de contact et les demandes de devis.",
+        body: "Nous avons développé un site vitrine clair et structuré pour la Compagnie des Autocars Lyonnais, mettant en avant l'ensemble de leurs services de location d'autocars avec chauffeur : transport scolaire, voyages d'entreprise, transferts et excursions. L'enjeu était de donner à CAL une image professionnelle et rassurante face à une clientèle exigeante — directeurs d'établissements scolaires, responsables logistiques d'entreprises, comités d'entreprise — tout en simplifiant au maximum la prise de contact et les demandes de devis.",
         img1: {
           src: '/images/projects/compagnie-des-autocars-lyonnais/siteWeb_LandingPage.webp',
           width: 1600,
@@ -577,7 +600,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Une stratégie digitale coordonnée pour générer des demandes de devis',
-        body: "En combinant site web de conversion et fiche Google My Business optimisée, nous avons construit pour CAL un écosystème digital cohérent où chaque point de contact génère des opportunités commerciales concrètes. Le référencement local naturel, renforcé par l'ancienneté de la relation et la régularité des publications, positionne aujourd'hui la Compagnie des Autocars Lyonnais comme acteur incontournable du transport collectif dans la région lyonnaise.",
+        body: "En combinant site web de conversion et fiche Google My Business optimisée, nous avons construit pour CAL un écosystème digital cohérent où chaque point de contact génère des opportunités commerciales concrètes. Le référencement local naturel — renforcé par l'ancienneté de la relation et la régularité des publications — positionne aujourd'hui la Compagnie des Autocars Lyonnais comme acteur incontournable du transport collectif dans la région lyonnaise.",
         img1: null,
         img2: null,
       },
@@ -588,7 +611,7 @@ export const REALISATIONS: Realisation[] = [
       height: 1066,
     },
     quote:
-      '"Kameo a transformé notre présence en ligne en véritable outil commercial. On reçoit désormais des demandes de devis directement depuis le site et via Google, c\'est un gain concret au quotidien."',
+      '"Kameo a transformé notre présence en ligne en véritable outil commercial. On reçoit désormais des demandes de devis directement depuis le site et via Google — c\'est un gain concret au quotidien."',
     quoteAuthor: 'Direction CAL, Compagnie des Autocars Lyonnais',
     fullImg: {
       src: '/images/projects/compagnie-des-autocars-lyonnais/siteWeb_Contact.webp',
@@ -600,7 +623,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'qunfil',
     title: 'Qunfil',
     order: 10,
-    description: "Qunfil, une identité visuelle et un site vitrine pour une marque d'art textile d'exception.",
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: "Qunfil — une identité visuelle et un site vitrine pour une marque d'art textile d'exception.",
     siteUrl: 'https://qunfil.art/',
     client: 'Qunfil',
     service: 'Direction Artistique, Site Web',
@@ -613,7 +638,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: "Une identité visuelle créée de A à Z pour un art d'exception",
-        body: "Nous avons conçu l'identité visuelle complète de Qunfil, marque spécialisée dans les tableaux en string art fabriqués 100% en France. Logotype, palette chromatique, typographie, charte graphique, supports print et signalétique : chaque élément traduit la technicité et le caractère unique de ces œuvres textiles, à mi-chemin entre l'art contemporain et la décoration intérieure haut de gamme. Un univers visuel cohérent, élégant et différenciant, conçu pour s'adresser aussi bien aux amateurs d'art qu'aux prescripteurs en décoration.",
+        body: "Nous avons conçu l'identité visuelle complète de Qunfil — marque spécialisée dans les tableaux en string art fabriqués 100% en France. Logotype, palette chromatique, typographie, charte graphique, supports print et signalétique : chaque élément traduit la technicité et le caractère unique de ces œuvres textiles, à mi-chemin entre l'art contemporain et la décoration intérieure haut de gamme. Un univers visuel cohérent, élégant et différenciant, conçu pour s'adresser aussi bien aux amateurs d'art qu'aux prescripteurs en décoration.",
         img1: {
           src: '/images/projects/qunfil/IdVisu_folder_cropped.webp',
           width: 1313,
@@ -627,7 +652,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: "Un site vitrine qui raconte l'histoire d'un artisanat local",
-        body: "Nous avons structuré le site pour valoriser le savoir-faire artisanal et l'authenticité de Qunfil. Fabrication 100% française, fils tendus à la main sur cadre : chaque tableau est une pièce unique, fruit d'une technicité précise et d'un geste répété des centaines de fois. L'architecture du site guide le visiteur de la découverte du concept jusqu'aux collections (portraits, paysages, animaux, architecture), en passant par l'histoire de la marque, un parcours pensé pour susciter l'émotion et déclencher la prise de contact.",
+        body: "Nous avons structuré le site pour valoriser le savoir-faire artisanal et l'authenticité de Qunfil. Fabrication 100% française, fils tendus à la main sur cadre — chaque tableau est une pièce unique, fruit d'une technicité précise et d'un geste répété des centaines de fois. L'architecture du site guide le visiteur de la découverte du concept jusqu'aux collections (portraits, paysages, animaux, architecture), en passant par l'histoire de la marque — un parcours pensé pour susciter l'émotion et déclencher la prise de contact.",
         img1: {
           src: '/images/projects/qunfil/siteWeb_LandingPage%20%281%29.webp',
           width: 1600,
@@ -641,7 +666,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Une plateforme conçue pour la conversion et la personnalisation',
-        body: "Au-delà de l'esthétique, le site Qunfil est un outil de conversion : présentation claire des collections, mise en avant des œuvres sur mesure, galerie photo optimisée et CTAs pensés à chaque étape du parcours client. L'ensemble du dispositif, identité visuelle + site web, construit une présence en ligne capable de transformer la curiosité d'un visiteur en commande d'un tableau unique. Un projet livré dans des délais serrés, sans compromis sur la qualité.",
+        body: "Au-delà de l'esthétique, le site Qunfil est un outil de conversion : présentation claire des collections, mise en avant des œuvres sur mesure, galerie photo optimisée et CTAs pensés à chaque étape du parcours client. L'ensemble du dispositif — identité visuelle + site web — construit une présence en ligne capable de transformer la curiosité d'un visiteur en commande d'un tableau unique. Un projet livré dans des délais serrés, sans compromis sur la qualité.",
         img1: null,
         img2: null,
       },
@@ -664,7 +689,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'villa-de-luxe-bonifacio',
     title: 'Villa de Luxe Bonifacio',
     order: 11,
-    description: "Villa Luxe Bonifacio, le site vitrine premium pour des villas d'exception en Corse.",
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: "Villa Luxe Bonifacio — le site vitrine premium pour des villas d'exception en Corse.",
     siteUrl: 'https://villaluxebonifacio.com/',
     client: 'Villa de Luxe Bonifacio',
     service: 'Site Web',
@@ -705,7 +732,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Une plateforme conçue pour la location de luxe',
-        body: "La plateforme Villa Luxe Bonifacio agit comme un véritable outil de réservation haut de gamme : fiches propriétés immersives, formulaire de demande personnalisé, mise en avant des services additionnels (véhicules de prestige, boat trips, expériences locales) et tunnel de conversion pensé pour rassurer et convaincre une clientèle premium internationale. Chaque détail, de l'architecture de l'information à la sélection typographique, véhicule un positionnement unique en son genre sur la destination Bonifacio.",
+        body: "La plateforme Villa Luxe Bonifacio agit comme un véritable outil de réservation haut de gamme : fiches propriétés immersives, formulaire de demande personnalisé, mise en avant des services additionnels (véhicules de prestige, boat trips, expériences locales) et tunnel de conversion pensé pour rassurer et convaincre une clientèle premium internationale. Chaque détail — de l'architecture de l'information à la sélection typographique — véhicule un positionnement unique en son genre sur la destination Bonifacio.",
         img1: null,
         img2: null,
       },
@@ -727,7 +754,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'valeos',
     title: 'Valeos',
     order: 12,
-    description: "Valeos, un site sur mesure pour l'essor des solutions énergétiques économiques et écologiques.",
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: "Valeos — un site sur mesure pour l'essor des solutions énergétiques économiques et écologiques.",
     siteUrl: 'https://valeos.fr/',
     client: 'Valeos',
     service: 'Site Web, Logo',
@@ -740,7 +769,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: 'Une maquette graphique créée de toutes pièces pour se démarquer',
-        body: "Nous avons développé un site vitrine moderne et épuré pour Valeos, en partant d'une page blanche. Le design traduit le positionnement de la marque : sérieux, clarté et innovation au service des particuliers et professionnels qui cherchent à réduire leur facture énergétique grâce au solaire. Chaque choix graphique, palette, typographie, mise en page, renforce la crédibilité et la proximité que Valeos souhaitait projeter auprès de ses prospects.",
+        body: "Nous avons développé un site vitrine moderne et épuré pour Valeos, en partant d'une page blanche. Le design traduit le positionnement de la marque : sérieux, clarté et innovation au service des particuliers et professionnels qui cherchent à réduire leur facture énergétique grâce au solaire. Chaque choix graphique — palette, typographie, mise en page — renforce la crédibilité et la proximité que Valeos souhaitait projeter auprès de ses prospects.",
         img1: {
           src: '/images/projects/valeo/siteWeb_LandingPage%20%283%29.webp',
           width: 1600,
@@ -754,7 +783,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Un site web structuré pour orienter et rassurer les prospects',
-        body: "Le site organise l'offre complète de Valeos : panneaux solaires, pompes à chaleur et bornes de recharge, en présentant chaque solution d'installation solaire. Chaque catégorie est présentée avec ses avantages chiffrés (économies réalisées, aides disponibles, retour sur investissement) et les informations essentielles pour convaincre un prospect indécis. Un tunnel de confiance construit autour de la réassurance technique, commerciale et écologique, qui guide naturellement vers la demande de devis ou de renseignements.",
+        body: "Le site organise l'offre complète de Valeos : panneaux solaires, pompes à chaleur et bornes de recharge — en présentant chaque solution d'installation solaire. Chaque catégorie est présentée avec ses avantages chiffrés (économies réalisées, aides disponibles, retour sur investissement) et les informations essentielles pour convaincre un prospect indécis. Un tunnel de confiance construit autour de la réassurance technique, commerciale et écologique, qui guide naturellement vers la demande de devis ou de renseignements.",
         img1: {
           src: '/images/projects/valeo/mobile_solaire.webp',
           width: 1600,
@@ -791,7 +820,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'casajaia',
     title: 'CasaJaia',
     order: 13,
-    description: "Casa Jaïa, une boutique e-commerce complète pour l'univers de la maison et de la convivialité.",
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: "Casa Jaïa — une boutique e-commerce complète pour l'univers de la maison et de la convivialité.",
     siteUrl: 'https://casajaia.fr/',
     client: 'CasaJaia',
     service: 'Site Web',
@@ -854,8 +885,10 @@ export const REALISATIONS: Realisation[] = [
     slug: 'axistone-capital',
     title: 'Axistone Capital',
     order: 14,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
     description:
-      "Axistone Capital, un site vitrine professionnel pour un fonds d'investissement immobilier à l'approche technologique innovante.",
+      "Axistone Capital — un site vitrine professionnel pour un fonds d'investissement immobilier à l'approche technologique innovante.",
     siteUrl: 'https://axistonecapital.com/',
     client: 'Axistone Capital',
     service: 'Site Web',
@@ -868,7 +901,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: 'Un site web sobre et élégant qui inspire confiance institutionnelle',
-        body: "Nous avons développé un site vitrine professionnel et sobre pour Axistone Capital, fonds d'investissement spécialisé dans l'immobilier. L'enjeu était de construire une crédibilité visuelle immédiate auprès de partenaires financiers et d'investisseurs institutionnels. Chaque arbitrage graphique, palette sombre et sobre, typographie rigoureuse, mise en page structurée, véhicule sérieux, expertise et ambition : tout en se différenciant des acteurs logistiques et bâtiments réactifs institutionnels jusqu'à 15 000.",
+        body: "Nous avons développé un site vitrine professionnel et sobre pour Axistone Capital, fonds d'investissement spécialisé dans l'immobilier. L'enjeu était de construire une crédibilité visuelle immédiate auprès de partenaires financiers et d'investisseurs institutionnels. Chaque arbitrage graphique — palette sombre et sobre, typographie rigoureuse, mise en page structurée — véhicule sérieux, expertise et ambition, tout en se différenciant des acteurs logistiques et bâtiments réactifs institutionnels jusqu'à 15 000.",
         img1: {
           src: '/images/projects/axistone-capital/siteWeb_LandingPage%20%285%29.webp',
           width: 1600,
@@ -882,7 +915,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: "Une présentation claire d'une approche technologique innovante",
-        body: "Le site communique sur le positionnement différenciant d'Axistone Capital : l'alliance entre expertise immobilière et maîtrise technologique pour générer des rendements supérieurs au marché. Candidature à la plateforme de gestion propriétaire en ligne, tableaux de bord actifs, reporting dynamique, les outils technologiques d'Axistone sont mis en avant comme un avantage concurrentiel décisif. Les détails chiffrés et informationnels précis aident à renforcer la confiance et à accélérer la décision.",
+        body: "Le site communique sur le positionnement différenciant d'Axistone Capital : l'alliance entre expertise immobilière et maîtrise technologique pour générer des rendements supérieurs au marché. Candidature à la plateforme de gestion propriétaire en ligne, tableaux de bord actifs, reporting dynamique — les outils technologiques d'Axistone sont mis en avant comme un avantage concurrentiel décisif. Les détails chiffrés et informationnels précis aident à renforcer la confiance et à accélérer la décision.",
         img1: {
           src: '/images/projects/axistone-capital/siteWeb_NosForces%20%281%29.webp',
           width: 1600,
@@ -918,8 +951,10 @@ export const REALISATIONS: Realisation[] = [
     slug: 'paris-production-services',
     title: 'Paris Production Services',
     order: 15,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
     description:
-      'Paris Production Services, un site vitrine complet pour un acteur spécialisé dans les services de production audiovisuelle en France.',
+      'Paris Production Services — un site vitrine complet pour un acteur spécialisé dans les services de production audiovisuelle en France.',
     siteUrl: 'https://parisproductionservices.eu/',
     client: 'Paris Production Services',
     service: 'Site Web',
@@ -932,7 +967,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: 'Positionner un acteur de référence dans le secteur audiovisuel français',
-        body: "Nous avons conçu un site vitrine professionnel et immersif pour Paris Production Services, société spécialisée dans l'accompagnement de tournages en France. L'enjeu était de refléter l'expertise et la polyvalence de l'équipe auprès d'une clientèle internationale, réalisateurs, producteurs, chaînes TV, à la recherche d'un partenaire local fiable. Chaque choix graphique communique sérieux, réactivité et maîtrise du terrain : typographie affirmée, mise en page dynamique, visuels immersifs.",
+        body: "Nous avons conçu un site vitrine professionnel et immersif pour Paris Production Services, société spécialisée dans l'accompagnement de tournages en France. L'enjeu était de refléter l'expertise et la polyvalence de l'équipe auprès d'une clientèle internationale — réalisateurs, producteurs, chaînes TV — à la recherche d'un partenaire local fiable. Chaque choix graphique communique sérieux, réactivité et maîtrise du terrain : typographie affirmée, mise en page dynamique, visuels immersifs.",
         img1: {
           src: '/images/projects/paris-production-services/siteWeb_LandingPage%20%286%29.webp',
           width: 1600,
@@ -946,7 +981,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Une offre de services claire, structurée pour convertir',
-        body: "La page services détaille l'ensemble des prestations proposées, fixeur, location d'équipement, gestion logistique, coordination de plateau, avec une architecture pensée pour que chaque visiteur identifie rapidement ce dont il a besoin. La section projets valorise le track record de l'équipe : des productions référencées qui crédibilisent l'offre et rassurent les nouvelles productions avant même le premier contact.",
+        body: "La page services détaille l'ensemble des prestations proposées — fixeur, location d'équipement, gestion logistique, coordination de plateau — avec une architecture pensée pour que chaque visiteur identifie rapidement ce dont il a besoin. La section projets valorise le track record de l'équipe : des productions référencées qui crédibilisent l'offre et rassurent les nouvelles productions avant même le premier contact.",
         img1: {
           src: '/images/projects/paris-production-services/siteWeb_Services.webp',
           width: 1600,
@@ -960,7 +995,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Des lieux de tournage soigneusement sélectionnés à travers la France',
-        body: "La rubrique lieux de tournage constitue un atout différenciant majeur du site : elle présente un catalogue visuel de décors disponibles à Paris et en région, avec fiches techniques et disponibilités. Ce catalogue renforce la proposition de valeur globale de Paris Production Services et positionne la société comme un interlocuteur capable de couvrir l'intégralité des besoins d'une production, du repérage de décors jusqu'au dernier jour de tournage.",
+        body: "La rubrique lieux de tournage constitue un atout différenciant majeur du site : elle présente un catalogue visuel de décors disponibles à Paris et en région, avec fiches techniques et disponibilités. Ce catalogue renforce la proposition de valeur globale de Paris Production Services et positionne la société comme un interlocuteur capable de couvrir l'intégralité des besoins d'une production — du repérage de décors jusqu'au dernier jour de tournage.",
         img1: null,
         img2: null,
       },
@@ -982,8 +1017,10 @@ export const REALISATIONS: Realisation[] = [
     slug: 'ohvale',
     title: 'Ohvale',
     order: 16,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
     description:
-      'Ohvale France, le site officiel du distributeur officiel des mini-motos de compétition italiennes en France.',
+      'Ohvale France — le site officiel du distributeur officiel des mini-motos de compétition italiennes en France.',
     siteUrl: 'https://ohvale-france.fr/',
     client: 'Ohvale',
     service: 'Site Web',
@@ -1010,7 +1047,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: "Une plateforme d'information sur les MiniGP World Series",
-        body: "Le site structure l'information autour du championnat MiniGP France, avec la marque des MiniGP World Series organisées et promues par Ohvale. La plateforme couvre l'offre d'accès au MiniGP pour les jeunes pilotes français, règlement, catégories, calendrier des épreuves, ainsi que la liste des distributeurs, les dernières actualités du championnat et les fiches détaillées des modèles disponibles, pour guider chaque famille vers le bon choix.",
+        body: "Le site structure l'information autour du championnat MiniGP France, avec la marque des MiniGP World Series organisées et promues par Ohvale. La plateforme couvre l'offre d'accès au MiniGP pour les jeunes pilotes français — règlement, catégories, calendrier des épreuves — ainsi que la liste des distributeurs, les dernières actualités du championnat et les fiches détaillées des modèles disponibles, pour guider chaque famille vers le bon choix.",
         img1: {
           src: '/images/projects/ohvale/siteWeb_Presentation.webp',
           width: 1600,
@@ -1024,7 +1061,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Un outil commercial connecté au réseau de revendeurs',
-        body: "La plateforme est pensée pour connecter les mini-motos et la compétition au réseau international de revendeurs officiels Ohvale. Le site propose une section dédiée aux distributeurs France, aux points de contact et aux accessoires disponibles, alliant plaisir, perfectionnement et accompagnement dans la passion sportive. Un outil digital conçu pour simplifier le parcours d'achat et fidéliser une communauté de jeunes pilotes et de familles passionnées.",
+        body: "La plateforme est pensée pour connecter les mini-motos et la compétition au réseau international de revendeurs officiels Ohvale. Le site propose une section dédiée aux distributeurs France, aux points de contact et aux accessoires disponibles — alliant plaisir, perfectionnement et accompagnement dans la passion sportive. Un outil digital conçu pour simplifier le parcours d'achat et fidéliser une communauté de jeunes pilotes et de familles passionnées.",
         img1: null,
         img2: null,
       },
@@ -1046,8 +1083,10 @@ export const REALISATIONS: Realisation[] = [
     slug: 'wineguide',
     title: 'WineGuide',
     order: 17,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
     description:
-      "Wine Guide Provence, un site élégant pour des expériences œnologiques sur mesure en Provence et sur la Côte d'Azur.",
+      "Wine Guide Provence — un site élégant pour des expériences œnologiques sur mesure en Provence et sur la Côte d'Azur.",
     siteUrl: 'https://wineguide-provence.com/',
     client: 'WineGuide',
     service: 'Site Web',
@@ -1088,7 +1127,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: "Une approche personnalisée portée par l'expertise de la fondatrice",
-        body: "Le site met humainement en avant Camille, la fondatrice, et son engagement personnel pour l'œnologie, transmettant sa passion auprès de toutes les formes de tourisme. Sa présentation est accompagnée d'éléments biographiques détaillés, d'une certification WSET3 mise en avant comme gage de sérieux, et d'un contenu contextualisé pour illustrer son expertise, accords mets-vins, sélection de domaines confidentiels, associations avec des expériences sensorielles et un engagement fort pour les terroirs responsables.",
+        body: "Le site met humainement en avant Camille, la fondatrice, et son engagement personnel pour l'œnologie, transmettant sa passion auprès de toutes les formes de tourisme. Sa présentation est accompagnée d'éléments biographiques détaillés, d'une certification WSET3 mise en avant comme gage de sérieux, et d'un contenu contextualisé pour illustrer son expertise — accords mets-vins, sélection de domaines confidentiels, associations avec des expériences sensorielles et un engagement fort pour les terroirs responsables.",
         img1: null,
         img2: null,
       },
@@ -1110,7 +1149,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'agence-marnat',
     title: 'Agence Marnat',
     order: 18,
-    description: 'Marnat, un site vitrine professionnel pour une agence de communication globale.',
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: 'Marnat — un site vitrine professionnel pour une agence de communication globale.',
     siteUrl: 'https://marnat.fr/',
     client: 'Agence Marnat',
     service: 'Site Web',
@@ -1123,7 +1164,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: "Un site web élégant qui valorise 30 ans d'expertise",
-        body: 'Nous avons conçu une plateforme claire et élégante pour Marnat, agence de communication fondée en 1994 et reconnue pour ses expertises transversales en conseil stratégique, marketing digital, développement web, vidéo et rédaction de contenu. Le site capture le professionnalisme de leurs métiers et traduit leur approche sur-mesure, ancrée dans une relation client durable, pour refléter leur capacité à accompagner aussi bien les projets print que digitaux.',
+        body: 'Nous avons conçu une plateforme claire et élégante pour Marnat, agence de communication fondée en 1994 et reconnue pour ses expertises transversales en conseil stratégique, marketing digital, développement web, vidéo et rédaction de contenu. Le site capture le professionnalisme de leurs métiers et traduit leur approche sur-mesure, ancrée dans une relation client durable — pour refléter leur capacité à accompagner aussi bien les projets print que digitaux.',
         img1: {
           src: '/images/projects/agence-marnat/siteWeb_LandingPage.webp',
           width: 1600,
@@ -1137,7 +1178,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: "Une présentation claire d'une offre de services complète",
-        body: "Le site structure l'expertise Marnat autour de ses cinq piliers : marketing digital, stratégie de marque, création graphique et identité visuelle, supports de communication, rédaction de contenu et relations médias. Cette présentation modulaire met en lumière la capacité de l'agence à gérer l'intégralité d'un projet de communication, du print au digital, et à multiplier les prestations selon les besoins de chaque client.",
+        body: "Le site structure l'expertise Marnat autour de ses cinq piliers : marketing digital, stratégie de marque, création graphique et identité visuelle, supports de communication, rédaction de contenu et relations médias. Cette présentation modulaire met en lumière la capacité de l'agence à gérer l'intégralité d'un projet de communication — du print au digital — et à multiplier les prestations selon les besoins de chaque client.",
         img1: {
           src: '/images/projects/agence-marnat/mobile_Realisations.webp',
           width: 1600,
@@ -1151,7 +1192,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Une plateforme qui communique professionnalisme et adaptabilité',
-        body: "Le site structure l'ensemble des informations adaptées à chaque type de client, TPE, ETI, grands comptes, depuis l'accompagnement stratégique jusqu'à l'exécution opérationnelle. Les références clés, les valeurs de l'agence et la présentation des équipes renforcent la crédibilité et la confiance. Une plateforme pensée pour transformer chaque visite en opportunité commerciale concrète et durable.",
+        body: "Le site structure l'ensemble des informations adaptées à chaque type de client — TPE, ETI, grands comptes — depuis l'accompagnement stratégique jusqu'à l'exécution opérationnelle. Les références clés, les valeurs de l'agence et la présentation des équipes renforcent la crédibilité et la confiance. Une plateforme pensée pour transformer chaque visite en opportunité commerciale concrète et durable.",
         img1: null,
         img2: null,
       },
@@ -1173,7 +1214,9 @@ export const REALISATIONS: Realisation[] = [
     slug: 'imperatrice-developpement',
     title: 'Impératrice Développement',
     order: 19,
-    description: "Impératrice Développement, un site vitrine professionnel pour l'intelligence économique.",
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: "Impératrice Développement — un site vitrine professionnel pour l'intelligence économique.",
     siteUrl: 'https://imperatrice-developpement.com/',
     client: 'Impératrice développement',
     service: 'Site Web',
@@ -1186,7 +1229,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: "Un site web sobre qui reflète l'expertise en intelligence économique",
-        body: "Nous avons développé un site vitrine sobre et professionnel pour Impératrice Développement, organisme spécialisé dans la formation en intelligence économique et en business développement. Le site valorise l'expertise de la structure dans un contexte stratégique, tout en facilitant la prise de contact directe avec les prospects, dirigeants et PME. Cette approche sobre et affirmée renforce la crédibilité auprès d'une clientèle corporate exigeante.",
+        body: "Nous avons développé un site vitrine sobre et professionnel pour Impératrice Développement, organisme spécialisé dans la formation en intelligence économique et en business développement. Le site valorise l'expertise de la structure dans un contexte stratégique, tout en facilitant la prise de contact directe avec les prospects — dirigeants et PME. Cette approche sobre et affirmée renforce la crédibilité auprès d'une clientèle corporate exigeante.",
         img1: {
           src: '/images/projects/imperatrice-developpement/siteWeb_landingPage.webp',
           width: 1600,
@@ -1200,7 +1243,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Une plateforme orientée vers la génération de contacts qualifiés BtoB',
-        body: "Le site est structuré pour transformer les visiteurs qualifiés, dirigeants, cadres et décideurs, en prospects actifs. La page services détaille l'ensemble des formations proposées en intelligence économique, veille stratégique et leadership. La navigation simplifiée et les appels à l'action clairs permettent aux entreprises d'identifier rapidement les formations adaptées à leurs enjeux et d'engager la conversation directement.",
+        body: "Le site est structuré pour transformer les visiteurs qualifiés — dirigeants, cadres et décideurs — en prospects actifs. La page services détaille l'ensemble des formations proposées en intelligence économique, veille stratégique et leadership. La navigation simplifiée et les appels à l'action clairs permettent aux entreprises d'identifier rapidement les formations adaptées à leurs enjeux et d'engager la conversation directement.",
         img1: {
           src: '/images/projects/imperatrice-developpement/siteWeb_Services.webp',
           width: 1600,
@@ -1214,7 +1257,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: 'Une vitrine digitale pour un acteur de la formation stratégique',
-        body: 'La plateforme positionne Impératrice Développement comme un partenaire de confiance pour les entreprises souhaitant développer leurs compétences en intelligence économique, veille concurrentielle, analyse stratégique et prise de décision. La discrétion et le sérieux propres à ce secteur sont au cœur de chaque arbitrage éditorial, afin de bâtir une relation de confiance durable avec les dirigeants et les entreprises accompagnées.',
+        body: 'La plateforme positionne Impératrice Développement comme un partenaire de confiance pour les entreprises souhaitant développer leurs compétences en intelligence économique — veille concurrentielle, analyse stratégique et prise de décision. La discrétion et le sérieux propres à ce secteur sont au cœur de chaque arbitrage éditorial, afin de bâtir une relation de confiance durable avec les dirigeants et les entreprises accompagnées.',
         img1: null,
         img2: null,
       },
@@ -1233,73 +1276,12 @@ export const REALISATIONS: Realisation[] = [
     },
   },
   {
-    slug: 'serrurier-24',
-    title: 'Serrurier 24',
-    order: 20,
-    description: "Serrurier 24, un site web d'urgence optimisé pour la conversion immédiate.",
-    siteUrl: 'https://serrurier-24.com/',
-    client: 'Serrurier 24',
-    service: 'Site Web',
-    duree: '2 mois',
-    hero: {
-      src: '/images/projects/serrurier-24/asset%2020.webp',
-      width: 1200,
-      height: 1600,
-    },
-    sections: [
-      {
-        title: "Un site vitrine conçu pour les situations d'urgence",
-        body: "Nous avons développé un site web spécialement pensé pour les personnes confrontées à une porte claquée, une clé bloquée ou une serrure forcée, et qui ont besoin d'un professionnel immédiatement. Les informations essentielles sont visibles dès l'atterrissage : intervention en 30 minutes, disponibilité 24h/24 et 7j/7, numéro de téléphone en évidence sur chaque page, couverture de Paris et de toute l'Île-de-France. Chaque élément du site vise la réassurance et facilite la prise de contact en situation de stress.",
-        img1: {
-          src: '/images/projects/serrurier-24/siteWeb_LandingPage.webp',
-          width: 1600,
-          height: 1066,
-        },
-        img2: {
-          src: '/images/projects/serrurier-24/mobile_Ecrans.webp',
-          width: 1600,
-          height: 1066,
-        },
-      },
-      {
-        title: 'Une présentation des services qui répond aux recherches urgentes',
-        body: "Le site structure l'ensemble de l'offre : ouverture de porte bloquée ou claquée, intervention sur clé cassée, remplacement et changement de serrure, blindage et sécurisation. La présentation est pensée pour rassurer rapidement l'utilisateur en situation de stress. Une FAQ complète répond aux questions les plus courantes, dissipe les frictions et accélère la décision de contact, pour transformer chaque visite en appel entrant.",
-        img1: {
-          src: '/images/projects/serrurier-24/mobile_FAQ.webp',
-          width: 1600,
-          height: 1066,
-        },
-        img2: {
-          src: '/images/projects/serrurier-24/mobile_APropos.webp',
-          width: 1600,
-          height: 1066,
-        },
-      },
-      {
-        title: 'Un positionnement local fort pour capter les recherches géolocalisées',
-        body: "Le site est optimisé pour apparaître sur les recherches locales « serrurier urgence Paris » et dans l'ensemble des départements d'Île-de-France (75, 77, 78, 91, 92, 93, 94, 95). La mise en avant de la couverture géographique complète, combinée aux signaux de confiance, certifications, avis clients, années d'expérience, positionne Serrurier 24 comme l'acteur de référence disponible à toute heure dans toute la région parisienne.",
-        img1: null,
-        img2: null,
-      },
-    ],
-    solo: {
-      src: '/images/projects/serrurier-24/siteWeb_LandingPageSectionServices.webp',
-      width: 1600,
-      height: 1066,
-    },
-    quote: '',
-    quoteAuthor: '',
-    fullImg: {
-      src: '/images/projects/serrurier-24/siteWeb_Serrurerie.webp',
-      width: 1600,
-      height: 1066,
-    },
-  },
-  {
     slug: 'sed-paris',
     title: 'Sed Paris',
-    order: 21,
-    description: 'SED Manutention, une plateforme e-commerce technique au service des professionnels.',
+    order: 20,
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: 'SED Manutention — une plateforme e-commerce technique au service des professionnels.',
     siteUrl: 'https://www.sed-manutention.com/',
     client: 'SED',
     service: 'Site Web',
@@ -1312,7 +1294,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: 'Un site e-commerce robuste pour un catalogue industriel complexe',
-        body: "Nous avons développé une plateforme e-commerce technique capable de présenter un vaste catalogue de produits spécialisés en manutention et levage : palettes, pinces, chariots, équipements de stockage et de manutention lourde. Le site structure intelligemment des centaines de références avec leurs caractéristiques techniques, fiches produits détaillées et documentation téléchargeable, pour une expérience d'achat fluide adaptée aux besoins des professionnels du secteur industriel et BTP.",
+        body: "Nous avons développé une plateforme e-commerce technique capable de présenter un vaste catalogue de produits spécialisés en manutention et levage : palettes, pinces, chariots, équipements de stockage et de manutention lourde. Le site structure intelligemment des centaines de références avec leurs caractéristiques techniques, fiches produits détaillées et documentation téléchargeable — pour une expérience d'achat fluide adaptée aux besoins des professionnels du secteur industriel et BTP.",
         img1: {
           src: '/images/projects/sed-paris/siteWeb_LandingPage.webp',
           width: 1600,
@@ -1340,7 +1322,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: "Une vitrine digitale pour 70 ans d'expertise en manutention",
-        body: "Au-delà du catalogue, le site met en valeur l'histoire et l'expertise de SED, acteur de référence dans la manutention depuis plusieurs décennies. La présentation des équipes, des certifications et des marques partenaires renforce la crédibilité auprès d'une clientèle professionnelle qui attend un service fiable, un accompagnement personnalisé et des produits de haute qualité, du premier devis au service après-vente.",
+        body: "Au-delà du catalogue, le site met en valeur l'histoire et l'expertise de SED, acteur de référence dans la manutention depuis plusieurs décennies. La présentation des équipes, des certifications et des marques partenaires renforce la crédibilité auprès d'une clientèle professionnelle qui attend un service fiable, un accompagnement personnalisé et des produits de haute qualité — du premier devis au service après-vente.",
         img1: null,
         img2: null,
       },
@@ -1359,10 +1341,77 @@ export const REALISATIONS: Realisation[] = [
     },
   },
   {
+    slug: 'serrurier-24',
+    title: 'Serrurier 24',
+    order: 21,
+    date: '2026-09-18T12:15:31+00:00',
+    modified: '2026-09-18T12:15:31+00:00',
+    description: "Serrurier 24 — un site web d'urgence optimisé pour la conversion immédiate.",
+    siteUrl: 'https://serrurier-24.com/',
+    client: 'Serrurier 24',
+    service: 'Site Web',
+    duree: '2 mois',
+    hero: {
+      src: '/images/projects/serrurier-24/asset%2020.webp',
+      width: 1200,
+      height: 1600,
+    },
+    sections: [
+      {
+        title: "Un site vitrine conçu pour les situations d'urgence",
+        body: "Nous avons développé un site web spécialement pensé pour les personnes confrontées à une porte claquée, une clé bloquée ou une serrure forcée — et qui ont besoin d'un professionnel immédiatement. Les informations essentielles sont visibles dès l'atterrissage : intervention en 30 minutes, disponibilité 24h/24 et 7j/7, numéro de téléphone en évidence sur chaque page, couverture de Paris et de toute l'Île-de-France. Chaque élément du site vise la réassurance et facilite la prise de contact en situation de stress.",
+        img1: {
+          src: '/images/projects/serrurier-24/siteWeb_LandingPage.webp',
+          width: 1600,
+          height: 1066,
+        },
+        img2: {
+          src: '/images/projects/serrurier-24/mobile_Ecrans.webp',
+          width: 1600,
+          height: 1066,
+        },
+      },
+      {
+        title: 'Une présentation des services qui répond aux recherches urgentes',
+        body: "Le site structure l'ensemble de l'offre : ouverture de porte bloquée ou claquée, intervention sur clé cassée, remplacement et changement de serrure, blindage et sécurisation. La présentation est pensée pour rassurer rapidement l'utilisateur en situation de stress. Une FAQ complète répond aux questions les plus courantes, dissipe les frictions et accélère la décision de contact — pour transformer chaque visite en appel entrant.",
+        img1: {
+          src: '/images/projects/serrurier-24/mobile_FAQ.webp',
+          width: 1600,
+          height: 1066,
+        },
+        img2: {
+          src: '/images/projects/serrurier-24/mobile_APropos.webp',
+          width: 1600,
+          height: 1066,
+        },
+      },
+      {
+        title: 'Un positionnement local fort pour capter les recherches géolocalisées',
+        body: "Le site est optimisé pour apparaître sur les recherches locales « serrurier urgence Paris » et dans l'ensemble des départements d'Île-de-France (75, 77, 78, 91, 92, 93, 94, 95). La mise en avant de la couverture géographique complète, combinée aux signaux de confiance — certifications, avis clients, années d'expérience — positionne Serrurier 24 comme l'acteur de référence disponible à toute heure dans toute la région parisienne.",
+        img1: null,
+        img2: null,
+      },
+    ],
+    solo: {
+      src: '/images/projects/serrurier-24/siteWeb_LandingPageSectionServices.webp',
+      width: 1600,
+      height: 1066,
+    },
+    quote: '',
+    quoteAuthor: '',
+    fullImg: {
+      src: '/images/projects/serrurier-24/siteWeb_Serrurerie.webp',
+      width: 1600,
+      height: 1066,
+    },
+  },
+  {
     slug: 'ecompetences',
     title: 'E-competences',
     order: 22,
-    description: 'E-Competences Formations, un site vitrine professionnel pour un organisme certifié Qualiopi.',
+    date: '2026-05-05T19:49:13+00:00',
+    modified: '2026-05-05T19:49:13+00:00',
+    description: 'E-Competences Formations — un site vitrine professionnel pour un organisme certifié Qualiopi.',
     siteUrl: 'https://www.ecompetences-formations.fr/',
     client: 'E-competences',
     service: 'Site Web',
@@ -1375,7 +1424,7 @@ export const REALISATIONS: Realisation[] = [
     sections: [
       {
         title: 'Un site web clair qui inspire confiance et crédibilité',
-        body: "Nous avons conçu un site vitrine professionnel pour E-Competences, organisme de formation spécialisé en bureautique, graphisme et français professionnel. Le design épuré et structuré reflète le positionnement sérieux et la certification Qualiopi de l'organisme, tout en valorisant les formations phares, Excel, Word, PowerPoint, Photoshop, Français actif. Cette approche visuelle rassure les apprenants potentiels et les responsables de formation et facilite la prise de décision.",
+        body: "Nous avons conçu un site vitrine professionnel pour E-Competences, organisme de formation spécialisé en bureautique, graphisme et français professionnel. Le design épuré et structuré reflète le positionnement sérieux et la certification Qualiopi de l'organisme, tout en valorisant les formations phares — Excel, Word, PowerPoint, Photoshop, Français actif. Cette approche visuelle rassure les apprenants potentiels et les responsables de formation et facilite la prise de décision.",
         img1: {
           src: '/images/projects/e-comptence/siteWeb_LandingPage.webp',
           width: 1600,
@@ -1403,7 +1452,7 @@ export const REALISATIONS: Realisation[] = [
       },
       {
         title: "Un parcours utilisateur optimisé pour valoriser l'expertise",
-        body: 'Nous avons conçu une expérience de navigation fluide qui met en avant la valeur de chaque formation et permet leur découverte de manière naturelle. La présentation accessible, prérequis, durée, programme, modalités de financement, combinée aux témoignages et à la certification Qualiopi mise en avant tout au long du parcours, renforce la confiance et facilite la conversion en inscription ou demande de contact.',
+        body: 'Nous avons conçu une expérience de navigation fluide qui met en avant la valeur de chaque formation et permet leur découverte de manière naturelle. La présentation accessible — prérequis, durée, programme, modalités de financement — combinée aux témoignages et à la certification Qualiopi mise en avant tout au long du parcours, renforce la confiance et facilite la conversion en inscription ou demande de contact.',
         img1: null,
         img2: null,
       },

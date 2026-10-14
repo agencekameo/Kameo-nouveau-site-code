@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
 import css from './styles';
 import { PROOF } from '@/lib/site';
@@ -1296,7 +1297,7 @@ export default function RefonteWordpressPage() {
         </section>
       </main>
 
-      <JsonLd data={[...pageSchemas]} />
+      <JsonLd data={[...pageSchemas, websiteGraph({ path: PATH, title: TITLE })]} />
     </>
   );
 }

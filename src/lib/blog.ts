@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import { addContentSrcset, uploadSrcset } from './images';
 import { addInternalLinks } from './internal-links';
 import { trimWords, wordCount } from './text';
 
@@ -15,10 +16,15 @@ export type Post = {
   excerpt: string;
   date: string;
   modified: string;
-  image: { src: string; width?: number; height?: number } | null;
+  image: { src: string; width?: number; height?: number; alt?: string; srcset?: string } | null;
   html: string;
+  /** Mots du contenu brut (str_word_count de WordPress) : temps de lecture du thème. */
   words: number;
+  /** wordCount des données structurées BlogPosting. */
+  wordCount: number;
   readingMinutes: number;
+  /** Temps de lecture annoncé par Rank Math (twitter:data2) : mots / 250, arrondi au-dessus. */
+  rankMathMinutes: number;
 };
 
 export const POSTS_PER_PAGE = 9;
@@ -37,9 +43,10 @@ function load(): Post[] {
     if (data.draft) continue;
     const body = data.format === 'markdown' ? (marked.parse(content, { async: false }) as string) : content;
     const p = `/blog/${slug}/`;
-    const html = addInternalLinks(body, p);
+    const html = addContentSrcset(addInternalLinks(body, p));
     const text = body.replace(/<[^>]*>/g, ' ');
-    const words = wordCount(text);
+    // nombres de mots relevés à l'import sur le contenu brut, sinon calculés sur le HTML
+    const words = Number(data.words) || wordCount(text);
     const excerpt = String(data.excerpt || trimWords(text, 55, '…'));
     posts.push({
       slug,
@@ -50,11 +57,21 @@ function load(): Post[] {
       excerpt,
       date: String(data.date),
       modified: String(data.modified || data.date),
-      image: data.image ? { src: String(data.image), width: data.imageWidth, height: data.imageHeight } : null,
+      image: data.image
+        ? {
+            src: String(data.image),
+            width: data.imageWidth,
+            height: data.imageHeight,
+            alt: data.imageAlt ? String(data.imageAlt) : undefined,
+            srcset: uploadSrcset(String(data.image)),
+          }
+        : null,
       html,
       words,
+      wordCount: Number(data.wordCount) || words,
       // même calcul que le thème : str_word_count / 200, arrondi, minimum 1
       readingMinutes: Math.max(1, Math.round(words / 200)),
+      rankMathMinutes: Math.max(1, Math.ceil(words / 250)),
     });
   }
   posts.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.slug.localeCompare(b.slug)));

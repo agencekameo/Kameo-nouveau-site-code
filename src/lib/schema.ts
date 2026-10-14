@@ -4,6 +4,7 @@
  * #organization, LocalBusiness #localbusiness, BreadcrumbList, Blog, BlogPosting,
  * ItemList, Service + Offer, CreativeWork des réalisations.
  */
+import { pageInfo } from '@/content/pages';
 import { CONTACT, GEO, SITE_URL, SOCIAL, abs } from './site';
 
 const HOME = SITE_URL + '/';
@@ -300,29 +301,64 @@ export function themeSchemas(opts: {
 
 /**
  * Graphe WebSite + WebPage qu'ajoutait Rank Math (après filtrage par le thème des
- * nœuds Person, Organization, Article et BreadcrumbList).
+ * nœuds Person, Organization, Article et BreadcrumbList), à l'identique du site en
+ * ligne : dates de la page, référence au fil d'Ariane, recherche interne sur
+ * l'accueil, image principale (ImageObject) sur les articles.
  */
-export function websiteGraph(opts: { path: string; title: string; description?: string }): Json {
+export type GraphImage = { url: string; width?: number; height?: number; caption?: string };
+
+export function websiteGraph(opts: { path: string; title: string; published?: string; modified?: string; image?: GraphImage }): Json {
   const url = abs(opts.path);
+  const info = pageInfo(opts.path);
+  const isHome = opts.path === '/';
+  const published = opts.published ?? info?.published;
+  const modified = opts.modified ?? info?.modified;
+  const img = opts.image ? { ...opts.image, url: abs(opts.image.url) } : null;
   return {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebSite',
         '@id': HOME + '#website',
-        url: HOME,
+        url: SITE_URL,
         name: 'Agence Kameo',
         publisher: { '@id': ORG_ID },
         inLanguage: 'fr-FR',
+        ...(isHome
+          ? {
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: HOME + '?s={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+            }
+          : {}),
       },
+      ...(img
+        ? [
+            {
+              '@type': 'ImageObject',
+              '@id': img.url,
+              url: img.url,
+              ...(img.width ? { width: String(img.width) } : {}),
+              ...(img.height ? { height: String(img.height) } : {}),
+              ...(img.caption ? { caption: img.caption } : {}),
+              inLanguage: 'fr-FR',
+            },
+          ]
+        : []),
       {
         '@type': 'WebPage',
         '@id': url + '#webpage',
         url,
         name: opts.title,
-        ...(opts.description ? { description: opts.description } : {}),
+        ...(published ? { datePublished: published } : {}),
+        ...(modified ? { dateModified: modified } : {}),
+        ...(isHome ? { about: { '@id': ORG_ID } } : {}),
         isPartOf: { '@id': HOME + '#website' },
+        ...(img ? { primaryImageOfPage: { '@id': img.url } } : {}),
         inLanguage: 'fr-FR',
+        ...(isHome ? {} : { breadcrumb: { '@id': url + '#breadcrumb' } }),
       },
     ],
   };

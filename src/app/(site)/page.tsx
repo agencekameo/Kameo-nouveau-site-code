@@ -3,6 +3,7 @@ import Link from 'next/link';
 import JsonLd from '@/components/JsonLd';
 import CalendlyPopup from '@/components/CalendlyPopup';
 import { pageMetadata } from '@/lib/seo';
+import { GOOGLE_SITE_VERIFICATION } from '@/lib/site';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
 
@@ -11,7 +12,12 @@ const TITLE = 'Agence web Paris : création de site internet sur-mesure | Kameo'
 const DESCRIPTION =
   'Kameo, agence web à Paris : création de site internet sur-mesure (WordPress, Framer, e-commerce). Design premium, SEO natif, livraison rapide. Devis gratuit.';
 
-export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
+export const metadata: Metadata = pageMetadata({
+  path: PATH,
+  title: TITLE,
+  description: DESCRIPTION,
+  googleVerification: GOOGLE_SITE_VERIFICATION,
+});
 
 export default function HomePage() {
   return (
@@ -1211,7 +1217,7 @@ export default function HomePage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: null }),
           ...pageSchemas,
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

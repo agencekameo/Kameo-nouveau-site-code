@@ -489,7 +489,7 @@ export default function CreationCrmSurMesurePage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'creation-crm-sur-mesure' }),
           ...pageSchemas,
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

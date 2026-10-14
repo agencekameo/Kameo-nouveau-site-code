@@ -54,7 +54,7 @@ export default function RealisationsPage() {
             crumbs: CRUMBS,
             extra: [itemListSchema(REALISATIONS.map((r) => ({ path: `/realisations/${r.slug}/`, name: r.title })))],
           }),
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

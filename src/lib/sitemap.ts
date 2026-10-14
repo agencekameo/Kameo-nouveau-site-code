@@ -1,4 +1,5 @@
 import { getAllPosts } from './blog';
+import { pageInfo } from '@/content/pages';
 import { REALISATIONS } from '@/content/realisations';
 import { CONTENT_UPDATED, abs } from './site';
 
@@ -13,7 +14,7 @@ export const INDEXABLE_PAGES = [
   '/creation-saas-ia/', '/realisations/', '/contact/', '/blog/',
 ];
 
-type Entry = { loc: string; lastmod: string; image?: string };
+type Entry = { loc: string; lastmod: string; images?: string[] };
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -22,18 +23,24 @@ function urlset(entries: Entry[]): string {
     .map(
       (e) =>
         `\t<url>\n\t\t<loc>${esc(e.loc)}</loc>\n\t\t<lastmod>${e.lastmod}</lastmod>\n` +
-        (e.image ? `\t\t<image:image>\n\t\t\t<image:loc>${esc(e.image)}</image:loc>\n\t\t</image:image>\n` : '') +
+        (e.images || []).map((i) => `\t\t<image:image>\n\t\t\t<image:loc>${esc(i)}</image:loc>\n\t\t</image:image>\n`).join('') +
         `\t</url>`,
     )
     .join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
 
-export const pageEntries = (): Entry[] => INDEXABLE_PAGES.map((p) => ({ loc: abs(p), lastmod: CONTENT_UPDATED }));
-export const postEntries = (): Entry[] =>
-  getAllPosts().map((p) => ({ loc: abs(p.path), lastmod: p.modified, image: p.image ? abs(p.image.src) : undefined }));
+/* lastmod : date de modification de la page, de l'article ou de la réalisation, comme Rank Math. */
+export const pageEntries = (): Entry[] => INDEXABLE_PAGES.map((p) => ({ loc: abs(p), lastmod: pageInfo(p)?.modified ?? CONTENT_UPDATED }));
+
+/** Image à la une puis images du contenu, comme le sitemap d'articles de Rank Math. */
+function postImages(p: ReturnType<typeof getAllPosts>[number]): string[] {
+  const inline = [...p.html.matchAll(/<img\b[^>]*\ssrc="(\/wp-content\/uploads\/[^"]+)"/g)].map((m) => m[1]);
+  return [...new Set([...(p.image ? [p.image.src] : []), ...inline])].map(abs);
+}
+export const postEntries = (): Entry[] => getAllPosts().map((p) => ({ loc: abs(p.path), lastmod: p.modified, images: postImages(p) }));
 export const realisationEntries = (): Entry[] =>
-  REALISATIONS.map((r) => ({ loc: abs(`/realisations/${r.slug}/`), lastmod: CONTENT_UPDATED, image: r.hero ? abs(r.hero.src) : undefined }));
+  REALISATIONS.map((r) => ({ loc: abs(`/realisations/${r.slug}/`), lastmod: r.modified, images: r.hero ? [abs(r.hero.src)] : [] }));
 
 export const pageSitemap = () => urlset(pageEntries());
 export const postSitemap = () => urlset(postEntries());

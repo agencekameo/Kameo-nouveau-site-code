@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Icon from '../Icon';
 import { frDate, type Post } from '@/lib/blog';
+import { SIZES } from '@/lib/sizes';
 import { trimWords } from '@/lib/text';
 
 /* Carte article (page-blog.php et « Articles recommandés » de single.php). */
@@ -11,7 +12,7 @@ export default function BlogCard({ post }: { post: Post }) {
       <Link href={post.path} className="bcard__link">
         <div className="bcard__media">
           {img ? (
-            <img src={img.src} alt={post.title} loading="lazy" width={img.width} height={img.height} />
+            <img src={img.src} srcSet={img.srcset} sizes={img.srcset ? SIZES.card : undefined} alt={post.title} loading="lazy" width={img.width} height={img.height} />
           ) : (
             <img src="/images/og-image.jpg" alt={post.title} loading="lazy" width="1200" height="675" />
           )}

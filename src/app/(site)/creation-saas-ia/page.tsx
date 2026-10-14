@@ -499,7 +499,7 @@ export default function CreationSaasIaPage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'creation-saas-ia' }),
           ...pageSchemas,
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

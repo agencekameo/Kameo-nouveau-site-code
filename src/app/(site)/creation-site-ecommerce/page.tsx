@@ -489,7 +489,7 @@ export default function CreationSiteEcommercePage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'creation-site-ecommerce' }),
           ...pageSchemas,
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

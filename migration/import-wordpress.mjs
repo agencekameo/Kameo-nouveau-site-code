@@ -144,7 +144,10 @@ function fromWxr(file) {
         const md = meta(i, '_wp_attachment_metadata');
         const w = /s:5:"width";i:(\d+)/.exec(md);
         const h = /s:6:"height";i:(\d+)/.exec(md);
-        return [tag(i, 'wp:post_id'), { url: tag(i, 'wp:attachment_url'), width: w ? +w[1] : undefined, height: h ? +h[1] : undefined }];
+        return [
+          tag(i, 'wp:post_id'),
+          { url: tag(i, 'wp:attachment_url'), width: w ? +w[1] : undefined, height: h ? +h[1] : undefined, alt: decodeEntities(meta(i, '_wp_attachment_image_alt')) },
+        ];
       }),
   );
   const gmt = (d) => d.replace(' ', 'T') + '+00:00';
@@ -163,6 +166,7 @@ function fromWxr(file) {
         image: a ? a.url : '',
         imageWidth: a?.width,
         imageHeight: a?.height,
+        imageAlt: a?.alt || '',
         raw: true,
       };
     });
@@ -181,6 +185,8 @@ function renderWithWordPress(posts) {
   for (const p of posts) {
     p.title = out[p.slug].title;
     p.content = out[p.slug].html;
+    p.words = out[p.slug].words;
+    p.wordCount = out[p.slug].wordCount;
   }
 }
 
@@ -234,6 +240,10 @@ for (const p of posts) {
     image ? `image: ${yaml(image)}` : null,
     image && p.imageWidth ? `imageWidth: ${p.imageWidth}` : null,
     image && p.imageHeight ? `imageHeight: ${p.imageHeight}` : null,
+    image && p.imageAlt ? `imageAlt: ${yaml(p.imageAlt)}` : null,
+    // nombres de mots calculés par WordPress sur le contenu brut (temps de lecture, wordCount)
+    p.words ? `words: ${p.words}` : null,
+    p.wordCount ? `wordCount: ${p.wordCount}` : null,
     'format: html',
     '---',
   ].filter(Boolean);

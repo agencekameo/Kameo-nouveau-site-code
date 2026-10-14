@@ -1,14 +1,24 @@
 import type { Metadata, Viewport } from 'next';
+import ReactDOM from 'react-dom';
 import '@/styles/fonts.css';
 import '@/styles/main.css';
-import { GEO, SITE_NAME, SITE_URL, TRACKER } from '@/lib/site';
+import { GEO, SITE_ICON, SITE_NAME, SITE_URL, TRACKER } from '@/lib/site';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   authors: [{ name: 'Kameo, Agence web Paris' }],
   alternates: { types: { 'application/rss+xml': [{ url: '/feed/', title: 'Blog Kameo' }] } },
+  // Icône du site (réglage WordPress « Identité du site », hors thème)
+  icons: {
+    icon: [
+      { url: `${SITE_ICON}-32x32.png`, sizes: '32x32' },
+      { url: `${SITE_ICON}-192x192.png`, sizes: '192x192' },
+    ],
+    apple: `${SITE_ICON}-180x180.png`,
+  },
   other: {
+    'msapplication-TileImage': `${SITE_URL}${SITE_ICON}-270x270.png`,
     'geo.region': 'FR-75',
     'geo.placename': 'Paris',
     'geo.position': `${GEO.lat};${GEO.lng}`,
@@ -26,6 +36,7 @@ export const viewport: Viewport = {
 const PRELOAD_FONTS = ['Satoshi-500.woff2', 'Satoshi-700.woff2', 'Satoshi-900.woff2', 'UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2'];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  for (const f of PRELOAD_FONTS) ReactDOM.preload(`/fonts/${f}`, { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
   return (
     <html lang="fr-FR">
       <head>
@@ -38,9 +49,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           data-track-outbound="true"
           data-track-forms="true"
         />
-        {PRELOAD_FONTS.map((f) => (
-          <link key={f} rel="preload" href={`/fonts/${f}`} as="font" type="font/woff2" crossOrigin="anonymous" />
-        ))}
       </head>
       <body>{children}</body>
     </html>

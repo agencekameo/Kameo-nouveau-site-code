@@ -53,7 +53,7 @@ Après une modification de contenu, avancer `CONTENT_UPDATED` dans `src/lib/site
 src/
   app/
     (site)/            pages avec en-tête et pied de page
-    (standalone)/      landing page Ads (/landingpage/, /lp-rdv-v2/) et /rdv-confirme/
+    (standalone)/      landing page Ads (/landingpage/) et /rdv-confirme/
     api/contact/       envoi du formulaire de contact
     sitemap_index.xml/ page-sitemap.xml/ post-sitemap.xml/ realisation-sitemap.xml/
     llms.txt/ feed/    synthèse pour moteurs génératifs, flux RSS
@@ -82,6 +82,16 @@ docs/                  analyse Search Console et décisions de tri du blog
 - **Maillage interne automatique** des articles vers les pages de service (même table d'expressions).
 - Les fichiers de l'ancien thème (`/wp-content/themes/kameo-theme/images/…`) redirigent vers `/images/…`.
   Les images des articles gardent leur adresse `/wp-content/uploads/…`.
+- **Icône du site** (mêmes fichiers et adresses, `/favicon.ico` redirigé comme sous WordPress) et **balise de
+  validation Search Console** de la page d'accueil (`GOOGLE_SITE_VERIFICATION` dans `src/lib/site.ts`) :
+  ne pas la retirer, elle peut être la méthode de validation de la propriété.
+- **Graphe Rank Math** WebSite + WebPage aux mêmes `@id`, avec les dates réelles des pages
+  (`src/content/pages.ts`), la recherche interne sur l'accueil et l'image principale des articles.
+
+Le 14/10/2026, le site Next.js a été comparé au site WordPress en ligne sur ses 95 URLs : statuts, titres,
+descriptions, robots, canonicals, Open Graph, données structurées (nœud par nœud), texte des 16 articles
+(identique au caractère près) et rendu visuel (mêmes hauteurs de page). Les écarts restants sont les
+améliorations listées ci-dessous.
 
 ## Corrections et améliorations par rapport à la v2
 
@@ -101,6 +111,11 @@ docs/                  analyse Search Console et décisions de tri du blog
 - Liens des articles vers l'ancien domaine `agencekameo.fr` (sans tiret) réécrits vers les pages actuelles.
 - FAQ des articles publiées en données structurées FAQPage.
 - Les 4 illustrations manquantes de la landing page (`images/landing_page/illu_*.png`) ajoutées.
+- Images des articles servies en WebP redimensionné (`srcset`) : 45 Ko au lieu de 1 Mo pour une image à la
+  une. Les PNG d'origine gardent leur adresse (Open Graph, sitemap, Google Images).
+- Sitemap des articles avec toutes les images du contenu ; `lastmod` = vraie date de modification.
+- Anciennes adresses de la landing (`/lp-rdv/`, `/lp-rdv-v2/`, en 404 sous WordPress) redirigées vers `/landingpage/`.
+- Titres d'articles corrects dans les données structurées (WordPress y laissait `&rsquo;` en toutes lettres).
 
 ## Blog : tri des articles
 
@@ -132,6 +147,16 @@ Le script :
 
 Les FAQ des articles (blocs `<details>`) sont aussi publiées en données structurées FAQPage.
 
+Après un import, générer les variantes WebP des images :
+
+```bash
+node migration/optimize-images.mjs
+```
+
+Les réalisations (`src/content/realisations.ts`) reprennent les textes, l'ordre et les dates enregistrés
+dans la base WordPress en ligne : la version des textes présente dans le thème v2.10.7 (sans tirets
+cadratins) n'avait jamais été appliquée au site.
+
 ## Mise en production
 
 Le site a besoin d'un serveur Node.js (proxy de redirections et formulaire de contact). **Vercel**
@@ -140,13 +165,12 @@ convient sans configuration ; un hébergement Node classique fonctionne aussi av
 Avant de basculer le DNS :
 
 1. Renseigner les variables SMTP et envoyer un message de test depuis `/contact/`.
-2. Déposer les images des articles dans `public/wp-content/uploads/` (relancer l'import avec `--uploads`)
-   et vérifier que `migration/out/images-manquantes.json` est vide.
-3. Vérifier quelques redirections (`curl -I https://…/blog/cout-maintenance-site-wordpress/`).
+2. Vérifier quelques redirections (`curl -I https://…/blog/cout-maintenance-site-wordpress/`).
 
 Après la bascule :
 
-1. Soumettre `https://agence-kameo.fr/sitemap_index.xml` dans la Search Console.
+1. Soumettre `https://agence-kameo.fr/sitemap_index.xml` dans la Search Console et vérifier que la propriété
+   reste validée (balise conservée sur l'accueil).
 2. Suivre le rapport « Pages » pendant 4 semaines (404 inattendues, redirections).
 3. Mettre à jour les URLs de la landing page dans Google Ads / Meta si elles pointaient vers `/wp-…`.
 
@@ -160,4 +184,5 @@ Conservés pour la traçabilité : ils ont produit et vérifié les pages.
 - `visual-compare.cjs`, `imgdiff.py`, `dom-diff.mjs`, `box-diff.cjs` : comparaison visuelle, DOM et géométrique
   avec la référence.
 - `check-redirects.mjs` : vérifie l'absence de chaînes de redirection.
-- `import-wordpress.mjs` : import des articles.
+- `import-wordpress.mjs` : import des articles ; `optimize-images.mjs` : variantes WebP des images.
+- `check-meta.mjs` : compare titres, descriptions, robots et canonicals aux valeurs du thème.

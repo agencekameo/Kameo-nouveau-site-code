@@ -7,6 +7,7 @@ import Icon from '@/components/Icon';
 import JsonLd from '@/components/JsonLd';
 import ArticleToc from '@/components/blog/ArticleToc';
 import BlogCard from '@/components/blog/BlogCard';
+import { SIZES } from '@/lib/sizes';
 import { frDate, getAllPosts, getPost } from '@/lib/blog';
 import { blogPosting, faqFromHtml, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
@@ -33,8 +34,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.description,
     ogType: 'article',
     image: post.image ? abs(post.image.src) : undefined,
+    imageAlt: post.image?.alt,
+    imageWidth: post.image?.width,
+    imageHeight: post.image?.height,
     publishedTime: post.date,
     modifiedTime: post.modified,
+    readingMinutes: post.rankMathMinutes,
   });
 }
 
@@ -46,7 +51,12 @@ const AUTHOR_BOX = `<aside class="article-author"><img src="/images/benjamin.web
 export default async function ArticlePage({ params }: Props) {
   const post = getPost((await params).slug);
   if (!post) notFound();
-  if (post.image) ReactDOM.preload(post.image.src, { as: 'image', fetchPriority: 'high' });
+  if (post.image)
+    ReactDOM.preload(post.image.src, {
+      as: 'image',
+      fetchPriority: 'high',
+      ...(post.image.srcset ? { imageSrcSet: post.image.srcset, imageSizes: SIZES.featured } : {}),
+    });
 
   const { html, items } = buildToc(post.html);
   const updated = new Date(post.modified).getTime() - new Date(post.date).getTime() > DAY;
@@ -75,6 +85,8 @@ export default async function ArticlePage({ params }: Props) {
             <div className="article-featured">
               <img
                 src={post.image.src}
+                srcSet={post.image.srcset}
+                sizes={post.image.srcset ? SIZES.featured : undefined}
                 width={post.image.width}
                 height={post.image.height}
                 alt={post.title}
@@ -161,12 +173,20 @@ export default async function ArticlePage({ params }: Props) {
                 image: post.image?.src,
                 datePublished: post.date,
                 dateModified: post.modified,
-                wordCount: post.words,
+                wordCount: post.wordCount,
               }),
             ],
           }),
           ...(faq ? [faq] : []),
-          websiteGraph({ path: post.path, title: post.seoTitle, description: post.description }),
+          websiteGraph({
+            path: post.path,
+            title: post.seoTitle,
+            published: post.date,
+            modified: post.modified,
+            image: post.image
+              ? { url: post.image.src, width: post.image.width, height: post.image.height, caption: post.image.alt }
+              : undefined,
+          }),
         ]}
       />
     </>

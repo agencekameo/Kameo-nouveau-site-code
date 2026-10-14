@@ -1011,7 +1011,7 @@ export default function ExpertisesBrandingPage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'expertises-branding' }),
           ...pageSchemas,
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

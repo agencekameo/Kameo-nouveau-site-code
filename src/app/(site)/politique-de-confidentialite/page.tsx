@@ -890,7 +890,7 @@ export default function PolitiqueDeConfidentialitePage() {
       <JsonLd
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS }),
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

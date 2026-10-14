@@ -7,6 +7,9 @@ modified: "2026-05-29T12:54:24+00:00"
 image: "/wp-content/uploads/2026/05/NexusGames-Quest-cequunpr-auditSEOetcommentleraliser.png"
 imageWidth: 1024
 imageHeight: 1024
+imageAlt: "Illustration immersive du sujet : pré-audit SEO"
+words: 1356
+wordCount: 1356
 format: html
 ---
 <p>Réaliser un pré-audit SEO est aujourd&#8217;hui la première étape incontournable pour toute entreprise souhaitant améliorer sa visibilité sur Google en 2026. Ce diagnostic rapide permet d&#8217;identifier les forces, faiblesses et opportunités d&#8217;un site avant d&#8217;engager une stratégie de référencement complète. Dans ce guide, découvrez la méthode complète pour réaliser un pré-audit SEO efficace, les outils à utiliser et les erreurs à éviter.</p>

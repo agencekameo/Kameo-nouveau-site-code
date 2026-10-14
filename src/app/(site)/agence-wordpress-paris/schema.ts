@@ -140,7 +140,7 @@ export const pageSchemas: object[] = [
           },
         ],
         url: 'https://agence-kameo.fr/agence-wordpress-paris/',
-        dateModified: '2026-10-12T10:00:00+00:00',
+        dateModified: '2026-06-11T08:39:03+00:00',
       },
       {
         '@type': 'FAQPage',
@@ -203,7 +203,7 @@ export const pageSchemas: object[] = [
             },
           },
         ],
-        dateModified: '2026-10-12T10:00:00+00:00',
+        dateModified: '2026-06-11T08:39:03+00:00',
       },
     ],
   },

@@ -154,7 +154,7 @@ export default function BenjaminDayanPage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS }),
           ...pageSchemas,
-          websiteGraph({ path: PATH, title: TITLE, description: DESCRIPTION }),
+          websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />
     </>

@@ -58,7 +58,7 @@ export default function BlogListing({ page }: { page: number }) {
       <JsonLd
         data={[
           ...themeSchemas({ path, crumbs: CRUMBS, extra: [blogSchema()] }),
-          websiteGraph({ path, title: BLOG_TITLE, description: BLOG_DESCRIPTION }),
+          websiteGraph({ path, title: BLOG_TITLE }),
         ]}
       />
     </>

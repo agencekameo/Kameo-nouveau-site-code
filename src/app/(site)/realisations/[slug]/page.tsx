@@ -7,7 +7,7 @@ import RealisationCard from '@/components/RealisationCard';
 import { REALISATIONS, getRealisation, type Img, type Realisation } from '@/content/realisations';
 import { realisationDescription, realisationTitle, relatedServices } from '@/lib/realisation-seo';
 import { pageMetadata } from '@/lib/seo';
-import { themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
+import { themeSchemas, type Crumb } from '@/lib/schema';
 import { CONTACT, SITE_URL, abs } from '@/lib/site';
 
 /* Étude de cas (single-realisation.php). */
@@ -27,12 +27,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: realisationTitle(r),
     description: realisationDescription(r),
     image: r.hero ? abs(r.hero.src) : undefined,
+    imageAlt: r.title,
+    imageWidth: r.hero?.width,
+    imageHeight: r.hero?.height,
   });
 }
 
 const Picture = ({ img, alt }: { img: Img; alt: string }) => (
   <img src={img.src} alt={alt} loading="lazy" width={img.width} height={img.height} />
 );
+
+/*
+ * « Autres projets » : les 4 réalisations les plus récentes hors projet courant
+ * (WP_Query orderby date DESC du thème, l'article précédent/suivant n'existant pas).
+ * Les réalisations ex aequo sur la date sont départagées dans l'ordre observé sur le
+ * site WordPress en ligne.
+ */
+const MOST_RECENT = ['serrurier-24', 'defikart', 'le-101', 'medical-market', 'claimz', 'les-cars-du-plateau'];
+function otherProjects(r: Realisation): Realisation[] {
+  return MOST_RECENT.filter((slug) => slug !== r.slug)
+    .slice(0, 4)
+    .map((slug) => getRealisation(slug)!);
+}
 
 function creativeWork(r: Realisation) {
   const url = abs(`/realisations/${r.slug}/`);
@@ -45,6 +61,8 @@ function creativeWork(r: Realisation) {
     inLanguage: 'fr-FR',
     creator: { '@id': SITE_URL + '/#organization' },
     provider: { '@id': SITE_URL + '/#organization' },
+    datePublished: r.date,
+    dateModified: r.modified,
     isPartOf: { '@type': 'CollectionPage', name: 'Réalisations', url: abs('/realisations/') },
   };
   if (r.description) cw.description = r.description;
@@ -64,12 +82,8 @@ export default async function RealisationPage({ params }: Props) {
     { name: 'Réalisations', path: '/realisations/' },
     { name: r.title, path },
   ];
-  // Projets voisins dans l'ordre du portfolio
-  const i = REALISATIONS.indexOf(r);
-  const n = REALISATIONS.length;
-  const neighbours = [REALISATIONS[(i - 1 + n) % n], REALISATIONS[(i + 1) % n]];
+  const others = otherProjects(r);
   const related = relatedServices(r);
-  const title = realisationTitle(r);
 
   return (
     <>
@@ -188,7 +202,7 @@ export default async function RealisationPage({ params }: Props) {
           <section className="proj-other">
             <h2 className="proj-other__head">Autres projets</h2>
             <div className="proj-other__grid">
-              {neighbours.map((o) => (
+              {others.map((o) => (
                 <RealisationCard key={o.slug} r={o} />
               ))}
             </div>
@@ -222,7 +236,6 @@ export default async function RealisationPage({ params }: Props) {
         data={[
           ...themeSchemas({ path, crumbs }),
           creativeWork(r),
-          websiteGraph({ path, title, description: realisationDescription(r) }),
         ]}
       />
     </>

@@ -40,6 +40,12 @@ export const TRACKER = {
 } as const;
 
 /* Date de dernière mise à jour du contenu des pages (sitemaps). À avancer quand une page change. */
+/** Icône du site (mêmes fichiers et adresses que sous WordPress). */
+export const SITE_ICON = '/wp-content/uploads/2026/05/cropped-favicon-dark';
+
+/** Balise de validation de la propriété Search Console, présente sur l'accueil WordPress. */
+export const GOOGLE_SITE_VERIFICATION = 'i8B4YTZYfB95QooLeJsDbIMjkJtJ-zv4_r8QuzANVw0';
+
 export const CONTENT_UPDATED = '2026-10-13T00:00:00+02:00';
 
 export const abs = (path = '/') => SITE_URL + (path.startsWith('/') ? path : '/' + path);

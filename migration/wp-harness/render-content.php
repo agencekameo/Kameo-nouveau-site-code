@@ -43,6 +43,9 @@ foreach ( $in as $slug => $p ) {
 	$out[ $slug ] = [
 		'title' => html_entity_decode( wptexturize( $p['title'] ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ),
 		'html'  => $html,
+		// single.php : str_word_count( strip_tags( get_the_content() ) ) ; schéma : wp_strip_all_tags
+		'words'     => str_word_count( strip_tags( $p['content'] ) ),
+		'wordCount' => str_word_count( wp_strip_all_tags( $p['content'] ) ),
 	];
 }
 file_put_contents( $argv[3], json_encode( $out, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) );

@@ -7,6 +7,9 @@ modified: "2026-07-11T21:59:24+00:00"
 image: "/wp-content/uploads/2026/07/NexusGames-CommentsignalerunproblmeGoogleMyBusinesspourcorrigersafiche.png"
 imageWidth: 1024
 imageHeight: 1024
+imageAlt: "Illustration immersive du sujet : signaler un problème Google My Business"
+words: 1373
+wordCount: 1373
 format: html
 ---
 <p>Vous souhaitez <b>signaler un problème Google My Business</b> mais vous ne savez pas par où commencer ? Que votre fiche ait été suspendue, usurpée, contienne des informations erronées ou soit victime d&#8217;avis frauduleux, il existe en 2026 des procédures officielles claires pour reprendre le contrôle. Ce guide vous détaille chaque étape pour résoudre efficacement ces situations et protéger votre visibilité locale.</p>
