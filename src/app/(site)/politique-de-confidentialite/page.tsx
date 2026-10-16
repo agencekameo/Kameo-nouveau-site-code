@@ -22,7 +22,7 @@ export default function PolitiqueDeConfidentialitePage() {
               <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-shield-halved" />
               </svg>
-              Dernière mise à jour&nbsp;: 31 mars 2026{' '}
+              Dernière mise à jour&nbsp;: 16 octobre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Politique de confidentialité</h1>
             <p className="legal-hero__desc">
@@ -345,6 +345,10 @@ export default function PolitiqueDeConfidentialitePage() {
                   </li>
                   <li>
                     <strong>Prise de rendez-vous&nbsp;:</strong> Calendly
+                  </li>
+                  <li>
+                    <strong>Badge d’avis&nbsp;:</strong> La Fabrique du Net, dont les serveurs reçoivent votre adresse IP
+                    au chargement du badge (aucun cookie)
                   </li>
                   <li>
                     <strong>Service d’emailing&nbsp;:</strong> prestataire utilisé pour l’envoi de newsletters
@@ -728,6 +732,7 @@ export default function PolitiqueDeConfidentialitePage() {
                       <li>Calendly&nbsp;: module de prise de rendez-vous</li>
                       <li>Google Maps&nbsp;: carte d’accès à l’agence</li>
                       <li>Ces services déposent leurs propres cookies lorsqu’ils s’affichent</li>
+                      <li>La Fabrique du Net&nbsp;: badge d’avis du pied de page, chargé depuis ses serveurs, sans cookie</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-muted)', marginTop: '6px' }}>
                       Voir les politiques de Calendly et de Google

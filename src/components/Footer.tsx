@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import CookieSettingsLink from './consent/CookieSettingsLink';
 import Icon from './Icon';
+import LaFabriqueBadge from './LaFabriqueBadge';
 import { CLIENT_LOGOS, logoSrc } from '@/lib/clients';
 import { CONTACT, SOCIAL } from '@/lib/site';
 
@@ -75,6 +76,7 @@ export default function Footer() {
           <p className="footer__tagline">
             Design web stratégique et campagnes conçues pour générer des résultats et des conversions.
           </p>
+          <LaFabriqueBadge />
         </div>
         <div className="footer__col">
           <p className="footer__col-title">Menu</p>

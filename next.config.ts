@@ -12,6 +12,7 @@ import type { NextConfig } from 'next';
  *  - www.google.com             : carte Google Maps (contact, agence WordPress Paris)
  *  - fonts.googleapis.com / fonts.gstatic.com : police de /rdv-confirme/
  *  - cdn.prod.website-files.com : logo Calendly de l'encart des articles
+ *  - www.lafabriquedunet.fr     : badge d'avis du pied de page (script, sans cookie ni requête)
  *
  * La politique complète (CSP_REPORT_ONLY) est d'abord publiée en « Report-Only » : les navigateurs
  * signalent dans la console ce qu'elle bloquerait, sans rien bloquer. Une fois vérifié en production
@@ -25,7 +26,7 @@ const CSP = ["object-src 'none'", "base-uri 'self'", "form-action 'self'", "fram
 
 const CSP_REPORT_ONLY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://taap.it https://assets.calendly.com https://connect.facebook.net",
+  "script-src 'self' 'unsafe-inline' https://taap.it https://assets.calendly.com https://connect.facebook.net https://www.lafabriquedunet.fr",
   "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
   "img-src 'self' data: https://www.facebook.com https://cdn.prod.website-files.com https://assets.calendly.com",
   "font-src 'self' https://fonts.gstatic.com",

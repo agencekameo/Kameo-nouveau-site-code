@@ -3060,6 +3060,8 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   max-width: 340px;
   margin-bottom: 24px;
 }
+/* Badge La Fabrique du Net (LaFabriqueBadge.tsx) : place réservée, aucun décalage à son chargement */
+.footer__lfdn { width: 230px; min-height: 46px; line-height: 0; }
 .footer__socials { display: flex; gap: 10px; }
 .footer__socials a {
   width: 38px; height: 38px;
@@ -5059,6 +5061,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
     width: 100%;
   }
   .footer__brand .footer__logo { margin-bottom: 0; }
+  .footer__brand { flex-direction: column; gap: 16px; }
   .footer__tagline { display: none; }
 
   /* Menu + Expertises : 1 par colonne, centrés */
