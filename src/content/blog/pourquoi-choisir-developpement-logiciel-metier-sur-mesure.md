@@ -3,7 +3,7 @@ title: "Pourquoi choisir un développement logiciel métier sur-mesure ?"
 description: "Découvrez pourquoi opter pour un logiciel métier sur-mesure : performance, productivité et solution adaptée à vos besoins. Guide complet 2026."
 excerpt: "Découvrez les avantages d'un logiciel métier sur-mesure : performance, évolutivité et adaptation totale à vos process pour booster votre productivité."
 date: "2026-05-30T05:04:27+00:00"
-modified: "2026-05-30T05:04:27+00:00"
+modified: "2026-10-16T16:47:04+00:00"
 image: "/wp-content/uploads/2026/05/NexusGames-Pourquoichoisirundveloppementlogicielmtiersur-mesure.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -115,7 +115,7 @@ format: html
 <td>6 à 12 mois</td>
 </tr>
 </table>
-<p>Pour les projets web associés (site vitrine de présentation, espace client, landing page produit), nos prestations démarrent à <b>2 499€ pour un site vitrine</b> et <b>4 499€ pour un e-commerce</b>, ce qui peut compléter intelligemment votre écosystème digital sur-mesure.</p>
+<p>Pour les projets web associés (site vitrine de présentation, espace client, landing page produit), nos prestations démarrent à <b>1 999€ pour un site vitrine</b> et <b>3 999€ pour un e-commerce</b>, ce qui peut compléter intelligemment votre écosystème digital sur-mesure.</p>
 <h2>Erreurs fréquentes à éviter</h2>
 <ul>
 <li><b>Sous-estimer le cadrage</b> : un mauvais brief = un projet qui dérape.</li>

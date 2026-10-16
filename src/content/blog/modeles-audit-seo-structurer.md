@@ -3,7 +3,7 @@ title: "Quels modèles utiliser pour structurer son audit SEO ?"
 description: "Découvrez les meilleurs modèles d'audit SEO pour structurer votre analyse, gagner du temps et booster la visibilité de votre site en 2026."
 excerpt: "Découvrez quels modèles d'audit SEO utiliser pour structurer votre analyse, optimiser vos pages et améliorer durablement la performance de votre site."
 date: "2026-06-10T19:27:25+00:00"
-modified: "2026-06-10T19:27:25+00:00"
+modified: "2026-10-16T16:47:04+00:00"
 image: "/wp-content/uploads/2026/06/NexusGames-QuelsmodlesutiliserpourstructurersonauditSEO.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -66,7 +66,7 @@ format: html
 <p></p>
 <h2>Comment choisir le bon modèle d&#8217;audit SEO selon votre projet ?</h2>
 <h3>Pour un site vitrine</h3>
-<p>Privilégiez un modèle léger axé sur la technique de base, le contenu et l&#8217;expérience mobile. Un template Notion ou Sheets suffit largement. L&#8217;objectif : valider que votre site (généralement entre 5 et 15 pages) respecte les fondamentaux Google et présente un positionnement clair sur 10 à 30 mots-clés stratégiques. C&#8217;est l&#8217;approche que nous intégrons dans nos <a href="/">créations de sites vitrine à partir de 2 499€</a>.</p>
+<p>Privilégiez un modèle léger axé sur la technique de base, le contenu et l&#8217;expérience mobile. Un template Notion ou Sheets suffit largement. L&#8217;objectif : valider que votre site (généralement entre 5 et 15 pages) respecte les fondamentaux Google et présente un positionnement clair sur 10 à 30 mots-clés stratégiques. C&#8217;est l&#8217;approche que nous intégrons dans nos <a href="/">créations de sites vitrine à partir de 1 999€</a>.</p>
 <h3>Pour un site e-commerce</h3>
 <p>Optez pour un modèle plus complet incluant l&#8217;audit des catégories, des fiches produit, du maillage interne, du balisage produit (Schema Product) et des filtres à facettes. La gestion de l&#8217;indexation devient critique. Prévoyez un audit semestriel minimum, voire trimestriel pour les catalogues de plus de 500 références.</p>
 <h3>Pour une refonte</h3>

@@ -151,7 +151,7 @@ export const pageSchemas: object[] = [
             name: 'Combien coûte une agence WordPress à Paris ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Chez Kameo, une création WordPress démarre à 1 499 € HT. Tarifs détaillés par format (landing, vitrine, e-commerce) sur la page Création WordPress. Refonte et maintenance ont leurs propres grilles tarifaires.',
+              text: 'Chez Kameo, une création WordPress démarre à 1 299 € HT. Tarifs détaillés par format (landing, vitrine, e-commerce) sur la page Création WordPress. Refonte et maintenance ont leurs propres grilles tarifaires.',
             },
           },
           {

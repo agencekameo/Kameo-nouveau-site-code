@@ -3,7 +3,7 @@ title: "Comment créer une application web performante pour son entreprise ?"
 description: "Découvrez comment créer une application web performante pour votre entreprise : étapes clés, technologies et conseils sur mesure pour booster votre activité."
 excerpt: "Découvrez les étapes clés pour créer une application web performante, sur mesure et orientée conversion, adaptée aux besoins réels de votre entreprise."
 date: "2026-06-02T04:03:48+00:00"
-modified: "2026-06-02T04:03:48+00:00"
+modified: "2026-10-16T16:47:04+00:00"
 image: "/wp-content/uploads/2026/06/NexusGames-Commentcreruneapplicationwebperformantepoursonentreprise.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -87,12 +87,12 @@ format: html
 </tr>
 <tr>
 <td>Site vitrine premium</td>
-<td>À partir de 2 499€</td>
+<td>À partir de 1 999€</td>
 <td>3 à 5 semaines</td>
 </tr>
 <tr>
 <td>E-commerce sur mesure</td>
-<td>À partir de 4 499€</td>
+<td>À partir de 3 999€</td>
 <td>6 à 10 semaines</td>
 </tr>
 <tr>

@@ -1126,11 +1126,11 @@ export default function HomePage() {
                 <div className="expertise-faq__a">
                   <p>
                     Deux piliers. D'abord les sites internet :{' '}
-                    <Link href="/creation-site-wordpress/">création WordPress sur-mesure</Link> dès 1 499 € HT,{' '}
+                    <Link href="/creation-site-wordpress/">création WordPress sur-mesure</Link> dès 1 299 € HT,{' '}
                     <Link href="/refonte-wordpress/">refonte</Link>,{' '}
                     <Link href="/maintenance-wordpress/">maintenance</Link> dès 79 € HT par mois et{' '}
                     <Link href="/creation-site-ecommerce/">e-commerce</Link>. Ensuite les applications métier :{' '}
-                    <Link href="/creation-crm-sur-mesure/">CRM sur-mesure</Link> dès 10 000 € HT,{' '}
+                    <Link href="/creation-crm-sur-mesure/">CRM sur-mesure</Link> dès 7 999 € HT,{' '}
                     <Link href="/creation-marketplace/">marketplace</Link> dès 8 000 € HT et{' '}
                     <Link href="/creation-saas-ia/">SaaS avec IA</Link> dès 8 000 € HT.
                   </p>
@@ -1154,8 +1154,8 @@ export default function HomePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Une landing WordPress démarre à 1 499 € HT, un site vitrine à 2 999 € HT, une boutique WooCommerce à
-                    4 999 € HT. Pour du développement sur-mesure, comptez à partir de 12 000 € HT. Le devis chiffré
+                    Une landing WordPress démarre à 1 299 € HT, un site vitrine à 1 999 € HT, une boutique WooCommerce à
+                    3 999 € HT. Pour du développement sur-mesure, comptez à partir de 12 000 € HT. Le devis chiffré
                     arrive sous 24 h après un échange découverte de 30 minutes, sans frais.
                   </p>
                 </div>

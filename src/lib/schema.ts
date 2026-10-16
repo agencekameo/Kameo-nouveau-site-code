@@ -154,7 +154,7 @@ const SERVICES: Record<string, { name: string; serviceType: string; description:
     name: 'Branding & identité visuelle',
     serviceType: 'Brand identity design',
     description: 'Création d’identité visuelle : logo, charte graphique, direction artistique et stratégie de marque.',
-    offers: offre(799),
+    offers: offre(499),
   },
   'expertises-motion': {
     name: 'Motion design & vidéo',
@@ -188,7 +188,7 @@ const SERVICES: Record<string, { name: string; serviceType: string; description:
     serviceType: 'Custom CRM development',
     description:
       'CRM sur-mesure adapté à votre pipeline commercial : contacts, tâches, deals, reporting, intégrations métier (Pennylane, Aircall, Yousign), RGPD natif, hébergement en France.',
-    offers: offre(10000),
+    offers: offre(7999),
   },
   'creation-saas-ia': {
     name: 'Création de SaaS avec intelligence artificielle',

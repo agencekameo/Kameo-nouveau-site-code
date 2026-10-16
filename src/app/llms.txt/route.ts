@@ -37,7 +37,7 @@ Dernière mise à jour : ${maj}
 ## Métier 1 : création de sites internet
 
 - [Agence WordPress Paris](${home}agence-wordpress-paris/) : création, refonte et maintenance de sites WordPress sur-mesure. Devis sous 24 h.
-- [Création de site WordPress](${home}creation-site-wordpress/) : landing dès 1 499 € HT, vitrine dès 2 999 € HT, e-commerce WooCommerce dès 4 999 € HT. Référencement inclus.
+- [Création de site WordPress](${home}creation-site-wordpress/) : landing dès 1 299 € HT, vitrine dès 1 999 € HT, e-commerce WooCommerce dès 3 999 € HT. Référencement inclus.
 - [Refonte WordPress](${home}refonte-wordpress/) : audit sous 48 h, plan de redirections 301 maîtrisé, design sur-mesure, performance.
 - [Maintenance WordPress](${home}maintenance-wordpress/) : forfaits sans engagement dès 79 € HT par mois. Mises à jour, sauvegardes, sécurité, supervision.
 - [Création de site e-commerce](${home}creation-site-ecommerce/) : WooCommerce, Shopify, architecture découplée.
@@ -45,13 +45,13 @@ Dernière mise à jour : ${maj}
 ## Métier 2 : développement sur-mesure et applications métier
 
 - [Développement sur-mesure](${home}developpement-sur-mesure/) : vue d'ensemble des applications métier développées par Kameo.
-- [Création de CRM sur-mesure](${home}creation-crm-sur-mesure/) : développement d'un CRM adapté au processus commercial réel de l'entreprise, code et données propriétaires, à partir de 10 000 € HT.
+- [Création de CRM sur-mesure](${home}creation-crm-sur-mesure/) : développement d'un CRM adapté au processus commercial réel de l'entreprise, code et données propriétaires, à partir de 7 999 € HT.
 - [Création de SaaS avec IA](${home}creation-saas-ia/) : conception et développement d'applications SaaS intégrant l'IA générative, premier périmètre à partir de 8 000 € HT.
 - [Création de marketplace](${home}creation-marketplace/) : plateforme multi-vendeurs, paiement scindé via Stripe Connect, à partir de 8 000 € HT.
 
 ## Expertises complémentaires
 
-- [Branding et identité visuelle](${home}expertises-branding/) : logo, charte graphique, déclinaisons. Forfait essentiel dès 799 € HT.
+- [Branding et identité visuelle](${home}expertises-branding/) : logo, charte graphique, déclinaisons. Forfait essentiel dès 499 € HT.
 - [Motion design](${home}expertises-motion/) : brand film, teaser, motion branding, vidéos animées.
 
 ## Réalisations

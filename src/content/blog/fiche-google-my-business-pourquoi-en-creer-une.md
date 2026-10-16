@@ -3,7 +3,7 @@ title: "Qu’est-ce qu’une fiche Google My Business et pourquoi en créer une 
 description: "Découvrez ce qu'est une fiche Google My Business, ses avantages et pourquoi en créer une pour booster votre visibilité locale et attirer plus de clients."
 excerpt: "Découvrez ce qu'est une fiche Google My Business et pourquoi en créer une pour améliorer votre visibilité locale, votre image et vos conversions."
 date: "2026-07-24T10:21:30+00:00"
-modified: "2026-07-24T10:21:30+00:00"
+modified: "2026-10-16T16:47:04+00:00"
 image: "/wp-content/uploads/2026/07/NexusGames-Quest-cequuneficheGoogleMyBusinessetpourquoiencrerune.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -86,7 +86,7 @@ format: html
 <p>Chez Agence Kameo, nous constatons sur plus de 50 entreprises accompagnées que les projets combinant une fiche Google My Business optimisée à un site vitrine ou e-commerce sur mesure obtiennent en moyenne <b>2 à 3 fois plus de demandes qualifiées</b> qu&#8217;une présence limitée à Google Business Profile.</p>
 <h3>Notre méthodologie chez Agence Kameo</h3>
 <p>Notre approche &laquo;&nbsp;<b>On écoute. On crée. On livre.</b>&nbsp;&raquo; démarre toujours par un audit digital complet, incluant l&#8217;analyse de votre fiche Google My Business existante. Nous concevons ensuite une maquette Figma 100% personnalisée, rédigeons les textes avec un copywriter dédié, puis développons votre site sous WordPress, Framer ou en code sur mesure.</p>
-<p>Nos formules commencent à <b>2 499€ pour un site vitrine</b> et <b>4 499€ pour un e-commerce</b>, avec une maintenance mensuelle disponible dès 59,99€ HT pour garder site et fiche GMB à jour. Découvrez l&#8217;ensemble de notre <a href="/" rel="dofollow">catalogue de services digitaux</a>.</p>
+<p>Nos formules commencent à <b>1 999€ pour un site vitrine</b> et <b>3 999€ pour un e-commerce</b>, avec une maintenance mensuelle disponible dès 59,99€ HT pour garder site et fiche GMB à jour. Découvrez l&#8217;ensemble de notre <a href="/" rel="dofollow">catalogue de services digitaux</a>.</p>
 <p>En 2026, ignorer sa fiche Google My Business, c&#8217;est laisser des clients à ses concurrents. Créer et optimiser sa fiche Google Business Profile est le geste marketing le plus rentable pour toute entreprise locale. Associée à un site sur mesure, elle devient un puissant moteur d&#8217;acquisition. Chez Agence Kameo, nous vous accompagnons pour transformer votre présence en ligne en véritable levier de croissance mesurable.</p>
 <h2>FAQ</h2>
 <details>
@@ -99,7 +99,7 @@ format: html
 </details>
 <details>
 <summary>Faut-il un site web en plus de la fiche Google My Business ?</summary>
-<p>Absolument. La fiche attire les visiteurs, mais c&#8217;est votre site qui convertit. Sans site professionnel, vous perdez en crédibilité et en conversion. Agence Kameo propose des sites vitrine sur mesure à partir de 2 499€, parfaitement synchronisés avec votre fiche GMB.</p>
+<p>Absolument. La fiche attire les visiteurs, mais c&#8217;est votre site qui convertit. Sans site professionnel, vous perdez en crédibilité et en conversion. Agence Kameo propose des sites vitrine sur mesure à partir de 1 999€, parfaitement synchronisés avec votre fiche GMB.</p>
 </details>
 <div class="kameo-sticky-ad">
 <div class="kameo-ad-close">×</div>

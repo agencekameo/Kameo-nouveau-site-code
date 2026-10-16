@@ -7,7 +7,7 @@ import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
 
 const PATH = '/expertises-branding/';
-const TITLE = 'Agence branding Paris : logo et identité dès 799 € | Kameo';
+const TITLE = 'Agence branding Paris : logo et identité dès 499 € | Kameo';
 const DESCRIPTION =
   'Création d’identité visuelle, logo et charte graphique par notre agence branding parisienne. Branding premium sur-mesure pour PME, startups et marques.';
 const CRUMBS = [
@@ -516,7 +516,7 @@ export default function ExpertisesBrandingPage() {
               </span>
               <h2 className="pricing__title">Nos offres de branding</h2>
               <p className="pricing__intro">
-                Identité visuelle complète dès <strong>799&nbsp;€ HT</strong>, branding complet dès{' '}
+                Identité visuelle complète dès <strong>499&nbsp;€ HT</strong>, branding complet dès{' '}
                 <strong>999&nbsp;€ HT</strong>, ou refonte complète sur devis. Échelonnement 3× sans frais au-delà de
                 3&nbsp;000&nbsp;€ HT.
               </p>
@@ -535,7 +535,7 @@ export default function ExpertisesBrandingPage() {
                 <div className="pcard-offer__price-block">
                   <span className="pcard-offer__from">À partir de</span>
                   <p className="pcard-offer__price">
-                    799&nbsp;€ <small>/HT</small>
+                    499&nbsp;€ <small>/HT</small>
                   </p>
                 </div>
                 <ul className="pcard-offer__list">
@@ -837,7 +837,7 @@ export default function ExpertisesBrandingPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Chez Kameo, le branding démarre à <strong>799&nbsp;€ HT</strong> (logo + charte essentielle),{' '}
+                    Chez Kameo, le branding démarre à <strong>499&nbsp;€ HT</strong> (logo + charte essentielle),{' '}
                     <strong>999&nbsp;€ HT</strong> pour un branding complet (charte étendue, déclinaisons, bannières
                     réseaux). Pour une refonte de marque complète ou un naming, on établit un devis sur-mesure après
                     l’appel découverte. Échelonnement 3× sans frais possible au-delà de 3&nbsp;000&nbsp;€ HT.
@@ -966,7 +966,7 @@ export default function ExpertisesBrandingPage() {
                   <p>
                     Techniquement oui, mais on le déconseille fortement. Un logo seul, sans système graphique cohérent
                     (typographies, palette, déclinaisons), perd 80% de son impact dès qu’il est utilisé hors contexte.
-                    Notre offre essentielle à <strong>799&nbsp;€ HT inclut logo + charte minimale</strong> pour garantir
+                    Notre offre essentielle à <strong>499&nbsp;€ HT inclut logo + charte minimale</strong> pour garantir
                     une cohérence visuelle dès le J1.
                   </p>
                 </div>

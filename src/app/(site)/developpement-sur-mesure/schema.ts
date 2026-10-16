@@ -19,7 +19,7 @@ export const pageSchemas: object[] = [
         name: "Quel est le budget moyen d'un projet développement sur-mesure ?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Ça dépend fortement du périmètre. Ordres de grandeur : site e-commerce sur-mesure à partir de 12 000 € HT, marketplace multi-vendeurs à partir de 8 000 € HT, CRM sur-mesure à partir de 10 000 € HT, SaaS avec IA à partir de 8 000 € HT. Après un brief découverte gratuit, on vous envoie un devis détaillé sous 24 h avec périmètre chiffré ligne à ligne.',
+          text: 'Ça dépend fortement du périmètre. Ordres de grandeur : site e-commerce sur-mesure à partir de 12 000 € HT, marketplace multi-vendeurs à partir de 8 000 € HT, CRM sur-mesure à partir de 7 999 € HT, SaaS avec IA à partir de 8 000 € HT. Après un brief découverte gratuit, on vous envoie un devis détaillé sous 24 h avec périmètre chiffré ligne à ligne.',
         },
       },
       {

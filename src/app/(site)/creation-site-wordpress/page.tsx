@@ -9,9 +9,9 @@ import css from './styles';
 import { PROOF } from '@/lib/site';
 
 const PATH = '/creation-site-wordpress/';
-const TITLE = 'Création site WordPress Paris : 3 formats dès 1 499 € | Kameo';
+const TITLE = 'Création site WordPress Paris : 3 formats dès 1 299 € | Kameo';
 const DESCRIPTION =
-  'Création site WordPress à Paris : landing 1 499 €, vitrine 2 999 €, e-commerce 4 999 €. Thème custom, SEO inclus. Devis gratuit sous 24 h.';
+  'Création site WordPress à Paris : landing 1 299 €, vitrine 1 999 €, e-commerce 3 999 €. Thème custom, SEO inclus. Devis gratuit sous 24 h.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Agence WordPress Paris', path: '/agence-wordpress-paris/' },
@@ -197,8 +197,8 @@ export default function CreationSiteWordpressPage() {
               </span>
               <h2 className="pricing__title">Nos offres de création de site WordPress</h2>
               <p className="pricing__intro">
-                Landing page dès <strong>1&nbsp;499 € HT</strong>, site vitrine dès <strong>2&nbsp;999 € HT</strong>,
-                e-commerce dès <strong>4&nbsp;999 € HT</strong>. Échelonnement 3× sans frais au-delà de 3&nbsp;000 € HT.
+                Landing page dès <strong>1&nbsp;299 € HT</strong>, site vitrine dès <strong>1&nbsp;999 € HT</strong>,
+                e-commerce dès <strong>3&nbsp;999 € HT</strong>. Échelonnement 3× sans frais au-delà de 3&nbsp;000 € HT.
               </p>
             </header>
             <div className="pricing__wrap">
@@ -216,7 +216,7 @@ export default function CreationSiteWordpressPage() {
                 <div className="pcard-offer__price-block">
                   <span className="pcard-offer__from">À partir de</span>
                   <p className="pcard-offer__price">
-                    1&nbsp;499 € <small>HT</small>
+                    1&nbsp;299 € <small>HT</small>
                   </p>
                 </div>
                 <ul className="pcard-offer__list">
@@ -292,7 +292,7 @@ export default function CreationSiteWordpressPage() {
                 <div className="pcard-offer__price-block">
                   <span className="pcard-offer__from">À partir de</span>
                   <p className="pcard-offer__price">
-                    2&nbsp;999 € <small>/HT</small>
+                    1&nbsp;999 € <small>/HT</small>
                   </p>
                 </div>
                 <ul className="pcard-offer__list">
@@ -360,7 +360,7 @@ export default function CreationSiteWordpressPage() {
                 <div className="pcard-offer__price-block">
                   <span className="pcard-offer__from">À partir de</span>
                   <p className="pcard-offer__price">
-                    4&nbsp;999 € <small>/HT</small>
+                    3&nbsp;999 € <small>/HT</small>
                   </p>
                 </div>
                 <ul className="pcard-offer__list">
@@ -533,13 +533,13 @@ export default function CreationSiteWordpressPage() {
                   <tr>
                     <th scope="row">À partir de (HT)</th>
                     <td>
-                      <strong>1 499 €</strong>
+                      <strong>1 299 €</strong>
                     </td>
                     <td>
-                      <strong>2 999 €</strong>
+                      <strong>1 999 €</strong>
                     </td>
                     <td>
-                      <strong>4 999 €</strong>
+                      <strong>3 999 €</strong>
                     </td>
                   </tr>
                 </tbody>
@@ -1706,7 +1706,7 @@ export default function CreationSiteWordpressPage() {
             <div className="expertise-faq__list">
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
-                  Que comprend exactement le tarif de 1 499 € pour une landing page WordPress ?{' '}
+                  Que comprend exactement le tarif de 1 299 € pour une landing page WordPress ?{' '}
                   <span className="expertise-faq__chevron" aria-hidden="true">
                     <svg
                       viewBox="0 0 24 24"
@@ -1732,7 +1732,7 @@ export default function CreationSiteWordpressPage() {
               </details>
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
-                  Que comprend le tarif vitrine 2 999 € HT ? Combien de pages exactement ?{' '}
+                  Que comprend le tarif vitrine 1 999 € HT ? Combien de pages exactement ?{' '}
                   <span className="expertise-faq__chevron" aria-hidden="true">
                     <svg
                       viewBox="0 0 24 24"
@@ -1757,7 +1757,7 @@ export default function CreationSiteWordpressPage() {
               </details>
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
-                  Que comprend le tarif e-commerce 4 999 € HT sur WooCommerce ?{' '}
+                  Que comprend le tarif e-commerce 3 999 € HT sur WooCommerce ?{' '}
                   <span className="expertise-faq__chevron" aria-hidden="true">
                     <svg
                       viewBox="0 0 24 24"

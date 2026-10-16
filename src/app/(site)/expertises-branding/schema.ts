@@ -9,7 +9,7 @@ export const pageSchemas: object[] = [
         name: 'Quel est le prix d’une identité visuelle complète à Paris ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Chez Kameo, le branding démarre à 799€ HT (logo + charte essentielle), 999€ HT pour un branding complet (charte étendue, déclinaisons, bannières réseaux). Pour une refonte de marque complète ou un naming, on établit un devis sur-mesure après l’appel découverte. Échelonnement 3× sans frais possible au-delà de 3 000€ HT.',
+          text: 'Chez Kameo, le branding démarre à 499€ HT (logo + charte essentielle), 999€ HT pour un branding complet (charte étendue, déclinaisons, bannières réseaux). Pour une refonte de marque complète ou un naming, on établit un devis sur-mesure après l’appel découverte. Échelonnement 3× sans frais possible au-delà de 3 000€ HT.',
         },
       },
       {
@@ -49,7 +49,7 @@ export const pageSchemas: object[] = [
         name: 'Puis-je commander uniquement un logo, sans la charte graphique ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Techniquement oui, mais on le déconseille fortement. Un logo seul, sans système graphique cohérent (typographies, palette, déclinaisons), perd 80% de son impact dès qu’il est utilisé hors contexte. Notre offre essentielle à 799€ HT inclut logo + charte minimale pour garantir une cohérence visuelle dès le J1.',
+          text: 'Techniquement oui, mais on le déconseille fortement. Un logo seul, sans système graphique cohérent (typographies, palette, déclinaisons), perd 80% de son impact dès qu’il est utilisé hors contexte. Notre offre essentielle à 499€ HT inclut logo + charte minimale pour garantir une cohérence visuelle dès le J1.',
         },
       },
     ],

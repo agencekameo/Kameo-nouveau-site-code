@@ -3,7 +3,7 @@ title: "Comment créer un site internet vitrine pour une PME locale ?"
 description: "Découvrez comment créer un site vitrine PME locale performant : étapes, conseils SEO local et astuces pour attirer plus de clients près de chez vous."
 excerpt: "Créer un site vitrine PME locale efficace : guide complet pour gagner en visibilité, séduire vos clients de proximité et booster votre activité."
 date: "2026-07-06T16:37:53+00:00"
-modified: "2026-07-06T16:37:53+00:00"
+modified: "2026-10-16T16:47:04+00:00"
 image: "/wp-content/uploads/2026/07/NexusGames-CommentcrerunsiteinternetvitrinepourunePMElocale.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -55,16 +55,16 @@ format: html
 </tr>
 <tr>
 <td>Agence sur mesure (Kameo)</td>
-<td>À partir de 2 499 €</td>
+<td>À partir de 1 999 €</td>
 <td>PME sérieuse voulant un vrai outil business</td>
 </tr>
 <tr>
 <td>Agence premium / e-commerce</td>
-<td>4 499 € et plus</td>
+<td>3 999 € et plus</td>
 <td>Entreprise avec besoins avancés</td>
 </tr>
 </table>
-<p>Chez Agence Kameo, un <b>site vitrine professionnel pour PME</b> démarre à 2 499 € HT et inclut : audit stratégique, maquette Figma sur mesure, copywriting complet, développement responsive, optimisation SEO on-page et formation à la prise en main.</p>
+<p>Chez Agence Kameo, un <b>site vitrine professionnel pour PME</b> démarre à 1 999 € HT et inclut : audit stratégique, maquette Figma sur mesure, copywriting complet, développement responsive, optimisation SEO on-page et formation à la prise en main.</p>
 <h3>Et la maintenance ?</h3>
 <p>Un site laissé à l&#8217;abandon devient rapidement obsolète, lent et vulnérable. Trois formules de maintenance sont proposées pour couvrir tous les besoins :</p>
 <ul>
@@ -102,11 +102,11 @@ format: html
 <li><b>Semaines 7-8</b> : recette, optimisations, formation et mise en ligne</li>
 </ul>
 <p>Ce délai peut être raccourci pour une landing page ou un site express, mais nous déconseillons de sacrifier la phase stratégique, qui garantit la rentabilité future.</p>
-<p><b>Créer un site vitrine PME locale</b> en 2026 est un investissement stratégique, pas une dépense. Avec une méthodologie rigoureuse, un design sur mesure, un copywriting professionnel et un SEO local maîtrisé, votre site devient un véritable commercial digital travaillant 24h/24. Agence Kameo accompagne les PME françaises avec des solutions 100% personnalisées à partir de 2 499 €. Parlons de votre projet.</p>
+<p><b>Créer un site vitrine PME locale</b> en 2026 est un investissement stratégique, pas une dépense. Avec une méthodologie rigoureuse, un design sur mesure, un copywriting professionnel et un SEO local maîtrisé, votre site devient un véritable commercial digital travaillant 24h/24. Agence Kameo accompagne les PME françaises avec des solutions 100% personnalisées à partir de 1 999 €. Parlons de votre projet.</p>
 <h2>FAQ</h2>
 <details>
 <summary>Quel est le budget minimum pour un site vitrine PME locale de qualité ?</summary>
-<p>Comptez à partir de 2 499 € HT pour un site vitrine sur mesure incluant maquette Figma, copywriting professionnel et optimisation SEO. En dessous, vous obtiendrez généralement un template générique peu efficace commercialement. Prévoyez également une maintenance mensuelle (dès 59,99 € HT) pour préserver la performance dans la durée.</p>
+<p>Comptez à partir de 1 999 € HT pour un site vitrine sur mesure incluant maquette Figma, copywriting professionnel et optimisation SEO. En dessous, vous obtiendrez généralement un template générique peu efficace commercialement. Prévoyez également une maintenance mensuelle (dès 59,99 € HT) pour préserver la performance dans la durée.</p>
 </details>
 <details>
 <summary>WordPress ou Framer pour un site vitrine de PME locale ?</summary>

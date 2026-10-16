@@ -3,7 +3,7 @@ title: "Qu’est-ce qu’un pré-audit SEO et comment le réaliser ?"
 description: "Découvrez ce qu'est un pré-audit SEO, ses étapes clés et comment le réaliser pour booster la visibilité et les performances de votre site web."
 excerpt: "Apprenez à réaliser un pré-audit SEO efficace : étapes, outils et bonnes pratiques pour identifier les leviers de visibilité et booster votre site."
 date: "2026-05-29T12:54:24+00:00"
-modified: "2026-05-29T12:54:24+00:00"
+modified: "2026-10-16T16:47:04+00:00"
 image: "/wp-content/uploads/2026/05/NexusGames-Quest-cequunpr-auditSEOetcommentleraliser.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -107,8 +107,8 @@ format: html
 <h3>Budget à prévoir</h3>
 <p>Pour aligner le pré-audit avec une stratégie concrète, voici les ordres de grandeur que nous pratiquons chez Kameo :</p>
 <ul>
-<li><b>Site vitrine refondu</b> : à partir de 2 499€</li>
-<li><b>Site e-commerce optimisé SEO</b> : à partir de 4 499€</li>
+<li><b>Site vitrine refondu</b> : à partir de 1 999€</li>
+<li><b>Site e-commerce optimisé SEO</b> : à partir de 3 999€</li>
 <li><b>Maintenance mensuelle</b> : 3 formules (59,99€ / 99,99€ / 179,99€ HT)</li>
 <li><b>Accompagnement SEO continu</b> : sur devis selon objectifs</li>
 </ul>

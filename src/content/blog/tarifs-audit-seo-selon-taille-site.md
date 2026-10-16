@@ -3,7 +3,7 @@ title: "Quels sont les tarifs d’un audit SEO selon la taille du site ?"
 description: "Découvrez les tarifs d'un audit SEO selon la taille du site : vitrine, e-commerce ou grand compte. Comparatif des prix et conseils pour bien choisir."
 excerpt: "Découvrez les tarifs d'un audit SEO selon la taille du site : vitrine, e-commerce ou grand compte. Comparez les prix pour booster votre visibilité."
 date: "2026-07-17T20:47:23+00:00"
-modified: "2026-07-17T20:47:23+00:00"
+modified: "2026-10-16T16:47:04+00:00"
 image: "/wp-content/uploads/2026/07/NexusGames-QuelssontlestarifsdunauditSEOselonlatailledusite.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -89,7 +89,7 @@ format: html
 <li>L&#8217;agence peut-elle accompagner la mise en œuvre des recommandations ?</li>
 </ul>
 <h3>Audit SEO seul ou intégré à une refonte ?</h3>
-<p>Dans certains cas, l&#8217;audit SEO s&#8217;inscrit dans un projet plus large de <a href="/" rel="dofollow">refonte de site web</a>. C&#8217;est souvent l&#8217;approche la plus rentable : intégrer les recommandations SEO dès la conception évite les coûts de reprise après lancement. Chez Agence Kameo, nos projets de refonte (à partir de 2 499 € pour un site vitrine, 4 499 € pour un e-commerce) intègrent systématiquement une phase d&#8217;audit SEO préliminaire, avec maquette Figma sur mesure et copywriting optimisé pour la conversion.</p>
+<p>Dans certains cas, l&#8217;audit SEO s&#8217;inscrit dans un projet plus large de <a href="/" rel="dofollow">refonte de site web</a>. C&#8217;est souvent l&#8217;approche la plus rentable : intégrer les recommandations SEO dès la conception évite les coûts de reprise après lancement. Chez Agence Kameo, nos projets de refonte (à partir de 1 999 € pour un site vitrine, 3 999 € pour un e-commerce) intègrent systématiquement une phase d&#8217;audit SEO préliminaire, avec maquette Figma sur mesure et copywriting optimisé pour la conversion.</p>
 <p>Nos formules de maintenance mensuelle (59,99 €, 99,99 € ou 179,99 € HT) incluent également un suivi SEO continu pour maintenir vos positions dans le temps, un point crucial que 73 % des sites négligent après leur lancement.</p>
 <p>Investir dans un <b>audit SEO</b> au juste tarif, c&#8217;est poser les fondations d&#8217;une stratégie digitale rentable. Que vous soyez une TPE avec un site vitrine ou un e-commerce en pleine croissance, il existe une prestation adaptée à votre budget et à vos objectifs. L&#8217;essentiel : privilégier la qualité de l&#8217;analyse humaine et la clarté du plan d&#8217;action à un prix bradé sans valeur ajoutée.</p>
 <h2>FAQ</h2>

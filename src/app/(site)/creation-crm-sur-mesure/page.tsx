@@ -338,9 +338,9 @@ export default function CreationCrmSurMesurePage() {
                 <div className="expertise-faq__a">
                   <p>
                     Ça devient rentable dès que vous payez <strong>15 000 € HT/an</strong> de licences Salesforce ou
-                    HubSpot, ou que le SaaS bloque un workflow essentiel. Un CRM sur-mesure démarre à 10 000 € HT en
+                    HubSpot, ou que le SaaS bloque un workflow essentiel. Un CRM sur-mesure démarre à 7 999 € HT en
                     développement (one-shot), puis coûte 100-300 € HT/mois d'hébergement. Salesforce Enterprise à 150 €
-                    HT/user/mois × 15 users = 27 000 € HT/an à vie. Break-even en 5 mois, puis économies durables.
+                    HT/user/mois × 15 users = 27 000 € HT/an à vie. Break-even en 4 mois, puis économies durables.
                   </p>
                 </div>
               </details>

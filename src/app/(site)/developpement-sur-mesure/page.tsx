@@ -454,7 +454,7 @@ export default function DeveloppementSurMesurePage() {
                   <p>
                     Ça dépend fortement du périmètre. Ordres de grandeur : <strong>site e-commerce sur-mesure</strong> à
                     partir de 12 000 € HT, <strong>marketplace multi-vendeurs</strong> à partir de 8 000 € HT,{' '}
-                    <strong>CRM sur-mesure</strong> à partir de 10 000 € HT, <strong>SaaS avec IA</strong> à partir de 8
+                    <strong>CRM sur-mesure</strong> à partir de 7 999 € HT, <strong>SaaS avec IA</strong> à partir de 8
                     000 € HT. Après un brief découverte gratuit, on vous envoie un{' '}
                     <strong>devis détaillé sous 24 h</strong> avec périmètre chiffré ligne à ligne.
                   </p>

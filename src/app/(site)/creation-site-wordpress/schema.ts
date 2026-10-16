@@ -153,11 +153,11 @@ export const pageSchemas: object[] = [
           {
             '@type': 'Offer',
             name: 'Landing page WordPress',
-            price: '1499',
+            price: '1299',
             priceCurrency: 'EUR',
             priceSpecification: {
               '@type': 'PriceSpecification',
-              price: '1499',
+              price: '1299',
               priceCurrency: 'EUR',
               valueAddedTaxIncluded: false,
             },
@@ -165,11 +165,11 @@ export const pageSchemas: object[] = [
           {
             '@type': 'Offer',
             name: 'Site vitrine WordPress',
-            price: '2999',
+            price: '1999',
             priceCurrency: 'EUR',
             priceSpecification: {
               '@type': 'PriceSpecification',
-              price: '2999',
+              price: '1999',
               priceCurrency: 'EUR',
               valueAddedTaxIncluded: false,
             },
@@ -177,11 +177,11 @@ export const pageSchemas: object[] = [
           {
             '@type': 'Offer',
             name: 'E-commerce WordPress (WooCommerce)',
-            price: '4999',
+            price: '3999',
             priceCurrency: 'EUR',
             priceSpecification: {
               '@type': 'PriceSpecification',
-              price: '4999',
+              price: '3999',
               priceCurrency: 'EUR',
               valueAddedTaxIncluded: false,
             },
@@ -195,7 +195,7 @@ export const pageSchemas: object[] = [
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'Que comprend exactement le tarif de 1 499 € pour une landing page WordPress ?',
+            name: 'Que comprend exactement le tarif de 1 299 € pour une landing page WordPress ?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'Page sur-mesure, copywriting, design Figma, dev sur thème custom, formulaire, tracking GA4 + Meta Pixel, RGPD, SEO technique et mise en ligne. Hors périmètre : photos/vidéos, hébergement, nom de domaine.',
@@ -203,7 +203,7 @@ export const pageSchemas: object[] = [
           },
           {
             '@type': 'Question',
-            name: 'Que comprend le tarif vitrine 2 999 € HT ?',
+            name: 'Que comprend le tarif vitrine 1 999 € HT ?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: "Jusqu'à 5 pages, thème WordPress sur-mesure, architecture SEO en silos, blog Gutenberg, formation 1 h, tracking, RGPD. Au-delà : devis sur-mesure.",
@@ -211,7 +211,7 @@ export const pageSchemas: object[] = [
           },
           {
             '@type': 'Question',
-            name: 'Que comprend le tarif e-commerce 4 999 € HT sur WooCommerce ?',
+            name: 'Que comprend le tarif e-commerce 3 999 € HT sur WooCommerce ?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: "WooCommerce jusqu'à 50 fiches produits, tunnel optimisé, Stripe/Mollie, fiches SEO, pixel e-commerce, formation gestion catalogue. Au-delà : devis sur-mesure.",

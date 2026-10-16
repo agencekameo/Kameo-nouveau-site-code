@@ -27,7 +27,7 @@ export const pageSchemas: object[] = [
         name: 'Quels services propose Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Deux piliers. D'abord les sites internet : création WordPress sur-mesure dès 1 499 € HT, refonte, maintenance dès 79 € HT par mois et e-commerce. Ensuite les applications métier : CRM sur-mesure dès 10 000 € HT, marketplace dès 8 000 € HT et SaaS avec IA dès 8 000 € HT.",
+          text: "Deux piliers. D'abord les sites internet : création WordPress sur-mesure dès 1 299 € HT, refonte, maintenance dès 79 € HT par mois et e-commerce. Ensuite les applications métier : CRM sur-mesure dès 7 999 € HT, marketplace dès 8 000 € HT et SaaS avec IA dès 8 000 € HT.",
         },
       },
       {
@@ -35,7 +35,7 @@ export const pageSchemas: object[] = [
         name: 'Combien coûte un site chez Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Une landing WordPress démarre à 1 499 € HT, un site vitrine à 2 999 € HT, une boutique WooCommerce à 4 999 € HT. Pour du développement sur-mesure, comptez à partir de 12 000 € HT. Le devis chiffré arrive sous 24 h après un échange découverte de 30 minutes, sans frais.',
+          text: 'Une landing WordPress démarre à 1 299 € HT, un site vitrine à 1 999 € HT, une boutique WooCommerce à 3 999 € HT. Pour du développement sur-mesure, comptez à partir de 12 000 € HT. Le devis chiffré arrive sous 24 h après un échange découverte de 30 minutes, sans frais.',
         },
       },
       {

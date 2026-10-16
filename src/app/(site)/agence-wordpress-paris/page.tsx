@@ -1392,7 +1392,7 @@ export default function AgenceWordpressParisPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Une création WordPress sur-mesure chez Kameo démarre à 1 499 € HT. Le prix exact dépend du format
+                    Une création WordPress sur-mesure chez Kameo démarre à 1 299 € HT. Le prix exact dépend du format
                     (landing, vitrine, e-commerce), du nombre de pages, du niveau d'ambition graphique, des intégrations
                     spécifiques (CRM, paiement, multilingue) et du contenu à rédiger.{' '}
                     <Link href="/creation-site-wordpress/">
