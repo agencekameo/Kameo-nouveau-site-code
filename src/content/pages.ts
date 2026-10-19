@@ -21,7 +21,7 @@ export const PAGES: Record<string, PageInfo> = {
   '/creation-marketplace/': { label: 'Création de marketplace', published: '2026-09-18T12:15:30+00:00', modified: '2026-09-18T12:15:30+00:00' },
   '/creation-crm-sur-mesure/': { label: 'Création de CRM sur-mesure', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-16T16:47:04+00:00' },
   '/creation-saas-ia/': { label: 'Création de SaaS IA', published: '2026-09-18T12:15:31+00:00', modified: '2026-09-18T12:15:31+00:00' },
-  '/realisations/': { label: 'Réalisations', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
+  '/realisations/': { label: 'Réalisations', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-19T12:31:10+00:00' },
   '/contact/': { label: 'Contact', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
   '/blog/': { label: 'Blog', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
   '/mentions-legales/': { label: 'Mentions légales', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-17T15:24:01+00:00' },

@@ -177,6 +177,8 @@ export const BLOG_PRUNING: Record<string, string> = {
 
 /** Anciennes URLs hors blog encore présentes dans la Search Console. */
 export const LEGACY_REDIRECTS: Record<string, string> = {
+  // réalisation retirée du portfolio le 19/10/2026
+  '/realisations/serrurier-24': '/realisations/',
   '/guide-seo-pour-tpe-pme-boostez-votre-visibilite-et-attirez-plus-de-clients': AUDIT_PILIER,
   '/les-10-erreurs-frequentes-a-eviter-lors-de-la-creation-de-votre-site-web': '/creation-site-wordpress/',
   '/refonte-de-site-internet-quand-et-pourquoi-est-ce-necessaire': '/refonte-wordpress/',

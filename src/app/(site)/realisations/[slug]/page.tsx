@@ -43,7 +43,7 @@ const Picture = ({ img, alt }: { img: Img; alt: string }) => (
  * Les réalisations ex aequo sur la date sont départagées dans l'ordre observé sur le
  * site WordPress en ligne.
  */
-const MOST_RECENT = ['serrurier-24', 'defikart', 'le-101', 'medical-market', 'claimz', 'les-cars-du-plateau'];
+const MOST_RECENT = ['defikart', 'le-101', 'medical-market', 'claimz', 'les-cars-du-plateau'];
 function otherProjects(r: Realisation): Realisation[] {
   return MOST_RECENT.filter((slug) => slug !== r.slug)
     .slice(0, 4)
