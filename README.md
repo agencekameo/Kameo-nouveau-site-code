@@ -193,6 +193,28 @@ Code : `src/app/api/blog/publish/` (routes), `src/lib/blog-api.ts` (authentifica
 nettoyage du HTML, slugs, catégories), `src/lib/blog-db.ts` (lecture et mise en forme),
 `src/lib/blog-media.ts` (images et variantes WebP), `src/lib/db.ts` et `src/lib/db-tables.ts` (base).
 
+## Suivi des campagnes Meta (Google Tag Manager)
+
+La landing page Ads (`/landingpage/`) et la confirmation de rendez-vous (`/rdv-confirme/`) chargent le
+conteneur **GTM-W8S6WQB9** (compte Google Tag Manager « Agence Kameo »), uniquement après accord
+« Publicité » dans le bandeau cookies (`src/components/consent/TagManager.tsx`) : toute balise ajoutée
+au conteneur est donc soumise à ce choix. Le pixel Meta n'est plus codé dans le site, il est dans GTM
+(dossier « Meta Ads ») :
+
+| Balise GTM | Événement Meta | Déclenchement |
+| ---------- | -------------- | ------------- |
+| Meta Pixel - Base (PageView) | `PageView` (pixel 820736740875530) | chaque page portant GTM |
+| Meta Pixel - Schedule (RDV confirmé) | `Schedule`, la conversion à optimiser | arrivée sur `/rdv-confirme/` |
+| Meta Pixel - ClicCalendly (clic Réserver) | `ClicCalendly` (personnalisé) | clic sur un lien Calendly |
+
+Parcours : les boutons de la landing ouvrent Calendly (`contact-agence-kameo/30min`, événement
+« Visioconférence ») dans un nouvel onglet ; après la réservation, Calendly redirige vers
+`/rdv-confirme/`, ce qui déclenche `Schedule`. La page de confirmation efface les paramètres d'adresse
+avant tout traceur : avec l'option Calendly « Passer les détails de l'événement à votre page
+redirigée », l'adresse contient le nom et l'e-mail de l'invité, qui partiraient sinon chez Meta.
+
+Pour ajouter une balise (Google Ads, LinkedIn…), passer par GTM, sans toucher au site.
+
 ## Mise en production
 
 Le site a besoin d'un serveur Node.js (proxy de redirections, formulaire de contact, API du blog),

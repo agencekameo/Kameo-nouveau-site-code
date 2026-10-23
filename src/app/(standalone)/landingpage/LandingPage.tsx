@@ -1,7 +1,7 @@
 import JsonLd from '@/components/JsonLd';
 import SiteEffects from '@/components/SiteEffects';
+import TagManager from '@/components/consent/TagManager';
 import LandingEffects from '@/components/landing/LandingEffects';
-import MetaPixel from '@/components/landing/MetaPixel';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import Body from './Body';
 import { pageSchemas } from './schema';
@@ -16,7 +16,7 @@ export default function LandingPage({ path }: { path: string }) {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
-      <MetaPixel />
+      <TagManager />
       <Body />
       <JsonLd data={[...themeSchemas({ path }), ...pageSchemas, websiteGraph({ path, title: LP_TITLE })]} />
       <LandingEffects />

@@ -22,7 +22,7 @@ export default function PolitiqueDeConfidentialitePage() {
               <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-shield-halved" />
               </svg>
-              Dernière mise à jour&nbsp;: 16 octobre 2026{' '}
+              Dernière mise à jour&nbsp;: 23 octobre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Politique de confidentialité</h1>
             <p className="legal-hero__desc">
@@ -340,8 +340,8 @@ export default function PolitiqueDeConfidentialitePage() {
                     <strong>Mesure d’audience&nbsp;:</strong> taap.it, uniquement avec votre consentement
                   </li>
                   <li>
-                    <strong>Mesure publicitaire&nbsp;:</strong> Meta Platforms (pixel Meta), uniquement avec votre
-                    consentement
+                    <strong>Mesure publicitaire&nbsp;:</strong> Meta Platforms (pixel Meta), chargé par Google Tag Manager
+                    (Google Ireland), uniquement avec votre consentement
                   </li>
                   <li>
                     <strong>Prise de rendez-vous&nbsp;:</strong> Calendly
@@ -720,6 +720,7 @@ export default function PolitiqueDeConfidentialitePage() {
                     <strong>Cookies publicitaires</strong>
                     <ul>
                       <li>Pixel Meta (Facebook, Instagram) sur nos pages de campagne</li>
+                      <li>Chargé par Google Tag Manager, lui-même activé seulement après votre accord</li>
                       <li>Mesure de l’efficacité de nos publicités</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-accent)', marginTop: '6px', fontWeight: '600' }}>

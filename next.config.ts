@@ -7,7 +7,8 @@ import type { NextConfig } from 'next';
  *  - taap.it                    : tracker de liens (toutes les pages)
  *  - assets.calendly.com        : widget.js et widget.css (popup de rendez-vous, badge mobile)
  *  - calendly.com               : iframe de prise de rendez-vous
- *  - connect.facebook.net       : Meta Pixel (landing page, confirmation de rendez-vous)
+ *  - www.googletagmanager.com   : Google Tag Manager (landing page, confirmation), après consentement
+ *  - connect.facebook.net       : Meta Pixel, chargé par Google Tag Manager
  *  - www.facebook.com           : pixel <noscript> et envoi des événements
  *  - www.google.com             : carte Google Maps (contact, agence WordPress Paris)
  *  - fonts.googleapis.com / fonts.gstatic.com : police de /rdv-confirme/
@@ -26,11 +27,11 @@ const CSP = ["object-src 'none'", "base-uri 'self'", "form-action 'self'", "fram
 
 const CSP_REPORT_ONLY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://taap.it https://assets.calendly.com https://connect.facebook.net https://www.lafabriquedunet.fr",
+  "script-src 'self' 'unsafe-inline' https://taap.it https://assets.calendly.com https://connect.facebook.net https://www.lafabriquedunet.fr https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
-  "img-src 'self' data: https://www.facebook.com https://cdn.prod.website-files.com https://assets.calendly.com",
+  "img-src 'self' data: https://www.facebook.com https://cdn.prod.website-files.com https://assets.calendly.com https://www.googletagmanager.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "connect-src 'self' https://taap.it https://*.taap.it https://www.facebook.com https://connect.facebook.net https://calendly.com",
+  "connect-src 'self' https://taap.it https://*.taap.it https://www.facebook.com https://connect.facebook.net https://calendly.com https://www.googletagmanager.com",
   "frame-src https://calendly.com https://www.google.com",
   "media-src 'self'",
   "object-src 'none'",

@@ -5,7 +5,8 @@
  *
  * Catégories soumises au consentement :
  *  - audience  : mesure d'audience taap.it (toutes les pages) ;
- *  - marketing : Meta Pixel (landing page Ads et confirmation de rendez-vous).
+ *  - marketing : Google Tag Manager GTM-W8S6WQB9 et le pixel Meta qu'il charge (landing page Ads et
+ *                confirmation de rendez-vous), src/components/consent/TagManager.tsx.
  */
 export type Consent = { v: 1; audience: boolean; marketing: boolean; date: string };
 
