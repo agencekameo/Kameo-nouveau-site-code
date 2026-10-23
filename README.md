@@ -215,6 +215,10 @@ redirigée », l'adresse contient le nom et l'e-mail de l'invité, qui partiraie
 
 Pour ajouter une balise (Google Ads, LinkedIn…), passer par GTM, sans toucher au site.
 
+**Microsoft Clarity** (projet z24q82d1c2 : cartes de chaleur, relecture des visites) est chargé sur la landing
+page après accord « Mesure d'audience » (`src/components/consent/ClarityTracker.tsx`), et reçoit le choix du
+visiteur par son API de consentement (`consentv2`), exigée par Microsoft pour les visiteurs européens.
+
 ## Mise en production
 
 Le site a besoin d'un serveur Node.js (proxy de redirections, formulaire de contact, API du blog),

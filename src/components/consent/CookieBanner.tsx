@@ -47,7 +47,7 @@ export default function CookieBanner() {
           <label className="ckb__opt">
             <span>
               <strong>Mesure d’audience</strong>
-              <span>Pages vues, clics et parcours sur le site (taap.it).</span>
+              <span>Pages vues, clics et parcours sur le site (taap.it) ; cartes de chaleur et relecture des visites de la landing page (Microsoft Clarity).</span>
             </span>
             <input type="checkbox" role="switch" checked={audience} onChange={(e) => setAudience(e.target.checked)} />
           </label>

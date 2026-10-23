@@ -1,5 +1,6 @@
 import JsonLd from '@/components/JsonLd';
 import SiteEffects from '@/components/SiteEffects';
+import ClarityTracker from '@/components/consent/ClarityTracker';
 import TagManager from '@/components/consent/TagManager';
 import LandingEffects from '@/components/landing/LandingEffects';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
@@ -17,6 +18,7 @@ export default function LandingPage({ path }: { path: string }) {
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <TagManager />
+      <ClarityTracker />
       <Body />
       <JsonLd data={[...themeSchemas({ path }), ...pageSchemas, websiteGraph({ path, title: LP_TITLE })]} />
       <LandingEffects />
