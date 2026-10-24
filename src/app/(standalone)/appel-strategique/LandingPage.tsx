@@ -2,7 +2,7 @@ import JsonLd from '@/components/JsonLd';
 import SiteEffects from '@/components/SiteEffects';
 import ClarityTracker from '@/components/consent/ClarityTracker';
 import TagManager from '@/components/consent/TagManager';
-import CalendlyLinks from '@/components/landing/CalendlyLinks';
+import CalendlyModal from '@/components/landing/CalendlyModal';
 import LandingEffects from '@/components/landing/LandingEffects';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import Body from './Body';
@@ -23,7 +23,7 @@ export default function LandingPage({ path }: { path: string }) {
       <Body />
       <JsonLd data={[...themeSchemas({ path }), ...pageSchemas, websiteGraph({ path, title: LP_TITLE })]} />
       <LandingEffects />
-      <CalendlyLinks />
+      <CalendlyModal />
       <SiteEffects />
     </>
   );
