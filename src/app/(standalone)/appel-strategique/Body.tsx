@@ -385,7 +385,7 @@ const Body = () => (
                 </span>
                 <h3 className="lp2-benef__title">Des délais respectés au jour près</h3>
                 <p className="lp2-benef__text">
-                  2 à 4 semaines selon l’offre. Engagement écrit dans le devis, suivi hebdomadaire, jamais de mauvaise
+                  6 à 8 semaines selon l’offre. Engagement écrit dans le devis, suivi hebdomadaire, jamais de mauvaise
                   surprise.
                 </p>
               </article>

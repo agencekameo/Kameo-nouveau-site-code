@@ -1707,12 +1707,6 @@ const css = `
     .lp2-tarifs .pcard-offer__list li > i:first-child {
       color: var(--accent) !important;
     }
-    /* Mobile : main.css donne 48 px de haut à chaque caractéristique (cible tactile), alors
-       qu'elles ne sont pas cliquables ; les cartes doublaient de hauteur. */
-    @media (max-width: 768px) {
-      .lp2-tarifs .pcard-offer__list { gap: 11px; }
-      .lp2-tarifs .pcard-offer__list li { min-height: 0; }
-    }
     /* Tooltip */
     .lp2-tarifs .pcard-offer__info {
       color: rgba(255,255,255,.25) !important;

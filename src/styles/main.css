@@ -5745,13 +5745,15 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
    Le sélecteur large « a:not(...) » de l'ancienne version a été retiré :
    min-height n'a aucun effet sur un élément inline, et forcer tous les
    liens en inline-flex casserait leur retour à la ligne dans le texte.
+   Les lignes des listes d'offres (.pcard-offer__list, .creation-format__list)
+   en sont retirées le 24/10/2026 : non cliquables, elles n'ont pas besoin de
+   48 px et doublaient la hauteur des cartes de prix sur mobile.
    ============================================================ */
 @media (max-width: 768px) {
   button, [role="button"], input[type="button"], input[type="submit"],
   .nav__cta, .btn, .btn--primary, .btn--outline, .btn--outline-pill,
   .mnav__item, .mnav__sub-item, .mobile-nav__close, .nav__burger,
-  .expertise-faq__q, .maint-plan__cta, .ccrea-cta, .ref-plan__cta,
-  .pcard-offer__list li, .creation-format__list li {
+  .expertise-faq__q, .maint-plan__cta, .ccrea-cta, .ref-plan__cta {
     min-height: 48px;
     min-width: 48px;
   }
