@@ -13,6 +13,8 @@ export const CONTACT = {
   email: 'contact@agence-kameo.fr',
   address: '9 rue des colonnes, Paris 75002',
   calendly: 'https://calendly.com/contact-agence-kameo/30min',
+  /** Discussion WhatsApp (même numéro que le téléphone). */
+  whatsapp: 'https://wa.me/33662379985',
 } as const;
 
 export const SOCIAL = {

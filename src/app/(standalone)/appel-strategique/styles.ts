@@ -1866,5 +1866,64 @@ const css = `
       font-size: 16px;
       font-weight: 800;
     }
+
+    /* ━━ BOUTON WHATSAPP FLOTTANT (bas droite) — WhatsAppButton.tsx ━━
+       Sous le menu mobile (499), le bandeau cookies (10000) et la fenêtre Calendly (10001). */
+    .lpwa {
+      position: fixed; right: 20px; bottom: 20px; z-index: 400;
+      display: flex; align-items: flex-end; gap: 12px;
+      pointer-events: none;
+    }
+    .lpwa > * { pointer-events: auto; }
+    .lpwa__btn {
+      position: relative; flex: 0 0 auto;
+      width: 58px; height: 58px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: #25D366; color: #fff;
+      box-shadow: 0 10px 28px -6px rgba(37,211,102,.55), 0 4px 12px rgba(0,0,0,.25);
+      transition: transform .25s var(--ease), box-shadow .25s;
+    }
+    .lpwa__btn::after {
+      content: ''; position: absolute; inset: 0; border-radius: 50%;
+      animation: lpwa-pulse 2.6s ease-out infinite;
+    }
+    .lpwa__btn:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 14px 32px -6px rgba(37,211,102,.65), 0 4px 12px rgba(0,0,0,.25); }
+    .lpwa__btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    .lpwa__btn svg { width: 30px; height: 30px; fill: currentColor; }
+    .lpwa__bubble {
+      position: relative; max-width: 230px; margin-bottom: 8px;
+      background: #fff; color: #0f1115;
+      border-radius: 16px 16px 4px 16px;
+      padding: 12px 36px 12px 14px;
+      font-size: 13.5px; line-height: 1.4;
+      box-shadow: 0 14px 34px -8px rgba(0,0,0,.5);
+      animation: lpwa-in .45s var(--ease) both;
+    }
+    .lpwa__bubble-link { display: block; color: inherit; text-decoration: none; }
+    .lpwa__bubble-link strong { display: block; font-weight: 700; margin-bottom: 2px; }
+    .lpwa__bubble-close {
+      position: absolute; top: 4px; right: 4px;
+      width: 32px; height: 32px; min-width: 32px; min-height: 32px;
+      display: grid; place-items: center;
+      border: 0; border-radius: 50%; background: transparent;
+      color: rgba(15,17,21,.45); cursor: pointer;
+    }
+    .lpwa__bubble-close:hover { color: #0f1115; background: rgba(15,17,21,.06); }
+    @keyframes lpwa-in { from { opacity: 0; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: none; } }
+    @keyframes lpwa-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37,211,102,.45); }
+      70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+    @media (max-width: 640px) {
+      .lpwa { right: 14px; bottom: 14px; bottom: max(14px, env(safe-area-inset-bottom)); gap: 10px; }
+      .lpwa__btn { width: 54px; height: 54px; }
+      .lpwa__btn svg { width: 28px; height: 28px; }
+      .lpwa__bubble { max-width: 205px; font-size: 13px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .lpwa__btn::after, .lpwa__bubble { animation: none; }
+      .lpwa__btn { transition: none; }
+    }
   `;
 export default css;
