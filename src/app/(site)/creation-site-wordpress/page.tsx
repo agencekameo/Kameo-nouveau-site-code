@@ -230,7 +230,7 @@ export default function CreationSiteWordpressPage() {
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 3 semaines
+                    Livré en 2 semaines
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -442,7 +442,7 @@ export default function CreationSiteWordpressPage() {
                   </tr>
                   <tr>
                     <th scope="row">Délai de livraison</th>
-                    <td>1 à 2 semaines</td>
+                    <td>2 semaines</td>
                     <td>2 semaines</td>
                     <td>1 mois</td>
                   </tr>

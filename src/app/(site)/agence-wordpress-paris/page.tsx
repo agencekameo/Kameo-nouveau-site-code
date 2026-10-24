@@ -578,7 +578,7 @@ export default function AgenceWordpressParisPage() {
                 >
                   <use href="/icons.svg#i-solid-file-lines" />
                 </svg>
-                <strong style={{ color: '#0f1115', fontWeight: '700' }}>Landing page</strong>· 1 page · 3 semaines{' '}
+                <strong style={{ color: '#0f1115', fontWeight: '700' }}>Landing page</strong>· 1 page · 2 semaines{' '}
               </span>
               <span
                 style={{
@@ -1420,10 +1420,10 @@ export default function AgenceWordpressParisPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Comptez 1 à 2 semaines pour une landing page, 2 semaines pour un site vitrine WordPress et 1 mois
-                    pour un e-commerce WooCommerce. Ces délais incluent la stratégie SEO, le design, le développement,
-                    la recette et la formation. Nous tenons ces délais grâce à notre équipe intégrée à Paris : zéro
-                    sous-traitance, zéro chef de projet intermédiaire, zéro perte de temps.
+                    Comptez 2 semaines pour une landing page ou un site vitrine WordPress, et 1 mois pour un e-commerce
+                    WooCommerce. Ces délais incluent la stratégie SEO, le design, le développement, la recette et la
+                    formation. Nous tenons ces délais grâce à notre équipe intégrée à Paris : zéro sous-traitance, zéro
+                    chef de projet intermédiaire, zéro perte de temps.
                   </p>
                 </div>
               </details>
