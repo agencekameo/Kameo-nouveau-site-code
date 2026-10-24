@@ -7,8 +7,8 @@ import { onConsent, readConsent, type Consent } from '@/lib/consent';
  * Google Tag Manager (conteneur GTM-W8S6WQB9, compte « Agence Kameo ») sur la landing page Ads et
  * la confirmation de rendez-vous. Chargé uniquement après consentement « Publicité » : toute balise
  * ajoutée au conteneur est donc soumise à ce choix. Le conteneur porte le pixel Meta 820736740875530
- * (PageView, Schedule à la confirmation de rendez-vous, ClicCalendly au clic sur un lien Calendly),
- * qui n'est plus codé dans le site. Pas de <noscript> : sans JavaScript, aucun accord n'est possible.
+ * (PageView, Schedule à la confirmation de rendez-vous, ClicCalendly au clic sur un lien Calendly,
+ * Contact au clic sur le bouton WhatsApp de la landing), qui n'est plus codé dans le site. Pas de <noscript> : sans JavaScript, aucun accord n'est possible.
  */
 export const GTM_ID = 'GTM-W8S6WQB9';
 

@@ -206,6 +206,7 @@ au conteneur est donc soumise à ce choix. Le pixel Meta n'est plus codé dans l
 | Meta Pixel - Base (PageView) | `PageView` (pixel 820736740875530) | chaque page portant GTM |
 | Meta Pixel - Schedule (RDV confirmé) | `Schedule`, la conversion à optimiser | arrivée sur `/rdv-confirme/` |
 | Meta Pixel - ClicCalendly (clic Réserver) | `ClicCalendly` (personnalisé) | clic sur un lien Calendly |
+| Meta Pixel - Contact (clic WhatsApp) | `Contact` | clic sur le bouton WhatsApp de la landing (lien wa.me) |
 
 Parcours : les boutons de la landing ouvrent Calendly (`contact-agence-kameo/30min`, événement
 « Visioconférence ») dans une fenêtre sur la page (`src/components/landing/CalendlyModal.tsx`, sans le script
