@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 /*
  * Landing page Ads, bloc Réalisations : une maquette par projet (images de src/content/realisations.ts),
@@ -21,41 +21,41 @@ type Work = {
 
 const WORKS: Work[] = [
   {
-    name: "Défikart",
-    tag: "Loisirs",
-    desc: "Site vitrine du plus grand karting indoor de Toulouse.",
-    src: "/images/projects/defikart/screen01.webp",
-    alt: "Site de Défikart affiché sur un ordinateur portable",
+    name: 'Défikart',
+    tag: 'Loisirs',
+    desc: 'Site vitrine du plus grand karting indoor de Toulouse.',
+    src: '/images/projects/defikart/screen01.webp',
+    alt: 'Site de Défikart affiché sur un ordinateur portable',
     large: true,
   },
   {
-    name: "Medical Market",
-    tag: "Santé",
-    desc: "Boutique e-commerce de matériel médical.",
-    src: "/images/projects/medical-market/mockup3.webp",
-    alt: "Boutique en ligne Medical Market affichée sur un ordinateur portable",
+    name: 'Medical Market',
+    tag: 'Santé',
+    desc: 'Boutique e-commerce de matériel médical.',
+    src: '/images/projects/medical-market/mockup3.webp',
+    alt: 'Boutique en ligne Medical Market affichée sur un ordinateur portable',
     large: true,
   },
   {
-    name: "Villa de Luxe Bonifacio",
-    tag: "Location de luxe",
-    desc: "Site vitrine premium de villas d’exception en Corse.",
-    src: "/images/projects/villa-de-luxe-bonifacio/siteWeb_LandingPage%20(2).webp",
-    alt: "Site de Villa de Luxe Bonifacio affiché sur un ordinateur portable",
+    name: 'Villa de Luxe Bonifacio',
+    tag: 'Location de luxe',
+    desc: 'Site vitrine premium de villas d’exception en Corse.',
+    src: '/images/projects/villa-de-luxe-bonifacio/siteWeb_LandingPage%20(2).webp',
+    alt: 'Site de Villa de Luxe Bonifacio affiché sur un ordinateur portable',
   },
   {
-    name: "Axistone Capital",
-    tag: "Finance",
-    desc: "Site institutionnel d’un fonds d’investissement immobilier.",
-    src: "/images/projects/axistone-capital/siteWeb_LandingPage%20(5).webp",
-    alt: "Site d’Axistone Capital affiché sur un ordinateur portable",
+    name: 'Axistone Capital',
+    tag: 'Finance',
+    desc: 'Site institutionnel d’un fonds d’investissement immobilier.',
+    src: '/images/projects/axistone-capital/siteWeb_LandingPage%20(5).webp',
+    alt: 'Site d’Axistone Capital affiché sur un ordinateur portable',
   },
   {
-    name: "DroneSpec",
-    tag: "BTP",
-    desc: "Site vitrine d’un spécialiste des relevés par drone.",
-    src: "/images/projects/dronespec/screen01.webp",
-    alt: "Site de DroneSpec affiché sur un ordinateur portable",
+    name: 'DroneSpec',
+    tag: 'BTP',
+    desc: 'Site vitrine d’un spécialiste des relevés par drone.',
+    src: '/images/projects/dronespec/screen01.webp',
+    alt: 'Site de DroneSpec affiché sur un ordinateur portable',
   },
 ];
 
@@ -67,8 +67,7 @@ export default function LpWorks() {
   const n = WORKS.length;
   const open = index !== null;
 
-  const go = (step: number) =>
-    setIndex((i) => (i === null ? i : (i + step + n) % n));
+  const go = (step: number) => setIndex((i) => (i === null ? i : (i + step + n) % n));
   const close = () => setIndex(null);
 
   // Visionneuse ouverte : page figée, clavier, focus gardé dans la visionneuse puis rendu
@@ -80,27 +79,25 @@ export default function LpWorks() {
       overflow: html.style.overflow,
       paddingRight: html.style.paddingRight,
     };
-    html.style.overflow = "hidden";
+    html.style.overflow = 'hidden';
     if (scrollbar > 0) html.style.paddingRight = `${scrollbar}px`;
-    boxRef.current
-      ?.querySelector<HTMLElement>(".lpbox__close")
-      ?.focus({ preventScroll: true });
+    boxRef.current?.querySelector<HTMLElement>('.lpbox__close')?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowRight") go(1);
-      else if (e.key === "ArrowLeft") go(-1);
-      else if (e.key === "Tab" && boxRef.current) {
-        const f = [...boxRef.current.querySelectorAll<HTMLElement>("button")];
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') go(1);
+      else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === 'Tab' && boxRef.current) {
+        const f = [...boxRef.current.querySelectorAll<HTMLElement>('button')];
         const i = f.indexOf(document.activeElement as HTMLElement);
         e.preventDefault();
         f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length]?.focus();
       }
     };
-    document.addEventListener("keydown", onKey);
+    document.addEventListener('keydown', onKey);
     return () => {
       html.style.overflow = before.overflow;
       html.style.paddingRight = before.paddingRight;
-      document.removeEventListener("keydown", onKey);
+      document.removeEventListener('keydown', onKey);
       opener.current?.focus({ preventScroll: true });
     };
   }, [open]);
@@ -113,13 +110,9 @@ export default function LpWorks() {
         {WORKS.map((work, i) => (
           <article
             key={work.name}
-            className={
-              "lp2-works__card" + (work.large ? " lp2-works__card--lg" : "")
-            }
+            className={'lp2-works__card' + (work.large ? ' lp2-works__card--lg' : '')}
             data-reveal=""
-            style={
-              i ? { transitionDelay: `${(i * 0.08).toFixed(2)}s` } : undefined
-            }
+            style={i ? { transitionDelay: `${(i * 0.08).toFixed(2)}s` } : undefined}
           >
             <button
               type="button"
@@ -130,13 +123,7 @@ export default function LpWorks() {
                 setIndex(i);
               }}
             >
-              <img
-                src={work.src}
-                alt={work.alt}
-                loading="lazy"
-                width="1600"
-                height="1066"
-              />
+              <img src={work.src} alt={work.alt} loading="lazy" width="1600" height="1066" />
               <span className="lp2-works__zoom" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="16" height="16">
                   <path
@@ -181,20 +168,13 @@ export default function LpWorks() {
               if (!t) return;
               const dx = e.changedTouches[0].clientX - t.x;
               const dy = e.changedTouches[0].clientY - t.y;
-              if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy))
-                go(dx < 0 ? 1 : -1);
+              if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? 1 : -1);
             }}
           >
             <div className="lpbox__backdrop" onClick={close} />
             <figure className="lpbox__figure" key={w.src}>
               <div className="lpbox__frame">
-                <img
-                  className="lpbox__img"
-                  src={w.src}
-                  alt={w.alt}
-                  width="1600"
-                  height="1066"
-                />
+                <img className="lpbox__img" src={w.src} alt={w.alt} width="1600" height="1066" />
               </div>
               <figcaption className="lpbox__caption">
                 <span className="lpbox__name">{w.name}</span>
@@ -205,24 +185,9 @@ export default function LpWorks() {
             <p className="lpbox__count" aria-hidden="true">
               {index! + 1} / {n}
             </p>
-            <button
-              type="button"
-              className="lpbox__close"
-              aria-label="Fermer"
-              onClick={close}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                aria-hidden="true"
-              >
-                <path
-                  d="M6 6l12 12M18 6L6 18"
-                  stroke="currentColor"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                />
+            <button type="button" className="lpbox__close" aria-label="Fermer" onClick={close}>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
               </svg>
             </button>
             <button
@@ -231,12 +196,7 @@ export default function LpWorks() {
               aria-label="Projet précédent"
               onClick={() => go(-1)}
             >
-              <svg
-                viewBox="0 0 24 24"
-                width="20"
-                height="20"
-                aria-hidden="true"
-              >
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                 <path
                   d="M15 5l-7 7 7 7"
                   fill="none"
@@ -253,12 +213,7 @@ export default function LpWorks() {
               aria-label="Projet suivant"
               onClick={() => go(1)}
             >
-              <svg
-                viewBox="0 0 24 24"
-                width="20"
-                height="20"
-                aria-hidden="true"
-              >
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                 <path
                   d="M9 5l7 7-7 7"
                   fill="none"

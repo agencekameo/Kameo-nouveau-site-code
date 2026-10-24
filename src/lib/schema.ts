@@ -194,7 +194,7 @@ const SERVICES: Record<string, { name: string; serviceType: string; description:
     name: 'Création de SaaS avec intelligence artificielle',
     serviceType: 'AI-powered SaaS development',
     description:
-      'Développement de SaaS avec IA générative : intégration Claude/GPT, RAG sur base documentaire, agents autonomes, auth multi-tenant, billing Stripe. MVP livré en 8 à 12 semaines.',
+      'Développement de SaaS avec IA générative : intégration Claude/GPT, RAG sur base documentaire, agents autonomes, auth multi-tenant, billing Stripe. MVP livré en 2 mois.',
     offers: offre(8000, 60000),
   },
 };

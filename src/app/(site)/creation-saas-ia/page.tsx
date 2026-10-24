@@ -8,9 +8,9 @@ import { pageSchemas } from './schema';
 import css from '@/styles/pages/dev-silo';
 
 const PATH = '/creation-saas-ia/';
-const TITLE = 'Création de SaaS avec IA à Paris : MVP en 8 semaines | Kameo';
+const TITLE = 'Création de SaaS avec IA à Paris : MVP en 2 mois | Kameo';
 const DESCRIPTION =
-  'Création de SaaS avec IA générative à Paris : intégration Claude et GPT, RAG, multi-tenant, billing Stripe. MVP livré en 8 à 12 semaines.';
+  'Création de SaaS avec IA générative à Paris : intégration Claude et GPT, RAG, multi-tenant, billing Stripe. MVP livré en 2 mois.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Développement sur-mesure', path: '/developpement-sur-mesure/' },
@@ -49,7 +49,7 @@ export default function CreationSaasIaPage() {
             </span>
             <h1 className="page-hero__title">
               Création de SaaS avec IA à Paris : <br />
-              <span className="page-hero__title-muted">de l'idée au MVP livré en 8 semaines</span>
+              <span className="page-hero__title-muted">de l'idée au MVP livré en 2 mois</span>
             </h1>
             <p className="page-hero__text">
               Vous avez une idée de SaaS qui exploite l'IA générative (Claude, GPT), un chatbot métier, un copilot
@@ -58,7 +58,7 @@ export default function CreationSaasIaPage() {
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
-                MVP livré en <strong>8 à 12 semaines</strong>
+                MVP livré en <strong>2 mois</strong>
               </span>
               <span className="expertise-trust__sep" aria-hidden="true">
                 ·

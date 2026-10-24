@@ -56,8 +56,8 @@ export default function CreationSiteWordpressPage() {
             </h1>
             <p className="page-hero__text">
               Landing page, site vitrine ou e-commerce WooCommerce : on conçoit votre site WordPress sur-mesure, sans
-              page-builder lourd, avec le SEO baked-in dès la stratégie. Devis détaillé sous 24 h, livraison en 2 à 8
-              semaines selon le format.
+              page-builder lourd, avec le SEO baked-in dès la stratégie. Devis détaillé sous 24 h, livraison en 2
+              semaines à 1 mois selon le format.
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
@@ -306,7 +306,7 @@ export default function CreationSiteWordpressPage() {
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 6 semaines
+                    Livré en 2 semaines
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -374,7 +374,7 @@ export default function CreationSiteWordpressPage() {
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 8 semaines
+                    Livré en 1 mois
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -443,8 +443,8 @@ export default function CreationSiteWordpressPage() {
                   <tr>
                     <th scope="row">Délai de livraison</th>
                     <td>1 à 2 semaines</td>
-                    <td>3 à 6 semaines</td>
-                    <td>5 à 8 semaines</td>
+                    <td>2 semaines</td>
+                    <td>1 mois</td>
                   </tr>
                   <tr>
                     <th scope="row">Thème WordPress sur-mesure</th>

@@ -131,7 +131,7 @@ export const pageSchemas: object[] = [
         name: 'Création de site WordPress sur-mesure',
         serviceType: 'Création de site WordPress',
         description:
-          'Création de site WordPress à Paris : landing page, vitrine, e-commerce WooCommerce sur-mesure. Thème custom, SEO inclus, livraison 2 à 8 semaines.',
+          'Création de site WordPress à Paris : landing page, vitrine, e-commerce WooCommerce sur-mesure. Thème custom, SEO inclus, livraison en 2 semaines à 1 mois.',
         provider: {
           '@id': 'https://agence-kameo.fr/#localbusiness',
         },

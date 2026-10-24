@@ -176,7 +176,7 @@ export default function DeveloppementSurMesurePage() {
                 <h3 className="silo-hub__card-title">Création de SaaS IA</h3>
                 <p className="silo-hub__card-text">
                   Application SaaS avec IA générative : intégration Claude/GPT, RAG, agents, auth multi-tenant, billing
-                  Stripe. MVP en 8-12 semaines.
+                  Stripe. MVP en 2 mois.
                 </p>
                 <span className="silo-hub__card-link">
                   Découvrir{' '}
@@ -478,11 +478,11 @@ export default function DeveloppementSurMesurePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Un site e-commerce sur-mesure : <strong>6 à 10 semaines</strong>. Une marketplace :{' '}
-                    <strong>10 à 16 semaines</strong>. Un CRM personnalisé : <strong>8 à 12 semaines</strong>. Un MVP
-                    SaaS avec IA : <strong>8 à 14 semaines</strong>. Ces délais incluent discovery, design UX,
-                    développement, recette et livraison. Nous respectons nos délais à 97 %, équipe intégrée à Paris,
-                    zéro sous-traitance, zéro chef de projet intermédiaire.
+                    Un site e-commerce sur-mesure : à partir de <strong>1 mois</strong>. Une marketplace (MVP) :{' '}
+                    <strong>2 mois</strong>. Un CRM personnalisé : <strong>8 à 12 semaines</strong>. Un MVP SaaS avec IA
+                    : <strong>2 mois</strong>. Ces délais incluent discovery, design UX, développement, recette et
+                    livraison. Nous respectons nos délais à 97 %, équipe intégrée à Paris, zéro sous-traitance, zéro
+                    chef de projet intermédiaire.
                   </p>
                 </div>
               </details>

@@ -27,7 +27,7 @@ export const pageSchemas: object[] = [
         name: 'Combien de temps pour livrer un site e-commerce ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Un catalogue simple (jusqu'à 100 SKU) : 6 semaines. Un catalogue riche multi-catégories : 8 à 10 semaines. Un headless Next.js premium : 10 à 14 semaines. Ces délais incluent stratégie, design UX du tunnel, intégration technique, connexion moyens de paiement, tests, formation admin.",
+          text: "Un catalogue simple (jusqu'à 100 SKU) : 1 mois. Un catalogue riche multi-catégories : 8 à 10 semaines. Un headless Next.js premium : 10 à 14 semaines. Ces délais incluent stratégie, design UX du tunnel, intégration technique, connexion moyens de paiement, tests, formation admin.",
         },
       },
       {

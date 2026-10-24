@@ -44,7 +44,7 @@ export function relatedServices(r: Realisation): [string, string, string][] {
   if (/\bcrm\b/iu.test(hay))
     add('/creation-crm-sur-mesure/', 'CRM sur-mesure', 'Adapté à votre process commercial');
   if (/\bsaas\b|intelligence artificielle|\bia\b/iu.test(hay))
-    add('/creation-saas-ia/', 'Création de SaaS avec IA', 'MVP livré en 8 à 12 semaines');
+    add('/creation-saas-ia/', 'Création de SaaS avec IA', 'MVP livré en 2 mois');
   if (/direction artistique|\bda\b|logo|identité visuelle|charte/iu.test(hay))
     add('/expertises-branding/', 'Branding & identité visuelle', 'Logo, charte graphique, direction artistique');
   if (/motion|vidéo|video|trailer/iu.test(hay)) add('/expertises-motion/', 'Motion design', 'Animations et vidéos de marque');

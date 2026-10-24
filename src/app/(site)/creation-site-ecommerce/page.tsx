@@ -10,7 +10,7 @@ import css from '@/styles/pages/dev-silo';
 const PATH = '/creation-site-ecommerce/';
 const TITLE = 'Création site e-commerce Paris : WooCommerce & Shopify | Kameo';
 const DESCRIPTION =
-  'Création de site e-commerce sur-mesure à Paris : WooCommerce, Shopify ou headless. Tunnel optimisé conversion, SEO natif. Livraison 6 à 10 semaines.';
+  'Création de site e-commerce sur-mesure à Paris : WooCommerce, Shopify ou headless. Tunnel optimisé conversion, SEO natif. Livraison en 1 mois.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Développement sur-mesure', path: '/developpement-sur-mesure/' },
@@ -70,7 +70,7 @@ export default function CreationSiteEcommercePage() {
                 ·
               </span>
               <span className="expertise-trust__item">
-                Livraison en <strong>6 à 10 semaines</strong>
+                Livraison en <strong>1 mois</strong>
               </span>
             </div>
             <div className="page-hero__actions">
@@ -391,10 +391,10 @@ export default function CreationSiteEcommercePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Un catalogue simple (jusqu'à 100 SKU) : <strong>6 semaines</strong>. Un catalogue riche
-                    multi-catégories : <strong>8 à 10 semaines</strong>. Un headless Next.js premium :{' '}
-                    <strong>10 à 14 semaines</strong>. Ces délais incluent stratégie, design UX du tunnel, intégration
-                    technique, connexion moyens de paiement, tests, formation admin.
+                    Un catalogue simple (jusqu'à 100 SKU) : <strong>1 mois</strong>. Un catalogue riche multi-catégories
+                    : <strong>8 à 10 semaines</strong>. Un headless Next.js premium : <strong>10 à 14 semaines</strong>.
+                    Ces délais incluent stratégie, design UX du tunnel, intégration technique, connexion moyens de
+                    paiement, tests, formation admin.
                   </p>
                 </div>
               </details>

@@ -10,7 +10,7 @@ import css from '@/styles/pages/dev-silo';
 const PATH = '/creation-marketplace/';
 const TITLE = 'Création de marketplace multi-vendeurs à Paris | Kameo';
 const DESCRIPTION =
-  'Création de marketplace multi-vendeurs à Paris : split de paiement Stripe Connect, KYC vendeurs, commissions flexibles. MVP en 10 à 16 semaines.';
+  'Création de marketplace multi-vendeurs à Paris : split de paiement Stripe Connect, KYC vendeurs, commissions flexibles. MVP en 2 mois.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Développement sur-mesure', path: '/developpement-sur-mesure/' },
@@ -70,7 +70,7 @@ export default function CreationMarketplacePage() {
                 ·
               </span>
               <span className="expertise-trust__item">
-                Livraison MVP en <strong>10 à 16 semaines</strong>
+                Livraison MVP en <strong>2 mois</strong>
               </span>
             </div>
             <div className="page-hero__actions">

@@ -27,7 +27,7 @@ export const pageSchemas: object[] = [
         name: 'Combien de temps prend un projet de développement sur-mesure ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Un site e-commerce sur-mesure : 6 à 10 semaines. Une marketplace : 10 à 16 semaines. Un CRM personnalisé : 8 à 12 semaines. Un MVP SaaS avec IA : 8 à 14 semaines. Ces délais incluent discovery, design UX, développement, recette et livraison. Nous respectons nos délais à 97 %, équipe intégrée à Paris, zéro sous-traitance, zéro chef de projet intermédiaire.',
+          text: 'Un site e-commerce sur-mesure : à partir de 1 mois. Une marketplace (MVP) : 2 mois. Un CRM personnalisé : 8 à 12 semaines. Un MVP SaaS avec IA : 2 mois. Ces délais incluent discovery, design UX, développement, recette et livraison. Nous respectons nos délais à 97 %, équipe intégrée à Paris, zéro sous-traitance, zéro chef de projet intermédiaire.',
         },
       },
       {
