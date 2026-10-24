@@ -205,7 +205,7 @@ export default function AgenceWordpressParisPage() {
                 <h3 className="wp-service-card__title">Création de site WordPress</h3>
                 <p className="wp-service-card__text">
                   Un site WordPress nouveau, conçu sur-mesure pour votre marque, votre cible et vos objectifs business.
-                  De la stratégie SEO à la mise en ligne, livré en 2 semaines à 1 mois selon le périmètre.
+                  De la stratégie SEO à la mise en ligne, livré en 14 jours à 1 mois selon le périmètre.
                 </p>
                 <ul className="wp-service-card__list">
                   <li>Site vitrine, e-commerce ou landing page</li>
@@ -578,7 +578,7 @@ export default function AgenceWordpressParisPage() {
                 >
                   <use href="/icons.svg#i-solid-file-lines" />
                 </svg>
-                <strong style={{ color: '#0f1115', fontWeight: '700' }}>Landing page</strong>· 1 page · 2 semaines{' '}
+                <strong style={{ color: '#0f1115', fontWeight: '700' }}>Landing page</strong>· 1 page · 14 jours{' '}
               </span>
               <span
                 style={{
@@ -602,8 +602,8 @@ export default function AgenceWordpressParisPage() {
                 >
                   <use href="/icons.svg#i-solid-heart" />
                 </svg>
-                <strong style={{ color: '#0f1115', fontWeight: '700' }}>Site vitrine</strong>· jusqu'à 5 pages · 2
-                semaines{' '}
+                <strong style={{ color: '#0f1115', fontWeight: '700' }}>Site vitrine</strong>· jusqu'à 5 pages · 14
+                jours{' '}
               </span>
               <span
                 style={{
@@ -1420,7 +1420,7 @@ export default function AgenceWordpressParisPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Comptez 2 semaines pour une landing page ou un site vitrine WordPress, et 1 mois pour un e-commerce
+                    Comptez 14 jours pour une landing page ou un site vitrine WordPress, et 1 mois pour un e-commerce
                     WooCommerce. Ces délais incluent la stratégie SEO, le design, le développement, la recette et la
                     formation. Nous tenons ces délais grâce à notre équipe intégrée à Paris : zéro sous-traitance, zéro
                     chef de projet intermédiaire, zéro perte de temps.

@@ -159,7 +159,7 @@ export const pageSchemas: object[] = [
             name: "Quel délai pour qu'une agence WordPress livre mon site ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: '2 semaines pour une landing page ou un site vitrine WordPress, 1 mois pour un e-commerce WooCommerce.',
+              text: '14 jours pour une landing page ou un site vitrine WordPress, 1 mois pour un e-commerce WooCommerce.',
             },
           },
           {

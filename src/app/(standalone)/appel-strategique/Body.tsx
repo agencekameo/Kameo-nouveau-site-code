@@ -386,7 +386,7 @@ const Body = () => (
                 </span>
                 <h3 className="lp2-benef__title">Des délais respectés au jour près</h3>
                 <p className="lp2-benef__text">
-                  2 semaines à 2 mois selon l’offre. Engagement écrit dans le devis, suivi hebdomadaire, jamais de mauvaise
+                  14 jours à 2 mois selon l’offre. Engagement écrit dans le devis, suivi hebdomadaire, jamais de mauvaise
                   surprise.
                 </p>
               </article>
@@ -715,7 +715,7 @@ const Body = () => (
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 2 semaines
+                    Livré en 14 jours
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
