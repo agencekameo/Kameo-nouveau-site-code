@@ -251,9 +251,12 @@ export const TECHNICAL_REDIRECTS: Record<string, string> = {
   '/wp-sitemap.xml': '/sitemap_index.xml',
   '/blog/page/1': '/blog/',
   '/blog/feed': '/feed/',
-  // anciennes adresses de la landing page Ads (404 sur le WordPress en ligne)
-  '/lp-rdv': '/landingpage/',
-  '/lp-rdv-v2': '/landingpage/',
+  // landing page Ads : /landingpage/ jusqu'au 24/10/2026 (campagnes Meta en cours), adresse
+  // accentuée telle qu'elle peut être saisie, anciennes adresses WordPress (404 en ligne)
+  '/landingpage': '/appel-strategique/',
+  '/appel-stratégique': '/appel-strategique/',
+  '/lp-rdv': '/appel-strategique/',
+  '/lp-rdv-v2': '/appel-strategique/',
   // WordPress redirige /favicon.ico vers l'icône du site
   '/favicon.ico': '/wp-content/uploads/2026/05/cropped-favicon-dark-32x32.png',
 };
@@ -269,7 +272,8 @@ const GONE_SET = new Set(GONE.map(norm));
 
 /** Cible d'une redirection 301 pour un chemin (décodé), ou null. */
 export function redirectTarget(path: string): string | null {
-  const hit = TABLE.get(norm(path));
+  // NFC : un « é » peut arriver décomposé (e + accent), selon l'endroit où l'adresse a été copiée
+  const hit = TABLE.get(norm(path).normalize('NFC'));
   if (hit) return hit;
   for (const [from, to] of PREFIX_REDIRECTS) {
     if (!path.startsWith(from)) continue;

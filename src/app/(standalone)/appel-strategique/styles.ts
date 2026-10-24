@@ -1192,6 +1192,99 @@ const css = `
       .lp2-results__grid { grid-template-columns: 1fr; }
     }
 
+    /* ── Réalisations : 2 grandes cartes puis 3 ; carrousel horizontal sur mobile ── */
+    .lp2-works { padding: clamp(64px,8vw,100px) 0 clamp(16px,3vw,40px); position: relative; }
+    .lp2-works .lp2-eyebrow {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      color: rgba(237,110,99,.8) !important;
+    }
+    .lp2-works .lp2-h2 {
+      background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,.38) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; color: transparent;
+    }
+    .lp2-works__grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .lp2-works__card {
+      grid-column: span 2;
+      display: flex; flex-direction: column;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 24px;
+      padding: 10px 10px 18px;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.07);
+      transition: opacity .65s var(--ease), transform .65s var(--ease), border-color .25s, background .25s;
+    }
+    .lp2-works__card--lg { grid-column: span 3; }
+    .lp2-works__card:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.17);
+    }
+    .lp2-works__media {
+      aspect-ratio: 16 / 10;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #d9d9d9;
+    }
+    /* maquettes cadrées serré : l'ordinateur occupe davantage la vignette */
+    .lp2-works__media img {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover;
+      transform: scale(1.08);
+      transition: transform .7s var(--ease);
+    }
+    .lp2-works__card:hover .lp2-works__media img { transform: scale(1.13); }
+    .lp2-works__body { padding: 16px 8px 0; }
+    .lp2-works__head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 6px;
+    }
+    .lp2-works__name {
+      font-family: 'Satoshi', sans-serif; font-weight: 700; font-size: 16px;
+      letter-spacing: -.01em; line-height: 1.25;
+      color: rgba(255,255,255,.92); margin: 0;
+    }
+    .lp2-works__tag {
+      flex: 0 0 auto;
+      font-size: 11.5px; font-weight: 600; letter-spacing: .03em;
+      color: rgba(237,110,99,.9);
+      background: rgba(237,110,99,.12);
+      border: 1px solid rgba(237,110,99,.25);
+      padding: 3px 10px; border-radius: 999px;
+      white-space: nowrap;
+    }
+    .lp2-works__desc {
+      font-size: 13.5px; line-height: 1.5;
+      color: rgba(255,255,255,.5); margin: 0;
+    }
+    @media (max-width: 900px) {
+      .lp2-works__grid { grid-template-columns: 1fr 1fr; }
+      .lp2-works__card, .lp2-works__card--lg { grid-column: auto; }
+      .lp2-works__card:first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 640px) {
+      .lp2-works__grid {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--space-gutter);
+        margin-inline: calc(-1 * var(--space-gutter));
+        padding: 2px var(--space-gutter) 6px;
+        scrollbar-width: none;
+      }
+      .lp2-works__grid::-webkit-scrollbar { display: none; }
+      .lp2-works__card,
+      .lp2-works__card--lg,
+      .lp2-works__card:first-child { flex: 0 0 84%; scroll-snap-align: start; }
+    }
+
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        TARIFS — dark theme (overrides main.css)
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -1263,6 +1356,7 @@ const css = `
     .lp2-dark-stage > .lp2-tarifs,
     .lp2-dark-stage > .lp2-process,
     .lp2-dark-stage > .lp2-results,
+    .lp2-dark-stage > .lp2-works,
     .lp2-dark-stage > .lp2-treviews,
     .lp2-dark-stage > .lp2-faq,
     .lp2-dark-stage > .lp2-final { position: relative; z-index: 1; }
@@ -1558,14 +1652,14 @@ const css = `
       box-shadow: 0 20px 50px -12px rgba(0,0,0,.6),
                   inset 0 1px 0 rgba(255,255,255,.1) !important;
     }
-    /* Carte "Popular" — glow rouge */
-    .lp2-tarifs .pcard-offer:nth-child(2) {
+    /* Carte "Popular" (Site vitrine) — glow rouge */
+    .lp2-tarifs .pcard-offer--popular {
       border-color: rgba(237,110,99,.35) !important;
       background: rgba(237,110,99,.09) !important;
       box-shadow: 0 12px 44px -8px rgba(237,110,99,.22),
                   inset 0 1px 0 rgba(255,255,255,.08) !important;
     }
-    .lp2-tarifs .pcard-offer:nth-child(2):hover {
+    .lp2-tarifs .pcard-offer--popular:hover {
       background: rgba(237,110,99,.13) !important;
       border-color: rgba(237,110,99,.5) !important;
     }
@@ -1612,6 +1706,12 @@ const css = `
     }
     .lp2-tarifs .pcard-offer__list li > i:first-child {
       color: var(--accent) !important;
+    }
+    /* Mobile : main.css donne 48 px de haut à chaque caractéristique (cible tactile), alors
+       qu'elles ne sont pas cliquables ; les cartes doublaient de hauteur. */
+    @media (max-width: 768px) {
+      .lp2-tarifs .pcard-offer__list { gap: 11px; }
+      .lp2-tarifs .pcard-offer__list li { min-height: 0; }
     }
     /* Tooltip */
     .lp2-tarifs .pcard-offer__info {

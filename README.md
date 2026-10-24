@@ -60,7 +60,7 @@ Après une modification de contenu, avancer `CONTENT_UPDATED` dans `src/lib/site
 src/
   app/
     (site)/            pages avec en-tête et pied de page
-    (standalone)/      landing page Ads (/landingpage/) et /rdv-confirme/
+    (standalone)/      landing page Ads (/appel-strategique/) et /rdv-confirme/
     api/contact/       envoi du formulaire de contact
     api/blog/publish/  API de publication des articles par n8n (docs/api-blog-n8n.md)
     blog-media/        images déposées par n8n
@@ -124,7 +124,7 @@ améliorations listées ci-dessous.
 - Images des articles servies en WebP redimensionné (`srcset`) : 45 Ko au lieu de 1 Mo pour une image à la
   une. Les PNG d'origine gardent leur adresse (Open Graph, sitemap, Google Images).
 - Sitemap des articles avec toutes les images du contenu ; `lastmod` = vraie date de modification.
-- Anciennes adresses de la landing (`/lp-rdv/`, `/lp-rdv-v2/`, en 404 sous WordPress) redirigées vers `/landingpage/`.
+- Anciennes adresses de la landing (`/lp-rdv/`, `/lp-rdv-v2/`, en 404 sous WordPress) redirigées vers `/appel-strategique/`.
 - Titres d'articles corrects dans les données structurées (WordPress y laissait `&rsquo;` en toutes lettres).
 - **Bandeau cookies** conforme CNIL (le site n'en avait pas) : le tracker taap.it et le pixel Meta ne se chargent
   qu'après accord ; « Tout refuser » aussi visible que « Tout accepter » ; choix conservé 6 mois et modifiable
@@ -195,7 +195,7 @@ nettoyage du HTML, slugs, catégories), `src/lib/blog-db.ts` (lecture et mise en
 
 ## Suivi des campagnes Meta (Google Tag Manager)
 
-La landing page Ads (`/landingpage/`) et la confirmation de rendez-vous (`/rdv-confirme/`) chargent le
+La landing page Ads (`/appel-strategique/`) et la confirmation de rendez-vous (`/rdv-confirme/`) chargent le
 conteneur **GTM-W8S6WQB9** (compte Google Tag Manager « Agence Kameo »), uniquement après accord
 « Publicité » dans le bandeau cookies (`src/components/consent/TagManager.tsx`) : toute balise ajoutée
 au conteneur est donc soumise à ce choix. Le pixel Meta n'est plus codé dans le site, il est dans GTM
@@ -208,10 +208,15 @@ au conteneur est donc soumise à ce choix. Le pixel Meta n'est plus codé dans l
 | Meta Pixel - ClicCalendly (clic Réserver) | `ClicCalendly` (personnalisé) | clic sur un lien Calendly |
 
 Parcours : les boutons de la landing ouvrent Calendly (`contact-agence-kameo/30min`, événement
-« Visioconférence ») dans un nouvel onglet ; après la réservation, Calendly redirige vers
-`/rdv-confirme/`, ce qui déclenche `Schedule`. La page de confirmation efface les paramètres d'adresse
+« Visioconférence ») dans une fenêtre sur la page (`src/components/landing/CalendlyLinks.tsx`) ; après la
+réservation, le widget prévient la page (message `calendly.event_scheduled`), qui part vers `/rdv-confirme/`,
+ce qui déclenche `Schedule`. Les boutons restent des liens calendly.com : sans JavaScript, ou si le widget
+ne se charge pas, Calendly s'ouvre dans un nouvel onglet et redirige lui-même vers `/rdv-confirme/`. La page de confirmation efface les paramètres d'adresse
 avant tout traceur : avec l'option Calendly « Passer les détails de l'événement à votre page
 redirigée », l'adresse contient le nom et l'e-mail de l'invité, qui partiraient sinon chez Meta.
+
+Adresse de la landing : `/appel-strategique/` depuis le 24/10/2026. L'ancienne (`/landingpage/`) et la
+version accentuée (`/appel-stratégique/`) redirigent en 301 en gardant les paramètres (utm_*, fbclid).
 
 Pour ajouter une balise (Google Ads, LinkedIn…), passer par GTM, sans toucher au site.
 

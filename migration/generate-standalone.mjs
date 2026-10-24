@@ -46,7 +46,7 @@ async function build(name, route, outDir, opts) {
   console.log(`generated ${route}: ${schemas.length} schemas, css ${headCss.length}`);
 }
 
-await build('landingpage', '/landingpage/', path.join(ROOT, 'src/app/(standalone)/landingpage'), {
+await build('landingpage', '/appel-strategique/', path.join(ROOT, 'src/app/(standalone)/appel-strategique'), {
   header: 'LpHeader',
   cssComment: 'Styles de la landing page Ads (bloc <style> du <head> de page-lp-rdv-v2.php).',
 });

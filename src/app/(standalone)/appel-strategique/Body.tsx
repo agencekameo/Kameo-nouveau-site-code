@@ -632,6 +632,90 @@ const Body = () => (
             </p>
           </div>
         </section>
+        {/* ━━ RÉALISATIONS : une maquette par projet (src/content/realisations.ts) ━━ */}
+        <section className="lp2-works" id="realisations">
+          <div className="container">
+            <p className="lp2-eyebrow" data-reveal="" style={{ textAlign: 'center' }}>
+              <span className="lp2-cin__eyebrow-dot" />
+              Nos réalisations{' '}
+            </p>
+            <h2
+              className="lp2-h2"
+              data-reveal=""
+              style={{
+                transitionDelay: '.08s',
+                textAlign: 'center',
+                maxWidth: '100%',
+                margin: '0 auto clamp(40px,5vw,64px)',
+              }}
+            >
+              Du karting à la finance, <br />
+              des sites taillés sur mesure.
+            </h2>
+            <div className="lp2-works__grid">
+              <article className="lp2-works__card lp2-works__card--lg" data-reveal="">
+                <div className="lp2-works__media">
+                  <img src="/images/projects/defikart/screen01.webp" alt="Site de Défikart affiché sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
+                </div>
+                <div className="lp2-works__body">
+                  <div className="lp2-works__head">
+                    <h3 className="lp2-works__name">Défikart</h3>
+                    <span className="lp2-works__tag">Loisirs</span>
+                  </div>
+                  <p className="lp2-works__desc">Site vitrine du plus grand karting indoor de Toulouse.</p>
+                </div>
+              </article>
+              <article className="lp2-works__card lp2-works__card--lg" data-reveal="" style={{ transitionDelay: '.08s' }}>
+                <div className="lp2-works__media">
+                  <img src="/images/projects/medical-market/mockup3.webp" alt="Boutique en ligne Medical Market affichée sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
+                </div>
+                <div className="lp2-works__body">
+                  <div className="lp2-works__head">
+                    <h3 className="lp2-works__name">Medical Market</h3>
+                    <span className="lp2-works__tag">Santé</span>
+                  </div>
+                  <p className="lp2-works__desc">Boutique e-commerce de matériel médical.</p>
+                </div>
+              </article>
+              <article className="lp2-works__card" data-reveal="" style={{ transitionDelay: '.16s' }}>
+                <div className="lp2-works__media">
+                  <img src="/images/projects/villa-de-luxe-bonifacio/siteWeb_LandingPage%20(2).webp" alt="Site de Villa de Luxe Bonifacio affiché sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
+                </div>
+                <div className="lp2-works__body">
+                  <div className="lp2-works__head">
+                    <h3 className="lp2-works__name">Villa de Luxe Bonifacio</h3>
+                    <span className="lp2-works__tag">Location de luxe</span>
+                  </div>
+                  <p className="lp2-works__desc">Site vitrine premium de villas d’exception en Corse.</p>
+                </div>
+              </article>
+              <article className="lp2-works__card" data-reveal="" style={{ transitionDelay: '.24s' }}>
+                <div className="lp2-works__media">
+                  <img src="/images/projects/axistone-capital/siteWeb_LandingPage%20(5).webp" alt="Site d’Axistone Capital affiché sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
+                </div>
+                <div className="lp2-works__body">
+                  <div className="lp2-works__head">
+                    <h3 className="lp2-works__name">Axistone Capital</h3>
+                    <span className="lp2-works__tag">Finance</span>
+                  </div>
+                  <p className="lp2-works__desc">Site institutionnel d’un fonds d’investissement immobilier.</p>
+                </div>
+              </article>
+              <article className="lp2-works__card" data-reveal="" style={{ transitionDelay: '.32s' }}>
+                <div className="lp2-works__media">
+                  <img src="/images/projects/dronespec/screen01.webp" alt="Site de DroneSpec affiché sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
+                </div>
+                <div className="lp2-works__body">
+                  <div className="lp2-works__head">
+                    <h3 className="lp2-works__name">DroneSpec</h3>
+                    <span className="lp2-works__tag">BTP</span>
+                  </div>
+                  <p className="lp2-works__desc">Site vitrine d’un spécialiste des relevés par drone.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
         {/* ━━ PRICING ━━ */}
         <section id="tarifs" className="lp2-tarifs" style={{ padding: 'clamp(64px,8vw,100px) 0' }}>
           <div className="container">
@@ -655,127 +739,7 @@ const Body = () => (
               exigeant sur les résultats.
             </h2>
             <div className="pricing__wrap">
-              <article className="pcard-offer" data-reveal="">
-                <span className="pcard-offer__icon" aria-hidden="true">
-                  <svg className="icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false">
-                    <use href="/icons.svg#i-solid-file-lines" />
-                  </svg>
-                </span>
-                <h3 className="pcard-offer__title">Landing Page</h3>
-                <p className="pcard-offer__desc">
-                  Idéale pour créer ou refondre une page web qui capte l’attention et génère des résultats concrets
-                  grâce à un design optimisé pour la conversion.
-                </p>
-                <div className="pcard-offer__price-block">
-                  <span className="pcard-offer__from">À partir de</span>
-                  <p className="pcard-offer__price">
-                    1&nbsp;299&nbsp;€ <small>HT</small>
-                  </p>
-                </div>
-                <ul className="pcard-offer__list">
-                  <li>
-                    <svg className="icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false">
-                      <use href="/icons.svg#i-regular-file" />
-                    </svg>
-                    1 page
-                  </li>
-                  <li>
-                    <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-                      <use href="/icons.svg#i-regular-clock" />
-                    </svg>
-                    Livré en 3 semaines
-                  </li>
-                  <li>
-                    <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-                      <use href="/icons.svg#i-solid-magnifying-glass-chart" />
-                    </svg>
-                    Optimisation du référencement (SEO)
-                  </li>
-                  <li>
-                    <svg className="icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false">
-                      <use href="/icons.svg#i-solid-wand-magic-sparkles" />
-                    </svg>
-                    Adaptation mobile (responsive){' '}
-                    <span className="pcard-offer__tip">
-                      <svg
-                        viewBox="0 0 512 512"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="pcard-offer__info"
-                        aria-hidden="true"
-                      >
-                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                      </svg>
-                      <span className="pcard-offer__tooltip">
-                        Votre site s’adapte parfaitement à tous les écrans&nbsp;: smartphone, tablette et desktop.
-                      </span>
-                    </span>
-                  </li>
-                  <li>
-                    <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-                      <use href="/icons.svg#i-solid-palette" />
-                    </svg>
-                    Design moderne &amp; épuré{' '}
-                    <span className="pcard-offer__tip">
-                      <svg
-                        viewBox="0 0 512 512"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="pcard-offer__info"
-                        aria-hidden="true"
-                      >
-                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                      </svg>
-                      <span className="pcard-offer__tooltip">
-                        Maquettes sur mesure avec une identité visuelle soignée, cohérente et tendance.
-                      </span>
-                    </span>
-                  </li>
-                  <li>
-                    <svg className="icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false">
-                      <use href="/icons.svg#i-solid-wand-magic-sparkles" />
-                    </svg>
-                    Animations dynamiques{' '}
-                    <span className="pcard-offer__tip">
-                      <svg
-                        viewBox="0 0 512 512"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="pcard-offer__info"
-                        aria-hidden="true"
-                      >
-                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                      </svg>
-                      <span className="pcard-offer__tooltip">
-                        Micro-animations et transitions fluides pour une expérience utilisateur engageante et mémorable.
-                      </span>
-                    </span>
-                  </li>
-                  <li>
-                    <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-                      <use href="/icons.svg#i-regular-chart-bar" />
-                    </svg>
-                    Rapport mensuel des statistiques{' '}
-                    <span className="pcard-offer__tip">
-                      <svg
-                        viewBox="0 0 512 512"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="pcard-offer__info"
-                        aria-hidden="true"
-                      >
-                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                      </svg>
-                      <span className="pcard-offer__tooltip">
-                        Rapport mensuel clair&nbsp;: trafic, sources, conversions et performances de votre site.
-                      </span>
-                    </span>
-                  </li>
-                  <li>
-                    <svg className="icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false">
-                      <use href="/icons.svg#i-regular-hand-point-up" />
-                    </svg>
-                    Facile de prise en main
-                  </li>
-                </ul>
-              </article>
-              <article className="pcard-offer" data-reveal="" style={{ transitionDelay: '.1s' }}>
+              <article className="pcard-offer pcard-offer--popular" data-reveal="">
                 <span className="pcard-offer__icon" aria-hidden="true">
                   <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                     <use href="/icons.svg#i-solid-heart" />
@@ -903,7 +867,7 @@ const Body = () => (
                   </li>
                 </ul>
               </article>
-              <article className="pcard-offer" data-reveal="" style={{ transitionDelay: '.2s' }}>
+              <article className="pcard-offer" data-reveal="" style={{ transitionDelay: '.1s' }}>
                 <span className="pcard-offer__icon" aria-hidden="true">
                   <svg className="icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false">
                     <use href="/icons.svg#i-solid-bag-shopping" />
@@ -1020,6 +984,132 @@ const Body = () => (
                       <use href="/icons.svg#i-regular-hand-point-up" />
                     </svg>
                     Gestion des stocks intuitive
+                  </li>
+                </ul>
+              </article>
+              <article className="pcard-offer" data-reveal="" style={{ transitionDelay: '.2s' }}>
+                <span className="pcard-offer__icon" aria-hidden="true">
+                  <svg className="icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false">
+                    <use href="/icons.svg#i-solid-layer-group" />
+                  </svg>
+                </span>
+                <h3 className="pcard-offer__title">Marketplace / SaaS</h3>
+                <p className="pcard-offer__desc">
+                  Pour lancer votre marketplace multi-vendeurs ou votre logiciel SaaS&nbsp;: une plateforme sur mesure,
+                  pensée dès le MVP pour accueillir vos premiers clients et grandir avec eux.
+                </p>
+                <div className="pcard-offer__price-block">
+                  <span className="pcard-offer__from">Tarif</span>
+                  <p className="pcard-offer__price">Sur devis</p>
+                </div>
+                <ul className="pcard-offer__list">
+                  <li>
+                    <svg className="icon" viewBox="0 0 640 512" aria-hidden="true" focusable="false">
+                      <use href="/icons.svg#i-solid-shop" />
+                    </svg>
+                    Plateforme 100&nbsp;% sur mesure{' '}
+                    <span className="pcard-offer__tip">
+                      <svg
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="pcard-offer__info"
+                        aria-hidden="true"
+                      >
+                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                      </svg>
+                      <span className="pcard-offer__tooltip">Marketplace BtoC, BtoB ou de services, SaaS par abonnement, outil métier&nbsp;: fonctionnalités conçues pour votre modèle.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+                      <use href="/icons.svg#i-regular-clock" />
+                    </svg>
+                    MVP livré en 8 à 16 semaines{' '}
+                    <span className="pcard-offer__tip">
+                      <svg
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="pcard-offer__info"
+                        aria-hidden="true"
+                      >
+                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                      </svg>
+                      <span className="pcard-offer__tooltip">8 à 12 semaines pour un SaaS, 10 à 16 semaines pour une marketplace, selon le périmètre.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <svg className="icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false">
+                      <use href="/icons.svg#i-solid-credit-card" />
+                    </svg>
+                    Paiements Stripe intégrés{' '}
+                    <span className="pcard-offer__tip">
+                      <svg
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="pcard-offer__info"
+                        aria-hidden="true"
+                      >
+                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                      </svg>
+                      <span className="pcard-offer__tooltip">Abonnements, essais gratuits, commissions et reversement automatique aux vendeurs (Stripe Connect ou Mangopay).</span>
+                    </span>
+                  </li>
+                  <li>
+                    <svg className="icon" viewBox="0 0 640 512" aria-hidden="true" focusable="false">
+                      <use href="/icons.svg#i-solid-users-gear" />
+                    </svg>
+                    Espaces utilisateurs &amp; back-office{' '}
+                    <span className="pcard-offer__tip">
+                      <svg
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="pcard-offer__info"
+                        aria-hidden="true"
+                      >
+                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                      </svg>
+                      <span className="pcard-offer__tooltip">Comptes clients et vendeurs, rôles et droits d’accès, tableau de bord d’administration complet.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+                      <use href="/icons.svg#i-solid-brain" />
+                    </svg>
+                    Intégration de l’IA (Claude, GPT){' '}
+                    <span className="pcard-offer__tip">
+                      <svg
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="pcard-offer__info"
+                        aria-hidden="true"
+                      >
+                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                      </svg>
+                      <span className="pcard-offer__tooltip">Assistant métier, recherche dans vos documents (RAG), automatisation de tâches répétitives.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+                      <use href="/icons.svg#i-solid-shield-halved" />
+                    </svg>
+                    Sécurité &amp; vérification KYC{' '}
+                    <span className="pcard-offer__tip">
+                      <svg
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="pcard-offer__info"
+                        aria-hidden="true"
+                      >
+                        <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                      </svg>
+                      <span className="pcard-offer__tooltip">Identité des vendeurs vérifiée avant leur première vente, données de chaque client isolées.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <svg className="icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false">
+                      <use href="/icons.svg#i-solid-file-contract" />
+                    </svg>
+                    Devis chiffré sous 24&nbsp;h
                   </li>
                 </ul>
               </article>

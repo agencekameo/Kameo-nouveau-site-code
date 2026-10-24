@@ -38,7 +38,9 @@ const AFTER: Item[] = [
 const LP_LINKS: Item[] = [
   { href: '#benefices', icon: 'fa-bolt', text: 'Pourquoi Kameo' },
   { href: '#process', icon: 'fa-list-check', text: 'Notre processus' },
-  { href: '#tarifs', icon: 'fa-tag', text: 'Tarifs' },
+  { href: '#resultats', icon: 'fa-chart-line', text: 'Résultats' },
+  { href: '#realisations', icon: 'fa-table-cells', text: 'Réalisations' },
+  { href: '#tarifs', icon: 'fa-tag', text: 'Nos offres' },
   { href: '#avis', icon: 'fa-star', text: 'Avis clients' },
   { href: '#faq', icon: 'fa-circle-question', text: 'FAQ' },
   { href: '#rdv', icon: 'fa-envelope', text: 'Contact' },

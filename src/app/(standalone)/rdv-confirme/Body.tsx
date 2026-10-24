@@ -24,7 +24,7 @@ const Body = () => (
       <h1 className="confirm-h1">Votre rendez-vous est confirmé !</h1>
       <p className="confirm-sub">Notre équipe vous contacte très prochainement. À très vite !</p>
       <p className="confirm-mail">Une confirmation vient de vous être envoyée par email.</p>
-      <Link href="/landingpage/" className="confirm-back">
+      <Link href="/appel-strategique/" className="confirm-back">
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path
             d="M10 4L6 8l4 4"

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { loadCalendlyScript, loadCalendlyStyles } from '@/lib/calendly';
 import css from './CalendlyPopup.styles';
 
 /*
@@ -9,31 +10,8 @@ import css from './CalendlyPopup.styles';
  *  - mobile : badge flottant Calendly « Prendre RDV ».
  */
 
-const WIDGET_JS = 'https://assets.calendly.com/assets/external/widget.js';
-const WIDGET_CSS = 'https://assets.calendly.com/assets/external/widget.css';
 const URL_PARAMS = 'https://calendly.com/contact-agence-kameo/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=ED6E63';
 const DELAY_MS = 2500;
-
-type CalendlyApi = {
-  initBadgeWidget?: (o: Record<string, unknown>) => void;
-  initInlineWidget?: (o: { url: string; parentElement: HTMLElement }) => void;
-};
-declare global {
-  interface Window {
-    Calendly?: CalendlyApi;
-  }
-}
-
-function loadWidgetScript(onload: () => void) {
-  if (window.Calendly) return onload();
-  const existing = document.querySelector<HTMLScriptElement>(`script[src="${WIDGET_JS}"]`);
-  if (existing) return existing.addEventListener('load', onload, { once: true });
-  const s = document.createElement('script');
-  s.src = WIDGET_JS;
-  s.async = true;
-  s.onload = onload;
-  document.head.appendChild(s);
-}
 
 export default function CalendlyPopup() {
   const [open, setOpen] = useState(false);
@@ -70,16 +48,11 @@ export default function CalendlyPopup() {
         }
       }, 80);
     };
-    const preload = () => loadWidgetScript(watchReady);
+    const preload = () => loadCalendlyScript(watchReady);
 
     const initMobileBadge = () => {
-      if (!document.querySelector(`link[href*="calendly.com/assets/external/widget.css"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = WIDGET_CSS;
-        document.head.appendChild(link);
-      }
-      loadWidgetScript(() => {
+      loadCalendlyStyles();
+      loadCalendlyScript(() => {
         if (cancelled) return;
         window.Calendly?.initBadgeWidget?.({ url: URL_PARAMS, text: 'Prendre RDV', color: '#ED6E63', textColor: '#ffffff', branding: false });
       });

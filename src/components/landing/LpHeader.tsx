@@ -39,11 +39,17 @@ export default function LpHeader() {
           <img src="/images/hero.webp" alt="Kameo" className="nav__logo-img" width="400" height="126" fetchPriority="high" />
         </a>
         <nav className="nav__links" aria-label="Navigation">
-          <a href="#avis" className="nav__link">
-            Avis clients
+          <a href="#resultats" className="nav__link">
+            Résultats
+          </a>
+          <a href="#realisations" className="nav__link">
+            Réalisations
           </a>
           <a href="#tarifs" className="nav__link">
-            Tarifs
+            Nos offres
+          </a>
+          <a href="#avis" className="nav__link">
+            Avis clients
           </a>
           <a href="#rdv" className="nav__link">
             Contact
@@ -64,7 +70,7 @@ export default function LpHeader() {
           <span />
         </button>
       </div>
-      <MobileNav open={open} onClose={() => setOpen(false)} pathname="/landingpage/" variant="lp" />
+      <MobileNav open={open} onClose={() => setOpen(false)} pathname="/appel-strategique/" variant="lp" />
     </header>
   );
 }
