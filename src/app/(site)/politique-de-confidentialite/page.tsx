@@ -737,9 +737,10 @@ export default function PolitiqueDeConfidentialitePage() {
                     <ul>
                       <li>
                         Calendly&nbsp;: module de prise de rendez-vous, qui dépose ses propres cookies (fonctionnement,
-                        sécurité, mesure d’audience) dès son chargement&nbsp;: à l’ouverture du module, ou dès votre
-                        arrivée sur notre page «&nbsp;Appel stratégique&nbsp;» si vous avez accepté les cookies de mesure
-                        d’audience et publicitaires, pour qu’il s’ouvre sans attente
+                        sécurité, mesure d’audience) dès son chargement&nbsp;: quand vous ouvrez la prise de rendez-vous
+                        ou demandez à afficher le calendrier, ou dès votre arrivée sur la page d’accueil (sur ordinateur)
+                        et sur la page «&nbsp;Appel stratégique&nbsp;» si vous avez accepté les cookies de mesure
+                        d’audience et publicitaires, pour qu’il s’affiche sans attente
                       </li>
                       <li>Google Maps&nbsp;: carte d’accès à l’agence, qui dépose ses propres cookies lorsqu’elle s’affiche</li>
                       <li>La Fabrique du Net&nbsp;: badge d’avis du pied de page, chargé depuis ses serveurs, sans cookie</li>

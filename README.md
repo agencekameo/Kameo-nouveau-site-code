@@ -213,7 +213,9 @@ widget.js de Calendly) ; après la réservation, Calendly prévient la page (mes
 qui part vers `/rdv-confirme/`, ce qui déclenche `Schedule`. Calendly (environ 4 Mo et ses propres traceurs)
 est préchargé, fenêtre fermée, si le visiteur a accepté « Mesure d'audience » et « Publicité » ; sinon il
 n'est chargé qu'au premier clic, et la fenêtre s'ouvre aussitôt avec la silhouette du calendrier. La
-politique de confidentialité (§ 9.2) le décrit : à modifier ensemble.
+politique de confidentialité (§ 9.2) le décrit : à modifier ensemble. Même règle pour la popup Calendly de
+l'accueil sur ordinateur (`src/components/CalendlyPopup.tsx`) : sans cet accord, elle s'ouvre avec la silhouette
+du calendrier et un bouton qui le charge au clic.
 Les boutons restent des liens calendly.com : sans JavaScript, Calendly s'ouvre dans un nouvel onglet et
 redirige lui-même vers `/rdv-confirme/`. La page de confirmation efface les paramètres d'adresse
 avant tout traceur : avec l'option Calendly « Passer les détails de l'événement à votre page

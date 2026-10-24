@@ -17,6 +17,13 @@ const css = `
 .cpop__skel--grid { flex: 1; display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(5, 1fr); gap: 6px; margin-top: 8px; }
 .cpop__skel--cell { background: linear-gradient(90deg, rgba(15,17,21,.04) 0%, rgba(15,17,21,.08) 50%, rgba(15,17,21,.04) 100%); background-size: 200% 100%; border-radius: 6px; animation: cpop-shimmer 1.4s ease-in-out infinite; }
 @keyframes cpop-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.cpop__loader.is-static .cpop__skel, .cpop__loader.is-static .cpop__skel--cell { animation: none; }
+/* Sans accord cookies : silhouette fixe et bouton qui charge le calendrier Calendly au clic */
+.cpop__gate { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; text-align: center; background: linear-gradient(180deg, rgba(255,255,255,.2) 0%, rgba(255,255,255,.9) 40%, rgba(255,255,255,.9) 100%); }
+.cpop__gate-btn { display: inline-flex; align-items: center; padding: 13px 22px; border: 0; border-radius: 999px; background: #ED6E63; color: #fff; font-family: 'Satoshi', system-ui, sans-serif; font-size: 15px; font-weight: 700; line-height: 1.2; cursor: pointer; box-shadow: 0 10px 24px -8px rgba(237,110,99,.55); transition: transform .2s, box-shadow .2s; }
+.cpop__gate-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -8px rgba(237,110,99,.6); }
+.cpop__gate-btn:focus-visible { outline: 2px solid #0f1115; outline-offset: 3px; }
+.cpop__gate-note { margin: 0; max-width: 260px; font-size: 12px; line-height: 1.45; color: rgba(15,17,21,.55); }
 .cpop__widget { position: relative; z-index: 2; width: 100%; height: 100% !important; min-height: 640px; opacity: 0; transition: opacity .25s; }
 .cpop__widget.is-loaded { opacity: 1; }
 .cpop__widget iframe { border: 0 !important; height: 100% !important; }
@@ -33,7 +40,7 @@ const css = `
 /* Croix de fermeture : pastille blanche + X orange Kameo (au lieu de la croix blanche par défaut, invisible) */
 .calendly-popup-close { top: 14px !important; right: 14px !important; width: 36px !important; height: 36px !important; background: #ffffff !important; border-radius: 50% !important; box-shadow: 0 2px 8px rgba(15,17,21,.18) !important; color: transparent !important; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 6l12 12M18 6L6 18' stroke='%23ED6E63' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>") !important; background-repeat: no-repeat !important; background-position: center !important; background-size: 16px !important; }
 .calendly-popup-close svg, .calendly-popup-close img { display: none !important; }
-@media (prefers-reduced-motion: reduce) { .cpop, .cpop__close, .cpop__widget, .cpop__loader, .cpop__skel, .cpop__skel--cell { transition: none; animation: none; } }
+@media (prefers-reduced-motion: reduce) { .cpop, .cpop__close, .cpop__widget, .cpop__loader, .cpop__skel, .cpop__skel--cell, .cpop__gate-btn { transition: none; animation: none; } }
   
 `;
 export default css;
