@@ -1226,11 +1226,28 @@ const css = `
       border-color: rgba(255,255,255,.17);
     }
     .lp2-works__media {
+      position: relative; display: block; width: 100%;
+      margin: 0; padding: 0; border: 0; font: inherit; color: inherit;
       aspect-ratio: 16 / 10;
       border-radius: 16px;
       overflow: hidden;
       background: #d9d9d9;
+      cursor: zoom-in;
     }
+    .lp2-works__media:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    /* icône « agrandir » : au survol sur ordinateur, toujours visible sur écran tactile */
+    .lp2-works__zoom {
+      position: absolute; top: 10px; right: 10px;
+      width: 34px; height: 34px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: rgba(15,17,21,.6); color: #fff;
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+      opacity: 0; transform: scale(.9);
+      transition: opacity .25s ease, transform .25s var(--ease);
+    }
+    .lp2-works__card:hover .lp2-works__zoom,
+    .lp2-works__media:focus-visible .lp2-works__zoom { opacity: 1; transform: none; }
+    @media (hover: none) { .lp2-works__zoom { opacity: 1; transform: none; } }
     /* maquettes cadrées serré : l'ordinateur occupe davantage la vignette */
     .lp2-works__media img {
       width: 100%; height: 100%; display: block;
@@ -1283,6 +1300,81 @@ const css = `
       .lp2-works__card,
       .lp2-works__card--lg,
       .lp2-works__card:first-child { flex: 0 0 84%; scroll-snap-align: start; }
+    }
+
+    /* ── Visionneuse des réalisations (LpWorks.tsx) : au-dessus du bandeau cookies (10000) ── */
+    .lpbox {
+      position: fixed; inset: 0; z-index: 10001;
+      display: grid; place-items: center;
+      padding: 72px 96px;
+    }
+    /* apparition animée sur le fond et les boutons, pas sur .lpbox : une opacité animée sur le
+       parent empêcherait le flou (backdrop-filter) d'atteindre la page */
+    .lpbox__backdrop {
+      position: absolute; inset: 0;
+      background: rgba(8,9,12,.8);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      animation: lpbox-fade .25s ease both;
+    }
+    .lpbox__close, .lpbox__nav, .lpbox__count { animation: lpbox-fade .25s ease both; }
+    .lpbox__figure {
+      position: relative; margin: 0;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      animation: lpbox-pop .35s var(--ease) both;
+    }
+    .lpbox__frame { border-radius: 14px; overflow: hidden; background: #d9d9d9; box-shadow: 0 30px 80px -20px rgba(0,0,0,.75); }
+    .lpbox__img {
+      display: block; width: auto; height: auto;
+      max-width: min(1200px, calc(100vw - 192px));
+      max-height: calc(100vh - 210px); max-height: calc(100dvh - 210px);
+    }
+    .lpbox__caption { text-align: center; color: rgba(255,255,255,.92); font-size: 15px; line-height: 1.4; }
+    .lpbox__name { font-family: 'Satoshi', sans-serif; font-weight: 700; }
+    .lpbox__tag {
+      display: inline-block; margin-left: 10px; vertical-align: 1px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: .03em;
+      color: rgba(237,110,99,.95); background: rgba(237,110,99,.14);
+      border: 1px solid rgba(237,110,99,.3); padding: 2px 10px; border-radius: 999px;
+    }
+    .lpbox__desc { display: block; margin-top: 4px; font-size: 13.5px; color: rgba(255,255,255,.55); }
+    .lpbox__count { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); margin: 0; font-size: 13px; letter-spacing: .04em; color: rgba(255,255,255,.6); }
+    .lpbox__close, .lpbox__nav {
+      position: absolute; z-index: 1;
+      display: grid; place-items: center; border-radius: 50%; cursor: pointer;
+      transition: transform .25s var(--ease), background .2s;
+    }
+    .lpbox__close { top: 18px; right: 18px; width: 44px; height: 44px; border: 0; background: #fff; color: #ED6E63; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+    .lpbox__close:hover { transform: rotate(90deg); }
+    .lpbox__nav {
+      top: 50%; width: 50px; height: 50px; margin-top: -25px;
+      border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff;
+    }
+    .lpbox__nav:hover { background: rgba(255,255,255,.18); }
+    .lpbox__nav--prev { left: 24px; }
+    .lpbox__nav--next { right: 24px; }
+    .lpbox__close:focus-visible, .lpbox__nav:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    @keyframes lpbox-fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes lpbox-pop { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+    /* Mobile : image recadrée sur l'ordinateur (marges grises des maquettes), flèches en bas */
+    @media (max-width: 640px) {
+      .lpbox { padding: 76px 12px 104px; }
+      .lpbox__img { width: calc(100vw - 24px); max-width: none; max-height: none; aspect-ratio: 1.05 / 1; object-fit: cover; }
+      .lpbox__caption { font-size: 14px; padding: 0 8px; }
+      .lpbox__nav { top: auto; bottom: 26px; margin-top: 0; }
+      .lpbox__nav--prev { left: calc(50% - 98px); }
+      .lpbox__nav--next { right: calc(50% - 98px); left: auto; }
+      .lpbox__count { top: auto; bottom: 42px; }
+    }
+    /* Téléphone à l'horizontale : image sur toute la hauteur, sans légende */
+    @media (max-height: 520px) and (orientation: landscape) {
+      .lpbox { padding: 12px 84px; }
+      .lpbox__img { width: auto; max-width: calc(100vw - 168px); max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); aspect-ratio: auto; object-fit: contain; }
+      .lpbox__caption { display: none; }
+      .lpbox__count { top: 14px; bottom: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .lpbox__backdrop, .lpbox__figure, .lpbox__close, .lpbox__nav, .lpbox__count { animation: none; }
+      .lp2-works__zoom, .lpbox__close, .lpbox__nav { transition: none; }
     }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
 import LpHeader from '@/components/landing/LpHeader';
+import LpWorks from '@/components/landing/LpWorks';
 import { PROOF } from '@/lib/site';
 
 const Body = () => (
@@ -385,7 +386,7 @@ const Body = () => (
                 </span>
                 <h3 className="lp2-benef__title">Des délais respectés au jour près</h3>
                 <p className="lp2-benef__text">
-                  6 à 8 semaines selon l’offre. Engagement écrit dans le devis, suivi hebdomadaire, jamais de mauvaise
+                  2 semaines à 2 mois selon l’offre. Engagement écrit dans le devis, suivi hebdomadaire, jamais de mauvaise
                   surprise.
                 </p>
               </article>
@@ -632,7 +633,7 @@ const Body = () => (
             </p>
           </div>
         </section>
-        {/* ━━ RÉALISATIONS : une maquette par projet (src/content/realisations.ts) ━━ */}
+        {/* ━━ RÉALISATIONS : grille et visionneuse dans components/landing/LpWorks.tsx ━━ */}
         <section className="lp2-works" id="realisations">
           <div className="container">
             <p className="lp2-eyebrow" data-reveal="" style={{ textAlign: 'center' }}>
@@ -652,68 +653,7 @@ const Body = () => (
               Du karting à la finance, <br />
               des sites taillés sur mesure.
             </h2>
-            <div className="lp2-works__grid">
-              <article className="lp2-works__card lp2-works__card--lg" data-reveal="">
-                <div className="lp2-works__media">
-                  <img src="/images/projects/defikart/screen01.webp" alt="Site de Défikart affiché sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
-                </div>
-                <div className="lp2-works__body">
-                  <div className="lp2-works__head">
-                    <h3 className="lp2-works__name">Défikart</h3>
-                    <span className="lp2-works__tag">Loisirs</span>
-                  </div>
-                  <p className="lp2-works__desc">Site vitrine du plus grand karting indoor de Toulouse.</p>
-                </div>
-              </article>
-              <article className="lp2-works__card lp2-works__card--lg" data-reveal="" style={{ transitionDelay: '.08s' }}>
-                <div className="lp2-works__media">
-                  <img src="/images/projects/medical-market/mockup3.webp" alt="Boutique en ligne Medical Market affichée sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
-                </div>
-                <div className="lp2-works__body">
-                  <div className="lp2-works__head">
-                    <h3 className="lp2-works__name">Medical Market</h3>
-                    <span className="lp2-works__tag">Santé</span>
-                  </div>
-                  <p className="lp2-works__desc">Boutique e-commerce de matériel médical.</p>
-                </div>
-              </article>
-              <article className="lp2-works__card" data-reveal="" style={{ transitionDelay: '.16s' }}>
-                <div className="lp2-works__media">
-                  <img src="/images/projects/villa-de-luxe-bonifacio/siteWeb_LandingPage%20(2).webp" alt="Site de Villa de Luxe Bonifacio affiché sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
-                </div>
-                <div className="lp2-works__body">
-                  <div className="lp2-works__head">
-                    <h3 className="lp2-works__name">Villa de Luxe Bonifacio</h3>
-                    <span className="lp2-works__tag">Location de luxe</span>
-                  </div>
-                  <p className="lp2-works__desc">Site vitrine premium de villas d’exception en Corse.</p>
-                </div>
-              </article>
-              <article className="lp2-works__card" data-reveal="" style={{ transitionDelay: '.24s' }}>
-                <div className="lp2-works__media">
-                  <img src="/images/projects/axistone-capital/siteWeb_LandingPage%20(5).webp" alt="Site d’Axistone Capital affiché sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
-                </div>
-                <div className="lp2-works__body">
-                  <div className="lp2-works__head">
-                    <h3 className="lp2-works__name">Axistone Capital</h3>
-                    <span className="lp2-works__tag">Finance</span>
-                  </div>
-                  <p className="lp2-works__desc">Site institutionnel d’un fonds d’investissement immobilier.</p>
-                </div>
-              </article>
-              <article className="lp2-works__card" data-reveal="" style={{ transitionDelay: '.32s' }}>
-                <div className="lp2-works__media">
-                  <img src="/images/projects/dronespec/screen01.webp" alt="Site de DroneSpec affiché sur un ordinateur portable" loading="lazy" width="1600" height="1066" />
-                </div>
-                <div className="lp2-works__body">
-                  <div className="lp2-works__head">
-                    <h3 className="lp2-works__name">DroneSpec</h3>
-                    <span className="lp2-works__tag">BTP</span>
-                  </div>
-                  <p className="lp2-works__desc">Site vitrine d’un spécialiste des relevés par drone.</p>
-                </div>
-              </article>
-            </div>
+            <LpWorks />
           </div>
         </section>
         {/* ━━ PRICING ━━ */}
@@ -775,7 +715,7 @@ const Body = () => (
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 6 semaines
+                    Livré en 2 semaines
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -895,7 +835,7 @@ const Body = () => (
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 8 semaines
+                    Livré en 1 mois
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -1024,7 +964,7 @@ const Body = () => (
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    MVP livré en 8 à 16 semaines{' '}
+                    MVP livré en 2 mois{' '}
                     <span className="pcard-offer__tip">
                       <svg
                         viewBox="0 0 512 512"
@@ -1034,7 +974,7 @@ const Body = () => (
                       >
                         <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3l58.3 0c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24l0-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1l-58.3 0c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
                       </svg>
-                      <span className="pcard-offer__tooltip">8 à 12 semaines pour un SaaS, 10 à 16 semaines pour une marketplace, selon le périmètre.</span>
+                      <span className="pcard-offer__tooltip">Une première version complète et utilisable (MVP), en ligne en 2 mois.</span>
                     </span>
                   </li>
                   <li>
