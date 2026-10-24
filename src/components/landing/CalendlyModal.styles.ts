@@ -2,25 +2,26 @@
  * Fenêtre Calendly de la landing (CalendlyModal.tsx) : fond flouté, module Calendly seul (carte blanche
  * aux angles arrondis, à sa taille exacte), bouton Fermer à l'extérieur, silhouette du calendrier
  * pendant le chargement. Au-dessus du bandeau cookies (z-index 10000).
+ * Fenêtre fermée : transparente et inerte, mais jamais en visibility: hidden autour de l'iframe, que le
+ * navigateur cesserait d'afficher ; Calendly préchargé y finit ainsi son rendu et s'ouvre prêt.
  */
 const css = `
 .lpcal {
   position: fixed; inset: 0; z-index: 10001;
   display: grid; place-items: center;
   padding: 24px;
-  visibility: hidden; pointer-events: none;
-  transition: visibility 0s linear .3s;
+  pointer-events: none;
 }
-.lpcal.is-open { visibility: visible; pointer-events: auto; transition-delay: 0s; }
+.lpcal.is-open { pointer-events: auto; }
 .lpcal__backdrop {
   position: absolute; inset: 0;
   background: rgba(8, 9, 12, .5);
   -webkit-backdrop-filter: blur(14px) saturate(1.15);
   backdrop-filter: blur(14px) saturate(1.15);
-  opacity: 0;
-  transition: opacity .3s cubic-bezier(.16,1,.3,1);
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s cubic-bezier(.16,1,.3,1), visibility 0s linear .3s;
 }
-.lpcal.is-open .lpcal__backdrop { opacity: 1; }
+.lpcal.is-open .lpcal__backdrop { opacity: 1; visibility: visible; transition-delay: 0s; }
 .lpcal__dialog {
   position: relative;
   width: min(480px, 100%);
@@ -72,8 +73,9 @@ const css = `
   display: block;
   background: linear-gradient(90deg, #f0f1f3 0%, #e3e5e8 50%, #f0f1f3 100%);
   background-size: 200% 100%;
-  animation: lpcal-shimmer 1.3s ease-in-out infinite;
 }
+/* animée seulement quand elle est visible (la fenêtre fermée reste dans la page) */
+.lpcal.is-open .lpcal__skel:not(.is-hidden) .lpcal__shimmer { animation: lpcal-shimmer 1.3s ease-in-out infinite; }
 @keyframes lpcal-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 .lpcal__skel-month { width: 120px; height: 14px; border-radius: 7px; }
 .lpcal__skel-week, .lpcal__skel-grid {
@@ -95,7 +97,7 @@ const css = `
 }
 @media (prefers-reduced-motion: reduce) {
   .lpcal, .lpcal__backdrop, .lpcal__dialog, .lpcal__panel, .lpcal__frame, .lpcal__skel, .lpcal__close { transition: none; }
-  .lpcal__shimmer { animation: none; }
+  .lpcal .lpcal__shimmer { animation: none !important; }
 }
 `;
 export default css;

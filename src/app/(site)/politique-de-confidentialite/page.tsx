@@ -735,9 +735,13 @@ export default function PolitiqueDeConfidentialitePage() {
                   <div className="legal__service-card">
                     <strong>Services tiers intégrés</strong>
                     <ul>
-                      <li>Calendly&nbsp;: module de prise de rendez-vous</li>
-                      <li>Google Maps&nbsp;: carte d’accès à l’agence</li>
-                      <li>Ces services déposent leurs propres cookies lorsqu’ils s’affichent</li>
+                      <li>
+                        Calendly&nbsp;: module de prise de rendez-vous, qui dépose ses propres cookies (fonctionnement,
+                        sécurité, mesure d’audience) dès son chargement&nbsp;: à l’ouverture du module, ou dès votre
+                        arrivée sur notre page «&nbsp;Appel stratégique&nbsp;» si vous avez accepté les cookies de mesure
+                        d’audience et publicitaires, pour qu’il s’ouvre sans attente
+                      </li>
+                      <li>Google Maps&nbsp;: carte d’accès à l’agence, qui dépose ses propres cookies lorsqu’elle s’affiche</li>
                       <li>La Fabrique du Net&nbsp;: badge d’avis du pied de page, chargé depuis ses serveurs, sans cookie</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-muted)', marginTop: '6px' }}>

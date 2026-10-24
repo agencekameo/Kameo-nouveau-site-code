@@ -210,8 +210,10 @@ au conteneur est donc soumise à ce choix. Le pixel Meta n'est plus codé dans l
 Parcours : les boutons de la landing ouvrent Calendly (`contact-agence-kameo/30min`, événement
 « Visioconférence ») dans une fenêtre sur la page (`src/components/landing/CalendlyModal.tsx`, sans le script
 widget.js de Calendly) ; après la réservation, Calendly prévient la page (message `calendly.event_scheduled`),
-qui part vers `/rdv-confirme/`, ce qui déclenche `Schedule`. Calendly n'est chargé qu'au premier clic
-(environ 4 Mo et ses propres traceurs) : la fenêtre s'ouvre aussitôt avec la silhouette du calendrier.
+qui part vers `/rdv-confirme/`, ce qui déclenche `Schedule`. Calendly (environ 4 Mo et ses propres traceurs)
+est préchargé, fenêtre fermée, si le visiteur a accepté « Mesure d'audience » et « Publicité » ; sinon il
+n'est chargé qu'au premier clic, et la fenêtre s'ouvre aussitôt avec la silhouette du calendrier. La
+politique de confidentialité (§ 9.2) le décrit : à modifier ensemble.
 Les boutons restent des liens calendly.com : sans JavaScript, Calendly s'ouvre dans un nouvel onglet et
 redirige lui-même vers `/rdv-confirme/`. La page de confirmation efface les paramètres d'adresse
 avant tout traceur : avec l'option Calendly « Passer les détails de l'événement à votre page

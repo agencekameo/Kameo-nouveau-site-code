@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { onConsent, readConsent, type Consent } from '@/lib/consent';
 import { CONTACT } from '@/lib/site';
 import css from './CalendlyModal.styles';
 
@@ -9,10 +10,11 @@ import css from './CalendlyModal.styles';
  * - Les liens calendly.com de la page (en-tête, hero, offres, contact, menu mobile) l'ouvrent au clic.
  *   Ils restent des liens calendly.com : sans JavaScript ils s'ouvrent comme avant, et le déclencheur
  *   GTM « Clic - Lien Calendly » (ClicCalendly, sans « Vérifier la validation ») les compte toujours.
- * - La fenêtre s'ouvre tout de suite, avec la silhouette du calendrier le temps que Calendly
- *   s'affiche (environ 2 s et 4 Mo au premier chargement). Calendly n'est chargé qu'au premier clic :
- *   il dépose ses propres traceurs (Segment, Stripe, pixel Meta…), annoncés par la politique de
- *   confidentialité « lorsqu'il s'affiche ». Il reste ensuite en place : rouvrir est instantané.
+ * - Calendly pèse environ 4 Mo et dépose ses propres traceurs (Segment, Stripe, script Meta…). Il est
+ *   préchargé, fenêtre fermée, pour les visiteurs ayant accepté la mesure d'audience ET la publicité
+ *   (politique de confidentialité, § 9.2) : le calendrier est prêt au clic. Pour les autres, il n'est
+ *   chargé qu'au premier clic, et la fenêtre s'ouvre aussitôt avec la silhouette du calendrier le
+ *   temps qu'il s'affiche (2 à 3 s). Il reste ensuite en place : rouvrir est instantané.
  * - Intégration sans widget.js, avec la même adresse que l'intégration officielle (embed_domain,
  *   embed_type, paramètres utm_* de la page). À 480 px de large au plus, Calendly affiche sa mise en
  *   page compacte, sans cadre ni marge, sur fond transparent : la fenêtre a exactement la taille du
@@ -53,6 +55,35 @@ export default function CalendlyModal() {
   const frameRef = useRef<HTMLIFrameElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const trigger = useRef<HTMLElement | null>(null);
+
+  // Accord « Mesure d'audience » et « Publicité » (à l'arrivée ou pendant la visite) : préchargement
+  useEffect(() => {
+    let cancel = () => {};
+    const preload = () => setSrc((s) => s ?? embedUrl());
+    const whenIdle = () => {
+      if (typeof window.requestIdleCallback === 'function') {
+        const id = window.requestIdleCallback(preload, { timeout: 3000 });
+        cancel = () => window.cancelIdleCallback(id);
+      } else {
+        const id = window.setTimeout(preload, 1500);
+        cancel = () => window.clearTimeout(id);
+      }
+    };
+    const apply = (c: Consent | null) => {
+      if (!c?.audience || !c.marketing) return;
+      if (document.readyState === 'complete') whenIdle();
+      else {
+        window.addEventListener('load', whenIdle, { once: true });
+        cancel = () => window.removeEventListener('load', whenIdle);
+      }
+    };
+    apply(readConsent());
+    const off = onConsent(apply);
+    return () => {
+      off();
+      cancel();
+    };
+  }, []);
 
   // Clic sur un lien calendly.com de la page (hors fenêtre) : ouverture
   useEffect(() => {
