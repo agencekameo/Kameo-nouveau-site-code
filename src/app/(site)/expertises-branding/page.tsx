@@ -549,7 +549,7 @@ export default function ExpertisesBrandingPage() {
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 2 semaines
+                    Livré en 14 jours
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -613,7 +613,7 @@ export default function ExpertisesBrandingPage() {
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 3 semaines
+                    Livré en 21 jours
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -703,7 +703,7 @@ export default function ExpertisesBrandingPage() {
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 3 semaines
+                    Livré en 21 jours
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -862,9 +862,9 @@ export default function ExpertisesBrandingPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    De 2 à 4 semaines selon la complexité&nbsp;: 2 semaines pour une identité essentielle (logo +
-                    charte), 3 à 4 semaines pour un branding complet avec déclinaisons et système graphique. Les délais
-                    sont <strong>engagés par écrit dans le devis</strong>, avec validations par étapes (moodboards,
+                    De 14 à 28 jours selon la complexité&nbsp;: 14 jours pour une identité essentielle (logo + charte),
+                    21 à 28 jours pour un branding complet avec déclinaisons et système graphique. Les délais sont{' '}
+                    <strong>engagés par écrit dans le devis</strong>, avec validations par étapes (moodboards,
                     propositions logo, finalisation).
                   </p>
                 </div>

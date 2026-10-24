@@ -17,7 +17,7 @@ export const pageSchemas: object[] = [
         name: 'Combien de temps prend la création d’une vidéo motion ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '2 à 3 semaines pour un teaser ou reel court, 4 à 6 semaines pour un brand film complet (script + storyboard + animation + voix off + montage). Les délais sont engagés dans le devis avec jalons de validation à chaque étape (storyboard, animatique, V1, livraison finale).',
+          text: '14 à 21 jours pour un teaser ou reel court, 28 à 42 jours pour un brand film complet (script + storyboard + animation + voix off + montage). Les délais sont engagés dans le devis avec jalons de validation à chaque étape (storyboard, animatique, V1, livraison finale).',
         },
       },
       {

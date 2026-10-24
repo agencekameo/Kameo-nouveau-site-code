@@ -14,8 +14,8 @@ export const PAGES: Record<string, PageInfo> = {
   '/creation-site-wordpress/': { label: 'Création de site WordPress', published: '2026-06-11T08:39:05+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
   '/refonte-wordpress/': { label: 'Refonte WordPress', published: '2026-06-11T08:39:06+00:00', modified: '2026-06-11T08:39:06+00:00' },
   '/maintenance-wordpress/': { label: 'Maintenance WordPress', published: '2026-06-11T08:39:07+00:00', modified: '2026-06-11T08:39:07+00:00' },
-  '/expertises-branding/': { label: 'Expertises Branding', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-16T16:47:04+00:00' },
-  '/expertises-motion/': { label: 'Expertises Motion Design', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
+  '/expertises-branding/': { label: 'Expertises Branding', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais en jours (24/10/2026)
+  '/expertises-motion/': { label: 'Expertises Motion Design', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais en jours (24/10/2026)
   '/developpement-sur-mesure/': { label: 'Développement sur-mesure', published: '2026-09-18T12:15:28+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
   '/creation-site-ecommerce/': { label: 'Création de site e-commerce', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
   '/creation-marketplace/': { label: 'Création de marketplace', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)

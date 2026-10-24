@@ -548,7 +548,7 @@ export default function ExpertisesMotionPage() {
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 2 semaines
+                    Livré en 14 jours
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false">
@@ -630,7 +630,7 @@ export default function ExpertisesMotionPage() {
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                       <use href="/icons.svg#i-regular-clock" />
                     </svg>
-                    Livré en 3 semaines
+                    Livré en 21 jours
                   </li>
                   <li>
                     <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
@@ -862,7 +862,7 @@ export default function ExpertisesMotionPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    2 à 3 semaines pour un teaser ou reel court, 4 à 6 semaines pour un brand film complet (script +
+                    14 à 21 jours pour un teaser ou reel court, 28 à 42 jours pour un brand film complet (script +
                     storyboard + animation + voix off + montage). Les délais sont engagés dans le devis avec{' '}
                     <strong>jalons de validation à chaque étape</strong> (storyboard, animatique, V1, livraison finale).
                   </p>

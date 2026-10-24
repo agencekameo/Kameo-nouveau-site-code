@@ -17,7 +17,7 @@ export const pageSchemas: object[] = [
         name: 'Combien de temps prend la création d’une identité de marque ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'De 2 à 4 semaines selon la complexité : 2 semaines pour une identité essentielle (logo + charte), 3 à 4 semaines pour un branding complet avec déclinaisons et système graphique. Les délais sont engagés par écrit dans le devis, avec validations par étapes (moodboards, propositions logo, finalisation).',
+          text: 'De 14 à 28 jours selon la complexité : 14 jours pour une identité essentielle (logo + charte), 21 à 28 jours pour un branding complet avec déclinaisons et système graphique. Les délais sont engagés par écrit dans le devis, avec validations par étapes (moodboards, propositions logo, finalisation).',
         },
       },
       {
