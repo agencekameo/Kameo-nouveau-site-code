@@ -15,6 +15,8 @@ import type { NextConfig } from 'next';
  *  - fonts.googleapis.com / fonts.gstatic.com : police de /rdv-confirme/
  *  - cdn.prod.website-files.com : logo Calendly de l'encart des articles
  *  - www.lafabriquedunet.fr     : badge d'avis du pied de page (script, sans cookie ni requête)
+ *  - outilblog.nexus-games.fr   : images des articles de l'outil de rédaction « Blog »
+ *  - YouTube (nocookie), Vimeo  : vidéos éventuellement intégrées à ces articles
  *
  * La politique complète (CSP_REPORT_ONLY) est d'abord publiée en « Report-Only » : les navigateurs
  * signalent dans la console ce qu'elle bloquerait, sans rien bloquer. Une fois vérifié en production
@@ -30,10 +32,10 @@ const CSP_REPORT_ONLY = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://taap.it https://assets.calendly.com https://connect.facebook.net https://www.lafabriquedunet.fr https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms",
   "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
-  "img-src 'self' data: https://www.facebook.com https://cdn.prod.website-files.com https://assets.calendly.com https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com",
+  "img-src 'self' data: https://www.facebook.com https://cdn.prod.website-files.com https://assets.calendly.com https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://outilblog.nexus-games.fr",
   "font-src 'self' https://fonts.gstatic.com",
   "connect-src 'self' https://taap.it https://*.taap.it https://www.facebook.com https://connect.facebook.net https://calendly.com https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com",
-  "frame-src https://calendly.com https://www.google.com",
+  "frame-src https://calendly.com https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com",
   "media-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",

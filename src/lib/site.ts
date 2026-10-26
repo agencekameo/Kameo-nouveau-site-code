@@ -50,5 +50,6 @@ export const GOOGLE_SITE_VERIFICATION = 'i8B4YTZYfB95QooLeJsDbIMjkJtJ-zv4_r8QuzA
 
 export const CONTENT_UPDATED = '2026-10-19T12:31:10+00:00';
 
-export const abs = (path = '/') => SITE_URL + (path.startsWith('/') ? path : '/' + path);
+/** URL absolue d'un chemin du site ; une URL déjà absolue (images de l'outil de rédaction) est gardée telle quelle. */
+export const abs = (path = '/') => (/^https?:\/\//i.test(path) ? path : SITE_URL + (path.startsWith('/') ? path : '/' + path));
 export const img = (file: string) => '/images/' + file.split('/').map(encodeURIComponent).join('/');

@@ -22,6 +22,10 @@ export type PageSeo = {
   modifiedTime?: string;
   /** Temps de lecture des articles (twitter:label2 de Rank Math). */
   readingMinutes?: number;
+  /** Auteur des articles (twitter:data1), Benjamin Dayan par défaut. */
+  author?: string;
+  /** hreflang → URL absolue (articles de l'outil de rédaction : langue de l'article et x-default). */
+  languages?: Record<string, string>;
   /** Validation de la propriété Search Console (page d'accueil uniquement, comme sous WordPress). */
   googleVerification?: string;
 };
@@ -46,7 +50,7 @@ export function pageMetadata(seo: PageSeo): Metadata {
     title: { absolute: seo.title },
     description: seo.description || undefined,
     // Rank Math ne publie pas de canonical sur une page en noindex
-    alternates: { ...(seo.noindex ? {} : { canonical: url }), types: RSS },
+    alternates: { ...(seo.noindex ? {} : { canonical: url }), ...(seo.languages ? { languages: seo.languages } : {}), types: RSS },
     robots: seo.noindex
       ? { index: false, follow: true }
       : { index: true, follow: true, 'max-snippet': -1, 'max-video-preview': -1, 'max-image-preview': 'large' },
@@ -73,7 +77,7 @@ export function pageMetadata(seo: PageSeo): Metadata {
       ? {
           other: {
             'twitter:label1': 'Écrit par',
-            'twitter:data1': 'Benjamin Dayan',
+            'twitter:data1': seo.author || 'Benjamin Dayan',
             ...(seo.readingMinutes
               ? { 'twitter:label2': 'Temps de lecture', 'twitter:data2': `${seo.readingMinutes} minute${seo.readingMinutes > 1 ? 's' : ''}` }
               : {}),

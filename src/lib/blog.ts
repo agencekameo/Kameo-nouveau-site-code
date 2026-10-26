@@ -3,17 +3,20 @@ import path from 'node:path';
 import yaml from 'js-yaml';
 import { marked } from 'marked';
 import { getApiPost, listApiPosts } from './blog-db';
+import { getRemotePost, listRemotePosts, type RemoteExtras } from './blog-remote';
 import { assertSafeHtml } from './content-guard';
 import { addContentSrcset, uploadSrcset } from './images';
 import { addInternalLinks } from './internal-links';
 import { trimWords, wordCount } from './text';
 
 /**
- * Articles du blog, de deux sources :
+ * Articles du blog, de trois sources :
+ *  - l'outil de rédaction « Blog » (API publique, src/lib/blog-remote.ts), qui rédige, programme et
+ *    publie ses articles ;
  *  - les fichiers src/content/blog/*.md du dépôt, lus au build (voir le README du dossier) ;
  *  - les articles publiés par n8n via l'API /api/blog/publish/… et stockés en base (src/lib/blog-db.ts).
- * Les deux sont présentés sous la même forme. Un slug présent des deux côtés laisse gagner le
- * fichier du dépôt (l'API refuse d'ailleurs de le réutiliser).
+ * Toutes sont présentées sous la même forme. Pour un même slug, l'outil l'emporte (il peut reprendre
+ * un ancien article à la même adresse), puis le fichier du dépôt (l'API n8n refuse de le réutiliser).
  */
 export type PostImage = { src: string; width?: number; height?: number; alt?: string; srcset?: string };
 
@@ -35,12 +38,16 @@ export type Post = {
   readingMinutes: number;
   /** Temps de lecture annoncé par Rank Math (twitter:data2) : mots / 250, arrondi au-dessus. */
   rankMathMinutes: number;
-  /** Fichier du dépôt ou article publié par n8n. */
-  source: 'markdown' | 'api';
-  /** Catégorie (articles publiés par n8n uniquement). */
+  /** Fichier du dépôt, article publié par n8n ou article de l'outil de rédaction. */
+  source: 'markdown' | 'api' | 'outil';
+  /** Catégorie (articles de l'outil et de n8n). */
   category: string | null;
+  /** Auteur annoncé par l'outil de rédaction (Benjamin Dayan sinon). */
+  authorName?: string;
   /** Image à la une puis images du contenu (sitemap des articles). */
   images: string[];
+  /** Article complet de l'outil : hreflang, auteur, crédit photo, points clés, données structurées. */
+  remote?: RemoteExtras;
 };
 
 /** Article sans son contenu : listes, cartes, sitemaps, flux. */
@@ -115,39 +122,80 @@ function byDate(a: PostSummary, b: PostSummary): number {
   return Date.parse(b.date) - Date.parse(a.date) || a.slug.localeCompare(b.slug);
 }
 
-/** Articles du dépôt seuls (secours si la base ne répond pas). */
-export const getRepoPosts = (): PostSummary[] => loadMarkdown();
-
 /** Slugs des articles du dépôt (l'API de publication ne peut pas les reprendre). */
 export const markdownSlugs = () => new Set(loadMarkdown().map((p) => p.slug));
 
-export async function getAllPosts(): Promise<PostSummary[]> {
+/**
+ * Outil, puis dépôt, puis n8n : le premier qui publie un slug le garde.
+ * Outil injoignable : ses articles manquent le temps de la panne, jamais d'erreur. Sa purge
+ * (POST /api/revalidate) expire le cache des pages : sans version précédente à servir, une erreur
+ * donnerait une 500 sur tout le blog. La base n8n, elle, garde le comportement strict des pages.
+ */
+async function collect(strict: boolean): Promise<PostSummary[]> {
+  const settle = async (label: string, load: () => Promise<PostSummary[]>, mustThrow: boolean) => {
+    try {
+      return await load();
+    } catch (err) {
+      if (mustThrow) throw err;
+      console.error(`[blog] ${label} injoignable :`, err instanceof Error ? err.message : err);
+      return [];
+    }
+  };
+  const [remote, db] = await Promise.all([
+    settle('outil de rédaction', listRemotePosts, false),
+    settle('base des articles', listApiPosts, strict),
+  ]);
   const md = loadMarkdown();
-  const taken = new Set(md.map((p) => p.slug));
-  const api = (await listApiPosts()).filter((p) => !taken.has(p.slug));
-  return api.length ? [...md, ...api].sort(byDate) : md;
+  if (!remote.length && !db.length) return md;
+  const seen = new Set<string>();
+  const keep = (p: PostSummary) => !seen.has(p.slug) && !!seen.add(p.slug);
+  return [...remote.filter(keep), ...md.filter(keep), ...db.filter(keep)].sort(byDate);
 }
+
+export const getAllPosts = () => collect(true);
 
 /**
- * Pour les sitemaps, le flux RSS, llms.txt et la recherche : si la base ne répond pas, les
- * articles du dépôt plutôt qu'une erreur 500 (qui ferait se désabonner les agrégateurs).
- * Les pages, elles, lèvent l'erreur : Next continue de servir leur dernière version.
+ * Pour les sitemaps, le flux RSS, llms.txt et la recherche : si la base ne répond pas, les autres
+ * sources plutôt qu'une erreur 500 (qui ferait se désabonner les agrégateurs). Les pages, elles,
+ * lèvent l'erreur de la base : Next continue de servir leur dernière version.
  */
-export async function getAllPostsOrRepo(): Promise<PostSummary[]> {
-  try {
-    return await getAllPosts();
-  } catch (err) {
-    console.error('[blog] base des articles injoignable :', err instanceof Error ? err.message : err);
-    return getRepoPosts();
-  }
-}
+export const getAllPostsOrRepo = () => collect(false);
 
 export async function getPost(slug: string): Promise<Post | undefined> {
-  return loadMarkdown().find((p) => p.slug === slug) ?? (await getApiPost(slug)) ?? undefined;
+  const md = loadMarkdown().find((p) => p.slug === slug);
+  try {
+    const remote = await getRemotePost(slug);
+    if (remote) return remote;
+  } catch (err) {
+    // outil injoignable : un article du dépôt ou de n8n reste servi ; sinon l'erreur remonte et
+    // Next garde la dernière version de la page (plutôt qu'une 404 mise en cache)
+    console.error('[blog] outil de rédaction injoignable :', err instanceof Error ? err.message : err);
+    const local = md ?? (await getApiPost(slug));
+    if (local) return local;
+    throw err;
+  }
+  return md ?? (await getApiPost(slug)) ?? undefined;
 }
 
 export const pageCount = async () => Math.max(1, Math.ceil((await getAllPosts()).length / POSTS_PER_PAGE));
 export const getPage = async (n: number) => (await getAllPosts()).slice((n - 1) * POSTS_PER_PAGE, n * POSTS_PER_PAGE);
+
+/* Catégories des articles n8n : identifiants de la table blog_categories (src/lib/db-tables.ts). */
+const N8N_CATEGORIES: Record<string, string> = {
+  cat_creation_site: 'Création de site',
+  cat_wordpress: 'WordPress',
+  cat_e_commerce: 'E-commerce',
+  cat_seo: 'SEO et référencement',
+  cat_referencement_local: 'Référencement local',
+  cat_developpement_sur_mesure: 'Développement sur-mesure',
+  cat_saas_ia: 'SaaS et IA',
+  cat_branding: 'Branding',
+  cat_motion_design: 'Motion design',
+};
+
+/** Catégorie affichable d'un article (cartes du blog), ou null. */
+export const categoryLabel = (p: PostSummary): string | null =>
+  !p.category ? null : p.source === 'api' ? (N8N_CATEGORIES[p.category] ?? null) : p.category;
 
 const FR_DATE = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris' });
 /** Date au format « 14 mars 2026 » (get_the_date('j F Y')). */

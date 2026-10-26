@@ -2,7 +2,7 @@ import { getAllPostsOrRepo } from '@/lib/blog';
 import { SITE_URL, abs } from '@/lib/site';
 
 /* Flux RSS du blog (/feed/, annoncé dans le <head> de chaque page). */
-// régénéré à chaque publication n8n (revalidatePath), 60 s au plus sinon
+// régénéré à chaque publication (n8n, outil de rédaction), 60 s au plus sinon
 export const revalidate = 60;
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -16,7 +16,7 @@ export async function GET() {
 \t\t\t<title>${esc(p.title)}</title>
 \t\t\t<link>${abs(p.path)}</link>
 \t\t\t<guid isPermaLink="true">${abs(p.path)}</guid>
-\t\t\t<dc:creator><![CDATA[Benjamin Dayan]]></dc:creator>
+\t\t\t<dc:creator>${cdata(p.authorName || 'Benjamin Dayan')}</dc:creator>
 \t\t\t<pubDate>${new Date(p.date).toUTCString()}</pubDate>
 \t\t\t<description>${cdata(p.excerpt)}</description>
 \t\t</item>`,

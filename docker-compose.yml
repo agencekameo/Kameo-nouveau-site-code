@@ -1,5 +1,5 @@
 # ═══════════════════════════════════════════════════════════════════════════════
-# agence-kameo.fr — site + base des articles publiés par n8n
+# agence-kameo.fr — site + base des articles publiés par n8n (+ articles de l'outil « Blog », par API)
 # ─────────────────────────────────────────────────────────────────────────────
 # Démarrage :
 #   cp .env.example .env.docker      # puis remplir les valeurs
@@ -53,6 +53,10 @@ services:
       SMTP_PASS: ${SMTP_PASS:-}
       CONTACT_TO: ${CONTACT_TO:-contact@agence-kameo.fr}
       CONTACT_FROM: ${CONTACT_FROM:-}
+      # outil de rédaction « Blog » (src/lib/blog-remote.ts) ; sans clé, ses articles ne s'affichent pas
+      BLOG_API_URL: ${BLOG_API_URL:-https://outilblog.nexus-games.fr/api/public/v1}
+      BLOG_API_KEY: ${BLOG_API_KEY:-}
+      BLOG_REVALIDATE_SECRET: ${BLOG_REVALIDATE_SECRET:-}
     volumes:
       # images déposées par n8n : un volume, sinon elles disparaissent au redéploiement
       - blog_uploads:/uploads

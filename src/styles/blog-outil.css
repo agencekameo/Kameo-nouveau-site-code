@@ -1,0 +1,168 @@
+/*
+ * Articles de l'outil de rédaction « Blog » (src/lib/blog-remote.ts) : leur HTML complète la
+ * typographie de .article-body (main.css) par les éléments qu'elle ne couvre pas : images
+ * responsives, figures, tableaux défilants sur mobile, code, FAQ en <details>, vidéos.
+ * Aussi : crédit de l'image à la une, encadré « À retenir », auteur sans photo.
+ */
+
+/* ── Image à la une et crédit ── */
+.article-featured--credited { margin-bottom: 10px; }
+.article-featured-credit {
+  margin: 0 0 clamp(36px, 5vw, 60px);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--c-muted);
+  text-align: right;
+}
+
+/* ── Points clés ── */
+.article-takeaways {
+  padding: 22px 26px;
+  background: rgba(255, 52, 41, .05);
+  border: 1px solid rgba(255, 52, 41, .16);
+  border-radius: 16px;
+}
+.article-body .article-takeaways__title {
+  margin: 0 0 10px;
+  font-family: var(--ff-heading);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+.article-body .article-takeaways ul { margin: 0; gap: 6px; font-size: 16px; }
+
+/* ── Auteur sans photo (initiales) ── */
+.article-author__initials {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255, 52, 41, .1);
+  color: var(--c-accent);
+  font-family: var(--ff-heading);
+  font-size: 24px;
+  font-weight: 800;
+}
+@media (max-width: 560px) {
+  .article-author__initials { width: 56px; height: 56px; font-size: 20px; }
+}
+
+/* ── Corps de l'article ── */
+/* toute la largeur de la colonne (sur tablette et mobile, .article-layout passe en flex aligné au
+   début : l'article prendrait sinon la largeur de son plus large contenu) ; un tableau ou un bloc
+   de code défile dans son cadre au lieu d'élargir la page ; mots et URL très longs coupés */
+.article-body--outil { width: 100%; min-width: 0; overflow-wrap: anywhere; }
+.article-body--outil h4 {
+  font-family: var(--ff-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-top: 1.6em;
+}
+.article-body--outil img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+.article-body--outil figure { margin: 2em 0; }
+.article-body--outil figure img { width: 100%; }
+.article-body--outil figcaption {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--c-muted);
+  text-align: center;
+}
+.article-body--outil li > ul,
+.article-body--outil li > ol { margin-top: 8px; }
+.article-body--outil hr {
+  border: 0;
+  border-top: 1px solid var(--c-line);
+  margin: 2.4em 0;
+}
+.article-body--outil mark { background: rgba(255, 52, 41, .12); color: inherit; padding: 0 .15em; border-radius: 3px; }
+
+/* tableaux : défilement horizontal sur petit écran (conteneur ajouté par blog-remote.ts) */
+.article-body--outil .article-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+}
+.article-body--outil table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.article-body--outil caption {
+  padding: 12px 14px 0;
+  font-size: 14px;
+  color: var(--c-muted);
+  text-align: left;
+}
+.article-body--outil th,
+.article-body--outil td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--c-line);
+  text-align: left;
+  vertical-align: top;
+}
+.article-body--outil thead th {
+  background: #f7f8fa;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+.article-body--outil tbody tr:last-child td { border-bottom: 0; }
+
+/* code */
+.article-body--outil code {
+  padding: .12em .4em;
+  border-radius: 6px;
+  background: #f2f3f5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .88em;
+}
+.article-body--outil pre {
+  overflow-x: auto;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: #0f1115;
+  color: #e9eaee;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.article-body--outil pre code { padding: 0; background: none; color: inherit; font-size: inherit; }
+
+/* FAQ en <details> */
+.article-body--outil details {
+  padding: 16px 20px;
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  background: #fff;
+}
+.article-body--outil details + details { margin-top: 10px; }
+.article-body--outil summary {
+  cursor: pointer;
+  font-family: var(--ff-heading);
+  font-weight: 700;
+  color: var(--c-ink);
+}
+.article-body--outil details[open] summary { margin-bottom: 10px; }
+.article-body--outil details > :not(summary) { margin-top: .8em; }
+
+/* vidéos intégrées */
+.article-body--outil iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+}

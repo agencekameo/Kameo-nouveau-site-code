@@ -4512,6 +4512,10 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   flex-direction: column;
   gap: 8px;
 }
+/* puces et numéros des articles (la remise à zéro globale « ul, ol { list-style: none } » les masquait) */
+.article-body ul { list-style: disc; }
+.article-body ul ul { list-style: circle; }
+.article-body ol { list-style: decimal; }
 .article-body ul li::marker { color: var(--c-accent); }
 .article-body ol li::marker { color: var(--c-accent); font-weight: 700; }
 .article-body blockquote {
@@ -5886,3 +5890,14 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   font-weight: 500;
 }
 .expertise-outro__links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Catégorie des cartes d'articles (articles de l'outil de rédaction et de n8n) */
+.bcard__cat {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}

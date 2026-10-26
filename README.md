@@ -19,7 +19,7 @@ Node.js 20 ou plus récent.
 
 Modèle commenté : `.env.example` (à copier en `.env.local` en développement, `.env.docker` avec Docker).
 Sans aucune variable, le site fonctionne : le formulaire de contact répond par une erreur et le blog
-n'affiche que les articles du dépôt.
+n'affiche que les articles du dépôt (ni ceux de n8n, ni ceux de l'outil de rédaction).
 
 | Variable                | Rôle                                                              |
 | ----------------------- | ----------------------------------------------------------------- |
@@ -34,6 +34,9 @@ n'affiche que les articles du dépôt.
 | `DATABASE_URL`          | base PostgreSQL des articles n8n (construite par docker-compose)  |
 | `POSTGRES_PASSWORD`     | Docker : mot de passe de cette base (lettres et chiffres)         |
 | `BLOG_UPLOADS_ROOT`     | dossier des images déposées par n8n (`/uploads` sous Docker)      |
+| `BLOG_API_URL`          | API de l'outil de rédaction « Blog » (`…/api/public/v1`)          |
+| `BLOG_API_KEY`          | clé de cette API (côté serveur) ; sans elle, ses articles manquent |
+| `BLOG_REVALIDATE_SECRET`| secret de `POST /api/revalidate`, saisi aussi dans l'outil        |
 
 ## Où modifier quoi
 
@@ -63,6 +66,7 @@ src/
     (standalone)/      landing page Ads (/appel-strategique/) et /rdv-confirme/
     api/contact/       envoi du formulaire de contact
     api/blog/publish/  API de publication des articles par n8n (docs/api-blog-n8n.md)
+    api/revalidate/    purge du cache du blog, appelée par l'outil de rédaction « Blog »
     blog-media/        images déposées par n8n
     sitemap_index.xml/ page-sitemap.xml/ post-sitemap.xml/ realisation-sitemap.xml/
     llms.txt/ feed/    synthèse pour moteurs génératifs, flux RSS
@@ -192,6 +196,30 @@ en cas de panne : **`docs/api-blog-n8n.md`**.
 Code : `src/app/api/blog/publish/` (routes), `src/lib/blog-api.ts` (authentification, débit,
 nettoyage du HTML, slugs, catégories), `src/lib/blog-db.ts` (lecture et mise en forme),
 `src/lib/blog-media.ts` (images et variantes WebP), `src/lib/db.ts` et `src/lib/db-tables.ts` (base).
+
+## Blog : outil de rédaction « Blog »
+
+Les articles rédigés, programmés et publiés par l'outil (https://outilblog.nexus-games.fr) sont lus
+par son API publique, côté serveur (`src/lib/blog-remote.ts`), et affichés avec ceux du dépôt et de
+n8n : même liste paginée, même gabarit d'article, mêmes sitemaps, flux RSS et `llms.txt`. Pour un même
+slug, l'article de l'outil l'emporte (il peut reprendre un ancien article à la même adresse).
+
+- **Cache** : réponses de l'API gardées 1 h (étiquette `blog`). À chaque publication, l'outil appelle
+  `POST https://agence-kameo.fr/api/revalidate` (en-tête `x-revalidate-secret`, corps
+  `{ "paths": ["/blog/mon-article"] }`) : cache purgé, pages concernées régénérées aussitôt.
+- **Article** : H1 = titre, image à la une avec son texte alternatif et son crédit, HTML de l'outil
+  (nettoyé une seconde fois par liste blanche) dans la typographie des articles
+  (`src/styles/blog-outil.css`), encadré « À retenir » si les points clés n'y figurent pas, encadré
+  auteur. La FAQ n'est pas répétée : elle est déjà dans le HTML.
+- **SEO** : title et description de l'outil, canonical et hreflang (fr-FR + x-default), Open Graph et
+  Twitter, données structurées de l'outil injectées telles quelles (complétées par les entités du site
+  sans doublon), entrées du sitemap des articles avec hreflang. Rendu côté serveur : lisible par
+  GPTBot, ClaudeBot ou PerplexityBot sans JavaScript. Clé IndexNow : `public/b4a284cb007eb4fe879c05aef0c54b53.txt`.
+- **Adresses** : `/blog/<slug>/`, avec le « / » final de tout le site (l'URL sans « / » de l'outil
+  redirige en 301). Seule la langue principale (fr-FR) est servie : une langue ajoutée dans l'outil
+  demanderait ses propres routes.
+- **Panne de l'outil** : le cache sert la dernière version ; la liste et les articles recommandés
+  s'affichent sans ses articles plutôt qu'en erreur.
 
 ## Suivi des campagnes Meta (Google Tag Manager)
 
