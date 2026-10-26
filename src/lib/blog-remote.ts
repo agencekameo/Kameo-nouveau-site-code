@@ -1,6 +1,7 @@
 import { cache } from 'react';
 import sanitizeHtml from 'sanitize-html';
 import type { Post, PostSummary } from './blog';
+import { BLOG_TOOL } from './blog-tool';
 import { SITE_URL, abs } from './site';
 import { wordCount } from './text';
 
@@ -8,23 +9,24 @@ import { wordCount } from './text';
  * Articles de l'outil de rédaction « Blog » (API publique, https://outilblog.nexus-games.fr) :
  * rédigés, programmés et publiés par l'outil, le site les affiche seulement.
  *
- * Lecture côté serveur uniquement (la clé ne quitte jamais le serveur), mise en cache 1 h sous
- * l'étiquette « blog » ; l'outil purge ce cache à chaque publication via POST /api/revalidate.
- * Variables : BLOG_API_URL, BLOG_API_KEY (sans elles, le blog n'affiche que ses autres sources).
+ * Réglages dans src/lib/blog-tool.ts (adresse de l'API, clé de lecture des articles publiés, clé
+ * publique de l'outil, langues), dans le code : le site fonctionne tel quel, en local comme en
+ * production. Lecture côté serveur, mise en cache 1 h sous l'étiquette « blog » ; l'outil purge ce
+ * cache à chaque publication via POST /api/revalidate (demandes signées).
  *
  * Seule la langue principale (fr-FR → /blog) est servie par le site : une langue ajoutée dans
  * l'outil demanderait ses propres routes (préfixe donné par /locales).
  */
 
 export const BLOG_CACHE_TAG = 'blog';
-export const REMOTE_LOCALE = 'fr-FR';
+/** Langue principale de l'outil (fr-FR → /blog). */
+export const REMOTE_LOCALE: string = (BLOG_TOOL.locales.find((l) => l.isDefault) ?? BLOG_TOOL.locales[0]).code;
 const REVALIDATE_S = 3600;
 const PAGE_SIZE = 100; // maximum accepté par l'API
 const MAX_PAGES = 50;
 const BUILD = process.env.NEXT_PHASE === 'phase-production-build';
 
-const apiUrl = () => (process.env.BLOG_API_URL || '').replace(/\/+$/, '');
-export const hasRemoteBlog = () => !!(apiUrl() && process.env.BLOG_API_KEY);
+const API_URL = BLOG_TOOL.apiUrl.replace(/\/+$/, '');
 
 /* ── Contrat de l'API (champs facultatifs traités avec prudence) ───────────────────────── */
 
@@ -72,8 +74,8 @@ export type RemoteExtras = {
 class NotFound extends Error {}
 
 async function api<T>(path: string): Promise<T> {
-  const res = await fetch(apiUrl() + path, {
-    headers: { Authorization: `Bearer ${process.env.BLOG_API_KEY}`, Accept: 'application/json' },
+  const res = await fetch(API_URL + path, {
+    headers: { Authorization: `Bearer ${BLOG_TOOL.apiKey}`, Accept: 'application/json' },
     next: { revalidate: REVALIDATE_S, tags: [BLOG_CACHE_TAG] },
     signal: AbortSignal.timeout(10_000),
   });
@@ -83,17 +85,21 @@ async function api<T>(path: string): Promise<T> {
 }
 
 /**
- * Sans clé : aucune donnée. Pendant le build (image Docker construite sans les variables, ou
- * outil injoignable), une liste vide : les pages se complètent à leur régénération. En
- * production, l'erreur remonte : Next garde la dernière version de la page plutôt qu'un blog amputé.
+ * Outil injoignable pendant le build : une liste vide, le build passe et les pages se complètent à
+ * leur régénération. Après un premier échec, plus aucun appel pendant ce build (une API qui ne
+ * répond pas ferait sinon attendre 10 s chaque page du blog). En production, l'erreur remonte à
+ * l'appelant : la liste du blog s'affiche sans les articles de l'outil (src/lib/blog.ts), un
+ * article garde sa dernière version en cache.
  */
+let buildOutage = false;
 async function guard<T>(fallback: T, fn: () => Promise<T>): Promise<T> {
-  if (!hasRemoteBlog()) return fallback;
+  if (BUILD && buildOutage) return fallback;
   try {
     return await fn();
   } catch (err) {
     if (!BUILD) throw err;
-    console.warn('[blog] outil de rédaction injoignable pendant le build :', err instanceof Error ? err.message : err);
+    if (!buildOutage) console.warn('[blog] outil de rédaction injoignable pendant le build :', err instanceof Error ? err.message : err);
+    buildOutage = true;
     return fallback;
   }
 }
@@ -126,13 +132,22 @@ export const getRemoteSitemap = cache(() =>
   guard<RemoteSitemapEntry[]>([], async () => (await api<{ entries: RemoteSitemapEntry[] }>(`/sitemap?locale=${REMOTE_LOCALE}`)).entries ?? []),
 );
 
+/** Slugs de la dernière liste complète reçue de l'outil par ce serveur (null : aucune encore). */
+let lastListedSlugs: Set<string> | null = null;
+
+/** Ce slug figurait-il dans la dernière liste de l'outil ? null si ce serveur n'en a encore reçu aucune. */
+export const wasListedByTool = (slug: string): boolean | null => (lastListedSlugs ? lastListedSlugs.has(slug) : null);
+
 /** Tous les articles publiés (toutes les pages de la liste). */
 export const listRemotePosts = cache(async (): Promise<PostSummary[]> => {
   const first = await getPosts({ page: 1, limit: PAGE_SIZE });
   const all = [...first.posts];
   const pages = Math.min(first.pagination.pages || 1, MAX_PAGES);
   for (let page = 2; page <= pages; page++) all.push(...(await getPosts({ page, limit: PAGE_SIZE })).posts);
-  return all.filter((p) => p && typeof p.slug === 'string' && p.title).map((p) => toSummary(p));
+  const posts = all.filter((p) => p && typeof p.slug === 'string' && p.title).map((p) => toSummary(p));
+  // en production, une liste obtenue est toujours complète (une page en échec fait tout échouer)
+  if (!BUILD) lastListedSlugs = new Set(posts.map((p) => p.slug));
+  return posts;
 });
 
 export async function getRemotePost(slug: string): Promise<Post | null> {

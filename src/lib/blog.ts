@@ -3,7 +3,7 @@ import path from 'node:path';
 import yaml from 'js-yaml';
 import { marked } from 'marked';
 import { getApiPost, listApiPosts } from './blog-db';
-import { getRemotePost, listRemotePosts, type RemoteExtras } from './blog-remote';
+import { getRemotePost, listRemotePosts, wasListedByTool, type RemoteExtras } from './blog-remote';
 import { assertSafeHtml } from './content-guard';
 import { addContentSrcset, uploadSrcset } from './images';
 import { addInternalLinks } from './internal-links';
@@ -167,11 +167,13 @@ export async function getPost(slug: string): Promise<Post | undefined> {
     const remote = await getRemotePost(slug);
     if (remote) return remote;
   } catch (err) {
-    // outil injoignable : un article du dépôt ou de n8n reste servi ; sinon l'erreur remonte et
-    // Next garde la dernière version de la page (plutôt qu'une 404 mise en cache)
+    // outil injoignable : un article du dépôt ou de n8n reste servi ; une adresse absente de la
+    // dernière liste de l'outil donne une 404 ; sinon (article de l'outil) l'erreur remonte et Next
+    // garde la dernière version de la page, plutôt qu'une 404 mise en cache pendant la panne
     console.error('[blog] outil de rédaction injoignable :', err instanceof Error ? err.message : err);
     const local = md ?? (await getApiPost(slug));
     if (local) return local;
+    if (wasListedByTool(slug) === false) return undefined;
     throw err;
   }
   return md ?? (await getApiPost(slug)) ?? undefined;

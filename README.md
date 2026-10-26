@@ -19,7 +19,8 @@ Node.js 20 ou plus récent.
 
 Modèle commenté : `.env.example` (à copier en `.env.local` en développement, `.env.docker` avec Docker).
 Sans aucune variable, le site fonctionne : le formulaire de contact répond par une erreur et le blog
-n'affiche que les articles du dépôt (ni ceux de n8n, ni ceux de l'outil de rédaction).
+affiche les articles du dépôt et de l'outil de rédaction « Blog », pas ceux de n8n. L'outil de
+rédaction n'a besoin d'aucune variable : ses réglages sont dans le code (`src/lib/blog-tool.ts`).
 
 | Variable                | Rôle                                                              |
 | ----------------------- | ----------------------------------------------------------------- |
@@ -34,9 +35,6 @@ n'affiche que les articles du dépôt (ni ceux de n8n, ni ceux de l'outil de ré
 | `DATABASE_URL`          | base PostgreSQL des articles n8n (construite par docker-compose)  |
 | `POSTGRES_PASSWORD`     | Docker : mot de passe de cette base (lettres et chiffres)         |
 | `BLOG_UPLOADS_ROOT`     | dossier des images déposées par n8n (`/uploads` sous Docker)      |
-| `BLOG_API_URL`          | API de l'outil de rédaction « Blog » (`…/api/public/v1`)          |
-| `BLOG_API_KEY`          | clé de cette API (côté serveur) ; sans elle, ses articles manquent |
-| `BLOG_REVALIDATE_SECRET`| secret de `POST /api/revalidate`, saisi aussi dans l'outil        |
 
 ## Où modifier quoi
 
@@ -46,7 +44,7 @@ n'affiche que les articles du dépôt (ni ceux de n8n, ni ceux de l'outil de ré
 | Une page (texte, sections)                                 | `src/app/(site)/<slug>/page.tsx`                |
 | En-tête, menu, pied de page                                | `src/components/Header.tsx`, `Footer.tsx`, `MobileNav.tsx` |
 | Études de cas (réalisations)                               | `src/content/realisations.ts`                   |
-| Articles du blog                                           | `src/content/blog/*.md` (voir le `README.md` du dossier), ou publiés par n8n (`docs/api-blog-n8n.md`) |
+| Articles du blog                                           | `src/content/blog/*.md` (voir le `README.md` du dossier), publiés par n8n (`docs/api-blog-n8n.md`) ou par l'outil de rédaction « Blog » (réglages : `src/lib/blog-tool.ts`) |
 | Landing page Ads / confirmation de RDV                     | `src/app/(standalone)/…`                        |
 | Titres et meta descriptions                                | constantes `TITLE` / `DESCRIPTION` de chaque page |
 | Données structurées (Organization, LocalBusiness, Service…) | `src/lib/schema.ts`                             |
@@ -66,7 +64,7 @@ src/
     (standalone)/      landing page Ads (/appel-strategique/) et /rdv-confirme/
     api/contact/       envoi du formulaire de contact
     api/blog/publish/  API de publication des articles par n8n (docs/api-blog-n8n.md)
-    api/revalidate/    purge du cache du blog, appelée par l'outil de rédaction « Blog »
+    api/revalidate/    purge du cache du blog : demandes signées de l'outil de rédaction « Blog »
     blog-media/        images déposées par n8n
     sitemap_index.xml/ page-sitemap.xml/ post-sitemap.xml/ realisation-sitemap.xml/
     llms.txt/ feed/    synthèse pour moteurs génératifs, flux RSS
@@ -204,9 +202,16 @@ par son API publique, côté serveur (`src/lib/blog-remote.ts`), et affichés av
 n8n : même liste paginée, même gabarit d'article, mêmes sitemaps, flux RSS et `llms.txt`. Pour un même
 slug, l'article de l'outil l'emporte (il peut reprendre un ancien article à la même adresse).
 
-- **Cache** : réponses de l'API gardées 1 h (étiquette `blog`). À chaque publication, l'outil appelle
-  `POST https://agence-kameo.fr/api/revalidate` (en-tête `x-revalidate-secret`, corps
-  `{ "paths": ["/blog/mon-article"] }`) : cache purgé, pages concernées régénérées aussitôt.
+- **Réglages** : `src/lib/blog-tool.ts` (adresse de l'API, clé de lecture, clé publique de l'outil,
+  langues), dans le code et non en variables d'environnement : rien n'y est secret (la clé ne lit que
+  les articles publiés, la clé publique ne sert qu'à vérifier les signatures). Rien à configurer sur
+  le serveur ; une nouvelle clé donnée par l'outil se remplace dans ce fichier.
+- **Cache** : réponses de l'API gardées 1 h (étiquette `blog`). À chaque publication, et pour vérifier
+  que le site est relié, l'outil appelle `POST https://agence-kameo.fr/api/revalidate`
+  (`src/app/api/revalidate/route.ts`), demande signée en Ed25519 : en-têtes `x-blog-timestamp` et
+  `x-blog-signature` (signature de « timestamp.corps »), refusée (401) si elle ne correspond pas à la
+  clé publique ou date de plus de 5 min. Corps `{ "paths": ["/blog/mon-article"] }` : cache purgé,
+  pages concernées régénérées aussitôt.
 - **Article** : H1 = titre, image à la une avec son texte alternatif et son crédit, HTML de l'outil
   (nettoyé une seconde fois par liste blanche) dans la typographie des articles
   (`src/styles/blog-outil.css`), encadré « À retenir » si les points clés n'y figurent pas, encadré
@@ -214,12 +219,13 @@ slug, l'article de l'outil l'emporte (il peut reprendre un ancien article à la 
 - **SEO** : title et description de l'outil, canonical et hreflang (fr-FR + x-default), Open Graph et
   Twitter, données structurées de l'outil injectées telles quelles (complétées par les entités du site
   sans doublon), entrées du sitemap des articles avec hreflang. Rendu côté serveur : lisible par
-  GPTBot, ClaudeBot ou PerplexityBot sans JavaScript. Clé IndexNow : `public/b4a284cb007eb4fe879c05aef0c54b53.txt`.
+  GPTBot, ClaudeBot ou PerplexityBot sans JavaScript. Clé IndexNow : `public/0f487ec7851372b75e51580284a6fe01.txt`.
 - **Adresses** : `/blog/<slug>/`, avec le « / » final de tout le site (l'URL sans « / » de l'outil
   redirige en 301). Seule la langue principale (fr-FR) est servie : une langue ajoutée dans l'outil
   demanderait ses propres routes.
-- **Panne de l'outil** : le cache sert la dernière version ; la liste et les articles recommandés
-  s'affichent sans ses articles plutôt qu'en erreur.
+- **Panne de l'outil** : le build passe sans ses articles ; en ligne, chaque article garde sa dernière
+  version en cache, et la liste, les sitemaps, le flux et les articles recommandés s'affichent sans
+  ses articles plutôt qu'en erreur.
 
 ## Suivi des campagnes Meta (Google Tag Manager)
 

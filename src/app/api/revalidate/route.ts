@@ -1,52 +1,49 @@
-import { timingSafeEqual } from 'node:crypto';
+import { createPublicKey, verify } from 'node:crypto';
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { NextResponse, after } from 'next/server';
+import { after } from 'next/server';
 import { revalidateBlog } from '@/lib/blog-api';
-import { BLOG_CACHE_TAG } from '@/lib/blog-remote';
+import { BLOG_TOOL } from '@/lib/blog-tool';
 
 /*
- * POST /api/revalidate : appelée par l'outil de rédaction « Blog » à chaque publication, mise à
- * jour ou suppression d'article. En-tête x-revalidate-secret (variable BLOG_REVALIDATE_SECRET),
- * corps facultatif { paths: ["/blog/mon-article", …] }.
- * Purge le cache des appels à l'API (étiquette « blog », expiration immédiate), les chemins reçus,
- * puis tout le blog (liste, pages, sitemaps, flux, llms.txt). Une fois la réponse envoyée, le site
- * redemande lui-même ces pages : Next les régénère aussitôt, et le premier visiteur (ou le robot
- * prévenu par IndexNow) reçoit déjà la nouvelle version au lieu de l'ancienne.
+ * POST /api/revalidate : appelée par l'outil de rédaction « Blog » à chaque publication, et pour
+ * vérifier que le site est relié. Vérification de la signature telle que fournie par l'outil
+ * (Ed25519 sur « timestamp.corps », en-têtes x-blog-timestamp et x-blog-signature, 5 min) : seule
+ * sa clé publique est dans le code (src/lib/blog-tool.ts), aucun secret à configurer.
+ * Puis, propre à ce site : chemins reçus purgés avec et sans « / » final (le site sert ses pages
+ * avec), tout le blog purgé (liste, pages, sitemaps, flux, llms.txt), et une fois la réponse
+ * envoyée, ces pages redemandées pour que Next les régénère aussitôt.
  */
 export const dynamic = 'force-dynamic';
 
-function sameSecret(given: string | null, expected: string): boolean {
-  if (!given) return false;
-  const a = Buffer.from(given);
-  const b = Buffer.from(expected);
-  return a.length === b.length && timingSafeEqual(a, b);
-}
+// Demandes signées par l'outil « Blog » (Ed25519) : seule sa clé publique est dans le code.
+const toolKey = createPublicKey({ key: Buffer.from(BLOG_TOOL.publicKey, 'base64'), format: 'der', type: 'spki' });
 
-export async function POST(req: Request) {
-  const secret = process.env.BLOG_REVALIDATE_SECRET;
-  if (!secret) return NextResponse.json({ ok: false, error: 'BLOG_REVALIDATE_SECRET non configuré' }, { status: 503 });
-  if (!sameSecret(req.headers.get('x-revalidate-secret'), secret)) {
-    return NextResponse.json({ ok: false, error: 'secret invalide' }, { status: 401 });
+export async function POST(request: Request) {
+  const body = await request.text();
+  const timestamp = request.headers.get('x-blog-timestamp') ?? '';
+  const signature = Buffer.from(request.headers.get('x-blog-signature') ?? '', 'base64');
+  const recent = Math.abs(Date.now() - Number(timestamp)) < 5 * 60_000;
+  if (!recent || !verify(null, Buffer.from(`${timestamp}.${body}`), toolKey, signature)) {
+    return Response.json({ ok: false }, { status: 401 });
   }
 
+  // corps vide ou sans chemins (vérification de la liaison) : purge générale seulement
   let paths: string[] = [];
   try {
-    const body: unknown = await req.json();
-    const list = body && typeof body === 'object' ? (body as { paths?: unknown }).paths : undefined;
-    if (Array.isArray(list)) {
-      paths = list
+    const parsed = JSON.parse(body) as { paths?: unknown };
+    if (Array.isArray(parsed?.paths)) {
+      paths = parsed.paths
         .filter((p): p is string => typeof p === 'string' && p.startsWith('/') && !p.startsWith('//') && p.length <= 300)
         .map((p) => p.split(/[?#]/)[0])
         .slice(0, 200);
     }
   } catch {
-    // corps vide ou invalide : purge générale seulement
+    // corps non JSON : rien à cibler
   }
 
-  revalidateTag(BLOG_CACHE_TAG, { expire: 0 });
-  for (const p of paths) {
-    // le site sert ses pages avec « / » final : les deux formes, quelle que soit celle reçue
-    const bare = p.replace(/\/+$/, '') || '/';
+  revalidateTag('blog', { expire: 0 });
+  for (const path of paths) {
+    const bare = path.replace(/\/+$/, '') || '/';
     revalidatePath(bare);
     if (bare !== '/') revalidatePath(bare + '/');
   }
@@ -61,5 +58,5 @@ export async function POST(req: Request) {
       await fetch(origin + p, { headers: { 'x-kameo-warmup': '1' }, signal: AbortSignal.timeout(15_000) }).catch(() => {});
     }
   });
-  return NextResponse.json({ ok: true });
+  return Response.json({ ok: true });
 }
