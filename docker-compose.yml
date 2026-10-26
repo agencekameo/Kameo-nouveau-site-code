@@ -1,6 +1,5 @@
 # ═══════════════════════════════════════════════════════════════════════════════
-# agence-kameo.fr — site + base des articles publiés par n8n (articles de l'outil « Blog » : par API,
-# réglages dans src/lib/blog-tool.ts, aucune variable)
+# agence-kameo.fr — site + base des articles publiés par n8n
 # ─────────────────────────────────────────────────────────────────────────────
 # Démarrage :
 #   cp .env.example .env.docker      # puis remplir les valeurs
