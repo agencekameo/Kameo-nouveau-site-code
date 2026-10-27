@@ -2,7 +2,7 @@ import JsonLd from '@/components/JsonLd';
 import SiteEffects from '@/components/SiteEffects';
 import ClarityTracker from '@/components/consent/ClarityTracker';
 import TagManager from '@/components/consent/TagManager';
-import CalendlyModal from '@/components/landing/CalendlyModal';
+import CalendlyModal from '@/components/CalendlyModal';
 import LandingEffects from '@/components/landing/LandingEffects';
 import WhatsAppButton from '@/components/landing/WhatsAppButton';
 import { themeSchemas, websiteGraph } from '@/lib/schema';

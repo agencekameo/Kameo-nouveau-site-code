@@ -6,36 +6,56 @@ import { CONTACT } from '@/lib/site';
 import css from './CalendlyModal.styles';
 
 /*
- * Landing page Ads : prise de rendez-vous Calendly dans une fenêtre sur la page.
- * - Les liens calendly.com de la page (en-tête, hero, offres, contact, menu mobile) l'ouvrent au clic.
- *   Ils restent des liens calendly.com : sans JavaScript ils s'ouvrent comme avant, et le déclencheur
- *   GTM « Clic - Lien Calendly » (ClicCalendly, sans « Vérifier la validation ») les compte toujours.
- * - Calendly pèse environ 4 Mo et dépose ses propres traceurs (Segment, Stripe, script Meta…). Il est
- *   préchargé, fenêtre fermée, pour les visiteurs ayant accepté la mesure d'audience ET la publicité
- *   (politique de confidentialité, § 9.2) : le calendrier est prêt au clic. Pour les autres, il n'est
- *   chargé qu'au premier clic, et la fenêtre s'ouvre aussitôt avec la silhouette du calendrier le
- *   temps qu'il s'affiche (2 à 3 s). Il reste ensuite en place : rouvrir est instantané.
+ * Prise de rendez-vous Calendly dans une fenêtre sur la page, sans quitter le site : landing page Ads
+ * (/appel-strategique/) et articles du blog.
+ * - Les liens calendly.com de la page (en-tête, boutons, encarts, menu mobile) l'ouvrent au clic.
+ *   Ils restent des liens calendly.com : sans JavaScript ils s'ouvrent comme avant, et sur la landing
+ *   le déclencheur GTM « Clic - Lien Calendly » (ClicCalendly, sans « Vérifier la validation ») les
+ *   compte toujours.
+ * - Calendly pèse environ 4 Mo et dépose ses propres traceurs (Segment, Stripe, script Meta…). Avant
+ *   le clic, il n'est chargé que pour les visiteurs ayant accepté la mesure d'audience ET la publicité
+ *   (politique de confidentialité, § 9.2) : dès que la page est prête sur la landing (preload
+ *   « idle »), au survol ou au focus d'un lien de prise de rendez-vous sur les articles (preload
+ *   « intent » : la plupart des lecteurs ne réservent pas). Sinon, il est chargé au premier clic, et
+ *   la fenêtre s'ouvre aussitôt avec la silhouette du calendrier le temps qu'il s'affiche (2 à 3 s).
+ *   Il reste ensuite en place : rouvrir est instantané.
  * - Intégration sans widget.js, avec la même adresse que l'intégration officielle (embed_domain,
- *   embed_type, paramètres utm_* de la page). À 480 px de large au plus, Calendly affiche sa mise en
- *   page compacte, sans cadre ni marge, sur fond transparent : la fenêtre a exactement la taille du
- *   module, et sa hauteur suit le message calendly.page_height.
+ *   embed_type, paramètres utm_* de la page, à défaut ceux reçus en props : ils figurent dans le
+ *   détail de la réservation). À 480 px de large au plus, Calendly affiche sa mise en page compacte,
+ *   sans cadre ni marge, sur fond transparent : la fenêtre a exactement la taille du module, et sa
+ *   hauteur suit le message calendly.page_height.
  * - Après la réservation (message calendly.event_scheduled), la page part vers /rdv-confirme/, qui
  *   déclenche la conversion Schedule.
  */
 const CALENDLY_ORIGIN = 'https://calendly.com';
+const CALENDLY_LINK = 'a[href^="https://calendly.com/"]';
 const CONFIRM_PATH = '/rdv-confirme/';
-const UTM_KEYS = ['utm_campaign', 'utm_source', 'utm_medium', 'utm_content', 'utm_term'];
+const UTM_KEYS = ['utm_campaign', 'utm_source', 'utm_medium', 'utm_content', 'utm_term'] as const;
+const INTENT_EVENTS = ['pointerover', 'focusin', 'touchstart'] as const;
 const CALENDAR_HEIGHT = 602; // hauteur du calendrier compact (calendly.page_height)
 const SLOW_MS = 9000;
 
-function embedUrl() {
+type Utm = Partial<Record<(typeof UTM_KEYS)[number], string>>;
+
+type Props = {
+  /** Nom de la fenêtre pour les lecteurs d'écran. */
+  label?: string;
+  /** Préchargement, avec l'accord cookies : dès que la page est prête, ou au survol d'un lien. */
+  preload?: 'idle' | 'intent';
+  /** Paramètres utm_* par défaut ; ceux de l'adresse de la page priment. */
+  utm?: Utm;
+};
+
+const consented = (c: Consent | null) => !!c?.audience && !!c.marketing;
+
+function embedUrl(utm: Utm = {}) {
   const url = new URL(CONTACT.calendly);
   const q = url.searchParams;
   q.set('embed_domain', location.host);
   q.set('embed_type', 'Inline');
   const page = new URLSearchParams(location.search);
   for (const k of UTM_KEYS) {
-    const v = page.get(k);
+    const v = page.get(k) || utm[k];
     if (v) q.set(k, v);
   }
   q.set('hide_event_type_details', '1');
@@ -46,7 +66,7 @@ function embedUrl() {
 
 const WEEKDAYS = ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'];
 
-export default function CalendlyModal() {
+export default function CalendlyModal({ label = 'Réserver votre appel stratégique', preload = 'idle', utm }: Props) {
   const [src, setSrc] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [ready, setReady] = useState(false);
@@ -55,22 +75,38 @@ export default function CalendlyModal() {
   const frameRef = useRef<HTMLIFrameElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const trigger = useRef<HTMLElement | null>(null);
+  const utmRef = useRef(utm);
 
   // Accord « Mesure d'audience » et « Publicité » (à l'arrivée ou pendant la visite) : préchargement
   useEffect(() => {
+    const load = () => setSrc((s) => s ?? embedUrl(utmRef.current));
+
+    // Articles : au survol (ou au focus, au toucher) d'un lien de prise de rendez-vous
+    if (preload === 'intent') {
+      const onIntent = (e: Event) => {
+        const link = (e.target as Element | null)?.closest?.(CALENDLY_LINK);
+        if (link && !link.closest('.lpcal') && consented(readConsent())) load();
+      };
+      const opts = { capture: true, passive: true };
+      for (const t of INTENT_EVENTS) document.addEventListener(t, onIntent, opts);
+      return () => {
+        for (const t of INTENT_EVENTS) document.removeEventListener(t, onIntent, opts);
+      };
+    }
+
+    // Landing : dès que la page est prête
     let cancel = () => {};
-    const preload = () => setSrc((s) => s ?? embedUrl());
     const whenIdle = () => {
       if (typeof window.requestIdleCallback === 'function') {
-        const id = window.requestIdleCallback(preload, { timeout: 3000 });
+        const id = window.requestIdleCallback(load, { timeout: 3000 });
         cancel = () => window.cancelIdleCallback(id);
       } else {
-        const id = window.setTimeout(preload, 1500);
+        const id = window.setTimeout(load, 1500);
         cancel = () => window.clearTimeout(id);
       }
     };
     const apply = (c: Consent | null) => {
-      if (!c?.audience || !c.marketing) return;
+      if (!consented(c)) return;
       if (document.readyState === 'complete') whenIdle();
       else {
         window.addEventListener('load', whenIdle, { once: true });
@@ -83,18 +119,18 @@ export default function CalendlyModal() {
       off();
       cancel();
     };
-  }, []);
+  }, [preload]);
 
   // Clic sur un lien calendly.com de la page (hors fenêtre) : ouverture
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const link = (e.target as Element | null)?.closest?.('a[href^="https://calendly.com/"]') as HTMLAnchorElement | null;
+      const link = (e.target as Element | null)?.closest?.(CALENDLY_LINK) as HTMLAnchorElement | null;
       if (!link || link.closest('.lpcal')) return;
       // preventDefault seulement : le clic doit encore atteindre GTM (ClicCalendly)
       e.preventDefault();
       trigger.current = link;
-      setSrc((s) => s ?? embedUrl());
+      setSrc((s) => s ?? embedUrl(utmRef.current));
       setOpen(true);
     };
     document.addEventListener('click', onClick, true);
@@ -158,7 +194,7 @@ export default function CalendlyModal() {
     <>
       <div className={'lpcal' + (open ? ' is-open' : '')} aria-hidden={open ? undefined : 'true'} inert={!open}>
         <div className="lpcal__backdrop" onClick={close} />
-        <div className="lpcal__dialog" role="dialog" aria-modal="true" aria-label="Réserver votre appel stratégique">
+        <div className="lpcal__dialog" role="dialog" aria-modal="true" aria-label={label}>
           <button ref={closeRef} type="button" className="lpcal__close" aria-label="Fermer" onClick={close}>
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />

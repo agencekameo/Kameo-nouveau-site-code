@@ -1,6 +1,6 @@
 /*
- * Fenêtre Calendly de la landing (CalendlyModal.tsx) : fond flouté, module Calendly seul (carte blanche
- * aux angles arrondis, à sa taille exacte), bouton Fermer à l'extérieur, silhouette du calendrier
+ * Fenêtre Calendly (CalendlyModal.tsx : landing, articles du blog) : fond flouté, module Calendly seul
+ * (carte blanche aux angles arrondis, à sa taille exacte), bouton Fermer à l'extérieur, silhouette du calendrier
  * pendant le chargement. Au-dessus du bandeau cookies (z-index 10000).
  * Fenêtre fermée : transparente et inerte, mais jamais en visibility: hidden autour de l'iframe, que le
  * navigateur cesserait d'afficher ; Calendly préchargé y finit ainsi son rendu et s'ouvre prêt.

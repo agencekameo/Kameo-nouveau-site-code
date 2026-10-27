@@ -243,7 +243,7 @@ au conteneur est donc soumise à ce choix. Le pixel Meta n'est plus codé dans l
 | Meta Pixel - Contact (clic WhatsApp) | `Contact` | clic sur le bouton WhatsApp de la landing (lien wa.me) |
 
 Parcours : les boutons de la landing ouvrent Calendly (`contact-agence-kameo/30min`, événement
-« Visioconférence ») dans une fenêtre sur la page (`src/components/landing/CalendlyModal.tsx`, sans le script
+« Visioconférence ») dans une fenêtre sur la page (`src/components/CalendlyModal.tsx`, sans le script
 widget.js de Calendly) ; après la réservation, Calendly prévient la page (message `calendly.event_scheduled`),
 qui part vers `/rdv-confirme/`, ce qui déclenche `Schedule`. Calendly (environ 4 Mo et ses propres traceurs)
 est préchargé, fenêtre fermée, si le visiteur a accepté « Mesure d'audience » et « Publicité » ; sinon il
@@ -251,6 +251,13 @@ n'est chargé qu'au premier clic, et la fenêtre s'ouvre aussitôt avec la silho
 politique de confidentialité (§ 9.2) le décrit : à modifier ensemble. Même règle pour la popup Calendly de
 l'accueil sur ordinateur (`src/components/CalendlyPopup.tsx`) : sans cet accord, elle s'ouvre avec la silhouette
 du calendrier et un bouton qui le charge au clic.
+Articles du blog : même fenêtre (`CalendlyModal`, paramètres utm_source=blog, utm_medium=article,
+utm_campaign=<slug de l'article>, visibles dans le détail de la réservation), ouverte par tous les liens
+Calendly de l'article, dont le bouton flottant « Prendre RDV avec un expert » en bas à droite
+(`src/components/blog/BookingFab.tsx`, `src/styles/blog-rdv.css`). Avec l'accord cookies, Calendly n'y est
+préchargé qu'au survol d'un de ces liens. Le bouton s'efface devant l'encadré de fin d'article et, là où ils
+se chevaucheraient (moins de 1360 px de large, bandeau cookies sur mobile), devant l'encart « Prendre
+rendez-vous » des articles et le bandeau cookies tant qu'ils sont ouverts.
 Les boutons restent des liens calendly.com : sans JavaScript, Calendly s'ouvre dans un nouvel onglet et
 redirige lui-même vers `/rdv-confirme/`. La page de confirmation efface les paramètres d'adresse
 avant tout traceur : avec l'option Calendly « Passer les détails de l'événement à votre page

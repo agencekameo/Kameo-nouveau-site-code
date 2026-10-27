@@ -22,7 +22,7 @@ export default function PolitiqueDeConfidentialitePage() {
               <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-shield-halved" />
               </svg>
-              Dernière mise à jour&nbsp;: 23 octobre 2026{' '}
+              Dernière mise à jour&nbsp;: 27 octobre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Politique de confidentialité</h1>
             <p className="legal-hero__desc">
@@ -738,9 +738,10 @@ export default function PolitiqueDeConfidentialitePage() {
                       <li>
                         Calendly&nbsp;: module de prise de rendez-vous, qui dépose ses propres cookies (fonctionnement,
                         sécurité, mesure d’audience) dès son chargement&nbsp;: quand vous ouvrez la prise de rendez-vous
-                        ou demandez à afficher le calendrier, ou dès votre arrivée sur la page d’accueil (sur ordinateur)
-                        et sur la page «&nbsp;Appel stratégique&nbsp;» si vous avez accepté les cookies de mesure
-                        d’audience et publicitaires, pour qu’il s’affiche sans attente
+                        ou demandez à afficher le calendrier, ou plus tôt si vous avez accepté les cookies de mesure
+                        d’audience et publicitaires, pour qu’il s’affiche sans attente&nbsp;: dès votre arrivée sur la
+                        page d’accueil (sur ordinateur) et sur la page «&nbsp;Appel stratégique&nbsp;», et sur les
+                        articles du blog dès que vous survolez un bouton de prise de rendez-vous
                       </li>
                       <li>Google Maps&nbsp;: carte d’accès à l’agence, qui dépose ses propres cookies lorsqu’elle s’affiche</li>
                       <li>La Fabrique du Net&nbsp;: badge d’avis du pied de page, chargé depuis ses serveurs, sans cookie</li>

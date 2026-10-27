@@ -1,0 +1,132 @@
+/*
+ * Articles du blog : bouton flottant de prise de rendez-vous (src/components/blog/BookingFab.tsx).
+ * Sous l'encart « Prendre rendez-vous » des articles (z-index 200), le menu mobile (499), le bandeau
+ * cookies (10000) et la fenêtre Calendly (10001).
+ */
+.rdvfab {
+  position: fixed;
+  right: calc(20px + env(safe-area-inset-right, 0px));
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 190;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 8px 7px 7px;
+  border-radius: 999px;
+  background: var(--c-ink);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 18px 44px -14px rgba(15, 17, 21, .55), 0 3px 10px rgba(15, 17, 21, .18);
+  border: 1px solid rgba(255, 255, 255, .08);
+  /* masqué tant qu'il n'est pas affiché : ni visible, ni atteignable au clavier */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease), visibility 0s linear .35s, box-shadow .25s var(--ease);
+}
+.rdvfab.is-shown {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+.rdvfab:hover { box-shadow: 0 22px 50px -14px rgba(15, 17, 21, .6), 0 4px 12px rgba(15, 17, 21, .2); }
+.rdvfab.is-shown:hover { transform: translateY(-2px); }
+.rdvfab:focus-visible { outline: 3px solid var(--c-accent); outline-offset: 3px; }
+
+.rdvfab__avatar {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+.rdvfab__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+/* pastille « disponible » */
+.rdvfab__avatar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px var(--c-ink);
+}
+
+.rdvfab__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+.rdvfab__title {
+  font-family: var(--ff-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.rdvfab__sub {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, .62);
+  white-space: nowrap;
+}
+.rdvfab__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  color: #fff;
+  transition: transform .25s var(--ease);
+}
+.rdvfab:hover .rdvfab__icon { transform: scale(1.06); }
+
+/* Écrans où il chevaucherait l'encart « Prendre rendez-vous » de l'article (centré, 640 px ; le
+   bouton en fait environ 315) : effacé tant que l'encart est ouvert, il revient quand le visiteur le
+   ferme. Dès 1360 px, les deux tiennent côte à côte. */
+@media (max-width: 1359px) {
+  main:has(.kameo-sticky-ad:not(.is-closed)) .rdvfab.is-shown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px);
+    transition: opacity .35s var(--ease), transform .35s var(--ease), visibility 0s linear .35s;
+  }
+}
+
+@media (max-width: 640px) {
+  .rdvfab {
+    right: calc(14px + env(safe-area-inset-right, 0px));
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    gap: 10px;
+    padding: 6px 14px 6px 6px;
+  }
+  .rdvfab__avatar { width: 36px; height: 36px; }
+  .rdvfab__lead,
+  .rdvfab__sub,
+  .rdvfab__icon { display: none; }
+  .rdvfab__title { font-size: 14.5px; }
+  /* le bandeau cookies occupe toute la largeur du bas de l'écran */
+  body:has(.ckb) .rdvfab.is-shown {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rdvfab,
+  .rdvfab.is-shown,
+  .rdvfab.is-shown:hover { transform: none; }
+}
+@media print {
+  .rdvfab { display: none; }
+}

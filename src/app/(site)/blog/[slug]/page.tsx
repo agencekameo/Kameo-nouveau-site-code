@@ -3,10 +3,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactDOM from 'react-dom';
 import Breadcrumb from '@/components/Breadcrumb';
+import CalendlyModal from '@/components/CalendlyModal';
 import Icon from '@/components/Icon';
 import JsonLd from '@/components/JsonLd';
 import ArticleToc from '@/components/blog/ArticleToc';
 import BlogCard from '@/components/blog/BlogCard';
+import BookingFab from '@/components/blog/BookingFab';
 import { SIZES } from '@/lib/sizes';
 import { frDate, getAllPosts, getPost, type Post } from '@/lib/blog';
 import { blogPosting, faqFromHtml, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
@@ -15,6 +17,7 @@ import { CONTACT, SOCIAL, abs } from '@/lib/site';
 import { buildToc } from '@/lib/toc';
 import '@/styles/blog-api.css';
 import '@/styles/blog-outil.css';
+import '@/styles/blog-rdv.css';
 
 /* Article de blog (single.php) : articles de l'outil de rédaction, du dépôt et publiés par n8n. */
 
@@ -230,7 +233,14 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           </section>
         )}
+        <BookingFab />
       </main>
+      {/* Prise de rendez-vous sans quitter l'article : bouton flottant, encadré de fin, encart, en-tête */}
+      <CalendlyModal
+        label="Prendre rendez-vous avec un expert"
+        preload="intent"
+        utm={{ utm_source: 'blog', utm_medium: 'article', utm_campaign: post.slug }}
+      />
       <JsonLd
         data={[
           ...themeSchemas({
