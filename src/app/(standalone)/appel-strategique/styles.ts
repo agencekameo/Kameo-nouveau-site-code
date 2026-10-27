@@ -1091,7 +1091,6 @@ const css = `
       .lp2-cinematic { padding-top: 70px; } /* moins d'espace en haut sur mobile */
       .lp2-cin__bottom { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
       .lp2-cin__watermark { font-size: 40vw; bottom: -1vh; }
-      .lp2-cin__marquee-wrap { top: 110px; } /* descendre le bandeau pour qu'il ne chevauche pas la nav pill flottante */
       .lp2-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 48px; }
       .lp2-hero__left { padding-right: 0; margin-bottom: 48px; }
       .lp2-hero__right { padding-left: 0; }

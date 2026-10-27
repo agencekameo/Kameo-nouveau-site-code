@@ -1,7 +1,6 @@
 /* Corps de la page, converti depuis le gabarit WordPress. */
 import Link from 'next/link';
 import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
-import LpHeader from '@/components/landing/LpHeader';
 import LpWorks from '@/components/landing/LpWorks';
 import { PROOF } from '@/lib/site';
 
@@ -10,7 +9,7 @@ const Body = () => (
     <a className="skip-link" href="#main">
       Aller au contenu principal
     </a>
-    <LpHeader />
+    {/* Pas de barre de navigation sur la landing (src/components/landing/LpHeader.tsx, non affiché) */}
     <main id="main">
       {/* ━━ CINEMATIC HERO ━━ */}
       <section className="lp2-cinematic" id="cin-hero">
