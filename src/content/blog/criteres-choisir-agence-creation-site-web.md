@@ -21,7 +21,7 @@ format: html
 <p></p>
 <h2>Les 7 critères indispensables pour choisir la bonne agence</h2>
 <h3>1. La transparence tarifaire</h3>
-<p>Une agence sérieuse affiche ses grilles ou ses fourchettes. Méfiez-vous des devis flous. À titre d&#8217;indication, un site vitrine professionnel démarre autour de 1 999€, un e-commerce sur mesure à partir de 3 999€. En dessous, vous obtenez généralement un template retouché.</p>
+<p>Une agence sérieuse affiche ses grilles ou ses fourchettes. Méfiez-vous des devis flous. À titre d&#8217;indication, un site vitrine professionnel démarre autour de 1 999€, un e-commerce sur mesure à partir de 2 999€. En dessous, vous obtenez généralement un template retouché.</p>
 <h3>2. Le sur-mesure vs le template</h3>
 <p>Un vrai studio conçoit chaque projet à partir d&#8217;une maquette Figma personnalisée. C&#8217;est la garantie d&#8217;un rendu unique, aligné avec votre univers de marque, et non d&#8217;un WordPress générique acheté sur ThemeForest.</p>
 <h3>3. Le copywriting inclus</h3>
@@ -92,13 +92,13 @@ format: html
 <p></p>
 <h2>Pourquoi Agence Kameo se distingue en 2026</h2>
 <p>Basée à Paris et forte de plus de 50 entreprises accompagnées, <a href="/">Agence Kameo</a> incarne cette nouvelle génération de studios digitaux. La promesse est claire : aucun template, tout est conçu à partir d&#8217;une maquette Figma unique, le copywriting est intégré, et chaque site est pensé pour convertir dès la première visite.</p>
-<p>Les tarifs restent accessibles — 1 999€ pour un site vitrine, 3 999€ pour un e-commerce — sans compromis sur la qualité. Trois formules de maintenance (59,99€ / 99,99€ / 179,99€ HT/mois) permettent d&#8217;entretenir la performance dans la durée. La note de 4,2/5 sur Trustpilot reflète une exigence constante et une relation client soignée.</p>
+<p>Les tarifs restent accessibles — 1 999€ pour un site vitrine, 2 999€ pour un e-commerce — sans compromis sur la qualité. Trois formules de maintenance (59,99€ / 99,99€ / 179,99€ HT/mois) permettent d&#8217;entretenir la performance dans la durée. La note de 4,2/5 sur Trustpilot reflète une exigence constante et une relation client soignée.</p>
 <p>Que vous ayez besoin d&#8217;une <b>création de site vitrine</b>, d&#8217;une refonte, d&#8217;une landing page ou d&#8217;un accompagnement SEO, la méthode reste la même : &laquo;&nbsp;On écoute. On crée. On livre.&nbsp;&raquo; Trois étapes, aucun flou, un résultat mesurable.</p>
 <p>Choisir la bonne <b>agence de création de site web</b> en 2026, c&#8217;est arbitrer entre prix, sur-mesure, copywriting, technologie et suivi. Fuyez les templates génériques, exigez une maquette Figma dédiée, une rédaction professionnelle et une maintenance claire. Un studio spécialisé comme Agence Kameo réunit ces critères pour un budget maîtrisé. Votre site est votre premier commercial : ne le confiez pas au hasard.</p>
 <h2>FAQ</h2>
 <details>
 <summary>Quel budget prévoir pour une agence de création de site web en 2026 ?</summary>
-<p>Comptez à partir de 1 999€ pour un site vitrine sur mesure et 3 999€ pour un e-commerce professionnel. Ajoutez une formule de maintenance mensuelle (à partir de 59,99€ HT) pour garantir la sécurité, les mises à jour et la performance dans la durée.</p>
+<p>Comptez à partir de 1 999€ pour un site vitrine sur mesure et 2 999€ pour un e-commerce professionnel. Ajoutez une formule de maintenance mensuelle (à partir de 59,99€ HT) pour garantir la sécurité, les mises à jour et la performance dans la durée.</p>
 </details>
 <details>
 <summary>Comment savoir si une agence propose vraiment du sur-mesure ?</summary>

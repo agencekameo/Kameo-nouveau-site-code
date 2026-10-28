@@ -92,7 +92,7 @@ format: html
 </tr>
 <tr>
 <td>E-commerce sur mesure</td>
-<td>À partir de 3 999€</td>
+<td>À partir de 2 999€</td>
 <td>6 à 10 semaines</td>
 </tr>
 <tr>

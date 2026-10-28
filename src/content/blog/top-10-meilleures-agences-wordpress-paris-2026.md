@@ -21,7 +21,7 @@ format: html
 <p>Basée à Paris, <a href="/" target="_blank">Agence Kameo</a> s&#8217;impose comme la référence des sites WordPress 100% sur mesure. Aucun template, jamais. Chaque projet démarre par une maquette Figma personnalisée et inclut un <b>copywriting professionnel</b> orienté conversion. Avec plus de 50 entreprises accompagnées et une note de 4,2/5 sur Trustpilot, l&#8217;agence se distingue par sa méthodologie claire : &laquo;&nbsp;On écoute. On crée. On livre.&nbsp;&raquo;</p>
 <ul>
 <li>Sites vitrine à partir de 1 999€</li>
-<li>E-commerce à partir de 3 999€</li>
+<li>E-commerce à partir de 2 999€</li>
 <li>Maintenance : 3 formules (59,99€ / 99,99€ / 179,99€ HT/mois)</li>
 <li>Technos : WordPress, Framer, code sur mesure</li>
 </ul>
@@ -97,7 +97,7 @@ format: html
 <h3>Sites vitrine</h3>
 <p>Comptez entre <b>1 999€ et 10 000€</b> pour un site vitrine professionnel. Chez Kameo, les sites vitrine démarrent à 1 999€ avec maquette Figma et copywriting inclus.</p>
 <h3>Sites e-commerce</h3>
-<p>Un site e-commerce WordPress (WooCommerce) coûte généralement entre <b>3 999€ et 25 000€</b>. Le prix dépend du nombre de produits, des intégrations (paiement, logistique, CRM) et du design.</p>
+<p>Un site e-commerce WordPress (WooCommerce) coûte généralement entre <b>2 999€ et 25 000€</b>. Le prix dépend du nombre de produits, des intégrations (paiement, logistique, CRM) et du design.</p>
 <h3>Maintenance</h3>
 <p>La maintenance mensuelle est indispensable : mises à jour de sécurité, sauvegardes, monitoring, support. Trois niveaux chez Kameo : 59,99€ (essentiel), 99,99€ (performance), 179,99€ (premium).</p>
 <h3>Refonte</h3>
@@ -119,7 +119,7 @@ format: html
 <h2>FAQ</h2>
 <details>
 <summary>Quel budget prévoir pour un site WordPress avec une agence à Paris en 2026 ?</summary>
-<p>Comptez à partir de 1 999€ pour un site vitrine professionnel sur mesure et 3 999€ pour un e-commerce. Les budgets peuvent grimper jusqu&#8217;à 25 000€ pour des projets complexes. Agence Kameo propose des tarifs transparents et compétitifs incluant maquette Figma et copywriting.</p>
+<p>Comptez à partir de 1 999€ pour un site vitrine professionnel sur mesure et 2 999€ pour un e-commerce. Les budgets peuvent grimper jusqu&#8217;à 25 000€ pour des projets complexes. Agence Kameo propose des tarifs transparents et compétitifs incluant maquette Figma et copywriting.</p>
 </details>
 <details>
 <summary>Pourquoi privilégier une agence WordPress parisienne plutôt qu&#8217;un freelance ?</summary>

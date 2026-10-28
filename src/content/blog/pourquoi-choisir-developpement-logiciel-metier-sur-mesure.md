@@ -115,7 +115,7 @@ format: html
 <td>6 à 12 mois</td>
 </tr>
 </table>
-<p>Pour les projets web associés (site vitrine de présentation, espace client, landing page produit), nos prestations démarrent à <b>1 999€ pour un site vitrine</b> et <b>3 999€ pour un e-commerce</b>, ce qui peut compléter intelligemment votre écosystème digital sur-mesure.</p>
+<p>Pour les projets web associés (site vitrine de présentation, espace client, landing page produit), nos prestations démarrent à <b>1 999€ pour un site vitrine</b> et <b>2 999€ pour un e-commerce</b>, ce qui peut compléter intelligemment votre écosystème digital sur-mesure.</p>
 <h2>Erreurs fréquentes à éviter</h2>
 <ul>
 <li><b>Sous-estimer le cadrage</b> : un mauvais brief = un projet qui dérape.</li>

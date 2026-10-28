@@ -7,11 +7,11 @@
 export type PageInfo = { label: string; published: string; modified: string };
 
 export const PAGES: Record<string, PageInfo> = {
-  '/': { label: 'Accueil', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-16T16:47:04+00:00' },
+  '/': { label: 'Accueil', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-28T12:00:00+00:00' }, // prix e-commerce 2 999 € (28/10/2026)
   '/notre-agence/': { label: 'Notre agence', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-14T10:00:00+00:00' }, // Paris uniquement (14/10/2026)
   '/benjamin-dayan/': { label: 'Benjamin Dayan — Fondateur', published: '2026-09-23T15:17:34+00:00', modified: '2026-09-23T15:17:34+00:00' },
   '/agence-wordpress-paris/': { label: 'Agence WordPress Paris', published: '2026-06-11T08:39:03+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
-  '/creation-site-wordpress/': { label: 'Création de site WordPress', published: '2026-06-11T08:39:05+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
+  '/creation-site-wordpress/': { label: 'Création de site WordPress', published: '2026-06-11T08:39:05+00:00', modified: '2026-10-28T12:00:00+00:00' }, // prix e-commerce 2 999 € (28/10/2026)
   '/refonte-wordpress/': { label: 'Refonte WordPress', published: '2026-06-11T08:39:06+00:00', modified: '2026-06-11T08:39:06+00:00' },
   '/maintenance-wordpress/': { label: 'Maintenance WordPress', published: '2026-06-11T08:39:07+00:00', modified: '2026-06-11T08:39:07+00:00' },
   '/expertises-branding/': { label: 'Expertises Branding', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais en jours (24/10/2026)
@@ -26,7 +26,7 @@ export const PAGES: Record<string, PageInfo> = {
   '/blog/': { label: 'Blog', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
   '/mentions-legales/': { label: 'Mentions légales', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-17T15:24:01+00:00' },
   '/politique-de-confidentialite/': { label: 'Politique de confidentialité', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-24T12:00:00+00:00' }, // cookies (14/10/2026), badge La Fabrique du Net (16/10/2026), Google Tag Manager (23/10/2026), Microsoft Clarity (23/10/2026), Calendly préchargé après accord sur la landing et l'accueil (24/10/2026)
-  '/appel-strategique/': { label: 'Appel stratégique', published: '2026-05-06T00:18:28+00:00', modified: '2026-10-24T12:00:00+00:00' }, // ex-/landingpage/ (24/10/2026)
+  '/appel-strategique/': { label: 'Appel stratégique', published: '2026-05-06T00:18:28+00:00', modified: '2026-10-28T12:00:00+00:00' }, // ex-/landingpage/ (24/10/2026) ; prix e-commerce 2 999 € (28/10/2026)
   '/rdv-confirme/': { label: 'Rendez-vous confirmé', published: '2026-06-01T08:10:48+00:00', modified: '2026-06-11T11:08:43+00:00' },
 };
 

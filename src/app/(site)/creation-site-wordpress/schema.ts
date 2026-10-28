@@ -177,17 +177,17 @@ export const pageSchemas: object[] = [
           {
             '@type': 'Offer',
             name: 'E-commerce WordPress (WooCommerce)',
-            price: '3999',
+            price: '2999',
             priceCurrency: 'EUR',
             priceSpecification: {
               '@type': 'PriceSpecification',
-              price: '3999',
+              price: '2999',
               priceCurrency: 'EUR',
               valueAddedTaxIncluded: false,
             },
           },
         ],
-        dateModified: '2026-06-11T08:39:05+00:00',
+        dateModified: '2026-10-28T12:00:00+00:00',
       },
       {
         '@type': 'FAQPage',
@@ -211,7 +211,7 @@ export const pageSchemas: object[] = [
           },
           {
             '@type': 'Question',
-            name: 'Que comprend le tarif e-commerce 3 999 € HT sur WooCommerce ?',
+            name: 'Que comprend le tarif e-commerce 2 999 € HT sur WooCommerce ?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: "WooCommerce jusqu'à 50 fiches produits, tunnel optimisé, Stripe/Mollie, fiches SEO, pixel e-commerce, formation gestion catalogue. Au-delà : devis sur-mesure.",
@@ -234,7 +234,7 @@ export const pageSchemas: object[] = [
             },
           },
         ],
-        dateModified: '2026-06-11T08:39:05+00:00',
+        dateModified: '2026-10-28T12:00:00+00:00',
       },
     ],
   },

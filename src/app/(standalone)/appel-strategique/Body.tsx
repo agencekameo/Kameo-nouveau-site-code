@@ -820,7 +820,7 @@ const Body = () => (
                 <div className="pcard-offer__price-block">
                   <span className="pcard-offer__from">À partir de</span>
                   <p className="pcard-offer__price">
-                    3&nbsp;999&nbsp;€ <small>/HT</small>
+                    2&nbsp;999&nbsp;€ <small>/HT</small>
                   </p>
                 </div>
                 <ul className="pcard-offer__list">

@@ -108,7 +108,7 @@ format: html
 <p>Pour aligner le pré-audit avec une stratégie concrète, voici les ordres de grandeur que nous pratiquons chez Kameo :</p>
 <ul>
 <li><b>Site vitrine refondu</b> : à partir de 1 999€</li>
-<li><b>Site e-commerce optimisé SEO</b> : à partir de 3 999€</li>
+<li><b>Site e-commerce optimisé SEO</b> : à partir de 2 999€</li>
 <li><b>Maintenance mensuelle</b> : 3 formules (59,99€ / 99,99€ / 179,99€ HT)</li>
 <li><b>Accompagnement SEO continu</b> : sur devis selon objectifs</li>
 </ul>

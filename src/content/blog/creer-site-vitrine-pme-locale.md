@@ -60,7 +60,7 @@ format: html
 </tr>
 <tr>
 <td>Agence premium / e-commerce</td>
-<td>3 999 € et plus</td>
+<td>2 999 € et plus</td>
 <td>Entreprise avec besoins avancés</td>
 </tr>
 </table>

@@ -98,7 +98,7 @@ format: html
 </details>
 <details>
 <summary>Quel budget prévoir pour optimiser efficacement le référencement de ma boutique en ligne ?</summary>
-<p>Pour une boutique e-commerce performante, prévoyez un investissement initial entre 3 999€ et 8 000€ pour une création ou refonte intégrant dès le départ les fondamentaux SEO (architecture optimisée, contenus professionnels, performances techniques). Ensuite, un budget mensuel de 99,99€ à 179,99€ HT pour la maintenance, les optimisations continues et le suivi analytique garantit des résultats durables et une adaptation constante aux évolutions du secteur.</p>
+<p>Pour une boutique e-commerce performante, prévoyez un investissement initial entre 2 999€ et 8 000€ pour une création ou refonte intégrant dès le départ les fondamentaux SEO (architecture optimisée, contenus professionnels, performances techniques). Ensuite, un budget mensuel de 99,99€ à 179,99€ HT pour la maintenance, les optimisations continues et le suivi analytique garantit des résultats durables et une adaptation constante aux évolutions du secteur.</p>
 </details>
 <details>
 <summary>Dois-je privilégier le SEO ou la publicité payante (Google Ads) pour mon e-commerce ?</summary>

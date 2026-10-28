@@ -9,7 +9,7 @@ const PAGES: SearchDoc[] = [
   ['/notre-agence/', 'Notre agence', "L'équipe Kameo, studio à taille humaine à Paris : web, branding et motion."],
   ['/benjamin-dayan/', 'Benjamin Dayan, fondateur', 'Parcours du fondateur et CEO de Kameo : WordPress, SEO, direction artistique.'],
   ['/agence-wordpress-paris/', 'Agence WordPress Paris', 'Création, refonte et maintenance de sites WordPress sur-mesure.'],
-  ['/creation-site-wordpress/', 'Création de site WordPress', 'Landing 1 299 €, vitrine 1 999 €, e-commerce 3 999 €. Thème custom, SEO inclus.'],
+  ['/creation-site-wordpress/', 'Création de site WordPress', 'Landing 1 299 €, vitrine 1 999 €, e-commerce 2 999 €. Thème custom, SEO inclus.'],
   ['/refonte-wordpress/', 'Refonte WordPress', 'Refonte sans perte de SEO, audit gratuit, plan de redirections 301.'],
   ['/maintenance-wordpress/', 'Maintenance WordPress', 'Mises à jour, sauvegardes, sécurité, support. Dès 79 € HT/mois.'],
   ['/expertises-branding/', 'Branding et identité visuelle', 'Logo, charte graphique, direction artistique dès 499 € HT.'],

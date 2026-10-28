@@ -37,7 +37,7 @@ Dernière mise à jour : ${maj}
 ## Métier 1 : création de sites internet
 
 - [Agence WordPress Paris](${home}agence-wordpress-paris/) : création, refonte et maintenance de sites WordPress sur-mesure. Devis sous 24 h.
-- [Création de site WordPress](${home}creation-site-wordpress/) : landing dès 1 299 € HT, vitrine dès 1 999 € HT, e-commerce WooCommerce dès 3 999 € HT. Référencement inclus.
+- [Création de site WordPress](${home}creation-site-wordpress/) : landing dès 1 299 € HT, vitrine dès 1 999 € HT, e-commerce WooCommerce dès 2 999 € HT. Référencement inclus.
 - [Refonte WordPress](${home}refonte-wordpress/) : audit sous 48 h, plan de redirections 301 maîtrisé, design sur-mesure, performance.
 - [Maintenance WordPress](${home}maintenance-wordpress/) : forfaits sans engagement dès 79 € HT par mois. Mises à jour, sauvegardes, sécurité, supervision.
 - [Création de site e-commerce](${home}creation-site-ecommerce/) : WooCommerce, Shopify, architecture découplée.

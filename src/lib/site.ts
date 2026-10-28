@@ -48,7 +48,7 @@ export const SITE_ICON = '/wp-content/uploads/2026/05/cropped-favicon-dark';
 /** Balise de validation de la propriété Search Console, présente sur l'accueil WordPress. */
 export const GOOGLE_SITE_VERIFICATION = 'i8B4YTZYfB95QooLeJsDbIMjkJtJ-zv4_r8QuzANVw0';
 
-export const CONTENT_UPDATED = '2026-10-19T12:31:10+00:00';
+export const CONTENT_UPDATED = '2026-10-28T12:00:00+00:00';
 
 /** URL absolue d'un chemin du site ; une URL déjà absolue (images de l'outil de rédaction) est gardée telle quelle. */
 export const abs = (path = '/') => (/^https?:\/\//i.test(path) ? path : SITE_URL + (path.startsWith('/') ? path : '/' + path));
