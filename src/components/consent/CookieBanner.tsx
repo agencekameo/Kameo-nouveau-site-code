@@ -6,7 +6,9 @@ import { onConsentOpen, readConsent, saveConsent } from '@/lib/consent';
 /*
  * Bandeau de consentement aux cookies, présent sur toutes les pages. Affiché tant qu'aucun
  * choix n'a été fait (ou après 6 mois), rouvert par le lien « Gestion des cookies ».
- * « Tout refuser » et « Tout accepter » ont le même poids visuel, comme l'exige la CNIL.
+ * « Accepter » et « Refuser » ont le même poids visuel, comme l'exige la CNIL : le bandeau
+ * incite seulement par son ton (demande signée du fondateur, utilité des mesures expliquée)
+ * et par l'ordre de lecture (« Accepter » en premier).
  */
 export default function CookieBanner() {
   const [open, setOpen] = useState(false);
@@ -35,11 +37,13 @@ export default function CookieBanner() {
   return (
     <div className="ckb" role="dialog" aria-modal="false" aria-labelledby="ckb-title" aria-describedby="ckb-text">
       <p className="ckb__title" id="ckb-title">
-        Vos choix en matière de cookies
+        Aidez-nous à améliorer le site
       </p>
+      <p className="ckb__sign">Benjamin, fondateur de Kameo</p>
       <p className="ckb__text" id="ckb-text">
-        Avec votre accord, nous utilisons des cookies pour mesurer l’audience du site et l’efficacité de nos publicités.
-        Le site fonctionne sans eux. Vous pouvez changer d’avis à tout moment via « Gestion des cookies » en bas de page.{' '}
+        Avec votre accord, nous mesurons la fréquentation du site et l’efficacité de nos publicités, pour savoir ce
+        qui vous est vraiment utile. Vous pouvez changer d’avis à tout moment via «&nbsp;Gestion des cookies&nbsp;», en
+        bas de page.{' '}
         <a href="/politique-de-confidentialite/#section-9">En savoir plus</a>
       </p>
       {details && (
@@ -61,8 +65,8 @@ export default function CookieBanner() {
         </div>
       )}
       <div className="ckb__actions">
-        <button type="button" className="ckb__btn" onClick={() => choose(false, false)}>
-          Tout refuser
+        <button type="button" className="ckb__btn" onClick={() => choose(true, true)}>
+          {details ? 'Tout accepter' : 'Accepter'}
         </button>
         {details ? (
           <button type="button" className="ckb__btn" onClick={() => choose(audience, marketing)}>
@@ -73,8 +77,8 @@ export default function CookieBanner() {
             Personnaliser
           </button>
         )}
-        <button type="button" className="ckb__btn" onClick={() => choose(true, true)}>
-          Tout accepter
+        <button type="button" className="ckb__btn" onClick={() => choose(false, false)}>
+          {details ? 'Tout refuser' : 'Refuser'}
         </button>
       </div>
     </div>
