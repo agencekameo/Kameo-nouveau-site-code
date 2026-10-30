@@ -7,7 +7,9 @@ import type { NextConfig } from 'next';
  *  - taap.it                    : tracker de liens (toutes les pages)
  *  - assets.calendly.com        : widget.js et widget.css (popup de rendez-vous, badge mobile)
  *  - calendly.com               : iframe de prise de rendez-vous
- *  - www.googletagmanager.com   : Google Tag Manager (landing page, confirmation), après consentement
+ *  - www.googletagmanager.com   : Google Tag Manager (landing page, confirmation) et gtag.js de Google Analytics,
+ *                                 après consentement
+ *  - *.google-analytics.com, *.analytics.google.com : envoi des mesures Google Analytics 4, après consentement
  *  - *.clarity.ms, c.bing.com   : Microsoft Clarity (landing page), après consentement « Mesure d'audience »
  *  - connect.facebook.net       : Meta Pixel, chargé par Google Tag Manager
  *  - www.facebook.com           : pixel <noscript> et envoi des événements
@@ -32,9 +34,9 @@ const CSP_REPORT_ONLY = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://taap.it https://assets.calendly.com https://connect.facebook.net https://www.lafabriquedunet.fr https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms",
   "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
-  "img-src 'self' data: https://www.facebook.com https://cdn.prod.website-files.com https://assets.calendly.com https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://outilblog.nexus-games.fr",
+  "img-src 'self' data: https://www.facebook.com https://cdn.prod.website-files.com https://assets.calendly.com https://www.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms https://c.bing.com https://outilblog.nexus-games.fr",
   "font-src 'self' https://fonts.gstatic.com",
-  "connect-src 'self' https://taap.it https://*.taap.it https://www.facebook.com https://connect.facebook.net https://calendly.com https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com",
+  "connect-src 'self' https://taap.it https://*.taap.it https://www.facebook.com https://connect.facebook.net https://calendly.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://c.bing.com",
   "frame-src https://calendly.com https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com",
   "media-src 'self'",
   "object-src 'none'",

@@ -4,7 +4,8 @@
  * tout moment (« Gestion des cookies » en pied de page).
  *
  * Catégories soumises au consentement :
- *  - audience  : mesure d'audience taap.it (toutes les pages) et Microsoft Clarity (landing page),
+ *  - audience  : mesure d'audience taap.it et Google Analytics 4 (toutes les pages,
+ *                src/components/consent/GoogleAnalytics.tsx) et Microsoft Clarity (landing page),
  *                src/components/consent/ClarityTracker.tsx ;
  *  - marketing : Google Tag Manager GTM-W8S6WQB9 et le pixel Meta qu'il charge (landing page Ads et
  *                confirmation de rendez-vous), src/components/consent/TagManager.tsx.
@@ -36,9 +37,10 @@ export function saveConsent(choice: { audience: boolean; marketing: boolean }): 
   document.cookie = `${COOKIE}=${encodeURIComponent(JSON.stringify(c))}; Max-Age=${MAX_AGE}; Path=/; SameSite=Lax${secure}`;
   const withdrawn = (before?.audience && !c.audience) || (before?.marketing && !c.marketing);
   if (withdrawn) {
-    // cookies Meta et Clarity posés sur ce domaine (ceux de taap.it, Meta et Clarity sur leurs domaines expirent d'eux-mêmes)
-    for (const name of ['_fbp', '_fbc', '_clck', '_clsk']) document.cookie = `${name}=; Max-Age=0; Path=/; Domain=${location.hostname.replace(/^www\./, '')}`;
-    for (const name of ['_fbp', '_fbc', '_clck', '_clsk']) document.cookie = `${name}=; Max-Age=0; Path=/`;
+    // cookies Meta, Clarity et Google Analytics posés sur ce domaine (ceux de taap.it, Meta et Clarity sur leurs domaines expirent d'eux-mêmes)
+    const names = ['_fbp', '_fbc', '_clck', '_clsk', '_ga', '_ga_FEZJYLD8L8'];
+    for (const name of names) document.cookie = `${name}=; Max-Age=0; Path=/; Domain=${location.hostname.replace(/^www\./, '')}`;
+    for (const name of names) document.cookie = `${name}=; Max-Age=0; Path=/`;
     location.reload();
     return;
   }

@@ -4,6 +4,7 @@ import '@/styles/fonts.css';
 import '@/styles/main.css';
 import '@/styles/consent.css';
 import AudienceTracker from '@/components/consent/AudienceTracker';
+import GoogleAnalytics from '@/components/consent/GoogleAnalytics';
 import CookieBanner from '@/components/consent/CookieBanner';
 import { GEO, SITE_ICON, SITE_NAME, SITE_URL } from '@/lib/site';
 
@@ -44,8 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr-FR">
       <body>
         {children}
-        {/* traceurs chargés seulement après consentement (taap.it ici, pixel Meta sur la landing) */}
+        {/* traceurs chargés seulement après consentement (taap.it et Google Analytics ici, pixel Meta sur la landing) */}
         <AudienceTracker />
+        <GoogleAnalytics />
         <CookieBanner />
       </body>
     </html>

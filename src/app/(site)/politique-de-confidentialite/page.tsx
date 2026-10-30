@@ -337,8 +337,8 @@ export default function PolitiqueDeConfidentialitePage() {
                     <strong>Hébergeur&nbsp;:</strong> Planet Hoster Inc. (Canada), serveurs conformes RGPD
                   </li>
                   <li>
-                    <strong>Mesure d’audience&nbsp;:</strong> taap.it et Microsoft Clarity (Microsoft Ireland), uniquement avec votre
-                    consentement
+                    <strong>Mesure d’audience&nbsp;:</strong> Google Analytics (Google Ireland), taap.it et Microsoft Clarity
+                    (Microsoft Ireland), uniquement avec votre consentement
                   </li>
                   <li>
                     <strong>Mesure publicitaire&nbsp;:</strong> Meta Platforms (pixel Meta), chargé par Google Tag Manager
@@ -710,6 +710,10 @@ export default function PolitiqueDeConfidentialitePage() {
                   <div className="legal__service-card">
                     <strong>Mesure d’audience</strong>
                     <ul>
+                      <li>
+                        Google Analytics&nbsp;: fréquentation, pages vues et parcours sur le site (cookies _ga et
+                        _ga_FEZJYLD8L8, 13 mois)
+                      </li>
                       <li>taap.it&nbsp;: pages vues, clics et parcours sur le site</li>
                       <li>
                         Microsoft Clarity&nbsp;: cartes de chaleur et relecture des visites de la landing page (cookies _clck
