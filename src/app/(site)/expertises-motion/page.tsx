@@ -938,9 +938,9 @@ export default function ExpertisesMotionPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Oui, Kameo est une <strong>agence motion design située à Paris</strong>, au 9 rue des Colonnes
-                    (Paris 2<sup>e</sup>). Nos motion designers travaillent en interne, sans sous-traitance. Nous
-                    accompagnons clients à Paris, en France et à l’international en visio.
+                    Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2<sup>e</sup>), et son{' '}
+                    <strong>équipe travaille à distance</strong>. Nos motion designers travaillent en interne, sans
+                    sous-traitance. Nous accompagnons des clients à Paris, en France et à l’international, en visio.
                   </p>
                 </div>
               </details>

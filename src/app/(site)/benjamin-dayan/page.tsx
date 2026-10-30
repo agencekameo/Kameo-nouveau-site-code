@@ -66,7 +66,7 @@ export default function BenjaminDayanPage() {
               <h1 className="bio-hero__title">Benjamin Dayan</h1>
               <p className="bio-hero__role">
                 Fondateur et CEO de Kameo, agence web parisienne créée en 2023. Passionné par le design web stratégique
-                et le SEO, il pilote la direction artistique et le développement de l'agence depuis Paris 2e.
+                et le SEO, il pilote la direction artistique et le développement de l'agence.
               </p>
               <div className="bio-hero__links">
                 <a

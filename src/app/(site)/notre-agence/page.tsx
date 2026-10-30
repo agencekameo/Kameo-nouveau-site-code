@@ -53,7 +53,7 @@ export default function NotreAgencePage() {
             </div>
             <div className="about__body">
               <p className="about__text">
-                Kameo, c’est 3 ans d’existence, une agence au cœur de Paris, et plus de 50 entreprises accompagnées
+                Kameo, c’est 3 ans d’existence, une équipe de 7&nbsp;personnes et plus de 50 entreprises accompagnées
                 dans des secteurs aussi variés que la cosmétique, l’assurance, le juridique ou le médical.
               </p>
               <p className="about__text">
