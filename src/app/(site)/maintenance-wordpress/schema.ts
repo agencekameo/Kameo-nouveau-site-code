@@ -61,7 +61,7 @@ export const pageSchemas: object[] = [
       {
         '@type': ['ProfessionalService', 'LocalBusiness'],
         '@id': 'https://agence-kameo.fr/#localbusiness',
-        name: 'Kameo, agence web à Paris',
+        name: 'Kameo',
         url: 'https://agence-kameo.fr/',
         image: 'https://agence-kameo.fr/images/hero.webp',
         address: {
@@ -72,19 +72,8 @@ export const pageSchemas: object[] = [
           addressRegion: 'Île-de-France',
           addressCountry: 'FR',
         },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: '48.8688998',
-          longitude: '2.3398863',
-        },
         telephone: '+33662379985',
-        priceRange: '€€€',
-        openingHoursSpecification: {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '09:00',
-          closes: '19:00',
-        },
+        priceRange: '€€',
         areaServed: [
           {
             '@type': 'City',
@@ -129,7 +118,7 @@ export const pageSchemas: object[] = [
         '@type': 'Service',
         '@id': 'https://agence-kameo.fr/maintenance-wordpress/#service',
         name: 'Maintenance WordPress mensuelle à Paris',
-        serviceType: 'WordPress maintenance &amp; support',
+        serviceType: 'Maintenance et support de sites WordPress',
         description:
           'Maintenance WordPress à Paris : mises à jour, sauvegardes, monitoring sécurité 24/7, support technique. Forfaits dès 79 € HT/mois sans engagement.',
         provider: {

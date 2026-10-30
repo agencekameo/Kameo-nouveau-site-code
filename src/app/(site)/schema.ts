@@ -1,3 +1,5 @@
+import { PROOF } from '@/lib/site';
+
 /* Données structurées propres à la page (émises dans le corps par le gabarit WordPress). */
 export const pageSchemas: object[] = [
   {
@@ -11,7 +13,7 @@ export const pageSchemas: object[] = [
         name: 'Qui est Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est un studio intégré, basé au 9 rue des Colonnes dans le 2e arrondissement, spécialisé dans deux métiers : la création de sites WordPress sur-mesure et le développement d'applications métier, c'est-à-dire des CRM, des marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note Trustpilot 4,6/5 sur 23 avis.",
+          text: `Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est un studio intégré, avec une adresse au 9 rue des Colonnes dans le 2e arrondissement, spécialisé dans deux métiers : la création de sites WordPress sur-mesure et le développement d'applications métier, c'est-à-dire des CRM, des marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note Trustpilot ${PROOF.avisNote}/5 sur ${PROOF.avisNombre} avis.`,
         },
       },
       {
@@ -19,7 +21,7 @@ export const pageSchemas: object[] = [
         name: "Où est basée l'agence Kameo ?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Au 9 rue des Colonnes, Paris 2e, métro Bourse. C'est notre seul établissement : toute l'équipe travaille depuis ces bureaux. Les rendez-vous se font en visio ou sur place, à votre convenance.",
+          text: "Kameo a son adresse au 9 rue des Colonnes, Paris 2e. L'équipe travaille à distance : les rendez-vous se font en visio, avec des clients à Paris et dans toute la France.",
         },
       },
       {
@@ -35,7 +37,7 @@ export const pageSchemas: object[] = [
         name: 'Combien coûte un site chez Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Une landing WordPress démarre à 1 299 € HT, un site vitrine à 1 999 € HT, une boutique WooCommerce à 2 999 € HT. Pour du développement sur-mesure, comptez à partir de 12 000 € HT. Le devis chiffré arrive sous 24 h après un échange découverte de 30 minutes, sans frais.',
+          text: 'Une landing WordPress démarre à 1 299 € HT, un site vitrine à 1 999 € HT, une boutique WooCommerce à 2 999 € HT. Pour une application métier sur-mesure (CRM, marketplace, SaaS), comptez à partir de 7 999 € HT ; pour un e-commerce sur-mesure, à partir de 12 000 € HT. Le devis chiffré arrive sous 24 h après un échange découverte de 30 minutes, sans frais.',
         },
       },
       {
@@ -43,7 +45,7 @@ export const pageSchemas: object[] = [
         name: 'Kameo travaille-t-elle avec des freelances ou en offshore ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Non. Designer, développeur, expert SEO, motion designer et chef de projet travaillent côte à côte dans les bureaux du 2e arrondissement. Aucune sous-traitance, aucun offshore, aucune plateforme de freelances. Vous avez un seul interlocuteur du début à la fin.',
+          text: 'Non. Designer, développeur, expert SEO, motion designer et chef de projet travaillent ensemble, dans une même équipe. Aucune sous-traitance, aucun offshore, aucune plateforme de freelances. Vous avez un seul interlocuteur du début à la fin.',
         },
       },
       {

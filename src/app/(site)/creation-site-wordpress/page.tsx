@@ -55,9 +55,9 @@ export default function CreationSiteWordpressPage() {
               <span className="page-hero__title-muted">3 formats, prix transparents, livré rapide</span>
             </h1>
             <p className="page-hero__text">
-              Landing page, site vitrine ou e-commerce WooCommerce : on conçoit votre site WordPress sur-mesure, sans
-              page-builder lourd, avec le SEO baked-in dès la stratégie. Devis détaillé sous 24 h, livraison en 14 jours
-              à 1 mois selon le format.
+              Landing page, site vitrine ou e-commerce WooCommerce : on conçoit votre site WordPress sur-mesure, construit
+              avec Elementor Pro ou sur un thème codé, et pensé pour le SEO dès la stratégie. Devis détaillé sous 24 h,
+              livraison en 14 jours à 1 mois selon le format.
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
@@ -131,7 +131,7 @@ export default function CreationSiteWordpressPage() {
                 <h3 className="ccrea-why__name">Délai garanti à 97 %</h3>
                 <p className="ccrea-why__text">
                   Notre équipe intégrée tient ses engagements. Sur 50+ projets livrés depuis 2023, 97 % l'ont été dans
-                  le délai annoncé au devis. Aucun chef de projet intermédiaire qui dilue l'info.
+                  le délai annoncé au devis. Pas d'intermédiaire : les deux dirigeants pilotent eux-mêmes les projets.
                 </p>
               </article>
               <article className="ccrea-why__card">
@@ -140,10 +140,10 @@ export default function CreationSiteWordpressPage() {
                     <use href="/icons.svg#i-solid-code" />
                   </svg>
                 </span>
-                <h3 className="ccrea-why__name">Thème WordPress 100 % sur-mesure</h3>
+                <h3 className="ccrea-why__name">Design WordPress 100 % sur-mesure</h3>
                 <p className="ccrea-why__text">
-                  Zéro page-builder lourd (Elementor, Divi, WPBakery). On code un thème WordPress custom, performant,
-                  sécurisé, facile à maintenir et que Google indexe sans friction.
+                  Pas de thème acheté : votre maquette Figma est construite avec Elementor Pro, ou sur un thème codé
+                  quand le projet le demande. Un site rapide, sécurisé et que Google indexe sans friction.
                 </p>
               </article>
               <article className="ccrea-why__card">
@@ -164,10 +164,9 @@ export default function CreationSiteWordpressPage() {
                     <use href="/icons.svg#i-solid-graduation-cap" />
                   </svg>
                 </span>
-                <h3 className="ccrea-why__name">Formation Gutenberg incluse</h3>
+                <h3 className="ccrea-why__name">Formation incluse</h3>
                 <p className="ccrea-why__text">
-                  Vous éditez vos contenus comme dans Notion grâce à des blocks Gutenberg sur-mesure. Formation visio
-                  d'1 h.
+                  Vous modifiez vous-même vos textes, images et pages, sans développeur. Formation visio d'1 h.
                 </p>
               </article>
               <article className="ccrea-why__card">
@@ -178,8 +177,7 @@ export default function CreationSiteWordpressPage() {
                 </span>
                 <h3 className="ccrea-why__name">Zéro sous-traitance</h3>
                 <p className="ccrea-why__text">
-                  Designer, développeur, expert SEO et rédacteur travaillent côte à côte dans nos bureaux du 2
-                  <sup>e</sup>. Un seul interlocuteur, une responsabilité claire, des décisions rapides.
+                  Designer, développeur, expert SEO et rédacteur travaillent dans une même équipe. Un seul interlocuteur, une responsabilité claire, des décisions rapides.
                 </p>
               </article>
             </div>
@@ -483,7 +481,7 @@ export default function CreationSiteWordpressPage() {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">Blog Gutenberg pré-configuré</th>
+                    <th scope="row">Blog pré-configuré</th>
                     <td>
                       <span className="ccrea-compare__dash">—</span>
                     </td>
@@ -513,7 +511,7 @@ export default function CreationSiteWordpressPage() {
                     <td>Option</td>
                   </tr>
                   <tr>
-                    <th scope="row">Formation Gutenberg (visio 1 h)</th>
+                    <th scope="row">Formation à l'édition (visio 1 h)</th>
                     <td>
                       <span className="ccrea-compare__dash">—</span>
                     </td>
@@ -561,7 +559,7 @@ export default function CreationSiteWordpressPage() {
                     Brief découverte <span className="ccrea-steps__duration">30 min · gratuit</span>
                   </h3>
                   <p className="ccrea-steps__desc">
-                    RDV visio ou dans nos bureaux Paris 2<sup>e</sup>. On comprend votre activité, votre cible, vos
+                    RDV en visio. On comprend votre activité, votre cible, vos
                     concurrents, vos objectifs business et votre budget. Si on est faits pour bosser ensemble, on
                     enchaîne. Sinon on vous oriente honnêtement.
                   </p>
@@ -625,9 +623,8 @@ export default function CreationSiteWordpressPage() {
                     Développement WordPress sur-mesure <span className="ccrea-steps__duration">7 à 18 j</span>
                   </h3>
                   <p className="ccrea-steps__desc">
-                    Thème WordPress custom, blocks Gutenberg dédiés à vos besoins éditoriaux, intégration au pixel près,
-                    optimisation des Core Web Vitals, balisage Schema.org, sécurité. Code propre, versionné Git,
-                    documenté.
+                    Intégration au pixel près avec Elementor Pro, ou thème codé sur mesure selon le projet, optimisation
+                    des Core Web Vitals, balisage Schema.org, sécurité. Site documenté pour la suite.
                   </p>
                   <p className="ccrea-steps__deliv">
                     <strong>Livrables :</strong>site en environnement de staging, accès pour recette.
@@ -642,7 +639,7 @@ export default function CreationSiteWordpressPage() {
                   </h3>
                   <p className="ccrea-steps__desc">
                     Migration vers votre hébergement final, mise en ligne, soumission à Google Search Console, formation
-                    visio à l'admin Gutenberg (1 h) et remise de la documentation Notion personnalisée. Bonus : 30 jours
+                    visio à l'édition de votre site (1 h) et remise de la documentation Notion personnalisée. Bonus : 30 jours
                     de support technique inclus.
                   </p>
                   <p className="ccrea-steps__deliv">
@@ -673,8 +670,8 @@ export default function CreationSiteWordpressPage() {
                 <h3 className="ccrea-stack__card-name">Front-end</h3>
                 <ul className="ccrea-stack__card-list">
                   <li>WordPress 6.x</li>
-                  <li>Thème custom (PHP, Twig optionnel)</li>
-                  <li>Gutenberg + blocks ACF Pro</li>
+                  <li>Elementor Pro</li>
+                  <li>Thème codé sur mesure (PHP) selon le projet</li>
                   <li>CSS moderne (variables, grid)</li>
                   <li>JavaScript vanilla léger</li>
                 </ul>
@@ -752,7 +749,7 @@ export default function CreationSiteWordpressPage() {
                       </span>
                       <span className="ccrea-vs__winner-title">WordPress sur-mesure</span>
                     </th>
-                    <th scope="col">WP + page-builder</th>
+                    <th scope="col">WP + thème acheté</th>
                     <th scope="col">Webflow</th>
                     <th scope="col">Wix / Squarespace</th>
                     <th scope="col">Shopify</th>
@@ -789,7 +786,7 @@ export default function CreationSiteWordpressPage() {
                   </tr>
                   <tr>
                     <th scope="row">Performance (CWV)</th>
-                    <td className="is-winner ccrea-vs__rate--top">Optimale</td>
+                    <td className="is-winner ccrea-vs__rate--top">Optimisée</td>
                     <td className="ccrea-vs__rate--low">Souvent lente</td>
                     <td className="ccrea-vs__rate--top">Bonne</td>
                     <td className="ccrea-vs__rate--mid">Variable</td>
@@ -799,7 +796,7 @@ export default function CreationSiteWordpressPage() {
                   <tr>
                     <th scope="row">Liberté / personnalisation</th>
                     <td className="is-winner ccrea-vs__rate--top">Totale</td>
-                    <td className="ccrea-vs__rate--mid">Limitée par builder</td>
+                    <td className="ccrea-vs__rate--mid">Limitée par le thème</td>
                     <td className="ccrea-vs__rate--mid">Bonne</td>
                     <td className="ccrea-vs__rate--low">Très limitée</td>
                     <td className="ccrea-vs__rate--low">Cadre e-commerce</td>
@@ -924,7 +921,7 @@ export default function CreationSiteWordpressPage() {
                 >
                   <img
                     src="/images/landing_page/Nexusgames.webp"
-                    alt="Site WordPress Nexus Games par Kameo : courbe Search Console"
+                    alt="Courbe Google Search Console de Nexus Games"
                     loading="lazy"
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                     width="1292"
@@ -1008,6 +1005,10 @@ export default function CreationSiteWordpressPage() {
                     </div>
                   </div>
                 </div>
+                <p style={{ fontSize: '12px', color: 'rgba(15,17,21,.55)', margin: '14px 0 0', lineHeight: '1.5' }}>
+                  Nexus Games est une société de Benjamin Dayan, fondateur de Kameo. Son site est développé avec
+                  Next.js, pas WordPress : ce cas montre notre travail de référencement.
+                </p>
               </article>
               <article
                 style={{
@@ -1239,13 +1240,13 @@ export default function CreationSiteWordpressPage() {
         <section className="ccrea-team">
           <div className="container">
             <header className="ccrea-team__head">
-              <span className="ccrea-team__eyebrow">L'équipe qui code votre site</span>
+              <span className="ccrea-team__eyebrow">L'équipe qui construit votre site</span>
               <h2 className="ccrea-team__title">
-                Vous bossez avec ces 3 personnes, pas avec un commercial puis un sous-traitant
+                Vous parlez aux dirigeants, pas à un commercial puis à un sous-traitant
               </h2>
               <p className="ccrea-team__intro">
-                Designer, développeur, fondateur : nos 3 profils qui prennent en charge votre projet de A à Z. Vous les
-                rencontrez au brief, vous travaillez avec eux pendant tout le projet, ils vous forment à la livraison.
+                Kameo compte 7&nbsp;personnes. Les chefs de projet sont les deux dirigeants, Benjamin Dayan et Louison
+                Boutet : vous échangez avec eux dès le brief, pendant tout le projet, et ils vous forment à la livraison.
               </p>
             </header>
             <div className="ccrea-team__grid">
@@ -1287,17 +1288,17 @@ export default function CreationSiteWordpressPage() {
                 <div className="ccrea-team__avatar">
                   <img
                     src="/images/Louison.webp"
-                    alt="Louison Boutet, Lead developpeur WordPress Kameo Paris"
+                    alt="Louison Boutet, directeur général de Kameo"
                     width="400"
                     height="400"
                     loading="lazy"
                   />
                 </div>
                 <h3 className="ccrea-team__name">Louison Boutet</h3>
-                <p className="ccrea-team__role">Lead développeur WordPress</p>
+                <p className="ccrea-team__role">Directeur général · Chef de projet WordPress</p>
                 <p className="ccrea-team__bio">
-                  Développe le thème WordPress sur-mesure, code les blocks Gutenberg dédiés, optimise les Core Web
-                  Vitals et gère la mise en ligne.
+                  Pilote vos projets avec Benjamin, construit votre site (Elementor Pro ou thème codé), optimise les
+                  Core Web Vitals et gère la mise en ligne.
                 </p>
               </article>
             </div>
@@ -1337,7 +1338,7 @@ export default function CreationSiteWordpressPage() {
                     </svg>
                   </span>
                   <div>
-                    <p className="ccrea-guard__name">Formation Gutenberg (1 h en visio)</p>
+                    <p className="ccrea-guard__name">Formation à l'édition de votre site (1 h en visio)</p>
                     <p className="ccrea-guard__desc">
                       On vous forme à l'admin de votre site WordPress sur les cas d'usage réels : ajouter une page,
                       modifier le menu, publier un article.
@@ -1723,8 +1724,8 @@ export default function CreationSiteWordpressPage() {
                 <div className="expertise-faq__a">
                   <p>
                     Le tarif inclut : <strong>une page WordPress sur-mesure</strong> (pas un template), le copywriting
-                    orienté conversion par notre rédacteur, le design Figma desktop et mobile, le développement sur
-                    thème custom (zéro page-builder), un formulaire de contact connecté, le tracking GA4 et Meta Pixel,
+                    orienté conversion par notre rédacteur, le design Figma desktop et mobile, l'intégration sur
+                    WordPress, un formulaire de contact connecté, le tracking GA4 et Meta Pixel,
                     la conformité RGPD, le SEO technique et la mise en ligne. <strong>Hors périmètre :</strong> le
                     contenu photo/vidéo, l'hébergement (50 à 500 €/an au choix), le nom de domaine.
                   </p>
@@ -1750,8 +1751,8 @@ export default function CreationSiteWordpressPage() {
                   <p>
                     Le forfait vitrine couvre <strong>5 pages</strong> validées au devis : accueil, à propos, services,
                     blog et contact. Au-delà de 5 pages ou pour des fonctionnalités spécifiques (espace membre,
-                    multilingue, intégration CRM) : on bascule sur un devis sur-mesure. La formation Gutenberg d'1 h est
-                    incluse.
+                    multilingue, intégration CRM) : on bascule sur un devis sur-mesure. La formation d'1 h à l'édition du
+                    site est incluse.
                   </p>
                 </div>
               </details>
@@ -1783,7 +1784,7 @@ export default function CreationSiteWordpressPage() {
               </details>
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
-                  Pourquoi un thème WordPress sur-mesure plutôt qu'un Elementor / Divi pré-fait ?{' '}
+                  Elementor Pro ou thème codé : comment choisissez-vous ?{' '}
                   <span className="expertise-faq__chevron" aria-hidden="true">
                     <svg
                       viewBox="0 0 24 24"
@@ -1799,11 +1800,12 @@ export default function CreationSiteWordpressPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Les <strong>page-builders Elementor, Divi ou WPBakery</strong> sont rapides à mettre en place mais
-                    hérités de code lourd qui plombe les Core Web Vitals (LCP &gt; 3 s, CLS instable), gonfle la base de
-                    données et complique la maintenance. Un <strong>thème WordPress sur-mesure</strong> avec blocks
-                    Gutenberg dédiés génère 70 % de poids en moins, charge en moins de 1,5 s, est mieux référencé, et
-                    facile à faire évoluer. C'est notre choix systématique pour tous les projets.
+                    Selon le projet. La plupart de nos sites sont construits avec <strong>Elementor Pro</strong> : vous
+                    modifiez vous-même textes, images et pages, en visuel, et n'importe quel prestataire WordPress peut
+                    reprendre le site. Certains projets, comme <Link href="/realisations/dronespec/">DroneSpec</Link>{' '}
+                    ou <Link href="/realisations/medical-market/">Medical Market</Link>, ont un{' '}
+                    <strong>thème codé sur mesure</strong>. Dans les deux cas, le design part d'une maquette Figma créée
+                    pour vous, jamais d'un thème acheté.
                   </p>
                 </div>
               </details>
@@ -1850,9 +1852,9 @@ export default function CreationSiteWordpressPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Oui, vos contenus, vos pages, votre blog, vos images : tout se gère via l'éditeur{' '}
-                    <strong>Gutenberg moderne</strong>, avec des blocks Kameo sur-mesure qui ressemblent à l'édition
-                    dans Notion. La formation visio d'1 h vous donne tous les réflexes. Pour les évolutions plus
+                    Oui, vos contenus, vos pages, votre blog, vos images : tout se modifie depuis l'administration
+                    WordPress, en visuel avec <strong>Elementor Pro</strong> sur la plupart de nos sites. La formation
+                    visio d'1 h vous donne tous les réflexes. Pour les évolutions plus
                     techniques (nouvelle fonction, intégration CRM), notre forfait{' '}
                     <Link href="/maintenance-wordpress/">maintenance</Link> prend le relais.
                   </p>
@@ -1877,7 +1879,7 @@ export default function CreationSiteWordpressPage() {
                 <div className="expertise-faq__a">
                   <p>
                     Inclus dans tous les forfaits : <strong>30 jours de support technique</strong> gratuit (bug, blocage
-                    admin, micro-ajustement), formation Gutenberg d'1 h en visio, et sauvegarde de remise en service.
+                    admin, micro-ajustement), formation d'1 h en visio, et sauvegarde de remise en service.
                     Au-delà des 30 jours, notre{' '}
                     <Link href="/maintenance-wordpress/">forfait maintenance WordPress</Link> dès 79 € HT/mois prend le
                     relais (mises à jour, sauvegardes, sécurité, support). Sans engagement.

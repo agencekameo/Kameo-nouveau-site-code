@@ -335,8 +335,8 @@ export default function RefonteWordpressPage() {
                   </h3>
                   <p className="refonte-method__desc">
                     Maquettes Figma sur-mesure desktop + mobile, validées avant tout développement. Refonte des parcours
-                    utilisateurs, hiérarchie visuelle revue, calls-to-action testés. Pas un thème déguisé, pas un
-                    page-builder bloated : un design qui colle à votre marque et qui convertit.
+                    utilisateurs, hiérarchie visuelle revue, calls-to-action testés. Pas un thème acheté et maquillé :
+                    un design qui colle à votre marque et qui convertit.
                   </p>
                   <p className="refonte-method__deliv">
                     <strong>Livrables :</strong>maquettes Figma desktop + mobile, 2 cycles de retours.
@@ -351,7 +351,7 @@ export default function RefonteWordpressPage() {
                     <span className="refonte-method__duration">10 à 20 j</span>
                   </h3>
                   <p className="refonte-method__desc">
-                    Nouveau thème WordPress sur-mesure (zéro page-builder) sur environnement de staging. Migration
+                    Nouveau site construit avec Elementor Pro, ou sur un thème codé sur mesure, en environnement de staging. Migration
                     propre des contenus, articles, médias, utilisateurs. Nettoyage de la base : doublons, entrées
                     orphelines, tables inutiles. Plugins remis à plat. Sécurité durcie.
                   </p>
@@ -373,8 +373,8 @@ export default function RefonteWordpressPage() {
                     pendant 90 jours : si une URL s'égare ou si une position dérape, on corrige sous 24 h.
                   </p>
                   <p className="refonte-method__deliv">
-                    <strong>Livrables :</strong>site en ligne, redirections actives, monitoring 90 j, formation
-                    Gutenberg.
+                    <strong>Livrables :</strong>site en ligne, redirections actives, monitoring 90 j, formation à
+                    l'édition du site.
                   </p>
                 </div>
               </li>
@@ -443,7 +443,7 @@ export default function RefonteWordpressPage() {
                 </header>
                 <ul className="ref-col__list">
                   <li>Thème WordPress</li>
-                  <li>Page-builder (Elementor, Divi)</li>
+                  <li>Mise en page et modèles de pages</li>
                   <li>Design et UX</li>
                   <li>Performance et Core Web Vitals</li>
                   <li>Plugins de sécurité et sauvegardes</li>
@@ -635,9 +635,9 @@ export default function RefonteWordpressPage() {
                     </span>
                     <h3 className="ref-case__name">Defikart</h3>
                     <p className="ref-case__text">
-                      Refonte complète du site WordPress pour la plus grande piste de karting outdoor de Paris. Nouveau
-                      design dynamique, intégration du module de réservation en ligne, refonte SEO local pour les
-                      recherches "karting Paris" et alentours. Conservation des URLs principales.
+                      Refonte complète du site WordPress du plus grand karting indoor de Toulouse. Nouveau design
+                      dynamique, intégration du module de réservation en ligne, refonte SEO local pour les recherches
+                      « karting Toulouse » et alentours. Conservation des URLs principales.
                     </p>
                     <div className="ref-case__stats">
                       <div className="ref-case__stat">
@@ -740,8 +740,8 @@ export default function RefonteWordpressPage() {
                 <p className="ref-types__detail">
                   <strong>Périmètre :</strong> nouvelle identité graphique (Figma), refonte UX des parcours clés (page
                   d'accueil, page service, formulaire de contact), nouveau système de design (typographies, couleurs,
-                  composants), nouveau thème WordPress sur-mesure ou refonte profonde de l'existant, blocks Gutenberg
-                  dédiés à votre métier, animations et micro-interactions.
+                  composants), nouveau site (Elementor Pro ou thème codé sur mesure) ou refonte profonde de l'existant,
+                  animations et micro-interactions.
                 </p>
                 <p className="ref-types__detail">
                   <strong>Quand c'est suffisant :</strong> quand l'arborescence et le contenu fonctionnent, mais que
@@ -792,10 +792,11 @@ export default function RefonteWordpressPage() {
           <div className="container">
             <header className="ref-team__head">
               <span className="ref-team__eyebrow">L'équipe qui pilote votre refonte</span>
-              <h2 className="ref-team__title">3 personnes responsables, du premier audit à la mise en ligne</h2>
+              <h2 className="ref-team__title">Les dirigeants aux commandes, du premier audit à la mise en ligne</h2>
               <p className="ref-team__intro">
-                Vous bossez avec ces trois profils du début à la fin. Pas de commercial qui vend puis disparaît, pas de
-                sous-traitance qui décharge la responsabilité.
+                Kameo compte 7&nbsp;personnes, et votre refonte est pilotée par les deux dirigeants, Benjamin Dayan et
+                Louison Boutet. Pas de commercial qui vend puis disparaît, pas de sous-traitance qui décharge la
+                responsabilité.
               </p>
             </header>
             <div className="ref-team__grid">
@@ -837,17 +838,17 @@ export default function RefonteWordpressPage() {
                 <div className="ref-team__avatar">
                   <img
                     src="/images/Louison.webp"
-                    alt="Louison Boutet, Lead developpeur WordPress Kameo Paris"
+                    alt="Louison Boutet, directeur général de Kameo"
                     width="400"
                     height="400"
                     loading="lazy"
                   />
                 </div>
                 <h3 className="ref-team__name">Louison Boutet</h3>
-                <p className="ref-team__role">Lead développeur WordPress</p>
+                <p className="ref-team__role">Directeur général · Chef de projet WordPress</p>
                 <p className="ref-team__bio">
-                  Développe le nouveau thème WordPress, migre proprement la base de données, active les redirections
-                  301, gère la bascule production sans incident.
+                  Pilote la refonte avec Benjamin : construit le nouveau site, migre proprement la base de données,
+                  active les redirections 301 et gère la bascule en production.
                 </p>
               </article>
             </div>
@@ -886,7 +887,7 @@ export default function RefonteWordpressPage() {
                   <li>Audit complet du site existant</li>
                   <li>Nouvelle stratégie SEO et arborescence</li>
                   <li>Nouveau design + nouvelle UX</li>
-                  <li>Nouveau thème WordPress sur-mesure</li>
+                  <li>Nouveau site WordPress sur-mesure</li>
                   <li>Plan de redirections 301 complet</li>
                   <li>Migration et nettoyage de la base</li>
                   <li>Monitoring 90 jours post-bascule</li>
@@ -975,7 +976,7 @@ export default function RefonteWordpressPage() {
                     </svg>
                   </span>
                   <div>
-                    <p className="ref-guard__name">Formation Gutenberg (1 h en visio)</p>
+                    <p className="ref-guard__name">Formation à l'édition du site (1 h en visio)</p>
                     <p className="ref-guard__desc">
                       Tour complet du nouveau back-office WordPress : ajouter une page, modifier les contenus, gérer le
                       blog, publier des médias. Documentation incluse.

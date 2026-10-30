@@ -22,7 +22,7 @@ export default function MentionsLegalesPage() {
               <svg className="icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-file-lines" />
               </svg>
-              Dernière mise à jour&nbsp;: 31 mars 2026{' '}
+              Dernière mise à jour&nbsp;: 30 octobre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Mentions légales</h1>
             <p className="legal-hero__desc">
@@ -183,33 +183,34 @@ export default function MentionsLegalesPage() {
                     <strong>KAMEO</strong>
                     <br />
                     Société par Actions Simplifiée (SAS) <br />
-                    SIRET&nbsp;: 980 573 984 00013 <br />
+                    SIRET&nbsp;: 980 573 984 00021 <br />
                     Capital social&nbsp;: 100&nbsp;€ <br />
                     APE/NAF&nbsp;: 6201Z, Programmation informatique <br />
-                    Siège social&nbsp;: 9 rue des colonnes, 75002 Paris, France <br />
+                    Siège social&nbsp;: 1862 avenue La Lauragaise, 31670 Labège, France (transfert à Paris en cours) <br />
+                    Adresse de correspondance&nbsp;: 9 rue des Colonnes, 75002 Paris, France <br />
                     Téléphone&nbsp;: <a href="tel:+33662379985">06 62 37 99 85</a>
                     <br />
                     Email&nbsp;: <a href="mailto:contact@agence-kameo.fr">contact@agence-kameo.fr</a>
                     <br />
-                    Responsable de la publication&nbsp;: M. Louison BOUTET <br />
+                    Responsable de la publication&nbsp;: M. Benjamin DAYAN <br />
                     N° TVA intracommunautaire&nbsp;: FR54980573984{' '}
                   </p>
                 </div>
                 <h3 className="legal__h3">1.2 Hébergement</h3>
                 <div className="legal__card">
                   <p className="legal__p">
-                    <strong>Planet Hoster Inc.</strong>
+                    <strong>OmegaCloud</strong>
                     <br />
-                    4416 Louis-B.-Mayer, Laval (Québec) H7P 0G1, Canada <br />
+                    127 avenue Aristide Briand, 35000 Rennes, France <br />
                     Site web&nbsp;:{' '}
-                    <a href="https://www.planethoster.com" target="_blank" rel="noopener">
-                      www.planethoster.com
+                    <a href="https://omega-cloud.fr" target="_blank" rel="noopener">
+                      omega-cloud.fr
                     </a>
                   </p>
                 </div>
                 <h3 className="legal__h3">1.3 Directeur de la publication</h3>
                 <p className="legal__p">
-                  M. Louison BOUTET, <a href="mailto:contact@agence-kameo.fr">contact@agence-kameo.fr</a>
+                  M. Benjamin DAYAN, <a href="mailto:contact@agence-kameo.fr">contact@agence-kameo.fr</a>
                 </p>
               </div>
               {/* ,Section 2, */}

@@ -1,6 +1,6 @@
 import { getAllPostsOrRepo } from '@/lib/blog';
 import { REALISATIONS } from '@/content/realisations';
-import { CONTACT, PROOF, SITE_URL, SOCIAL } from '@/lib/site';
+import { CONTACT, CONTENT_UPDATED, PROOF, SITE_URL, SOCIAL } from '@/lib/site';
 
 /* /llms.txt (standard llmstxt.org) — synthèse du site pour les moteurs génératifs.
    Source unique, reprise de la section 0 de functions.php. v3 : ajout des articles de
@@ -15,22 +15,23 @@ export async function GET() {
   const nbAvis = PROOF.avisNombre;
   const projets = PROOF.projetsTotal;
   const cas = REALISATIONS.length;
-  const maj = new Date().toISOString().slice(0, 10);
   const posts = await getAllPostsOrRepo();
+  // date du dernier changement réel : contenu des pages ou article le plus récent
+  const maj = [CONTENT_UPDATED, ...posts.map((p) => p.modified)].sort().at(-1)!.slice(0, 10);
   const blog = posts.length
     ? `\n## Articles de référence du blog\n\n${posts.map((p) => `- [${p.title}](${SITE_URL}${p.path}) : ${p.description}`).join('\n')}\n`
     : '';
   const txt = `# Kameo, agence web et développement sur-mesure à Paris
 
-> Studio digital parisien fondé en 2023 par Benjamin Dayan. Deux métiers : la création de sites internet sur-mesure (WordPress, e-commerce) et le développement d'applications métier (CRM, outils internes, marketplaces, SaaS). Équipe intégrée sans sous-traitance, au 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont ${cas} présentés en études de cas.
+> Agence web fondée en 2023 par Benjamin Dayan. Deux métiers : la création de sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et le développement d'applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 7 personnes, à distance : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et rencontrent les clients en visio. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
 
 Dernière mise à jour : ${maj}
 
 ## Pages principales
 
 - [Accueil](${home}) : agence web à Paris, création de site internet sur-mesure et développement d'applications métier.
-- [Notre agence](${home}notre-agence/) : l'équipe Kameo, l'implantation parisienne, la méthodologie, les valeurs.
-- [Benjamin Dayan](${home}benjamin-dayan/) : fondateur et dirigeant, 15 ans dans le design et le développement web.
+- [Notre agence](${home}notre-agence/) : l'équipe Kameo, la méthodologie, les valeurs.
+- [Benjamin Dayan](${home}benjamin-dayan/) : fondateur et dirigeant de Kameo ; il pilote les projets avec Louison Boutet.
 - [Contact](${home}contact/) : formulaire, adresse, téléphone, rendez-vous de 30 minutes sans frais.
 - [Blog](${home}blog/) : conseils sur la création de site, le choix d'un prestataire et les outils métier.
 
@@ -67,10 +68,12 @@ ${blog}
 
 - **Nom commercial** : Kameo (Agence Kameo)
 - **Forme juridique** : SAS
-- **SIRET** : 980 573 984 00013
+- **SIRET** : 980 573 984 00021
 - **Année de création** : 2023
-- **Dirigeant** : Benjamin Dayan, fondateur
-- **Adresse unique** : 9 rue des Colonnes, 75002 Paris, France. Kameo n'a pas d'autre établissement.
+- **Dirigeants** : Benjamin Dayan (fondateur) et Louison Boutet (directeur général), qui sont aussi les chefs de projet
+- **Siège social** : 1862 avenue La Lauragaise, 31670 Labège, France (transfert à Paris en cours)
+- **Adresse de correspondance** : 9 rue des Colonnes, 75002 Paris, France
+- **Équipe** : 7 personnes, à distance ; rendez-vous en visio, du lundi au vendredi de 9 h à 17 h
 - **Téléphone** : +33 6 62 37 99 85
 - **Email** : ${CONTACT.email}
 - **Site web** : ${SITE_URL}
@@ -80,7 +83,7 @@ ${blog}
 
 ## Spécialités
 
-- Création de sites WordPress sur-mesure, avec un thème codé et non un gabarit acheté
+- Création de sites WordPress sur-mesure avec Elementor Pro ou un thème codé, à partir d'une maquette créée pour le client et non d'un gabarit acheté
 - Développement de CRM et d'outils métier internes, en remplacement de tableurs ou de logiciels inadaptés
 - Applications SaaS et intégration d'IA générative dans des outils d'entreprise
 - Marketplaces multi-vendeurs avec paiement scindé
@@ -90,7 +93,7 @@ ${blog}
 
 ## Zone d'intervention
 
-Paris et Île-de-France, et toute la France à distance. Accueil des clients sur rendez-vous au 9 rue des Colonnes, Paris 2e, métro Bourse.
+Paris et Île-de-France, et toute la France à distance. Les rendez-vous se font en visio ; le 9 rue des Colonnes (Paris 2e) est l'adresse de correspondance.
 `;
   return new Response(txt, { headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'public, max-age=86400' } });
 }

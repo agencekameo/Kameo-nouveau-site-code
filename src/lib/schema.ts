@@ -5,7 +5,7 @@
  * ItemList, Service + Offer, CreativeWork des réalisations.
  */
 import { pageInfo } from '@/content/pages';
-import { CONTACT, GEO, SITE_URL, SOCIAL, abs } from './site';
+import { CONTACT, SITE_URL, SOCIAL, abs } from './site';
 
 const HOME = SITE_URL + '/';
 const ORG_ID = HOME + '#organization';
@@ -71,13 +71,13 @@ export const localBusiness = (): Json => ({
   '@context': 'https://schema.org',
   '@type': ['ProfessionalService', 'LocalBusiness'],
   '@id': LOCAL_ID,
-  name: 'Kameo, agence web à Paris',
+  name: 'Kameo',
   url: HOME,
   image: OG_IMG,
   parentOrganization: { '@id': ORG_ID },
   telephone: CONTACT.phoneE164,
   email: CONTACT.email,
-  priceRange: '€€€',
+  priceRange: '€€',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '9 rue des Colonnes',
@@ -86,17 +86,10 @@ export const localBusiness = (): Json => ({
     addressRegion: 'Île-de-France',
     addressCountry: 'FR',
   },
-  geo: { '@type': 'GeoCoordinates', latitude: GEO.lat, longitude: GEO.lng },
   areaServed: [
     { '@type': 'City', name: 'Paris' },
     { '@type': 'Country', name: 'France' },
   ],
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '09:00',
-    closes: '19:00',
-  },
 });
 
 export const breadcrumbList = (path: string, crumbs: Crumb[]): Json => ({

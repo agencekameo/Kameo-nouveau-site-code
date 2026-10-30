@@ -87,15 +87,13 @@ const css = `
 
   /* ── Bloc local Paris ────────────────────────────────────────────────── */
   .wp-local { padding: clamp(48px, 6vw, 72px) 0; background: #fff; }
-  .wp-local__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
+  .wp-local__wrap { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
   .wp-local__title { font-size: clamp(24px, 3vw, 36px); font-weight: 900; letter-spacing: -.03em; line-height: 1.15; margin: 0 0 16px; }
   .wp-local__text { font-size: 15px; color: rgba(15,17,21,.7); line-height: 1.75; margin-bottom: 18px; }
   .wp-local__address { display: flex; align-items: flex-start; gap: 14px; padding: 18px 22px; background: #fff; border: 1px solid rgba(15,17,21,.07); border-radius: 16px; margin-bottom: 14px; }
   .wp-local__address i { color: #ED6E63; font-size: 18px; margin-top: 2px; }
   .wp-local__address-text { font-size: 14.5px; line-height: 1.5; }
   .wp-local__address-text strong { display: block; font-size: 15px; margin-bottom: 4px; }
-  .wp-local__map { border-radius: 18px; overflow: hidden; aspect-ratio: 4/3; border: 1px solid rgba(15,17,21,.08); }
-  .wp-local__map iframe { width: 100%; height: 100%; border: 0; display: block; }
   @media (max-width: 900px) { .wp-local__wrap { grid-template-columns: 1fr; } }
 
   /* ── CTA final ───────────────────────────────────────────────────────── */

@@ -91,7 +91,7 @@ format: html
 <li><b>Sitebulb</b> : audit technique visuel et reporting</li>
 </ul>
 <h3>L&#8217;approche Agence Kameo</h3>
-<p>Pour nos clients, nous combinons ces outils avec une analyse humaine approfondie. Notre méthodologie <i>&laquo;&nbsp;On écoute. On crée. On livre.&nbsp;&raquo;</i> intègre le pré-audit SEO comme première brique avant toute <a href="/">création de site vitrine ou e-commerce</a>. Cette approche nous a permis d&#8217;accompagner plus de 50 entreprises avec une note de 4,2/5 sur Trustpilot.</p>
+<p>Pour nos clients, nous combinons ces outils avec une analyse humaine approfondie. Notre méthodologie <i>&laquo;&nbsp;On écoute. On crée. On livre.&nbsp;&raquo;</i> intègre le pré-audit SEO comme première brique avant toute <a href="/">création de site vitrine ou e-commerce</a>. Cette approche nous a permis d&#8217;accompagner plus de 50 entreprises avec une note de 4,6/5 sur Trustpilot.</p>
 <h2>Comment exploiter les résultats du pré-audit SEO ?</h2>
 <p>Un pré-audit SEO n&#8217;a de valeur que s&#8217;il débouche sur un plan d&#8217;action concret. Voici comment transformer le diagnostic en feuille de route opérationnelle.</p>
 <h3>Prioriser les actions selon l&#8217;impact</h3>
@@ -109,7 +109,7 @@ format: html
 <ul>
 <li><b>Site vitrine refondu</b> : à partir de 1 999€</li>
 <li><b>Site e-commerce optimisé SEO</b> : à partir de 2 999€</li>
-<li><b>Maintenance mensuelle</b> : 3 formules (59,99€ / 99,99€ / 179,99€ HT)</li>
+<li><b>Maintenance mensuelle</b> : 3 formules (79€ / 149€ / 299€ HT)</li>
 <li><b>Accompagnement SEO continu</b> : sur devis selon objectifs</li>
 </ul>
 <p>Chaque projet repose sur une maquette Figma 100% personnalisée, un copywriting professionnel intégré et un développement WordPress, Framer ou sur mesure — jamais de template générique.</p>

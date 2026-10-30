@@ -3,7 +3,7 @@ import Link from 'next/link';
 import JsonLd from '@/components/JsonLd';
 import CalendlyPopup from '@/components/CalendlyPopup';
 import { pageMetadata } from '@/lib/seo';
-import { GOOGLE_SITE_VERIFICATION } from '@/lib/site';
+import { GOOGLE_SITE_VERIFICATION, PROOF } from '@/lib/site';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
 
@@ -33,7 +33,7 @@ export default function HomePage() {
               target="_blank"
               rel="noopener"
               className="tp-widget tp-widget--light"
-              aria-label="Voir nos 23 avis sur Trustpilot, note 4,6 sur 5"
+              aria-label={`Voir nos ${PROOF.avisNombre} avis sur Trustpilot, note 4,6 sur 5`}
             >
               <div className="tp-widget__stars" style={{ '--rating': '92%' }} aria-hidden="true">
                 <span className="tp-widget__row tp-widget__row--bg">
@@ -103,7 +103,7 @@ export default function HomePage() {
               </div>
               <span className="tp-widget__text">
                 <strong className="tp-widget__score">4,6</strong>
-                <span className="tp-widget__count">sur Trustpilot · 23 avis</span>
+                <span className="tp-widget__count">sur Trustpilot · {PROOF.avisNombre} avis</span>
               </span>
             </a>
             <p className="hero__eyebrow">Design · SEO · Conversion</p>
@@ -679,8 +679,8 @@ export default function HomePage() {
                 <span className="stat__number">95%</span>
                 <h3 className="stat__title">Clients satisfaits</h3>
                 <p className="stat__text">
-                  Accompagnement sur-mesure par une équipe intégrée à Paris, sans sous-traitance. Note Trustpilot 4,6/5
-                  sur 23 avis vérifiés.
+                  Accompagnement sur-mesure par une équipe intégrée, sans sous-traitance. Note Trustpilot 4,6/5
+                  sur {PROOF.avisNombre} avis vérifiés.
                 </p>
               </article>
               <article className="stat">
@@ -714,7 +714,7 @@ export default function HomePage() {
             </p>
             <p className="seo-about__text">
               Notre approche tient en une équipe intégrée à taille humaine, <strong>sans sous-traitance</strong>.
-              Designer, développeur web, motion designer et chargé SEO travaillent sous le même toit à Paris. Cette
+              Designer, développeur web, motion designer et chargé SEO travaillent dans une même équipe. Cette
               proximité garantit une cohérence visuelle, une réactivité et un niveau de finition que les grosses agences
               ne peuvent pas offrir à ces tarifs.{' '}
             </p>
@@ -1077,10 +1077,10 @@ export default function HomePage() {
                 <div className="expertise-faq__a">
                   <p>
                     Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est un studio intégré, basé
-                    au 9 rue des Colonnes dans le 2e arrondissement, spécialisé dans deux métiers : la création de sites
+                    avec une adresse au 9 rue des Colonnes dans le 2e arrondissement, spécialisé dans deux métiers : la création de sites
                     WordPress sur-mesure et le développement d'applications métier, c'est-à-dire des CRM, des
-                    marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note Trustpilot 4,6/5 sur 23
-                    avis.
+                    marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note Trustpilot 4,6/5 sur{' '}
+                    {PROOF.avisNombre} avis.
                   </p>
                 </div>
               </details>
@@ -1102,8 +1102,8 @@ export default function HomePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Au 9 rue des Colonnes, Paris 2e, métro Bourse. C'est notre seul établissement : toute l'équipe
-                    travaille depuis ces bureaux. Les rendez-vous se font en visio ou sur place, à votre convenance.
+                    Kameo a son adresse au 9 rue des Colonnes, Paris 2e. L'équipe travaille à distance : les
+                    rendez-vous se font en visio, avec des clients à Paris et dans toute la France.
                   </p>
                 </div>
               </details>
@@ -1155,8 +1155,9 @@ export default function HomePage() {
                 <div className="expertise-faq__a">
                   <p>
                     Une landing WordPress démarre à 1 299 € HT, un site vitrine à 1 999 € HT, une boutique WooCommerce à
-                    2 999 € HT. Pour du développement sur-mesure, comptez à partir de 12 000 € HT. Le devis chiffré
-                    arrive sous 24 h après un échange découverte de 30 minutes, sans frais.
+                    2 999 € HT. Pour une application métier sur-mesure (CRM, marketplace, SaaS), comptez à partir de
+                    7 999 € HT ; pour un e-commerce sur-mesure, à partir de 12 000 € HT. Le devis chiffré arrive sous
+                    24 h après un échange découverte de 30 minutes, sans frais.
                   </p>
                 </div>
               </details>
@@ -1178,8 +1179,8 @@ export default function HomePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Non. Designer, développeur, expert SEO, motion designer et chef de projet travaillent côte à côte
-                    dans les bureaux du 2e arrondissement. Aucune sous-traitance, aucun offshore, aucune plateforme de
+                    Non. Designer, développeur, expert SEO, motion designer et chef de projet travaillent ensemble,
+                    dans une même équipe. Aucune sous-traitance, aucun offshore, aucune plateforme de
                     freelances. Vous avez un seul interlocuteur du début à la fin.
                   </p>
                 </div>

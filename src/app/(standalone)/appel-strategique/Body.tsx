@@ -548,6 +548,9 @@ const Body = () => (
                     <span className="lp2-results__lbl">position moyenne</span>
                   </div>
                 </div>
+                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,.55)', margin: '14px 0 0', lineHeight: '1.5' }}>
+                  Nexus Games est une société de Benjamin Dayan, fondateur de Kameo.
+                </p>
               </article>
               {/* CLIENT 2 */}
               <article className="lp2-results__card" data-reveal="" style={{ transitionDelay: '.12s' }}>

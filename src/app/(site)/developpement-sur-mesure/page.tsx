@@ -91,7 +91,7 @@ export default function DeveloppementSurMesurePage() {
               <h2 className="silo-hub__title">Quel est votre projet ?</h2>
               <p className="silo-hub__intro">
                 Quatre expertises complémentaires, une méthodologie commune : de la stratégie produit au déploiement en
-                production, une seule équipe intégrée à Paris.
+                production, une seule équipe intégrée.
               </p>
             </header>
             <div className="silo-hub__grid">
@@ -273,8 +273,8 @@ export default function DeveloppementSurMesurePage() {
                 </span>
                 <h3 className="ccrea-why__name">Zéro sous-traitance</h3>
                 <p className="ccrea-why__text">
-                  Designer, développeur front, développeur back, expert IA et chef de projet travaillent côte à côte
-                  dans nos bureaux du 2<sup>e</sup>. Un seul interlocuteur, une responsabilité claire, des décisions
+                  Designer, développeur front, développeur back, expert IA et chef de projet travaillent dans une même
+                  équipe. Un seul interlocuteur, une responsabilité claire, des décisions
                   rapides.
                 </p>
               </article>
@@ -481,7 +481,7 @@ export default function DeveloppementSurMesurePage() {
                     Un site e-commerce sur-mesure : à partir de <strong>1 mois</strong>. Une marketplace (MVP) :{' '}
                     <strong>2 mois</strong>. Un CRM personnalisé : <strong>8 à 12 semaines</strong>. Un MVP SaaS avec IA
                     : <strong>2 mois</strong>. Ces délais incluent discovery, design UX, développement, recette et
-                    livraison. Nous respectons nos délais à 97 %, équipe intégrée à Paris, zéro sous-traitance, zéro
+                    livraison. Nous respectons nos délais à 97 %, équipe intégrée, zéro sous-traitance, zéro
                     chef de projet intermédiaire.
                   </p>
                 </div>
@@ -556,8 +556,8 @@ export default function DeveloppementSurMesurePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Uniquement en interne, dans nos bureaux du 2<sup>e</sup> arrondissement de Paris. Designer,
-                    développeur front-end, développeur back-end, expert IA et chef de projet travaillent côte à côte.
+                    Uniquement en interne, par notre propre équipe : designer, développeur front-end, développeur
+                    back-end, expert IA et chef de projet travaillent ensemble.
                     Zéro sous-traitance, zéro équipe offshore, zéro plateforme freelance. Cela nous permet d'être
                     responsables de bout en bout, de communiquer directement avec vous, et de tenir nos délais.
                   </p>

@@ -61,7 +61,7 @@ export const pageSchemas: object[] = [
       {
         '@type': ['ProfessionalService', 'LocalBusiness'],
         '@id': 'https://agence-kameo.fr/#localbusiness',
-        name: 'Kameo, agence web à Paris',
+        name: 'Kameo',
         url: 'https://agence-kameo.fr/',
         image: 'https://agence-kameo.fr/images/hero.webp',
         address: {
@@ -72,19 +72,8 @@ export const pageSchemas: object[] = [
           addressRegion: 'Île-de-France',
           addressCountry: 'FR',
         },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: '48.8688998',
-          longitude: '2.3398863',
-        },
         telephone: '+33662379985',
-        priceRange: '€€€',
-        openingHoursSpecification: {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '09:00',
-          closes: '19:00',
-        },
+        priceRange: '€€',
         areaServed: [
           {
             '@type': 'City',
@@ -123,9 +112,14 @@ export const pageSchemas: object[] = [
         '@type': 'Service',
         '@id': 'https://agence-kameo.fr/agence-wordpress-paris/#service',
         name: 'Agence WordPress à Paris',
-        serviceType: 'WordPress development, SEO &amp; maintenance',
+        serviceType: 'Création, refonte et maintenance de sites WordPress',
         description:
-          'Agence WordPress à Paris : création, refonte et maintenance de sites WordPress sur-mesure pour PME, startups et marques exigeantes. Zéro sous-traitance.',
+          'Agence WordPress à Paris : création, refonte et maintenance de sites WordPress sur-mesure pour PME, startups et marques exigeantes, à prix publics dès 1 299 € HT.',
+        offers: [
+          { '@type': 'Offer', name: 'Landing page WordPress', price: '1299', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', price: '1299', priceCurrency: 'EUR', valueAddedTaxIncluded: false } },
+          { '@type': 'Offer', name: 'Site vitrine WordPress', price: '1999', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', price: '1999', priceCurrency: 'EUR', valueAddedTaxIncluded: false } },
+          { '@type': 'Offer', name: 'E-commerce WordPress (WooCommerce)', price: '2999', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', price: '2999', priceCurrency: 'EUR', valueAddedTaxIncluded: false } },
+        ],
         provider: {
           '@id': 'https://agence-kameo.fr/#localbusiness',
         },
@@ -140,7 +134,7 @@ export const pageSchemas: object[] = [
           },
         ],
         url: 'https://agence-kameo.fr/agence-wordpress-paris/',
-        dateModified: '2026-06-11T08:39:03+00:00',
+        dateModified: '2026-10-30T12:00:00+00:00',
       },
       {
         '@type': 'FAQPage',
@@ -148,34 +142,34 @@ export const pageSchemas: object[] = [
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'Combien coûte une agence WordPress à Paris ?',
+            name: 'Combien coûte la création d\'un site WordPress par une agence à Paris ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Chez Kameo, une création WordPress démarre à 1 299 € HT. Tarifs détaillés par format (landing, vitrine, e-commerce) sur la page Création WordPress. Refonte et maintenance ont leurs propres grilles tarifaires.',
+              text: 'Une création WordPress sur-mesure chez Kameo démarre à 1 299 € HT. Le prix exact dépend du format (landing, vitrine, e-commerce), du nombre de pages, du niveau d\'ambition graphique, des intégrations spécifiques (CRM, paiement, multilingue) et du contenu à rédiger. Voir les 3 formats détaillés avec tarifs sur la page Création WordPress.',
             },
           },
           {
             '@type': 'Question',
-            name: "Quel délai pour qu'une agence WordPress livre mon site ?",
+            name: 'Quel délai pour qu\'une agence WordPress livre mon site ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: '14 jours pour une landing page ou un site vitrine WordPress, 1 mois pour un e-commerce WooCommerce.',
+              text: 'Comptez 14 jours pour une landing page ou un site vitrine WordPress, et 1 mois pour un e-commerce WooCommerce. Ces délais incluent la stratégie SEO, le design, le développement, la recette et la formation. Nous tenons ces délais parce que la même équipe mène tout le projet, sans intermédiaire.',
             },
           },
           {
             '@type': 'Question',
-            name: "Pourquoi choisir une agence WordPress plutôt qu'un freelance ?",
+            name: 'Pourquoi choisir une agence WordPress plutôt qu\'un freelance ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Une agence WordPress regroupe designer, développeur, expert SEO et rédacteur sous le même toit : un seul interlocuteur, un projet cohérent, une garantie de continuité.',
+              text: 'Un freelance WordPress est généralement excellent sur une compétence (design OU dev OU SEO) mais doit sous-traiter le reste, ce qui rallonge les délais et fragmente la responsabilité. Une agence WordPress à Paris comme Kameo réunit designer, développeur, expert SEO et rédacteur dans une même équipe : un seul interlocuteur, un projet cohérent, une garantie de continuité si quelqu\'un est en congé ou malade. Et un encadrement contractuel plus solide.',
             },
           },
           {
             '@type': 'Question',
-            name: 'WordPress est-il adapté à un site e-commerce sérieux ?',
+            name: 'WordPress est-il vraiment adapté à un site e-commerce sérieux ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Oui, WooCommerce propulse plus de 23 % des boutiques en ligne mondiales. Pour des catalogues jusqu'à plusieurs milliers de références, c'est une solution mature et économique.",
+              text: 'Oui, WooCommerce, le plugin e-commerce de WordPress, propulse plus de 23 % des boutiques en ligne dans le monde. Il gère le paiement Stripe, Mollie, PayPal, les stocks multi-entrepôts, les abonnements, le multilingue, l\'export ERP. Pour des catalogues jusqu\'à plusieurs milliers de références, WooCommerce est une solution mature, performante et économique comparée à Shopify ou Magento. Au-delà de 10 000 SKU avec contraintes lourdes, nous évaluons ensemble si une autre techno serait plus adaptée.',
             },
           },
           {
@@ -183,7 +177,7 @@ export const pageSchemas: object[] = [
             name: 'Faites-vous la maintenance WordPress après la mise en ligne ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Oui, nous proposons des forfaits de maintenance WordPress mensuels avec interlocuteur dédié, support réactif et enveloppe d'évolutions incluses.",
+              text: 'Oui, c\'est même central dans notre approche. Un site WordPress demande des mises à jour régulières (cœur, thème, plugins), des sauvegardes externalisées, une surveillance sécurité. Nous proposons des forfaits de maintenance WordPress mensuels avec un interlocuteur dédié, du support réactif, et une enveloppe d\'évolutions incluses chaque mois. Voir notre page maintenance WordPress pour le détail.',
             },
           },
           {
@@ -191,7 +185,7 @@ export const pageSchemas: object[] = [
             name: 'Le SEO est-il vraiment inclus dans la création du site WordPress ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Oui, SEO technique (vitesse, Schema.org, sitemap) et SEO éditorial (audit mots-clés, architecture en silos, rédaction optimisée) sont inclus.',
+              text: 'Oui, et c\'est notre différenciation principale. Le SEO technique (vitesse, Schema.org, sitemap, robots.txt, balisage sémantique) et le SEO éditorial (audit mots-clés, architecture en silos, rédaction des balises et contenus optimisés) sont inclus dans tous nos sites WordPress. Nos clients voient bouger leur positionnement Google dans les 3 à 6 mois suivant la mise en ligne, preuve à l\'appui, voir les cas Nexus Games et Medical Market plus haut.',
             },
           },
           {
@@ -199,11 +193,11 @@ export const pageSchemas: object[] = [
             name: 'Comment démarre-t-on un projet WordPress avec Kameo ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Un RDV découverte de 30 min (gratuit). Sous 24 h vous recevez un devis détaillé avec planning, livrables et tarif fixe. Si ça convient, on lance le projet la semaine suivante.',
+              text: 'Première étape : un rendez-vous découverte de 30 minutes en visio pour comprendre votre activité, vos objectifs, votre cible, vos contraintes et votre budget. Deuxième étape : nous vous envoyons sous 24 h un devis détaillé avec planning, livrables et tarif fixe. Si ça vous convient, on lance le projet la semaine suivante. Réservez votre RDV découverte ici.',
             },
           },
         ],
-        dateModified: '2026-06-11T08:39:03+00:00',
+        dateModified: '2026-10-30T12:00:00+00:00',
       },
     ],
   },

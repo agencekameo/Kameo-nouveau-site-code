@@ -9,9 +9,9 @@ import css from './styles';
 import { PROOF } from '@/lib/site';
 
 const PATH = '/agence-wordpress-paris/';
-const TITLE = 'Agence WordPress à Paris : notre expertise | Kameo';
+const TITLE = 'Agence WordPress Paris : sites dès 1 299 € HT | Kameo';
 const DESCRIPTION =
-  'Agence WordPress à Paris 2e : création, refonte et maintenance sur-mesure. Plus de 50 projets livrés, devis sous 24 h, zéro sous-traitance.';
+  'Agence WordPress à Paris : création, refonte et maintenance de sites sur-mesure. Prix publics dès 1 299 € HT, site vitrine livré en 14 jours, devis sous 24 h.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Expertises', path: '/agence-wordpress-paris/' },
@@ -38,9 +38,11 @@ export default function AgenceWordpressParisPage() {
               <span className="page-hero__title-muted">création de sites sur-mesure qui convertissent</span>
             </h1>
             <p className="page-hero__text">
-              Studio web intégré dans le 2<sup>e</sup> arrondissement. Designer, développeur WordPress, SEO et motion
-              designer sous le même toit. Création, refonte et maintenance de sites WordPress sur-mesure pour PME,
-              startups et marques exigeantes. Zéro sous-traitance, devis sous 24 h.
+              Kameo est une agence WordPress fondée en 2023, avec une adresse à Paris 2<sup>e</sup>. Nous créons,
+              refondons et maintenons des sites WordPress sur-mesure pour PME, startups et marques exigeantes, à prix
+              publics : landing page 1 299 € HT, site vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT. Site
+              vitrine livré en 14 jours, devis sous 24 h. Plus de {PROOF.projetsTotal} sites livrés depuis 2023, dont
+              environ trois quarts sous WordPress.
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
@@ -62,6 +64,9 @@ export default function AgenceWordpressParisPage() {
                 </strong>
               </span>
             </div>
+            <p style={{ margin: '14px 0 0', fontSize: '13px', opacity: 0.6 }}>
+              Mis à jour le <time dateTime="2026-10-30">30 octobre 2026</time>
+            </p>
             <a
               href="https://calendly.com/contact-agence-kameo/30min"
               target="_blank"
@@ -95,13 +100,12 @@ export default function AgenceWordpressParisPage() {
                       <use href="/icons.svg#i-solid-people-group" />
                     </svg>
                   </span>
-                  <h3 className="feature__title">Une équipe WordPress intégrée à Paris, zéro sous-traitance</h3>
+                  <h3 className="feature__title">Une équipe WordPress dédiée, un seul point de contact</h3>
                 </div>
                 <p className="feature__text">
-                  Designer, développeur WordPress senior, expert SEO et motion designer travaillent côte à côte dans nos
-                  bureaux du 2<sup>e</sup> arrondissement. Pas de freelances dispersés, pas de chef de projet
-                  intermédiaire qui dilue votre brief : un seul point de contact, une équipe que vous rencontrez en
-                  vrai, un projet qui avance vite et droit.
+                  Design, développement WordPress et SEO sont réalisés par la même équipe, que vous gardez du brief à
+                  la maintenance. Pas d'intermédiaire qui dilue votre brief : un seul point de contact, des échanges en
+                  visio, un projet qui avance vite et droit.
                 </p>
               </article>
               <article className="feature">
@@ -114,9 +118,10 @@ export default function AgenceWordpressParisPage() {
                   <h3 className="feature__title">Du WordPress sur-mesure, pas un thème pré-fait habillé</h3>
                 </div>
                 <p className="feature__text">
-                  Nous développons chaque site sur un thème WordPress custom, sans page-builder lourd. Code propre,
-                  structure sémantique, blocks Gutenberg adaptés à vos besoins éditoriaux. Résultat : un site rapide,
-                  sécurisé, facile à faire évoluer et que Google indexe sans friction.
+                  Chaque site part d'une maquette Figma créée pour vous, puis est construit avec Elementor Pro, ou sur
+                  un thème codé quand le projet le demande. Structure sémantique, vitesse optimisée, contenus que vous
+                  modifiez vous-même. Résultat : un site rapide, sécurisé, facile à faire évoluer et que Google indexe
+                  sans friction.
                 </p>
               </article>
               <article className="feature">
@@ -210,9 +215,9 @@ export default function AgenceWordpressParisPage() {
                 <ul className="wp-service-card__list">
                   <li>Site vitrine, e-commerce ou landing page</li>
                   <li>Design custom + maquette validée avant dev</li>
-                  <li>Thème WordPress sur-mesure (zéro page-builder)</li>
+                  <li>Elementor Pro ou thème codé sur mesure</li>
                   <li>SEO technique et éditorial inclus</li>
-                  <li>Formation à l'admin Gutenberg</li>
+                  <li>Formation à l'édition du site</li>
                 </ul>
                 <Link href="/creation-site-wordpress/" className="wp-service-card__cta">
                   Voir nos offres de création{' '}
@@ -350,8 +355,8 @@ export default function AgenceWordpressParisPage() {
                 <span className="expertise-process__num">05</span>
                 <h3 className="expertise-process__step-title">Développement WordPress sur-mesure</h3>
                 <p className="expertise-process__step-text">
-                  Thème WordPress custom, blocks Gutenberg dédiés à vos besoins éditoriaux, intégration au pixel près,
-                  optimisation des Core Web Vitals, balisage Schema.org. Code propre, versionné, documenté.
+                  Intégration au pixel près avec Elementor Pro, ou thème codé sur mesure selon le projet, optimisation
+                  des Core Web Vitals, balisage Schema.org. Site documenté pour la suite.
                 </p>
               </li>
               <li className="expertise-process__step">
@@ -359,7 +364,7 @@ export default function AgenceWordpressParisPage() {
                 <h3 className="expertise-process__step-title">Mise en ligne &amp; formation</h3>
                 <p className="expertise-process__step-text">
                   Recette, mise en ligne en environnement de staging puis production, plan de redirection si refonte,
-                  formation à l'admin Gutenberg, et début du contrat de maintenance pour faire vivre le site dans la
+                  formation à l'édition du site, et début du contrat de maintenance pour faire vivre le site dans la
                   durée.
                 </p>
               </li>
@@ -408,7 +413,7 @@ export default function AgenceWordpressParisPage() {
                 </span>
                 <span className="wp-stat__num">0</span>
                 <div className="wp-stat__lbl">
-                  sous-traitance, équipe intégrée Paris 2<sup>e</sup>
+                  sous-traitance : la même équipe du brief à la maintenance
                 </div>
               </div>
             </div>
@@ -435,7 +440,7 @@ export default function AgenceWordpressParisPage() {
                     src="/images/landing_page/Nexusgames.webp"
                     width="1292"
                     height="394"
-                    alt="Courbe Google Search Console Nexus Games après refonte WordPress"
+                    alt="Courbe Google Search Console de Nexus Games"
                     loading="lazy"
                   />
                 </div>
@@ -460,6 +465,10 @@ export default function AgenceWordpressParisPage() {
                     <div className="wp-case__lbl">position moyenne</div>
                   </div>
                 </div>
+                <p style={{ fontSize: '12px', color: 'rgba(15,17,21,.55)', margin: '14px 0 0', lineHeight: '1.5' }}>
+                  Nexus Games est une société de Benjamin Dayan, fondateur de Kameo. Son site est développé avec
+                  Next.js, pas WordPress : ce cas montre notre travail de référencement.
+                </p>
               </article>
               <article className="wp-case">
                 <div className="wp-case__head">
@@ -578,7 +587,7 @@ export default function AgenceWordpressParisPage() {
                 >
                   <use href="/icons.svg#i-solid-file-lines" />
                 </svg>
-                <strong style={{ color: '#0f1115', fontWeight: '700' }}>Landing page</strong>· 1 page · 14 jours{' '}
+                <strong style={{ color: '#0f1115', fontWeight: '700' }}>Landing page</strong>· 1 page · 14 jours · 1 299 € HT{' '}
               </span>
               <span
                 style={{
@@ -603,7 +612,7 @@ export default function AgenceWordpressParisPage() {
                   <use href="/icons.svg#i-solid-heart" />
                 </svg>
                 <strong style={{ color: '#0f1115', fontWeight: '700' }}>Site vitrine</strong>· jusqu'à 5 pages · 14
-                jours{' '}
+                jours · 1 999 € HT{' '}
               </span>
               <span
                 style={{
@@ -628,7 +637,7 @@ export default function AgenceWordpressParisPage() {
                   <use href="/icons.svg#i-solid-bag-shopping" />
                 </svg>
                 <strong style={{ color: '#0f1115', fontWeight: '700' }}>E-commerce WooCommerce</strong>· catalogue · 1
-                mois{' '}
+                mois · 2 999 € HT{' '}
               </span>
             </div>
             <Link
@@ -651,7 +660,7 @@ export default function AgenceWordpressParisPage() {
               <h2 className="wp-why__title">Pourquoi WordPress reste le meilleur choix pour votre site d'entreprise</h2>
               <p className="wp-why__intro">
                 WordPress propulse aujourd'hui <strong>plus de 43 % du web mondial</strong>, du blog personnel aux sites
-                de grands groupes comme TechCrunch, Le Monde Diplomatique ou Sony Music. Cette domination n'est pas un
+                de grands groupes comme TechCrunch ou Sony Music. Cette domination n'est pas un
                 hasard : c'est l'écosystème CMS le plus mature, le plus extensible et le mieux référencé par Google.
               </p>
               <p className="wp-why__intro">
@@ -722,8 +731,8 @@ export default function AgenceWordpressParisPage() {
                 </span>
                 <h3 className="wp-why__adv-title">Une admin simple à prendre en main</h3>
                 <p className="wp-why__adv-text">
-                  Avec l'éditeur Gutenberg moderne et des blocks Kameo customisés, vos équipes éditent les contenus
-                  comme dans Notion. Plus besoin de revenir vers nous pour ajouter une page ou modifier un titre.
+                  Sur nos sites Elementor Pro, vos équipes modifient les pages en visuel, directement à l'écran. Plus
+                  besoin de revenir vers nous pour ajouter une page ou modifier un titre.
                 </p>
               </article>
             </div>
@@ -748,6 +757,7 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">Medical Market</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>WooCommerce</span>
                       <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux sociaux</span>
@@ -772,6 +782,7 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">DroneSpec</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>WordPress</span>
                       <span>DA</span>
                       <span>Site Web</span>
                     </div>
@@ -795,35 +806,9 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">Les Cars du Plateau</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>WordPress</span>
                       <span>DA</span>
                       <span>Site Web</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </article>
-            <article className="pcard">
-              <Link href="/realisations/mobile-house/" className="pcard__link">
-                <div className="pcard__media">
-                  <img
-                    src="/images/portfolio/mobile-house.webp"
-                    width="800"
-                    height="452"
-                    alt="Projet Mobile House"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="pcard__hover">Voir le projet</span>
-                <div className="pcard__info">
-                  <p className="pcard__title">Mobile House</p>
-                  <div className="pcard__meta">
-                    <div className="pcard__tags">
-                      <span>Site Web</span>
-                      <span>Fiche Google</span>
-                      <span>SEO</span>
-                    </div>
-                    <div className="pcard__stat">
-                      <strong>+65%</strong> Inscriptions newsletter
                     </div>
                   </div>
                 </div>
@@ -845,39 +830,13 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">Claimz</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>WordPress</span>
                       <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux Sociaux</span>
                     </div>
                     <div className="pcard__stat">
                       <strong>+120%</strong> Performance pub
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </article>
-            <article className="pcard">
-              <Link href="/realisations/le-101/" className="pcard__link">
-                <div className="pcard__media">
-                  <img
-                    src="/images/portfolio/le-101.webp"
-                    width="800"
-                    height="441"
-                    alt="Projet Le 101"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="pcard__hover">Voir le projet</span>
-                <div className="pcard__info">
-                  <p className="pcard__title">Le 101</p>
-                  <div className="pcard__meta">
-                    <div className="pcard__tags">
-                      <span>DA</span>
-                      <span>Site Web</span>
-                      <span>Réseaux sociaux</span>
-                    </div>
-                    <div className="pcard__stat">
-                      <strong>+40%</strong> Taux de conversion
                     </div>
                   </div>
                 </div>
@@ -899,6 +858,7 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">Medical Market</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>WooCommerce</span>
                       <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux sociaux</span>
@@ -923,6 +883,7 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">DroneSpec</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>WordPress</span>
                       <span>DA</span>
                       <span>Site Web</span>
                     </div>
@@ -946,35 +907,9 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">Les Cars du Plateau</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>WordPress</span>
                       <span>DA</span>
                       <span>Site Web</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </article>
-            <article className="pcard" inert aria-hidden="true">
-              <Link href="/realisations/mobile-house/" className="pcard__link">
-                <div className="pcard__media">
-                  <img
-                    src="/images/portfolio/mobile-house.webp"
-                    width="800"
-                    height="452"
-                    alt="Projet Mobile House"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="pcard__hover">Voir le projet</span>
-                <div className="pcard__info">
-                  <p className="pcard__title">Mobile House</p>
-                  <div className="pcard__meta">
-                    <div className="pcard__tags">
-                      <span>Site Web</span>
-                      <span>Fiche Google</span>
-                      <span>SEO</span>
-                    </div>
-                    <div className="pcard__stat">
-                      <strong>+65%</strong> Inscriptions newsletter
                     </div>
                   </div>
                 </div>
@@ -996,39 +931,13 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">Claimz</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>WordPress</span>
                       <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux Sociaux</span>
                     </div>
                     <div className="pcard__stat">
                       <strong>+120%</strong> Performance pub
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </article>
-            <article className="pcard" inert aria-hidden="true">
-              <Link href="/realisations/le-101/" className="pcard__link">
-                <div className="pcard__media">
-                  <img
-                    src="/images/portfolio/le-101.webp"
-                    width="800"
-                    height="441"
-                    alt="Projet Le 101"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="pcard__hover">Voir le projet</span>
-                <div className="pcard__info">
-                  <p className="pcard__title">Le 101</p>
-                  <div className="pcard__meta">
-                    <div className="pcard__tags">
-                      <span>DA</span>
-                      <span>Site Web</span>
-                      <span>Réseaux sociaux</span>
-                    </div>
-                    <div className="pcard__stat">
-                      <strong>+40%</strong> Taux de conversion
                     </div>
                   </div>
                 </div>
@@ -1052,33 +961,23 @@ export default function AgenceWordpressParisPage() {
             <div className="wp-local__wrap">
               <div>
                 <h2 className="wp-local__title">
-                  Une agence WordPress ancrée à Paris, qui intervient partout en France
+                  Une agence WordPress pour les entreprises parisiennes, et partout en France
                 </h2>
                 <p className="wp-local__text">
-                  Nos bureaux sont au cœur du 2<sup>e</sup> arrondissement, à deux pas de la Bourse et de l'Opéra. Nous
-                  accueillons nos clients en rendez-vous physique pour le brief, les ateliers UX et les présentations de
-                  maquettes. Pour les clients hors Île-de-France, nous travaillons en 100 % visio via Google Meet et
-                  Notion : l'expérience reste fluide, structurée, et nos délais ne bougent pas.
+                  Kameo a son adresse au 9 rue des Colonnes, à Paris 2<sup>e</sup>. Notre équipe travaille à distance :
+                  le brief, les ateliers et les présentations de maquettes se font en visio sur Google Meet, avec un
+                  espace de projet partagé sur Notion. Nos clients sont à Paris, en Île-de-France et dans toute la
+                  France, et les délais sont les mêmes pour tous.
                 </p>
                 <div className="wp-local__address">
                   <svg className="icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false">
                     <use href="/icons.svg#i-solid-location-dot" />
                   </svg>
                   <div className="wp-local__address-text">
-                    <strong>Kameo · 9 rue des Colonnes, 75002 Paris</strong>Métro Bourse (3) · Quatre-Septembre (3) ·
-                    Opéra (3, 7, 8)
-                    <br />
-                    Du lundi au vendredi, 9 h - 19 h{' '}
+                    <strong>Kameo · 9 rue des Colonnes, 75002 Paris</strong>
+                    Joignables du lundi au vendredi, 9 h - 17 h, en visio ou par téléphone{' '}
                   </div>
                 </div>
-              </div>
-              <div className="wp-local__map">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.5896938817567!2d2.3398863769043147!3d48.8688998710324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2d8eb22d57%3A0x40b82c3688c9690!2sRue%20des%20Colonnes%2C%2075002%20Paris!5e0!3m2!1sfr!2sfr!4v1700000000000"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Localisation Kameo, 9 rue des Colonnes, Paris 2e"
-                />
               </div>
             </div>
           </div>
@@ -1180,11 +1079,11 @@ export default function AgenceWordpressParisPage() {
           <div className="container">
             <header className="wp-team__head">
               <span className="wp-team__eyebrow">L'équipe Kameo</span>
-              <h2 className="wp-team__title">Vous travaillez avec ces personnes, pas un commercial qui sous-traite</h2>
+              <h2 className="wp-team__title">Vous parlez aux dirigeants, pas à un commercial qui sous-traite</h2>
               <p className="wp-team__intro">
-                Stratégie, design, développement WordPress, SEO : 3 profils intégrés à Paris 2<sup>e</sup>. Vous les
-                rencontrez au brief, vous travaillez avec eux pendant tout le projet, ils restent vos interlocuteurs en
-                maintenance.
+                Stratégie, design, développement WordPress, SEO : Kameo compte 7&nbsp;personnes. Les chefs de projet sont
+                les deux dirigeants, Benjamin Dayan et Louison Boutet : vous échangez avec eux dès le brief, pendant
+                tout le projet, et ils restent vos interlocuteurs en maintenance.
               </p>
             </header>
             <div className="wp-team__grid">
@@ -1226,17 +1125,17 @@ export default function AgenceWordpressParisPage() {
                 <div className="wp-team__avatar">
                   <img
                     src="/images/Louison.webp"
-                    alt="Louison Boutet, Lead développeur WordPress Kameo Paris"
+                    alt="Louison Boutet, directeur général de Kameo"
                     width="400"
                     height="400"
                     loading="lazy"
                   />
                 </div>
                 <h3 className="wp-team__name">Louison Boutet</h3>
-                <p className="wp-team__role">Lead développeur WordPress</p>
+                <p className="wp-team__role">Directeur général · Chef de projet WordPress</p>
                 <p className="wp-team__bio">
-                  Développe le thème WordPress sur-mesure, code les blocks Gutenberg dédiés, optimise les Core Web
-                  Vitals et gère la mise en ligne sur PlanetHoster.
+                  Pilote vos projets avec Benjamin, construit votre site (Elementor Pro ou thème codé), optimise les
+                  Core Web Vitals et gère la mise en ligne.
                 </p>
               </article>
             </div>
@@ -1247,7 +1146,7 @@ export default function AgenceWordpressParisPage() {
           <div className="container">
             <header className="wp-reviews__head">
               <span className="wp-reviews__eyebrow">Ce que nos clients disent</span>
-              <h2 className="wp-reviews__title">23 avis Trustpilot, 4,6/5 : voici quelques retours</h2>
+              <h2 className="wp-reviews__title">{PROOF.avisNombre} avis Trustpilot, 4,6/5 : voici quelques retours</h2>
               <p className="wp-reviews__intro">
                 Témoignages issus de nos clients ayant travaillé avec Kameo sur leur site WordPress. Avis vérifiés et
                 publiés sur{' '}
@@ -1357,7 +1256,7 @@ export default function AgenceWordpressParisPage() {
                 rel="noopener"
                 className="btn btn--outline-pill"
               >
-                Lire les 23 avis sur Trustpilot{' '}
+                Lire les {PROOF.avisNombre} avis sur Trustpilot{' '}
                 <span className="btn--outline-pill__icon">
                   <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                     <use href="/icons.svg#i-solid-arrow-up-right-from-square" />
@@ -1422,8 +1321,7 @@ export default function AgenceWordpressParisPage() {
                   <p>
                     Comptez 14 jours pour une landing page ou un site vitrine WordPress, et 1 mois pour un e-commerce
                     WooCommerce. Ces délais incluent la stratégie SEO, le design, le développement, la recette et la
-                    formation. Nous tenons ces délais grâce à notre équipe intégrée à Paris : zéro sous-traitance, zéro
-                    chef de projet intermédiaire, zéro perte de temps.
+                    formation. Nous tenons ces délais parce que la même équipe mène tout le projet, sans intermédiaire.
                   </p>
                 </div>
               </details>
@@ -1447,8 +1345,8 @@ export default function AgenceWordpressParisPage() {
                   <p>
                     Un freelance WordPress est généralement excellent sur une compétence (design OU dev OU SEO) mais
                     doit sous-traiter le reste, ce qui rallonge les délais et fragmente la responsabilité. Une{' '}
-                    <strong>agence WordPress à Paris</strong>comme Kameo regroupe designer, développeur, expert SEO et
-                    rédacteur sous le même toit : un seul interlocuteur, un projet cohérent, une garantie de continuité
+                    <strong>agence WordPress à Paris</strong> comme Kameo réunit designer, développeur, expert SEO et
+                    rédacteur dans une même équipe : un seul interlocuteur, un projet cohérent, une garantie de continuité
                     si quelqu'un est en congé ou malade. Et un encadrement contractuel plus solide.
                   </p>
                 </div>
@@ -1551,8 +1449,8 @@ export default function AgenceWordpressParisPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Première étape : un <strong>rendez-vous découverte de 30 minutes</strong> (en visio ou dans nos
-                    bureaux Paris 2<sup>e</sup>) pour comprendre votre activité, vos objectifs, votre cible, vos
+                    Première étape : un <strong>rendez-vous découverte de 30 minutes</strong> en visio pour comprendre
+                    votre activité, vos objectifs, votre cible, vos
                     contraintes et votre budget. Deuxième étape : nous vous envoyons sous 24 h un{' '}
                     <strong>devis détaillé</strong> avec planning, livrables et tarif fixe. Si ça vous convient, on
                     lance le projet la semaine suivante.{' '}

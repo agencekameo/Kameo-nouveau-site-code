@@ -61,7 +61,7 @@ format: html
 <td>Grands comptes</td>
 </tr>
 </table>
-<p>Notre recommandation : combinez un <b>modèle d&#8217;audit SEO</b> sous Notion ou Sheets pour la phase stratégique, puis un dashboard Looker Studio pour le suivi de performance post-livraison. C&#8217;est la combinaison que nous utilisons dans le cadre de nos formules de maintenance mensuelle (59,99€, 99,99€ ou 179,99€ HT selon le périmètre).</p>
+<p>Notre recommandation : combinez un <b>modèle d&#8217;audit SEO</b> sous Notion ou Sheets pour la phase stratégique, puis un dashboard Looker Studio pour le suivi de performance post-livraison. C&#8217;est la combinaison que nous utilisons dans le cadre de nos formules de maintenance mensuelle (79€, 149€ ou 299€ HT selon le périmètre).</p>
 <p><img decoding="async" src="/wp-content/uploads/2026/06/NexusGames-inline-AcleanNotion-styleSEOaudittemplatedisplayedonalapt.png" alt="A clean Notion-style SEO audit template displayed on a laptop screen with structured sections, checkboxes, and color-coded priority labels, modern minimalist desk setup" loading="lazy" style="width:100%;height:210px;object-fit:cover;object-position:center;border-radius:10px;margin:18px 0;"></p>
 <p></p>
 <h2>Comment choisir le bon modèle d&#8217;audit SEO selon votre projet ?</h2>
@@ -90,7 +90,7 @@ format: html
 </details>
 <details>
 <summary>Faut-il refaire un audit SEO chaque année ?</summary>
-<p>Oui, au minimum. Les algorithmes évoluent, la concurrence bouge et votre site change. Un audit annuel approfondi complété par un suivi mensuel via dashboard est le combo idéal. Nos formules de maintenance Kameo intègrent ce suivi à partir de 59,99€ HT/mois.</p>
+<p>Oui, au minimum. Les algorithmes évoluent, la concurrence bouge et votre site change. Un audit annuel approfondi complété par un suivi mensuel via dashboard est le combo idéal. Nos formules de maintenance Kameo intègrent ce suivi à partir de 79€ HT/mois.</p>
 </details>
 <div class="kameo-sticky-ad">
 <div class="kameo-ad-close">×</div>

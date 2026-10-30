@@ -68,9 +68,9 @@ format: html
 <h3>Et la maintenance ?</h3>
 <p>Un site laissé à l&#8217;abandon devient rapidement obsolète, lent et vulnérable. Trois formules de maintenance sont proposées pour couvrir tous les besoins :</p>
 <ul>
-<li><b>Essentielle – 59,99 € HT/mois</b> : mises à jour, sauvegardes, sécurité</li>
-<li><b>Avancée – 99,99 € HT/mois</b> : + modifications régulières, support prioritaire</li>
-<li><b>Premium – 179,99 € HT/mois</b> : + optimisations SEO continues, reporting mensuel</li>
+<li><b>Essentielle – 79 € HT/mois</b> : mises à jour, sauvegardes, sécurité</li>
+<li><b>Avancée – 149 € HT/mois</b> : + modifications régulières, support prioritaire</li>
+<li><b>Premium – 299 € HT/mois</b> : + optimisations SEO continues, reporting mensuel</li>
 </ul>
 <h2>SEO local : le nerf de la guerre pour une PME</h2>
 <p>Un beau site sans visibilité ne sert à rien. Le <b>référencement local</b> est LA priorité pour toute PME qui cible une zone géographique précise. Il repose sur trois piliers indissociables.</p>
@@ -106,7 +106,7 @@ format: html
 <h2>FAQ</h2>
 <details>
 <summary>Quel est le budget minimum pour un site vitrine PME locale de qualité ?</summary>
-<p>Comptez à partir de 1 999 € HT pour un site vitrine sur mesure incluant maquette Figma, copywriting professionnel et optimisation SEO. En dessous, vous obtiendrez généralement un template générique peu efficace commercialement. Prévoyez également une maintenance mensuelle (dès 59,99 € HT) pour préserver la performance dans la durée.</p>
+<p>Comptez à partir de 1 999 € HT pour un site vitrine sur mesure incluant maquette Figma, copywriting professionnel et optimisation SEO. En dessous, vous obtiendrez généralement un template générique peu efficace commercialement. Prévoyez également une maintenance mensuelle (dès 79 € HT) pour préserver la performance dans la durée.</p>
 </details>
 <details>
 <summary>WordPress ou Framer pour un site vitrine de PME locale ?</summary>

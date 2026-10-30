@@ -90,7 +90,7 @@ format: html
 <li><b>Code sur mesure</b> (React, Next.js, Node.js, Laravel) pour les applications métier complexes.</li>
 </ul>
 <h3>Étape 4 — Tests, livraison et maintenance</h3>
-<p>Un logiciel n&#8217;est jamais figé. Il évolue avec votre activité. C&#8217;est pourquoi nous proposons des formules de <a href="/" rel="dofollow">maintenance mensuelle adaptées</a> à partir de <b>59,99€ HT</b>, allant jusqu&#8217;à <b>179,99€ HT</b> pour les besoins critiques (corrections, évolutions, monitoring, sécurité).</p>
+<p>Un logiciel n&#8217;est jamais figé. Il évolue avec votre activité. C&#8217;est pourquoi nous proposons des formules de <a href="/" rel="dofollow">maintenance mensuelle adaptées</a> à partir de <b>79€ HT</b>, allant jusqu&#8217;à <b>299€ HT</b> pour les besoins critiques (corrections, évolutions, monitoring, sécurité).</p>
 <h2>Combien coûte un logiciel métier sur-mesure en 2026 ?</h2>
 <p>Le budget dépend fortement de la complexité fonctionnelle, du nombre d&#8217;utilisateurs et des intégrations nécessaires. Voici quelques fourchettes indicatives :</p>
 <table>
@@ -124,7 +124,7 @@ format: html
 <li><b>Vouloir tout faire d&#8217;un coup</b> : privilégiez une approche MVP puis itérative.</li>
 <li><b>Oublier la conduite du changement</b> : former les équipes est aussi important que le code.</li>
 </ul>
-<p>Avec plus de <b>50 entreprises accompagnées</b> et une note de <b>4,2/5 sur Trustpilot</b>, notre équipe parisienne a éprouvé une méthodologie qui sécurise chaque étape, de l&#8217;audit à la livraison.</p>
+<p>Avec plus de <b>50 entreprises accompagnées</b> et une note de <b>4,6/5 sur Trustpilot</b>, notre équipe a éprouvé une méthodologie qui sécurise chaque étape, de l&#8217;audit à la livraison.</p>
 <h2>Conclusion</h2>
 <p>En 2026, choisir un <b>logiciel métier sur-mesure</b> n&#8217;est plus un luxe mais un levier stratégique pour automatiser, scaler et se différencier. À condition de bien cadrer, choisir le bon partenaire et anticiper la maintenance. Que vous ayez besoin d&#8217;un simple outil interne ou d&#8217;une plateforme complète, Agence Kameo vous accompagne avec une approche 100 % personnalisée, design Figma, copywriting inclus et orientation conversion.</p>
 <h2>FAQ</h2>
@@ -138,7 +138,7 @@ format: html
 </details>
 <details>
 <summary>Faut-il une maintenance après le lancement d&#8217;un logiciel sur-mesure ?</summary>
-<p>Oui, c&#8217;est indispensable. La maintenance couvre les corrections, mises à jour de sécurité, évolutions fonctionnelles et monitoring. Agence Kameo propose trois formules adaptées (59,99€, 99,99€ et 179,99€ HT/mois) pour garantir la pérennité, la sécurité et l&#8217;évolution continue de votre outil métier.</p>
+<p>Oui, c&#8217;est indispensable. La maintenance couvre les corrections, mises à jour de sécurité, évolutions fonctionnelles et monitoring. Agence Kameo propose trois formules adaptées (79€, 149€ et 299€ HT/mois) pour garantir la pérennité, la sécurité et l&#8217;évolution continue de votre outil métier.</p>
 </details>
 <div class="kameo-sticky-ad">
 <div class="kameo-ad-close">×</div>

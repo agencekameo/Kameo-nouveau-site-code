@@ -91,7 +91,7 @@ format: html
 </table>
 <h3>Intégrez votre fiche à une stratégie SEO globale</h3>
 <p>Une fiche Google Business Profile isolée n&#8217;a que peu d&#8217;impact. Elle doit s&#8217;inscrire dans un écosystème digital cohérent : site web professionnel optimisé, cohérence des mentions NAP (Name, Address, Phone) sur le web, référencement local. Chez <a href="/">Agence Kameo</a>, nous accompagnons nos clients dans une approche 360° combinant création de site sur mesure et stratégie de visibilité locale.</p>
-<p>Nos formules de <a href="/">maintenance mensuelle</a> (à partir de 59,99€ HT) incluent notamment un suivi de la cohérence entre votre site et votre fiche Google Business Profile, ainsi qu&#8217;une veille sur les avis et signalements potentiels.</p>
+<p>Nos formules de <a href="/">maintenance mensuelle</a> (à partir de 79€ HT) incluent notamment un suivi de la cohérence entre votre site et votre fiche Google Business Profile, ainsi qu&#8217;une veille sur les avis et signalements potentiels.</p>
 <h3>Formulaires officiels utiles</h3>
 <p>Google met à disposition plusieurs formulaires spécifiques selon le type de problème :</p>
 <ul>

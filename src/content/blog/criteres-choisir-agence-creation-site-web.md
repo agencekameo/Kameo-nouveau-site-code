@@ -29,7 +29,7 @@ format: html
 <h3>4. La technologie utilisée</h3>
 <p>WordPress reste le CMS n°1 mondial pour sa flexibilité SEO. Framer séduit pour son design premium et sa vitesse. Le code sur mesure convient aux projets complexes. Une bonne agence maîtrise plusieurs stacks et vous conseille selon votre besoin réel.</p>
 <h3>5. La maintenance et le suivi</h3>
-<p>Un site sans maintenance est un site qui meurt en 12 mois. Privilégiez une agence proposant des formules claires : par exemple 59,99€, 99,99€ ou 179,99€ HT/mois selon vos besoins en mises à jour, sécurité et évolutions.</p>
+<p>Un site sans maintenance est un site qui meurt en 12 mois. Privilégiez une agence proposant des formules claires : par exemple 79€, 149€ ou 299€ HT/mois selon vos besoins en mises à jour, sécurité et évolutions.</p>
 <h3>6. Les preuves sociales</h3>
 <p>Portfolio, témoignages vérifiés, notes Trustpilot, nombre de clients accompagnés. Une agence qui a livré +50 projets et affiche une note supérieure à 4/5 démontre une constance rassurante.</p>
 <h3>7. La méthodologie</h3>
@@ -67,7 +67,7 @@ format: html
 <td>Suivi long terme</td>
 <td>Aléatoire</td>
 <td>Oui (coûteux)</td>
-<td>Formules dès 59,99€/mois</td>
+<td>Formules dès 79€/mois</td>
 </tr>
 <tr>
 <td>SEO natif</td>
@@ -92,17 +92,17 @@ format: html
 <p></p>
 <h2>Pourquoi Agence Kameo se distingue en 2026</h2>
 <p>Basée à Paris et forte de plus de 50 entreprises accompagnées, <a href="/">Agence Kameo</a> incarne cette nouvelle génération de studios digitaux. La promesse est claire : aucun template, tout est conçu à partir d&#8217;une maquette Figma unique, le copywriting est intégré, et chaque site est pensé pour convertir dès la première visite.</p>
-<p>Les tarifs restent accessibles — 1 999€ pour un site vitrine, 2 999€ pour un e-commerce — sans compromis sur la qualité. Trois formules de maintenance (59,99€ / 99,99€ / 179,99€ HT/mois) permettent d&#8217;entretenir la performance dans la durée. La note de 4,2/5 sur Trustpilot reflète une exigence constante et une relation client soignée.</p>
+<p>Les tarifs restent accessibles — 1 999€ pour un site vitrine, 2 999€ pour un e-commerce — sans compromis sur la qualité. Trois formules de maintenance (79€ / 149€ / 299€ HT/mois) permettent d&#8217;entretenir la performance dans la durée. La note de 4,6/5 sur Trustpilot reflète une exigence constante et une relation client soignée.</p>
 <p>Que vous ayez besoin d&#8217;une <b>création de site vitrine</b>, d&#8217;une refonte, d&#8217;une landing page ou d&#8217;un accompagnement SEO, la méthode reste la même : &laquo;&nbsp;On écoute. On crée. On livre.&nbsp;&raquo; Trois étapes, aucun flou, un résultat mesurable.</p>
 <p>Choisir la bonne <b>agence de création de site web</b> en 2026, c&#8217;est arbitrer entre prix, sur-mesure, copywriting, technologie et suivi. Fuyez les templates génériques, exigez une maquette Figma dédiée, une rédaction professionnelle et une maintenance claire. Un studio spécialisé comme Agence Kameo réunit ces critères pour un budget maîtrisé. Votre site est votre premier commercial : ne le confiez pas au hasard.</p>
 <h2>FAQ</h2>
 <details>
 <summary>Quel budget prévoir pour une agence de création de site web en 2026 ?</summary>
-<p>Comptez à partir de 1 999€ pour un site vitrine sur mesure et 2 999€ pour un e-commerce professionnel. Ajoutez une formule de maintenance mensuelle (à partir de 59,99€ HT) pour garantir la sécurité, les mises à jour et la performance dans la durée.</p>
+<p>Comptez à partir de 1 999€ pour un site vitrine sur mesure et 2 999€ pour un e-commerce professionnel. Ajoutez une formule de maintenance mensuelle (à partir de 79€ HT) pour garantir la sécurité, les mises à jour et la performance dans la durée.</p>
 </details>
 <details>
 <summary>Comment savoir si une agence propose vraiment du sur-mesure ?</summary>
-<p>Demandez à voir des maquettes Figma originales de projets précédents et vérifiez qu&#8217;aucun template ThemeForest ou Elementor pré-conçu n&#8217;est utilisé. Une vraie agence sur-mesure part toujours d&#8217;une page blanche et vous présente une maquette validée avant tout développement.</p>
+<p>Demandez à voir des maquettes Figma originales de projets précédents et vérifiez qu&#8217;aucun template ThemeForest ou kit pré-conçu n&#8217;est utilisé. Une vraie agence sur-mesure part toujours d&#8217;une page blanche et vous présente une maquette validée avant tout développement.</p>
 </details>
 <details>
 <summary>WordPress ou Framer : quelle technologie choisir pour mon site ?</summary>

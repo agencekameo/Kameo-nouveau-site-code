@@ -619,7 +619,8 @@ export default function NotreAgencePage() {
                 </summary>
                 <div className="faq-item__body">
                   <p>
-                    Un chef de projet dédié vous est attribué dès le début. Vous bénéficiez de points réguliers, d’une
+                    Vos chefs de projet sont les deux dirigeants, Benjamin Dayan et Louison Boutet : ils suivent votre
+                    projet du début à la fin. Vous bénéficiez de points réguliers, d’une
                     communication fluide et de validations à chaque étape clé. Tout est transparent et collaboratif pour
                     garantir un résultat qui vous ressemble.
                   </p>

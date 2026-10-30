@@ -5,6 +5,7 @@ import JsonLd from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
+import { PROOF } from '@/lib/site';
 
 const PATH = '/expertises-branding/';
 const TITLE = 'Agence branding Paris : logo et identité dès 499 € | Kameo';
@@ -43,7 +44,7 @@ export default function ExpertisesBrandingPage() {
             {/* Barre de réassurance */}
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
-                <strong>★ 4,6/5</strong> sur Trustpilot · 23 avis
+                <strong>★ 4,6/5</strong> sur Trustpilot · {PROOF.avisNombre} avis
               </span>
               <span className="expertise-trust__sep" aria-hidden="true">
                 ·

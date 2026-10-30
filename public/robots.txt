@@ -36,10 +36,10 @@ User-agent: Perplexity-User
 User-agent: DuckAssistBot
 User-agent: Mistral-User
 
-# Contrôles d'entraînement et collecteurs de corpus.
-# Ce ne sont pas des robots de citation : les autoriser alimente
-# l'entraînement des modèles sans rapporter de trafic ni de mention.
-# Les retirer de cette liste revient à refuser cet usage.
+# Contrôles d'entraînement et collecteurs de corpus : les autoriser alimente
+# l'entraînement des modèles. Exception : Google-Extended décide aussi si Gemini
+# peut s'appuyer sur le site pour ses réponses (sources citées). Le garder
+# autorisé, sinon Kameo disparaît de Gemini.
 User-agent: Google-Extended
 User-agent: Applebot-Extended
 User-agent: CCBot

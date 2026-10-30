@@ -104,9 +104,9 @@ format: html
 <h3>Le coût de la maintenance</h3>
 <p>Une application web performante doit être maintenue. Nos trois formules s&#8217;adaptent à tous les besoins :</p>
 <ul>
-<li><b>Formule Essentielle :</b> 59,99€ HT/mois — mises à jour, sauvegardes, monitoring.</li>
-<li><b>Formule Avancée :</b> 99,99€ HT/mois — + optimisations SEO mensuelles et support prioritaire.</li>
-<li><b>Formule Premium :</b> 179,99€ HT/mois — + évolutions fonctionnelles et reporting détaillé.</li>
+<li><b>Formule Essentielle :</b> 79€ HT/mois — mises à jour, sauvegardes, monitoring.</li>
+<li><b>Formule Avancée :</b> 149€ HT/mois — + optimisations SEO mensuelles et support prioritaire.</li>
+<li><b>Formule Premium :</b> 299€ HT/mois — + évolutions fonctionnelles et reporting détaillé.</li>
 </ul>
 <p>Investir dans la maintenance, c&#8217;est protéger votre investissement initial et garantir des performances durables.</p>
 <p><img decoding="async" src="/wp-content/uploads/2026/06/NexusGames-inline-Aprofessionalteammeetingaroundaglasstablereviewing.png" alt="A professional team meeting around a glass table reviewing wireframes and project planning documents, modern Parisian office with industrial design elements, natural daylight, photorealistic" loading="lazy" style="width:100%;height:210px;object-fit:cover;object-position:center;border-radius:10px;margin:18px 0;"></p>
@@ -126,7 +126,7 @@ format: html
 <h2>FAQ</h2>
 <details>
 <summary>Quel est le délai pour créer une application web performante ?</summary>
-<p>Comptez entre 3 et 5 semaines pour un site vitrine premium, 6 à 10 semaines pour un e-commerce sur mesure, et 3 à 6 mois pour une application SaaS complète. Chez Agence Kameo, nous respectons des délais stricts grâce à notre méthodologie éprouvée en cinq étapes.</p>
+<p>Chez Kameo, comptez 14 jours pour un site vitrine, 1 mois pour un e-commerce, 2 mois pour une marketplace ou un MVP SaaS, et 3 à 6 mois pour une application SaaS complète. Chez Agence Kameo, nous respectons des délais stricts grâce à notre méthodologie éprouvée en cinq étapes.</p>
 </details>
 <details>
 <summary>WordPress, Framer ou code sur mesure : que choisir ?</summary>
@@ -134,7 +134,7 @@ format: html
 </details>
 <details>
 <summary>Pourquoi souscrire à une maintenance mensuelle ?</summary>
-<p>La maintenance garantit la sécurité (mises à jour de sécurité, sauvegardes), les performances (monitoring continu, optimisations) et l&#8217;évolution de votre application. Nos formules à partir de 59,99€ HT/mois protègent votre investissement et évitent des refontes coûteuses sur le long terme.</p>
+<p>La maintenance garantit la sécurité (mises à jour de sécurité, sauvegardes), les performances (monitoring continu, optimisations) et l&#8217;évolution de votre application. Nos formules à partir de 79€ HT/mois protègent votre investissement et évitent des refontes coûteuses sur le long terme.</p>
 </details>
 <div class="kameo-sticky-ad">
 <div class="kameo-ad-close">×</div>

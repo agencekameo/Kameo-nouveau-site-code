@@ -137,13 +137,14 @@ export default function PolitiqueDeConfidentialitePage() {
                     <strong>KAMEO</strong>
                     <br />
                     Société par Actions Simplifiée (SAS) <br />
-                    SIRET&nbsp;: 980 573 984 00013 <br />
-                    Siège social&nbsp;: 9 rue des colonnes, 75002 Paris, France <br />
+                    SIRET&nbsp;: 980 573 984 00021 <br />
+                    Siège social&nbsp;: 1862 avenue La Lauragaise, 31670 Labège, France (transfert à Paris en cours) <br />
+                    Adresse de correspondance&nbsp;: 9 rue des Colonnes, 75002 Paris, France <br />
                     Téléphone&nbsp;: <a href="tel:+33662379985">06 62 37 99 85</a>
                     <br />
                     Email&nbsp;: <a href="mailto:contact@agence-kameo.fr">contact@agence-kameo.fr</a>
                     <br />
-                    Responsable de la publication&nbsp;: M. Louison BOUTET{' '}
+                    Responsable de la publication&nbsp;: M. Benjamin DAYAN{' '}
                   </p>
                 </div>
               </div>
@@ -334,7 +335,7 @@ export default function PolitiqueDeConfidentialitePage() {
                 <h3 className="legal__h3">5.1 Prestataires techniques</h3>
                 <ul className="legal__list">
                   <li>
-                    <strong>Hébergeur&nbsp;:</strong> Planet Hoster Inc. (Canada), serveurs conformes RGPD
+                    <strong>Hébergeur&nbsp;:</strong> OmegaCloud (Rennes, France)
                   </li>
                   <li>
                     <strong>Mesure d’audience&nbsp;:</strong> Google Analytics (Google Ireland), taap.it et Microsoft Clarity
@@ -896,7 +897,7 @@ export default function PolitiqueDeConfidentialitePage() {
                   <p className="legal__p">
                     <strong>Kameo, Responsable&nbsp;: Louison Boutet</strong>
                     <br />
-                    Adresse&nbsp;: 15 rue Maurice Genevoix, 37540 Saint-Cyr-sur-Loire <br />
+                    Adresse&nbsp;: 9 rue des Colonnes, 75002 Paris (adresse de correspondance) <br />
                     Email&nbsp;: <a href="mailto:contact@agence-kameo.fr">contact@agence-kameo.fr</a>
                     <br />
                     Téléphone&nbsp;: <a href="tel:+33614170624">06 14 17 06 24</a>

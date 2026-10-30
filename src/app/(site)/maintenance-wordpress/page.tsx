@@ -1047,10 +1047,10 @@ export default function MaintenanceWordpressPage() {
           <div className="container">
             <header className="maint-team__head">
               <span className="maint-team__eyebrow">L'équipe qui maintient votre site</span>
-              <h2 className="maint-team__title">Une équipe parisienne, joignable et responsable</h2>
+              <h2 className="maint-team__title">Une équipe joignable et responsable</h2>
               <p className="maint-team__intro">
-                Pas de sous-traitance, pas de chatbot. Vous bossez avec ces 3 personnes que vous pouvez joindre par
-                email, Slack ou téléphone.
+                Pas de sous-traitance, pas de chatbot. Kameo compte 7&nbsp;personnes, et les deux dirigeants, Benjamin Dayan
+                et Louison Boutet, restent vos interlocuteurs : vous les joignez par email, Slack ou téléphone.
               </p>
             </header>
             <div className="maint-team__grid">
@@ -1092,14 +1092,14 @@ export default function MaintenanceWordpressPage() {
                 <div className="maint-team__avatar">
                   <img
                     src="/images/Louison.webp"
-                    alt="Louison Boutet, Lead developpeur WordPress Kameo Paris"
+                    alt="Louison Boutet, directeur général de Kameo"
                     width="400"
                     height="400"
                     loading="lazy"
                   />
                 </div>
                 <h3 className="maint-team__name">Louison Boutet</h3>
-                <p className="maint-team__role">Lead développeur WordPress</p>
+                <p className="maint-team__role">Directeur général · Chef de projet WordPress</p>
                 <p className="maint-team__bio">
                   Gère les mises à jour en staging, les interventions techniques, les évolutions code et les urgences
                   sécurité. C'est lui que vous contactez pour un bug ou une panne.
@@ -1500,7 +1500,7 @@ export default function MaintenanceWordpressPage() {
           <div className="maint-cta__container">
             <div className="maint-cta__box">
               <div className="maint-cta__wrap">
-                <h2 className="maint-cta__title">Confiez votre site WordPress à une équipe parisienne</h2>
+                <h2 className="maint-cta__title">Confiez votre site WordPress à une équipe joignable</h2>
                 <p className="maint-cta__text">
                   Un audit gratuit pour démarrer, un forfait adapté à votre site, un interlocuteur dédié. Tranquillité
                   d'esprit dès le premier mois. Sans engagement.

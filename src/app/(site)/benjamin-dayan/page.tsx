@@ -96,7 +96,7 @@ export default function BenjaminDayanPage() {
               <h2>Parcours</h2>
               <p>
                 Benjamin Dayan fonde Kameo en octobre 2023, après plusieurs années passées à concevoir et développer des
-                sites internet sur-mesure pour PME et start-ups. Son objectif : monter une agence intégrée à Paris qui
+                sites internet sur-mesure pour PME et start-ups. Son objectif : monter une agence intégrée qui
                 refuse la sous-traitance et livre en délais fixes des sites WordPress premium et des applications métier
                 propriétaires (CRM, marketplaces, SaaS avec IA).
               </p>
@@ -105,7 +105,7 @@ export default function BenjaminDayanPage() {
               <h2>Expertise</h2>
               <ul>
                 <li>
-                  <strong>WordPress sur-mesure</strong>, thèmes propriétaires, Gutenberg avancé, zéro page-builder
+                  <strong>WordPress sur-mesure</strong>, Elementor Pro, thèmes codés, WooCommerce
                 </li>
                 <li>
                   <strong>SEO technique</strong>, Core Web Vitals, Schema.org, silos éditoriaux
@@ -125,13 +125,12 @@ export default function BenjaminDayanPage() {
               <h2>Approche</h2>
               <p>
                 Benjamin défend une approche intégrée : designer, développeur, expert SEO, motion designer et chef de
-                projet travaillent côte à côte dans les bureaux du 2e arrondissement de Paris. Zéro sous-traitance, zéro
+                projet travaillent ensemble, dans une même équipe. Zéro sous-traitance, zéro
                 offshore, un seul interlocuteur, des délais respectés à 97 %.
               </p>
               <p>
                 Il croit au sur-mesure quand les SaaS packagés bloquent : un CRM adapté à votre process vaut mieux
-                qu'une usine à gaz Salesforce, un thème WordPress custom est toujours plus performant qu'Elementor, un
-                SaaS avec IA bien conçu bat n'importe quel chatbot générique.
+                qu'une usine à gaz Salesforce, et un SaaS avec IA bien conçu bat n'importe quel chatbot générique.
               </p>
             </div>
             <div className="bio-body__section">

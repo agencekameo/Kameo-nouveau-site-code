@@ -61,7 +61,7 @@ export const pageSchemas: object[] = [
       {
         '@type': ['ProfessionalService', 'LocalBusiness'],
         '@id': 'https://agence-kameo.fr/#localbusiness',
-        name: 'Kameo, agence web à Paris',
+        name: 'Kameo',
         url: 'https://agence-kameo.fr/',
         image: 'https://agence-kameo.fr/images/hero.webp',
         address: {
@@ -72,19 +72,8 @@ export const pageSchemas: object[] = [
           addressRegion: 'Île-de-France',
           addressCountry: 'FR',
         },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: '48.8688998',
-          longitude: '2.3398863',
-        },
         telephone: '+33662379985',
-        priceRange: '€€€',
-        openingHoursSpecification: {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '09:00',
-          closes: '19:00',
-        },
+        priceRange: '€€',
         areaServed: [
           {
             '@type': 'City',
@@ -131,7 +120,7 @@ export const pageSchemas: object[] = [
         name: 'Création de site WordPress sur-mesure',
         serviceType: 'Création de site WordPress',
         description:
-          'Création de site WordPress à Paris : landing page, vitrine, e-commerce WooCommerce sur-mesure. Thème custom, SEO inclus, livraison en 14 jours à 1 mois.',
+          'Création de site WordPress à Paris : landing page, vitrine, e-commerce WooCommerce sur-mesure. Design sur-mesure, Elementor Pro ou thème codé, SEO inclus, livraison en 14 jours à 1 mois.',
         provider: {
           '@id': 'https://agence-kameo.fr/#localbusiness',
         },
@@ -198,7 +187,7 @@ export const pageSchemas: object[] = [
             name: 'Que comprend exactement le tarif de 1 299 € pour une landing page WordPress ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Page sur-mesure, copywriting, design Figma, dev sur thème custom, formulaire, tracking GA4 + Meta Pixel, RGPD, SEO technique et mise en ligne. Hors périmètre : photos/vidéos, hébergement, nom de domaine.',
+              text: 'Page sur-mesure, copywriting, design Figma, intégration WordPress, formulaire, tracking GA4 + Meta Pixel, RGPD, SEO technique et mise en ligne. Hors périmètre : photos/vidéos, hébergement, nom de domaine.',
             },
           },
           {
@@ -206,7 +195,7 @@ export const pageSchemas: object[] = [
             name: 'Que comprend le tarif vitrine 1 999 € HT ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Jusqu'à 5 pages, thème WordPress sur-mesure, architecture SEO en silos, blog Gutenberg, formation 1 h, tracking, RGPD. Au-delà : devis sur-mesure.",
+              text: "Jusqu'à 5 pages, design sur-mesure, architecture SEO en silos, blog, formation 1 h, tracking, RGPD. Au-delà : devis sur-mesure.",
             },
           },
           {
@@ -219,10 +208,10 @@ export const pageSchemas: object[] = [
           },
           {
             '@type': 'Question',
-            name: "Pourquoi un thème WordPress sur-mesure plutôt qu'Elementor ou Divi ?",
+            name: 'Elementor Pro ou thème codé : comment choisissez-vous ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Un thème custom génère 70 % de poids en moins, charge sous 1,5 s, est mieux référencé et facile à faire évoluer. Les page-builders plombent les Core Web Vitals.',
+              text: "Selon le projet. La plupart de nos sites sont construits avec Elementor Pro : vous modifiez vous-même textes, images et pages, en visuel, et n'importe quel prestataire WordPress peut reprendre le site. Certains projets, comme DroneSpec ou Medical Market, ont un thème codé sur mesure. Dans les deux cas, le design part d'une maquette Figma créée pour vous, jamais d'un thème acheté.",
             },
           },
           {
@@ -230,7 +219,7 @@ export const pageSchemas: object[] = [
             name: 'Que se passe-t-il après la livraison ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: '30 jours de support gratuit, formation Gutenberg 1 h en visio, documentation Notion. Au-delà : forfait maintenance dès 79 € HT/mois sans engagement.',
+              text: '30 jours de support gratuit, formation 1 h en visio, documentation Notion. Au-delà : forfait maintenance dès 79 € HT/mois sans engagement.',
             },
           },
         ],
