@@ -4732,7 +4732,8 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 /* Meta pills */
 .proj-meta {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   gap: 10px;
   margin: 0;
   border: none;
@@ -4928,7 +4929,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   .proj-header__inner { flex-direction: column; align-items: flex-start; }
   .proj-section { grid-template-columns: 1fr; }
   .proj-section--reverse { direction: ltr; }
-  .proj-meta { grid-template-columns: 1fr; }
+  .proj-meta { grid-template-columns: 1fr; grid-auto-flow: row; }
   .proj-card { padding: 22px 18px 18px; }
   .proj-other__grid { grid-template-columns: 1fr 1fr; }
   .proj-fullimg {

@@ -596,7 +596,7 @@ export default function RefonteWordpressPage() {
                         <span className="ref-case__stat-lbl">PageSpeed mobile</span>
                       </div>
                       <div className="ref-case__stat">
-                        <span className="ref-case__stat-num">3 sem.</span>
+                        <span className="ref-case__stat-num">14 j</span>
                         <span className="ref-case__stat-lbl">de livraison</span>
                       </div>
                     </div>

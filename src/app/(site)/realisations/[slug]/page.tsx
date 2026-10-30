@@ -130,11 +130,17 @@ export default async function RealisationPage({ params }: Props) {
                 </MetaItem>
               )}
               {r.duree && (
-                <MetaItem label="Durée" value={r.duree}>
+                <MetaItem label="Réalisation" value={r.duree}>
                   <rect x="2" y="5" width="20" height="15" rx="2.5" />
                   <path d="M2 10h20" />
                   <circle cx="7" cy="7.5" r=".8" fill="currentColor" stroke="none" />
                   <circle cx="10" cy="7.5" r=".8" fill="currentColor" stroke="none" />
+                </MetaItem>
+              )}
+              {r.suivi && (
+                <MetaItem label="Accompagnement" value={r.suivi}>
+                  <path d="M21 12a9 9 0 1 1-2.64-6.36" />
+                  <path d="M21 4v5h-5" />
                 </MetaItem>
               )}
             </div>
