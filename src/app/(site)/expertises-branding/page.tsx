@@ -914,10 +914,9 @@ export default function ExpertisesBrandingPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2<sup>e</sup>), et son{' '}
-                    <strong>équipe travaille à distance</strong>. Les ateliers d’immersion et les présentations se font
-                    en visio, pour les clients de Paris et d’Île-de-France comme pour ceux en région et à
-                    l’international.
+                    Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2<sup>e</sup>), et travaille avec tous ses
+                    clients <strong>en visio</strong> : ateliers d’immersion et présentations, pour les clients de Paris
+                    et d’Île-de-France comme pour ceux en région et à l’international.
                   </p>
                 </div>
               </details>

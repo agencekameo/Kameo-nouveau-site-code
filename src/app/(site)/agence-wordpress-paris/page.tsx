@@ -964,9 +964,9 @@ export default function AgenceWordpressParisPage() {
                   Une agence WordPress pour les entreprises parisiennes, et partout en France
                 </h2>
                 <p className="wp-local__text">
-                  Kameo a son adresse au 9 rue des Colonnes, à Paris 2<sup>e</sup>. Notre équipe travaille à distance :
-                  le brief, les ateliers et les présentations de maquettes se font en visio sur Google Meet, avec un
-                  espace de projet partagé sur Notion. Nos clients sont à Paris, en Île-de-France et dans toute la
+                  Kameo a son adresse au 9 rue des Colonnes, à Paris 2<sup>e</sup>. Le brief, les ateliers et les
+                  présentations de maquettes se font en visio sur Google Meet, sans déplacement, avec un espace de
+                  projet partagé sur Notion. Nos clients sont à Paris, en Île-de-France et dans toute la
                   France, et les délais sont les mêmes pour tous.
                 </p>
                 <div className="wp-local__address">

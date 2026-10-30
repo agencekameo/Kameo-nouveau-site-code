@@ -41,7 +41,7 @@ export const pageSchemas: object[] = [
         name: 'Êtes-vous une agence motion design parisienne ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2e), et son équipe travaille à distance. Nos motion designers travaillent en interne, sans sous-traitance. Nous accompagnons des clients à Paris, en France et à l’international, en visio.',
+          text: 'Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2e). Nos motion designers travaillent en interne, sans sous-traitance, et nous accompagnons des clients à Paris, en France et à l’international, en visio.',
         },
       },
       {

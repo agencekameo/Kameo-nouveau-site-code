@@ -33,7 +33,7 @@ export const pageSchemas: object[] = [
         name: 'Êtes-vous une agence branding parisienne ? Travaillez-vous à distance ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2e), et son équipe travaille à distance. Les ateliers d’immersion et les présentations se font en visio, pour les clients de Paris et d’Île-de-France comme pour ceux en région et à l’international.',
+          text: 'Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2e), et travaille avec tous ses clients en visio : ateliers d’immersion et présentations, pour les clients de Paris et d’Île-de-France comme pour ceux en région et à l’international.',
         },
       },
       {

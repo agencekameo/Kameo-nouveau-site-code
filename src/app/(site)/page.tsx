@@ -1102,8 +1102,8 @@ export default function HomePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Kameo a son adresse au 9 rue des Colonnes, Paris 2e. L'équipe travaille à distance : les
-                    rendez-vous se font en visio, avec des clients à Paris et dans toute la France.
+                    Kameo a son adresse au 9 rue des Colonnes, Paris 2e. Les rendez-vous se font en visio, sans
+                    déplacement, avec des clients à Paris et dans toute la France.
                   </p>
                 </div>
               </details>

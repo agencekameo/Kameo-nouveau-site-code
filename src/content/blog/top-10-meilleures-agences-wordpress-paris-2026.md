@@ -109,7 +109,7 @@ Fondée en 2023, Kameo crée, refond et maintient des sites WordPress sur-mesure
 - site e-commerce WooCommerce : 2 999 € HT ;
 - maintenance : 79, 149 ou 299 € HT par mois.
 
-Les sites vitrines sont livrés en 14 jours et les boutiques en 1 mois, avec un devis sous 24 h. Note Trustpilot : 4,6/5 sur 26 avis (octobre 2026). Kameo a son adresse au 9 rue des Colonnes, Paris 2e ; son équipe travaille à distance et échange avec ses clients en visio. Kameo ne fait ni WordPress VIP ni multisites de grands groupes : pour ces projets, les agences ci-dessus sont mieux placées.
+Les sites vitrines sont livrés en 14 jours et les boutiques en 1 mois, avec un devis sous 24 h. Note Trustpilot : 4,6/5 sur 26 avis (octobre 2026). Kameo a son adresse au 9 rue des Colonnes, Paris 2e, et accompagne ses clients en visio, partout en France. Kameo ne fait ni WordPress VIP ni multisites de grands groupes : pour ces projets, les agences ci-dessus sont mieux placées.
 
 En savoir plus : [notre agence WordPress à Paris](/agence-wordpress-paris/), [nos offres et tarifs de création WordPress](/creation-site-wordpress/), [nos réalisations](/realisations/).
 
