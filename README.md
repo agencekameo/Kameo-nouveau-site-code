@@ -272,6 +272,12 @@ Pour ajouter une balise (Google Ads, LinkedIn…), passer par GTM, sans toucher 
 page après accord « Mesure d'audience » (`src/components/consent/ClarityTracker.tsx`), et reçoit le choix du
 visiteur par son API de consentement (`consentv2`), exigée par Microsoft pour les visiteurs européens.
 
+**Google Analytics 4** (flux « Kameo », G-FEZJYLD8L8) est chargé sur toutes les pages après accord « Mesure
+d'audience » (`src/components/consent/GoogleAnalytics.tsx`) : mode consentement de Google renseigné (publicité
+selon le choix « Publicité »), cookies _ga limités à 13 mois et supprimés si le visiteur retire son accord
+(`src/lib/consent.ts`). Les changements de page côté client sont comptés par la mesure améliorée du flux
+(historique du navigateur) : n'envoyer aucun page_view à la main, il serait compté deux fois.
+
 ## Mise en production
 
 Le site a besoin d'un serveur Node.js (proxy de redirections, formulaire de contact, API du blog),

@@ -37,6 +37,9 @@ export function saveConsent(choice: { audience: boolean; marketing: boolean }): 
   document.cookie = `${COOKIE}=${encodeURIComponent(JSON.stringify(c))}; Max-Age=${MAX_AGE}; Path=/; SameSite=Lax${secure}`;
   const withdrawn = (before?.audience && !c.audience) || (before?.marketing && !c.marketing);
   if (withdrawn) {
+    // Google Analytics d'abord informé du refus : sinon gtag réécrit _ga_… en quittant la page, après l'effacement
+    const pub = c.marketing ? 'granted' : 'denied';
+    window.gtag?.('consent', 'update', { analytics_storage: c.audience ? 'granted' : 'denied', ad_storage: pub, ad_user_data: pub, ad_personalization: pub });
     // cookies Meta, Clarity et Google Analytics posés sur ce domaine (ceux de taap.it, Meta et Clarity sur leurs domaines expirent d'eux-mêmes)
     const names = ['_fbp', '_fbc', '_clck', '_clsk', '_ga', '_ga_FEZJYLD8L8'];
     for (const name of names) document.cookie = `${name}=; Max-Age=0; Path=/; Domain=${location.hostname.replace(/^www\./, '')}`;

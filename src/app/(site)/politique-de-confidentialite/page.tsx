@@ -22,7 +22,7 @@ export default function PolitiqueDeConfidentialitePage() {
               <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-shield-halved" />
               </svg>
-              Dernière mise à jour&nbsp;: 27 octobre 2026{' '}
+              Dernière mise à jour&nbsp;: 30 octobre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Politique de confidentialité</h1>
             <p className="legal-hero__desc">
