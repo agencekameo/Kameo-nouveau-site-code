@@ -21,7 +21,8 @@ export const PAGES: Record<string, PageInfo> = {
   '/creation-marketplace/': { label: 'Création de marketplace', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
   '/creation-crm-sur-mesure/': { label: 'Création de CRM sur-mesure', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-16T16:47:04+00:00' },
   '/creation-saas-ia/': { label: 'Création de SaaS IA', published: '2026-09-18T12:15:31+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
-  '/realisations/': { label: 'Réalisations', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-19T12:31:10+00:00' },
+  '/realisations/': { label: 'Réalisations', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-30T12:00:00+00:00' }, // lien vers les sites WordPress (30/10/2026)
+  '/realisations/wordpress/': { label: 'Réalisations WordPress', published: '2026-10-30T12:00:00+00:00', modified: '2026-10-30T12:00:00+00:00' }, // portfolio WordPress (30/10/2026)
   '/contact/': { label: 'Contact', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
   '/blog/': { label: 'Blog', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
   '/mentions-legales/': { label: 'Mentions légales', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-30T12:00:00+00:00' }, // siège, SIRET et adresse de correspondance (30/10/2026)

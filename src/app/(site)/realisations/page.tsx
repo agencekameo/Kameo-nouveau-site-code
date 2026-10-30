@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
 import RealisationCard from '@/components/RealisationCard';
@@ -34,6 +35,11 @@ export default function RealisationsPage() {
               en succès concrets{' '}
             </h1>
             <p className="real-hero__desc">Explorez nos réalisations qui allient audace créative et performances mesurables.</p>
+            <p className="real-hero__desc" style={{ marginTop: '12px' }}>
+              <Link href="/realisations/wordpress/" style={{ fontWeight: 700, color: 'var(--c-ink)' }}>
+                Voir uniquement nos sites WordPress →
+              </Link>
+            </p>
           </div>
         </section>
         {/* ============ GRILLE PROJETS ============ */}

@@ -58,6 +58,7 @@ Dernière mise à jour : ${maj}
 ## Réalisations
 
 - [Portfolio](${home}realisations/) : ${cas} études de cas détaillées, sur plus de ${projets} projets livrés depuis 2023.
+- [Portfolio WordPress](${home}realisations/wordpress/) : 14 sites WordPress livrés, dont 3 boutiques WooCommerce, avec secteur et construction (Elementor Pro ou thème codé).
 - [Medical Market](${home}realisations/medical-market/) : e-commerce santé, hausse des commandes constatée sur les six mois suivant la mise en ligne.
 - [Claimz](${home}realisations/claimz/) : application SaaS dans le domaine juridique.
 - [Axistone Capital](${home}realisations/axistone-capital/) : site institutionnel en gestion de patrimoine.

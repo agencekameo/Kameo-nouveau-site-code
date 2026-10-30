@@ -209,11 +209,14 @@ export function serviceSchema(slug: string): Json | null {
   return out;
 }
 
-export const itemListSchema = (items: { path: string; name: string }[]): Json => ({
+export const itemListSchema = (
+  items: { path: string; name: string }[],
+  opts: { path?: string; name?: string } = {},
+): Json => ({
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  '@id': abs('/realisations/') + '#list',
-  name: 'Réalisations Kameo',
+  '@id': abs(opts.path ?? '/realisations/') + '#list',
+  name: opts.name ?? 'Réalisations Kameo',
   numberOfItems: items.length,
   itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(it.path), name: it.name })),
 });

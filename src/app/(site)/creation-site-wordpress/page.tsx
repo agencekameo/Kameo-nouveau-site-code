@@ -549,7 +549,7 @@ export default function CreationSiteWordpressPage() {
         <section className="ccrea-steps">
           <div className="container">
             <header className="ccrea-steps__head">
-              <h2 className="ccrea-steps__title">Le KAMEO-Framework appliqué à la création WordPress</h2>
+              <h2 className="ccrea-steps__title">Conception et développement de votre site WordPress : la méthode en 6 étapes</h2>
             </header>
             <ol className="ccrea-steps__list">
               <li className="ccrea-steps__item">

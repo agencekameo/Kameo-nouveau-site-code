@@ -507,6 +507,11 @@ export default function AgenceWordpressParisPage() {
                 </div>
               </article>
             </div>
+            <p style={{ textAlign: 'center', marginTop: '28px' }}>
+              <Link href="/realisations/wordpress/" style={{ fontWeight: 700, color: '#0f1115' }}>
+                Voir toutes nos réalisations WordPress →
+              </Link>
+            </p>
           </div>
         </section>
         {/* ============ TARIFS (offres) ============ */}
@@ -539,6 +544,7 @@ export default function AgenceWordpressParisPage() {
               Tarifs transparents, sans devis surprise{' '}
             </span>
             <h2
+              id="tarifs"
               style={{
                 fontSize: 'clamp(28px,3.4vw,44px)',
                 fontWeight: '900',
@@ -548,7 +554,7 @@ export default function AgenceWordpressParisPage() {
                 margin: '0 0 18px',
               }}
             >
-              Création WordPress : 3 formats, prix fixés à l'avance
+              Tarifs de notre agence WordPress à Paris : des prix fixés à l'avance
             </h2>
             <p
               style={{
@@ -560,7 +566,8 @@ export default function AgenceWordpressParisPage() {
               }}
             >
               Landing page, site vitrine, e-commerce WooCommerce : chaque format a un périmètre clair, un délai annoncé,
-              un tarif transparent. Aucune mauvaise surprise en cours de projet.
+              un tarif transparent. Ensuite, la maintenance démarre à 79 € HT par mois, sans engagement, et la refonte
+              d'un site existant se chiffre sur devis, après un audit gratuit.
             </p>
             <div
               style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', justifyContent: 'center', marginBottom: '36px' }}
@@ -640,6 +647,9 @@ export default function AgenceWordpressParisPage() {
                 mois · 2 999 € HT{' '}
               </span>
             </div>
+            <p style={{ fontSize: '14px', color: 'rgba(15,17,21,.6)', margin: '-14px auto 28px', maxWidth: '60ch' }}>
+              Prix HT, hors hébergement, nom de domaine et contenus photo ou vidéo. Devis détaillé sous 24 h.
+            </p>
             <Link
               href="/creation-site-wordpress/"
               className="btn btn--primary"
