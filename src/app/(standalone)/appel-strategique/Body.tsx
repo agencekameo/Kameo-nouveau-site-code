@@ -197,7 +197,6 @@ const Body = () => (
         <section className="hero-video lp2-hero-video">
           <div className="container">
             <div className="hero-video__frame">
-              {/* Motion Kameo v2b (1080p, 43 s) ; l'accueil garde /video/MOTION-KAMEO.mp4 */}
               <video
                 className="hero-video__media"
                 src="/video/kameo-motion-v2b.mp4"

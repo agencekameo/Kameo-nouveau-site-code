@@ -151,10 +151,10 @@ export default function HomePage() {
             <div className="hero-video__frame">
               <video
                 className="hero-video__media"
-                data-src="/video/MOTION-KAMEO.mp4"
+                data-src="/video/kameo-motion-v2b.mp4"
                 poster="/images/og-image.webp"
-                width="1280"
-                height="720"
+                width="1920"
+                height="1080"
                 muted
                 loop
                 playsInline
