@@ -1,95 +1,10 @@
 /* Données structurées propres à la page (émises dans le corps par le gabarit WordPress). */
+import { identityGraphNodes } from '@/lib/schema';
 export const pageSchemas: object[] = [
   {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'Person',
-        '@id': 'https://agence-kameo.fr/#benjamin',
-        name: 'Benjamin Dayan',
-        jobTitle: 'Fondateur & CEO',
-        worksFor: {
-          '@id': 'https://agence-kameo.fr/#organization',
-        },
-        sameAs: ['https://www.linkedin.com/in/benjamin-dayan/'],
-        knowsAbout: ['WordPress', 'SEO', 'Design web', 'Direction artistique', 'SaaS IA', 'Motion Design'],
-      },
-      {
-        '@type': 'Organization',
-        '@id': 'https://agence-kameo.fr/#organization',
-        name: 'Kameo',
-        alternateName: 'Agence Kameo',
-        url: 'https://agence-kameo.fr/',
-        logo: 'https://agence-kameo.fr/images/hero.webp',
-        foundingDate: '2023-10-11',
-        founder: {
-          '@id': 'https://agence-kameo.fr/#benjamin',
-        },
-        employee: [
-          {
-            '@id': 'https://agence-kameo.fr/#benjamin',
-          },
-        ],
-        knowsAbout: [
-          'WordPress',
-          'WooCommerce',
-          'Elementor',
-          'SEO technique',
-          'Schema.org',
-          'Motion Design',
-          'Branding',
-          'SaaS',
-          'React',
-          'Next.js',
-          'Claude API',
-          'OpenAI API',
-          'Stripe Connect',
-          'Développement sur-mesure',
-          'CRM sur-mesure',
-          'Marketplace multi-vendeurs',
-          'Direction artistique',
-        ],
-        slogan: 'Design web stratégique et campagnes conçues pour générer des résultats.',
-        sameAs: [
-          'https://www.linkedin.com/company/agence-kameo/',
-          'https://fr.trustpilot.com/review/agence-kameo.fr',
-          'https://www.instagram.com/agence_kameo/',
-          'https://www.sortlist.com/agency/kameo',
-          'https://www.pappers.fr/entreprise/kameo-980573984',
-        ],
-      },
-      {
-        '@type': ['ProfessionalService', 'LocalBusiness'],
-        '@id': 'https://agence-kameo.fr/#localbusiness',
-        name: 'Kameo',
-        url: 'https://agence-kameo.fr/',
-        image: 'https://agence-kameo.fr/images/hero.webp',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '9 rue des Colonnes',
-          addressLocality: 'Paris',
-          postalCode: '75002',
-          addressRegion: 'Île-de-France',
-          addressCountry: 'FR',
-        },
-        telephone: '+33662379985',
-        priceRange: '€€',
-        areaServed: [
-          {
-            '@type': 'City',
-            name: 'Paris',
-          },
-          {
-            '@type': 'AdministrativeArea',
-            name: 'Île-de-France',
-          },
-          {
-            '@type': 'Country',
-            name: 'France',
-          },
-        ],
-        sameAs: ['https://www.linkedin.com/company/agence-kameo/', 'https://fr.trustpilot.com/review/agence-kameo.fr'],
-      },
+      ...identityGraphNodes(),
       {
         '@type': 'BreadcrumbList',
         '@id': 'https://agence-kameo.fr/maintenance-wordpress/#breadcrumb',
@@ -183,7 +98,7 @@ export const pageSchemas: object[] = [
             },
           },
         ],
-        dateModified: '2026-06-11T08:39:07+00:00',
+        dateModified: '2026-10-31T12:00:00+00:00',
       },
       {
         '@type': 'FAQPage',
@@ -191,10 +106,18 @@ export const pageSchemas: object[] = [
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'Mon site WordPress fonctionne, pourquoi payer pour de la maintenance ?',
+            name: "Combien coûte la maintenance d'un site WordPress ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Sans maintenance, votre site WordPress accumule de la dette technique : plugins obsolètes, failles, baisse de perf. Quand l'incident arrive (piratage, MAJ ratée), c'est 5 à 10 fois plus cher à corriger en urgence qu'en prévention.",
+              text: "Nous proposons trois forfaits mensuels, sans engagement : Essentiel à 79 € HT par mois (mises à jour, sauvegardes, sécurité et support), Pro à 149 € HT par mois (avec en plus 1 h de développement par mois) et Premium à 299 € HT par mois (avec en plus un suivi SEO mensuel). La résiliation est possible chaque mois, avec un préavis de 15 jours.",
+            },
+          },
+          {
+            '@type': 'Question',
+            name: "Mon site WordPress fonctionne, pourquoi payer pour de la maintenance ?",
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: "\"Fonctionne\" est un état temporaire. Sans maintenance régulière, votre site WordPress accumule de la dette technique invisible : plugins obsolètes, base de données qui gonfle, failles de sécurité non corrigées, baisse progressive des Core Web Vitals. Le risque devient visible quand l'incident arrive (piratage, mise à jour qui casse tout, perf qui chute), et il coûte alors 5 à 10 fois plus cher à corriger en urgence qu'en prévention. La maintenance, c'est l'assurance vie de votre site.",
             },
           },
           {
@@ -202,15 +125,15 @@ export const pageSchemas: object[] = [
             name: "Reprenez-vous les sites WordPress que vous n'avez pas créés ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Oui, n'importe quel thème, n'importe quel hébergeur. Audit gratuit en 48 h pour évaluer l'état du site avant entrée en maintenance.",
+              text: "Oui, c'est même une part importante de nos contrats de maintenance. Site créé par une autre agence, un freelance ou vous-même, n'importe quel thème (Avada, Divi, Elementor, custom…) sur n'importe quel hébergeur : on s'adapte à l'existant. Premier réflexe : un audit gratuit en 48 h pour comprendre dans quel état est le site et identifier les éventuels correctifs préalables avant l'entrée en maintenance.",
             },
           },
           {
             '@type': 'Question',
-            name: 'Que se passe-t-il si mon site tombe en dehors des heures ouvrées ?',
+            name: "Que se passe-t-il si mon site tombe en dehors des heures ouvrées ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Monitoring Pingdom détecte la panne immédiatement. SLA contractuel de 24 h ouvrées pour tous les forfaits. Forfait Premium propose un canal prioritaire avec procédure d'urgence.",
+              text: "Notre monitoring uptime (Pingdom) détecte la panne immédiatement et nous alerte. Notre SLA contractuel est de 24 h ouvrées pour tous les forfaits. En pratique sur les pannes critiques, nous intervenons souvent plus vite, mais c'est l'engagement contractuel maximum. Pour les sites stratégiques nécessitant une réactivité 24/7 hors heures ouvrées, le forfait Premium propose un canal prioritaire avec procédure d'urgence.",
             },
           },
           {
@@ -218,51 +141,51 @@ export const pageSchemas: object[] = [
             name: "Les heures d'évolutions non utilisées sont-elles reportées ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: '1 h par mois sur les forfaits Pro et Premium, reportables sur le mois suivant uniquement. Au-delà, tarif horaire dégressif : 85 € HT/h Essentiel, 75 € HT/h Pro, 65 € HT/h Premium.',
+              text: "Les heures incluses (1 h par mois sur les forfaits Pro et Premium) sont reportables sur le mois suivant uniquement (pas au-delà). Cela permet de lisser sur 2 mois si vous avez besoin de capitaliser pour une plus grosse évolution. Au-delà du quota inclus, les heures supplémentaires sont facturées à un tarif horaire dégressif selon le forfait (85 € HT/h sur Essentiel, 75 € HT/h sur Pro, 65 € HT/h sur Premium).",
             },
           },
           {
             '@type': 'Question',
-            name: 'Que se passe-t-il si je résilie le contrat ?',
+            name: "Que se passe-t-il si je résilie le contrat ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Résiliation chaque fin de mois avec préavis de 15 jours. Sauvegarde complète remise + procédure de transfert + accès aux outils.',
+              text: "Résiliation chaque fin de mois avec un préavis de 15 jours. Aucune pénalité. À la sortie, on vous remet une sauvegarde complète et fraîche de votre site, une procédure de transfert vers votre nouveau prestataire (ou vers vous), et les accès complets à tous les outils mis en place (monitoring, sauvegardes externalisées). Nous croyons que vous devez rester parce que vous êtes satisfaits, pas parce que vous êtes coincés.",
             },
           },
           {
             '@type': 'Question',
-            name: 'Faut-il être hébergé chez vous pour souscrire ?',
+            name: "Faut-il être hébergé chez vous pour souscrire ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Deux options. Hébergement Kameo via notre partenariat PlanetHoster (recommandé, accès complet à toutes les fonctionnalités du forfait), ou maintenance sur votre hébergeur actuel (o2switch, OVH, WP Engine, Hostinger…) avec certaines fonctionnalités limitées car l'environnement serveur n'est pas sous notre contrôle.",
+              text: "Deux options. Option recommandée, hébergement Kameo via notre partenariat PlanetHoster : vous bénéficiez de l'intégralité des fonctionnalités du forfait (staging dédié, sauvegardes externalisées contrôlées, monitoring fin, intervention infra prioritaire en cas d'incident serveur). Option alternative, vous restez chez votre hébergeur actuel (o2switch, OVH, WP Engine, Hostinger…) : la maintenance reste possible, mais certaines fonctionnalités liées au serveur (staging automatisé, contrôle profond des perfs, intervention infra en cas de panne) seront limitées ou indisponibles, puisque l'environnement n'est pas sous notre contrôle. On cadre ensemble au brief le scénario qui colle à votre besoin.",
             },
           },
           {
             '@type': 'Question',
-            name: 'Combien de temps gardez-vous les sauvegardes ?',
+            name: "Combien de temps gardez-vous les sauvegardes ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: '30 jours Essentiel, 60 jours Pro, 90 jours Premium. Stockage externalisé chez PlanetHoster.',
+              text: "Sauvegardes quotidiennes externalisées (hors de votre hébergeur, externalisé chez PlanetHoster). 30 jours sur Essentiel, 60 jours sur Pro, 90 jours sur Premium. Vérification d'intégrité automatique chaque semaine pour s'assurer que les sauvegardes sont restaurables. À la résiliation du contrat, on vous remet la dernière sauvegarde complète.",
             },
           },
           {
             '@type': 'Question',
-            name: 'Gérez-vous les sites WooCommerce et e-commerce ?',
+            name: "Gérez-vous les sites WooCommerce et e-commerce ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Oui, ~30 % des sites sous contrat sont WooCommerce. Tests staging avec scénario d'achat complet, monitoring panier, sauvegardes renforcées en période commerciale.",
+              text: "Oui, environ 30 % des sites sous contrat avec nous sont des e-commerces WooCommerce. Notre approche est la même mais avec quelques spécificités : mises à jour testées en environnement de staging avec scénario complet d'achat (pour vérifier que le tunnel de commande reste fonctionnel), monitoring spécifique du panier et du paiement, sauvegardes plus fréquentes en période commerciale (Black Friday, soldes). Le forfait Pro ou Premium est généralement recommandé pour un e-commerce sérieux.",
             },
           },
           {
             '@type': 'Question',
-            name: 'Vos forfaits incluent-ils le développement de nouvelles fonctionnalités ?',
+            name: "Vos forfaits incluent-ils le développement de nouvelles fonctionnalités ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Dans la limite des heures incluses (1 h/mois sur Pro et Premium) : oui pour les micro-fonctionnalités. Au-delà : devis dédié.',
+              text: "Dans la limite des heures de développement incluses (1 h/mois sur les forfaits Pro et Premium) : oui, on développe des micro-fonctionnalités (nouveau formulaire, nouvelle section sur une page, intégration d'un widget tiers, ajustement UX). Pour les grosses fonctionnalités (refonte d'une section, intégration CRM, espace membre, multilingue) : on chiffre le développement dans un devis dédié hors forfait.",
             },
           },
         ],
-        dateModified: '2026-06-11T08:39:07+00:00',
+        dateModified: '2026-10-31T12:00:00+00:00',
       },
     ],
   },

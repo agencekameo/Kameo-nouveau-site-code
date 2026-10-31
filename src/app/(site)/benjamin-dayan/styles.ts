@@ -23,5 +23,7 @@ const css = `
 .bio-body ul { padding-left: 24px; margin: 0 0 32px; }
 .bio-body ul li { margin-bottom: 10px; font-size: 15.5px; line-height: 1.6; color: rgba(15,17,21,.75); }
 .bio-body__section { margin-bottom: clamp(40px,5vw,56px); }
+.bio-body a { color: #0f1115; font-weight: 600; text-decoration: underline; text-decoration-color: #ED6E63; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.bio-body a:hover { text-decoration-color: #0f1115; }
 `;
 export default css;

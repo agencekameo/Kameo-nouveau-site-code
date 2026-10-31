@@ -109,7 +109,7 @@ export default function ContactPage() {
                     </svg>
                   </span>
                   <div>
-                    <span className="cinfo__label">Heures d’ouverture</span>
+                    <span className="cinfo__label">Horaires de contact</span>
                     <p className="cinfo__value">Lundi au Vendredi (9:00 - 17:00)</p>
                   </div>
                 </div>

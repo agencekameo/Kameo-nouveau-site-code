@@ -1,95 +1,13 @@
 /* Données structurées propres à la page (émises dans le corps par le gabarit WordPress). */
+import { identityGraphNodes } from '@/lib/schema';
+import { PROOF } from '@/lib/site';
+import { NB_WOOCOMMERCE, REALISATIONS_WORDPRESS } from '@/content/realisations';
+
 export const pageSchemas: object[] = [
   {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'Person',
-        '@id': 'https://agence-kameo.fr/#benjamin',
-        name: 'Benjamin Dayan',
-        jobTitle: 'Fondateur & CEO',
-        worksFor: {
-          '@id': 'https://agence-kameo.fr/#organization',
-        },
-        sameAs: ['https://www.linkedin.com/in/benjamin-dayan/'],
-        knowsAbout: ['WordPress', 'SEO', 'Design web', 'Direction artistique', 'SaaS IA', 'Motion Design'],
-      },
-      {
-        '@type': 'Organization',
-        '@id': 'https://agence-kameo.fr/#organization',
-        name: 'Kameo',
-        alternateName: 'Agence Kameo',
-        url: 'https://agence-kameo.fr/',
-        logo: 'https://agence-kameo.fr/images/hero.webp',
-        foundingDate: '2023-10-11',
-        founder: {
-          '@id': 'https://agence-kameo.fr/#benjamin',
-        },
-        employee: [
-          {
-            '@id': 'https://agence-kameo.fr/#benjamin',
-          },
-        ],
-        knowsAbout: [
-          'WordPress',
-          'WooCommerce',
-          'Elementor',
-          'SEO technique',
-          'Schema.org',
-          'Motion Design',
-          'Branding',
-          'SaaS',
-          'React',
-          'Next.js',
-          'Claude API',
-          'OpenAI API',
-          'Stripe Connect',
-          'Développement sur-mesure',
-          'CRM sur-mesure',
-          'Marketplace multi-vendeurs',
-          'Direction artistique',
-        ],
-        slogan: 'Design web stratégique et campagnes conçues pour générer des résultats.',
-        sameAs: [
-          'https://www.linkedin.com/company/agence-kameo/',
-          'https://fr.trustpilot.com/review/agence-kameo.fr',
-          'https://www.instagram.com/agence_kameo/',
-          'https://www.sortlist.com/agency/kameo',
-          'https://www.pappers.fr/entreprise/kameo-980573984',
-        ],
-      },
-      {
-        '@type': ['ProfessionalService', 'LocalBusiness'],
-        '@id': 'https://agence-kameo.fr/#localbusiness',
-        name: 'Kameo',
-        url: 'https://agence-kameo.fr/',
-        image: 'https://agence-kameo.fr/images/hero.webp',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '9 rue des Colonnes',
-          addressLocality: 'Paris',
-          postalCode: '75002',
-          addressRegion: 'Île-de-France',
-          addressCountry: 'FR',
-        },
-        telephone: '+33662379985',
-        priceRange: '€€',
-        areaServed: [
-          {
-            '@type': 'City',
-            name: 'Paris',
-          },
-          {
-            '@type': 'AdministrativeArea',
-            name: 'Île-de-France',
-          },
-          {
-            '@type': 'Country',
-            name: 'France',
-          },
-        ],
-        sameAs: ['https://www.linkedin.com/company/agence-kameo/', 'https://fr.trustpilot.com/review/agence-kameo.fr'],
-      },
+      ...identityGraphNodes(),
       {
         '@type': 'BreadcrumbList',
         '@id': 'https://agence-kameo.fr/agence-wordpress-paris/#breadcrumb',
@@ -134,20 +52,12 @@ export const pageSchemas: object[] = [
           },
         ],
         url: 'https://agence-kameo.fr/agence-wordpress-paris/',
-        dateModified: '2026-10-30T12:00:00+00:00',
+        dateModified: '2026-10-31T12:00:00+00:00',
       },
       {
         '@type': 'FAQPage',
         '@id': 'https://agence-kameo.fr/agence-wordpress-paris/#faq',
         mainEntity: [
-          {
-            '@type': 'Question',
-            name: 'Combien coûte la création d\'un site WordPress par une agence à Paris ?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Une création WordPress sur-mesure chez Kameo démarre à 1 299 € HT. Le prix exact dépend du format (landing, vitrine, e-commerce), du nombre de pages, du niveau d\'ambition graphique, des intégrations spécifiques (CRM, paiement, multilingue) et du contenu à rédiger. Voir les 3 formats détaillés avec tarifs sur la page Création WordPress.',
-            },
-          },
           {
             '@type': 'Question',
             name: 'Quel délai pour qu\'une agence WordPress livre mon site ?',
@@ -162,6 +72,14 @@ export const pageSchemas: object[] = [
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'Un freelance WordPress est généralement excellent sur une compétence (design OU dev OU SEO) mais doit sous-traiter le reste, ce qui rallonge les délais et fragmente la responsabilité. Une agence WordPress à Paris comme Kameo réunit designer, développeur, expert SEO et rédacteur dans une même équipe : un seul interlocuteur, un projet cohérent, une garantie de continuité si quelqu\'un est en congé ou malade. Et un encadrement contractuel plus solide.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: "WordPress est-il adapté au site d'une PME ?",
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: "Oui, dans la plupart des cas : environ trois quarts des sites que nous livrons sont sous WordPress. Une PME y gagne un site qu'elle peut modifier elle-même et dont elle reste propriétaire, avec un budget connu d'avance : 1 999 € HT pour un site vitrine livré en 14 jours. Pour une application métier complexe, nous recommandons plutôt un développement sur-mesure.",
             },
           },
           {
@@ -190,6 +108,22 @@ export const pageSchemas: object[] = [
           },
           {
             '@type': 'Question',
+            name: 'Avez-vous des exemples de sites WordPress réalisés ?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: `Oui. Notre portfolio WordPress présente ${REALISATIONS_WORDPRESS.length} sites livrés, dont ${NB_WOOCOMMERCE} boutiques WooCommerce, avec pour chacun le secteur du client, la construction (Elementor Pro ou thème codé sur mesure), un lien vers le site en ligne et une étude de cas.`,
+            },
+          },
+          {
+            '@type': 'Question',
+            name: "Quels sont les avis clients sur l'agence Kameo ?",
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: `Kameo est noté ${PROOF.avisNote}/5 sur Trustpilot, sur ${PROOF.avisNombre} avis. Vous pouvez tous les lire sur notre page Trustpilot ; quelques-uns sont reproduits plus haut sur cette page.`,
+            },
+          },
+          {
+            '@type': 'Question',
             name: 'Comment démarre-t-on un projet WordPress avec Kameo ?',
             acceptedAnswer: {
               '@type': 'Answer',
@@ -197,7 +131,7 @@ export const pageSchemas: object[] = [
             },
           },
         ],
-        dateModified: '2026-10-30T12:00:00+00:00',
+        dateModified: '2026-10-31T12:00:00+00:00',
       },
     ],
   },

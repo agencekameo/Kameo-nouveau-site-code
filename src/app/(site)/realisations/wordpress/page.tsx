@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
 import RealisationCard from '@/components/RealisationCard';
-import { REALISATIONS, type Realisation } from '@/content/realisations';
+import { REALISATIONS, constructionWordPress } from '@/content/realisations';
 import { PROOF } from '@/lib/site';
 import { pageMetadata } from '@/lib/seo';
 import { itemListSchema, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
@@ -12,29 +12,27 @@ import { itemListSchema, themeSchemas, websiteGraph, type Crumb } from '@/lib/sc
  * Réalisations construites sous WordPress, vérifiées le 30/10/2026 sur les sites en ligne
  * (thème, Elementor et WooCommerce chargés par la page d'accueil). Répond à la sous-requête
  * « portfolio / références agence WordPress Paris » sans concurrencer /realisations/ (tous les projets).
+ * Secteur et technologies viennent de src/content/realisations.ts (mêmes données que les études de cas).
  */
-const WORDPRESS: { slug: string; secteur: string; type: string; construction: 'Elementor Pro' | 'Thème codé sur mesure' }[] = [
-  { slug: 'medical-market', secteur: 'Vente de matériel de santé', type: 'Boutique WooCommerce', construction: 'Thème codé sur mesure' },
-  { slug: 'dronespec', secteur: 'Relevés par drone pour le BTP', type: 'Site vitrine', construction: 'Thème codé sur mesure' },
-  { slug: 'defikart', secteur: 'Karting indoor à Toulouse', type: 'Site vitrine', construction: 'Elementor Pro' },
-  { slug: 'axistone-capital', secteur: 'Investissement immobilier', type: 'Site vitrine', construction: 'Elementor Pro' },
-  { slug: 'les-cars-du-plateau', secteur: 'Transport de voyageurs', type: 'Site vitrine', construction: 'Thème codé sur mesure' },
-  { slug: 'imperatrice-developpement', secteur: 'Formation en intelligence économique', type: 'Site vitrine', construction: 'Thème codé sur mesure' },
-  { slug: 'casajaia', secteur: 'Maison et art de vivre', type: 'Boutique WooCommerce', construction: 'Elementor Pro' },
-  { slug: 'sed-paris', secteur: 'Matériel de manutention', type: 'Boutique WooCommerce', construction: 'Elementor Pro' },
-  { slug: 'villa-de-luxe-bonifacio', secteur: 'Location de villas en Corse', type: 'Site vitrine', construction: 'Elementor Pro' },
-  { slug: 'wineguide', secteur: 'Œnotourisme en Provence', type: 'Site vitrine', construction: 'Elementor Pro' },
-  { slug: 'claimz', secteur: 'Gestion de sinistres', type: 'Site vitrine', construction: 'Elementor Pro' },
-  { slug: 'agence-marnat', secteur: 'Agence de communication', type: 'Site vitrine', construction: 'Elementor Pro' },
-  { slug: 'qunfil', secteur: 'Art textile', type: 'Site vitrine', construction: 'Elementor Pro' },
-  { slug: 'ohvale', secteur: 'Mini-motos de compétition', type: 'Site vitrine', construction: 'Elementor Pro' },
+const ORDRE = [
+  'medical-market', 'dronespec', 'defikart', 'axistone-capital', 'les-cars-du-plateau', 'imperatrice-developpement',
+  'casajaia', 'sed-paris', 'villa-de-luxe-bonifacio', 'wineguide', 'claimz', 'agence-marnat', 'qunfil', 'ohvale',
+  'paris-production-services',
 ];
+const rang = (slug: string) => (ORDRE.includes(slug) ? ORDRE.indexOf(slug) : ORDRE.length);
 
-const SITES = WORDPRESS.map((w) => ({ ...w, r: REALISATIONS.find((r) => r.slug === w.slug) })).filter(
-  (s): s is (typeof WORDPRESS)[number] & { r: Realisation } => Boolean(s.r),
-);
+const SITES = REALISATIONS.filter((r) => r.technologies?.includes('WordPress'))
+  .sort((a, b) => rang(a.slug) - rang(b.slug) || a.order - b.order)
+  .map((r) => ({
+    slug: r.slug,
+    r,
+    secteur: r.secteur ?? '',
+    type: r.technologies?.includes('WooCommerce') ? 'Boutique WooCommerce' : 'Site vitrine',
+    construction: constructionWordPress(r),
+  }));
 const N = SITES.length;
 const N_ELEMENTOR = SITES.filter((s) => s.construction === 'Elementor Pro').length;
+const N_CODE = SITES.filter((s) => s.construction === 'Thème codé sur mesure').length;
 const N_SHOPS = SITES.filter((s) => s.type === 'Boutique WooCommerce').length;
 
 const PATH = '/realisations/wordpress/';
@@ -53,6 +51,7 @@ const css = `
   .rwp-facts { padding: 0 0 clamp(40px, 5vw, 64px); }
   .rwp-title { font-family: var(--ff-heading); font-size: clamp(24px, 3vw, 32px); font-weight: 900; letter-spacing: -.02em; line-height: 1.2; color: var(--c-ink); text-align: center; margin: 0 0 12px; }
   .rwp-lead { max-width: 660px; margin: 0 auto 28px; text-align: center; font-size: 15.5px; line-height: 1.6; color: var(--c-muted-2); }
+  .rwp-lead a { color: var(--c-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
   .rwp-table-wrap { max-width: 1000px; margin: 0 auto; overflow-x: auto; background: #fff; border: 1px solid rgba(15,17,21,.08); border-radius: 18px; }
   .rwp-table { width: 100%; min-width: 680px; border-collapse: collapse; font-size: 14.5px; }
   .rwp-table th, .rwp-table td { padding: 13px 18px; text-align: left; vertical-align: middle; border-bottom: 1px solid rgba(15,17,21,.06); }
@@ -105,9 +104,10 @@ export default function RealisationsWordPressPage() {
           <div className="container">
             <h2 className="rwp-title">Les {N} sites en un coup d'œil</h2>
             <p className="rwp-lead">
-              {N_ELEMENTOR} sites construits avec Elementor Pro, {N - N_ELEMENTOR} sur un thème codé sur mesure, dont{' '}
-              {N_SHOPS} boutiques WooCommerce. Résultat publié : sur les six mois suivant sa mise en ligne, Medical Market
-              a multiplié ses clics Google par 10 et augmenté ses commandes en ligne de 20&nbsp;%.
+              Sur ces {N} sites, {N_ELEMENTOR} sont construits avec Elementor Pro et {N_CODE} sur un thème codé sur
+              mesure ; {N_SHOPS} sont des boutiques WooCommerce. Résultat publié : sur les six mois suivant sa mise en ligne,{' '}
+              <Link href="/realisations/medical-market/">Medical Market</Link> a multiplié ses clics Google par 10 (mesure
+              Google Search Console) et augmenté ses commandes en ligne de 20&nbsp;%.
             </p>
             <div className="rwp-table-wrap">
               <table className="rwp-table">
@@ -129,9 +129,11 @@ export default function RealisationsWordPressPage() {
                       <td data-label="Secteur">{s.secteur}</td>
                       <td data-label="Type">{s.type}</td>
                       <td>
-                        <span className={s.construction === 'Elementor Pro' ? 'rwp-tag' : 'rwp-tag rwp-tag--code'}>
-                          {s.construction}
-                        </span>
+                        {s.construction && (
+                          <span className={s.construction === 'Elementor Pro' ? 'rwp-tag' : 'rwp-tag rwp-tag--code'}>
+                            {s.construction}
+                          </span>
+                        )}
                       </td>
                       <td>
                         <a className="rwp-ext" href={s.r.siteUrl} target="_blank" rel="noopener">

@@ -31,26 +31,27 @@ export function realisationDescription(r: Realisation): string {
   return r.description ? clampText(r.description, 158) : `${r.title}, découvrez ce projet réalisé par l’agence Kameo.`;
 }
 
-/* Prestations liées (bloc « Un projet similaire ? », v2.8.1) : déduites de la prestation,
-   du titre, du résumé et du texte des sections. Trois au maximum. */
+/* Prestations liées (bloc « Un projet similaire ? ») : déduites des données vérifiées du projet
+   (technologies, refonte, prestations réellement livrées), jamais du texte libre, qui faisait
+   proposer le motion design sur « émotion » ou WordPress sur un site Shopify. Trois au maximum. */
 export function relatedServices(r: Realisation): [string, string, string][] {
-  const hay = [r.service, r.title, r.description, ...r.sections.flatMap((s) => [s.body, s.title])].join(' ');
+  const tech = r.technologies ?? [];
+  const prestations = r.service.toLowerCase().split(',').map((x) => x.trim());
   const out = new Map<string, [string, string]>();
   const add = (path: string, label: string, desc: string) => !out.has(path) && out.set(path, [label, desc]);
-  if (/e-commerce|ecommerce|boutique|woocommerce|prestashop|shopify/iu.test(hay))
+  if (r.refonte) add('/refonte-wordpress/', 'Refonte de site WordPress', 'Moderniser sans perdre votre SEO');
+  if (tech.includes('WooCommerce') || tech.includes('Shopify'))
     add('/creation-site-ecommerce/', 'Création de site e-commerce', 'Boutique en ligne sur-mesure, tunnel optimisé');
-  if (/marketplace|multi-vendeur|multi vendeur/iu.test(hay))
-    add('/creation-marketplace/', 'Création de marketplace', 'Plateforme multi-vendeurs, paiement redistribué');
-  if (/\bcrm\b/iu.test(hay))
-    add('/creation-crm-sur-mesure/', 'CRM sur-mesure', 'Adapté à votre process commercial');
-  if (/\bsaas\b|intelligence artificielle|\bia\b/iu.test(hay))
-    add('/creation-saas-ia/', 'Création de SaaS avec IA', 'MVP livré en 2 mois');
-  if (/direction artistique|\bda\b|logo|identité visuelle|charte/iu.test(hay))
-    add('/expertises-branding/', 'Branding & identité visuelle', 'Logo, charte graphique, direction artistique');
-  if (/motion|vidéo|video|trailer/iu.test(hay)) add('/expertises-motion/', 'Motion design', 'Animations et vidéos de marque');
-  if (/site web|site internet|wordpress|vitrine/iu.test(hay))
+  if (tech.includes('WordPress'))
     add('/creation-site-wordpress/', 'Création de site WordPress', 'Site vitrine sur-mesure, SEO inclus');
-  add('/agence-wordpress-paris/', 'Agence WordPress à Paris', 'Création, refonte et maintenance');
+  if (!out.has('/creation-site-wordpress/') && !out.has('/creation-site-ecommerce/') && prestations.includes('site web'))
+    add('/', 'Création de site internet', 'Site vitrine ou e-commerce sur-mesure');
+  if (prestations.some((p) => p === 'da' || p === 'direction artistique' || p === 'logo'))
+    add('/expertises-branding/', 'Branding et identité visuelle', 'Logo, charte graphique, direction artistique');
+  if (prestations.some((p) => /^(motion|vidéo|video)/u.test(p)))
+    add('/expertises-motion/', 'Motion design', 'Animations et vidéos de marque');
+  if (tech.includes('WordPress')) add('/agence-wordpress-paris/', 'Agence WordPress à Paris', 'Création, refonte et maintenance');
+  if (!out.size) add('/', 'Création de site internet', 'Site vitrine ou e-commerce sur-mesure');
   return Array.from(out.entries())
     .slice(0, 3)
     .map(([p, [l, d]]) => [p, l, d]);

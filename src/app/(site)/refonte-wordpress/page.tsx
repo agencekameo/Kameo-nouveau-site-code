@@ -583,7 +583,7 @@ export default function RefonteWordpressPage() {
                     <h3 className="ref-case__name">DroneSpec</h3>
                     <p className="ref-case__text">
                       Site WordPress entièrement repensé : nouveau design industriel premium, refonte des silos SEO
-                      autour des cas d'usage drone professionnel, redirections 301 sur l'ensemble du catalogue produits.
+                      autour des cas d'usage drone professionnel, redirections 301 sur l'ensemble des pages.
                       Migration depuis un ancien thème Avada vers un thème custom léger.
                     </p>
                     <div className="ref-case__stats">
@@ -649,7 +649,7 @@ export default function RefonteWordpressPage() {
                         <span className="ref-case__stat-lbl">réservations en ligne</span>
                       </div>
                       <div className="ref-case__stat">
-                        <span className="ref-case__stat-num">4 sem.</span>
+                        <span className="ref-case__stat-num">14 j</span>
                         <span className="ref-case__stat-lbl">de livraison</span>
                       </div>
                     </div>
@@ -669,6 +669,22 @@ export default function RefonteWordpressPage() {
                 </a>
               </article>
             </div>
+            <p
+              style={{
+                textAlign: 'center',
+                maxWidth: '720px',
+                margin: '28px auto 0',
+                fontSize: '15px',
+                lineHeight: '1.6',
+                color: 'rgba(15,17,21,.7)',
+              }}
+            >
+              Voir{' '}
+              <Link href="/realisations/dronespec/" style={{ color: '#E14B89', fontWeight: 700 }}>
+                l'étude de cas DroneSpec
+              </Link>
+              .
+            </p>
           </div>
         </section>
         {/* ============ MID-CTA APRÈS CAS PROJETS ============ */}
@@ -1073,7 +1089,7 @@ export default function RefonteWordpressPage() {
                     Une refonte WordPress est <strong>toujours chiffrée sur-mesure</strong> selon le périmètre exact à
                     reprendre : nombre de pages à migrer, niveau de complexité (e-commerce vs vitrine), volume de
                     contenu, intégrations spécifiques (CRM, espace membre, multilingue). Notre audit gratuit en 48 h
-                    vous donne un budget réaliste avant tout engagement. Comptez en règle générale 4 à 10 semaines de
+                    vous donne un budget réaliste avant tout engagement. Comptez en règle générale 4 à 14 semaines de
                     projet selon l'ampleur.
                   </p>
                 </div>

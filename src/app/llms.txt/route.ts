@@ -1,5 +1,5 @@
 import { getAllPostsOrRepo } from '@/lib/blog';
-import { REALISATIONS } from '@/content/realisations';
+import { NB_WOOCOMMERCE, REALISATIONS, REALISATIONS_WORDPRESS } from '@/content/realisations';
 import { CONTACT, CONTENT_UPDATED, PROOF, SITE_URL, SOCIAL } from '@/lib/site';
 
 /* /llms.txt (standard llmstxt.org) — synthèse du site pour les moteurs génératifs.
@@ -31,7 +31,7 @@ Dernière mise à jour : ${maj}
 
 - [Accueil](${home}) : agence web à Paris, création de site internet sur-mesure et développement d'applications métier.
 - [Notre agence](${home}notre-agence/) : l'équipe Kameo, la méthodologie, les valeurs.
-- [Benjamin Dayan](${home}benjamin-dayan/) : fondateur et dirigeant de Kameo ; il pilote les projets avec Louison Boutet.
+- [Benjamin Dayan](${home}benjamin-dayan/) : fondateur et président de Kameo ; il pilote les projets avec Louison Boutet.
 - [Contact](${home}contact/) : formulaire, adresse, téléphone, rendez-vous de 30 minutes sans frais.
 - [Blog](${home}blog/) : conseils sur la création de site, le choix d'un prestataire et les outils métier.
 
@@ -41,7 +41,7 @@ Dernière mise à jour : ${maj}
 - [Création de site WordPress](${home}creation-site-wordpress/) : landing dès 1 299 € HT, vitrine dès 1 999 € HT, e-commerce WooCommerce dès 2 999 € HT. Référencement inclus.
 - [Refonte WordPress](${home}refonte-wordpress/) : audit sous 48 h, plan de redirections 301 maîtrisé, design sur-mesure, performance.
 - [Maintenance WordPress](${home}maintenance-wordpress/) : forfaits sans engagement dès 79 € HT par mois. Mises à jour, sauvegardes, sécurité, supervision.
-- [Création de site e-commerce](${home}creation-site-ecommerce/) : WooCommerce, Shopify, architecture découplée.
+- [Création de site e-commerce](${home}creation-site-ecommerce/) : WooCommerce (boutique jusqu'à 50 produits à 2 999 € HT, livrée en 1 mois), Shopify, architecture découplée ; e-commerce sur-mesure à partir de 12 000 € HT.
 
 ## Métier 2 : développement sur-mesure et applications métier
 
@@ -58,12 +58,12 @@ Dernière mise à jour : ${maj}
 ## Réalisations
 
 - [Portfolio](${home}realisations/) : ${cas} études de cas détaillées, sur plus de ${projets} projets livrés depuis 2023.
-- [Portfolio WordPress](${home}realisations/wordpress/) : 14 sites WordPress livrés, dont 3 boutiques WooCommerce, avec secteur et construction (Elementor Pro ou thème codé).
-- [Medical Market](${home}realisations/medical-market/) : e-commerce santé, hausse des commandes constatée sur les six mois suivant la mise en ligne.
-- [Claimz](${home}realisations/claimz/) : application SaaS dans le domaine juridique.
-- [Axistone Capital](${home}realisations/axistone-capital/) : site institutionnel en gestion de patrimoine.
-- [DroneSpec](${home}realisations/dronespec/) : site WordPress dans le secteur des drones professionnels.
-- [Villa de luxe Bonifacio](${home}realisations/villa-de-luxe-bonifacio/) : vitrine dans l'immobilier de luxe.
+- [Portfolio WordPress](${home}realisations/wordpress/) : ${REALISATIONS_WORDPRESS.length} sites WordPress livrés, dont ${NB_WOOCOMMERCE} boutiques WooCommerce (Medical Market, CasaJaia, SED Manutention), avec secteur et construction (Elementor Pro ou thème codé).
+- [Medical Market](${home}realisations/medical-market/) : boutique WooCommerce de matériel de santé ; sur les six mois suivant la mise en ligne, clics Google multipliés par 10, impressions par 3,6 et commandes en ligne en hausse de 20 %.
+- [Claimz](${home}realisations/claimz/) : site vitrine WordPress (Elementor Pro) et identité visuelle pour un spécialiste de la gestion de sinistres.
+- [Axistone Capital](${home}realisations/axistone-capital/) : site vitrine WordPress (Elementor Pro) d'un fonds d'investissement immobilier.
+- [DroneSpec](${home}realisations/dronespec/) : refonte d'un site WordPress sous Avada, reconstruit sur un thème codé sur mesure (relevés par drone pour le BTP et les collectivités).
+- [Villa de luxe Bonifacio](${home}realisations/villa-de-luxe-bonifacio/) : site vitrine WordPress pour la location de villas de luxe en Corse.
 ${blog}
 ## Informations entreprise
 
@@ -71,7 +71,7 @@ ${blog}
 - **Forme juridique** : SAS
 - **SIRET** : 980 573 984 00021
 - **Année de création** : 2023
-- **Dirigeants** : Benjamin Dayan (fondateur) et Louison Boutet (directeur général), qui sont aussi les chefs de projet
+- **Dirigeants** : Benjamin Dayan (fondateur et président) et Louison Boutet (directeur général), qui sont aussi les chefs de projet
 - **Siège social** : 1862 avenue La Lauragaise, 31670 Labège, France (transfert à Paris en cours)
 - **Adresse à Paris** : 9 rue des Colonnes, 75002 Paris, France
 - **Équipe** : 7 personnes ; rendez-vous en visio, du lundi au vendredi de 9 h à 17 h

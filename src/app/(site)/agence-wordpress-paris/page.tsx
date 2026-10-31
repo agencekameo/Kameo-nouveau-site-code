@@ -7,6 +7,7 @@ import { websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
 import css from './styles';
 import { PROOF } from '@/lib/site';
+import { NB_WOOCOMMERCE, REALISATIONS_WORDPRESS } from '@/content/realisations';
 
 const PATH = '/agence-wordpress-paris/';
 const TITLE = 'Agence WordPress Paris : sites dès 1 299 € HT | Kameo';
@@ -65,7 +66,7 @@ export default function AgenceWordpressParisPage() {
               </span>
             </div>
             <p style={{ margin: '14px 0 0', fontSize: '13px', opacity: 0.6 }}>
-              Mis à jour le <time dateTime="2026-10-30">30 octobre 2026</time>
+              Mis à jour le <time dateTime="2026-10-31">31 octobre 2026</time>
             </p>
             <a
               href="https://calendly.com/contact-agence-kameo/30min"
@@ -480,7 +481,7 @@ export default function AgenceWordpressParisPage() {
                     src="/images/landing_page/MedicalMarket.webp"
                     width="1280"
                     height="393"
-                    alt="Courbe Google Search Console Medical Market après refonte WordPress"
+                    alt="Courbe Google Search Console de Medical Market"
                     loading="lazy"
                   />
                 </div>
@@ -505,6 +506,12 @@ export default function AgenceWordpressParisPage() {
                     <div className="wp-case__lbl">commandes en ligne</div>
                   </div>
                 </div>
+                <p style={{ fontSize: '12px', color: 'rgba(15,17,21,.55)', margin: '14px 0 0', lineHeight: '1.5' }}>
+                  Boutique WooCommerce réalisée par Kameo.{' '}
+                  <Link href="/realisations/medical-market/" style={{ color: '#0f1115', fontWeight: 700 }}>
+                    Lire l'étude de cas Medical Market
+                  </Link>
+                </p>
               </article>
             </div>
             <p style={{ textAlign: 'center', marginTop: '28px' }}>
@@ -767,10 +774,9 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">Medical Market</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
-                      <span>WooCommerce</span>
-                      <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux sociaux</span>
+                      <span>Fiche Google</span>
                     </div>
                   </div>
                 </div>
@@ -868,10 +874,9 @@ export default function AgenceWordpressParisPage() {
                   <p className="pcard__title">Medical Market</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
-                      <span>WooCommerce</span>
-                      <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux sociaux</span>
+                      <span>Fiche Google</span>
                     </div>
                   </div>
                 </div>
@@ -1000,7 +1005,8 @@ export default function AgenceWordpressParisPage() {
               <h2 className="wp-when__title">Quand WordPress est le bon choix (et quand ce ne l'est pas)</h2>
               <p className="wp-when__intro">
                 WordPress propulse 43 % du web parce qu'il est polyvalent et économique. Mais ce n'est pas la bonne
-                réponse à tous les besoins. Voici notre lecture honnête, fondée sur plus de 50 projets WordPress livrés.
+                réponse à tous les besoins. Voici notre lecture honnête, fondée sur plus de 50 sites livrés depuis 2023,
+                dont environ trois quarts sous WordPress.
               </p>
             </header>
             <div className="wp-when__grid">
@@ -1285,34 +1291,6 @@ export default function AgenceWordpressParisPage() {
             <div className="expertise-faq__list">
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
-                  Combien coûte la création d'un site WordPress par une agence à Paris ?{' '}
-                  <span className="expertise-faq__chevron" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  </span>
-                </summary>
-                <div className="expertise-faq__a">
-                  <p>
-                    Une création WordPress sur-mesure chez Kameo démarre à 1 299 € HT. Le prix exact dépend du format
-                    (landing, vitrine, e-commerce), du nombre de pages, du niveau d'ambition graphique, des intégrations
-                    spécifiques (CRM, paiement, multilingue) et du contenu à rédiger.{' '}
-                    <Link href="/creation-site-wordpress/">
-                      Voir les 3 formats détaillés avec tarifs sur la page Création WordPress
-                    </Link>
-                    .
-                  </p>
-                </div>
-              </details>
-              <details className="expertise-faq__item">
-                <summary className="expertise-faq__q">
                   Quel délai pour qu'une agence WordPress livre mon site ?{' '}
                   <span className="expertise-faq__chevron" aria-hidden="true">
                     <svg
@@ -1363,6 +1341,32 @@ export default function AgenceWordpressParisPage() {
               </details>
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
+                  WordPress est-il adapté au site d'une PME ?{' '}
+                  <span className="expertise-faq__chevron" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="expertise-faq__a">
+                  <p>
+                    Oui, dans la plupart des cas : environ trois quarts des sites que nous livrons sont sous
+                    WordPress. Une PME y gagne un site qu'elle
+                    peut modifier elle-même et dont elle reste propriétaire, avec un budget connu d'avance : 1 999 € HT
+                    pour un site vitrine livré en 14 jours. Pour une application métier complexe, nous recommandons
+                    plutôt un <Link href="/developpement-sur-mesure/">développement sur-mesure</Link>.
+                  </p>
+                </div>
+              </details>
+              <details className="expertise-faq__item">
+                <summary className="expertise-faq__q">
                   WordPress est-il vraiment adapté à un site e-commerce sérieux ?{' '}
                   <span className="expertise-faq__chevron" aria-hidden="true">
                     <svg
@@ -1379,7 +1383,7 @@ export default function AgenceWordpressParisPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Oui, WooCommerce, le plugin e-commerce de WordPress, propulse plus de{' '}
+                    Oui, <Link href="/creation-site-ecommerce/">WooCommerce</Link>, le plugin e-commerce de WordPress, propulse plus de{' '}
                     <strong>23 % des boutiques en ligne dans le monde</strong>. Il gère le paiement Stripe, Mollie,
                     PayPal, les stocks multi-entrepôts, les abonnements, le multilingue, l'export ERP. Pour des
                     catalogues jusqu'à plusieurs milliers de références, WooCommerce est une solution mature,
@@ -1438,6 +1442,57 @@ export default function AgenceWordpressParisPage() {
                     nos sites WordPress. Nos clients voient bouger leur positionnement Google dans les 3 à 6 mois
                     suivant la mise en ligne, preuve à l'appui, voir les{' '}
                     <a href="#cas-clients">cas Nexus Games et Medical Market</a> plus haut.
+                  </p>
+                </div>
+              </details>
+              <details className="expertise-faq__item">
+                <summary className="expertise-faq__q">
+                  Avez-vous des exemples de sites WordPress réalisés ?{' '}
+                  <span className="expertise-faq__chevron" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="expertise-faq__a">
+                  <p>
+                    Oui. Notre <Link href="/realisations/wordpress/">portfolio WordPress</Link> présente {REALISATIONS_WORDPRESS.length}{' '}
+                    sites livrés, dont {NB_WOOCOMMERCE} boutiques WooCommerce, avec pour chacun le secteur du client, la construction
+                    (Elementor Pro ou thème codé sur mesure), un lien vers le site en ligne et une étude de cas.
+                  </p>
+                </div>
+              </details>
+              <details className="expertise-faq__item">
+                <summary className="expertise-faq__q">
+                  Quels sont les avis clients sur l'agence Kameo ?{' '}
+                  <span className="expertise-faq__chevron" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="expertise-faq__a">
+                  <p>
+                    Kameo est noté {PROOF.avisNote}/5 sur Trustpilot, sur {PROOF.avisNombre} avis. Vous pouvez tous les
+                    lire sur{' '}
+                    <a href="https://fr.trustpilot.com/review/agence-kameo.fr" target="_blank" rel="noopener">
+                      notre page Trustpilot
+                    </a>{' '}
+                    ; quelques-uns sont reproduits plus haut sur cette page.
                   </p>
                 </div>
               </details>

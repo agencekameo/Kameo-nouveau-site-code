@@ -191,5 +191,8 @@ const css = `
     .wp-when__verdict { max-width: 880px; margin: clamp(40px,5vw,56px) auto 0; padding: 28px; background: #F9FAFB; border: 1px solid rgba(15,17,21,.06); border-radius: 18px; font-size: 16px; line-height: 1.7; color: rgba(15,17,21,.78); text-align: center; }
     @media (max-width: 800px) { .wp-when__grid { grid-template-columns: 1fr; } }
 
+  /* Liens des réponses de FAQ : soulignés comme .seo-about__text a (main.css ne les distingue pas du texte). */
+  .expertise-faq__a a { color: #0f1115; font-weight: 600; text-decoration: underline; text-decoration-color: #E14B89; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  .expertise-faq__a a:hover { text-decoration-color: #0f1115; }
   `;
 export default css;

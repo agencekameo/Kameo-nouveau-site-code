@@ -10,7 +10,7 @@ import { pageSchemas } from './schema';
 const PATH = '/';
 const TITLE = 'Agence web Paris : création de site internet sur-mesure | Kameo';
 const DESCRIPTION =
-  'Kameo, agence web à Paris : création de site internet sur-mesure (WordPress, Framer, e-commerce). Design premium, SEO natif, livraison rapide. Devis gratuit.';
+  'Kameo, agence web à Paris pour PME, startups et indépendants : sites WordPress et e-commerce sur-mesure, applications métier, SEO natif. Devis gratuit.';
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
@@ -112,7 +112,8 @@ export default function HomePage() {
               sur-mesure qui convertissent
             </h1>
             <p className="hero__description">
-              Des sites web haut de gamme, conçus sur-mesure pour refléter l’excellence de votre activité.
+              Des sites web haut de gamme pour les PME, les startups et les indépendants, conçus sur-mesure pour refléter
+              l’excellence de votre activité.
             </p>
             <a href="https://calendly.com/contact-agence-kameo/30min" target="_blank" rel="noopener" className="slots">
               <span className="slots__dot" />
@@ -209,9 +210,9 @@ export default function HomePage() {
                   <p className="pcard__title">Medical Market</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
-                      <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux sociaux</span>
+                      <span>Fiche Google</span>
                     </div>
                   </div>
                 </div>
@@ -279,9 +280,9 @@ export default function HomePage() {
                   <p className="pcard__title">Mobile House</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>DA</span>
                       <span>Site Web</span>
-                      <span>Fiche Google</span>
-                      <span>SEO</span>
+                      <span>Réseaux sociaux</span>
                     </div>
                     <div className="pcard__stat">
                       <strong>+65%</strong> Inscriptions newsletter
@@ -360,9 +361,9 @@ export default function HomePage() {
                   <p className="pcard__title">Medical Market</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
-                      <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux sociaux</span>
+                      <span>Fiche Google</span>
                     </div>
                   </div>
                 </div>
@@ -430,9 +431,9 @@ export default function HomePage() {
                   <p className="pcard__title">Mobile House</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
+                      <span>DA</span>
                       <span>Site Web</span>
-                      <span>Fiche Google</span>
-                      <span>SEO</span>
+                      <span>Réseaux sociaux</span>
                     </div>
                     <div className="pcard__stat">
                       <strong>+65%</strong> Inscriptions newsletter
@@ -1076,9 +1077,10 @@ export default function HomePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est un studio intégré, basé
-                    avec une adresse au 9 rue des Colonnes dans le 2e arrondissement, spécialisé dans deux métiers : la création de sites
-                    WordPress sur-mesure et le développement d'applications métier, c'est-à-dire des CRM, des
+                    Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est une équipe intégrée de 7
+                    personnes, spécialisée dans deux
+                    métiers : la création de sites WordPress sur-mesure et le développement d'applications métier,
+                    c'est-à-dire des CRM, des
                     marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note Trustpilot 4,6/5 sur{' '}
                     {PROOF.avisNombre} avis.
                   </p>
@@ -1104,6 +1106,31 @@ export default function HomePage() {
                   <p>
                     Kameo a son adresse au 9 rue des Colonnes, Paris 2e. Les rendez-vous se font en visio, sans
                     déplacement, avec des clients à Paris et dans toute la France.
+                  </p>
+                </div>
+              </details>
+              <details className="expertise-faq__item">
+                <summary className="expertise-faq__q">
+                  <span>Kameo travaille-t-elle avec des PME ?</span>
+                  <span className="expertise-faq__chevron" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="expertise-faq__a">
+                  <p>
+                    Oui : Kameo s'adresse surtout aux PME, aux startups et aux indépendants, à Paris et dans toute la
+                    France. Pour eux, nos prix sont publics et fixés à l'avance, le devis arrive sous 24 h, et les deux
+                    dirigeants, Benjamin Dayan et Louison Boutet, pilotent eux-mêmes les projets, en visio, sans
+                    déplacement.
                   </p>
                 </div>
               </details>
@@ -1204,8 +1231,9 @@ export default function HomePage() {
                 <div className="expertise-faq__a">
                   <p>
                     Par email à contact@agence-kameo.fr, ou en réservant un rendez-vous visio de 30 minutes sans frais
-                    depuis la <Link href="/contact/">page contact</Link>. Réponse sous 24 h en semaine. Bureaux au 9 rue
-                    des Colonnes, 75002 Paris.
+                    depuis la <Link href="/contact/">page contact</Link>. Nous sommes joignables du lundi au vendredi,
+                    de 9 h à 17 h, avec une réponse sous 24 h. Adresse : 9 rue des Colonnes, 75002 Paris ; les
+                    rendez-vous se font en visio, sans déplacement.
                   </p>
                 </div>
               </details>

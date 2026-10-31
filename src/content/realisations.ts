@@ -7,6 +7,13 @@
  */
 export type Img = { src: string; width: number; height: number };
 export type Section = { title: string; body: string; img1: Img | null; img2: Img | null };
+/**
+ * Technologies relevées le 30/10/2026 sur les sites en ligne (thème, Elementor et WooCommerce
+ * chargés par la page d'accueil). Champ absent quand la technologie n'est pas établie.
+ */
+export type Technologie = 'WordPress' | 'Elementor Pro' | 'Thème codé sur mesure' | 'WooCommerce' | 'Shopify' | 'Webflow';
+/** Résultat mesuré et publié : valeur, ce qu'elle mesure, et le détail avant → après quand il est connu. */
+export type Resultat = { valeur: string; libelle: string; detail?: string };
 export type Realisation = {
   slug: string;
   title: string;
@@ -21,6 +28,17 @@ export type Realisation = {
   duree: string;
   /** Accompagnement après la mise en ligne (réseaux sociaux, publicité, fiche Google), quand il dure. */
   suivi?: string;
+  /** Secteur d'activité du client, formulé d'après le résumé du projet. */
+  secteur?: string;
+  technologies?: Technologie[];
+  /** Refonte d'un site existant : ce qui a été remplacé (renseigné seulement quand c'est établi). */
+  refonte?: string;
+  /** Résultats mesurés, avec leur période et leur source. Uniquement des chiffres publiés et vérifiés. */
+  resultats?: Resultat[];
+  periodeResultats?: string;
+  sourceResultats?: string;
+  /** Capture de l'outil de mesure, déjà publiée sur le site. */
+  preuveResultats?: { img: Img; legende: string };
   hero: Img | null;
   sections: Section[];
   solo: Img | null;
@@ -35,13 +53,16 @@ export const REALISATIONS: Realisation[] = [
     title: 'DroneSpec',
     order: 1,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       'La donnée aérienne de précision. Relevés topographiques, inspections techniques et modélisation 3D par drone — pour les collectivités et les professionnels du BTP.',
     siteUrl: 'https://dronespec.fr/',
     client: 'DroneSpec',
     service: 'Direction Artistique, Site Web',
     duree: '14 jours',
+    secteur: 'Relevés par drone pour le BTP',
+    technologies: ['WordPress', 'Thème codé sur mesure'],
+    refonte: 'Refonte du site WordPress existant (ancien thème Avada remplacé par un thème codé sur mesure)',
     hero: {
       src: '/images/projects/dronespec/hero.webp',
       width: 1024,
@@ -102,13 +123,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Les Cars du Plateau',
     order: 2,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       "20 ans d'expertise transport collectif en Auvergne-Rhône-Alpes — une présence digitale à la hauteur de leur fiabilité terrain.",
     siteUrl: 'https://cdp69.com/',
     client: 'Les Cars du Plateau (CDP69)',
     service: 'Direction Artistique, Site Web',
     duree: '14 jours',
+    secteur: 'Transport de voyageurs',
+    technologies: ['WordPress', 'Thème codé sur mesure'],
     hero: {
       src: '/images/projects/Les%20cars%20du%20plateau/hero-bg.webp',
       width: 1535,
@@ -165,13 +188,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Défikart',
     order: 3,
     date: '2026-07-20T12:50:59+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       'Le plus grand karting indoor de Toulouse. Piste de 400 mètres, paintball, anniversaires et team-building — pour particuliers, familles et entreprises.',
     siteUrl: 'https://defikart.fr/',
     client: 'Défikart Toulouse',
     service: 'Direction Artistique, Site Web',
     duree: '14 jours',
+    secteur: 'Karting indoor à Toulouse',
+    technologies: ['WordPress', 'Elementor Pro'],
     hero: {
       src: '/images/projects/defikart/screen01.webp',
       width: 1600,
@@ -232,13 +257,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Le 101',
     order: 4,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       "Du concept à l'assiette : nous avons orchestré le lancement complet du complexe du 101, de son identité visuelle à son site web, en passant par une stratégie d'influence et de relations presse sur-mesure.",
     siteUrl: 'https://www.complexe101.fr/',
     client: 'Le 101',
     service: 'Direction Artistique, Site Web, Réseaux Sociaux, Fiche Google My Business, Publicité, RP',
     duree: '14 jours',
+    secteur: 'Restauration',
+    technologies: ['Webflow'],
     hero: {
       src: '/images/projects/le-101/asset%201.webp',
       width: 1600,
@@ -298,7 +325,7 @@ export const REALISATIONS: Realisation[] = [
     title: 'Medical Market',
     order: 5,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       "Medical Market — une plateforme e-commerce complète au service de la santé : catalogue produit, expérience d'achat optimisée et stratégie digitale multi-canal pour maximiser la visibilité et les ventes en ligne.",
     siteUrl: 'https://medical-market.fr/',
@@ -306,6 +333,19 @@ export const REALISATIONS: Realisation[] = [
     service: 'Site Web, RS, GMB, Shooting, Pub',
     duree: '1 mois',
     suivi: '1 an',
+    secteur: 'Vente de matériel de santé',
+    technologies: ['WordPress', 'Thème codé sur mesure', 'WooCommerce'],
+    resultats: [
+      { valeur: '×10', libelle: 'clics depuis la recherche Google', detail: '6 → 60' },
+      { valeur: '×3,6', libelle: 'impressions dans la recherche Google', detail: '700 → 2\u00a0500' },
+      { valeur: '+20\u00a0%', libelle: 'commandes en ligne' },
+    ],
+    periodeResultats: 'les 6 mois suivant la mise en ligne',
+    sourceResultats: 'Google Search Console (clics et impressions)',
+    preuveResultats: {
+      img: { src: '/images/landing_page/MedicalMarket.webp', width: 1280, height: 393 },
+      legende: 'Capture Google Search Console de Medical Market : clics et impressions',
+    },
     hero: {
       src: '/images/projects/medical-market/asset%202.webp',
       width: 1066,
@@ -365,13 +405,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Claimz',
     order: 6,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: "Claimz — l'identité d'une expertise droite en gestion de sinistres.",
     siteUrl: 'https://claimz.fr/',
     client: 'Claimz',
     service: 'DA, Site Web, RS, RP',
     duree: '14 jours',
     suivi: 'Depuis 2 ans',
+    secteur: 'Gestion de sinistres',
+    technologies: ['WordPress', 'Elementor Pro'],
     hero: {
       src: '/images/projects/claimz/asset%203.webp',
       width: 1600,
@@ -431,13 +473,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Be Cherry',
     order: 7,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: 'Be Cherry Cosmetics — un e-commerce performant porté par une stratégie publicitaire créative.',
     siteUrl: 'http://becherrycosmetics.com/',
     client: 'Be Cherry',
     service: 'Site web, Publicité',
     duree: '1 mois',
     suivi: 'Depuis 3 ans',
+    secteur: 'Cosmétiques',
+    technologies: ['Shopify'],
     hero: {
       src: '/images/projects/be-cherry/asset%204.webp',
       width: 1600,
@@ -497,12 +541,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Mobile House',
     order: 8,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
-    description: "Mobile House — un site vitrine immersif pour mettre en valeur des habitats mobiles d'exception.",
+    modified: '2026-10-31T12:00:00+00:00',
+    // Texte corrigé le 31/10/2026 : Mobile House répare des téléphones à Lille (maquettes du projet et site en ligne),
+    // l'ancienne version parlait à tort d'habitats mobiles.
+    description: 'Mobile House — le site d\'un réparateur de téléphones à Lille, avec sa direction artistique et ses réseaux sociaux.',
     siteUrl: 'https://www.mobilehouse.fr/',
     client: 'Mobile House',
     service: 'DA, Site Web, RS',
     duree: '14 jours',
+    secteur: 'Réparation de téléphones à Lille',
     hero: {
       src: '/images/projects/mobile-house/asset%205.webp',
       width: 1600,
@@ -510,8 +557,8 @@ export const REALISATIONS: Realisation[] = [
     },
     sections: [
       {
-        title: 'Un site vitrine pensé pour inspirer et convertir',
-        body: "Nous avons conçu pour Mobile House un site vitrine élégant qui reflète l'ADN de la marque : modernité, mobilité et qualité de vie. Chaque page a été pensée pour guider le visiteur dans sa découverte des habitats mobiles, avec une navigation intuitive, des visuels impactants et des appels à l'action stratégiquement placés pour transformer l'intérêt en prise de contact.",
+        title: 'Un site clair pour un réparateur de proximité',
+        body: "Mobile House répare smartphones, tablettes et ordinateurs dans ses boutiques de Lille. Nous avons conçu un site qui va droit au but : les réparations proposées, les marques prises en charge et un accès rapide au contact, pour qu'une recherche locale se transforme en visite en boutique.",
         img1: {
           src: '/images/projects/mobile-house/mockup1.webp',
           width: 1600,
@@ -524,8 +571,8 @@ export const REALISATIONS: Realisation[] = [
         },
       },
       {
-        title: 'Une identité visuelle forte au service de la différenciation',
-        body: "Pour se démarquer sur un marché de niche, Mobile House avait besoin d'une identité visuelle claire et mémorable. Nous avons travaillé une direction artistique soignée — palette de couleurs, typographies, iconographie — pour exprimer le positionnement haut de gamme de la marque tout en restant accessible. Le résultat : une cohérence visuelle qui inspire confiance dès les premiers instants.",
+        title: 'Une direction artistique qui inspire confiance',
+        body: "Nous avons travaillé l'identité visuelle de Mobile House : palette de couleurs, typographies et visuels. Objectif : donner l'image d'un réparateur sérieux et réactif, de façon cohérente du site jusqu'aux réseaux sociaux.",
         img1: {
           src: '/images/projects/mobile-house/mockup3.webp',
           width: 1600,
@@ -538,8 +585,8 @@ export const REALISATIONS: Realisation[] = [
         },
       },
       {
-        title: 'Une présence sur les réseaux sociaux cohérente et engageante',
-        body: "Nous accompagnons Mobile House dans l'animation de ses réseaux sociaux avec des contenus qui valorisent le style de vie associé à leurs habitats. Publications soignées, visuels de qualité et storytelling authentique : chaque post renforce la communauté et attire de nouveaux prospects qualifiés. Une stratégie éditoriale pensée pour générer de l'engagement et de la notoriété sur le long terme.",
+        title: 'Des réseaux sociaux dans la même ligne',
+        body: "Kameo a aussi pris en charge les réseaux sociaux de Mobile House, dont les publications reprennent sa nouvelle identité visuelle.",
         img1: null,
         img2: null,
       },
@@ -563,13 +610,14 @@ export const REALISATIONS: Realisation[] = [
     title: 'Compagnie des Autocars Lyonnais',
     order: 9,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: 'CAL — une présence digitale complète pour un acteur majeur du transport autocar.',
     siteUrl: 'https://cal69.fr/',
     client: 'Compagnie des Autocars Lyonnais',
     service: 'Site Web, Fiche GMB',
     duree: '14 jours',
     suivi: 'Depuis 1 an et demi',
+    secteur: "Location d'autocars avec chauffeur",
     hero: {
       src: '/images/projects/compagnie-des-autocars-lyonnais/asset%206.webp',
       width: 1066,
@@ -630,12 +678,14 @@ export const REALISATIONS: Realisation[] = [
     title: 'Qunfil',
     order: 10,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: "Qunfil — une identité visuelle et un site vitrine pour une marque d'art textile d'exception.",
     siteUrl: 'https://qunfil.art/',
     client: 'Qunfil',
     service: 'Direction Artistique, Site Web',
     duree: '14 jours',
+    secteur: 'Art textile',
+    technologies: ['WordPress', 'Elementor Pro'],
     hero: {
       src: '/images/projects/qunfil/asset%207.webp',
       width: 1600,
@@ -696,12 +746,14 @@ export const REALISATIONS: Realisation[] = [
     title: 'Villa de Luxe Bonifacio',
     order: 11,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: "Villa Luxe Bonifacio — le site vitrine premium pour des villas d'exception en Corse.",
     siteUrl: 'https://villaluxebonifacio.com/',
     client: 'Villa de Luxe Bonifacio',
     service: 'Site Web',
     duree: '14 jours',
+    secteur: 'Location de villas en Corse',
+    technologies: ['WordPress', 'Elementor Pro'],
     hero: {
       src: '/images/projects/villa-de-luxe-bonifacio/asset%208.webp',
       width: 1600,
@@ -761,12 +813,13 @@ export const REALISATIONS: Realisation[] = [
     title: 'Valeos',
     order: 12,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: "Valeos — un site sur mesure pour l'essor des solutions énergétiques économiques et écologiques.",
     siteUrl: 'https://valeos.fr/',
     client: 'Valeos',
     service: 'Site Web, Logo',
     duree: '14 jours',
+    secteur: 'Solutions énergétiques',
     hero: {
       src: '/images/projects/valeo/asset%209.webp',
       width: 1600,
@@ -827,12 +880,14 @@ export const REALISATIONS: Realisation[] = [
     title: 'CasaJaia',
     order: 13,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: "Casa Jaïa — une boutique e-commerce complète pour l'univers de la maison et de la convivialité.",
     siteUrl: 'https://casajaia.fr/',
     client: 'CasaJaia',
     service: 'Site Web',
     duree: '1 mois',
+    secteur: 'Maison et art de vivre',
+    technologies: ['WordPress', 'Elementor Pro', 'WooCommerce'],
     hero: {
       src: '/images/projects/casajaia/asset%2011.webp',
       width: 1600,
@@ -892,13 +947,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Axistone Capital',
     order: 14,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       "Axistone Capital — un site vitrine professionnel pour un fonds d'investissement immobilier à l'approche technologique innovante.",
     siteUrl: 'https://axistonecapital.com/',
     client: 'Axistone Capital',
     service: 'Site Web',
     duree: '14 jours',
+    secteur: 'Investissement immobilier',
+    technologies: ['WordPress', 'Elementor Pro'],
     hero: {
       src: '/images/projects/axistone-capital/asset%2012.webp',
       width: 1600,
@@ -958,13 +1015,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Paris Production Services',
     order: 15,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       'Paris Production Services — un site vitrine complet pour un acteur spécialisé dans les services de production audiovisuelle en France.',
     siteUrl: 'https://parisproductionservices.eu/',
     client: 'Paris Production Services',
     service: 'Site Web',
     duree: '14 jours',
+    secteur: 'Production audiovisuelle',
+    technologies: ['WordPress', 'Elementor Pro'], // vérifié sur le site en ligne le 31/10/2026
     hero: {
       src: '/images/projects/paris-production-services/asset%2013.webp',
       width: 1600,
@@ -1024,13 +1083,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'Ohvale',
     order: 16,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       'Ohvale France — le site officiel du distributeur officiel des mini-motos de compétition italiennes en France.',
     siteUrl: 'https://ohvale-france.fr/',
     client: 'Ohvale',
     service: 'Site Web',
     duree: '14 jours',
+    secteur: 'Mini-motos de compétition',
+    technologies: ['WordPress', 'Elementor Pro'],
     hero: {
       src: '/images/projects/ohvale/asset%2014.webp',
       width: 1600,
@@ -1090,13 +1151,15 @@ export const REALISATIONS: Realisation[] = [
     title: 'WineGuide',
     order: 17,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description:
       "Wine Guide Provence — un site élégant pour des expériences œnologiques sur mesure en Provence et sur la Côte d'Azur.",
     siteUrl: 'https://wineguide-provence.com/',
     client: 'WineGuide',
     service: 'Site Web',
     duree: '14 jours',
+    secteur: 'Œnotourisme en Provence',
+    technologies: ['WordPress', 'Elementor Pro'],
     hero: {
       src: '/images/projects/wineguide/asset%2015.webp',
       width: 1066,
@@ -1156,12 +1219,14 @@ export const REALISATIONS: Realisation[] = [
     title: 'Agence Marnat',
     order: 18,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: 'Marnat — un site vitrine professionnel pour une agence de communication globale.',
     siteUrl: 'https://marnat.fr/',
     client: 'Agence Marnat',
     service: 'Site Web',
     duree: '14 jours',
+    secteur: 'Agence de communication',
+    technologies: ['WordPress', 'Elementor Pro'],
     hero: {
       src: '/images/projects/agence-marnat/asset%2017.webp',
       width: 1599,
@@ -1221,12 +1286,14 @@ export const REALISATIONS: Realisation[] = [
     title: 'Impératrice Développement',
     order: 19,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: "Impératrice Développement — un site vitrine professionnel pour l'intelligence économique.",
     siteUrl: 'https://imperatrice-developpement.com/',
     client: 'Impératrice développement',
     service: 'Site Web',
     duree: '14 jours',
+    secteur: 'Conseil et formation en intelligence économique',
+    technologies: ['WordPress', 'Thème codé sur mesure'],
     hero: {
       src: '/images/projects/imperatrice-developpement/asset%2018.webp',
       width: 1600,
@@ -1283,15 +1350,17 @@ export const REALISATIONS: Realisation[] = [
   },
   {
     slug: 'sed-paris',
-    title: 'Sed Paris',
+    title: 'SED Manutention',
     order: 20,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: 'SED Manutention — une plateforme e-commerce technique au service des professionnels.',
     siteUrl: 'https://www.sed-manutention.com/',
     client: 'SED',
     service: 'Site Web',
     duree: '1 mois',
+    secteur: 'Matériel de manutention',
+    technologies: ['WordPress', 'Elementor Pro', 'WooCommerce'],
     hero: {
       src: '/images/projects/sed-paris/asset%2022.webp',
       width: 1600,
@@ -1351,12 +1420,13 @@ export const REALISATIONS: Realisation[] = [
     title: 'E-competences',
     order: 22,
     date: '2026-05-05T19:49:13+00:00',
-    modified: '2026-10-30T12:00:00+00:00',
+    modified: '2026-10-31T12:00:00+00:00',
     description: 'E-Competences Formations — un site vitrine professionnel pour un organisme certifié Qualiopi.',
     siteUrl: 'https://www.ecompetences-formations.fr/',
     client: 'E-competences',
     service: 'Site Web',
     duree: '14 jours',
+    secteur: 'Formation professionnelle',
     hero: {
       src: '/images/projects/e-comptence/asset%2024.webp',
       width: 1600,
@@ -1414,3 +1484,45 @@ export const REALISATIONS: Realisation[] = [
 ];
 
 export const getRealisation = (slug: string) => REALISATIONS.find((r) => r.slug === slug);
+
+/* La méta « service » abrège certaines prestations (DA, RS, RP, GMB, Pub) : libellés complets pour l'affichage. */
+const PRESTATIONS: Record<string, string> = {
+  da: 'direction artistique',
+  'direction artistique': 'direction artistique',
+  'site web': 'site web',
+  rs: 'réseaux sociaux',
+  'réseaux sociaux': 'réseaux sociaux',
+  rp: 'relations presse',
+  gmb: 'fiche Google My Business',
+  'fiche gmb': 'fiche Google My Business',
+  'fiche google my business': 'fiche Google My Business',
+  shooting: 'shooting photo',
+  pub: 'publicité',
+  publicité: 'publicité',
+  logo: 'logo',
+};
+
+/** Prestations réalisées par Kameo, en toutes lettres (« DA, Site Web, RS » → Direction artistique, Site web, Réseaux sociaux). */
+export function prestations(r: Realisation): string[] {
+  return r.service
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => {
+      const label = PRESTATIONS[s.toLowerCase()] ?? s;
+      return label.charAt(0).toUpperCase() + label.slice(1);
+    });
+}
+
+/** Construction d'un site WordPress : Elementor Pro ou thème codé sur mesure (undefined hors WordPress). */
+export function constructionWordPress(r: Realisation): 'Elementor Pro' | 'Thème codé sur mesure' | undefined {
+  if (!r.technologies?.includes('WordPress')) return undefined;
+  if (r.technologies.includes('Elementor Pro')) return 'Elementor Pro';
+  if (r.technologies.includes('Thème codé sur mesure')) return 'Thème codé sur mesure';
+  return undefined;
+}
+
+/** Réalisations construites sous WordPress (portfolio /realisations/wordpress/) : compteurs repris par
+    la page pilier, sa FAQ et llms.txt, pour qu'ils suivent le portfolio sans retouche. */
+export const REALISATIONS_WORDPRESS = REALISATIONS.filter((r) => r.technologies?.includes('WordPress'));
+export const NB_WOOCOMMERCE = REALISATIONS_WORDPRESS.filter((r) => r.technologies?.includes('WooCommerce')).length;

@@ -24,6 +24,14 @@ export const pageSchemas: object[] = [
       },
       {
         '@type': 'Question',
+        name: 'Êtes-vous une agence spécialisée WooCommerce ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Oui. WooCommerce, l'extension e-commerce de WordPress, fait partie de notre cœur de métier : environ trois quarts des sites que nous livrons sont sous WordPress, et notre portfolio compte trois boutiques WooCommerce, Medical Market, CasaJaia et SED Manutention. Notre offre WooCommerce coûte 2 999 € HT pour une boutique jusqu'à 50 produits, livrée en 1 mois. Au-delà de 50 produits ou pour des intégrations spécifiques, nous établissons un devis sur-mesure ; un e-commerce entièrement sur-mesure démarre à 12 000 € HT. Et si Shopify convient mieux à votre projet, nous vous le disons dès le brief.",
+        },
+      },
+      {
+        '@type': 'Question',
         name: 'Combien de temps pour livrer un site e-commerce ?',
         acceptedAnswer: {
           '@type': 'Answer',

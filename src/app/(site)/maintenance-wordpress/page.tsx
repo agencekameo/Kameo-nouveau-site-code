@@ -1230,6 +1230,10 @@ export default function MaintenanceWordpressPage() {
               Voyez notre offre{' '}
               <Link href="/creation-site-wordpress/" style={{ color: '#E14B89', fontWeight: '600' }}>
                 création de site WordPress
+              </Link>{' '}
+              et les sites déjà livrés dans notre{' '}
+              <Link href="/realisations/wordpress/" style={{ color: '#E14B89', fontWeight: '600' }}>
+                portfolio WordPress
               </Link>
               . Si votre site existe mais montre son âge, notre démarche{' '}
               <Link href="/refonte-wordpress/" style={{ color: '#E14B89', fontWeight: '600' }}>
@@ -1251,6 +1255,31 @@ export default function MaintenanceWordpressPage() {
               Questions fréquentes sur la maintenance WordPress
             </h2>
             <div className="expertise-faq__list">
+              <details className="expertise-faq__item">
+                <summary className="expertise-faq__q">
+                  Combien coûte la maintenance d'un site WordPress ?{' '}
+                  <span className="expertise-faq__chevron" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="expertise-faq__a">
+                  <p>
+                    Nous proposons trois forfaits mensuels, sans engagement : <strong>Essentiel à 79 € HT par mois</strong>{' '}
+                    (mises à jour, sauvegardes, sécurité et support), <strong>Pro à 149 € HT par mois</strong> (avec en
+                    plus 1 h de développement par mois) et <strong>Premium à 299 € HT par mois</strong> (avec en plus un
+                    suivi SEO mensuel). La résiliation est possible chaque mois, avec un préavis de 15 jours.
+                  </p>
+                </div>
+              </details>
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
                   Mon site WordPress fonctionne, pourquoi payer pour de la maintenance ?{' '}

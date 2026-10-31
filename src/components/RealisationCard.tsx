@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { Realisation } from '@/content/realisations';
+import { prestations, type Realisation } from '@/content/realisations';
 import { trimWords } from '@/lib/text';
 
 const Arrow = () => (
@@ -10,7 +10,7 @@ const Arrow = () => (
   </span>
 );
 
-/** Carte projet. `detailed` : version de la grille /realisations/ (prestation + résumé). */
+/** Carte projet. `detailed` : version de la grille /realisations/ (prestation, technologies + résumé). */
 export default function RealisationCard({ r, detailed = false }: { r: Realisation; detailed?: boolean }) {
   return (
     <article className="rcard">
@@ -22,7 +22,8 @@ export default function RealisationCard({ r, detailed = false }: { r: Realisatio
           {detailed ? (
             <div className="rcard__head">
               <p className="rcard__title">{r.title}</p>
-              {r.service && <p className="rcard__service">{r.service}</p>}
+              {r.service && <p className="rcard__service">{prestations(r).join(', ')}</p>}
+              {r.technologies && r.technologies.length > 0 && <p className="rcard__tech">{r.technologies.join(' · ')}</p>}
             </div>
           ) : (
             <p className="rcard__title">{r.title}</p>

@@ -194,5 +194,8 @@ const css = `
   @media (max-width: 960px) { .ccrea-woo__grid { grid-template-columns: repeat(2,1fr); } }
   @media (max-width: 620px) { .ccrea-woo__grid { grid-template-columns: 1fr; } }
 
+  /* Liens des réponses de FAQ : soulignés comme .seo-about__text a (main.css ne les distingue pas du texte). */
+  .expertise-faq__a a { color: #0f1115; font-weight: 600; text-decoration: underline; text-decoration-color: #E14B89; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  .expertise-faq__a a:hover { text-decoration-color: #0f1115; }
   `;
 export default css;

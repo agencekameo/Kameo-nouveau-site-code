@@ -49,12 +49,13 @@ export default function CreationSiteEcommercePage() {
             </span>
             <h1 className="page-hero__title">
               Création de site e-commerce sur-mesure à Paris : <br />
-              <span className="page-hero__title-muted">Shopify, WooCommerce, Prestashop ou headless</span>
+              <span className="page-hero__title-muted">WooCommerce, Shopify, Prestashop ou headless</span>
             </h1>
             <p className="page-hero__text">
               Vous voulez une boutique en ligne qui convertit, pas un thème Shopify générique clone de vos concurrents.
               Kameo conçoit votre e-commerce en partant de votre tunnel de vente, de vos règles métier et de votre
-              stratégie SEO. Devis détaillé sous 24 h.
+              stratégie SEO. Boutique WooCommerce jusqu'à 50 produits à 2 999 € HT, livrée en 1 mois ; e-commerce
+              sur-mesure dès 12 000 € HT. Devis détaillé sous 24 h.
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
@@ -252,6 +253,72 @@ export default function CreationSiteEcommercePage() {
             </div>
           </div>
         </section>
+        <section className="ccrea-cases" id="woocommerce" aria-labelledby="woocommerce-title">
+          <div className="container">
+            <header className="ccrea-cases__head">
+              <span className="ccrea-why__eyebrow">WooCommerce</span>
+              <h2 className="ccrea-cases__title" id="woocommerce-title">
+                Nos boutiques WooCommerce en ligne
+              </h2>
+              <p className="ccrea-stack__intro" style={{ marginTop: '14px' }}>
+                WooCommerce est l'extension e-commerce de WordPress, la plateforme d'environ trois quarts des sites que
+                nous livrons. Notre offre WooCommerce : une boutique jusqu'à 50 produits pour 2 999 € HT, livrée en 1
+                mois (
+                <Link
+                  href="/creation-site-wordpress/#formats"
+                  style={{ color: '#0f1115', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: '3px' }}
+                >
+                  ce que comprend l'offre
+                </Link>
+                ). Trois boutiques
+                de notre portfolio :
+              </p>
+            </header>
+            <div className="ccrea-cases__grid">
+              <article className="ccrea-cases__card">
+                <span className="ccrea-cases__tag">Matériel de santé</span>
+                <h3 className="ccrea-cases__name">Medical Market</h3>
+                <p className="ccrea-cases__text">
+                  Boutique WooCommerce sur un thème codé sur mesure. Sur les six mois suivant la mise en ligne : clics
+                  Google ×10, impressions ×3,6 et commandes en ligne +20&nbsp;%.
+                </p>
+                <Link
+                  href="/realisations/medical-market/"
+                  style={{ display: 'inline-block', marginTop: '16px', fontSize: '14px', fontWeight: 800, color: '#ED6E63' }}
+                >
+                  Étude de cas Medical Market →
+                </Link>
+              </article>
+              <article className="ccrea-cases__card">
+                <span className="ccrea-cases__tag">Maison et art de vivre</span>
+                <h3 className="ccrea-cases__name">CasaJaia</h3>
+                <p className="ccrea-cases__text">
+                  Boutique WooCommerce construite avec Elementor Pro, pour l'univers de la maison et de la convivialité.
+                </p>
+                <Link
+                  href="/realisations/casajaia/"
+                  style={{ display: 'inline-block', marginTop: '16px', fontSize: '14px', fontWeight: 800, color: '#ED6E63' }}
+                >
+                  Étude de cas CasaJaia →
+                </Link>
+              </article>
+              <article className="ccrea-cases__card">
+                <span className="ccrea-cases__tag">Matériel de manutention</span>
+                <h3 className="ccrea-cases__name">SED Manutention</h3>
+                <p className="ccrea-cases__text">
+                  Boutique WooCommerce construite avec Elementor Pro : un catalogue technique de matériel de manutention
+                  pour les professionnels.
+                </p>
+                <Link
+                  href="/realisations/sed-paris/"
+                  style={{ display: 'inline-block', marginTop: '16px', fontSize: '14px', fontWeight: 800, color: '#ED6E63' }}
+                >
+                  Étude de cas SED Manutention →
+                </Link>
+              </article>
+            </div>
+          </div>
+        </section>
         <section className="ccrea-midcta">
           <div className="container">
             <div className="ccrea-midcta__box">
@@ -370,6 +437,34 @@ export default function CreationSiteEcommercePage() {
                     vous voulez posséder votre stack. <strong>Headless (Next.js + Medusa/Sanity)</strong> : performance
                     maximale, expérience premium, quand vous visez 1 M€+ et un site UX/branding fort. On recommande la
                     stack après brief.
+                  </p>
+                </div>
+              </details>
+              <details className="expertise-faq__item">
+                <summary className="expertise-faq__q">
+                  Êtes-vous une agence spécialisée WooCommerce ?{' '}
+                  <span className="expertise-faq__chevron" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="expertise-faq__a">
+                  <p>
+                    Oui. WooCommerce, l'extension e-commerce de WordPress, fait partie de notre cœur de métier : environ
+                    trois quarts des sites que nous livrons sont sous WordPress, et notre portfolio compte trois
+                    boutiques WooCommerce, Medical Market, CasaJaia et SED Manutention. Notre offre WooCommerce coûte{' '}
+                    <strong>2 999 € HT</strong> pour une boutique jusqu'à 50 produits, livrée en 1 mois. Au-delà de 50
+                    produits ou pour des intégrations spécifiques, nous établissons un devis sur-mesure ; un e-commerce
+                    entièrement sur-mesure démarre à 12 000 € HT. Et si Shopify convient mieux à votre projet, nous vous
+                    le disons dès le brief.
                   </p>
                 </div>
               </details>

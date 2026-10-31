@@ -8,13 +8,24 @@ import { themeSchemas, websiteGraph } from '@/lib/schema';
 const PATH = '/notre-agence/';
 const TITLE = 'Agence digitale à Paris : découvrir l’équipe Kameo';
 const DESCRIPTION =
-  'L’agence Kameo à Paris : un studio à taille humaine pour vos projets web, branding et motion. 50+ clients, 4,6/5 Trustpilot, devis sous 24 h.';
+  'L’agence Kameo à Paris : une agence à taille humaine pour vos projets web, branding et motion. 50+ clients, 4,6/5 Trustpilot, devis sous 24 h.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Notre agence', path: '/notre-agence/' },
 ];
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
+
+/* Liens dans le texte (main.css remet les liens à la couleur du texte, sans soulignement). */
+const TEXT_LINK = {
+  color: 'var(--c-ink)',
+  fontWeight: 700,
+  textDecoration: 'underline',
+  textUnderlineOffset: '3px',
+} as const;
+
+/* Ce que fait chaque membre dans un projet, déduit uniquement de son intitulé de poste. */
+const MEMBER_TASK = { fontSize: '13px', lineHeight: 1.45, color: 'var(--c-muted)' } as const;
 
 export default function NotreAgencePage() {
   return (
@@ -55,6 +66,18 @@ export default function NotreAgencePage() {
               <p className="about__text">
                 Kameo, c’est 3 ans d’existence, une équipe de 7&nbsp;personnes et plus de 50 entreprises accompagnées
                 dans des secteurs aussi variés que la cosmétique, l’assurance, le juridique ou le médical.
+              </p>
+              <p className="about__text">
+                L’agence a été fondée en octobre 2023 par{' '}
+                <Link href="/benjamin-dayan/" style={TEXT_LINK}>
+                  Benjamin Dayan
+                </Link>
+                , son président, qui la dirige avec Louison Boutet, directeur général. Environ trois quarts des sites
+                que nous livrons sont sous WordPress&nbsp;: une sélection est présentée dans notre{' '}
+                <Link href="/realisations/wordpress/" style={TEXT_LINK}>
+                  portfolio WordPress
+                </Link>
+                .
               </p>
               <p className="about__text">
                 <strong>Notre ADN&nbsp;?</strong> Proximité, réactivité et dynamisme.
@@ -273,6 +296,7 @@ export default function NotreAgencePage() {
                 </div>
                 <p className="member__name">Benjamin Dayan</p>
                 <p className="member__role">Président</p>
+                <p style={MEMBER_TASK}>Direction de l’agence et pilotage des projets</p>
               </article>
               <article className="member">
                 <div className="member__photo">
@@ -293,6 +317,7 @@ export default function NotreAgencePage() {
                 </div>
                 <p className="member__name">Louison B.</p>
                 <p className="member__role">Directeur Général</p>
+                <p style={MEMBER_TASK}>Gestion de l’agence et pilotage des projets</p>
               </article>
               <article className="member">
                 <div className="member__photo">
@@ -313,6 +338,7 @@ export default function NotreAgencePage() {
                 </div>
                 <p className="member__name">Jeremy L.</p>
                 <p className="member__role">Chef de projet</p>
+                <p style={MEMBER_TASK}>Planning, suivi et coordination des projets</p>
               </article>
               <article className="member">
                 <div className="member__photo">
@@ -333,6 +359,7 @@ export default function NotreAgencePage() {
                 </div>
                 <p className="member__name">Anthony</p>
                 <p className="member__role">Développeur</p>
+                <p style={MEMBER_TASK}>Développement et intégration des sites</p>
               </article>
               <article className="member">
                 <div className="member__photo">
@@ -353,6 +380,7 @@ export default function NotreAgencePage() {
                 </div>
                 <p className="member__name">Angel C.</p>
                 <p className="member__role">Designer</p>
+                <p style={MEMBER_TASK}>Maquettes et design</p>
               </article>
               <article className="member">
                 <div className="member__photo">
@@ -373,6 +401,7 @@ export default function NotreAgencePage() {
                 </div>
                 <p className="member__name">Aysha B.</p>
                 <p className="member__role">Designeuse</p>
+                <p style={MEMBER_TASK}>Maquettes et design</p>
               </article>
               <article className="member">
                 <div className="member__photo">
@@ -393,6 +422,7 @@ export default function NotreAgencePage() {
                 </div>
                 <p className="member__name">Kelly M.</p>
                 <p className="member__role">Business Developer</p>
+                <p style={MEMBER_TASK}>Développement commercial et prospection</p>
               </article>
             </div>
           </div>
@@ -593,9 +623,8 @@ export default function NotreAgencePage() {
                 </summary>
                 <div className="faq-item__body">
                   <p>
-                    Absolument&nbsp;! Nous accompagnons aussi bien les startups que les PME et grandes entreprises.
-                    Chaque projet bénéficie de la même attention et du même niveau d’expertise, quelle que soit votre
-                    taille.
+                    Oui : indépendants, startups et PME. Chaque projet commence par un brief découverte de 30 minutes en
+                    visio, gratuit, pour cadrer le besoin, quelle que soit la taille de l’entreprise.
                   </p>
                 </div>
               </details>
@@ -646,9 +675,9 @@ export default function NotreAgencePage() {
                 </summary>
                 <div className="faq-item__body">
                   <p>
-                    Nos tarifs sont totalement transparents et personnalisés selon vos besoins. Nous établissons un
-                    devis détaillé après avoir compris votre projet. Aucun coût caché, uniquement ce dont vous avez
-                    besoin.
+                    Les deux. Nos sites WordPress ont des prix publics, fixés à l’avance (à partir de 1&nbsp;299&nbsp;€
+                    HT pour une landing page), et les projets plus spécifiques sont chiffrés sur devis. Dans tous les
+                    cas, vous recevez un devis détaillé sous 24&nbsp;h, sans coût caché.
                   </p>
                 </div>
               </details>

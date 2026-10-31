@@ -10,7 +10,7 @@ import css from './styles';
 const PATH = '/benjamin-dayan/';
 const TITLE = 'Benjamin Dayan, fondateur de l’agence Kameo à Paris';
 const DESCRIPTION =
-  'Benjamin Dayan, fondateur et CEO de l’agence web Kameo à Paris. Parcours, expertise WordPress, SEO et direction artistique.';
+  'Benjamin Dayan, fondateur et président de l’agence web Kameo à Paris. Parcours, expertise WordPress, SEO et direction artistique.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Benjamin Dayan', path: '/benjamin-dayan/' },
@@ -62,10 +62,10 @@ export default function BenjaminDayanPage() {
               </span>
             </div>
             <div>
-              <span className="bio-hero__eyebrow">Fondateur &amp; CEO</span>
+              <span className="bio-hero__eyebrow">Fondateur et président</span>
               <h1 className="bio-hero__title">Benjamin Dayan</h1>
               <p className="bio-hero__role">
-                Fondateur et CEO de Kameo, agence web parisienne créée en 2023. Passionné par le design web stratégique
+                Fondateur et président de Kameo, agence web parisienne créée en 2023. Passionné par le design web stratégique
                 et le SEO, il pilote la direction artistique et le développement de l'agence.
               </p>
               <div className="bio-hero__links">
@@ -100,6 +100,10 @@ export default function BenjaminDayanPage() {
                 refuse la sous-traitance et livre en délais fixes des sites WordPress premium et des applications métier
                 propriétaires (CRM, marketplaces, SaaS avec IA).
               </p>
+              <p>
+                Il dirige aujourd’hui l’agence avec Louison Boutet, directeur général, au sein d’une{' '}
+                <Link href="/notre-agence/">équipe de 7 personnes</Link>.
+              </p>
             </div>
             <div className="bio-body__section">
               <h2>Expertise</h2>
@@ -120,6 +124,10 @@ export default function BenjaminDayanPage() {
                   <strong>IA générative</strong>, intégration Claude/GPT, RAG, agents autonomes, prompt engineering
                 </li>
               </ul>
+              <p>
+                Les sites WordPress livrés par l’agence, construits avec Elementor Pro ou sur un thème codé, sont
+                présentés dans le <Link href="/realisations/wordpress/">portfolio WordPress de Kameo</Link>.
+              </p>
             </div>
             <div className="bio-body__section">
               <h2>Approche</h2>
@@ -141,8 +149,8 @@ export default function BenjaminDayanPage() {
                 <a href="https://www.linkedin.com/in/benjamin-dayan/" target="_blank" rel="noopener">
                   LinkedIn
                 </a>
-                , ou <Link href="/contact/">réserver un RDV visio 30 min gratuit</Link>. Bureaux au 9 rue des Colonnes,
-                75002 Paris.
+                , ou <Link href="/contact/">réserver un RDV visio 30 min gratuit</Link>. Adresse : 9 rue des Colonnes,
+                75002 Paris ; les rendez-vous se font en visio, sans déplacement.
               </p>
             </div>
           </div>

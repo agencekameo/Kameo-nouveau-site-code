@@ -11,7 +11,7 @@ import { PROOF } from '@/lib/site';
 const PATH = '/creation-site-wordpress/';
 const TITLE = 'Création site WordPress Paris : 3 formats dès 1 299 € | Kameo';
 const DESCRIPTION =
-  'Création site WordPress à Paris : landing 1 299 €, vitrine 1 999 €, e-commerce 2 999 €. Thème custom, SEO inclus. Devis gratuit sous 24 h.';
+  'Création site WordPress à Paris : landing 1 299 €, vitrine 1 999 €, e-commerce 2 999 €. Elementor Pro ou thème codé, SEO inclus. Devis gratuit sous 24 h.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Agence WordPress Paris', path: '/agence-wordpress-paris/' },
@@ -67,7 +67,7 @@ export default function CreationSiteWordpressPage() {
                 ·
               </span>
               <span className="expertise-trust__item">
-                <strong>50+ sites WordPress</strong> livrés
+                <strong>50+ sites</strong> livrés depuis 2023
               </span>
               <span className="expertise-trust__sep" aria-hidden="true">
                 ·
@@ -1400,9 +1400,9 @@ export default function CreationSiteWordpressPage() {
                   <p className="pcard__title">Medical Market</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
-                      <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux sociaux</span>
+                      <span>Fiche Google</span>
                     </div>
                   </div>
                 </div>
@@ -1455,33 +1455,6 @@ export default function CreationSiteWordpressPage() {
               </Link>
             </article>
             <article className="pcard">
-              <Link href="/realisations/mobile-house/" className="pcard__link">
-                <div className="pcard__media">
-                  <img
-                    src="/images/portfolio/mobile-house.webp"
-                    width="800"
-                    height="452"
-                    alt="Projet Mobile House"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="pcard__hover">Voir le projet</span>
-                <div className="pcard__info">
-                  <p className="pcard__title">Mobile House</p>
-                  <div className="pcard__meta">
-                    <div className="pcard__tags">
-                      <span>Site Web</span>
-                      <span>Fiche Google</span>
-                      <span>SEO</span>
-                    </div>
-                    <div className="pcard__stat">
-                      <strong>+65%</strong> Inscriptions newsletter
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </article>
-            <article className="pcard">
               <Link href="/realisations/claimz/" className="pcard__link">
                 <div className="pcard__media">
                   <img
@@ -1503,33 +1476,6 @@ export default function CreationSiteWordpressPage() {
                     </div>
                     <div className="pcard__stat">
                       <strong>+120%</strong> Performance pub
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </article>
-            <article className="pcard">
-              <Link href="/realisations/le-101/" className="pcard__link">
-                <div className="pcard__media">
-                  <img
-                    src="/images/portfolio/le-101.webp"
-                    width="800"
-                    height="441"
-                    alt="Projet Le 101"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="pcard__hover">Voir le projet</span>
-                <div className="pcard__info">
-                  <p className="pcard__title">Le 101</p>
-                  <div className="pcard__meta">
-                    <div className="pcard__tags">
-                      <span>DA</span>
-                      <span>Site Web</span>
-                      <span>Réseaux sociaux</span>
-                    </div>
-                    <div className="pcard__stat">
-                      <strong>+40%</strong> Taux de conversion
                     </div>
                   </div>
                 </div>
@@ -1551,9 +1497,9 @@ export default function CreationSiteWordpressPage() {
                   <p className="pcard__title">Medical Market</p>
                   <div className="pcard__meta">
                     <div className="pcard__tags">
-                      <span>DA</span>
                       <span>Site Web</span>
                       <span>Réseaux sociaux</span>
+                      <span>Fiche Google</span>
                     </div>
                   </div>
                 </div>
@@ -1606,33 +1552,6 @@ export default function CreationSiteWordpressPage() {
               </Link>
             </article>
             <article className="pcard" inert aria-hidden="true">
-              <Link href="/realisations/mobile-house/" className="pcard__link">
-                <div className="pcard__media">
-                  <img
-                    src="/images/portfolio/mobile-house.webp"
-                    width="800"
-                    height="452"
-                    alt="Projet Mobile House"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="pcard__hover">Voir le projet</span>
-                <div className="pcard__info">
-                  <p className="pcard__title">Mobile House</p>
-                  <div className="pcard__meta">
-                    <div className="pcard__tags">
-                      <span>Site Web</span>
-                      <span>Fiche Google</span>
-                      <span>SEO</span>
-                    </div>
-                    <div className="pcard__stat">
-                      <strong>+65%</strong> Inscriptions newsletter
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </article>
-            <article className="pcard" inert aria-hidden="true">
               <Link href="/realisations/claimz/" className="pcard__link">
                 <div className="pcard__media">
                   <img
@@ -1654,33 +1573,6 @@ export default function CreationSiteWordpressPage() {
                     </div>
                     <div className="pcard__stat">
                       <strong>+120%</strong> Performance pub
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </article>
-            <article className="pcard" inert aria-hidden="true">
-              <Link href="/realisations/le-101/" className="pcard__link">
-                <div className="pcard__media">
-                  <img
-                    src="/images/portfolio/le-101.webp"
-                    width="800"
-                    height="441"
-                    alt="Projet Le 101"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="pcard__hover">Voir le projet</span>
-                <div className="pcard__info">
-                  <p className="pcard__title">Le 101</p>
-                  <div className="pcard__meta">
-                    <div className="pcard__tags">
-                      <span>DA</span>
-                      <span>Site Web</span>
-                      <span>Réseaux sociaux</span>
-                    </div>
-                    <div className="pcard__stat">
-                      <strong>+40%</strong> Taux de conversion
                     </div>
                   </div>
                 </div>
@@ -1749,7 +1641,7 @@ export default function CreationSiteWordpressPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Le forfait vitrine couvre <strong>5 pages</strong> validées au devis : accueil, à propos, services,
+                    Le forfait vitrine couvre <strong>jusqu'à 5 pages</strong> validées au devis : accueil, à propos, services,
                     blog et contact. Au-delà de 5 pages ou pour des fonctionnalités spécifiques (espace membre,
                     multilingue, intégration CRM) : on bascule sur un devis sur-mesure. La formation d'1 h à l'édition du
                     site est incluse.
@@ -1800,12 +1692,15 @@ export default function CreationSiteWordpressPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Selon le projet. La plupart de nos sites sont construits avec <strong>Elementor Pro</strong> : vous
-                    modifiez vous-même textes, images et pages, en visuel, et n'importe quel prestataire WordPress peut
-                    reprendre le site. Certains projets, comme <Link href="/realisations/dronespec/">DroneSpec</Link>{' '}
+                    Selon le projet. La plupart de nos sites sont construits avec <strong>Elementor Pro</strong>, comme{' '}
+                    <Link href="/realisations/defikart/">Défikart</Link> ou{' '}
+                    <Link href="/realisations/axistone-capital/">Axistone Capital</Link> : vous modifiez vous-même
+                    textes, images et pages, en visuel, et n'importe quel prestataire WordPress peut reprendre le site.
+                    Certains projets, comme <Link href="/realisations/dronespec/">DroneSpec</Link>{' '}
                     ou <Link href="/realisations/medical-market/">Medical Market</Link>, ont un{' '}
                     <strong>thème codé sur mesure</strong>. Dans les deux cas, le design part d'une maquette Figma créée
-                    pour vous, jamais d'un thème acheté.
+                    pour vous, jamais d'un thème acheté. Notre <Link href="/realisations/wordpress/">portfolio WordPress</Link>{' '}
+                    indique la construction de chaque site.
                   </p>
                 </div>
               </details>
@@ -1862,7 +1757,7 @@ export default function CreationSiteWordpressPage() {
               </details>
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
-                  Que se passe-t-il après la livraison ? Garantie, support, maintenance ?{' '}
+                  Que se passe-t-il après la livraison du site ?{' '}
                   <span className="expertise-faq__chevron" aria-hidden="true">
                     <svg
                       viewBox="0 0 24 24"

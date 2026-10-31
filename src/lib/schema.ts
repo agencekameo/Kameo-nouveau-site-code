@@ -1,52 +1,111 @@
 /**
  * Données structurées — port de la section 9b de functions.php (v2.10.7).
- * Mêmes entités, mêmes @id, mêmes valeurs : Person #benjamin, Organization
+ * Mêmes entités, mêmes @id : Person #benjamin et #louison, Organization
  * #organization, LocalBusiness #localbusiness, BreadcrumbList, Blog, BlogPosting,
  * ItemList, Service + Offer, CreativeWork des réalisations.
+ *
+ * Identité : uniquement des faits vérifiés (mentions légales, site.ts). Pas de Review
+ * ni d'AggregateRating issus de Trustpilot (avis recueillis sur un autre site, interdit
+ * par les consignes Google) : Trustpilot n'apparaît qu'en sameAs. Pas d'horaires
+ * d'ouverture sur l'adresse parisienne, où aucun client n'est reçu : les horaires
+ * sont ceux de la joignabilité (ContactPoint.hoursAvailable).
  */
 import { pageInfo } from '@/content/pages';
-import { CONTACT, SITE_URL, SOCIAL, abs } from './site';
+import { ADDRESS, COMPANY, CONTACT, HOURS, PROFILES, SITE_URL, SOCIAL, abs } from './site';
 
 const HOME = SITE_URL + '/';
 const ORG_ID = HOME + '#organization';
 const LOCAL_ID = HOME + '#localbusiness';
 const BENJAMIN_ID = HOME + '#benjamin';
+const LOUISON_ID = HOME + '#louison';
 const LOGO = abs('/images/hero.webp');
 const OG_IMG = abs('/images/og-image.jpg');
 
 type Json = Record<string, unknown>;
 export type Crumb = { name: string; path: string };
 
+/* Zone d'intervention : Paris, l'Île-de-France et le reste de la France (rendez-vous en visio). */
+const areaServed = (): Json[] => [
+  { '@type': 'City', name: 'Paris' },
+  { '@type': 'AdministrativeArea', name: 'Île-de-France' },
+  { '@type': 'Country', name: 'France' },
+];
+
+/* Adresse publique de correspondance, identique dans tous les nœuds. */
+const postalAddress = (): Json => ({ '@type': 'PostalAddress', ...ADDRESS });
+
+/* Téléphone et e-mail, joignables du lundi au vendredi de 9 h à 17 h, en français. */
+const contactPoint = (): Json => ({
+  '@type': 'ContactPoint',
+  contactType: 'customer service',
+  telephone: CONTACT.phoneE164,
+  email: CONTACT.email,
+  url: abs('/contact/'),
+  areaServed: 'FR',
+  availableLanguage: 'fr',
+  hoursAvailable: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [...HOURS.days],
+    opens: HOURS.opens,
+    closes: HOURS.closes,
+  },
+});
+
+const ORG_DESCRIPTION =
+  "Agence web à Paris fondée en 2023 par Benjamin Dayan : création, refonte et maintenance de sites WordPress sur-mesure (Elementor Pro ou thème codé), développement d'applications sur-mesure (CRM, marketplaces, SaaS avec IA), branding et motion design. " +
+  `Équipe de ${COMPANY.teamSize} personnes ; rendez-vous en visio, sans déplacement, pour des clients à Paris, en Île-de-France et dans toute la France.`;
+
 export const personBenjamin = (): Json => ({
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': BENJAMIN_ID,
   name: 'Benjamin Dayan',
-  jobTitle: 'Fondateur & CEO',
+  jobTitle: 'Fondateur et président',
+  url: abs('/benjamin-dayan/'),
+  image: abs('/images/benjamin.webp'),
   worksFor: { '@id': ORG_ID },
   sameAs: [SOCIAL.founderLinkedin],
   knowsAbout: ['WordPress', 'SEO', 'Design web', 'Direction artistique', 'SaaS IA', 'Motion Design'],
+});
+
+/** Directeur général (mandataire social avec Benjamin Dayan) : aucun autre attribut que ceux vérifiés. */
+export const personLouison = (): Json => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': LOUISON_ID,
+  name: 'Louison Boutet',
+  jobTitle: 'Directeur général',
+  worksFor: { '@id': ORG_ID },
 });
 
 export const organization = (): Json => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': ORG_ID,
-  name: 'Kameo',
-  alternateName: 'Agence Kameo',
+  name: COMPANY.name,
+  alternateName: COMPANY.alternateName,
+  legalName: COMPANY.legalName,
   url: HOME,
   logo: { '@type': 'ImageObject', url: LOGO },
   image: OG_IMG,
-  description:
-    'Agence web, branding et motion design à Paris. Création de sites internet sur-mesure, identités visuelles et vidéos animées.',
-  foundingDate: '2023-10-11',
+  description: ORG_DESCRIPTION,
+  foundingDate: COMPANY.foundingDate,
   founder: { '@id': BENJAMIN_ID },
-  employee: [{ '@id': BENJAMIN_ID }],
+  employee: [{ '@id': BENJAMIN_ID }, { '@id': LOUISON_ID }],
+  numberOfEmployees: { '@type': 'QuantitativeValue', value: COMPANY.teamSize },
+  vatID: COMPANY.vatID,
+  identifier: [
+    { '@type': 'PropertyValue', propertyID: 'SIRET', value: COMPANY.siret },
+    { '@type': 'PropertyValue', propertyID: 'SIREN', value: COMPANY.siren },
+  ],
+  address: postalAddress(),
+  areaServed: areaServed(),
+  knowsLanguage: 'fr',
   slogan: 'Design web stratégique et campagnes conçues pour générer des résultats.',
   knowsAbout: [
     'WordPress', 'WooCommerce', 'Elementor', 'SEO technique', 'Schema.org', 'Motion Design', 'Branding', 'SaaS',
     'React', 'Next.js', 'Claude API', 'OpenAI API', 'Stripe Connect', 'Développement sur-mesure', 'CRM sur-mesure',
-    'Marketplace multi-vendeurs',
+    'Marketplace multi-vendeurs', 'Direction artistique',
   ],
   email: CONTACT.email,
   telephone: CONTACT.phoneE164,
@@ -54,43 +113,43 @@ export const organization = (): Json => ({
     SOCIAL.instagram,
     SOCIAL.linkedin,
     SOCIAL.trustpilot,
-    'https://www.sortlist.com/agency/kameo',
-    'https://www.pappers.fr/entreprise/kameo-980573984',
+    PROFILES.sortlistCom,
+    PROFILES.pappers,
+    PROFILES.sortlist,
+    PROFILES.laFabriqueDuNet,
+    PROFILES.codeur,
   ],
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: CONTACT.phoneE164,
-    email: CONTACT.email,
-    contactType: 'customer service',
-    areaServed: 'FR',
-    availableLanguage: ['French', 'English'],
-  },
+  contactPoint: contactPoint(),
 });
 
 export const localBusiness = (): Json => ({
   '@context': 'https://schema.org',
   '@type': ['ProfessionalService', 'LocalBusiness'],
   '@id': LOCAL_ID,
-  name: 'Kameo',
+  name: COMPANY.name,
   url: HOME,
   image: OG_IMG,
+  description: ORG_DESCRIPTION,
   parentOrganization: { '@id': ORG_ID },
   telephone: CONTACT.phoneE164,
   email: CONTACT.email,
   priceRange: '€€',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '9 rue des Colonnes',
-    addressLocality: 'Paris',
-    postalCode: '75002',
-    addressRegion: 'Île-de-France',
-    addressCountry: 'FR',
-  },
-  areaServed: [
-    { '@type': 'City', name: 'Paris' },
-    { '@type': 'Country', name: 'France' },
-  ],
+  address: postalAddress(),
+  areaServed: areaServed(),
 });
+
+/**
+ * Les entités d'identité (Person ×2, Organization, LocalBusiness) sans @context, prêtes à
+ * être insérées dans le @graph d'une page (pages du silo WordPress) : chaque @id porte
+ * alors exactement les mêmes données sur tout le site.
+ */
+export function identityGraphNodes(): Json[] {
+  return [personBenjamin(), personLouison(), organization(), localBusiness()].map((node) => {
+    const copy = { ...node };
+    delete copy['@context'];
+    return copy;
+  });
+}
 
 export const breadcrumbList = (path: string, crumbs: Crumb[]): Json => ({
   '@context': 'https://schema.org',
@@ -122,16 +181,42 @@ function offre(min: number, max?: number): Json {
   return { '@type': 'AggregateOffer', availability: 'https://schema.org/InStock', lowPrice: min, highPrice: max, priceCurrency: 'EUR', offerCount: 1 };
 }
 
-const SERVICES: Record<string, { name: string; serviceType: string; description: string; offers?: Json }> = {
+/* Forfait mensuel « à partir de », HT (maintenance). */
+function offreMensuelle(min: number): Json {
+  return {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      minPrice: min,
+      priceCurrency: 'EUR',
+      valueAddedTaxIncluded: false,
+      unitCode: 'MON',
+      unitText: 'mois',
+    },
+  };
+}
+
+/* Les trois formats WordPress à prix publics, HT. */
+const offresWordpress = (): Json[] => [
+  { ...offre(1299), name: 'Landing page WordPress' },
+  { ...offre(1999), name: 'Site vitrine WordPress' },
+  { ...offre(2999), name: 'E-commerce WordPress (WooCommerce)' },
+];
+
+const SERVICES: Record<string, { name: string; serviceType: string; description: string; offers?: Json | Json[] }> = {
   'agence-wordpress-paris': {
     name: 'Agence WordPress Paris',
     serviceType: 'WordPress development & SEO',
     description: 'Agence WordPress à Paris : création, refonte et maintenance de sites WordPress sur-mesure pour PME, startups et marques.',
+    offers: offresWordpress(),
   },
   'creation-site-wordpress': {
     name: 'Création de site WordPress',
     serviceType: 'WordPress website creation',
-    description: 'Création de site WordPress sur-mesure : landing page, vitrine, e-commerce WooCommerce. Thème custom, SEO inclus.',
+    description:
+      'Création de site WordPress sur-mesure : landing page, vitrine, e-commerce WooCommerce, construits avec Elementor Pro ou sur un thème codé selon le projet. SEO inclus.',
+    offers: offresWordpress(),
   },
   'refonte-wordpress': {
     name: 'Refonte de site WordPress',
@@ -142,6 +227,7 @@ const SERVICES: Record<string, { name: string; serviceType: string; description:
     name: 'Maintenance WordPress',
     serviceType: 'WordPress maintenance & support',
     description: 'Maintenance WordPress mensuelle : mises à jour, sauvegardes, monitoring sécurité 24/7 et support technique.',
+    offers: offreMensuelle(79),
   },
   'expertises-branding': {
     name: 'Branding & identité visuelle',
@@ -160,14 +246,15 @@ const SERVICES: Record<string, { name: string; serviceType: string; description:
     serviceType: 'Custom application development',
     description:
       "Développement d'applications sur-mesure à Paris : e-commerce, marketplaces multi-vendeurs, CRM propriétaires et SaaS avec IA. Code propriétaire, hébergement en France.",
-    offers: offre(8000),
+    /* Le moins cher des formats affichés sur la page : le CRM, dès 7 999 € HT. */
+    offers: offre(7999),
   },
   'creation-site-ecommerce': {
     name: 'Création de site e-commerce sur-mesure',
     serviceType: 'E-commerce website development',
     description:
-      "Création de boutique en ligne sur-mesure : Shopify Plus, WooCommerce, Prestashop ou headless Next.js. Tunnel optimisé, SEO baked-in, catalogue jusqu'à 10 000 SKU.",
-    offers: offre(12000, 40000),
+      "Création de boutique en ligne sur-mesure : Shopify Plus, WooCommerce, Prestashop ou headless Next.js. Tunnel optimisé, SEO intégré, catalogue jusqu'à 10 000 SKU.",
+    offers: offre(2999, 50000),
   },
   'creation-marketplace': {
     name: 'Création de marketplace multi-vendeurs',
@@ -195,15 +282,17 @@ const SERVICES: Record<string, { name: string; serviceType: string; description:
 export function serviceSchema(slug: string): Json | null {
   const s = SERVICES[slug];
   if (!s) return null;
+  const url = abs('/' + slug + '/');
   const out: Json = {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': url + '#service',
     name: s.name,
     serviceType: s.serviceType,
     description: s.description,
     provider: { '@id': ORG_ID },
-    areaServed: { '@type': 'Country', name: 'France' },
-    url: abs('/' + slug + '/'),
+    areaServed: areaServed(),
+    url,
   };
   if (s.offers) out.offers = s.offers;
   return out;
@@ -276,8 +365,9 @@ export function faqFromHtml(html: string, path: string): Json | null {
 
 /**
  * Le bloc que le thème émettait dans le <head> de chaque page hors silo WordPress
- * (Person, Organization, LocalBusiness, BreadcrumbList puis nœuds propres au type).
- * Les 4 pages du silo WordPress portent à la place leur propre @graph unifié.
+ * (Person ×2, Organization, LocalBusiness, BreadcrumbList puis nœuds propres au type).
+ * Les 4 pages du silo WordPress portent à la place leur propre @graph unifié
+ * (voir identityGraphNodes() pour y reprendre les mêmes entités).
  */
 export function themeSchemas(opts: {
   path: string;
@@ -285,7 +375,7 @@ export function themeSchemas(opts: {
   serviceSlug?: string;
   extra?: Json[];
 }): Json[] {
-  const out: Json[] = [personBenjamin(), organization(), localBusiness()];
+  const out: Json[] = [personBenjamin(), personLouison(), organization(), localBusiness()];
   if (opts.crumbs && opts.crumbs.length) out.push(breadcrumbList(opts.path, opts.crumbs));
   if (opts.extra) out.push(...opts.extra);
   if (opts.serviceSlug) {
@@ -318,6 +408,7 @@ export function websiteGraph(opts: { path: string; title: string; published?: st
         '@id': HOME + '#website',
         url: SITE_URL,
         name: 'Agence Kameo',
+        alternateName: COMPANY.name,
         publisher: { '@id': ORG_ID },
         inLanguage: 'fr-FR',
         ...(isHome
