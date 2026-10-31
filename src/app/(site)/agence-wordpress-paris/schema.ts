@@ -71,7 +71,7 @@ export const pageSchemas: object[] = [
             name: 'Pourquoi choisir une agence WordPress plutôt qu\'un freelance ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Un freelance WordPress est généralement excellent sur une compétence (design OU dev OU SEO) mais doit sous-traiter le reste, ce qui rallonge les délais et fragmente la responsabilité. Une agence WordPress à Paris comme Kameo réunit designer, développeur, expert SEO et rédacteur dans une même équipe : un seul interlocuteur, un projet cohérent, une garantie de continuité si quelqu\'un est en congé ou malade. Et un encadrement contractuel plus solide.',
+              text: 'Un freelance WordPress est généralement excellent sur une compétence (design OU dev OU SEO) mais doit sous-traiter le reste, ce qui rallonge les délais et fragmente la responsabilité. Une agence WordPress à Paris comme Kameo réunit design, développement, SEO et rédaction dans une même équipe : un seul interlocuteur, un projet cohérent, une garantie de continuité si quelqu\'un est en congé ou malade. Et un encadrement contractuel plus solide.',
             },
           },
           {

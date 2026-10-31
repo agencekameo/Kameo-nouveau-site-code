@@ -9,7 +9,7 @@ export const pageSchemas: object[] = [
         name: 'Combien coûte une vidéo motion design en 2026 ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Le prix dépend du format et du niveau d’animation. À titre indicatif : teaser/reel 30s à partir de ~1 200€ HT, brand film 60-90s entre 3 000 et 6 000€ HT, motion branding complet (intro + outro + assets sociaux) sur devis. Chaque projet est cadré précisément lors de l’appel découverte pour éviter tout devis surprise.',
+          text: 'Le prix dépend du format et du niveau d’animation. À titre indicatif : teaser/reel 30s à partir de ~1 200 € HT, brand film 60-90s entre 3 000 et 6 000 € HT, motion branding complet (intro + outro + assets sociaux) sur devis. Chaque projet est cadré précisément lors de l’appel découverte pour éviter tout devis surprise.',
         },
       },
       {
@@ -41,7 +41,7 @@ export const pageSchemas: object[] = [
         name: 'Êtes-vous une agence motion design parisienne ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2e). Nos motion designers travaillent en interne, sans sous-traitance, et nous accompagnons des clients à Paris, en France et à l’international, en visio.',
+          text: 'Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2e). Le motion design est réalisé en interne par nos designers, sans sous-traitance, et nous accompagnons des clients à Paris, en France et à l’international, en visio.',
         },
       },
       {

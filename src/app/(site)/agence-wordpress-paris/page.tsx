@@ -339,7 +339,7 @@ export default function AgenceWordpressParisPage() {
                 <span className="expertise-process__num">03</span>
                 <h3 className="expertise-process__step-title">Rédaction SEO &amp; UX writing</h3>
                 <p className="expertise-process__step-text">
-                  Un rédacteur web expert structure chaque page en alliant SEO et persuasion. Champ lexical maîtrisé,
+                  Chaque page est rédigée en interne, en alliant SEO et persuasion. Champ lexical maîtrisé,
                   méta-titres et descriptions optimisés, calls-to-action testés. Pas du remplissage : du contenu qui
                   ranke et qui convertit.
                 </p>
@@ -1095,9 +1095,9 @@ export default function AgenceWordpressParisPage() {
           <div className="container">
             <header className="wp-team__head">
               <span className="wp-team__eyebrow">L'équipe Kameo</span>
-              <h2 className="wp-team__title">Vous parlez aux dirigeants, pas à un commercial qui sous-traite</h2>
+              <h2 className="wp-team__title">Vous parlez directement aux dirigeants, sans intermédiaire ni sous-traitance</h2>
               <p className="wp-team__intro">
-                Stratégie, design, développement WordPress, SEO : Kameo compte 7&nbsp;personnes. Les chefs de projet sont
+                Stratégie, design, développement WordPress, SEO : Kameo compte 6&nbsp;personnes. Les chefs de projet sont
                 les deux dirigeants, Benjamin Dayan et Louison Boutet : vous échangez avec eux dès le brief, pendant
                 tout le projet, et ils restent vos interlocuteurs en maintenance.
               </p>
@@ -1333,8 +1333,7 @@ export default function AgenceWordpressParisPage() {
                   <p>
                     Un freelance WordPress est généralement excellent sur une compétence (design OU dev OU SEO) mais
                     doit sous-traiter le reste, ce qui rallonge les délais et fragmente la responsabilité. Une{' '}
-                    <strong>agence WordPress à Paris</strong> comme Kameo réunit designer, développeur, expert SEO et
-                    rédacteur dans une même équipe : un seul interlocuteur, un projet cohérent, une garantie de continuité
+                    <strong>agence WordPress à Paris</strong> comme Kameo réunit design, développement, SEO et rédaction dans une même équipe : un seul interlocuteur, un projet cohérent, une garantie de continuité
                     si quelqu'un est en congé ou malade. Et un encadrement contractuel plus solide.
                   </p>
                 </div>

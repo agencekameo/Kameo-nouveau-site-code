@@ -1049,7 +1049,7 @@ export default function MaintenanceWordpressPage() {
               <span className="maint-team__eyebrow">L'équipe qui maintient votre site</span>
               <h2 className="maint-team__title">Une équipe joignable et responsable</h2>
               <p className="maint-team__intro">
-                Pas de sous-traitance, pas de chatbot. Kameo compte 7&nbsp;personnes, et les deux dirigeants, Benjamin Dayan
+                Pas de sous-traitance, pas de chatbot. Kameo compte 6&nbsp;personnes, et les deux dirigeants, Benjamin Dayan
                 et Louison Boutet, restent vos interlocuteurs : vous les joignez par email, Slack ou téléphone.
               </p>
             </header>

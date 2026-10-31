@@ -13,7 +13,7 @@ export const pageSchemas: object[] = [
         name: 'Qui est Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est une équipe intégrée de 7 personnes, spécialisée dans deux métiers : la création de sites WordPress sur-mesure et le développement d'applications métier, c'est-à-dire des CRM, des marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note Trustpilot ${PROOF.avisNote}/5 sur ${PROOF.avisNombre} avis.`,
+          text: `Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est une équipe intégrée de 6 personnes, spécialisée dans deux métiers : la création de sites WordPress sur-mesure et le développement d'applications métier, c'est-à-dire des CRM, des marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note Trustpilot ${PROOF.avisNote}/5 sur ${PROOF.avisNombre} avis.`,
         },
       },
       {
@@ -53,7 +53,7 @@ export const pageSchemas: object[] = [
         name: 'Kameo travaille-t-elle avec des freelances ou en offshore ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Non. Designer, développeur, expert SEO, motion designer et chef de projet travaillent ensemble, dans une même équipe. Aucune sous-traitance, aucun offshore, aucune plateforme de freelances. Vous avez un seul interlocuteur du début à la fin.',
+          text: 'Non. Design, développement, SEO, rédaction et motion design sont faits en interne, par la même équipe. Aucune sous-traitance, aucun offshore, aucune plateforme de freelances. Vous avez un seul interlocuteur du début à la fin.',
         },
       },
       {

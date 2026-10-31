@@ -273,8 +273,7 @@ export default function DeveloppementSurMesurePage() {
                 </span>
                 <h3 className="ccrea-why__name">Zéro sous-traitance</h3>
                 <p className="ccrea-why__text">
-                  Designer, développeur front, développeur back, expert IA et chef de projet travaillent dans une même
-                  équipe. Un seul interlocuteur, une responsabilité claire, des décisions
+                  Design, développement front et back, IA et gestion de projet sont faits par la même équipe. Un seul interlocuteur, une responsabilité claire, des décisions
                   rapides.
                 </p>
               </article>
@@ -481,8 +480,7 @@ export default function DeveloppementSurMesurePage() {
                     Un site e-commerce sur-mesure : à partir de <strong>1 mois</strong>. Une marketplace (MVP) :{' '}
                     <strong>2 mois</strong>. Un CRM personnalisé : <strong>8 à 12 semaines</strong>. Un MVP SaaS avec IA
                     : <strong>2 mois</strong>. Ces délais incluent discovery, design UX, développement, recette et
-                    livraison. Nous respectons nos délais à 97 %, équipe intégrée, zéro sous-traitance, zéro
-                    chef de projet intermédiaire.
+                    livraison. Nous respectons nos délais à 97 %, équipe intégrée, zéro sous-traitance, zéro intermédiaire.
                   </p>
                 </div>
               </details>
@@ -556,8 +554,7 @@ export default function DeveloppementSurMesurePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Uniquement en interne, par notre propre équipe : designer, développeur front-end, développeur
-                    back-end, expert IA et chef de projet travaillent ensemble.
+                    Uniquement en interne, par notre propre équipe : design, développement front-end et back-end, IA et gestion de projet.
                     Zéro sous-traitance, zéro équipe offshore, zéro plateforme freelance. Cela nous permet d'être
                     responsables de bout en bout, de communiquer directement avec vous, et de tenir nos délais.
                   </p>

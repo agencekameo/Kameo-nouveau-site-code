@@ -102,7 +102,7 @@ export default function BenjaminDayanPage() {
               </p>
               <p>
                 Il dirige aujourd’hui l’agence avec Louison Boutet, directeur général, au sein d’une{' '}
-                <Link href="/notre-agence/">équipe de 7 personnes</Link>.
+                <Link href="/notre-agence/">équipe de 6 personnes</Link>.
               </p>
             </div>
             <div className="bio-body__section">
@@ -132,8 +132,7 @@ export default function BenjaminDayanPage() {
             <div className="bio-body__section">
               <h2>Approche</h2>
               <p>
-                Benjamin défend une approche intégrée : designer, développeur, expert SEO, motion designer et chef de
-                projet travaillent ensemble, dans une même équipe. Zéro sous-traitance, zéro
+                Benjamin défend une approche intégrée : design, développement, SEO, motion design et gestion de projet sont faits par la même équipe. Zéro sous-traitance, zéro
                 offshore, un seul interlocuteur, des délais respectés à 97 %.
               </p>
               <p>

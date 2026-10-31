@@ -64,7 +64,7 @@ export default function NotreAgencePage() {
             </div>
             <div className="about__body">
               <p className="about__text">
-                Kameo, c’est 3 ans d’existence, une équipe de 7&nbsp;personnes et plus de 50 entreprises accompagnées
+                Kameo, c’est 3 ans d’existence, une équipe de 6&nbsp;personnes et plus de 50 entreprises accompagnées
                 dans des secteurs aussi variés que la cosmétique, l’assurance, le juridique ou le médical.
               </p>
               <p className="about__text">
@@ -321,27 +321,6 @@ export default function NotreAgencePage() {
               </article>
               <article className="member">
                 <div className="member__photo">
-                  <img src="/images/Jeremy.webp" alt="Jeremy L." loading="lazy" width="400" height="400" />
-                  <div className="member__socials" aria-label="Réseaux sociaux de Jeremy L.">
-                    <a
-                      href="https://www.linkedin.com/company/agence-kameo/posts/?feedView=all"
-                      target="_blank"
-                      rel="noopener"
-                      className="member__social"
-                      aria-label="LinkedIn"
-                    >
-                      <svg className="icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false">
-                        <use href="/icons.svg#i-brands-linkedin-in" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-                <p className="member__name">Jeremy L.</p>
-                <p className="member__role">Chef de projet</p>
-                <p style={MEMBER_TASK}>Planning, suivi et coordination des projets</p>
-              </article>
-              <article className="member">
-                <div className="member__photo">
                   <img src="/images/Anthony.webp" alt="Anthony" loading="lazy" width="400" height="400" />
                   <div className="member__socials" aria-label="Réseaux sociaux de Anthony">
                     <a
@@ -400,8 +379,8 @@ export default function NotreAgencePage() {
                   </div>
                 </div>
                 <p className="member__name">Aysha B.</p>
-                <p className="member__role">Designeuse</p>
-                <p style={MEMBER_TASK}>Maquettes et design</p>
+                <p className="member__role">Directrice artistique</p>
+                <p style={MEMBER_TASK}>Direction artistique et maquettes</p>
               </article>
               <article className="member">
                 <div className="member__photo">

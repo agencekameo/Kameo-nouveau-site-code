@@ -6,7 +6,7 @@ export type SearchDoc = { path: string; title: string; text: string; kind: 'Page
 
 const PAGES: SearchDoc[] = [
   ['/', 'Agence web Paris : création de site internet sur-mesure', 'Sites web haut de gamme, WordPress, e-commerce, SEO natif, devis gratuit.'],
-  ['/notre-agence/', 'Notre agence', "L'équipe Kameo, agence de 7 personnes à Paris : web, branding et motion."],
+  ['/notre-agence/', 'Notre agence', "L'équipe Kameo, agence web de 6 personnes : web, branding et motion."],
   ['/benjamin-dayan/', 'Benjamin Dayan, fondateur', 'Parcours du fondateur et président de Kameo : WordPress, SEO, direction artistique.'],
   ['/agence-wordpress-paris/', 'Agence WordPress Paris', 'Création, refonte et maintenance de sites WordPress sur-mesure.'],
   ['/creation-site-wordpress/', 'Création de site WordPress', 'Landing 1 299 €, vitrine 1 999 €, e-commerce 2 999 €. Elementor Pro ou thème codé, SEO inclus.'],

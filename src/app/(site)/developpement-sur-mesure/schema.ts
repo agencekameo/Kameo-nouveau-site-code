@@ -27,7 +27,7 @@ export const pageSchemas: object[] = [
         name: 'Combien de temps prend un projet de développement sur-mesure ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Un site e-commerce sur-mesure : à partir de 1 mois. Une marketplace (MVP) : 2 mois. Un CRM personnalisé : 8 à 12 semaines. Un MVP SaaS avec IA : 2 mois. Ces délais incluent discovery, design UX, développement, recette et livraison. Nous respectons nos délais à 97 %, équipe intégrée, zéro sous-traitance, zéro chef de projet intermédiaire.',
+          text: 'Un site e-commerce sur-mesure : à partir de 1 mois. Une marketplace (MVP) : 2 mois. Un CRM personnalisé : 8 à 12 semaines. Un MVP SaaS avec IA : 2 mois. Ces délais incluent discovery, design UX, développement, recette et livraison. Nous respectons nos délais à 97 %, équipe intégrée, zéro sous-traitance, zéro intermédiaire.',
         },
       },
       {
@@ -51,7 +51,7 @@ export const pageSchemas: object[] = [
         name: 'Travaillez-vous avec des freelances ou en interne ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Uniquement en interne, par notre propre équipe : designer, développeur front-end, développeur back-end, expert IA et chef de projet travaillent ensemble. Zéro sous-traitance, zéro équipe offshore, zéro plateforme freelance. Cela nous permet d'être responsables de bout en bout, de communiquer directement avec vous, et de tenir nos délais.",
+          text: "Uniquement en interne, par notre propre équipe : design, développement front-end et back-end, IA et gestion de projet. Zéro sous-traitance, zéro équipe offshore, zéro plateforme freelance. Cela nous permet d'être responsables de bout en bout, de communiquer directement avec vous, et de tenir nos délais.",
         },
       },
     ],

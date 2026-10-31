@@ -715,7 +715,7 @@ export default function HomePage() {
             </p>
             <p className="seo-about__text">
               Notre approche tient en une équipe intégrée à taille humaine, <strong>sans sous-traitance</strong>.
-              Designer, développeur web, motion designer et chargé SEO travaillent dans une même équipe. Cette
+              Design, développement web, motion design et SEO sont faits par la même équipe. Cette
               proximité garantit une cohérence visuelle, une réactivité et un niveau de finition que les grosses agences
               ne peuvent pas offrir à ces tarifs.{' '}
             </p>
@@ -1077,7 +1077,7 @@ export default function HomePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est une équipe intégrée de 7
+                    Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est une équipe intégrée de 6
                     personnes, spécialisée dans deux
                     métiers : la création de sites WordPress sur-mesure et le développement d'applications métier,
                     c'est-à-dire des CRM, des
@@ -1206,8 +1206,8 @@ export default function HomePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Non. Designer, développeur, expert SEO, motion designer et chef de projet travaillent ensemble,
-                    dans une même équipe. Aucune sous-traitance, aucun offshore, aucune plateforme de
+                    Non. Design, développement, SEO, rédaction et motion design sont faits en interne,
+                    par la même équipe. Aucune sous-traitance, aucun offshore, aucune plateforme de
                     freelances. Vous avez un seul interlocuteur du début à la fin.
                   </p>
                 </div>

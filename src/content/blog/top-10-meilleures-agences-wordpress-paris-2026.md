@@ -3,7 +3,7 @@ title: "Top 10 des meilleures agences WordPress à Paris en 2026"
 description: "Les agences WordPress à Paris à connaître en 2026, choisies selon une méthode publique : spécialité, références et sources qui les citent. Un classement rédigé par Kameo."
 excerpt: "Notre sélection des agences WordPress à Paris en 2026, avec sa méthode, ses critères et la spécialité de chaque agence."
 date: "2026-06-06T23:37:47+00:00"
-modified: "2026-10-30T12:00:00+00:00"
+modified: "2026-10-31T12:00:00+00:00"
 image: "/wp-content/uploads/2026/06/NexusGames-Top10desmeilleuresagencesWordPressParisen2026.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -102,7 +102,7 @@ Site : [studiocassette.com](https://www.studiocassette.com/agence-wordpress-pari
 
 **Pour qui :** les PME, les startups et les indépendants qui veulent un site WordPress sur-mesure, un budget fixé à l'avance et un délai court. C'est l'agence qui a rédigé ce classement.
 
-Fondée en 2023, Kameo crée, refond et maintient des sites WordPress sur-mesure, construits avec Elementor Pro ou sur un thème codé selon le projet, dont des boutiques WooCommerce. L'équipe compte 7 personnes, et les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent eux-mêmes les projets. Kameo indique avoir livré plus de 50 sites depuis 2023, dont environ trois quarts sous WordPress. C'est l'une des rares agences parisiennes à publier ses prix :
+Fondée en 2023, Kameo crée, refond et maintient des sites WordPress sur-mesure, construits avec Elementor Pro ou sur un thème codé selon le projet, dont des boutiques WooCommerce. L'équipe compte 6 personnes, et les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent eux-mêmes les projets. Kameo indique avoir livré plus de 50 sites depuis 2023, dont environ trois quarts sous WordPress. C'est l'une des rares agences parisiennes à publier ses prix :
 
 - landing page : 1 299 € HT ;
 - site vitrine : 1 999 € HT ;

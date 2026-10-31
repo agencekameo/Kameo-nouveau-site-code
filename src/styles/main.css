@@ -3289,13 +3289,21 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   color: var(--c-muted-2);
   max-width: 520px;
 }
+/* Flex centré : la dernière ligne reste centrée, quel que soit le nombre de personnes. */
 .team__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(16px, 2vw, 22px);
+  --team-cols: 4;
+  --team-gap: clamp(16px, 2vw, 22px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--team-gap);
   padding: clamp(16px, 2vw, 22px);
   background: var(--c-bg-soft);
   border-radius: var(--r-2xl);
+}
+.team__grid > .member {
+  flex: 0 0 calc((100% - (var(--team-cols) - 1) * var(--team-gap)) / var(--team-cols));
+  min-width: 0;
 }
 .member {
   display: flex;
@@ -5114,7 +5122,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 @media (max-width: 1024px) {
   .footer__inner { grid-template-columns: 1.2fr 1fr 1fr 1.2fr; gap: 36px; }
 
-  .team__grid { grid-template-columns: repeat(3, 1fr); }
+  .team__grid { --team-cols: 3; }
   .faq__grid { grid-template-columns: 1fr; gap: 40px; }
   .faq__side { position: static; }
 }
@@ -5123,7 +5131,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   .about__grid { grid-template-columns: 1fr; }
   .team__head { grid-template-columns: 1fr; align-items: start; }
   .comparison__grid { grid-template-columns: 1fr; }
-  .team__grid { grid-template-columns: repeat(2, 1fr); }
+  .team__grid { --team-cols: 2; }
 }
 
 @media (max-width: 960px) {
@@ -5147,7 +5155,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 
 @media (max-width: 560px) {
   .real-grid { grid-template-columns: 1fr; gap: 8px; }
-  .team__grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .team__grid { --team-cols: 2; --team-gap: 14px; }
   .page-hero__title { font-size: clamp(30px, 8vw, 40px); }
   .testimonial__quote-text { font-size: clamp(20px, 5vw, 26px); }
   .comp-card { padding: 26px 22px; }

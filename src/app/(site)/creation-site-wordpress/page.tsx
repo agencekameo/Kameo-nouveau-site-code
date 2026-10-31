@@ -177,7 +177,7 @@ export default function CreationSiteWordpressPage() {
                 </span>
                 <h3 className="ccrea-why__name">Zéro sous-traitance</h3>
                 <p className="ccrea-why__text">
-                  Designer, développeur, expert SEO et rédacteur travaillent dans une même équipe. Un seul interlocuteur, une responsabilité claire, des décisions rapides.
+                  Design, développement, SEO et rédaction sont faits par la même équipe. Un seul interlocuteur, une responsabilité claire, des décisions rapides.
                 </p>
               </article>
             </div>
@@ -607,7 +607,7 @@ export default function CreationSiteWordpressPage() {
                     Rédaction et maquettes <span className="ccrea-steps__duration">4 à 10 j</span>
                   </h3>
                   <p className="ccrea-steps__desc">
-                    En parallèle : notre rédacteur web rédige les contenus SEO de chaque page, notre directrice
+                    En parallèle : nous rédigeons les contenus SEO de chaque page et notre directrice
                     artistique conçoit les maquettes Figma. Vous validez les deux avant qu'on code une seule ligne.
                     Maximum 2 cycles de retours inclus.
                   </p>
@@ -1242,10 +1242,10 @@ export default function CreationSiteWordpressPage() {
             <header className="ccrea-team__head">
               <span className="ccrea-team__eyebrow">L'équipe qui construit votre site</span>
               <h2 className="ccrea-team__title">
-                Vous parlez aux dirigeants, pas à un commercial puis à un sous-traitant
+                Vous parlez directement aux dirigeants, sans intermédiaire ni sous-traitance
               </h2>
               <p className="ccrea-team__intro">
-                Kameo compte 7&nbsp;personnes. Les chefs de projet sont les deux dirigeants, Benjamin Dayan et Louison
+                Kameo compte 6&nbsp;personnes. Les chefs de projet sont les deux dirigeants, Benjamin Dayan et Louison
                 Boutet : vous échangez avec eux dès le brief, pendant tout le projet, et ils vous forment à la livraison.
               </p>
             </header>
@@ -1616,7 +1616,7 @@ export default function CreationSiteWordpressPage() {
                 <div className="expertise-faq__a">
                   <p>
                     Le tarif inclut : <strong>une page WordPress sur-mesure</strong> (pas un template), le copywriting
-                    orienté conversion par notre rédacteur, le design Figma desktop et mobile, l'intégration sur
+                    orienté conversion rédigé par notre équipe, le design Figma desktop et mobile, l'intégration sur
                     WordPress, un formulaire de contact connecté, le tracking GA4 et Meta Pixel,
                     la conformité RGPD, le SEO technique et la mise en ligne. <strong>Hors périmètre :</strong> le
                     contenu photo/vidéo, l'hébergement (50 à 500 €/an au choix), le nom de domaine.

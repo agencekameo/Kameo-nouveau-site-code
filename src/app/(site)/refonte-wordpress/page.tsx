@@ -810,9 +810,8 @@ export default function RefonteWordpressPage() {
               <span className="ref-team__eyebrow">L'équipe qui pilote votre refonte</span>
               <h2 className="ref-team__title">Les dirigeants aux commandes, du premier audit à la mise en ligne</h2>
               <p className="ref-team__intro">
-                Kameo compte 7&nbsp;personnes, et votre refonte est pilotée par les deux dirigeants, Benjamin Dayan et
-                Louison Boutet. Pas de commercial qui vend puis disparaît, pas de sous-traitance qui décharge la
-                responsabilité.
+                Kameo compte 6&nbsp;personnes, et votre refonte est pilotée par les deux dirigeants, Benjamin Dayan et
+                Louison Boutet : vous leur parlez directement, sans intermédiaire ni sous-traitance.
               </p>
             </header>
             <div className="ref-team__grid">
@@ -892,7 +891,7 @@ export default function RefonteWordpressPage() {
                 <div className="ref-choice__meta">
                   <div>
                     <p className="ref-choice__meta-lbl">Délai</p>
-                    <p className="ref-choice__meta-val">4 à 10 semaines</p>
+                    <p className="ref-choice__meta-val">4 à 14 semaines</p>
                   </div>
                   <div>
                     <p className="ref-choice__meta-lbl">Tarif</p>

@@ -33,8 +33,8 @@ export const COMPANY = {
   siren: '980573984',
   vatID: 'FR54980573984',
   foundingDate: '2023-10-11',
-  /** Équipe : 7 personnes, dirigeants compris. */
-  teamSize: 7,
+  /** Équipe : 6 personnes, dirigeants compris. */
+  teamSize: 6,
 } as const;
 
 /**

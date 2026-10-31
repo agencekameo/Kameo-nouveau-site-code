@@ -447,7 +447,7 @@ const Body = () => (
                 <div className="lp2-tstep__num">2</div>
                 <div className="lp2-tstep__title">Rédaction optimisée</div>
                 <p className="lp2-tstep__text">
-                  Un rédacteur expert rédige chaque page : du contenu pensé pour Google et pour convertir vos clients.
+                  Chaque page est rédigée par notre équipe : du contenu pensé pour Google et pour convertir vos clients.
                 </p>
               </div>
               <div className="lp2-tstep" data-reveal="" style={{ transitionDelay: '.24s' }}>

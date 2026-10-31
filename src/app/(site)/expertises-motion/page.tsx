@@ -938,8 +938,7 @@ export default function ExpertisesMotionPage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2<sup>e</sup>). Nos motion designers
-                    travaillent en interne, sans sous-traitance, et nous accompagnons des clients à Paris, en France et
+                    Kameo a son adresse à Paris, au 9 rue des Colonnes (Paris 2<sup>e</sup>). Le motion design est réalisé en interne par nos designers, sans sous-traitance, et nous accompagnons des clients à Paris, en France et
                     à l’international, <strong>en visio</strong>.
                   </p>
                 </div>
@@ -963,7 +962,7 @@ export default function ExpertisesMotionPage() {
                 <div className="expertise-faq__a">
                   <p>
                     Bien sûr, c’est même un cas très fréquent. Si vous avez déjà une charte graphique (logo, palette,
-                    typo), notre équipe l'<strong>extend en motion</strong> : système d’animation cohérent du logo,
+                    typo), notre équipe l’<strong>extend en motion</strong> : système d’animation cohérent du logo,
                     transitions signature, comportements typographiques, motion guidelines. Vous obtenez un{' '}
                     <strong>motion branding</strong> qui prolonge votre identité statique sans la trahir.
                   </p>

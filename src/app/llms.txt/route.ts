@@ -23,7 +23,7 @@ export async function GET() {
     : '';
   const txt = `# Kameo, agence web et développement sur-mesure à Paris
 
-> Agence web fondée en 2023 par Benjamin Dayan. Deux métiers : la création de sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et le développement d'applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 7 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
+> Agence web fondée en 2023 par Benjamin Dayan. Deux métiers : la création de sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et le développement d'applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
 
 Dernière mise à jour : ${maj}
 
@@ -74,7 +74,7 @@ ${blog}
 - **Dirigeants** : Benjamin Dayan (fondateur et président) et Louison Boutet (directeur général), qui sont aussi les chefs de projet
 - **Siège social** : 1862 avenue La Lauragaise, 31670 Labège, France (transfert à Paris en cours)
 - **Adresse à Paris** : 9 rue des Colonnes, 75002 Paris, France
-- **Équipe** : 7 personnes ; rendez-vous en visio, du lundi au vendredi de 9 h à 17 h
+- **Équipe** : 6 personnes ; rendez-vous en visio, du lundi au vendredi de 9 h à 17 h
 - **Téléphone** : +33 6 62 37 99 85
 - **Email** : ${CONTACT.email}
 - **Site web** : ${SITE_URL}

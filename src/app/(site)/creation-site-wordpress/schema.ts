@@ -102,7 +102,7 @@ export const pageSchemas: object[] = [
             name: "Que comprend exactement le tarif de 1 299 € pour une landing page WordPress ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Le tarif inclut : une page WordPress sur-mesure (pas un template), le copywriting orienté conversion par notre rédacteur, le design Figma desktop et mobile, l'intégration sur WordPress, un formulaire de contact connecté, le tracking GA4 et Meta Pixel, la conformité RGPD, le SEO technique et la mise en ligne. Hors périmètre : le contenu photo/vidéo, l'hébergement (50 à 500 €/an au choix), le nom de domaine.",
+              text: "Le tarif inclut : une page WordPress sur-mesure (pas un template), le copywriting orienté conversion rédigé par notre équipe, le design Figma desktop et mobile, l'intégration sur WordPress, un formulaire de contact connecté, le tracking GA4 et Meta Pixel, la conformité RGPD, le SEO technique et la mise en ligne. Hors périmètre : le contenu photo/vidéo, l'hébergement (50 à 500 €/an au choix), le nom de domaine.",
             },
           },
           {
