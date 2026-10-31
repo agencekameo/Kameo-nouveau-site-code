@@ -22,7 +22,7 @@ export default function PolitiqueDeConfidentialitePage() {
               <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-shield-halved" />
               </svg>
-              Dernière mise à jour&nbsp;: 30 octobre 2026{' '}
+              Dernière mise à jour&nbsp;: 31 octobre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Politique de confidentialité</h1>
             <p className="legal-hero__desc">
@@ -359,11 +359,11 @@ export default function PolitiqueDeConfidentialitePage() {
                     <strong>CRM&nbsp;:</strong> système de gestion de la relation client
                   </li>
                 </ul>
-                <h3 className="legal__h3">5.2 Partenaires contractuels</h3>
+                <h3 className="legal__h3">5.2 Réalisation des prestations</h3>
                 <p className="legal__p">
-                  Sous-traitants intervenant dans la réalisation des prestations (développeurs, graphistes, rédacteurs,
-                  etc.). Tous nos sous-traitants sont soumis à des obligations de confidentialité strictes et à des
-                  accords de traitement de données conformes au RGPD.
+                  Nos prestations (design, développement, rédaction, SEO, motion design) sont réalisées en interne par
+                  l’équipe Kameo, sans sous-traitance à des freelances ni à d’autres agences&nbsp;: vos données ne sont
+                  pas transmises à des prestataires de production.
                 </p>
                 <h3 className="legal__h3">5.3 Autorités</h3>
                 <p className="legal__p">
