@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 /*
- * Captures des sites de la section « Nos réalisations » de la landing /appel-strategique/ (LpWorks.tsx) :
- * page entière, version ordinateur (1440 px de large) et téléphone (390 px, écran Retina), découpée en
- * tranches WebP dans public/images/landing_page/realisations/<projet>/ ; la liste des tranches est écrite
- * dans src/components/landing/lpWorks.shots.ts.
+ * Captures des sites de la section « Nos réalisations » de la landing /appel-strategique/ (LpWorks.tsx),
+ * en haute définition : version ordinateur (1280 px de large, écran Retina) et téléphone (390 px, ×3).
+ * - Sites affichés en direct (live) : le haut de la page seulement, montré le temps du chargement.
+ * - Autres sites : page entière, qu'on fait défiler dans l'aperçu.
+ * Découpe en tranches WebP dans public/images/landing_page/realisations/<projet>/ ; la liste des tranches
+ * est écrite dans src/components/landing/lpWorks.shots.ts.
  *
  * - Chrome sans interface (Google Chrome installé sur le Mac), piloté par son protocole de débogage.
  * - Statistiques et publicité bloquées : la capture ne fausse pas les chiffres des clients.
@@ -26,19 +28,20 @@ const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/M
 const PORT = 9333;
 
 const SITES = [
-  { id: 'dronespec', url: 'https://dronespec.fr/' },
-  { id: 'sunshine-resort', url: 'https://sunshine-resort.kameo-test.fr/' },
-  { id: 'paris-sg-news', url: 'https://parissgnews.fr/' },
+  { id: 'dronespec', url: 'https://dronespec.fr/', live: true },
+  { id: 'sunshine-resort', url: 'https://sunshine-resort.kameo-test.fr/', live: true },
+  // parissgnews.fr interdit l'affichage dans un autre site (frame-ancestors 'none') : page entière
+  { id: 'paris-sg-news', url: 'https://parissgnews.fr/', live: false },
 ];
 
 // tile : hauteur d'une tranche en pixels CSS ; out : largeur des images WebP ; max : hauteur capturée au plus
 const DEVICES = {
   desktop: {
-    width: 1440, height: 900, dpr: 1.5, mobile: false, out: 1920, tile: 1400, max: 12000, quality: 70,
+    width: 1280, height: 860, dpr: 2, mobile: false, out: 2560, tile: 1400, max: 12000, quality: 80,
     ua: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
   },
   mobile: {
-    width: 390, height: 844, dpr: 2, mobile: true, out: 780, tile: 1100, max: 13000, quality: 70,
+    width: 390, height: 844, dpr: 3, mobile: true, out: 1170, tile: 1100, max: 13000, quality: 80,
     ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
   },
 };
@@ -132,7 +135,8 @@ async function capture({ send, once }, site, name, d) {
     })()`,
   });
   const full = result.value;
-  const height = Math.min(full, d.max);
+  // site en direct : seulement le haut de la page (une tranche)
+  const height = Math.min(full, site.live ? d.tile : d.max);
 
   // Grandes prises (les animations d'apparition y sont jouées, la photo du haut y est rendue), chacune sous
   // 16 000 pixels réels : au-delà de 16 384, Chrome répète le haut de la page. Puis découpe en tranches.

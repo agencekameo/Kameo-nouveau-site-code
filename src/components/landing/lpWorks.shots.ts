@@ -4,15 +4,15 @@ export type Shot = { w: number; tiles: number[] };
 
 export const SHOTS: Record<string, { desktop: Shot; mobile: Shot }> = {
   'dronespec': {
-    desktop: { w: 1920, tiles: [1867, 1867, 1867, 1867, 1410] },
-    mobile: { w: 780, tiles: [2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 158] },
+    desktop: { w: 2560, tiles: [2800] },
+    mobile: { w: 1170, tiles: [3300] },
   },
   'sunshine-resort': {
-    desktop: { w: 1920, tiles: [1867, 1867, 1867, 1867, 1867, 930] },
-    mobile: { w: 780, tiles: [2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2200, 2180] },
+    desktop: { w: 2560, tiles: [2800] },
+    mobile: { w: 1170, tiles: [3300] },
   },
   'paris-sg-news': {
-    desktop: { w: 1920, tiles: [1867, 1867, 1867, 416] },
-    mobile: { w: 780, tiles: [2200, 2200, 2200, 2200, 376] },
+    desktop: { w: 2560, tiles: [2800, 2800, 2800, 310] },
+    mobile: { w: 1170, tiles: [3300, 3300, 3300, 3300, 564] },
   },
 };

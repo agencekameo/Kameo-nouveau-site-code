@@ -1,68 +1,80 @@
 'use client';
 
-import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import { SHOTS } from './lpWorks.shots';
 
 /*
- * Landing page Ads, bloc Réalisations (choix de Benjamin du 01/11/2026) : aperçus immersifs de 3 sites.
- * Chaque site est une capture de la page entière, version ordinateur et téléphone
- * (scripts/capture-realisations.mjs), découpée en tranches chargées au fil du défilement. Elle s'affiche
- * dans une fenêtre de navigateur où l'on fait défiler le site ; des onglets changent de projet, un mode
- * plein écran (flèches, Échap) agrandit l'aperçu, un lien mène au site réel.
- * Captures plutôt que sites en direct (iframe) : parissgnews.fr interdit l'affichage dans un autre site
- * (frame-ancestors 'none'), et un site en direct chargerait ses cookies, bandeaux et traceurs sur la landing.
- * Écran tactile : la fenêtre ne défile pas dans la page, où le doigt resterait piégé ; un toucher ouvre
- * le plein écran, où l'on fait défiler le site.
+ * Landing page Ads, bloc Réalisations (choix de Benjamin du 01/11/2026) : aperçu du site à gauche, liste
+ * des projets à droite (nom, secteur et, pour le projet affiché, un court descriptif).
+ * - DroneSpec et Sunshine Resort s'affichent en direct (iframe) : vidéos, animations et défilement du vrai
+ *   site, net à toutes les tailles. Dans la fenêtre, le site est rendu à 1 280 px de large (version
+ *   ordinateur) puis réduit à la taille de la fenêtre ; en plein écran, à la taille de l'écran. Une capture
+ *   du haut de la page (scripts/capture-realisations.mjs) s'affiche le temps du chargement.
+ * - Paris SG News interdit l'affichage dans un autre site (X-Frame-Options DENY, frame-ancestors 'none') :
+ *   capture complète en haute définition (ordinateur et téléphone), qu'on fait défiler. Passer live à true
+ *   (et refaire les captures) quand parissgnews.fr autorise agence-kameo.fr dans frame-ancestors.
+ * - Écran tactile : pas de site en direct dans la fenêtre, où le doigt resterait piégé ; un toucher ouvre le
+ *   plein écran, où le site s'affiche en direct.
  * Le plein écran est rendu dans <body> (portail) : la section crée un contexte d'empilement (z-index 1 du
  * fond sombre) sous les sections suivantes.
  */
-type Project = { id: string; name: string; tag: string; desc: string; url: string };
+type Project = { id: string; name: string; tag: string; desc: string; url: string; live: boolean };
 
 const PROJECTS: Project[] = [
   {
     id: 'dronespec',
     name: 'DroneSpec',
     tag: 'BTP',
-    desc: 'Site vitrine d’un spécialiste de l’inspection et des relevés par drone.',
+    desc: 'Site vitrine d’un spécialiste du drone professionnel : inspection technique, topographie et modélisation 3D.',
     url: 'https://dronespec.fr/',
+    live: true,
   },
   {
     id: 'sunshine-resort',
     name: 'Sunshine Resort',
     tag: 'Hôtellerie',
-    desc: 'Site d’un resort de cinq villas de luxe en Guadeloupe.',
+    desc: 'Site d’un resort de cinq villas de luxe en Guadeloupe, mis en scène par des vidéos des villas.',
     url: 'https://sunshine-resort.kameo-test.fr/',
+    live: true,
   },
   {
     id: 'paris-sg-news',
     name: 'Paris SG News',
     tag: 'Média',
-    desc: 'Site d’actualité indépendant consacré au Paris Saint-Germain.',
+    desc: 'Média indépendant consacré au Paris Saint-Germain : actualités, matchs et mercato.',
     url: 'https://parissgnews.fr/',
+    live: false,
   },
 ];
 
-const host = (url: string) => new URL(url).host;
-const n = PROJECTS.length;
+/** Largeur de rendu des sites en direct dans la fenêtre : leur version ordinateur. */
+const SITE_W = 1280;
+/** Après le chargement, le site met encore un moment à afficher sa vidéo d'accueil : la capture reste devant. */
+const REVEAL_MS = 2000;
 const MOBILE = '(max-width: 767px)';
+const MOUSE = '(hover: hover) and (pointer: fine)';
+const n = PROJECTS.length;
 
 type Device = 'desktop' | 'mobile';
 
-/**
- * Captures du site. Avant que la page soit interactive, les deux versions sont dans la page (chargement
- * différé, la feuille de style n'affiche que celle de l'écran) ; ensuite, seule celle de l'écran.
- */
+const host = (url: string) => new URL(url).host;
+const tile = (p: Project, d: Device, i: number) =>
+  `/images/landing_page/realisations/${p.id}/${d}-${String(i + 1).padStart(2, '0')}.webp`;
+/** Avant que la page soit interactive, les deux versions (la feuille de style montre celle de l'écran). */
+const devices = (device: Device | null): Device[] => (device ? [device] : ['desktop', 'mobile']);
+
+/** Capture complète du site, qu'on fait défiler. */
 function Shots({ p, device, warm }: { p: Project; device: Device | null; warm: boolean }) {
   const s = SHOTS[p.id];
   return (
     <>
-      {(device ? [device] : (['desktop', 'mobile'] as const)).map((d) => (
+      {devices(device).map((d) => (
         <div key={d} className={`lp2-shot lp2-shot--${d}`}>
           {s[d].tiles.map((h, i) => (
             <img
               key={i}
-              src={`/images/landing_page/realisations/${p.id}/${d}-${String(i + 1).padStart(2, '0')}.webp`}
+              src={tile(p, d, i)}
               width={s[d].w}
               height={h}
               alt={i === 0 ? `Site ${p.name}, page d’accueil` : ''}
@@ -78,22 +90,75 @@ function Shots({ p, device, warm }: { p: Project; device: Device | null; warm: b
   );
 }
 
+/** Haut de la page en capture : affiché le temps que le site en direct se charge, ou au toucher. */
+function Poster({ p, device }: { p: Project; device: Device | null }) {
+  const s = SHOTS[p.id];
+  return (
+    <>
+      {devices(device).map((d) => (
+        <img
+          key={d}
+          className={`lp2-live__poster lp2-shot--${d}`}
+          src={tile(p, d, 0)}
+          width={s[d].w}
+          height={s[d].tiles[0]}
+          alt={`Site ${p.name}, page d’accueil`}
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+        />
+      ))}
+    </>
+  );
+}
+
+/** Site en direct ; réduit (scaled) pour tenir dans la fenêtre avec sa mise en page d'ordinateur. */
+function Live({ p, device, scaled }: { p: Project; device: Device | null; scaled: boolean }) {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const revealTimer = useRef(0);
+  const [box, setBox] = useState<{ w: number; h: number } | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => () => window.clearTimeout(revealTimer.current), []);
+
+  useEffect(() => {
+    const el = boxRef.current;
+    if (!scaled || !el) return;
+    const ro = new ResizeObserver(([e]) => setBox({ w: e.contentRect.width, h: e.contentRect.height }));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [scaled]);
+
+  const scale = box ? box.w / SITE_W : 1;
+  const style: CSSProperties | undefined =
+    scaled && box ? { width: SITE_W, height: Math.ceil(box.h / scale), transform: `scale(${scale})` } : undefined;
+
+  return (
+    <div className="lp2-live" ref={boxRef}>
+      <Poster p={p} device={scaled ? 'desktop' : device} />
+      {(!scaled || box) && (
+        <iframe
+          src={p.url}
+          title={`Site ${p.name} en direct`}
+          className={'lp2-live__frame' + (loaded ? ' is-loaded' : '')}
+          style={style}
+          loading="lazy"
+          allow="autoplay; fullscreen; picture-in-picture"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+          onLoad={() => {
+            window.clearTimeout(revealTimer.current);
+            revealTimer.current = window.setTimeout(() => setLoaded(true), REVEAL_MS);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
 const ExpandIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
     <path
       d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-const ExternalIcon = () => (
-  <svg viewBox="0 0 14 14" width="13" height="13" aria-hidden="true">
-    <path
-      d="M3 11L11 3M11 3H6M11 3V8"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
@@ -130,17 +195,21 @@ const Arrow = ({ dir }: { dir: 'prev' | 'next' }) => (
 export default function LpWorks() {
   const [active, setActive] = useState(0);
   const [full, setFull] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [hint, setHint] = useState(true);
   const [warm, setWarm] = useState<Set<string>>(() => new Set());
   const [device, setDevice] = useState<Device | null>(null);
+  const [mouse, setMouse] = useState(false);
   const activeRef = useRef(active);
   const viewportRef = useRef<HTMLDivElement>(null);
   const fullRef = useRef<HTMLDivElement>(null);
   const fullViewportRef = useRef<HTMLDivElement>(null);
-  const tabsRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const opener = useRef<HTMLElement | null>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
+  const hintTimer = useRef(0);
   const p = PROJECTS[active];
+  // site en direct dans la fenêtre : ordinateur avec souris seulement
+  const liveInline = p.live && mouse && device === 'desktop';
 
   const heat = (id: string) => setWarm((w) => (w.has(id) ? w : new Set(w).add(id)));
   const select = (i: number) => {
@@ -157,26 +226,26 @@ export default function LpWorks() {
     setFull(true);
   };
 
-  // Onglets : flèches gauche et droite (motif ARIA des onglets)
-  const onTabsKey = (e: ReactKeyboardEvent<HTMLDivElement>) => {
-    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-    e.preventDefault();
-    const next = (active + (e.key === 'ArrowRight' ? 1 : -1) + n) % n;
-    select(next);
-    tabsRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
-  };
-
   useEffect(() => {
     activeRef.current = active;
   }, [active]);
 
-  // Version des captures selon la largeur de l'écran (téléphone en dessous de 768 px)
+  // Version des captures (téléphone en dessous de 768 px) et présence d'une souris
   useEffect(() => {
-    const mq = window.matchMedia(MOBILE);
-    const update = () => setDevice(mq.matches ? 'mobile' : 'desktop');
+    const mqMobile = window.matchMedia(MOBILE);
+    const mqMouse = window.matchMedia(MOUSE);
+    const update = () => {
+      setDevice(mqMobile.matches ? 'mobile' : 'desktop');
+      setMouse(mqMouse.matches);
+    };
     update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
+    mqMobile.addEventListener('change', update);
+    mqMouse.addEventListener('change', update);
+    return () => {
+      mqMobile.removeEventListener('change', update);
+      mqMouse.removeEventListener('change', update);
+      window.clearTimeout(hintTimer.current);
+    };
   }, []);
 
   // Plein écran : page figée, Échap, flèches, focus gardé dans la fenêtre puis rendu
@@ -187,13 +256,14 @@ export default function LpWorks() {
     const before = { overflow: html.style.overflow, paddingRight: html.style.paddingRight };
     html.style.overflow = 'hidden';
     if (scrollbar > 0) html.style.paddingRight = `${scrollbar}px`;
-    fullViewportRef.current?.focus({ preventScroll: true });
+    // site en direct : focus sur Fermer (Échap ne remonte pas depuis le site) ; capture : défilement au clavier
+    (PROJECTS[activeRef.current].live ? closeRef.current : fullViewportRef.current)?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setFull(false);
       else if (e.key === 'ArrowRight') select(activeRef.current + 1);
       else if (e.key === 'ArrowLeft') select(activeRef.current - 1);
       else if (e.key === 'Tab' && fullRef.current) {
-        const f = [...fullRef.current.querySelectorAll<HTMLElement>('button, a[href], [tabindex="0"]')];
+        const f = [...fullRef.current.querySelectorAll<HTMLElement>('button, iframe, [tabindex="0"]')];
         const i = f.indexOf(document.activeElement as HTMLElement);
         e.preventDefault();
         f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length]?.focus();
@@ -211,26 +281,7 @@ export default function LpWorks() {
 
   return (
     <div className="lp2-show" data-reveal="">
-      <div className="lp2-show__tabs" role="tablist" aria-label="Projets" ref={tabsRef} onKeyDown={onTabsKey}>
-        {PROJECTS.map((proj, i) => (
-          <button
-            key={proj.id}
-            type="button"
-            role="tab"
-            id={`lp2-show-tab-${proj.id}`}
-            aria-selected={i === active}
-            aria-controls="lp2-show-panel"
-            tabIndex={i === active ? 0 : -1}
-            className="lp2-show__tab"
-            onClick={() => select(i)}
-          >
-            {proj.name}
-            <span className="lp2-show__tab-tag">{proj.tag}</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="lp2-show__window" id="lp2-show-panel" role="tabpanel" aria-labelledby={`lp2-show-tab-${p.id}`}>
+      <div className="lp2-show__window" id="lp2-show-window" role="region" aria-label={`Aperçu du site ${p.name}`}>
         <div className="lp2-show__bar">
           <span className="lp2-show__dots" aria-hidden="true">
             <i />
@@ -251,25 +302,32 @@ export default function LpWorks() {
               <ExpandIcon />
               <span className="lp2-show__act-label">Plein écran</span>
             </button>
-            <a className="lp2-show__act" href={p.url} target="_blank" rel="noopener" aria-label={`Visiter le site ${p.name}`}>
-              <span className="lp2-show__act-label">Voir le site</span>
-              <ExternalIcon />
-            </a>
           </span>
         </div>
         <div
-          className="lp2-show__viewport"
+          className={'lp2-show__viewport' + (liveInline ? ' is-live' : '')}
           ref={viewportRef}
-          tabIndex={0}
+          tabIndex={liveInline ? -1 : 0}
           aria-label={`Aperçu du site ${p.name} : faites défiler pour l’explorer`}
           onScroll={() => {
-            if (!scrolled) setScrolled(true);
+            setHint(false);
             heat(p.id);
           }}
+          onMouseEnter={() => {
+            // site en direct : le défilement se fait dans le site, invisible d'ici
+            window.clearTimeout(hintTimer.current);
+            hintTimer.current = window.setTimeout(() => setHint(false), 1800);
+          }}
         >
-          <Shots p={p} device={device} warm={warm.has(p.id)} />
+          {liveInline ? (
+            <Live key={p.id} p={p} device={device} scaled />
+          ) : p.live ? (
+            <Poster p={p} device={device} />
+          ) : (
+            <Shots p={p} device={device} warm={warm.has(p.id)} />
+          )}
         </div>
-        <span className={'lp2-show__hint' + (scrolled ? ' is-hidden' : '')} aria-hidden="true">
+        <span className={'lp2-show__hint' + (hint ? '' : ' is-hidden')} aria-hidden="true">
           <span className="lp2-show__hint-mouse" />
           Faites défiler pour explorer le site
         </span>
@@ -286,9 +344,31 @@ export default function LpWorks() {
           </span>
         </button>
       </div>
-      <p className="lp2-show__caption">
-        <strong>{p.name}</strong> · {p.desc}
-      </p>
+
+      <ol className="lp2-show__list" aria-label="Projets">
+        {PROJECTS.map((proj, i) => (
+          <li key={proj.id} className={'lp2-show__item' + (i === active ? ' is-active' : '')}>
+            <button
+              type="button"
+              className="lp2-show__pick"
+              aria-current={i === active ? 'true' : undefined}
+              aria-controls="lp2-show-window"
+              onClick={() => select(i)}
+            >
+              <span className="lp2-show__num" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span className="lp2-show__name">{proj.name}</span>
+              <span className="lp2-show__tag">{proj.tag}</span>
+            </button>
+            <div className="lp2-show__desc" aria-hidden={i !== active}>
+              <div>
+                <p>{proj.desc}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
 
       {full &&
         createPortal(
@@ -324,25 +404,31 @@ export default function LpWorks() {
                   <Arrow dir="next" />
                 </button>
               </div>
-              <a className="lp2-full__visit" href={p.url} target="_blank" rel="noopener" aria-label={`Visiter le site ${p.name}`}>
-                <span className="lp2-full__visit-label">Voir le site</span>
-                <ExternalIcon />
-              </a>
-              <button type="button" className="lp2-full__btn lp2-full__close" aria-label="Fermer" onClick={() => setFull(false)}>
+              <button
+                ref={closeRef}
+                type="button"
+                className="lp2-full__btn lp2-full__close"
+                aria-label="Fermer"
+                onClick={() => setFull(false)}
+              >
                 <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                   <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
                 </svg>
               </button>
             </div>
             <div
-              className="lp2-full__viewport"
+              className={'lp2-full__viewport' + (p.live ? ' is-live' : '')}
               ref={fullViewportRef}
-              tabIndex={0}
+              tabIndex={p.live ? -1 : 0}
               aria-label={`Site ${p.name} : faites défiler pour l’explorer`}
             >
-              <div className="lp2-full__page">
-                <Shots p={p} device={device} warm />
-              </div>
+              {p.live ? (
+                <Live key={p.id} p={p} device={device} scaled={false} />
+              ) : (
+                <div className="lp2-full__page">
+                  <Shots p={p} device={device} warm />
+                </div>
+              )}
             </div>
           </div>,
           document.body,

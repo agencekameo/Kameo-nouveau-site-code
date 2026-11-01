@@ -22,7 +22,7 @@ export default function PolitiqueDeConfidentialitePage() {
               <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-shield-halved" />
               </svg>
-              Dernière mise à jour&nbsp;: 31 octobre 2026{' '}
+              Dernière mise à jour&nbsp;: 1er novembre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Politique de confidentialité</h1>
             <p className="legal-hero__desc">
@@ -749,6 +749,12 @@ export default function PolitiqueDeConfidentialitePage() {
                         articles du blog dès que vous survolez un bouton de prise de rendez-vous
                       </li>
                       <li>Google Maps&nbsp;: carte d’accès à l’agence, qui dépose ses propres cookies lorsqu’elle s’affiche</li>
+                      <li>
+                        Aperçus de nos réalisations (page «&nbsp;Appel stratégique&nbsp;»)&nbsp;: les sites de nos clients
+                        DroneSpec et Sunshine Resort s’affichent en direct depuis leurs propres serveurs, qui reçoivent
+                        votre adresse IP et peuvent déposer leurs cookies de fonctionnement&nbsp;; leurs éventuels
+                        cookies de mesure d’audience ne sont déposés qu’avec votre accord, donné sur ces sites
+                      </li>
                       <li>La Fabrique du Net&nbsp;: badge d’avis du pied de page, chargé depuis ses serveurs, sans cookie</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-muted)', marginTop: '6px' }}>
