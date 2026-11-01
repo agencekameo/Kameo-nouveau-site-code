@@ -12,7 +12,7 @@ export const SHOTS: Record<string, { desktop: Shot; mobile: Shot }> = {
     mobile: { w: 1170, tiles: [3300] },
   },
   'paris-sg-news': {
-    desktop: { w: 2560, tiles: [2800, 2800, 2800, 310] },
-    mobile: { w: 1170, tiles: [3300, 3300, 3300, 3300, 564] },
+    desktop: { w: 2560, tiles: [2800] },
+    mobile: { w: 1170, tiles: [3300] },
   },
 };

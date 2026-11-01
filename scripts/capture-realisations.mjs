@@ -3,7 +3,7 @@
  * Captures des sites de la section « Nos réalisations » de la landing /appel-strategique/ (LpWorks.tsx),
  * en haute définition : version ordinateur (1280 px de large, écran Retina) et téléphone (390 px, ×3).
  * - Sites affichés en direct (live) : le haut de la page seulement, montré le temps du chargement.
- * - Autres sites : page entière, qu'on fait défiler dans l'aperçu.
+ * - Sites qui refusent l'affichage dans un autre site (live: false) : page entière, qu'on fait défiler.
  * Découpe en tranches WebP dans public/images/landing_page/realisations/<projet>/ ; la liste des tranches
  * est écrite dans src/components/landing/lpWorks.shots.ts.
  *
@@ -30,8 +30,7 @@ const PORT = 9333;
 const SITES = [
   { id: 'dronespec', url: 'https://dronespec.fr/', live: true },
   { id: 'sunshine-resort', url: 'https://sunshine-resort.kameo-test.fr/', live: true },
-  // parissgnews.fr interdit l'affichage dans un autre site (frame-ancestors 'none') : page entière
-  { id: 'paris-sg-news', url: 'https://parissgnews.fr/', live: false },
+  { id: 'paris-sg-news', url: 'https://parissgnews.fr/', live: true },
 ];
 
 // tile : hauteur d'une tranche en pixels CSS ; out : largeur des images WebP ; max : hauteur capturée au plus

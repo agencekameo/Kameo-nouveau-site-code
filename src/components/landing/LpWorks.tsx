@@ -7,13 +7,13 @@ import { SHOTS } from './lpWorks.shots';
 /*
  * Landing page Ads, bloc Réalisations (choix de Benjamin du 01/11/2026) : aperçu du site à gauche, liste
  * des projets à droite (nom, secteur et, pour le projet affiché, un court descriptif).
- * - DroneSpec et Sunshine Resort s'affichent en direct (iframe) : vidéos, animations et défilement du vrai
- *   site, net à toutes les tailles. Dans la fenêtre, le site est rendu à 1 280 px de large (version
- *   ordinateur) puis réduit à la taille de la fenêtre ; en plein écran, à la taille de l'écran. Une capture
- *   du haut de la page (scripts/capture-realisations.mjs) s'affiche le temps du chargement.
- * - Paris SG News interdit l'affichage dans un autre site (X-Frame-Options DENY, frame-ancestors 'none') :
- *   capture complète en haute définition (ordinateur et téléphone), qu'on fait défiler. Passer live à true
- *   (et refaire les captures) quand parissgnews.fr autorise agence-kameo.fr dans frame-ancestors.
+ * - Les trois sites s'affichent en direct (iframe) : vidéos, animations et défilement du vrai site, net à
+ *   toutes les tailles. Dans la fenêtre, le site est rendu à 1 280 px de large (version ordinateur) puis
+ *   réduit à la taille de la fenêtre ; en plein écran, à la taille de l'écran. Une capture du haut de la
+ *   page (scripts/capture-realisations.mjs) s'affiche le temps du chargement.
+ * - Un site ne s'affiche en direct que s'il l'accepte : pas de X-Frame-Options, et frame-ancestors qui
+ *   admet agence-kameo.fr (parissgnews.fr l'autorise depuis le 01/11/2026). Sinon, live: false : capture
+ *   complète qu'on fait défiler (live: false aussi dans le script de capture).
  * - Écran tactile : pas de site en direct dans la fenêtre, où le doigt resterait piégé ; un toucher ouvre le
  *   plein écran, où le site s'affiche en direct.
  * Le plein écran est rendu dans <body> (portail) : la section crée un contexte d'empilement (z-index 1 du
@@ -44,7 +44,7 @@ const PROJECTS: Project[] = [
     tag: 'Média',
     desc: 'Média indépendant consacré au Paris Saint-Germain : actualités, matchs et mercato.',
     url: 'https://parissgnews.fr/',
-    live: false,
+    live: true,
   },
 ];
 

@@ -19,8 +19,8 @@ import type { NextConfig } from 'next';
  *  - www.lafabriquedunet.fr     : badge d'avis du pied de page (script, sans cookie ni requête)
  *  - outilblog.nexus-games.fr   : images des articles de l'outil de rédaction « Blog »
  *  - YouTube (nocookie), Vimeo  : vidéos éventuellement intégrées à ces articles
- *  - dronespec.fr, sunshine-resort.kameo-test.fr : sites clients affichés en direct (iframe) dans « Nos
- *                                 réalisations » de la landing ; parissgnews.fr quand il autorisera l'affichage
+ *  - dronespec.fr, sunshine-resort.kameo-test.fr, parissgnews.fr : sites clients affichés en direct
+ *                                 (iframe) dans « Nos réalisations » de la landing
  *
  * La politique complète (CSP_REPORT_ONLY) est d'abord publiée en « Report-Only » : les navigateurs
  * signalent dans la console ce qu'elle bloquerait, sans rien bloquer. Une fois vérifié en production

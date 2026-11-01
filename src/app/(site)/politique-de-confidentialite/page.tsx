@@ -751,7 +751,7 @@ export default function PolitiqueDeConfidentialitePage() {
                       <li>Google Maps&nbsp;: carte d’accès à l’agence, qui dépose ses propres cookies lorsqu’elle s’affiche</li>
                       <li>
                         Aperçus de nos réalisations (page «&nbsp;Appel stratégique&nbsp;»)&nbsp;: les sites de nos clients
-                        DroneSpec et Sunshine Resort s’affichent en direct depuis leurs propres serveurs, qui reçoivent
+                        DroneSpec, Sunshine Resort et Paris SG News s’affichent en direct depuis leurs propres serveurs, qui reçoivent
                         votre adresse IP et peuvent déposer leurs cookies de fonctionnement&nbsp;; leurs éventuels
                         cookies de mesure d’audience ne sont déposés qu’avec votre accord, donné sur ces sites
                       </li>
