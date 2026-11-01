@@ -24,7 +24,15 @@ export default function LandingPage({ path }: { path: string }) {
       <Body />
       <JsonLd data={[...themeSchemas({ path }), ...pageSchemas, websiteGraph({ path, title: LP_TITLE })]} />
       <LandingEffects />
-      <CalendlyModal />
+      {/* Ouverture automatique une fois les tarifs dépassés (une fois par visite), message « gratuit » en haut */}
+      <CalendlyModal
+        autoOpenAfter="#tarifs"
+        notice={
+          <>
+            Ce rendez-vous de 30&nbsp;min est <strong>gratuit</strong> et sans engagement.
+          </>
+        }
+      />
       <WhatsAppButton />
       <SiteEffects />
     </>

@@ -1,7 +1,8 @@
 /*
  * Fenêtre Calendly (CalendlyModal.tsx : landing, articles du blog) : fond flouté, module Calendly seul
  * (carte blanche aux angles arrondis, à sa taille exacte), bouton Fermer à l'extérieur, silhouette du calendrier
- * pendant le chargement. Au-dessus du bandeau cookies (z-index 10000).
+ * pendant le chargement, message optionnel en haut (landing : rendez-vous gratuit), bouton « Voir les créneaux
+ * disponibles » quand la fenêtre s'ouvre seule sans accord cookies. Au-dessus du bandeau cookies (z-index 10000).
  * Fenêtre fermée : transparente et inerte, mais jamais en visibility: hidden autour de l'iframe, que le
  * navigateur cesserait d'afficher ; Calendly préchargé y finit ainsi son rendu et s'ouvre prêt.
  */
@@ -40,8 +41,20 @@ const css = `
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 30px 80px -20px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.08);
-  transition: height .3s cubic-bezier(.16,1,.3,1);
 }
+/* Zone du calendrier : sa hauteur suit calendly.page_height */
+.lpcal__body { position: relative; overflow: hidden; transition: height .3s cubic-bezier(.16,1,.3,1); }
+/* Message en haut de la fenêtre (landing : rendez-vous gratuit) */
+.lpcal__notice {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 20px;
+  background: #fdf1ef;
+  border-bottom: 1px solid rgba(237,110,99,.2);
+  font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
+}
+.lpcal__notice svg { flex: none; }
+.lpcal__notice p { margin: 0; font-size: 15px; line-height: 1.4; color: #1a1a1a; letter-spacing: -.005em; }
+.lpcal__notice strong { font-weight: 800; color: #b8443a; }
 .lpcal__frame {
   display: block; width: 100%; border: 0;
   opacity: 0; transition: opacity .25s ease;
@@ -74,8 +87,8 @@ const css = `
   background: linear-gradient(90deg, #f0f1f3 0%, #e3e5e8 50%, #f0f1f3 100%);
   background-size: 200% 100%;
 }
-/* animée seulement quand elle est visible (la fenêtre fermée reste dans la page) */
-.lpcal.is-open .lpcal__skel:not(.is-hidden) .lpcal__shimmer { animation: lpcal-shimmer 1.3s ease-in-out infinite; }
+/* animée seulement pendant le chargement, fenêtre ouverte (la fenêtre fermée reste dans la page) */
+.lpcal.is-open .lpcal__skel.is-loading .lpcal__shimmer { animation: lpcal-shimmer 1.3s ease-in-out infinite; }
 @keyframes lpcal-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 .lpcal__skel-month { width: 120px; height: 14px; border-radius: 7px; }
 .lpcal__skel-week, .lpcal__skel-grid {
@@ -90,13 +103,36 @@ const css = `
 .lpcal__slow { margin: 26px 0 0; padding: 0 8px; font-size: 13.5px; line-height: 1.5; color: #4d5055; text-align: center; }
 .lpcal__slow a { color: #ED6E63; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 
+/* Ouverture automatique sans accord cookies : silhouette fixe et bouton qui charge Calendly au clic */
+.lpcal__gate {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  padding: 24px; text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,.2) 0%, rgba(255,255,255,.92) 40%, rgba(255,255,255,.92) 100%);
+  font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
+}
+.lpcal__gate-btn {
+  display: inline-flex; align-items: center;
+  padding: 13px 22px; border: 0; border-radius: 999px;
+  background: #ED6E63; color: #fff;
+  font: 700 15px/1.2 'Satoshi', system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -8px rgba(237,110,99,.55);
+  transition: transform .2s, box-shadow .2s;
+}
+.lpcal__gate-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -8px rgba(237,110,99,.6); }
+.lpcal__gate-btn:focus-visible { outline: 2px solid #1a1a1a; outline-offset: 3px; }
+.lpcal__gate-note { margin: 0; max-width: 260px; font-size: 12px; line-height: 1.45; color: rgba(15,17,21,.6); }
+
 @media (max-width: 640px) {
   .lpcal { padding: 66px 12px 14px; }
   .lpcal__panel { max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px); border-radius: 18px; }
   .lpcal__close { top: -54px; right: 0; }
+  .lpcal__notice { padding: 12px 16px; }
+  .lpcal__notice p { font-size: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lpcal, .lpcal__backdrop, .lpcal__dialog, .lpcal__panel, .lpcal__frame, .lpcal__skel, .lpcal__close { transition: none; }
+  .lpcal, .lpcal__backdrop, .lpcal__dialog, .lpcal__panel, .lpcal__body, .lpcal__frame, .lpcal__skel, .lpcal__close, .lpcal__gate-btn { transition: none; }
   .lpcal .lpcal__shimmer { animation: none !important; }
 }
 `;

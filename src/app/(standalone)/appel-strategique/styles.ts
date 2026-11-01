@@ -1808,46 +1808,6 @@ const css = `
       border-color: rgba(255,255,255,.1) !important;
     }
 
-    /* ━━ FOOTER MINIMALISTE ━━ */
-    .lp2-footer {
-      background: var(--ink);
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding: 28px 0;
-    }
-    .lp2-footer__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .lp2-footer__logo { display: inline-flex; text-decoration: none; }
-    .lp2-footer__logo img {
-      height: 26px; width: auto;
-      opacity: .6;
-      transition: opacity .25s ease;
-      display: block;
-    }
-    .lp2-footer__logo:hover img { opacity: 1; }
-    .lp2-footer__copy {
-      font-size: 12px;
-      color: rgba(255,255,255,.25);
-      margin: 0;
-    }
-    .lp2-footer__legal {
-      display: flex; gap: 20px;
-    }
-    .lp2-footer__legal a {
-      font-size: 12px;
-      color: rgba(255,255,255,.28);
-      text-decoration: none;
-      transition: color .2s ease;
-    }
-    .lp2-footer__legal a:hover { color: rgba(255,255,255,.7); }
-    @media (max-width: 640px) {
-      .lp2-footer__inner { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
-    }
-
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        LIQUID METAL BUTTON
        Border = WebGL chrome shader (CSS shimmer fallback)
