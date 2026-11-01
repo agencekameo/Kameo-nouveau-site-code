@@ -31,9 +31,12 @@ export default function WhatsAppButton() {
     <div className="lpwa">
       {bubble && (
         <div className="lpwa__bubble" role="status">
+          {/* Deux lignes : « Une question ? Écrivez-nous » puis « directement sur WhatsApp. » */}
           <a href={HREF} target="_blank" rel="noopener" className="lpwa__bubble-link" onClick={dismiss}>
-            <strong>Une question&nbsp;?</strong>
-            Écrivez-nous directement sur WhatsApp.
+            <span className="lpwa__bubble-line">
+              <strong>Une question&nbsp;?</strong> Écrivez-nous
+            </span>{' '}
+            <span className="lpwa__bubble-line">directement sur WhatsApp.</span>
           </a>
           <button type="button" className="lpwa__bubble-close" aria-label="Masquer le message" onClick={dismiss}>
             <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">

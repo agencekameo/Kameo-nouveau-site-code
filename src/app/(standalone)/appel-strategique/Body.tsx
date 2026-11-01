@@ -151,8 +151,6 @@ const Body = () => (
           </h1>
           <p className="lp2-cin__sub" id="cin-sub">
             <strong style={{ color: 'rgba(255,255,255,.92)' }}>50+ entreprises nous font déjà confiance.</strong>
-            <br />
-            Devis sous 24 h, design premium, livraison rapide, zéro sous-traitance.{' '}
           </p>
           <div className="lp2-cin__pills" id="cin-pills">
             <div className="lm-btn">
@@ -240,128 +238,6 @@ const Body = () => (
             </div>
           </section>
         )}
-        {/* ━━ MARQUEE LOGOS ━━ */}
-        <div className="lp2-marquee-wrap">
-          <p className="lp2-marquee-label">Ils nous font confiance</p>
-          <div className="lp2-marquee" aria-hidden="true">
-            {/* Set 1, 11 logos */}
-            <div className="lp2-marquee__item">
-              <img
-                src="/images/logo clients/Axistone Capital.webp"
-                alt="Axistone Capital"
-                loading="lazy"
-                width="379"
-                height="180"
-              />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Be Cherry.webp" alt="Be Cherry" loading="lazy" width="342" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Claimz.webp" alt="Claimz" loading="lazy" width="499" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img
-                src="/images/logo clients/Compagnie des Autocars Lyonnais.webp"
-                alt="Compagnie des Autocars Lyonnais"
-                loading="lazy"
-                width="494"
-                height="180"
-              />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Defikart.webp" alt="Defikart" loading="lazy" width="180" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Dronespec.webp" alt="Dronespec" loading="lazy" width="230" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img
-                src="/images/logo clients/Medical Market.webp"
-                alt="Medical Market"
-                loading="lazy"
-                width="617"
-                height="180"
-              />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Ohvale.webp" alt="Ohvale" loading="lazy" width="261" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Qunfil.webp" alt="Qunfil" loading="lazy" width="350" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Valeos.webp" alt="Valeos" loading="lazy" width="180" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img
-                src="/images/logo clients/Villa de luxe Bonifacio.webp"
-                alt="Villa de luxe Bonifacio"
-                loading="lazy"
-                width="464"
-                height="180"
-              />
-            </div>
-            {/* Set 2, duplicate pour loop infini */}
-            <div className="lp2-marquee__item">
-              <img
-                src="/images/logo clients/Axistone Capital.webp"
-                alt="Axistone Capital"
-                loading="lazy"
-                width="379"
-                height="180"
-              />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Be Cherry.webp" alt="Be Cherry" loading="lazy" width="342" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Claimz.webp" alt="Claimz" loading="lazy" width="499" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img
-                src="/images/logo clients/Compagnie des Autocars Lyonnais.webp"
-                alt="Compagnie des Autocars Lyonnais"
-                loading="lazy"
-                width="494"
-                height="180"
-              />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Defikart.webp" alt="Defikart" loading="lazy" width="180" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Dronespec.webp" alt="Dronespec" loading="lazy" width="230" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img
-                src="/images/logo clients/Medical Market.webp"
-                alt="Medical Market"
-                loading="lazy"
-                width="617"
-                height="180"
-              />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Ohvale.webp" alt="Ohvale" loading="lazy" width="261" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Qunfil.webp" alt="Qunfil" loading="lazy" width="350" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img src="/images/logo clients/Valeos.webp" alt="Valeos" loading="lazy" width="180" height="180" />
-            </div>
-            <div className="lp2-marquee__item">
-              <img
-                src="/images/logo clients/Villa de luxe Bonifacio.webp"
-                alt="Villa de luxe Bonifacio"
-                loading="lazy"
-                width="464"
-                height="180"
-              />
-            </div>
-          </div>
-        </div>
         {/* ━━ TESTIMONIALS, 3-col infinite scroll ━━ */}
         <section className="lp2-treviews" id="avis">
           {/* Background layers */}
@@ -372,10 +248,7 @@ const Body = () => (
                 <span className="lp2-cin__eyebrow-dot" />
                 Ce que nos clients disent{' '}
               </p>
-              <h2 className="lp2-trev__h2">
-                Ils en parlent <br />
-                mieux que nous.
-              </h2>
+              <h2 className="lp2-trev__h2">Nos clients nous recommandent.</h2>
               <p className="lp2-trev__sub">Des retours authentiques, directement depuis nos clients.</p>
               <a
                 href="https://fr.trustpilot.com/review/agence-kameo.fr"
@@ -985,6 +858,127 @@ const Body = () => (
             {/* /.lp2-tscroll */}
           </div>
           {/* /.lp2-trev__inner */}
+          {/* ━━ LOGOS CLIENTS qui défilent, en bas des avis, sans titre ━━ */}
+          <div className="lp2-marquee-wrap">
+            <div className="lp2-marquee" aria-hidden="true">
+              {/* Set 1, 11 logos */}
+              <div className="lp2-marquee__item">
+                <img
+                  src="/images/logo clients/Axistone Capital.webp"
+                  alt="Axistone Capital"
+                  loading="lazy"
+                  width="379"
+                  height="180"
+                />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Be Cherry.webp" alt="Be Cherry" loading="lazy" width="342" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Claimz.webp" alt="Claimz" loading="lazy" width="499" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img
+                  src="/images/logo clients/Compagnie des Autocars Lyonnais.webp"
+                  alt="Compagnie des Autocars Lyonnais"
+                  loading="lazy"
+                  width="494"
+                  height="180"
+                />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Defikart.webp" alt="Defikart" loading="lazy" width="180" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Dronespec.webp" alt="Dronespec" loading="lazy" width="230" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img
+                  src="/images/logo clients/Medical Market.webp"
+                  alt="Medical Market"
+                  loading="lazy"
+                  width="617"
+                  height="180"
+                />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Ohvale.webp" alt="Ohvale" loading="lazy" width="261" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Qunfil.webp" alt="Qunfil" loading="lazy" width="350" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Valeos.webp" alt="Valeos" loading="lazy" width="180" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img
+                  src="/images/logo clients/Villa de luxe Bonifacio.webp"
+                  alt="Villa de luxe Bonifacio"
+                  loading="lazy"
+                  width="464"
+                  height="180"
+                />
+              </div>
+              {/* Set 2, duplicate pour loop infini */}
+              <div className="lp2-marquee__item">
+                <img
+                  src="/images/logo clients/Axistone Capital.webp"
+                  alt="Axistone Capital"
+                  loading="lazy"
+                  width="379"
+                  height="180"
+                />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Be Cherry.webp" alt="Be Cherry" loading="lazy" width="342" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Claimz.webp" alt="Claimz" loading="lazy" width="499" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img
+                  src="/images/logo clients/Compagnie des Autocars Lyonnais.webp"
+                  alt="Compagnie des Autocars Lyonnais"
+                  loading="lazy"
+                  width="494"
+                  height="180"
+                />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Defikart.webp" alt="Defikart" loading="lazy" width="180" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Dronespec.webp" alt="Dronespec" loading="lazy" width="230" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img
+                  src="/images/logo clients/Medical Market.webp"
+                  alt="Medical Market"
+                  loading="lazy"
+                  width="617"
+                  height="180"
+                />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Ohvale.webp" alt="Ohvale" loading="lazy" width="261" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Qunfil.webp" alt="Qunfil" loading="lazy" width="350" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img src="/images/logo clients/Valeos.webp" alt="Valeos" loading="lazy" width="180" height="180" />
+              </div>
+              <div className="lp2-marquee__item">
+                <img
+                  src="/images/logo clients/Villa de luxe Bonifacio.webp"
+                  alt="Villa de luxe Bonifacio"
+                  loading="lazy"
+                  width="464"
+                  height="180"
+                />
+              </div>
+            </div>
+          </div>
         </section>
         {/* ━━ BÉNÉFICES, Bento 2×2 ━━ */}
         <section className="lp2-benef" id="benefices">
@@ -994,8 +988,7 @@ const Body = () => (
               Pourquoi Kameo{' '}
             </p>
             <h2 className="lp2-h2 lp2-benef__h2" data-reveal="" style={{ transitionDelay: '.08s' }}>
-              4 raisons concrètes <br />
-              de nous confier votre site.
+              Un site qui vend, livré à temps.
             </h2>
             <div className="lp2-benef__grid">
               <article className="lp2-benef__card" data-reveal="">
@@ -1211,7 +1204,7 @@ const Body = () => (
             </div>
           </section>
         )}
-        {/* ━━ RÉALISATIONS : grille et visionneuse dans components/landing/LpWorks.tsx ━━ */}
+        {/* ━━ RÉALISATIONS : aperçus immersifs des sites dans components/landing/LpWorks.tsx ━━ */}
         <section className="lp2-works" id="realisations">
           <div className="container">
             <p className="lp2-eyebrow" data-reveal="" style={{ textAlign: 'center' }}>
@@ -1228,8 +1221,7 @@ const Body = () => (
                 margin: '0 auto clamp(40px,5vw,64px)',
               }}
             >
-              Du karting à la finance, <br />
-              des sites taillés sur mesure.
+              Explorez nos derniers sites.
             </h2>
             <LpWorks />
           </div>
@@ -1253,8 +1245,7 @@ const Body = () => (
                 marginBottom: 'clamp(40px,5vw,64px)',
               }}
             >
-              Transparent sur les prix, <br />
-              exigeant sur les résultats.
+              Des prix clairs, sans surprise.
             </h2>
             <div className="pricing__wrap">
               <article className="pcard-offer pcard-offer--popular" data-reveal="">
@@ -1682,8 +1673,7 @@ const Body = () => (
                 marginBottom: 'clamp(40px,5vw,64px)',
               }}
             >
-              De l’idée au site en ligne. <br />
-              En 4 étapes claires.
+              Votre site en ligne en 4 étapes.
             </h2>
             <div className="lp2-timeline">
               <div className="lp2-tstep" data-reveal="">
@@ -1726,10 +1716,7 @@ const Body = () => (
                 <span className="lp2-cin__eyebrow-dot" />
                 Questions fréquentes{' '}
               </p>
-              <h2 className="lp2-faq__h2">
-                Vos questions. <br />
-                Nos réponses.
-              </h2>
+              <h2 className="lp2-faq__h2">Tout savoir avant de vous lancer.</h2>
               <p className="lp2-faq__sub">
                 Une question qui n’apparaît pas ? Posez-la nous directement lors de l’appel.
               </p>
@@ -1893,10 +1880,7 @@ const Body = () => (
           <div className="lp2-final__inner" data-reveal="">
             <div className="lp2-final__left">
               <p className="lp2-final__eyebrow">30 minutes. Gratuit. Sans engagement.</p>
-              <h2 className="lp2-final__h2">
-                Votre prochain client <br />
-                vous attend.
-              </h2>
+              <h2 className="lp2-final__h2">Parlons de votre projet.</h2>
               <p className="lp2-final__sub">
                 Réservez un créneau. On analyse ensemble ce que vous pouvez améliorer, et comment aller chercher plus de
                 clients dès ce mois-ci.

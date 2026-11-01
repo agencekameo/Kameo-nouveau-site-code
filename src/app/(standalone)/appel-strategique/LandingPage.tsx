@@ -29,7 +29,7 @@ export default function LandingPage({ path }: { path: string }) {
         autoOpenAfter="#tarifs"
         notice={
           <>
-            Ce rendez-vous de 30&nbsp;min est <strong>gratuit</strong> et sans engagement.
+            Un projet&nbsp;? Parlons-en, c’est <strong>gratuit</strong>.
           </>
         }
       />
