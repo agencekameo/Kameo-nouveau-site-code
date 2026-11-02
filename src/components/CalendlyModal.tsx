@@ -27,8 +27,11 @@ import css from './CalendlyModal.styles';
  * - Après la réservation (message calendly.event_scheduled), la page part vers /rdv-confirme/, qui
  *   déclenche la conversion Schedule.
  * - Landing (props autoOpenAfter et notice) : la fenêtre s'ouvre seule, une fois par visite, quand le
- *   visiteur a dépassé les tarifs (bas de la section remonté au-dessus du milieu de l'écran), sauf s'il
- *   l'a déjà ouverte. Ce n'est pas un clic : GTM (ClicCalendly) ne la compte pas. Sans l'accord cookies
+ *   visiteur a dépassé les tarifs (bas de la section remonté dans le premier cinquième de l'écran, et
+ *   resté là un instant : un défilement rapide qui traverse les offres ne compte pas), sauf s'il l'a
+ *   déjà ouverte. Ce n'est pas un clic : GTM (ClicCalendly) ne la compte pas. Microsoft Clarity, chargé
+ *   avec l'accord « Mesure d'audience », reçoit l'événement calendly_auto ou calendly_clic : on voit
+ *   dans les enregistrements si la fenêtre s'est ouverte seule ou au clic. Sans l'accord cookies
  *   ci-dessus, Calendly n'est pas chargé d'office : la fenêtre montre la silhouette du calendrier et un
  *   bouton « Voir les créneaux disponibles » (politique de confidentialité, § 9.2), comme la popup de
  *   l'accueil. Un message (rendez-vous gratuit) s'affiche en haut de la fenêtre.
@@ -41,6 +44,13 @@ const INTENT_EVENTS = ['pointerover', 'focusin', 'touchstart'] as const;
 const CALENDAR_HEIGHT = 602; // hauteur du calendrier compact (calendly.page_height)
 const SLOW_MS = 9000;
 const SEEN_KEY = 'kameo_cal_seen'; // sessionStorage : fenêtre déjà ouverte pendant la visite
+/** Ouverture automatique : bas des tarifs au-dessus de cette part de la hauteur de l'écran… */
+const AUTO_LINE = 0.2;
+/** …pendant ce temps au moins (un défilement rapide qui traverse les offres ne déclenche rien). */
+const AUTO_HOLD_MS = 450;
+
+/** Événement dans Microsoft Clarity, s'il est chargé (accord « Mesure d'audience ») ; sinon rien. */
+const clarityEvent = (name: string) => window.clarity?.('event', name);
 
 type Utm = Partial<Record<(typeof UTM_KEYS)[number], string>>;
 
@@ -164,31 +174,42 @@ export default function CalendlyModal({
       trigger.current = link;
       setSrc((s) => s ?? embedUrl(utmRef.current));
       setOpen(true);
+      clarityEvent('calendly_clic');
     };
     document.addEventListener('click', onClick, true);
     return () => document.removeEventListener('click', onClick, true);
   }, []);
 
   // Landing : ouverture automatique, une fois par visite, quand l'élément autoOpenAfter (les tarifs) est
-  // dépassé, c'est-à-dire quand son bas remonte au-dessus du milieu de l'écran. Calendly n'est chargé
-  // d'office qu'avec l'accord cookies ; sinon le bouton « Voir les créneaux disponibles » le charge.
+  // dépassé : son bas remonte dans le premier cinquième de l'écran et y reste AUTO_HOLD_MS. La position
+  // est remesurée au moment d'ouvrir, pas reprise de l'observateur. Calendly n'est chargé d'office
+  // qu'avec l'accord cookies ; sinon le bouton « Voir les créneaux disponibles » le charge.
   useEffect(() => {
     const target = autoOpenAfter ? document.querySelector(autoOpenAfter) : null;
     if (!target || seenThisVisit()) return;
+    let timer = 0;
+    const passed = () => target.getBoundingClientRect().bottom <= window.innerHeight * AUTO_LINE;
     const io = new IntersectionObserver(
-      ([entry]) => {
-        const middle = entry.rootBounds?.top ?? window.innerHeight / 2;
-        if (entry.isIntersecting || entry.boundingClientRect.bottom > middle) return;
-        io.disconnect();
-        if (seenThisVisit()) return;
-        trigger.current = null;
-        if (consented(readConsent())) setSrc((s) => s ?? embedUrl(utmRef.current));
-        setOpen(true);
+      (entries) => {
+        window.clearTimeout(timer);
+        // dernier état seulement : un défilement rapide peut en livrer plusieurs d'un coup
+        if (entries[entries.length - 1].isIntersecting || !passed()) return;
+        timer = window.setTimeout(() => {
+          if (!passed() || seenThisVisit()) return;
+          io.disconnect();
+          trigger.current = null;
+          if (consented(readConsent())) setSrc((s) => s ?? embedUrl(utmRef.current));
+          setOpen(true);
+          clarityEvent('calendly_auto');
+        }, AUTO_HOLD_MS);
       },
-      { rootMargin: '-50% 0px 0px 0px' },
+      { rootMargin: `-${AUTO_LINE * 100}% 0px 0px 0px` },
     );
     io.observe(target);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      window.clearTimeout(timer);
+    };
   }, [autoOpenAfter]);
 
   // Messages de l'iframe Calendly : affichage, hauteur, réservation confirmée
