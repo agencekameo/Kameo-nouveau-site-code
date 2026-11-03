@@ -93,6 +93,17 @@ function ldTypes(objs: Record<string, unknown>[]): Set<string> {
   return out;
 }
 
+/** Sans les fils d'Ariane de l'outil (BreadcrumbList, au premier niveau ou dans un @graph). */
+function withoutBreadcrumbs(o: Record<string, unknown>): Record<string, unknown>[] {
+  const isCrumbs = (n: unknown) => {
+    const t = n && typeof n === 'object' ? (n as Record<string, unknown>)['@type'] : undefined;
+    return (Array.isArray(t) ? t : [t]).includes('BreadcrumbList');
+  };
+  if (isCrumbs(o)) return [];
+  const g = o['@graph'];
+  return [Array.isArray(g) ? { ...o, '@graph': g.filter((n) => !isCrumbs(n)) } : o];
+}
+
 export default async function ArticlePage({ params }: Props) {
   const post = await getPost((await params).slug);
   if (!post) notFound();
@@ -122,8 +133,11 @@ export default async function ArticlePage({ params }: Props) {
   const bodyClass = remote ? 'article-body article-body--outil' : post.source === 'api' ? 'article-body article-body--api' : 'article-body';
 
   // Données structurées : celles de l'outil telles quelles (article, FAQ…), complétées par les
-  // entités du site (fondateur, organisation, page) et, s'il en manque, par celles du site.
-  const types = ldTypes(remote?.jsonLd ?? []);
+  // entités du site (fondateur, organisation, page) et, s'il en manque, par celles du site. Fil d'Ariane :
+  // toujours celui du site, identique à celui affiché (« Accueil », adresses avec barre finale) et lié à la
+  // page par son @id ; celui de l'outil est écarté (deux fils dont un vide pour Google, 03/11/2026).
+  const remoteLd = (remote?.jsonLd ?? []).flatMap(withoutBreadcrumbs);
+  const types = ldTypes(remoteLd);
   const hasArticle = ['BlogPosting', 'Article', 'NewsArticle', 'TechArticle'].some((t) => types.has(t));
   const faq = remote && types.has('FAQPage') ? null : faqFromHtml(post.html, post.path);
   const article = blogPosting({
@@ -245,10 +259,10 @@ export default async function ArticlePage({ params }: Props) {
         data={[
           ...themeSchemas({
             path: post.path,
-            crumbs: types.has('BreadcrumbList') ? null : crumbs,
+            crumbs,
             extra: remote && hasArticle ? [] : [article],
           }),
-          ...(remote?.jsonLd ?? []),
+          ...remoteLd,
           ...(faq ? [faq] : []),
           websiteGraph({
             path: post.path,
