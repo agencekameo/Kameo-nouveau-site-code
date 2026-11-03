@@ -253,7 +253,10 @@ export default function LandingEffects() {
     const sizes = new ResizeObserver(() => cols.forEach((c) => (c.h = c.set1.offsetHeight)));
     cols.forEach((c) => sizes.observe(c.set1));
     const zone = document.querySelector('.lp2-tscroll');
-    const seen = new IntersectionObserver(([e]) => (e.isIntersecting ? startCols() : stopCols()), { rootMargin: '100px 0px' });
+    // dernier état seulement : un défilement rapide peut livrer une entrée et une sortie d'un coup
+    const seen = new IntersectionObserver((es) => (es[es.length - 1].isIntersecting ? startCols() : stopCols()), {
+      rootMargin: '100px 0px',
+    });
     if (zone && cols.length) seen.observe(zone);
     offs.push(() => {
       stopCols();

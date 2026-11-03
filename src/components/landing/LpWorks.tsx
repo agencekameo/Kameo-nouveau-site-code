@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import { SHOTS } from './lpWorks.shots';
 
@@ -142,21 +142,37 @@ function Poster({ p, device }: { p: Project; device: Device | null }) {
 
 /**
  * Téléphone : vidéo muette, en boucle, de la version mobile du site. Rien n'est téléchargé avant
- * qu'elle approche de l'écran ; elle s'arrête quand on la quitte. Pas de lecture automatique en mode
- * « économie de données » ni avec « réduire les animations » : l'image reste affichée.
+ * qu'elle approche de l'écran (near, gardé d'un projet à l'autre) ; elle ne joue qu'à l'écran, et pas
+ * derrière le plein écran (hold). Pas de lecture automatique en mode « économie de données » ni avec
+ * « réduire les animations » : l'image reste affichée.
  */
-function PhoneVideo({ p }: { p: Project }) {
+function PhoneVideo({ p, near, onNear, hold }: { p: Project; near: boolean; onNear: () => void; hold: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
-  // image et vidéo seulement à l'approche de la section : rien de plus au chargement de la page
-  const [near, setNear] = useState(false);
+  const visible = useRef(false);
+  const holdRef = useRef(hold);
+  const autoplay = useRef(false);
+
+  // lecture si la vidéo est à l'écran et pas couverte par le plein écran (refs : à jour dans les observateurs)
+  const sync = () => {
+    const v = ref.current;
+    if (!v || !autoplay.current) return;
+    if (visible.current && !holdRef.current) v.play()?.catch(() => {});
+    else v.pause();
+  };
+
+  useEffect(() => {
+    holdRef.current = hold;
+    sync();
+    // sync ne lit que des refs
+  }, [hold]);
 
   useEffect(() => {
     const v = ref.current;
-    if (!v) return;
-    const io = new IntersectionObserver(([e]) => e.isIntersecting && setNear(true), { rootMargin: '800px 0px' });
+    if (!v || near) return;
+    const io = new IntersectionObserver((es) => es[es.length - 1].isIntersecting && onNear(), { rootMargin: '800px 0px' });
     io.observe(v);
     return () => io.disconnect();
-  }, []);
+  }, [near, onNear]);
 
   useEffect(() => {
     const v = ref.current;
@@ -165,11 +181,13 @@ function PhoneVideo({ p }: { p: Project }) {
     v.muted = true;
     v.defaultMuted = true;
     const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
-    if (saveData || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    autoplay.current = !saveData && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!autoplay.current) return;
+    // dernier état seulement : un défilement rapide peut livrer une entrée et une sortie d'un coup
     const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) v.play()?.catch(() => {});
-        else v.pause();
+      (es) => {
+        visible.current = es[es.length - 1].isIntersecting;
+        sync();
       },
       { rootMargin: '200px 0px' },
     );
@@ -179,6 +197,18 @@ function PhoneVideo({ p }: { p: Project }) {
       v.pause();
     };
   }, [near]);
+
+  // retirée de la page (changement de projet) : libérer le décodeur vidéo, qu'iOS garde sinon. Seulement si
+  // elle n'est plus dans la page : React rejoue ses effets sur un élément qui reste (mode strict, développement)
+  useEffect(() => {
+    const v = ref.current;
+    return () => {
+      if (!v || v.isConnected) return;
+      v.pause();
+      v.removeAttribute('src');
+      v.load();
+    };
+  }, []);
 
   return (
     <video
@@ -196,21 +226,30 @@ function PhoneVideo({ p }: { p: Project }) {
   );
 }
 
-/** Site en direct ; réduit (scaled) pour tenir dans la fenêtre avec sa mise en page d'ordinateur. */
-function Live({ p, device, scaled }: { p: Project; device: Device | null; scaled: boolean }) {
+/**
+ * Site en direct ; réduit (scaled) pour tenir dans la fenêtre avec sa mise en page d'ordinateur. Le cadre
+ * n'existe que si enabled : dans la fenêtre, seulement quand elle est à l'écran et pas sous le plein écran
+ * (le site se charge alors, et s'arrête dès qu'on quitte la section : DroneSpec télécharge jusqu'à 94 Mo).
+ */
+function Live({ p, device, scaled, enabled }: { p: Project; device: Device | null; scaled: boolean; enabled: boolean }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const revealTimer = useRef(0);
   const [box, setBox] = useState<{ w: number; h: number } | null>(null);
   const [loaded, setLoaded] = useState(false);
-  const frameOn = !scaled || !!box;
+  const frameOn = enabled && (!scaled || !!box);
 
-  // au plus tard REVEAL_MAX_MS après la création du cadre ; un rechargement du site ne relance rien
+  // au plus tard REVEAL_MAX_MS après la création du cadre ; un rechargement du site ne relance rien ;
+  // cadre retiré : retour à la capture
   useEffect(() => {
     if (!frameOn) return;
     const t = window.setTimeout(() => setLoaded(true), REVEAL_MAX_MS);
-    return () => window.clearTimeout(t);
+    return () => {
+      window.clearTimeout(t);
+      window.clearTimeout(revealTimer.current);
+      revealTimer.current = 0;
+      setLoaded(false);
+    };
   }, [frameOn]);
-  useEffect(() => () => window.clearTimeout(revealTimer.current), []);
 
   useEffect(() => {
     const el = boxRef.current;
@@ -233,7 +272,6 @@ function Live({ p, device, scaled }: { p: Project; device: Device | null; scaled
           title={`Site ${p.name} en direct`}
           className={'lp2-live__frame' + (loaded ? ' is-loaded' : '')}
           style={style}
-          loading="lazy"
           allow="autoplay; fullscreen; picture-in-picture"
           sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
           onLoad={() => {
@@ -290,6 +328,10 @@ export default function LpWorks() {
   const [warm, setWarm] = useState<Set<string>>(() => new Set());
   const [device, setDevice] = useState<Device | null>(null);
   const [mouse, setMouse] = useState(false);
+  const [onScreen, setOnScreen] = useState(false);
+  const [phoneNear, setPhoneNear] = useState(false);
+  const markNear = useCallback(() => setPhoneNear(true), []);
+  const windowRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef(active);
   const liveRef = useRef(false);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -342,6 +384,22 @@ export default function LpWorks() {
     };
   }, []);
 
+  // Fenêtre à l'écran (au moins un cinquième visible) : le site en direct s'y charge ; hors de l'écran, il est retiré
+  useEffect(() => {
+    const el = windowRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (es) => {
+        const e = es[es.length - 1];
+        if (e.intersectionRatio >= 0.2) setOnScreen(true);
+        else if (!e.isIntersecting) setOnScreen(false);
+      },
+      { threshold: [0, 0.2] },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   // Plein écran : page figée, Échap, flèches, focus gardé dans la fenêtre puis rendu
   useEffect(() => {
     if (!full) return;
@@ -357,7 +415,8 @@ export default function LpWorks() {
       else if (e.key === 'ArrowRight') select(activeRef.current + 1);
       else if (e.key === 'ArrowLeft') select(activeRef.current - 1);
       else if (e.key === 'Tab' && fullRef.current) {
-        const f = [...fullRef.current.querySelectorAll<HTMLElement>('button, iframe, [tabindex="0"]')];
+        // pas le site en direct : une fois le focus dedans, Échap et les flèches n'arrivent plus ici
+        const f = [...fullRef.current.querySelectorAll<HTMLElement>('button, [tabindex="0"]')];
         const i = f.indexOf(document.activeElement as HTMLElement);
         e.preventDefault();
         f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length]?.focus();
@@ -376,6 +435,7 @@ export default function LpWorks() {
   return (
     <div className="lp2-show" data-reveal="">
       <div
+        ref={windowRef}
         className={'lp2-show__window' + (device && !desk ? ' is-touch' : '')}
         id="lp2-show-window"
         role="region"
@@ -419,11 +479,11 @@ export default function LpWorks() {
           }}
         >
           {live ? (
-            <Live key={p.id} p={p} device={device} scaled />
+            <Live key={p.id} p={p} device={device} scaled enabled={onScreen && !full} />
           ) : desk ? (
             <Shots key={p.id} p={p} device={device} warm={warm.has(p.id)} />
           ) : device === 'mobile' ? (
-            <PhoneVideo key={p.id} p={p} />
+            <PhoneVideo key={p.id} p={p} near={phoneNear} onNear={markNear} hold={full} />
           ) : (
             <Poster p={p} device={device} />
           )}
@@ -481,11 +541,15 @@ export default function LpWorks() {
             role="dialog"
             aria-modal="true"
             aria-label={`Aperçu du site ${p.name}, projet ${active + 1} sur ${n}`}
-            onTouchStart={(e) => (touch.current = { x: e.touches[0].clientX, y: e.touches[0].clientY })}
+            onTouchStart={(e) => {
+              // un seul doigt, écran non zoomé : sinon le geste déplace la vue zoomée, il ne change pas de projet
+              const zoomed = (window.visualViewport?.scale ?? 1) > 1.01;
+              touch.current = e.touches.length === 1 && !zoomed ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+            }}
             onTouchEnd={(e) => {
               const t = touch.current;
               touch.current = null;
-              if (!t) return;
+              if (!t || e.touches.length > 0) return;
               const dx = e.changedTouches[0].clientX - t.x;
               const dy = e.changedTouches[0].clientY - t.y;
               if (Math.abs(dx) > 70 && Math.abs(dx) > 2 * Math.abs(dy)) select(active + (dx < 0 ? 1 : -1));
@@ -526,7 +590,7 @@ export default function LpWorks() {
               aria-label={`Site ${p.name} : faites défiler pour l’explorer`}
             >
               {live ? (
-                <Live key={p.id} p={p} device={device} scaled={false} />
+                <Live key={p.id} p={p} device={device} scaled={false} enabled />
               ) : (
                 <div className="lp2-full__page">
                   <Shots key={p.id} p={p} device={device} progressive />

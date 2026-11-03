@@ -1233,7 +1233,7 @@ const css = `
     .lp2-show__act:hover { background: rgba(255,255,255,.09); color: #fff; }
     .lp2-show__act:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
     .lp2-show__viewport {
-      position: relative; height: clamp(360px, 56vh, 520px);
+      position: relative; height: clamp(260px, 56vh, 520px);
       overflow-x: hidden; overflow-y: auto; background: #fff;
       scrollbar-width: thin; scrollbar-color: rgba(15,17,21,.35) transparent;
     }
