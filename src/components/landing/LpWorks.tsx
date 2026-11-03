@@ -7,15 +7,20 @@ import { SHOTS } from './lpWorks.shots';
 /*
  * Landing page Ads, bloc Réalisations (choix de Benjamin du 01/11/2026) : aperçu du site à gauche, liste
  * des projets à droite (nom, secteur et, pour le projet affiché, un court descriptif).
- * - Les trois sites s'affichent en direct (iframe) : vidéos, animations et défilement du vrai site, net à
- *   toutes les tailles. Dans la fenêtre, le site est rendu à 1 280 px de large (version ordinateur) puis
- *   réduit à la taille de la fenêtre ; en plein écran, à la taille de l'écran. Une capture du haut de la
- *   page (scripts/capture-realisations.mjs) s'affiche le temps du chargement.
- * - Un site ne s'affiche en direct que s'il l'accepte : pas de X-Frame-Options, et frame-ancestors qui
- *   admet agence-kameo.fr (parissgnews.fr l'autorise depuis le 01/11/2026). Sinon, live: false : capture
- *   complète qu'on fait défiler (live: false aussi dans le script de capture).
- * - Écran tactile : pas de site en direct dans la fenêtre, où le doigt resterait piégé ; un toucher ouvre le
- *   plein écran, où le site s'affiche en direct.
+ *
+ * Trois façons d'afficher un site, selon l'appareil :
+ * - Ordinateur avec souris : le site en direct (iframe), vidéos, animations et défilement du vrai site.
+ *   Dans la fenêtre, il est rendu à 1 280 px de large puis réduit ; en plein écran, à la taille de
+ *   l'écran. La capture du haut de la page s'affiche le temps du chargement. Un site ne s'affiche en
+ *   direct que s'il l'accepte (pas de X-Frame-Options, frame-ancestors qui admet agence-kameo.fr) :
+ *   sinon live: false, et sa capture complète défile dans la fenêtre.
+ * - Téléphone : jamais de site en direct (3 sites complets à charger en 4G, défilement bloqué tant qu'ils
+ *   ne sont pas prêts, et un cadre qui défile mal sur iPhone ; constaté le 03/11/2026). Dans la fenêtre,
+ *   une vidéo courte et muette de la version mobile du site (scripts/record-realisations.mjs), lue
+ *   seulement quand elle est à l'écran ; en plein écran, la page entière en captures haute définition
+ *   (scripts/capture-realisations.mjs), qui défile tout de suite, au doigt.
+ * - Tablette et autre écran tactile : capture du haut de la page, et page entière en plein écran.
+ *
  * Le plein écran est rendu dans <body> (portail) : la section crée un contexte d'empilement (z-index 1 du
  * fond sombre) sous les sections suivantes.
  */
@@ -36,7 +41,10 @@ const PROJECTS: Project[] = [
     tag: 'Hôtellerie',
     desc: 'Site d’un resort de cinq villas de luxe en Guadeloupe, mis en scène par des vidéos des villas.',
     url: 'https://sunshine-resort.kameo-test.fr/',
-    live: true,
+    // Affiché dans une autre page, le site se recharge en boucle (~4 fois par seconde, mesuré le 03/11/2026) :
+    // le « Guest Mode » de LiteSpeed Cache attend son cookie _lscache_vary, refusé hors de son site, et
+    // recharge la page tant qu'il ne le trouve pas. Capture en attendant que ce mode soit coupé sur le site.
+    live: false,
   },
   {
     id: 'paris-sg-news',
@@ -50,8 +58,16 @@ const PROJECTS: Project[] = [
 
 /** Largeur de rendu des sites en direct dans la fenêtre : leur version ordinateur. */
 const SITE_W = 1280;
-/** Après le chargement, le site met encore un moment à afficher sa vidéo d'accueil : la capture reste devant. */
-const REVEAL_MS = 2000;
+/**
+ * Site en direct : il apparaît peu après son premier chargement, et au plus tard REVEAL_MAX_MS après
+ * l'ouverture (il s'affiche en moins d'une seconde, mais son événement load peut attendre une grosse vidéo :
+ * 10 s pour DroneSpec en 4G). D'ici là, la capture est devant et le site ne reçoit ni clic ni défilement.
+ */
+const REVEAL_AFTER_LOAD_MS = 300;
+const REVEAL_MAX_MS = 2500;
+/** Plein écran en captures : les deux premières tranches tout de suite, les suivantes peu après. */
+const FIRST_TILES = 2;
+const REST_TILES_MS = 1200;
 const MOBILE = '(max-width: 767px)';
 const MOUSE = '(hover: hover) and (pointer: fine)';
 const n = PROJECTS.length;
@@ -61,12 +77,25 @@ type Device = 'desktop' | 'mobile';
 const host = (url: string) => new URL(url).host;
 const tile = (p: Project, d: Device, i: number) =>
   `/images/landing_page/realisations/${p.id}/${d}-${String(i + 1).padStart(2, '0')}.webp`;
+const video = (p: Project) => `/video/realisations/${p.id}-mobile`;
 /** Avant que la page soit interactive, les deux versions (la feuille de style montre celle de l'écran). */
 const devices = (device: Device | null): Device[] => (device ? [device] : ['desktop', 'mobile']);
 
-/** Capture complète du site, qu'on fait défiler. */
-function Shots({ p, device, warm }: { p: Project; device: Device | null; warm: boolean }) {
+/**
+ * Capture complète du site, qu'on fait défiler. progressive : deux tranches d'abord, les autres peu
+ * après (plein écran) ; sinon chargement différé, puis tout dès que le visiteur fait défiler (warm).
+ */
+function Shots({ p, device, warm, progressive }: { p: Project; device: Device | null; warm?: boolean; progressive?: boolean }) {
   const s = SHOTS[p.id];
+  const [all, setAll] = useState(false);
+
+  useEffect(() => {
+    if (!progressive) return;
+    const t = window.setTimeout(() => setAll(true), REST_TILES_MS);
+    return () => window.clearTimeout(t);
+  }, [progressive]);
+
+  const eager = (i: number) => !!device && (warm || all || (progressive && i < FIRST_TILES));
   return (
     <>
       {devices(device).map((d) => (
@@ -78,8 +107,7 @@ function Shots({ p, device, warm }: { p: Project; device: Device | null; warm: b
               width={s[d].w}
               height={h}
               alt={i === 0 ? `Site ${p.name}, page d’accueil` : ''}
-              // chargement différé ; une fois le visiteur dans l'aperçu, toutes les tranches sans attendre
-              loading={device && warm ? 'eager' : 'lazy'}
+              loading={eager(i) ? 'eager' : 'lazy'}
               decoding="async"
               draggable={false}
             />
@@ -90,7 +118,7 @@ function Shots({ p, device, warm }: { p: Project; device: Device | null; warm: b
   );
 }
 
-/** Haut de la page en capture : affiché le temps que le site en direct se charge, ou au toucher. */
+/** Haut de la page en capture : affiché le temps que le site en direct se charge, ou sur tablette. */
 function Poster({ p, device }: { p: Project; device: Device | null }) {
   const s = SHOTS[p.id];
   return (
@@ -112,13 +140,76 @@ function Poster({ p, device }: { p: Project; device: Device | null }) {
   );
 }
 
+/**
+ * Téléphone : vidéo muette, en boucle, de la version mobile du site. Rien n'est téléchargé avant
+ * qu'elle approche de l'écran ; elle s'arrête quand on la quitte. Pas de lecture automatique en mode
+ * « économie de données » ni avec « réduire les animations » : l'image reste affichée.
+ */
+function PhoneVideo({ p }: { p: Project }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  // image et vidéo seulement à l'approche de la section : rien de plus au chargement de la page
+  const [near, setNear] = useState(false);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && setNear(true), { rootMargin: '800px 0px' });
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || !near) return;
+    // lecture automatique muette (iOS l'exige)
+    v.muted = true;
+    v.defaultMuted = true;
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+    if (saveData || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) v.play()?.catch(() => {});
+        else v.pause();
+      },
+      { rootMargin: '200px 0px' },
+    );
+    io.observe(v);
+    return () => {
+      io.disconnect();
+      v.pause();
+    };
+  }, [near]);
+
+  return (
+    <video
+      ref={ref}
+      className="lp2-phone"
+      src={near ? `${video(p)}.mp4` : undefined}
+      poster={near ? `${video(p)}.webp` : undefined}
+      muted
+      loop
+      playsInline
+      preload="none"
+      disablePictureInPicture
+      aria-label={`Vidéo du site ${p.name} sur téléphone`}
+    />
+  );
+}
+
 /** Site en direct ; réduit (scaled) pour tenir dans la fenêtre avec sa mise en page d'ordinateur. */
 function Live({ p, device, scaled }: { p: Project; device: Device | null; scaled: boolean }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const revealTimer = useRef(0);
   const [box, setBox] = useState<{ w: number; h: number } | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const frameOn = !scaled || !!box;
 
+  // au plus tard REVEAL_MAX_MS après la création du cadre ; un rechargement du site ne relance rien
+  useEffect(() => {
+    if (!frameOn) return;
+    const t = window.setTimeout(() => setLoaded(true), REVEAL_MAX_MS);
+    return () => window.clearTimeout(t);
+  }, [frameOn]);
   useEffect(() => () => window.clearTimeout(revealTimer.current), []);
 
   useEffect(() => {
@@ -136,7 +227,7 @@ function Live({ p, device, scaled }: { p: Project; device: Device | null; scaled
   return (
     <div className="lp2-live" ref={boxRef}>
       <Poster p={p} device={scaled ? 'desktop' : device} />
-      {(!scaled || box) && (
+      {frameOn && (
         <iframe
           src={p.url}
           title={`Site ${p.name} en direct`}
@@ -146,8 +237,8 @@ function Live({ p, device, scaled }: { p: Project; device: Device | null; scaled
           allow="autoplay; fullscreen; picture-in-picture"
           sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
           onLoad={() => {
-            window.clearTimeout(revealTimer.current);
-            revealTimer.current = window.setTimeout(() => setLoaded(true), REVEAL_MS);
+            if (loaded || revealTimer.current) return;
+            revealTimer.current = window.setTimeout(() => setLoaded(true), REVEAL_AFTER_LOAD_MS);
           }}
         />
       )}
@@ -200,6 +291,7 @@ export default function LpWorks() {
   const [device, setDevice] = useState<Device | null>(null);
   const [mouse, setMouse] = useState(false);
   const activeRef = useRef(active);
+  const liveRef = useRef(false);
   const viewportRef = useRef<HTMLDivElement>(null);
   const fullRef = useRef<HTMLDivElement>(null);
   const fullViewportRef = useRef<HTMLDivElement>(null);
@@ -208,8 +300,9 @@ export default function LpWorks() {
   const touch = useRef<{ x: number; y: number } | null>(null);
   const hintTimer = useRef(0);
   const p = PROJECTS[active];
-  // site en direct dans la fenêtre : ordinateur avec souris seulement
-  const liveInline = p.live && mouse && device === 'desktop';
+  // ordinateur avec souris : site en direct (ou capture qu'on fait défiler) dans la fenêtre et en plein écran
+  const desk = mouse && device === 'desktop';
+  const live = desk && p.live;
 
   const heat = (id: string) => setWarm((w) => (w.has(id) ? w : new Set(w).add(id)));
   const select = (i: number) => {
@@ -228,7 +321,8 @@ export default function LpWorks() {
 
   useEffect(() => {
     activeRef.current = active;
-  }, [active]);
+    liveRef.current = live;
+  }, [active, live]);
 
   // Version des captures (téléphone en dessous de 768 px) et présence d'une souris
   useEffect(() => {
@@ -257,7 +351,7 @@ export default function LpWorks() {
     html.style.overflow = 'hidden';
     if (scrollbar > 0) html.style.paddingRight = `${scrollbar}px`;
     // site en direct : focus sur Fermer (Échap ne remonte pas depuis le site) ; capture : défilement au clavier
-    (PROJECTS[activeRef.current].live ? closeRef.current : fullViewportRef.current)?.focus({ preventScroll: true });
+    (liveRef.current ? closeRef.current : fullViewportRef.current)?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setFull(false);
       else if (e.key === 'ArrowRight') select(activeRef.current + 1);
@@ -281,7 +375,12 @@ export default function LpWorks() {
 
   return (
     <div className="lp2-show" data-reveal="">
-      <div className="lp2-show__window" id="lp2-show-window" role="region" aria-label={`Aperçu du site ${p.name}`}>
+      <div
+        className={'lp2-show__window' + (device && !desk ? ' is-touch' : '')}
+        id="lp2-show-window"
+        role="region"
+        aria-label={`Aperçu du site ${p.name}`}
+      >
         <div className="lp2-show__bar">
           <span className="lp2-show__dots" aria-hidden="true">
             <i />
@@ -305,10 +404,10 @@ export default function LpWorks() {
           </span>
         </div>
         <div
-          className={'lp2-show__viewport' + (liveInline ? ' is-live' : '')}
+          className={'lp2-show__viewport' + (desk && !p.live ? '' : ' is-still')}
           ref={viewportRef}
-          tabIndex={liveInline ? -1 : 0}
-          aria-label={`Aperçu du site ${p.name} : faites défiler pour l’explorer`}
+          tabIndex={desk && !p.live ? 0 : -1}
+          aria-label={`Aperçu du site ${p.name}`}
           onScroll={() => {
             setHint(false);
             heat(p.id);
@@ -319,18 +418,22 @@ export default function LpWorks() {
             hintTimer.current = window.setTimeout(() => setHint(false), 1800);
           }}
         >
-          {liveInline ? (
+          {live ? (
             <Live key={p.id} p={p} device={device} scaled />
-          ) : p.live ? (
-            <Poster p={p} device={device} />
+          ) : desk ? (
+            <Shots key={p.id} p={p} device={device} warm={warm.has(p.id)} />
+          ) : device === 'mobile' ? (
+            <PhoneVideo key={p.id} p={p} />
           ) : (
-            <Shots p={p} device={device} warm={warm.has(p.id)} />
+            <Poster p={p} device={device} />
           )}
         </div>
-        <span className={'lp2-show__hint' + (hint ? '' : ' is-hidden')} aria-hidden="true">
-          <span className="lp2-show__hint-mouse" />
-          Faites défiler pour explorer le site
-        </span>
+        {desk && (
+          <span className={'lp2-show__hint' + (hint ? '' : ' is-hidden')} aria-hidden="true">
+            <span className="lp2-show__hint-mouse" />
+            Faites défiler pour explorer le site
+          </span>
+        )}
         {/* Écran tactile : ouverture en plein écran */}
         <button
           type="button"
@@ -417,16 +520,16 @@ export default function LpWorks() {
               </button>
             </div>
             <div
-              className={'lp2-full__viewport' + (p.live ? ' is-live' : '')}
+              className={'lp2-full__viewport' + (live ? ' is-live' : '')}
               ref={fullViewportRef}
-              tabIndex={p.live ? -1 : 0}
+              tabIndex={live ? -1 : 0}
               aria-label={`Site ${p.name} : faites défiler pour l’explorer`}
             >
-              {p.live ? (
+              {live ? (
                 <Live key={p.id} p={p} device={device} scaled={false} />
               ) : (
                 <div className="lp2-full__page">
-                  <Shots p={p} device={device} warm />
+                  <Shots key={p.id} p={p} device={device} progressive />
                 </div>
               )}
             </div>

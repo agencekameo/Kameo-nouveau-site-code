@@ -22,7 +22,7 @@ export default function PolitiqueDeConfidentialitePage() {
               <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-shield-halved" />
               </svg>
-              Dernière mise à jour&nbsp;: 1er novembre 2026{' '}
+              Dernière mise à jour&nbsp;: 3 novembre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Politique de confidentialité</h1>
             <p className="legal-hero__desc">
@@ -750,8 +750,8 @@ export default function PolitiqueDeConfidentialitePage() {
                       </li>
                       <li>Google Maps&nbsp;: carte d’accès à l’agence, qui dépose ses propres cookies lorsqu’elle s’affiche</li>
                       <li>
-                        Aperçus de nos réalisations (page «&nbsp;Appel stratégique&nbsp;»)&nbsp;: les sites de nos clients
-                        DroneSpec, Sunshine Resort et Paris SG News s’affichent en direct depuis leurs propres serveurs, qui reçoivent
+                        Aperçus de nos réalisations (page «&nbsp;Appel stratégique&nbsp;»)&nbsp;: sur ordinateur, les sites de nos
+                        clients DroneSpec et Paris SG News s’affichent en direct depuis leurs propres serveurs, qui reçoivent
                         votre adresse IP et peuvent déposer leurs cookies de fonctionnement&nbsp;; leurs éventuels
                         cookies de mesure d’audience ne sont déposés qu’avec votre accord, donné sur ces sites
                       </li>

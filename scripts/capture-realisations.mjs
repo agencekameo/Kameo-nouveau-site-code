@@ -2,8 +2,8 @@
 /*
  * Captures des sites de la section « Nos réalisations » de la landing /appel-strategique/ (LpWorks.tsx),
  * en haute définition : version ordinateur (1280 px de large, écran Retina) et téléphone (390 px, ×3).
- * - Sites affichés en direct (live) : le haut de la page seulement, montré le temps du chargement.
- * - Sites qui refusent l'affichage dans un autre site (live: false) : page entière, qu'on fait défiler.
+ * Page entière, qu'on fait défiler en plein écran sur téléphone et tablette (pas de site en direct au
+ * doigt) ; sa première tranche sert aussi d'image d'attente du site en direct, sur ordinateur.
  * Découpe en tranches WebP dans public/images/landing_page/realisations/<projet>/ ; la liste des tranches
  * est écrite dans src/components/landing/lpWorks.shots.ts.
  *
@@ -15,7 +15,7 @@
  * Usage : node scripts/capture-realisations.mjs
  */
 import { spawn } from 'node:child_process';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -25,12 +25,11 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = path.join(ROOT, 'public/images/landing_page/realisations');
 const MANIFEST = path.join(ROOT, 'src/components/landing/lpWorks.shots.ts');
 const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const PORT = 9333;
 
 const SITES = [
-  { id: 'dronespec', url: 'https://dronespec.fr/', live: true },
-  { id: 'sunshine-resort', url: 'https://sunshine-resort.kameo-test.fr/', live: true },
-  { id: 'paris-sg-news', url: 'https://parissgnews.fr/', live: true },
+  { id: 'dronespec', url: 'https://dronespec.fr/' },
+  { id: 'sunshine-resort', url: 'https://sunshine-resort.kameo-test.fr/' },
+  { id: 'paris-sg-news', url: 'https://parissgnews.fr/' },
 ];
 
 // tile : hauteur d'une tranche en pixels CSS ; out : largeur des images WebP ; max : hauteur capturée au plus
@@ -60,10 +59,13 @@ html { scroll-behavior: auto !important; }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function cdp() {
+// Port de débogage choisi par Chrome (port 0) et lu dans DevToolsActivePort : plusieurs Chrome peuvent
+// tourner en même temps sans que le script pilote celui d'un autre.
+async function cdp(profile) {
   for (let i = 0; i < 50; i++) {
     try {
-      const v = await (await fetch(`http://127.0.0.1:${PORT}/json/version`)).json();
+      const port = readFileSync(path.join(profile, 'DevToolsActivePort'), 'utf8').split('\n')[0].trim();
+      const v = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json();
       const ws = new WebSocket(v.webSocketDebuggerUrl);
       await new Promise((res, rej) => ((ws.onopen = res), (ws.onerror = rej)));
       let id = 0;
@@ -134,8 +136,7 @@ async function capture({ send, once }, site, name, d) {
     })()`,
   });
   const full = result.value;
-  // site en direct : seulement le haut de la page (une tranche)
-  const height = Math.min(full, site.live ? d.tile : d.max);
+  const height = Math.min(full, d.max);
 
   // Grandes prises (les animations d'apparition y sont jouées, la photo du haut y est rendue), chacune sous
   // 16 000 pixels réels : au-delà de 16 384, Chrome répète le haut de la page. Puis découpe en tranches.
@@ -174,13 +175,13 @@ const profile = mkdtempSync(path.join(tmpdir(), 'kameo-capture-'));
 const chrome = spawn(
   CHROME,
   [
-    '--headless=new', `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`, '--no-first-run',
+    '--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`, '--no-first-run',
     '--no-default-browser-check', '--hide-scrollbars', '--mute-audio', '--disable-extensions', 'about:blank',
   ],
   { stdio: 'ignore' },
 );
 try {
-  const client = await cdp();
+  const client = await cdp(profile);
   const shots = {};
   for (const site of SITES) {
     rmSync(path.join(OUT_DIR, site.id), { recursive: true, force: true });

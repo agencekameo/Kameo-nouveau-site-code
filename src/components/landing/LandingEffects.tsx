@@ -207,32 +207,59 @@ export default function LandingEffects() {
       });
     });
 
-    /* Colonnes d'avis en défilement infini (boucle rAF au pixel près) */
-    const rafs: number[] = [];
-    document.querySelectorAll<HTMLElement>('.lp2-tscroll__col').forEach((col, k) => {
+    /*
+     * Colonnes d'avis en défilement infini (boucle rAF au pixel près). Une seule boucle pour toutes les
+     * colonnes, arrêtée quand les avis sont hors de l'écran, et hauteurs lues par ResizeObserver plutôt
+     * qu'à chaque image : la boucle occupait le processeur d'un téléphone 10 à 17 % du temps, même avis
+     * hors de vue (mesuré le 03/11/2026).
+     */
+    const cols = [...document.querySelectorAll<HTMLElement>('.lp2-tscroll__col')].flatMap((col) => {
       const set1 = col.querySelector<HTMLElement>('.lp2-tscroll__set');
-      if (!set1) return;
-      const durMs = (parseFloat(getComputedStyle(col).getPropertyValue('--dur').trim()) || 20) * 1000;
-      let pos = 0;
-      let lastTs: number | null = null;
-      let paused = false;
-      on(col, 'mouseenter', () => (paused = true));
-      on(col, 'mouseleave', () => (paused = false));
-      const tick = (ts: number) => {
-        if (lastTs !== null && !paused) {
-          const h = set1.offsetHeight;
-          if (h > 0) {
-            pos += (h / durMs) * (ts - lastTs);
-            if (pos >= h) pos -= h;
-            col.style.transform = 'translateY(-' + pos + 'px)';
-          }
-        }
-        lastTs = ts;
-        rafs[k] = requestAnimationFrame(tick);
+      if (!set1) return [];
+      const c = {
+        col,
+        set1,
+        h: set1.offsetHeight,
+        pos: 0,
+        paused: false,
+        durMs: (parseFloat(getComputedStyle(col).getPropertyValue('--dur').trim()) || 20) * 1000,
       };
-      rafs[k] = requestAnimationFrame(tick);
+      on(col, 'mouseenter', () => (c.paused = true));
+      on(col, 'mouseleave', () => (c.paused = false));
+      return [c];
     });
-    offs.push(() => rafs.forEach((r) => cancelAnimationFrame(r)));
+    let raf = 0;
+    let lastTs: number | null = null;
+    const tick = (ts: number) => {
+      if (lastTs !== null) {
+        for (const c of cols) {
+          if (c.paused || c.h <= 0) continue;
+          c.pos = (c.pos + (c.h / c.durMs) * (ts - lastTs)) % c.h;
+          c.col.style.transform = 'translateY(-' + c.pos + 'px)';
+        }
+      }
+      lastTs = ts;
+      raf = requestAnimationFrame(tick);
+    };
+    const startCols = () => {
+      if (raf) return;
+      lastTs = null;
+      raf = requestAnimationFrame(tick);
+    };
+    const stopCols = () => {
+      cancelAnimationFrame(raf);
+      raf = 0;
+    };
+    const sizes = new ResizeObserver(() => cols.forEach((c) => (c.h = c.set1.offsetHeight)));
+    cols.forEach((c) => sizes.observe(c.set1));
+    const zone = document.querySelector('.lp2-tscroll');
+    const seen = new IntersectionObserver(([e]) => (e.isIntersecting ? startCols() : stopCols()), { rootMargin: '100px 0px' });
+    if (zone && cols.length) seen.observe(zone);
+    offs.push(() => {
+      stopCols();
+      sizes.disconnect();
+      seen.disconnect();
+    });
 
     /* Compteur +0 → +47 */
     const counter = document.querySelector<HTMLElement>('.lp2-counter-el');

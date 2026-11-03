@@ -1237,7 +1237,10 @@ const css = `
       overflow-x: hidden; overflow-y: auto; background: #fff;
       scrollbar-width: thin; scrollbar-color: rgba(15,17,21,.35) transparent;
     }
-    .lp2-show__viewport.is-live { overflow: hidden; }
+    /* contenu qui ne défile pas dans la fenêtre : site en direct (il défile en lui-même), vidéo, capture du haut */
+    .lp2-show__viewport.is-still { overflow: hidden; }
+    /* Téléphone : vidéo muette de la version mobile du site */
+    .lp2-phone { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; background: #fff; }
     .lp2-show__viewport:focus-visible { outline: 2px solid #ED6E63; outline-offset: -2px; }
     .lp2-shot img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
     /* Site en direct (iframe), capture du haut de la page le temps du chargement */
@@ -1248,8 +1251,10 @@ const css = `
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       border: 0; background: transparent; transform-origin: 0 0;
       opacity: 0; transition: opacity .45s ease;
+      /* invisible, il ne doit capter ni clic ni défilement : on verrait une image figée */
+      pointer-events: none;
     }
-    .lp2-live__frame.is-loaded { opacity: 1; }
+    .lp2-live__frame.is-loaded { opacity: 1; pointer-events: auto; }
     .lp2-shot--mobile { display: none; }
     /* Invitation à faire défiler */
     .lp2-show__hint {
@@ -1274,7 +1279,23 @@ const css = `
       animation: lp2-wheel 1.6s ease-in-out infinite;
     }
     @keyframes lp2-wheel { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(7px); } }
-    .lp2-show__explore { display: none; }
+    /* Écran tactile : un toucher sur la fenêtre ouvre le plein écran */
+    .lp2-show__explore {
+      position: absolute; left: 0; right: 0; top: 44px; bottom: 0; z-index: 2;
+      display: none; align-items: flex-end; justify-content: center;
+      padding: 0 0 22px; border: 0; cursor: pointer;
+      background: linear-gradient(180deg, rgba(15,17,21,0) 55%, rgba(15,17,21,.55) 100%);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lp2-show__window.is-touch .lp2-show__explore { display: flex; }
+    .lp2-show__explore span {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 13px 22px; border-radius: 999px;
+      background: #ED6E63; color: #fff;
+      font: 700 15px/1.2 'Satoshi', system-ui, -apple-system, sans-serif;
+      box-shadow: 0 12px 28px -8px rgba(237,110,99,.6);
+    }
+    .lp2-show__explore:focus-visible span { outline: 2px solid #fff; outline-offset: 3px; }
     /* Projets : nom, secteur, et descriptif du projet affiché */
     .lp2-show__list { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid rgba(255,255,255,.1); }
     .lp2-show__item { border-top: 1px solid rgba(255,255,255,.1); }
@@ -1300,24 +1321,11 @@ const css = `
     .lp2-show__desc > div { min-height: 0; overflow: hidden; }
     .lp2-show__desc p { margin: 0; padding: 0 0 22px 38px; font-size: 15.5px; line-height: 1.6; color: rgba(255,255,255,.62); }
     .lp2-show__item.is-active .lp2-show__desc { grid-template-rows: 1fr; }
-    /* Écran tactile : la fenêtre ne défile pas dans la page ; un toucher ouvre le plein écran */
+    /* Écran tactile, avant que la page soit interactive : même règle que .is-touch */
     @media (hover: none) {
       .lp2-show__viewport { overflow: hidden; }
       .lp2-show__hint { display: none; }
-      .lp2-show__explore {
-        position: absolute; left: 0; right: 0; top: 44px; bottom: 0; z-index: 2;
-        display: flex; align-items: flex-end; justify-content: center;
-        padding: 0 0 22px; border: 0; cursor: pointer;
-        background: linear-gradient(180deg, rgba(15,17,21,0) 50%, rgba(15,17,21,.6) 100%);
-      }
-      .lp2-show__explore span {
-        display: inline-flex; align-items: center; gap: 9px;
-        padding: 13px 22px; border-radius: 999px;
-        background: #ED6E63; color: #fff;
-        font: 700 15px/1.2 'Satoshi', system-ui, -apple-system, sans-serif;
-        box-shadow: 0 12px 28px -8px rgba(237,110,99,.6);
-      }
-      .lp2-show__explore:focus-visible span { outline: 2px solid #fff; outline-offset: 3px; }
+      .lp2-show__explore { display: flex; }
     }
     @media (max-width: 959px) {
       .lp2-show { grid-template-columns: 1fr; gap: 28px; max-width: 760px; }
@@ -1331,7 +1339,8 @@ const css = `
       .lp2-show__url { flex: 1 1 auto; justify-content: flex-start; padding: 0 10px; }
       .lp2-show__actions { flex: none; }
       .lp2-show__act-label { display: none; }
-      .lp2-show__viewport { height: min(62vh, 520px); }
+      /* format de la vidéo (2:3), sans dépasser les trois quarts de l'écran */
+      .lp2-show__viewport { height: auto; aspect-ratio: 2 / 3; max-height: 74vh; }
       .lp2-show__pick { padding: 16px 2px; }
       .lp2-show__desc p { font-size: 14.5px; }
     }
