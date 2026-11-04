@@ -5,6 +5,10 @@
  * disponibles » quand la fenêtre s'ouvre seule sans accord cookies. Au-dessus du bandeau cookies (z-index 10000).
  * Fenêtre fermée : transparente et inerte, mais jamais en visibility: hidden autour de l'iframe, que le
  * navigateur cesserait d'afficher ; Calendly préchargé y finit ainsi son rendu et s'ouvre prêt.
+ * Écran tactile : fermée, elle est aussi poussée hors de l'écran (après son fondu de fermeture) ; sur iPhone,
+ * un cadre invisible laissé au milieu de l'écran peut capter le défilement malgré pointer-events: none.
+ * Pas sur ordinateur : un cadre hors de l'écran n'y est plus dessiné, et le calendrier préchargé ne s'ouvrirait
+ * plus instantanément.
  */
 const css = `
 .lpcal {
@@ -14,6 +18,10 @@ const css = `
   pointer-events: none;
 }
 .lpcal.is-open { pointer-events: auto; }
+@media (hover: none) {
+  .lpcal { transform: translate3d(-300vw, 0, 0); transition: transform 0s linear .4s; }
+  .lpcal.is-open { transform: none; transition: none; }
+}
 .lpcal__backdrop {
   position: absolute; inset: 0;
   background: rgba(8, 9, 12, .5);

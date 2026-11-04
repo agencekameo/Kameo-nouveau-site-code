@@ -136,7 +136,34 @@ export default function CalendlyModal({
       };
     }
 
-    // Landing : dès que la page est prête
+    // Landing sur téléphone : pas dès l'arrivée. Calendly pèse 4 Mo et occupe le téléphone pendant qu'on
+    // fait défiler les réalisations (blocages signalés le 04/11/2026) ; il se charge quand le haut de
+    // l'élément autoOpenAfter (les tarifs, 2 000 px sur téléphone) monte dans les 40 % du haut de l'écran :
+    // les réalisations, juste au-dessus, sont alors passées, et l'ouverture automatique encore loin.
+    const target = autoOpenAfter && window.matchMedia('(max-width: 767px)').matches ? document.querySelector(autoOpenAfter) : null;
+    if (target) {
+      let io: IntersectionObserver | null = null;
+      const watch = (c: Consent | null) => {
+        if (!consented(c) || io) return;
+        io = new IntersectionObserver(
+          (es) => {
+            if (!es[es.length - 1].isIntersecting) return;
+            io?.disconnect();
+            load();
+          },
+          { rootMargin: '0px 0px -60% 0px' },
+        );
+        io.observe(target);
+      };
+      watch(readConsent());
+      const offWatch = onConsent(watch);
+      return () => {
+        offWatch();
+        io?.disconnect();
+      };
+    }
+
+    // Landing sur ordinateur : dès que la page est prête
     let cancel = () => {};
     const whenIdle = () => {
       if (typeof window.requestIdleCallback === 'function') {
@@ -161,7 +188,7 @@ export default function CalendlyModal({
       off();
       cancel();
     };
-  }, [preload]);
+  }, [preload, autoOpenAfter]);
 
   // Clic sur un lien calendly.com de la page (hors fenêtre) : ouverture
   useEffect(() => {

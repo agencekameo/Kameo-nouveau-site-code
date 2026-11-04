@@ -1240,7 +1240,8 @@ const css = `
     /* contenu qui ne défile pas dans la fenêtre : site en direct (il défile en lui-même), vidéo, capture du haut */
     .lp2-show__viewport.is-still { overflow: hidden; }
     /* Téléphone : vidéo muette de la version mobile du site */
-    .lp2-phone { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; background: #fff; }
+    /* aucun geste ne s'arrête sur la vidéo : le doigt fait toujours défiler la page */
+    .lp2-phone { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; background: #fff; pointer-events: none; -webkit-user-select: none; user-select: none; }
     .lp2-show__viewport:focus-visible { outline: 2px solid #ED6E63; outline-offset: -2px; }
     .lp2-shot img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
     /* Site en direct (iframe), capture du haut de la page le temps du chargement */
@@ -1286,9 +1287,12 @@ const css = `
       padding: 0 0 22px; border: 0; cursor: pointer;
       background: linear-gradient(180deg, rgba(15,17,21,0) 55%, rgba(15,17,21,.55) 100%);
       -webkit-tap-highlight-color: transparent;
+      /* le voile ne capte rien : seul le bouton (span) réagit au doigt, le reste fait défiler la page */
+      pointer-events: none;
     }
     .lp2-show__window.is-touch .lp2-show__explore { display: flex; }
     .lp2-show__explore span {
+      pointer-events: auto;
       display: inline-flex; align-items: center; gap: 9px;
       padding: 13px 22px; border-radius: 999px;
       background: #ED6E63; color: #fff;

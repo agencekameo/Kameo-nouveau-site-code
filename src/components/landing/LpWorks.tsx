@@ -140,30 +140,52 @@ function Poster({ p, device }: { p: Project; device: Device | null }) {
   );
 }
 
+/** Démarrage de la vidéo : seulement quand la page ne défile plus depuis ce temps. */
+const SCROLL_IDLE_MS = 200;
+
 /**
- * Téléphone : vidéo muette, en boucle, de la version mobile du site. Rien n'est téléchargé avant
- * qu'elle approche de l'écran (near, gardé d'un projet à l'autre) ; elle ne joue qu'à l'écran, et pas
- * derrière le plein écran (hold). Pas de lecture automatique en mode « économie de données » ni avec
- * « réduire les animations » : l'image reste affichée.
+ * Téléphone : vidéo muette, en boucle, de la version mobile du site. Rien ne défile jamais sous son
+ * contrôle (04/11/2026 : « ça se fige quand j'arrive sur les vidéos ») :
+ * - aucun geste ne la touche : pointer-events: none sur la vidéo et sur le voile du bouton (styles) ;
+ * - téléchargée à l'approche (near, 800 px, gardé d'un projet à l'autre), pas au moment où elle arrive ;
+ * - démarrée seulement quand elle est à l'écran ET que la page ne défile plus depuis SCROLL_IDLE_MS ;
+ *   arrêtée tout de suite hors de l'écran ou derrière le plein écran (hold).
+ * Pas de lecture automatique en mode « économie de données » ni avec « réduire les animations » : rien
+ * n'est téléchargé, l'image reste affichée.
  */
 function PhoneVideo({ p, near, onNear, hold }: { p: Project; near: boolean; onNear: () => void; hold: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
   const visible = useRef(false);
   const holdRef = useRef(hold);
-  const autoplay = useRef(false);
+  const lastScroll = useRef(0);
+  const startTimer = useRef(0);
+  // rendu seulement dans le navigateur (après détection du téléphone) : window est disponible
+  const [allowAuto] = useState(() => {
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+    return !saveData && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
 
-  // lecture si la vidéo est à l'écran et pas couverte par le plein écran (refs : à jour dans les observateurs)
+  // refs seulement : à jour quand les observateurs et les minuteries l'appellent
   const sync = () => {
     const v = ref.current;
-    if (!v || !autoplay.current) return;
-    if (visible.current && !holdRef.current) v.play()?.catch(() => {});
-    else v.pause();
+    window.clearTimeout(startTimer.current);
+    if (!v || !allowAuto) return;
+    if (!visible.current || holdRef.current) {
+      v.pause();
+      return;
+    }
+    if (!v.paused) return;
+    const wait = SCROLL_IDLE_MS - (performance.now() - lastScroll.current);
+    if (wait > 0) {
+      startTimer.current = window.setTimeout(sync, wait);
+      return;
+    }
+    v.play()?.catch(() => {});
   };
 
   useEffect(() => {
     holdRef.current = hold;
     sync();
-    // sync ne lit que des refs
   }, [hold]);
 
   useEffect(() => {
@@ -180,20 +202,24 @@ function PhoneVideo({ p, near, onNear, hold }: { p: Project; near: boolean; onNe
     // lecture automatique muette (iOS l'exige)
     v.muted = true;
     v.defaultMuted = true;
-    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
-    autoplay.current = !saveData && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!autoplay.current) return;
-    // dernier état seulement : un défilement rapide peut livrer une entrée et une sortie d'un coup
+    if (!allowAuto) return;
+    const onScroll = () => {
+      lastScroll.current = performance.now();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // à l'écran = au moins un quart visible ; dernier état seulement (un défilement rapide peut en livrer deux)
     const io = new IntersectionObserver(
       (es) => {
-        visible.current = es[es.length - 1].isIntersecting;
+        visible.current = es[es.length - 1].intersectionRatio >= 0.25;
         sync();
       },
-      { rootMargin: '200px 0px' },
+      { threshold: [0, 0.25] },
     );
     io.observe(v);
     return () => {
+      window.removeEventListener('scroll', onScroll);
       io.disconnect();
+      window.clearTimeout(startTimer.current);
       v.pause();
     };
   }, [near]);
@@ -219,8 +245,9 @@ function PhoneVideo({ p, near, onNear, hold }: { p: Project; near: boolean; onNe
       muted
       loop
       playsInline
-      preload="none"
+      preload={near && allowAuto ? 'auto' : 'none'}
       disablePictureInPicture
+      disableRemotePlayback
       aria-label={`Vidéo du site ${p.name} sur téléphone`}
     />
   );
