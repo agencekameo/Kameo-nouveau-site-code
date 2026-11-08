@@ -2,12 +2,6 @@
 const css = `
   :root { --accent-gradient: linear-gradient(136.79deg, #E14B89 5.13%, #F8903C 84.98%); }
 
-  /* ── Breadcrumb retour pillier ───────────────────────────────────────── */
-  .silo-back { padding: clamp(96px, 12vw, 132px) 0 20px; background: #fff; border-bottom: 1px solid rgba(15,17,21,.04); }
-  .silo-back__link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: rgba(15,17,21,.55); text-decoration: none; transition: color .2s; }
-  .silo-back__link:hover { color: #ED6E63; }
-  .silo-back__link svg { width: 12px; height: 12px; }
-
   /* ── Pourquoi nous (features création-spécifiques) ─────────────────── */
   .ccrea-why { padding: clamp(64px,8vw,100px) 0; background: #fff; }
   .ccrea-why__head { text-align: center; max-width: 720px; margin: 0 auto clamp(40px,5vw,56px); }

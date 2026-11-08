@@ -2,12 +2,6 @@
 const css = `
   :root { --accent-gradient: linear-gradient(136.79deg, #E14B89 5.13%, #F8903C 84.98%); }
 
-  /* ── Breadcrumb retour pillier ─────────────────────────────────────── */
-  .silo-back { padding: clamp(96px, 12vw, 132px) 0 20px; background: #fff; border-bottom: 1px solid rgba(15,17,21,.04); }
-  .silo-back__link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: rgba(15,17,21,.55); text-decoration: none; transition: color .2s; }
-  .silo-back__link:hover { color: #ED6E63; }
-  .silo-back__link svg { width: 12px; height: 12px; }
-
   /* ── Hero dual CTA ─────────────────────────────────────────────────── */
   .page-hero__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
   .page-hero__btn--secondary { background: transparent !important; color: #0f1115 !important; border: 1.5px solid rgba(15,17,21,.18) !important; }

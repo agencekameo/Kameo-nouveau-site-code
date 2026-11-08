@@ -26,23 +26,6 @@ export default function RefonteWordpressPage() {
       <Breadcrumb items={CRUMBS} />
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <main id="main">
-        {/* ============ BREADCRUMB BACK ============ */}
-        <div className="silo-back">
-          <div className="container">
-            <Link href="/agence-wordpress-paris/" className="silo-back__link">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="M10 4L6 8l4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Retour à l'agence WordPress Paris{' '}
-            </Link>
-          </div>
-        </div>
         {/* ============ HERO ============ */}
         <section className="page-hero">
           <div className="container page-hero__inner">

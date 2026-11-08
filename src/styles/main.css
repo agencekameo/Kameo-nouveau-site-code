@@ -3115,6 +3115,9 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   padding: clamp(90px, 14vw, 180px) 0 clamp(40px, 6vw, 80px);
   background: #fff;
 }
+/* Sous le fil d'Ariane, qui réserve déjà la place du menu fixe, l'en-tête n'a plus à la réserver : sinon un
+   grand vide (pages Expertises, Notre agence ; corrigé le 08/11/2026). Plus fort que la règle téléphone. */
+.breadcrumb ~ main > .page-hero:first-child { padding-top: clamp(28px, 4vw, 56px); }
 .page-hero__inner {
   display: flex;
   flex-direction: column;

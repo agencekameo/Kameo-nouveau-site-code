@@ -25,22 +25,6 @@ export default function CreationMarketplacePage() {
       <Breadcrumb items={CRUMBS} />
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <main id="main">
-        <div className="silo-back">
-          <div className="container">
-            <Link href="/developpement-sur-mesure/" className="silo-back__link">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="M10 4L6 8l4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Retour au développement sur-mesure{' '}
-            </Link>
-          </div>
-        </div>
         <section className="page-hero">
           <div className="container page-hero__inner">
             <span className="page-hero__eyebrow">
