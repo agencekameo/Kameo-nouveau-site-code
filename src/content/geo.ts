@@ -4,9 +4,9 @@
  * structurées, llms.txt et la recherche interne.
  *
  * Offres : PDF « Offres GEO » de Benjamin (novembre 2026). Prix relevés le 09/11/2026 à sa
- * demande (+200 à +300 € par offre, arrondis) : Express 490 → 750, Complet 790 → 1 000,
- * Essentiel 290 → 500 € HT ; puis, le même jour, Croissance 390 → 700 et Autorité 690 → 1 000 € HT
- * par mois (« croissance 700€, autorité 1000€ »).
+ * demande : Essentiel 290 → 500 € HT par mois ; puis, le même jour, Croissance 390 → 700 et
+ * Autorité 690 → 1 000 € HT par mois, Audit Express 490 → 500 et Audit Complet 790 → 800 € HT
+ * (« croissance 700€, autorité 1000€ », « 500€ express, 800€ complet »).
  *
  * Les réponses des FAQ sont en HTML simple (<strong>, <a>) : affichées telles quelles et
  * reprises sans balises dans le FAQPage, pour que le balisage décrive exactement la page.
@@ -37,7 +37,7 @@ export const GEO_AUDITS: GeoOffer[] = [
   {
     id: 'express',
     name: 'Audit GEO Express',
-    price: 750,
+    price: 500,
     monthly: false,
     tagline: 'Pour savoir rapidement où vous en êtes et quoi corriger en priorité.',
     items: [
@@ -50,7 +50,7 @@ export const GEO_AUDITS: GeoOffer[] = [
   {
     id: 'complet',
     name: 'Audit GEO Complet',
-    price: 1000,
+    price: 800,
     monthly: false,
     tagline: 'Pour comprendre pourquoi vos concurrents sont cités avant vous.',
     items: [
