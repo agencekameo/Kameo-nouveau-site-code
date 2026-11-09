@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import ReactDOM from 'react-dom';
 import Breadcrumb from '@/components/Breadcrumb';
 import CalendlyModal from '@/components/CalendlyModal';
 import Icon from '@/components/Icon';
@@ -9,7 +8,6 @@ import JsonLd from '@/components/JsonLd';
 import ArticleToc from '@/components/blog/ArticleToc';
 import BlogCard from '@/components/blog/BlogCard';
 import BookingFab from '@/components/blog/BookingFab';
-import { SIZES } from '@/lib/sizes';
 import { frDate, getAllPosts, getPost, type Post } from '@/lib/blog';
 import { blogPosting, faqFromHtml, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
@@ -108,12 +106,6 @@ export default async function ArticlePage({ params }: Props) {
   const post = await getPost((await params).slug);
   if (!post) notFound();
   const remote = post.source === 'outil' ? post.remote : undefined;
-  if (post.image)
-    ReactDOM.preload(post.image.src, {
-      as: 'image',
-      fetchPriority: 'high',
-      ...(post.image.srcset ? { imageSrcSet: post.image.srcset, imageSizes: SIZES.featured } : {}),
-    });
 
   const { html, items } = buildToc(post.html);
   const updated = new Date(post.modified).getTime() - new Date(post.date).getTime() > DAY;
@@ -165,24 +157,8 @@ export default async function ArticlePage({ params }: Props) {
             </svg>
             Retour au blog{' '}
           </Link>
-          {post.image && (
-            <div className={remote?.imageCredit ? 'article-featured article-featured--credited' : 'article-featured'}>
-              <img
-                src={post.image.src}
-                srcSet={post.image.srcset}
-                sizes={post.image.srcset ? SIZES.featured : undefined}
-                width={post.image.width}
-                height={post.image.height}
-                alt={remote ? post.image.alt || post.title : post.title}
-                className="attachment-full size-full wp-post-image"
-                loading="eager"
-                fetchPriority="high"
-                decoding="sync"
-              />
-            </div>
-          )}
-          {/* crédit sous l'image : .article-featured recadre son contenu (overflow hidden) */}
-          {post.image && remote?.imageCredit && <p className="article-featured-credit">{remote.imageCredit}</p>}
+          {/* Pas d'image à la une en tête d'article (choix de Benjamin, 09/11/2026) : le titre et le texte
+              d'abord. L'image reste sur les cartes du blog, en og:image et dans les données structurées. */}
           <header className="article-header">
             <div className="article-header__meta">
               {byFounder ? (
