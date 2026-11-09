@@ -21,7 +21,8 @@ const GEO: Sub[] = [
   { href: '/agence-geo/', icon: 'fa-wand-magic-sparkles', title: 'Agence GEO', desc: 'Être cité par ChatGPT, Gemini et les IA', match: ['agence-geo'] },
   { href: '/audit-geo/', icon: 'fa-magnifying-glass-chart', title: 'Audit GEO', desc: 'Ce que les IA disent de vous', match: ['audit-geo'] },
   { href: '/accompagnement-geo/', icon: 'fa-arrow-trend-up', title: 'Accompagnement GEO', desc: 'Suivi mensuel, audit offert', match: ['accompagnement-geo'] },
-  { href: '/blog/referencement-chatgpt/', icon: 'fa-file-lines', title: 'Guide : référencement ChatGPT', desc: 'Être cité par ChatGPT en 8 étapes', match: ['referencement-chatgpt'] },
+  { href: '/test-visibilite-ia/', icon: 'fa-circle-check', title: 'Test gratuit', desc: 'Votre visibilité dans les IA en 10 questions', match: ['test-visibilite-ia'] },
+  { href: '/agence-geo/#ressources', icon: 'fa-file-lines', title: 'Guides GEO', desc: 'ChatGPT, prix, mesure, WordPress…', match: [] },
   { href: '/glossaire-geo/', icon: 'fa-list-check', title: 'Glossaire GEO', desc: 'Les mots du référencement IA', match: ['glossaire-geo'] },
 ];
 const EXPERTISES: Sub[] = [

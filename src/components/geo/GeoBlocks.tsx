@@ -15,7 +15,7 @@ const Arrow = () => (
 );
 
 /** Boutons du héros : appel gratuit (Calendly) et ancre vers les offres. */
-export function GeoHeroActions({ anchor, anchorLabel, cta = 'Réserver un appel gratuit' }: { anchor: string; anchorLabel: string; cta?: string }) {
+export function GeoHeroActions({ anchor, anchorLabel, cta = 'Diagnostic express gratuit' }: { anchor: string; anchorLabel: string; cta?: string }) {
   return (
     <div className="page-hero__actions">
       <a href={CONTACT.calendly} target="_blank" rel="noopener" className="page-hero__btn">
@@ -138,7 +138,7 @@ export function GeoCta({ title, text, secondary }: { title: string; text: string
             <div className="geo-cta__actions">
               <a href={CONTACT.calendly} target="_blank" rel="noopener" className="geo-cta__btn geo-cta__btn--primary">
                 <Icon name="calendar-check" />
-                Réserver un appel gratuit
+                Réserver mon diagnostic express
               </a>
               <Link href={secondary.href} className="geo-cta__btn geo-cta__btn--secondary">
                 {secondary.label}

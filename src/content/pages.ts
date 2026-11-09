@@ -21,10 +21,11 @@ export const PAGES: Record<string, PageInfo> = {
   '/creation-marketplace/': { label: 'Création de marketplace', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
   '/creation-crm-sur-mesure/': { label: 'Création de CRM sur-mesure', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-16T16:47:04+00:00' },
   '/creation-saas-ia/': { label: 'Création de SaaS IA', published: '2026-09-18T12:15:31+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
-  '/agence-geo/': { label: 'Agence GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T15:00:00+00:00' }, // création : page pilier GEO, offres et prix publics (09/11/2026) ; liens vers le guide ChatGPT et le glossaire (09/11/2026)
+  '/agence-geo/': { label: 'Agence GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T17:00:00+00:00' }, // création : page pilier GEO, offres et prix publics (09/11/2026) ; liens vers le guide ChatGPT et le glossaire (09/11/2026)
   '/audit-geo/': { label: 'Audit GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : audits Express 500 € et Complet 800 € HT (09/11/2026)
   '/accompagnement-geo/': { label: 'Accompagnement GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : formules Essentiel 500, Croissance 700, Autorité 1 000 € HT/mois (09/11/2026)
   '/glossaire-geo/': { label: 'Glossaire GEO', published: '2026-11-09T15:00:00+00:00', modified: '2026-11-09T15:00:00+00:00' }, // création : 41 définitions du référencement IA (09/11/2026)
+  '/test-visibilite-ia/': { label: 'Test de visibilité IA', published: '2026-11-09T17:00:00+00:00', modified: '2026-11-09T17:00:00+00:00' }, // création : test gratuit en 10 questions et grille de lecture (09/11/2026)
   '/realisations/': { label: 'Réalisations', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-31T12:00:00+00:00' }, // lien vers les sites WordPress (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026)
   '/realisations/wordpress/': { label: 'Réalisations WordPress', published: '2026-10-30T12:00:00+00:00', modified: '2026-10-31T12:00:00+00:00' }, // portfolio WordPress (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026)
   '/contact/': { label: 'Contact', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },

@@ -118,6 +118,20 @@ export const GEO_TERMS = [
   '<strong>Audit déduit</strong> si vous passez à un accompagnement dans le mois qui suit votre audit.',
 ];
 
+/** Guides et outils GEO gratuits : section « Pour aller plus loin » de /agence-geo/ et llms.txt. */
+export type GeoResource = { href: string; tag: string; title: string; text: string };
+export const GEO_RESOURCES: GeoResource[] = [
+  { href: '/test-visibilite-ia/', tag: 'Test gratuit', title: 'Testez votre visibilité dans les IA', text: '10 questions à poser vous-même à ChatGPT, Gemini, Perplexity et Claude, et la grille pour lire les réponses.' },
+  { href: '/blog/referencement-chatgpt/', tag: 'Guide', title: 'Référencement ChatGPT : être cité en 8 étapes', text: 'Comment ChatGPT choisit les entreprises qu’il cite, et ce que vous pouvez faire dès aujourd’hui.' },
+  { href: '/blog/chatgpt-ne-cite-pas-mon-entreprise/', tag: 'Guide', title: 'Pourquoi ChatGPT ne cite pas mon entreprise', text: 'Les causes à vérifier une par une, et comment les corriger.' },
+  { href: '/blog/mesurer-visibilite-ia/', tag: 'Guide', title: 'Mesurer sa visibilité dans les IA', text: 'La méthode, les indicateurs et les outils gratuits pour suivre vos progrès.' },
+  { href: '/blog/prix-geo/', tag: 'Guide', title: 'Prix du GEO : audit et accompagnement', text: 'Ce que coûte le GEO, ce que comprend chaque niveau, et comment comparer deux offres.' },
+  { href: '/blog/geo-vs-seo/', tag: 'Guide', title: 'GEO vs SEO : les différences', text: 'Ce qui change, ce qui reste, et comment faire du GEO sans délaisser le SEO.' },
+  { href: '/blog/geo-wordpress/', tag: 'Guide', title: 'Rendre un site WordPress lisible par les IA', text: 'La liste de contrôle pour que ChatGPT et les autres IA puissent lire et citer votre site.' },
+  { href: '/blog/chatgpt-entreprise-locale/', tag: 'Guide', title: 'Être recommandé par ChatGPT quand on est une entreprise locale', text: 'Fiche Google, annuaires, avis, pages par zone : les actions qui comptent en local.' },
+  { href: '/glossaire-geo/', tag: 'Glossaire', title: 'Glossaire GEO', text: 'Les mots du référencement IA, expliqués simplement et sourcés.' },
+];
+
 /** « 1 000 € » : espaces insécables entre les milliers et avant l'euro. */
 export const euros = (n: number) => n.toLocaleString('fr-FR').replace(/\s/g, ' ') + ' €';
 
@@ -202,7 +216,7 @@ export const FAQ_AUDIT: FaqItem[] = [
   },
   {
     q: 'Existe-t-il un audit GEO gratuit ?',
-    a: "Des outils en ligne donnent gratuitement un score de visibilité IA, utile pour une première idée. Ils testent rarement les questions propres à votre métier et ne disent pas quoi corriger sur votre site, ni dans quel ordre. L'audit Kameo part des questions de vos clients, diagnostique votre site et vous remet un plan priorisé. L'appel de 30 minutes pour en parler, lui, est gratuit.",
+    a: "Des outils en ligne donnent gratuitement un score de visibilité IA, utile pour une première idée. Ils testent rarement les questions propres à votre métier et ne disent pas quoi corriger sur votre site, ni dans quel ordre. L'audit Kameo part des questions de vos clients, diagnostique votre site et vous remet un plan priorisé. Pour une première idée, faites notre <a href=\"/test-visibilite-ia/\">test gratuit en 10 questions</a> ; le diagnostic express de 30 minutes en visio, lui, est gratuit.",
   },
   {
     q: "Puis-je appliquer le plan d'action moi-même ?",

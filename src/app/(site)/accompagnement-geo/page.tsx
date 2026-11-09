@@ -289,7 +289,7 @@ export default function AccompagnementGeoPage() {
 
         <GeoCta
           title="Choisissez votre accompagnement GEO"
-          text="Un appel de 30 minutes, gratuit et en visio : on regarde votre situation et on vous conseille la formule qui vous correspond."
+          text="Diagnostic express gratuit : 30 minutes en visio pour voir, en direct, ce que les IA disent de vous et choisir la formule qui vous correspond."
           secondary={{ href: '/agence-geo/', label: 'Notre approche du GEO' }}
         />
       </main>

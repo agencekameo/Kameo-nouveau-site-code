@@ -193,7 +193,7 @@ export default function AuditGeoPage() {
                 <h3 className="geo-card__title">L’accès des robots d’IA</h3>
                 <p className="geo-card__text">
                   Votre robots.txt, votre hébergeur ou votre pare-feu bloquent-ils les robots d’OpenAI, de Perplexity,
-                  d’Anthropic ou de Google&nbsp;? Cloudflare, par exemple, les bloque par défaut sur les nouveaux sites depuis juillet 2025. Et votre
+                  d’Anthropic ou de Google&nbsp;? Cloudflare, par exemple, les a bloqués par défaut sur les nouveaux sites à partir de juillet 2025, avant d’assouplir ces réglages&nbsp;: mieux vaut vérifier les vôtres. Et votre
                   contenu reste-t-il lisible sans JavaScript, que la plupart de ces robots n’exécutent pas&nbsp;?
                 </p>
               </li>
@@ -302,7 +302,7 @@ export default function AuditGeoPage() {
               <p>
                 L’audit GEO de Kameo part des <strong>questions de vos clients</strong>, vérifie votre site point par
                 point et se termine par un <strong>plan d’action priorisé</strong> que vous pouvez appliquer dès le
-                lendemain. Et si vous voulez simplement en parler, l’appel de 30 minutes est gratuit.
+                lendemain. Pour une première idée par vous-même, faites notre <Link href="/test-visibilite-ia/">test gratuit en 10 questions</Link>&nbsp;; et si vous voulez en parler, le diagnostic express de 30 minutes est gratuit.
               </p>
               <p>
                 Pour faire un premier test vous-même, suivez notre guide du{' '}
@@ -317,7 +317,7 @@ export default function AuditGeoPage() {
 
         <GeoCta
           title="Découvrez ce que les IA disent de vous"
-          text="Réservez un appel de 30 minutes, gratuit et en visio : on choisit ensemble l’audit adapté à votre situation."
+          text="Diagnostic express gratuit : 30 minutes en visio pour poser en direct 5 questions de vos clients aux IA, en partage d’écran, et choisir l’audit adapté à votre situation."
           secondary={{ href: '/accompagnement-geo/', label: 'Voir l’accompagnement GEO' }}
         />
       </main>

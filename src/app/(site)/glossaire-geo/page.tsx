@@ -109,7 +109,7 @@ export default function GlossaireGeoPage() {
 
         <GeoCta
           title="Passer de la théorie à la pratique"
-          text="Un appel de 30 minutes, gratuit et en visio : on regarde ensemble ce que les IA disent de votre entreprise et par où commencer."
+          text="Diagnostic express gratuit : 30 minutes en visio, on pose en direct 5 questions de vos clients aux IA et on vous dit par où commencer."
           secondary={{ href: '/audit-geo/', label: 'Voir l’audit GEO' }}
         />
       </main>

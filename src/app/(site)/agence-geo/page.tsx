@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
 import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMidCta, GeoTerms, faqSchema } from '@/components/geo/GeoBlocks';
-import { FAQ_AGENCE, GEO_AUDITS, GEO_ENGINES, GEO_PLANS, GEO_QUESTIONS, euros } from '@/content/geo';
+import { FAQ_AGENCE, GEO_AUDITS, GEO_ENGINES, GEO_PLANS, GEO_QUESTIONS, GEO_RESOURCES, euros } from '@/content/geo';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { PROOF } from '@/lib/site';
@@ -665,34 +665,25 @@ export default function AgenceGeoPage() {
         </section>
 
         {/* ============ RESSOURCES ============ */}
-        <section className="geo-section geo-section--soft" aria-labelledby="geo-res-title">
+        <section className="geo-section geo-section--soft" id="ressources" aria-labelledby="geo-res-title">
           <div className="container">
             <header className="geo-head">
               <span className="geo-head__eyebrow">Ressources</span>
               <h2 className="geo-head__title" id="geo-res-title">
                 Pour aller plus loin
               </h2>
-              <p className="geo-head__intro">Nos guides gratuits pour comprendre et agir, même sans nous.</p>
+              <p className="geo-head__intro">Nos guides et outils gratuits pour comprendre et agir, même sans nous.</p>
             </header>
-            <ul className="geo-cards geo-cards--2">
-              <li className="geo-card">
-                <span className="geo-card__tag">Guide</span>
-                <h3 className="geo-card__title">
-                  <Link href="/blog/referencement-chatgpt/">Référencement ChatGPT : être cité en 8 étapes</Link>
-                </h3>
-                <p className="geo-card__text">
-                  Comment ChatGPT choisit les entreprises qu’il cite, et ce que vous pouvez faire dès aujourd’hui.
-                </p>
-              </li>
-              <li className="geo-card">
-                <span className="geo-card__tag">Glossaire</span>
-                <h3 className="geo-card__title">
-                  <Link href="/glossaire-geo/">Glossaire GEO : les mots du référencement IA</Link>
-                </h3>
-                <p className="geo-card__text">
-                  Aperçus IA, OAI-SearchBot, part de voix, llms.txt : les définitions, courtes et sourcées.
-                </p>
-              </li>
+            <ul className="geo-cards">
+              {GEO_RESOURCES.map((r) => (
+                <li className="geo-card" key={r.href}>
+                  <span className="geo-card__tag">{r.tag}</span>
+                  <h3 className="geo-card__title">
+                    <Link href={r.href}>{r.title}</Link>
+                  </h3>
+                  <p className="geo-card__text">{r.text}</p>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
@@ -701,7 +692,7 @@ export default function AgenceGeoPage() {
 
         <GeoCta
           title="Faites partie des réponses que les IA recommandent"
-          text="Un appel de 30 minutes, gratuit et en visio : on regarde ensemble ce que les IA disent de vous et on choisit le bon format, audit ou accompagnement."
+          text="Diagnostic express gratuit : 30 minutes en visio, on pose en direct 5 questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, en partage d’écran, puis on choisit ensemble le bon format, audit ou accompagnement."
           secondary={{ href: '/audit-geo/', label: 'Voir l’audit GEO' }}
         />
       </main>

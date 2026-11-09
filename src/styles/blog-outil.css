@@ -104,6 +104,8 @@
   font-size: 15px;
   line-height: 1.55;
 }
+/* tableau de 2 colonnes : il tient dans la largeur, sans défilement */
+:is(.article-body--outil, .article-body--repo) table:not(:has(tr > :nth-child(3))) { min-width: 0; }
 :is(.article-body--outil, .article-body--repo) caption {
   padding: 12px 14px 0;
   font-size: 14px;

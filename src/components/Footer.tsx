@@ -91,7 +91,10 @@ export default function Footer() {
               <Link href="/accompagnement-geo/">Accompagnement GEO</Link>
             </li>
             <li>
-              <Link href="/blog/referencement-chatgpt/">Référencement ChatGPT</Link>
+              <Link href="/test-visibilite-ia/">Test de visibilité gratuit</Link>
+            </li>
+            <li>
+              <Link href="/agence-geo/#ressources">Guides GEO</Link>
             </li>
             <li>
               <Link href="/glossaire-geo/">Glossaire GEO</Link>

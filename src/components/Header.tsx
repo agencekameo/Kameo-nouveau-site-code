@@ -16,7 +16,7 @@ const EXPERTISE_SLUGS = [
   'creation-marketplace', 'creation-crm-sur-mesure', 'creation-saas-ia',
 ];
 /* Entrée « GEO » du menu, placée en premier depuis le recentrage de Kameo sur le GEO (09/11/2026). */
-const GEO_SLUGS = ['agence-geo', 'audit-geo', 'accompagnement-geo', 'glossaire-geo'];
+const GEO_SLUGS = ['agence-geo', 'audit-geo', 'accompagnement-geo', 'glossaire-geo', 'test-visibilite-ia'];
 type Menu = 'geo' | 'exp' | null;
 
 /** Slug courant au sens de header.php : front-page, slug de page, « realisations » ou « blog ». */
@@ -181,9 +181,13 @@ export default function Header() {
                     <polyline points="3 17 9 11 13 15 21 7" />
                     <polyline points="15 7 21 7 21 13" />
                   </MegaSub>
+                  <MegaSub href="/test-visibilite-ia/" title="Test gratuit : votre visibilité dans les IA">
+                    <path d="M9 11l3 3L22 4" />
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                  </MegaSub>
                 </div>
               </div>
-              <Link href="/blog/referencement-chatgpt/" className="mega-item" role="menuitem">
+              <Link href="/agence-geo/#ressources" className="mega-item" role="menuitem">
                 <span className="mega-item__icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" />
@@ -192,8 +196,8 @@ export default function Header() {
                   </svg>
                 </span>
                 <div className="mega-item__body">
-                  <strong className="mega-item__title">Guide : référencement ChatGPT</strong>
-                  <p className="mega-item__desc">Comment être cité par ChatGPT, en 8 étapes</p>
+                  <strong className="mega-item__title">Guides GEO</strong>
+                  <p className="mega-item__desc">ChatGPT, prix, mesure, WordPress, entreprises locales…</p>
                 </div>
               </Link>
               <Link href="/glossaire-geo/" className="mega-item" role="menuitem">

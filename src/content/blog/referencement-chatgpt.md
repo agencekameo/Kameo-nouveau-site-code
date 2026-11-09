@@ -4,7 +4,7 @@ seoTitle: "Référencement ChatGPT : comment être cité et recommandé | Kameo"
 description: "Être référencé sur ChatGPT : comment l'IA choisit ses sources, 8 étapes pour être cité, les erreurs à éviter et comment mesurer. Chiffres datés et sourcés."
 excerpt: "Comment ChatGPT choisit les entreprises qu'il cite, et ce que vous pouvez faire, étape par étape, pour en faire partie : robots, indexation, pages qui répondent, sources tierces, avis et mesure."
 date: "2026-11-09T12:00:00+01:00"
-modified: "2026-11-09T12:00:00+01:00"
+modified: "2026-11-09T17:30:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-referencement-chatgpt.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -55,7 +55,7 @@ C'est le prérequis : si le robot de recherche ne peut pas lire votre site, Cha
 | ChatGPT-User | Ouvrir une page quand un utilisateur le demande | Conseillé |
 | GPTBot | Collecter des contenus pour entraîner les modèles | Au choix : le bloquer ne vous retire pas de la recherche |
 
-Un changement de robots.txt est pris en compte par OpenAI en 24 heures environ. Vérifiez aussi votre hébergeur et votre pare-feu : Cloudflare, par exemple, bloque par défaut les robots d'IA sur les nouveaux sites depuis juillet 2025.
+Un changement de robots.txt est pris en compte par OpenAI en 24 heures environ. Vérifiez aussi votre hébergeur et votre pare-feu : Cloudflare, par exemple, a bloqué par défaut les robots d'IA sur les nouveaux sites à partir de juillet 2025, avant de faire évoluer ces réglages : vérifiez les vôtres.
 
 ```
 # Autoriser la recherche de ChatGPT
@@ -71,7 +71,7 @@ ChatGPT cite surtout des pages déjà bien placées dans les moteurs de recherch
 
 ### 3. Rendez vos pages lisibles sans JavaScript
 
-La plupart des robots d'IA n'exécutent pas le JavaScript. Si votre texte, vos prix ou vos services ne s'affichent qu'après l'exécution d'un script, le robot ne voit qu'une page presque vide. Un site rendu côté serveur, ou un WordPress classique, évite ce problème.
+La plupart des robots d'IA n'exécutent pas le JavaScript. Si votre texte, vos prix ou vos services ne s'affichent qu'après l'exécution d'un script, le robot ne voit qu'une page presque vide. Un site rendu côté serveur, ou un WordPress classique, évite ce problème. Pour WordPress, suivez notre [liste de contrôle pour un site lisible par les IA](/blog/geo-wordpress/).
 
 ### 4. Répondez clairement aux questions de vos clients
 
@@ -90,7 +90,7 @@ C'est souvent l'étape décisive. Puisque ChatGPT recommande largement à partir
 - la **presse** et les sites spécialisés de votre secteur ;
 - **LinkedIn**, très cité pour les questions professionnelles.
 
-Pour les Aperçus IA de Google, Ahrefs a mesuré que les mentions d'une marque sur le web sont bien plus liées à sa visibilité (corrélation de 0,66) que le nombre de liens qui pointent vers son site (0,22). Quant à Wikipédia, n'y écrivez pas votre propre page : toute contribution rémunérée doit être déclarée et la promotion y est interdite.
+Pour les Aperçus IA de Google, Ahrefs a mesuré que les mentions d'une marque sur le web sont bien plus liées à sa visibilité (corrélation de 0,66) que le nombre de liens qui pointent vers son site (0,22). Quant à Wikipédia, n'y écrivez pas votre propre page : toute contribution rémunérée doit être déclarée et la promotion y est interdite. Entreprise de proximité ? Voyez notre guide pour [être recommandé quand on est une entreprise locale](/blog/chatgpt-entreprise-locale/).
 
 ### 7. Collectez des avis authentiques
 
@@ -98,7 +98,7 @@ Les plateformes d'avis font partie des sources que les IA consultent pour juger 
 
 ### 8. Mesurez, puis recommencez
 
-Établissez une liste fixe de questions, posez-les régulièrement à ChatGPT (et aux autres IA), puis notez si votre entreprise est absente, mentionnée, citée ou recommandée, et qui apparaît à sa place. Comme les réponses varient d'un essai à l'autre, regardez une tendance sur plusieurs mois plutôt qu'une capture isolée. Pour les visites, ChatGPT ajoute `utm_source=chatgpt.com` aux liens qu'il envoie : vous les retrouvez dans Google Analytics.
+Établissez une liste fixe de questions, posez-les régulièrement à ChatGPT (et aux autres IA), puis notez si votre entreprise est absente, mentionnée, citée ou recommandée, et qui apparaît à sa place. Comme les réponses varient d'un essai à l'autre, regardez une tendance sur plusieurs mois plutôt qu'une capture isolée. Pour les visites, ChatGPT ajoute `utm_source=chatgpt.com` aux liens qu'il envoie : vous les retrouvez dans Google Analytics. La méthode complète est détaillée dans notre guide pour [mesurer sa visibilité dans les IA](/blog/mesurer-visibilite-ia/).
 
 ## Les erreurs à éviter
 
@@ -117,7 +117,7 @@ Il n'existe pas de délai fiable publié : méfiez-vous des chiffres précis qu
 <details>
 <summary>Comment savoir si ChatGPT cite mon entreprise ?</summary>
 
-Posez-lui les questions que vos clients posent (« quel prestataire choisir pour… à Lyon ? », « avis sur votre marque ») plusieurs fois, sans être connecté à un compte qui vous connaît, et notez si vous êtes absent, mentionné, cité ou recommandé. Répétez l'exercice chaque mois sur la même liste de questions pour suivre une tendance.
+Posez-lui les questions que vos clients posent (« quel prestataire choisir pour… à Lyon ? », « avis sur votre marque ») plusieurs fois, sans être connecté à un compte qui vous connaît, et notez si vous êtes absent, mentionné, cité ou recommandé. Répétez l'exercice chaque mois sur la même liste de questions pour suivre une tendance. Notre [test gratuit en 10 questions](/test-visibilite-ia/) vous guide pas à pas, et si vous n'apparaissez nulle part, suivez notre diagnostic : [pourquoi ChatGPT ne cite pas mon entreprise](/blog/chatgpt-ne-cite-pas-mon-entreprise/).
 
 </details>
 
@@ -155,7 +155,7 @@ Vous pouvez appliquer ces étapes vous-même. Si vous préférez un état des li
 
 ## Sources
 
-- Arcep, Arcom, CGE et ANCT, [Baromètre du numérique 2026](https://www.arcep.fr/cartes-et-donnees/nos-publications-chiffrees/barometre-du-numerique/le-barometre-du-numerique-edition-2026.html), février 2026.
+- Arcep, Arcom, CGE et ANCT, [Baromètre du numérique 2026](https://www.arcep.fr/cartes-et-donnees/nos-publications-chiffrees/barometre-du-numerique/le-barometre-du-numerique-edition-2026.html), février 2026 ([présentation détaillée](https://www.arcep.fr/uploads/tx_gspublication/barometre-du-numerique-edition-2026_PRESENTATION.pdf), diapositives 16 à 18).
 - Arcom et Médiamétrie, [Baromètre de l'audience des services d'intelligence artificielle](https://www.arcom.fr/en/find-out-more/studies-and-data/studies-reviews-and-reports/artificial-intelligence-services-audience-barometer-1st-edition), juin 2026.
 - Siècle Digital, [étude Nectiv sur les recherches web de ChatGPT](https://siecledigital.fr/2025/11/18/chatgpt-31-des-requetes-declenchent-desormais-une-recherche-en-ligne/), novembre 2025.
 - OpenAI, [documentation des robots d'OpenAI](https://developers.openai.com/api/docs/bots).
