@@ -78,7 +78,7 @@ export const GEO_PLANS: GeoOffer[] = [
       'Analyse des résultats et rapport mensuel clair.',
       'Stratégie de notoriété : où créer vos fiches, comment collecter des avis, dans quels comparatifs apparaître.',
     ],
-    cta: 'Je choisis Essentiel',
+    cta: 'Réserver un rendez-vous',
   },
   {
     id: 'croissance',
@@ -107,7 +107,7 @@ export const GEO_PLANS: GeoOffer[] = [
       'Cartographie mensuelle des médias cités par les IA, pour orienter vos relations presse.',
       'Un call mensuel pour faire le point sur les résultats et les priorités.',
     ],
-    cta: 'Je choisis Autorité',
+    cta: 'Réserver un rendez-vous',
   },
 ];
 
