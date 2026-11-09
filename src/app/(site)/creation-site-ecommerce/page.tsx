@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
+import GeoPromo from '@/components/geo/GeoPromo';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
@@ -366,6 +367,7 @@ export default function CreationSiteEcommercePage() {
             </div>
           </div>
         </section>
+        <GeoPromo variant="ecommerce" />
         <section className="expertise-faq" aria-labelledby="faq-title">
           <div className="container">
             <h2 className="expertise-faq__title" id="faq-title">

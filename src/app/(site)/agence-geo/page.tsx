@@ -664,6 +664,39 @@ export default function AgenceGeoPage() {
           </div>
         </section>
 
+        {/* ============ RESSOURCES ============ */}
+        <section className="geo-section geo-section--soft" aria-labelledby="geo-res-title">
+          <div className="container">
+            <header className="geo-head">
+              <span className="geo-head__eyebrow">Ressources</span>
+              <h2 className="geo-head__title" id="geo-res-title">
+                Pour aller plus loin
+              </h2>
+              <p className="geo-head__intro">Nos guides gratuits pour comprendre et agir, même sans nous.</p>
+            </header>
+            <ul className="geo-cards geo-cards--2">
+              <li className="geo-card">
+                <span className="geo-card__tag">Guide</span>
+                <h3 className="geo-card__title">
+                  <Link href="/blog/referencement-chatgpt/">Référencement ChatGPT : être cité en 8 étapes</Link>
+                </h3>
+                <p className="geo-card__text">
+                  Comment ChatGPT choisit les entreprises qu’il cite, et ce que vous pouvez faire dès aujourd’hui.
+                </p>
+              </li>
+              <li className="geo-card">
+                <span className="geo-card__tag">Glossaire</span>
+                <h3 className="geo-card__title">
+                  <Link href="/glossaire-geo/">Glossaire GEO : les mots du référencement IA</Link>
+                </h3>
+                <p className="geo-card__text">
+                  Aperçus IA, OAI-SearchBot, part de voix, llms.txt : les définitions, courtes et sourcées.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
         <GeoFaq items={FAQ_AGENCE} title="Vos questions sur le GEO et notre agence" />
 
         <GeoCta

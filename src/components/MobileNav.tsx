@@ -16,6 +16,14 @@ const MAIN: Item[] = [
   { href: '/', icon: 'fa-house', text: 'Accueil', match: ['index.html', '/', ''] },
   { href: '/notre-agence/', icon: 'fa-building', text: 'Notre agence', match: ['notre-agence'] },
 ];
+/* GEO en premier (recentrage de Kameo sur le GEO, 09/11/2026). */
+const GEO: Sub[] = [
+  { href: '/agence-geo/', icon: 'fa-wand-magic-sparkles', title: 'Agence GEO', desc: 'Être cité par ChatGPT, Gemini et les IA', match: ['agence-geo'] },
+  { href: '/audit-geo/', icon: 'fa-magnifying-glass-chart', title: 'Audit GEO', desc: 'Ce que les IA disent de vous', match: ['audit-geo'] },
+  { href: '/accompagnement-geo/', icon: 'fa-arrow-trend-up', title: 'Accompagnement GEO', desc: 'Suivi mensuel, audit offert', match: ['accompagnement-geo'] },
+  { href: '/blog/referencement-chatgpt/', icon: 'fa-file-lines', title: 'Guide : référencement ChatGPT', desc: 'Être cité par ChatGPT en 8 étapes', match: ['referencement-chatgpt'] },
+  { href: '/glossaire-geo/', icon: 'fa-list-check', title: 'Glossaire GEO', desc: 'Les mots du référencement IA', match: ['glossaire-geo'] },
+];
 const EXPERTISES: Sub[] = [
   { href: '/agence-wordpress-paris/', icon: 'fa-desktop', title: 'Agence WordPress', desc: "Vue d'ensemble de notre offre", match: ['agence-wordpress-paris', 'expertises-web'] },
   { href: '/creation-site-wordpress/', icon: 'fa-file-lines', title: 'Création WordPress', desc: 'Landing, vitrine, e-commerce sur-mesure', match: ['creation-site-wordpress'] },
@@ -26,9 +34,6 @@ const EXPERTISES: Sub[] = [
   { href: '/creation-marketplace/', icon: 'fa-shop', title: 'Création marketplace', desc: 'Multi-vendeurs, Stripe Connect', match: ['creation-marketplace'] },
   { href: '/creation-crm-sur-mesure/', icon: 'fa-users-gear', title: 'CRM sur-mesure', desc: 'Alternative Salesforce / HubSpot', match: ['creation-crm-sur-mesure'] },
   { href: '/creation-saas-ia/', icon: 'fa-brain', title: 'SaaS avec IA', desc: 'Claude, GPT, RAG, multi-tenant', match: ['creation-saas-ia'] },
-  { href: '/agence-geo/', icon: 'fa-wand-magic-sparkles', title: 'Agence GEO', desc: 'Être cité par ChatGPT et les IA', match: ['agence-geo'] },
-  { href: '/audit-geo/', icon: 'fa-magnifying-glass-chart', title: 'Audit GEO', desc: 'Votre visibilité dans les IA', match: ['audit-geo'] },
-  { href: '/accompagnement-geo/', icon: 'fa-arrow-trend-up', title: 'Accompagnement GEO', desc: 'Suivi mensuel, audit offert', match: ['accompagnement-geo'] },
   { href: '/expertises-branding/', icon: 'fa-palette', title: 'Branding', desc: 'Logo, Charte graphique…', match: ['expertises-branding'] },
   { href: '/expertises-motion/', icon: 'fa-film', title: 'Motion design', desc: 'Animations & trailers', match: ['expertises-motion'] },
 ];
@@ -165,6 +170,21 @@ export default function MobileNav({
           ))}
           {!lp && (
             <>
+              <div className="mnav__sep" />
+              <span className="mnav__label">GEO · visibilité dans les IA</span>
+              <div className="mnav__sub">
+                {GEO.map((s) => (
+                  <Link key={s.href} href={s.href} className={'mnav__sub-item' + (isCurrent(s.match) ? ' is-active' : '')}>
+                    <span className="mnav__sub-icon">
+                      <Icon name={s.icon} />
+                    </span>
+                    <span className="mnav__sub-body">
+                      <strong className="mnav__sub-title">{s.title}</strong>
+                      <span className="mnav__sub-desc">{s.desc}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
               <div className="mnav__sep" />
               <span className="mnav__label">Expertises</span>
               <div className="mnav__sub">

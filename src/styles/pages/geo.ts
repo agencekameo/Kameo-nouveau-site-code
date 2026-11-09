@@ -61,6 +61,8 @@ const css = `
 .geo-card__title { font-size: 18px; font-weight: 800; letter-spacing: -.02em; line-height: 1.3; color: #0f1115; margin: 0 0 8px; }
 .geo-card__text { font-size: 14.5px; line-height: 1.6; color: rgba(15,17,21,.66); margin: 0; }
 .geo-card__text + .geo-card__text { margin-top: 8px; }
+.geo-card__title a { color: inherit; text-decoration: none; }
+.geo-card__title a:hover { color: #ED6E63; }
 .geo-card__text a { color: #ED6E63; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 @media (max-width: 960px) { .geo-cards { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 640px) { .geo-cards, .geo-cards--2 { grid-template-columns: 1fr; } }
@@ -197,6 +199,22 @@ const css = `
 .geo-prose a { color: #ED6E63; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 .geo-source { display: block; max-width: 1040px; margin: 14px auto 0; font-size: 12.5px; line-height: 1.5; color: rgba(15,17,21,.5); text-align: center; }
 .geo-source a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+/* Glossaire GEO (/glossaire-geo/) */
+.glo-index { max-width: 1060px; margin: 0 auto; display: grid; gap: 20px; padding: clamp(22px,3vw,32px); border-radius: 24px; background: #F9FAFB; border: 1px solid rgba(15,17,21,.07); }
+.glo-index__title { margin: 0 0 10px; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.glo-index__title a { color: #ED6E63; text-decoration: none; }
+.glo-index__list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.glo-index__list a { display: inline-block; padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid rgba(15,17,21,.08); font-size: 13.5px; font-weight: 700; color: #0f1115; text-decoration: none; transition: border-color .2s, color .2s; }
+.glo-index__list a:hover { border-color: rgba(237,110,99,.45); color: #ED6E63; }
+.glo-group { max-width: 860px; margin: 0 auto; scroll-margin-top: 110px; }
+.glo-group + .glo-group { margin-top: clamp(40px,5vw,64px); }
+.glo-group__title { margin: 0 0 14px; font-size: clamp(24px,2.8vw,34px); font-weight: 900; letter-spacing: -.03em; line-height: 1.15; color: #0f1115; }
+.glo-term { scroll-margin-top: 110px; padding: 18px 0; border-top: 1px solid rgba(15,17,21,.08); }
+.glo-term:target { margin: 0 -16px; padding: 18px 16px; border-radius: 14px; background: #FFF4EF; border-top-color: transparent; }
+.glo-term__name { margin: 0 0 6px; font-size: 18px; font-weight: 800; letter-spacing: -.01em; line-height: 1.3; color: #0f1115; }
+.glo-term__def { margin: 0; font-size: 15.5px; line-height: 1.7; color: rgba(15,17,21,.74); }
+.glo-term__def a { color: #ED6E63; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   .geo-card, .geo-plan, .geo-path, .geo-plan__cta, .geo-midcta__btn, .geo-cta__btn { transition: none; }

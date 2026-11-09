@@ -6,15 +6,18 @@ import { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
 import MobileNav from './MobileNav';
 import { CONTACT } from '@/lib/site';
+import { GEO_AUDITS, GEO_PLANS, euros } from '@/content/geo';
 
 /* Navigation flottante pilule + mega menu Expertises (header.php + js/main.js). */
 
 const EXPERTISE_SLUGS = [
   'agence-wordpress-paris', 'creation-site-wordpress', 'refonte-wordpress', 'maintenance-wordpress',
   'expertises-branding', 'expertises-motion', 'developpement-sur-mesure', 'creation-site-ecommerce',
-  'creation-marketplace', 'creation-crm-sur-mesure', 'creation-saas-ia', 'agence-geo', 'audit-geo',
-  'accompagnement-geo',
+  'creation-marketplace', 'creation-crm-sur-mesure', 'creation-saas-ia',
 ];
+/* Entrée « GEO » du menu, placée en premier depuis le recentrage de Kameo sur le GEO (09/11/2026). */
+const GEO_SLUGS = ['agence-geo', 'audit-geo', 'accompagnement-geo', 'glossaire-geo'];
+type Menu = 'geo' | 'exp' | null;
 
 /** Slug courant au sens de header.php : front-page, slug de page, « realisations » ou « blog ». */
 export function currentSlug(pathname: string): string {
@@ -28,17 +31,17 @@ export function currentSlug(pathname: string): string {
 export default function Header() {
   const pathname = usePathname() || '/';
   const slug = currentSlug(pathname);
-  const [subOpen, setSubOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<Menu>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const subRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<number | undefined>(undefined);
 
   const active = (s: string) => (s === slug ? ' nav__link--active' : '');
 
   // Nouvelle page : on referme menus et tiroir (le thème rechargeait la page)
   useEffect(() => {
-    setSubOpen(false);
+    setOpenMenu(null);
     setDrawerOpen(false);
   }, [pathname]);
 
@@ -66,11 +69,11 @@ export default function Header() {
   // Mega menu : clic extérieur et Escape ferment ; Escape ferme aussi le tiroir
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
-      if (subRef.current && !subRef.current.contains(e.target as Node)) setSubOpen(false);
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpenMenu(null);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setSubOpen(false);
+        setOpenMenu(null);
         setDrawerOpen(false);
       }
     };
@@ -105,12 +108,17 @@ export default function Header() {
     };
   }, []);
 
-  const openSub = () => {
+  const openSub = (m: Exclude<Menu, null>) => {
     window.clearTimeout(closeTimer.current);
-    setSubOpen(true);
+    setOpenMenu(m);
   };
   const scheduleClose = () => {
-    closeTimer.current = window.setTimeout(() => setSubOpen(false), 150);
+    closeTimer.current = window.setTimeout(() => setOpenMenu(null), 150);
+  };
+  const toggle = (m: Exclude<Menu, null>) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (openMenu === m) setOpenMenu(null);
+    else openSub(m);
   };
 
   return (
@@ -128,31 +136,95 @@ export default function Header() {
             fetchPriority="high"
           />
         </Link>
-        <nav className="nav__links" aria-label="Navigation principale">
+        <nav ref={navRef} className="nav__links" aria-label="Navigation principale">
           <Link href="/" className={'nav__link' + active('front-page')}>
             Accueil
           </Link>
-          <Link href="/notre-agence/" className={'nav__link' + active('notre-agence')}>
-            Notre agence
-          </Link>
           <div
-            ref={subRef}
-            className={'nav__sub' + (subOpen ? ' is-open' : '')}
+            className={'nav__sub' + (openMenu === 'geo' ? ' is-open' : '')}
             data-sub=""
-            onMouseEnter={openSub}
+            onMouseEnter={() => openSub('geo')}
+            onMouseLeave={scheduleClose}
+          >
+            <button
+              className={'nav__link nav__link--has-sub' + (GEO_SLUGS.includes(slug) ? ' nav__link--active' : '')}
+              type="button"
+              aria-expanded={openMenu === 'geo' ? 'true' : 'false'}
+              aria-haspopup="true"
+              data-sub-trigger=""
+              onClick={toggle('geo')}
+            >
+              GEO <Icon name="chevron-down" />
+            </button>
+            <div className="mega-menu" role="menu" aria-label="GEO">
+              <p className="mega-menu__label">GEO · visibilité dans les IA</p>
+              <div className="mega-group">
+                <Link href="/agence-geo/" className="mega-item" role="menuitem">
+                  <span className="mega-item__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3.5 21l1.4-4.6A8.5 8.5 0 1 1 21 12z" />
+                      <path d="M12.5 7.8l1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1z" />
+                    </svg>
+                  </span>
+                  <div className="mega-item__body">
+                    <strong className="mega-item__title">Agence GEO</strong>
+                    <p className="mega-item__desc">Être cité et recommandé par ChatGPT, Gemini et les IA</p>
+                  </div>
+                </Link>
+                <div className="mega-group__sub">
+                  <MegaSub href="/audit-geo/" title={`Audit GEO · dès ${euros(GEO_AUDITS[0].price)} HT`}>
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="M21 21l-4.3-4.3" />
+                    <path d="M8.5 13v-1.5M11 13V9M13.5 13v-2.5" />
+                  </MegaSub>
+                  <MegaSub href="/accompagnement-geo/" title={`Accompagnement GEO · dès ${euros(GEO_PLANS[0].price)} HT/mois`}>
+                    <polyline points="3 17 9 11 13 15 21 7" />
+                    <polyline points="15 7 21 7 21 13" />
+                  </MegaSub>
+                </div>
+              </div>
+              <Link href="/blog/referencement-chatgpt/" className="mega-item" role="menuitem">
+                <span className="mega-item__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" />
+                    <path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" />
+                    <path d="M9 8h7M9 12h5" />
+                  </svg>
+                </span>
+                <div className="mega-item__body">
+                  <strong className="mega-item__title">Guide : référencement ChatGPT</strong>
+                  <p className="mega-item__desc">Comment être cité par ChatGPT, en 8 étapes</p>
+                </div>
+              </Link>
+              <Link href="/glossaire-geo/" className="mega-item" role="menuitem">
+                <span className="mega-item__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 6h13M8 12h13M8 18h13" />
+                    <circle cx="3.5" cy="6" r="1" fill="currentColor" stroke="none" />
+                    <circle cx="3.5" cy="12" r="1" fill="currentColor" stroke="none" />
+                    <circle cx="3.5" cy="18" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                </span>
+                <div className="mega-item__body">
+                  <strong className="mega-item__title">Glossaire GEO</strong>
+                  <p className="mega-item__desc">Les mots du référencement IA, expliqués simplement</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+          <div
+            className={'nav__sub' + (openMenu === 'exp' ? ' is-open' : '')}
+            data-sub=""
+            onMouseEnter={() => openSub('exp')}
             onMouseLeave={scheduleClose}
           >
             <button
               className={'nav__link nav__link--has-sub' + (EXPERTISE_SLUGS.includes(slug) ? ' nav__link--active' : '')}
               type="button"
-              aria-expanded={subOpen ? 'true' : 'false'}
+              aria-expanded={openMenu === 'exp' ? 'true' : 'false'}
               aria-haspopup="true"
               data-sub-trigger=""
-              onClick={(e) => {
-                e.stopPropagation();
-                if (subOpen) setSubOpen(false);
-                else openSub();
-              }}
+              onClick={toggle('exp')}
             >
               Expertises <Icon name="chevron-down" />
             </button>
@@ -231,62 +303,38 @@ export default function Header() {
                   </MegaSub>
                 </div>
               </div>
-              <div className="mega-group">
-                <Link href="/agence-geo/" className="mega-item" role="menuitem">
-                  <span className="mega-item__icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3.5 21l1.4-4.6A8.5 8.5 0 1 1 21 12z" />
-                      <path d="M12.5 7.8l1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1z" />
-                    </svg>
-                  </span>
-                  <div className="mega-item__body">
-                    <strong className="mega-item__title">Agence GEO</strong>
-                    <p className="mega-item__desc">Être cité par ChatGPT, Gemini et les IA</p>
-                  </div>
-                </Link>
-                <div className="mega-group__sub">
-                  <MegaSub href="/audit-geo/" title="Audit GEO">
-                    <circle cx="11" cy="11" r="7" />
-                    <path d="M21 21l-4.3-4.3" />
-                    <path d="M8.5 13v-1.5M11 13V9M13.5 13v-2.5" />
-                  </MegaSub>
-                  <MegaSub href="/accompagnement-geo/" title="Accompagnement GEO">
-                    <polyline points="3 17 9 11 13 15 21 7" />
-                    <polyline points="15 7 21 7 21 13" />
-                  </MegaSub>
+              <Link href="/expertises-branding/" className="mega-item" role="menuitem">
+                <span className="mega-item__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 3a9 9 0 1 0 0 18 2 2 0 0 0 2-2v-.5a1.5 1.5 0 0 1 1.5-1.5H18a3 3 0 0 0 3-3 9 9 0 0 0-9-11z" />
+                    <circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none" />
+                    <circle cx="11" cy="7.5" r="1.1" fill="currentColor" stroke="none" />
+                    <circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none" />
+                    <circle cx="17.5" cy="12.5" r="1.1" fill="currentColor" stroke="none" />
+                  </svg>
+                </span>
+                <div className="mega-item__body">
+                  <strong className="mega-item__title">Branding</strong>
+                  <p className="mega-item__desc">Conception d’identité visuelle (Logo, Charte graphique, Bannière…)</p>
                 </div>
-              </div>
-              <div className="mega-stack">
-                <Link href="/expertises-branding/" className="mega-item" role="menuitem">
-                  <span className="mega-item__icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 3a9 9 0 1 0 0 18 2 2 0 0 0 2-2v-.5a1.5 1.5 0 0 1 1.5-1.5H18a3 3 0 0 0 3-3 9 9 0 0 0-9-11z" />
-                      <circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none" />
-                      <circle cx="11" cy="7.5" r="1.1" fill="currentColor" stroke="none" />
-                      <circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none" />
-                      <circle cx="17.5" cy="12.5" r="1.1" fill="currentColor" stroke="none" />
-                    </svg>
-                  </span>
-                  <div className="mega-item__body">
-                    <strong className="mega-item__title">Branding</strong>
-                    <p className="mega-item__desc">Conception d’identité visuelle (Logo, Charte graphique, Bannière…)</p>
-                  </div>
-                </Link>
-                <Link href="/expertises-motion/" className="mega-item" role="menuitem">
-                  <span className="mega-item__icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2.5" y="7" width="13" height="10" rx="2" />
-                      <path d="M15.5 10.5 L21.5 7.5 L21.5 16.5 L15.5 13.5 Z" />
-                    </svg>
-                  </span>
-                  <div className="mega-item__body">
-                    <strong className="mega-item__title">Motion design / Trailer</strong>
-                    <p className="mega-item__desc">Animations vidéo et trailers percutants pour donner vie à vos projets</p>
-                  </div>
-                </Link>
-              </div>
+              </Link>
+              <Link href="/expertises-motion/" className="mega-item" role="menuitem">
+                <span className="mega-item__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2.5" y="7" width="13" height="10" rx="2" />
+                    <path d="M15.5 10.5 L21.5 7.5 L21.5 16.5 L15.5 13.5 Z" />
+                  </svg>
+                </span>
+                <div className="mega-item__body">
+                  <strong className="mega-item__title">Motion design / Trailer</strong>
+                  <p className="mega-item__desc">Animations vidéo et trailers percutants pour donner vie à vos projets</p>
+                </div>
+              </Link>
             </div>
           </div>
+          <Link href="/notre-agence/" className={'nav__link' + active('notre-agence')}>
+            Notre agence
+          </Link>
           <Link href="/realisations/" className={'nav__link' + active('realisations')}>
             Réalisations
           </Link>

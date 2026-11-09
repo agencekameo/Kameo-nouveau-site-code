@@ -22,6 +22,7 @@ const PAGES: SearchDoc[] = [
   ['/agence-geo/', 'Agence GEO : référencement IA', 'Être cité par ChatGPT, Gemini, Perplexity et Claude : mesure, corrections, notoriété.'],
   ['/audit-geo/', 'Audit GEO', 'Visibilité dans les IA et plan d’action. Express 500 € HT, Complet 800 € HT.'],
   ['/accompagnement-geo/', 'Accompagnement GEO', 'Suivi mensuel de la visibilité IA, de 500 à 1 000 € HT par mois, audit offert.'],
+  ['/glossaire-geo/', 'Glossaire GEO', 'Les mots du référencement IA expliqués : Aperçus IA, OAI-SearchBot, part de voix, llms.txt.'],
   ['/realisations/', 'Réalisations', 'Portfolio des projets web, branding et motion design.'],
   ['/contact/', 'Contact', 'Formulaire, téléphone, email et rendez-vous Calendly.'],
   ['/blog/', 'Blog', 'Conseils web, branding et SEO.'],

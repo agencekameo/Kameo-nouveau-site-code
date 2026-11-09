@@ -43,6 +43,14 @@ export const pageSchemas: object[] = [
       },
       {
         '@type': 'Question',
+        name: 'Kameo peut-elle rendre mon entreprise visible dans ChatGPT et les IA ?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Oui, c'est désormais notre priorité : le GEO (Generative Engine Optimization), aussi appelé référencement IA. Nous mesurons ce que ChatGPT, Gemini, Perplexity et Claude disent de votre entreprise, nous corrigeons votre site et nous renforçons votre présence sur les sites qu'ils utilisent comme sources. Audit GEO dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement dès ${euros(GEO_PLANS[0].price)} HT par mois. Aucune agence ne peut garantir une citation : nous nous engageons sur le travail et sur une mesure transparente, chaque mois.`,
+        },
+      },
+      {
+        '@type': 'Question',
         name: 'Combien coûte un site chez Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',

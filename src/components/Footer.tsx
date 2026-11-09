@@ -74,9 +74,29 @@ export default function Footer() {
             />
           </Link>
           <p className="footer__tagline">
-            Design web stratégique et campagnes conçues pour générer des résultats et des conversions.
+            Agence GEO et web : une marque recommandée par les IA, des sites qui convertissent.
           </p>
           <LaFabriqueBadge />
+        </div>
+        <div className="footer__col footer__col--geo">
+          <p className="footer__col-title">GEO</p>
+          <ul>
+            <li>
+              <Link href="/agence-geo/">Agence GEO</Link>
+            </li>
+            <li>
+              <Link href="/audit-geo/">Audit GEO</Link>
+            </li>
+            <li>
+              <Link href="/accompagnement-geo/">Accompagnement GEO</Link>
+            </li>
+            <li>
+              <Link href="/blog/referencement-chatgpt/">Référencement ChatGPT</Link>
+            </li>
+            <li>
+              <Link href="/glossaire-geo/">Glossaire GEO</Link>
+            </li>
+          </ul>
         </div>
         <div className="footer__col">
           <p className="footer__col-title">Menu</p>
@@ -109,9 +129,6 @@ export default function Footer() {
             </li>
             <li>
               <Link href="/developpement-sur-mesure/">Développement sur-mesure</Link>
-            </li>
-            <li>
-              <Link href="/agence-geo/">Agence GEO</Link>
             </li>
             <li>
               <Link href="/expertises-motion/">Motion design</Link>

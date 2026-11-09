@@ -265,6 +265,8 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   padding: 0 16px;
 }
 .nav {
+  /* repère des menus déroulants : centrés sous la barre, ils restent dans l'écran (menu GEO ajouté le 09/11/2026) */
+  position: relative;
   pointer-events: auto;
   display: flex;
   align-items: center;
@@ -326,7 +328,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 
 /* Mega menu Expertises */
 .nav__sub {
-  position: relative;
+  position: static;
   display: inline-flex;
 }
 /* Mega-menu — positionné par rapport au .nav (le pill) pour un offset prévisible.
@@ -336,7 +338,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   position: absolute;
   top: 100%;
   left: 50%;
-  margin-top: 24px;  /* gap clair sous le pill (≈ padding-pill 8 + 16 supplémentaires) */
+  margin-top: 16px;  /* écart sous la barre (repère : .nav) */
   transform: translateX(-50%) translateY(-4px);
   min-width: 560px;
   padding: 28px 24px 24px;
@@ -1585,7 +1587,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 .bento__grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 340px 320px 340px;
+  grid-template-rows: auto 340px 320px 340px; /* 1re ligne : carte GEO (09/11/2026) */
   gap: 16px;
   background: #F5F6F8;
   padding: 16px;
@@ -1618,25 +1620,29 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 }
 
 /* ---- Grid positioning ---- */
+.bento__card--geo {
+  grid-column: 1 / 13;
+  grid-row: 1 / 2;
+}
 .bento__card--dev {
   grid-column: 1 / 6;
-  grid-row: 1 / 3;
+  grid-row: 2 / 4;
 }
 .bento__card--ads {
   grid-column: 6 / 13;
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
 }
 .bento__card--branding {
   grid-column: 6 / 13;
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
 }
 .bento__card--social {
   grid-column: 1 / 8;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
 }
 .bento__card--dark {
   grid-column: 8 / 13;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
 }
 
 /* ---- Dev visual (bottom of tall card) ---- */
@@ -1993,6 +1999,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
     grid-template-rows: none;
     grid-auto-rows: auto;
   }
+  .bento__card--geo,
   .bento__card--dev,
   .bento__card--ads,
   .bento__card--branding,
@@ -3014,8 +3021,9 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 }
 .footer__inner {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
-  gap: 48px;
+  /* marque | GEO | Menu | Expertises | contact (colonne GEO ajoutée le 09/11/2026) */
+  grid-template-columns: 1.3fr 1fr 1fr 1fr 1.3fr;
+  gap: 40px;
   padding-bottom: 56px;
   border-bottom: 1px solid rgba(255, 255, 255, .08);
 }
@@ -5123,7 +5131,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {
-  .footer__inner { grid-template-columns: 1.2fr 1fr 1fr 1.2fr; gap: 36px; }
+  .footer__inner { grid-template-columns: 1.1fr 1fr 1fr 1fr 1.1fr; gap: 28px; }
 
   .team__grid { --team-cols: 3; }
   .faq__grid { grid-template-columns: 1fr; gap: 40px; }
@@ -5238,10 +5246,11 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   .footer__brand { flex-direction: column; gap: 16px; }
   .footer__tagline { display: none; }
 
-  /* Menu + Expertises : 1 par colonne, centrés */
+  /* Menu + Expertises : 1 par colonne, centrés ; GEO sur toute la largeur, au-dessus */
   .footer__col {
     text-align: center;
   }
+  .footer__col--geo { grid-column: 1 / -1; }
   .footer__col ul { justify-items: center; }
 
   /* NAP : full width, sur sa propre ligne sous Menu+Expertises, centré */
@@ -5761,13 +5770,6 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   .mega-menu:has(.mega-group + .mega-group) > .mega-group{margin-bottom:0}
   .mega-menu:has(.mega-group + .mega-group) > .mega-item{margin-top:4px}
 }
-/* 3e ligne : groupe GEO à gauche, Branding et Motion empilés à droite */
-.mega-stack{display:flex;flex-direction:column;gap:2px}
-.mega-stack .mega-item + .mega-item{margin-top:0}
-@media (min-width:900px){
-  .mega-menu:has(.mega-group + .mega-group) > .mega-group ~ .mega-group ~ .mega-group,
-  .mega-menu:has(.mega-group + .mega-group) > .mega-stack{margin-top:8px}
-}
 
 /* ============================================================
    PAGE 404 (v2.7.1)
@@ -6086,4 +6088,116 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--c-accent);
+}
+
+
+/* ============================================================
+   ACCUEIL : GEO EN PREMIER (09/11/2026)
+   Bandeau sous le haut de page, carte GEO en tête des services.
+   ============================================================ */
+.home-geo { padding: 8px 0 clamp(36px, 5vw, 56px); background: #fff; }
+.home-geo__box {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: space-between; gap: clamp(20px, 3vw, 40px);
+  max-width: 1120px; margin: 0 auto;
+  padding: clamp(22px, 3vw, 32px) clamp(22px, 3.6vw, 40px);
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fff 0%, #FFF0EE 100%);
+  border: 1px solid rgba(237,110,99,.22);
+}
+.home-geo__label {
+  display: inline-flex; align-items: center; gap: 8px; margin: 0 0 8px;
+  font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #ED6E63;
+}
+.home-geo__label::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, #E14B89, #F8903C); }
+.home-geo__title { margin: 0 0 6px; font-family: var(--ff-heading, 'Satoshi', sans-serif); font-size: clamp(20px, 2.3vw, 26px); font-weight: 900; letter-spacing: -.02em; line-height: 1.2; color: #0F1115; }
+.home-geo__text { margin: 0; max-width: 56ch; font-size: 15px; line-height: 1.55; color: rgba(15,17,21,.68); }
+.home-geo__links { display: flex; flex-direction: column; gap: 8px; flex: 0 0 auto; margin: 0; padding: 0; list-style: none; }
+.home-geo__links a {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  min-width: 300px; padding: 11px 16px; border-radius: 14px;
+  background: #fff; border: 1px solid rgba(15,17,21,.08);
+  font-size: 14.5px; font-weight: 700; color: #0F1115; text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+.home-geo__links a:hover { border-color: rgba(237,110,99,.45); transform: translateX(2px); }
+.home-geo__links a span { font-weight: 800; color: #ED6E63; white-space: nowrap; }
+.home-geo__links a.home-geo__main { background: #0F1115; border-color: #0F1115; color: #fff; }
+.home-geo__links a.home-geo__main span { color: #F8903C; }
+@media (max-width: 860px) {
+  .home-geo__box { flex-direction: column; align-items: stretch; }
+  .home-geo__links a { min-width: 0; }
+}
+
+.bento__card--geo {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; gap: clamp(20px, 3vw, 44px);
+  background: radial-gradient(70% 90% at 92% 0%, rgba(248,144,60,.30), transparent 60%),
+              radial-gradient(60% 80% at 70% 110%, rgba(225,75,137,.25), transparent 65%),
+              #0F1115;
+  color: #fff;
+}
+.bento__card--geo .bento__card-title { color: #fff; font-size: clamp(24px, 2.6vw, 32px); font-weight: 800; }
+.bento__card--geo .bento__card-title span { background: linear-gradient(100deg, #E14B89, #F8903C); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bento__card--geo .bento__card-text { color: rgba(255,255,255,.72); max-width: 560px; }
+.bento__geo-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; padding: 0; list-style: none; }
+.bento__geo-chips li { padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); font-size: 13px; font-weight: 700; color: #fff; }
+.bento__geo-cta {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px;
+  background: linear-gradient(136.79deg, #E14B89 5.13%, #F8903C 84.98%); color: #fff; font-size: 14.5px; font-weight: 800; text-decoration: none;
+  box-shadow: 0 12px 26px -12px rgba(237,110,99,.6); transition: transform .2s;
+}
+.bento__geo-cta:hover { transform: translateY(-2px); }
+/* Aperçu d'une réponse d'IA (décor) */
+.bento__geo-chat { display: flex; flex-direction: column; gap: 12px; }
+.bento__geo-q { align-self: flex-end; max-width: 92%; padding: 11px 16px; border-radius: 18px 18px 4px 18px; background: #2A2D35; font-size: 13.5px; font-weight: 600; color: #E6E8EC; }
+.bento__geo-a { padding: 18px 18px 16px; border-radius: 18px; background: #fff; color: #0F1115; box-shadow: 0 24px 50px -24px rgba(0,0,0,.7); }
+.bento__geo-a i { display: block; height: 9px; border-radius: 5px; background: #ECEEF1; margin-bottom: 9px; }
+.bento__geo-a i:nth-child(2) { width: 82%; }
+.bento__geo-rec { margin: 12px 0; padding: 10px 12px; border-radius: 12px; background: #FFF4EF; border: 1.5px solid #F8903C; font-size: 13.5px; font-weight: 700; line-height: 1.35; }
+.bento__geo-rec b { background: linear-gradient(100deg, #E14B89, #F8903C); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bento__geo-src { display: flex; flex-wrap: wrap; gap: 6px; }
+.bento__geo-src em { font-style: normal; padding: 4px 10px; border-radius: 999px; background: #F1F2F4; font-size: 11.5px; font-weight: 700; color: #4B5160; }
+.bento__geo-src em:first-child { background: linear-gradient(100deg, #E14B89, #F8903C); color: #fff; }
+@media (max-width: 900px) {
+  .bento__card--geo { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .bento__geo-chat { display: none; }
+}
+
+/* Encart GEO des pages web (src/components/geo/GeoPromo.tsx) */
+.geo-promo { padding: clamp(28px, 4vw, 48px) 0; background: #fff; }
+.geo-promo__box {
+  display: flex; align-items: center; justify-content: space-between; gap: clamp(20px, 3vw, 44px);
+  max-width: 1120px; margin: 0 auto;
+  padding: clamp(24px, 3.4vw, 40px) clamp(22px, 4vw, 48px);
+  border-radius: 24px; overflow: hidden;
+  background: radial-gradient(70% 120% at 100% 0%, rgba(248,144,60,.28), transparent 60%),
+              radial-gradient(50% 90% at 75% 110%, rgba(225,75,137,.22), transparent 65%),
+              #0F1115;
+  color: #fff;
+}
+.geo-promo__label { margin: 0 0 8px; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #F8903C; }
+.geo-promo__title { margin: 0 0 10px; font-family: var(--ff-heading, 'Satoshi', sans-serif); font-size: clamp(22px, 2.6vw, 30px); font-weight: 900; letter-spacing: -.02em; line-height: 1.15; color: #fff; }
+.geo-promo__text { margin: 0; max-width: 62ch; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.74); }
+.geo-promo__text a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.geo-promo__actions { display: flex; flex-direction: column; align-items: stretch; gap: 12px; flex: 0 0 auto; }
+.geo-promo__btn {
+  display: inline-flex; align-items: center; justify-content: center; padding: 14px 24px; border-radius: 999px;
+  background: linear-gradient(136.79deg, #E14B89 5.13%, #F8903C 84.98%); color: #fff;
+  font-size: 15px; font-weight: 800; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 12px 26px -12px rgba(237,110,99,.6); transition: transform .2s;
+}
+.geo-promo__btn:hover { transform: translateY(-2px); }
+.geo-promo__link { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.85); text-align: center; text-decoration: none; }
+.geo-promo__link:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 820px) {
+  .geo-promo__box { flex-direction: column; align-items: stretch; }
+}
+
+/* Pied de page sur tablette (769-960 px) : 5 colonnes ne tiennent pas ; marque et contact sur toute la largeur,
+   GEO | Menu | Expertises au milieu (colonne GEO ajoutée le 09/11/2026) */
+@media (min-width: 769px) and (max-width: 960px) {
+  .footer__inner { grid-template-columns: repeat(3, 1fr); gap: 32px 28px; }
+  .footer__brand, .footer__col--nap { grid-column: 1 / -1; }
 }

@@ -12,7 +12,7 @@ export const INDEXABLE_PAGES = [
   '/', '/notre-agence/', '/benjamin-dayan/', '/agence-wordpress-paris/', '/creation-site-wordpress/',
   '/refonte-wordpress/', '/maintenance-wordpress/', '/expertises-branding/', '/expertises-motion/',
   '/developpement-sur-mesure/', '/creation-site-ecommerce/', '/creation-marketplace/', '/creation-crm-sur-mesure/',
-  '/creation-saas-ia/', '/agence-geo/', '/audit-geo/', '/accompagnement-geo/', '/realisations/', '/realisations/wordpress/',
+  '/creation-saas-ia/', '/agence-geo/', '/audit-geo/', '/accompagnement-geo/', '/glossaire-geo/', '/realisations/', '/realisations/wordpress/',
   '/contact/', '/blog/',
 ];
 

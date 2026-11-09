@@ -107,14 +107,14 @@ export default function HomePage() {
                 <span className="tp-widget__count">sur Trustpilot · {PROOF.avisNombre} avis</span>
               </span>
             </a>
-            <p className="hero__eyebrow">Design · SEO · Conversion</p>
+            <p className="hero__eyebrow">GEO · Design · SEO</p>
             <h1 className="hero__title">
               Agence web à Paris&nbsp;: des sites <br />
               sur-mesure qui convertissent
             </h1>
             <p className="hero__description">
-              Des sites web haut de gamme pour les PME, les startups et les indépendants, conçus sur-mesure pour refléter
-              l’excellence de votre activité.
+              Des sites sur-mesure pour les PME, les startups et les indépendants, et une marque que ChatGPT, Gemini et
+              les autres IA recommandent à vos futurs clients.
             </p>
             <a href="https://calendly.com/contact-agence-kameo/30min" target="_blank" rel="noopener" className="slots">
               <span className="slots__dot" />
@@ -144,6 +144,40 @@ export default function HomePage() {
                   <use href="/icons.svg#i-solid-arrow-up-right-from-square" />
                 </svg>
               </Link>
+            </div>
+          </div>
+        </section>
+        {/* ============ GEO : bandeau sous le haut de page (09/11/2026) ============ */}
+        <section className="home-geo" aria-labelledby="home-geo-title">
+          <div className="container">
+            <div className="home-geo__box">
+              <div>
+                <p className="home-geo__label">Notre priorité : le GEO</p>
+                <h2 className="home-geo__title" id="home-geo-title">
+                  Votre entreprise recommandée par ChatGPT, Gemini et les IA
+                </h2>
+                <p className="home-geo__text">
+                  Vos clients demandent déjà aux IA quel prestataire choisir. Nous mesurons ce qu’elles disent de vous,
+                  corrigeons votre site et renforçons votre présence sur les sources qu’elles citent.
+                </p>
+              </div>
+              <ul className="home-geo__links">
+                <li>
+                  <Link href="/agence-geo/" className="home-geo__main">
+                    Découvrir l’agence GEO <span>→</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/audit-geo/">
+                    Audit GEO <span>dès {euros(GEO_AUDITS[0].price)} HT</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/accompagnement-geo/">
+                    Accompagnement GEO <span>dès {euros(GEO_PLANS[0].price)} HT/mois</span>
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
@@ -765,6 +799,41 @@ export default function HomePage() {
               </h2>
             </header>
             <div className="bento__grid">
+              <article className="bento__card bento__card--geo">
+                <div className="bento__card-body">
+                  <h3 className="bento__card-title">
+                    GEO : votre marque <span>recommandée par les IA</span>
+                  </h3>
+                  <p className="bento__card-text">
+                    ChatGPT, Gemini, Perplexity et Claude conseillent déjà des entreprises à vos futurs clients. Nous
+                    mesurons votre visibilité dans leurs réponses, nous corrigeons ce qui vous freine et nous installons
+                    votre marque comme une référence.
+                  </p>
+                  <ul className="bento__geo-chips">
+                    <li>Audit dès {euros(GEO_AUDITS[0].price)} HT</li>
+                    <li>Accompagnement dès {euros(GEO_PLANS[0].price)} HT/mois</li>
+                    <li>4 IA mesurées chaque mois</li>
+                  </ul>
+                  <Link href="/agence-geo/" className="bento__geo-cta">
+                    Découvrir l’agence GEO <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+                <div className="bento__geo-chat" aria-hidden="true">
+                  <p className="bento__geo-q">Quel prestataire choisir pour… ?</p>
+                  <div className="bento__geo-a">
+                    <i />
+                    <i />
+                    <p className="bento__geo-rec">
+                      Je vous recommande <b>votre entreprise</b>, citée par plusieurs sources fiables.
+                    </p>
+                    <p className="bento__geo-src">
+                      <em>votre-site.fr</em>
+                      <em>annuaire</em>
+                      <em>avis</em>
+                    </p>
+                  </div>
+                </div>
+              </article>
               <article className="bento__card bento__card--dev">
                 <div className="bento__card-body">
                   <h3 className="bento__card-title">Développement Web</h3>
@@ -1172,6 +1241,34 @@ export default function HomePage() {
                     les IA (GEO) : <Link href="/audit-geo/">audit GEO</Link> dès {euros(GEO_AUDITS[0].price)} HT et{' '}
                     <Link href="/accompagnement-geo/">accompagnement GEO</Link> dès {euros(GEO_PLANS[0].price)} HT par
                     mois.
+                  </p>
+                </div>
+              </details>
+              <details className="expertise-faq__item">
+                <summary className="expertise-faq__q">
+                  <span>Kameo peut-elle rendre mon entreprise visible dans ChatGPT et les IA ?</span>
+                  <span className="expertise-faq__chevron" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="expertise-faq__a">
+                  <p>
+                    Oui, c'est désormais notre priorité : le <Link href="/agence-geo/">GEO</Link> (Generative Engine
+                    Optimization), aussi appelé référencement IA. Nous mesurons ce que ChatGPT, Gemini, Perplexity et
+                    Claude disent de votre entreprise, nous corrigeons votre site et nous renforçons votre présence sur les
+                    sites qu'ils utilisent comme sources. <Link href="/audit-geo/">Audit GEO</Link> dès{' '}
+                    {euros(GEO_AUDITS[0].price)} HT, <Link href="/accompagnement-geo/">accompagnement</Link> dès{' '}
+                    {euros(GEO_PLANS[0].price)} HT par mois. Aucune agence ne peut garantir une citation : nous nous
+                    engageons sur le travail et sur une mesure transparente, chaque mois.
                   </p>
                 </div>
               </details>

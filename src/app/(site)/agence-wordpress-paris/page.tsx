@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
+import GeoPromo from '@/components/geo/GeoPromo';
 import { pageMetadata } from '@/lib/seo';
 import { websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
@@ -1282,6 +1283,7 @@ export default function AgenceWordpressParisPage() {
             </p>
           </div>
         </section>
+        <GeoPromo variant="wordpress" />
         {/* ============ FAQ ============ */}
         <section className="expertise-faq" aria-labelledby="faq-title">
           <div className="container">
