@@ -45,7 +45,7 @@ export const GEO_AUDITS: GeoOffer[] = [
       'Diagnostic technique de votre site et de ce qui empêche les IA de bien vous comprendre.',
       "Plan d'action priorisé, que vous pouvez appliquer seul ou avec nous.",
     ],
-    cta: 'Demander mon audit Express',
+    cta: 'Réserver un rendez-vous',
   },
   {
     id: 'complet',
@@ -60,7 +60,7 @@ export const GEO_AUDITS: GeoOffer[] = [
       "Restitution du rapport en visio d'une heure.",
     ],
     featured: true,
-    cta: 'Demander mon audit Complet',
+    cta: 'Réserver un rendez-vous',
   },
 ];
 
