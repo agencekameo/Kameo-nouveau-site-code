@@ -130,7 +130,11 @@ export default async function ArticlePage({ params }: Props) {
   const author = remote?.author;
   const byFounder = isFounder(author?.name);
   const content = remote ? takeawaysBox(post) + html + remoteAuthorBox(post) : html + AUTHOR_BOX;
-  const bodyClass = remote ? 'article-body article-body--outil' : post.source === 'api' ? 'article-body article-body--api' : 'article-body';
+  const bodyClass = remote
+    ? 'article-body article-body--outil'
+    : post.source === 'api'
+      ? 'article-body article-body--api'
+      : 'article-body article-body--repo';
 
   // Données structurées : celles de l'outil telles quelles (article, FAQ…), complétées par les
   // entités du site (fondateur, organisation, page) et, s'il en manque, par celles du site. Fil d'Ariane :

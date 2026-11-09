@@ -76,9 +76,11 @@ function loadMarkdown(): Post[] {
     const { data, content } = frontMatter(fs.readFileSync(path.join(DIR, file), 'utf8'));
     if (data.draft) continue;
     const body = data.format === 'markdown' ? (marked.parse(content, { async: false }) as string) : content;
-    assertSafeHtml(body, file);
+    // tableaux dans un conteneur qui défile sur mobile, comme pour les articles de l'outil (blog-remote.ts)
+    const wrapped = body.replace(/<table\b/g, '<div class="article-table"><table').replace(/<\/table>/g, '</table></div>');
+    assertSafeHtml(wrapped, file);
     const p = `/blog/${slug}/`;
-    const html = addContentSrcset(addInternalLinks(body, p));
+    const html = addContentSrcset(addInternalLinks(wrapped, p));
     const text = body.replace(/<[^>]*>/g, ' ');
     // nombres de mots relevés à l'import sur le contenu brut, sinon calculés sur le HTML
     const words = Number(data.words) || wordCount(text);

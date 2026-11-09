@@ -528,6 +528,9 @@ export default function AgenceGeoPage() {
                   robot de recherche, OAI-SearchBot, qui doit pouvoir lire votre site&nbsp;; GPTBot, lui, sert à
                   l’entraînement.
                 </p>
+                <p className="geo-card__text">
+                  Notre guide&nbsp;: <Link href="/blog/referencement-chatgpt/">le référencement ChatGPT en 8 étapes</Link>.
+                </p>
               </li>
               <li className="geo-card">
                 <span className="geo-card__tag">Google</span>

@@ -305,7 +305,9 @@ export default function AuditGeoPage() {
                 lendemain. Et si vous voulez simplement en parler, l’appel de 30 minutes est gratuit.
               </p>
               <p>
-                Pour aller plus loin sur la méthode, voir notre page <Link href="/agence-geo/">agence GEO</Link>.
+                Pour faire un premier test vous-même, suivez notre guide du{' '}
+                <Link href="/blog/referencement-chatgpt/">référencement ChatGPT</Link>&nbsp;; la méthode complète est
+                présentée sur notre page <Link href="/agence-geo/">agence GEO</Link>.
               </p>
             </div>
           </div>

@@ -6,6 +6,7 @@
  * L'ordre compte : expressions les plus spécifiques d'abord.
  */
 const LINK_MAP: [string, string][] = [
+  ['référencement ChatGPT', '/blog/referencement-chatgpt/'],
   ['audit GEO', '/audit-geo/'],
   ['accompagnement GEO', '/accompagnement-geo/'],
   ['Generative Engine Optimization', '/agence-geo/'],
