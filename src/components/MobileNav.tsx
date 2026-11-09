@@ -26,6 +26,9 @@ const EXPERTISES: Sub[] = [
   { href: '/creation-marketplace/', icon: 'fa-shop', title: 'Création marketplace', desc: 'Multi-vendeurs, Stripe Connect', match: ['creation-marketplace'] },
   { href: '/creation-crm-sur-mesure/', icon: 'fa-users-gear', title: 'CRM sur-mesure', desc: 'Alternative Salesforce / HubSpot', match: ['creation-crm-sur-mesure'] },
   { href: '/creation-saas-ia/', icon: 'fa-brain', title: 'SaaS avec IA', desc: 'Claude, GPT, RAG, multi-tenant', match: ['creation-saas-ia'] },
+  { href: '/agence-geo/', icon: 'fa-wand-magic-sparkles', title: 'Agence GEO', desc: 'Être cité par ChatGPT et les IA', match: ['agence-geo'] },
+  { href: '/audit-geo/', icon: 'fa-magnifying-glass-chart', title: 'Audit GEO', desc: 'Votre visibilité dans les IA', match: ['audit-geo'] },
+  { href: '/accompagnement-geo/', icon: 'fa-arrow-trend-up', title: 'Accompagnement GEO', desc: 'Suivi mensuel, audit offert', match: ['accompagnement-geo'] },
   { href: '/expertises-branding/', icon: 'fa-palette', title: 'Branding', desc: 'Logo, Charte graphique…', match: ['expertises-branding'] },
   { href: '/expertises-motion/', icon: 'fa-film', title: 'Motion design', desc: 'Animations & trailers', match: ['expertises-motion'] },
 ];

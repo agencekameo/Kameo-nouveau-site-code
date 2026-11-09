@@ -10,6 +10,7 @@
  * d'ouverture sur l'adresse parisienne, où aucun client n'est reçu : les horaires
  * sont ceux de la joignabilité (ContactPoint.hoursAvailable).
  */
+import { GEO_AUDITS, GEO_ENGINES, GEO_PLANS, euros } from '@/content/geo';
 import { pageInfo } from '@/content/pages';
 import { ADDRESS, COMPANY, CONTACT, HOURS, PROFILES, SITE_URL, SOCIAL, abs } from './site';
 
@@ -52,7 +53,7 @@ const contactPoint = (): Json => ({
 });
 
 const ORG_DESCRIPTION =
-  "Agence web à Paris fondée en 2023 par Benjamin Dayan : création, refonte et maintenance de sites WordPress sur-mesure (Elementor Pro ou thème codé), développement d'applications sur-mesure (CRM, marketplaces, SaaS avec IA), branding et motion design. " +
+  "Agence web à Paris fondée en 2023 par Benjamin Dayan : création, refonte et maintenance de sites WordPress sur-mesure (Elementor Pro ou thème codé), développement d'applications sur-mesure (CRM, marketplaces, SaaS avec IA), GEO (visibilité dans les réponses des IA), branding et motion design. " +
   `Équipe de ${COMPANY.teamSize} personnes ; rendez-vous en visio, sans déplacement, pour des clients à Paris, en Île-de-France et dans toute la France.`;
 
 export const personBenjamin = (): Json => ({
@@ -105,7 +106,7 @@ export const organization = (): Json => ({
   knowsAbout: [
     'WordPress', 'WooCommerce', 'Elementor', 'SEO technique', 'Schema.org', 'Motion Design', 'Branding', 'SaaS',
     'React', 'Next.js', 'Claude API', 'OpenAI API', 'Stripe Connect', 'Développement sur-mesure', 'CRM sur-mesure',
-    'Marketplace multi-vendeurs', 'Direction artistique',
+    'Marketplace multi-vendeurs', 'Direction artistique', 'GEO (Generative Engine Optimization)', 'Référencement IA',
   ],
   email: CONTACT.email,
   telephone: CONTACT.phoneE164,
@@ -204,7 +205,51 @@ const offresWordpress = (): Json[] => [
   { ...offre(2999), name: 'E-commerce WordPress (WooCommerce)' },
 ];
 
-const SERVICES: Record<string, { name: string; serviceType: string; description: string; offers?: Json | Json[] }> = {
+/* Offres GEO à prix publics, HT (src/content/geo.ts) : audits en paiement unique, accompagnements au mois. */
+function offreGeo(name: string, price: number, monthly: boolean, path: string): Json {
+  const spec: Json = { price: String(price), priceCurrency: 'EUR', valueAddedTaxIncluded: false };
+  return {
+    '@type': 'Offer',
+    name,
+    url: abs(path),
+    price: String(price),
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    priceSpecification: monthly
+      ? { '@type': 'UnitPriceSpecification', ...spec, unitCode: 'MON', unitText: 'mois' }
+      : { '@type': 'PriceSpecification', ...spec },
+  };
+}
+const offresAuditGeo = (): Json[] => GEO_AUDITS.map((o) => offreGeo(o.name, o.price, false, '/audit-geo/'));
+const offresAccompagnementGeo = (): Json[] =>
+  GEO_PLANS.map((o) => offreGeo(`Accompagnement GEO ${o.name}`, o.price, true, '/accompagnement-geo/'));
+const IA = GEO_ENGINES.join(', ').replace(/, (?=[^,]*$)/, ' et ');
+
+const SERVICES: Record<
+  string,
+  { name: string; serviceType: string; description: string; alternateName?: string[]; offers?: Json | Json[] }
+> = {
+  'agence-geo': {
+    name: 'Agence GEO (Generative Engine Optimization)',
+    serviceType: 'Generative Engine Optimization (GEO)',
+    alternateName: ['Référencement IA', 'SEO pour les IA'],
+    description: `Visibilité des entreprises dans les réponses de ${IA} : mesure, corrections du site et notoriété. Audit GEO dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement mensuel dès ${euros(GEO_PLANS[0].price)} HT.`,
+    offers: [...offresAuditGeo(), ...offresAccompagnementGeo()],
+  },
+  'audit-geo': {
+    name: 'Audit GEO',
+    serviceType: 'Audit de visibilité dans les IA génératives',
+    alternateName: ['Audit de visibilité IA', 'Audit référencement IA'],
+    description: `Audit de la visibilité d'une entreprise dans les réponses de ${IA}, diagnostic technique du site et plan d'action priorisé. Express ${euros(GEO_AUDITS[0].price)} HT, Complet ${euros(GEO_AUDITS[1].price)} HT.`,
+    offers: offresAuditGeo(),
+  },
+  'accompagnement-geo': {
+    name: 'Accompagnement GEO',
+    serviceType: 'Accompagnement mensuel en Generative Engine Optimization',
+    alternateName: ['Suivi de visibilité IA', 'Stratégie GEO'],
+    description: `Suivi mensuel de la visibilité dans ${IA} (50 questions clés), corrections du site, présence externe et contenus optimisés pour les IA. Dès ${euros(GEO_PLANS[0].price)} HT par mois, 6 mois minimum.`,
+    offers: offresAccompagnementGeo(),
+  },
   'agence-wordpress-paris': {
     name: 'Agence WordPress Paris',
     serviceType: 'WordPress development & SEO',
@@ -288,6 +333,7 @@ export function serviceSchema(slug: string): Json | null {
     '@type': 'Service',
     '@id': url + '#service',
     name: s.name,
+    ...(s.alternateName ? { alternateName: s.alternateName } : {}),
     serviceType: s.serviceType,
     description: s.description,
     provider: { '@id': ORG_ID },

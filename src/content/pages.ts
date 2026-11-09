@@ -7,7 +7,7 @@
 export type PageInfo = { label: string; published: string; modified: string };
 
 export const PAGES: Record<string, PageInfo> = {
-  '/': { label: 'Accueil', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-31T12:00:00+00:00' }, // prix e-commerce 2 999 € (28/10/2026) ; équipe, prix du sur-mesure (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026) ; équipe à 6, métiers décrits sans titres absents (31/10/2026)
+  '/': { label: 'Accueil', published: '2026-05-05T19:49:13+00:00', modified: '2026-11-09T12:00:00+00:00' }, // prix e-commerce 2 999 € (28/10/2026) ; équipe, prix du sur-mesure (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026) ; équipe à 6, métiers décrits sans titres absents (31/10/2026) ; lien et FAQ vers les offres GEO (09/11/2026)
   '/notre-agence/': { label: 'Notre agence', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-31T12:00:00+00:00' }, // Paris uniquement (14/10/2026) ; chefs de projet (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026) ; Jeremy retiré, équipe à 6, Aysha directrice artistique (31/10/2026)
   '/benjamin-dayan/': { label: 'Benjamin Dayan — Fondateur', published: '2026-09-23T15:17:34+00:00', modified: '2026-10-31T12:00:00+00:00' }, // expertise WordPress, équipe (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026) ; équipe à 6, métiers (31/10/2026)
   '/agence-wordpress-paris/': { label: 'Agence WordPress Paris', published: '2026-06-11T08:39:03+00:00', modified: '2026-10-31T12:00:00+00:00' }, // délais des offres (24/10/2026), page refaite pour les réponses des IA (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026) ; équipe à 6, « sans intermédiaire », métiers (31/10/2026)
@@ -21,6 +21,9 @@ export const PAGES: Record<string, PageInfo> = {
   '/creation-marketplace/': { label: 'Création de marketplace', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
   '/creation-crm-sur-mesure/': { label: 'Création de CRM sur-mesure', published: '2026-09-18T12:15:30+00:00', modified: '2026-10-16T16:47:04+00:00' },
   '/creation-saas-ia/': { label: 'Création de SaaS IA', published: '2026-09-18T12:15:31+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
+  '/agence-geo/': { label: 'Agence GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : page pilier GEO, offres et prix publics (09/11/2026)
+  '/audit-geo/': { label: 'Audit GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : audits Express 750 € et Complet 1 000 € HT (09/11/2026)
+  '/accompagnement-geo/': { label: 'Accompagnement GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : formules Essentiel 500, Croissance 650, Autorité 950 € HT/mois (09/11/2026)
   '/realisations/': { label: 'Réalisations', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-31T12:00:00+00:00' }, // lien vers les sites WordPress (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026)
   '/realisations/wordpress/': { label: 'Réalisations WordPress', published: '2026-10-30T12:00:00+00:00', modified: '2026-10-31T12:00:00+00:00' }, // portfolio WordPress (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026)
   '/contact/': { label: 'Contact', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },

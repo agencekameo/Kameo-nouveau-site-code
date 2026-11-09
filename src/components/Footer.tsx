@@ -111,6 +111,9 @@ export default function Footer() {
               <Link href="/developpement-sur-mesure/">Développement sur-mesure</Link>
             </li>
             <li>
+              <Link href="/agence-geo/">Agence GEO</Link>
+            </li>
+            <li>
               <Link href="/expertises-motion/">Motion design</Link>
             </li>
             <li>

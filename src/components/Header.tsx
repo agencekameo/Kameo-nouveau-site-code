@@ -12,7 +12,8 @@ import { CONTACT } from '@/lib/site';
 const EXPERTISE_SLUGS = [
   'agence-wordpress-paris', 'creation-site-wordpress', 'refonte-wordpress', 'maintenance-wordpress',
   'expertises-branding', 'expertises-motion', 'developpement-sur-mesure', 'creation-site-ecommerce',
-  'creation-marketplace', 'creation-crm-sur-mesure', 'creation-saas-ia',
+  'creation-marketplace', 'creation-crm-sur-mesure', 'creation-saas-ia', 'agence-geo', 'audit-geo',
+  'accompagnement-geo',
 ];
 
 /** Slug courant au sens de header.php : front-page, slug de page, « realisations » ou « blog ». */
@@ -230,33 +231,60 @@ export default function Header() {
                   </MegaSub>
                 </div>
               </div>
-              <Link href="/expertises-branding/" className="mega-item" role="menuitem">
-                <span className="mega-item__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 3a9 9 0 1 0 0 18 2 2 0 0 0 2-2v-.5a1.5 1.5 0 0 1 1.5-1.5H18a3 3 0 0 0 3-3 9 9 0 0 0-9-11z" />
-                    <circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none" />
-                    <circle cx="11" cy="7.5" r="1.1" fill="currentColor" stroke="none" />
-                    <circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none" />
-                    <circle cx="17.5" cy="12.5" r="1.1" fill="currentColor" stroke="none" />
-                  </svg>
-                </span>
-                <div className="mega-item__body">
-                  <strong className="mega-item__title">Branding</strong>
-                  <p className="mega-item__desc">Conception d’identité visuelle (Logo, Charte graphique, Bannière…)</p>
+              <div className="mega-group">
+                <Link href="/agence-geo/" className="mega-item" role="menuitem">
+                  <span className="mega-item__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3.5 21l1.4-4.6A8.5 8.5 0 1 1 21 12z" />
+                      <path d="M12.5 7.8l1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1z" />
+                    </svg>
+                  </span>
+                  <div className="mega-item__body">
+                    <strong className="mega-item__title">Agence GEO</strong>
+                    <p className="mega-item__desc">Être cité par ChatGPT, Gemini et les IA</p>
+                  </div>
+                </Link>
+                <div className="mega-group__sub">
+                  <MegaSub href="/audit-geo/" title="Audit GEO">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="M21 21l-4.3-4.3" />
+                    <path d="M8.5 13v-1.5M11 13V9M13.5 13v-2.5" />
+                  </MegaSub>
+                  <MegaSub href="/accompagnement-geo/" title="Accompagnement GEO">
+                    <polyline points="3 17 9 11 13 15 21 7" />
+                    <polyline points="15 7 21 7 21 13" />
+                  </MegaSub>
                 </div>
-              </Link>
-              <Link href="/expertises-motion/" className="mega-item" role="menuitem">
-                <span className="mega-item__icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2.5" y="7" width="13" height="10" rx="2" />
-                    <path d="M15.5 10.5 L21.5 7.5 L21.5 16.5 L15.5 13.5 Z" />
-                  </svg>
-                </span>
-                <div className="mega-item__body">
-                  <strong className="mega-item__title">Motion design / Trailer</strong>
-                  <p className="mega-item__desc">Animations vidéo et trailers percutants pour donner vie à vos projets</p>
-                </div>
-              </Link>
+              </div>
+              <div className="mega-stack">
+                <Link href="/expertises-branding/" className="mega-item" role="menuitem">
+                  <span className="mega-item__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 3a9 9 0 1 0 0 18 2 2 0 0 0 2-2v-.5a1.5 1.5 0 0 1 1.5-1.5H18a3 3 0 0 0 3-3 9 9 0 0 0-9-11z" />
+                      <circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none" />
+                      <circle cx="11" cy="7.5" r="1.1" fill="currentColor" stroke="none" />
+                      <circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none" />
+                      <circle cx="17.5" cy="12.5" r="1.1" fill="currentColor" stroke="none" />
+                    </svg>
+                  </span>
+                  <div className="mega-item__body">
+                    <strong className="mega-item__title">Branding</strong>
+                    <p className="mega-item__desc">Conception d’identité visuelle (Logo, Charte graphique, Bannière…)</p>
+                  </div>
+                </Link>
+                <Link href="/expertises-motion/" className="mega-item" role="menuitem">
+                  <span className="mega-item__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2.5" y="7" width="13" height="10" rx="2" />
+                      <path d="M15.5 10.5 L21.5 7.5 L21.5 16.5 L15.5 13.5 Z" />
+                    </svg>
+                  </span>
+                  <div className="mega-item__body">
+                    <strong className="mega-item__title">Motion design / Trailer</strong>
+                    <p className="mega-item__desc">Animations vidéo et trailers percutants pour donner vie à vos projets</p>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
           <Link href="/realisations/" className={'nav__link' + active('realisations')}>

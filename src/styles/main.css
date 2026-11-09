@@ -5761,6 +5761,13 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   .mega-menu:has(.mega-group + .mega-group) > .mega-group{margin-bottom:0}
   .mega-menu:has(.mega-group + .mega-group) > .mega-item{margin-top:4px}
 }
+/* 3e ligne : groupe GEO à gauche, Branding et Motion empilés à droite */
+.mega-stack{display:flex;flex-direction:column;gap:2px}
+.mega-stack .mega-item + .mega-item{margin-top:0}
+@media (min-width:900px){
+  .mega-menu:has(.mega-group + .mega-group) > .mega-group ~ .mega-group ~ .mega-group,
+  .mega-menu:has(.mega-group + .mega-group) > .mega-stack{margin-top:8px}
+}
 
 /* ============================================================
    PAGE 404 (v2.7.1)

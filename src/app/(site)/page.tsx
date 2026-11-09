@@ -5,6 +5,7 @@ import CalendlyPopup from '@/components/CalendlyPopup';
 import { pageMetadata } from '@/lib/seo';
 import { GOOGLE_SITE_VERIFICATION, PROOF } from '@/lib/site';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
+import { GEO_AUDITS, GEO_PLANS, euros } from '@/content/geo';
 import { pageSchemas } from './schema';
 
 const PATH = '/';
@@ -740,6 +741,14 @@ export default function HomePage() {
               <Link href="/creation-saas-ia/">SaaS avec IA générative</Link>. Même équipe, même exigence, code dont vous
               restez propriétaire.{' '}
             </p>
+            <p className="seo-about__text">
+              Et pour que votre entreprise soit aussi recommandée par ChatGPT, Gemini, Perplexity et Claude, notre{' '}
+              <strong>
+                <Link href="/agence-geo/">agence GEO</Link>
+              </strong>{' '}
+              mesure votre visibilité dans leurs réponses, corrige votre site et renforce votre présence sur les sources
+              qu’elles consultent.
+            </p>
           </div>
         </section>
         {/* ============ BENTO / NOS SERVICES ============ */}
@@ -1159,7 +1168,10 @@ export default function HomePage() {
                     <Link href="/creation-site-ecommerce/">e-commerce</Link>. Ensuite les applications métier :{' '}
                     <Link href="/creation-crm-sur-mesure/">CRM sur-mesure</Link> dès 7 999 € HT,{' '}
                     <Link href="/creation-marketplace/">marketplace</Link> dès 8 000 € HT et{' '}
-                    <Link href="/creation-saas-ia/">SaaS avec IA</Link> dès 8 000 € HT.
+                    <Link href="/creation-saas-ia/">SaaS avec IA</Link> dès 8 000 € HT. S'y ajoute la visibilité dans
+                    les IA (GEO) : <Link href="/audit-geo/">audit GEO</Link> dès {euros(GEO_AUDITS[0].price)} HT et{' '}
+                    <Link href="/accompagnement-geo/">accompagnement GEO</Link> dès {euros(GEO_PLANS[0].price)} HT par
+                    mois.
                   </p>
                 </div>
               </details>

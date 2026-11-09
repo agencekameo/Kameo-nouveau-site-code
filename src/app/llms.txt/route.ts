@@ -1,6 +1,13 @@
 import { getAllPostsOrRepo } from '@/lib/blog';
 import { NB_WOOCOMMERCE, REALISATIONS, REALISATIONS_WORDPRESS } from '@/content/realisations';
 import { CONTACT, CONTENT_UPDATED, PROOF, SITE_URL, SOCIAL } from '@/lib/site';
+import { GEO_AUDITS, GEO_ENGINES, GEO_MIN_MONTHS, GEO_PLANS, GEO_QUESTIONS } from '@/content/geo';
+
+/* Prix GEO en texte brut (espaces simples) et liste des IA « ChatGPT, Gemini, Perplexity et Claude ». */
+const euro = (n: number) => n.toLocaleString('fr-FR').replace(/\s/g, ' ') + ' €';
+const IA = GEO_ENGINES.join(', ').replace(/, (?=[^,]*$)/, ' et ');
+const [express, complet] = GEO_AUDITS;
+const plans = GEO_PLANS;
 
 /* /llms.txt (standard llmstxt.org) — synthèse du site pour les moteurs génératifs.
    Source unique, reprise de la section 0 de functions.php. v3 : ajout des articles de
@@ -23,7 +30,7 @@ export async function GET() {
     : '';
   const txt = `# Kameo, agence web et développement sur-mesure à Paris
 
-> Agence web fondée en 2023 par Benjamin Dayan. Deux métiers : la création de sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et le développement d'applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
+> Agence web fondée en 2023 par Benjamin Dayan. Deux métiers : la création de sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et le développement d'applications métier (CRM, outils internes, marketplaces, SaaS). Kameo propose aussi le GEO, ou référencement IA, pour être cité par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${euro(plans[0].price)} HT par mois. Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
 
 Dernière mise à jour : ${maj}
 
@@ -49,6 +56,12 @@ Dernière mise à jour : ${maj}
 - [Création de CRM sur-mesure](${home}creation-crm-sur-mesure/) : développement d'un CRM adapté au processus commercial réel de l'entreprise, code et données propriétaires, à partir de 7 999 € HT.
 - [Création de SaaS avec IA](${home}creation-saas-ia/) : conception et développement d'applications SaaS intégrant l'IA générative, premier périmètre à partir de 8 000 € HT.
 - [Création de marketplace](${home}creation-marketplace/) : plateforme multi-vendeurs, paiement scindé via Stripe Connect, à partir de 8 000 € HT.
+
+## GEO : visibilité dans les réponses des IA
+
+- [Agence GEO](${home}agence-geo/) : GEO (Generative Engine Optimization), aussi appelé référencement IA. Kameo mesure ce que ${IA} disent d'une entreprise, corrige son site (accès des robots d'IA, pages qui répondent, informations cohérentes) et renforce sa présence sur les sources que les IA consultent. Prix publics.
+- [Audit GEO](${home}audit-geo/) : ${express.name} à ${euro(express.price)} HT (visibilité dans les 4 IA, diagnostic technique, plan d'action priorisé) ; ${complet.name} à ${euro(complet.price)} HT (en plus : 3 concurrents directs, sources citées par les IA dans le secteur, restitution d'une heure en visio). Paiement unique ; prix déduit si un accompagnement démarre dans le mois.
+- [Accompagnement GEO](${home}accompagnement-geo/) : ${plans.map((p) => `${p.name} ${euro(p.price)} HT par mois`).join(', ')}. Mesure mensuelle de ${GEO_QUESTIONS} questions clés sur les 4 IA, corrections du site, fiches et annuaires, avis, contenus selon la formule. Engagement de ${GEO_MIN_MONTHS} mois minimum, Audit GEO Express offert au démarrage, 1 mois offert pour un engagement annuel.
 
 ## Expertises complémentaires
 
@@ -88,6 +101,7 @@ ${blog}
 - Développement de CRM et d'outils métier internes, en remplacement de tableurs ou de logiciels inadaptés
 - Applications SaaS et intégration d'IA générative dans des outils d'entreprise
 - Marketplaces multi-vendeurs avec paiement scindé
+- GEO (référencement IA) : audits et accompagnements pour être cité par ChatGPT, Gemini, Perplexity et Claude
 - E-commerce WooCommerce et Shopify
 - Refonte de sites existants avec conservation du référencement acquis
 - Identité visuelle complète et motion design

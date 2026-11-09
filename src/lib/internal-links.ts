@@ -6,6 +6,11 @@
  * L'ordre compte : expressions les plus spécifiques d'abord.
  */
 const LINK_MAP: [string, string][] = [
+  ['audit GEO', '/audit-geo/'],
+  ['accompagnement GEO', '/accompagnement-geo/'],
+  ['Generative Engine Optimization', '/agence-geo/'],
+  ['agence GEO', '/agence-geo/'],
+  ['référencement IA', '/agence-geo/'],
   ['création de site WordPress', '/creation-site-wordpress/'],
   ['refonte de site WordPress', '/refonte-wordpress/'],
   ['maintenance WordPress', '/maintenance-wordpress/'],

@@ -1,3 +1,4 @@
+import { GEO_AUDITS, GEO_PLANS, euros } from '@/content/geo';
 import { PROOF } from '@/lib/site';
 
 /* Données structurées propres à la page (émises dans le corps par le gabarit WordPress). */
@@ -37,7 +38,7 @@ export const pageSchemas: object[] = [
         name: 'Quels services propose Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Deux piliers. D'abord les sites internet : création WordPress sur-mesure dès 1 299 € HT, refonte, maintenance dès 79 € HT par mois et e-commerce. Ensuite les applications métier : CRM sur-mesure dès 7 999 € HT, marketplace dès 8 000 € HT et SaaS avec IA dès 8 000 € HT.",
+          text: `Deux piliers. D'abord les sites internet : création WordPress sur-mesure dès 1 299 € HT, refonte, maintenance dès 79 € HT par mois et e-commerce. Ensuite les applications métier : CRM sur-mesure dès 7 999 € HT, marketplace dès 8 000 € HT et SaaS avec IA dès 8 000 € HT. S'y ajoute la visibilité dans les IA (GEO) : audit GEO dès ${euros(GEO_AUDITS[0].price)} HT et accompagnement GEO dès ${euros(GEO_PLANS[0].price)} HT par mois.`,
         },
       },
       {
