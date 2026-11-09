@@ -5,7 +5,8 @@
  *
  * Offres : PDF « Offres GEO » de Benjamin (novembre 2026). Prix relevés le 09/11/2026 à sa
  * demande (+200 à +300 € par offre, arrondis) : Express 490 → 750, Complet 790 → 1 000,
- * Essentiel 290 → 500, Croissance 390 → 650, Autorité 690 → 950 € HT.
+ * Essentiel 290 → 500 € HT ; puis, le même jour, Croissance 390 → 700 et Autorité 690 → 1 000 € HT
+ * par mois (« croissance 700€, autorité 1000€ »).
  *
  * Les réponses des FAQ sont en HTML simple (<strong>, <a>) : affichées telles quelles et
  * reprises sans balises dans le FAQPage, pour que le balisage décrive exactement la page.
@@ -82,7 +83,7 @@ export const GEO_PLANS: GeoOffer[] = [
   {
     id: 'croissance',
     name: 'Croissance',
-    price: 650,
+    price: 700,
     monthly: true,
     tagline: 'On ne se contente plus de conseiller : on crée votre présence externe.',
     items: [
@@ -92,12 +93,12 @@ export const GEO_PLANS: GeoOffer[] = [
       "Mise en place d'une stratégie de collecte d'avis clients.",
     ],
     featured: true,
-    cta: 'Je choisis Croissance',
+    cta: 'Réserver un rendez-vous',
   },
   {
     id: 'autorite',
     name: 'Autorité',
-    price: 950,
+    price: 1000,
     monthly: true,
     tagline: 'On produit les contenus qui font de vous la référence de votre secteur.',
     items: [

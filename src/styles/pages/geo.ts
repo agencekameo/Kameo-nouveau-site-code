@@ -7,6 +7,11 @@
 const css = `
 :root { --accent-gradient: linear-gradient(136.79deg, #E14B89 5.13%, #F8903C 84.98%); }
 
+/* Boutons du héros : espacés, le second en blanc bordé (comme les autres pages Expertises) */
+.page-hero__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+.page-hero__btn--secondary { background: transparent !important; color: #0f1115 !important; border: 1.5px solid rgba(15,17,21,.18) !important; }
+.page-hero__btn--secondary:hover { background: #F9FAFB !important; border-color: rgba(15,17,21,.3) !important; }
+
 /* En-tête de section commun */
 .geo-head { text-align: center; max-width: 760px; margin: 0 auto clamp(36px,5vw,56px); }
 .geo-head__eyebrow { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #ED6E63; margin: 0 0 14px; }

@@ -23,7 +23,7 @@ export const PAGES: Record<string, PageInfo> = {
   '/creation-saas-ia/': { label: 'Création de SaaS IA', published: '2026-09-18T12:15:31+00:00', modified: '2026-10-24T12:00:00+00:00' }, // délais des offres (24/10/2026)
   '/agence-geo/': { label: 'Agence GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : page pilier GEO, offres et prix publics (09/11/2026)
   '/audit-geo/': { label: 'Audit GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : audits Express 750 € et Complet 1 000 € HT (09/11/2026)
-  '/accompagnement-geo/': { label: 'Accompagnement GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : formules Essentiel 500, Croissance 650, Autorité 950 € HT/mois (09/11/2026)
+  '/accompagnement-geo/': { label: 'Accompagnement GEO', published: '2026-11-09T12:00:00+00:00', modified: '2026-11-09T12:00:00+00:00' }, // création : formules Essentiel 500, Croissance 700, Autorité 1 000 € HT/mois (09/11/2026)
   '/realisations/': { label: 'Réalisations', published: '2026-05-05T19:49:13+00:00', modified: '2026-10-31T12:00:00+00:00' }, // lien vers les sites WordPress (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026)
   '/realisations/wordpress/': { label: 'Réalisations WordPress', published: '2026-10-30T12:00:00+00:00', modified: '2026-10-31T12:00:00+00:00' }, // portfolio WordPress (30/10/2026) ; maillage, FAQ et données GEO (31/10/2026)
   '/contact/': { label: 'Contact', published: '2026-05-05T19:49:13+00:00', modified: '2026-05-05T19:49:13+00:00' },
