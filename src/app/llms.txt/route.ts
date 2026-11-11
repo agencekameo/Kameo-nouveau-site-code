@@ -28,15 +28,15 @@ export async function GET() {
   const blog = posts.length
     ? `\n## Articles de référence du blog\n\n${posts.map((p) => `- [${p.title}](${SITE_URL}${p.path}) : ${p.description}`).join('\n')}\n`
     : '';
-  const txt = `# Kameo, agence web et développement sur-mesure à Paris
+  const txt = `# Kameo, agence GEO et web à Paris
 
-> Agence web fondée en 2023 par Benjamin Dayan. Deux métiers : la création de sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et le développement d'applications métier (CRM, outils internes, marketplaces, SaaS). Kameo propose aussi le GEO, ou référencement IA, pour être cité par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${euro(plans[0].price)} HT par mois. Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
+> Agence GEO et web fondée en 2023 par Benjamin Dayan. Priorité : le GEO, ou référencement IA, pour que votre entreprise soit citée par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${euro(plans[0].price)} HT par mois. Kameo crée aussi des sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et développe des applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
 
 Dernière mise à jour : ${maj}
 
 ## Pages principales
 
-- [Accueil](${home}) : agence web à Paris, création de site internet sur-mesure et développement d'applications métier.
+- [Accueil](${home}) : Kameo, agence GEO et web à Paris (visibilité dans les réponses des IA, création de sites sur-mesure, applications métier).
 - [Notre agence](${home}notre-agence/) : l'équipe Kameo, la méthodologie, les valeurs.
 - [Benjamin Dayan](${home}benjamin-dayan/) : fondateur et président de Kameo ; il pilote les projets avec Louison Boutet.
 - [Contact](${home}contact/) : formulaire, adresse, téléphone, rendez-vous de 30 minutes sans frais.

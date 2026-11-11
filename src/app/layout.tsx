@@ -11,7 +11,7 @@ import { GEO, SITE_ICON, SITE_NAME, SITE_URL } from '@/lib/site';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
-  authors: [{ name: 'Kameo, Agence web Paris' }],
+  authors: [{ name: 'Kameo, agence GEO et web à Paris' }],
   alternates: { types: { 'application/rss+xml': [{ url: '/feed/', title: 'Blog Kameo' }] } },
   // Icône du site (réglage WordPress « Identité du site », hors thème)
   icons: {

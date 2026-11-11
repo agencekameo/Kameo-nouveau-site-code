@@ -9,9 +9,9 @@ import { GEO_AUDITS, GEO_PLANS, euros } from '@/content/geo';
 import { pageSchemas } from './schema';
 
 const PATH = '/';
-const TITLE = 'Agence web Paris : création de site internet sur-mesure | Kameo';
+const TITLE = 'Agence GEO et web à Paris : visibilité IA et sites | Kameo';
 const DESCRIPTION =
-  'Kameo, agence web à Paris pour PME, startups et indépendants : sites WordPress et e-commerce sur-mesure, applications métier, SEO natif. Devis gratuit.';
+  'Kameo, agence GEO et web à Paris : nous faisons citer votre entreprise par ChatGPT, Gemini et Google, et créons des sites sur-mesure pour PME et startups.';
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
@@ -109,12 +109,12 @@ export default function HomePage() {
             </a>
             <p className="hero__eyebrow">GEO · Design · SEO</p>
             <h1 className="hero__title">
-              Agence web à Paris&nbsp;: des sites <br />
-              sur-mesure qui convertissent
+              Agence GEO et web à Paris&nbsp;: <br />
+              <span className="hero__title-nowrap">faites-vous</span> recommander par les&nbsp;IA
             </h1>
             <p className="hero__description">
-              Des sites sur-mesure pour les PME, les startups et les indépendants, et une marque que ChatGPT, Gemini et
-              les autres IA recommandent à vos futurs clients.
+              Vos futurs clients posent leurs questions à ChatGPT, Gemini et Google. Nous faisons en sorte que votre
+              entreprise fasse partie des réponses, avec un site sur-mesure qui convertit.
             </p>
             <a href="https://calendly.com/contact-agence-kameo/30min" target="_blank" rel="noopener" className="slots">
               <span className="slots__dot" />
@@ -138,8 +138,8 @@ export default function HomePage() {
                 </span>
                 Prendre rendez-vous{' '}
               </a>
-              <Link href="/realisations/" className="btn btn--outline">
-                Réalisations{' '}
+              <Link href="/test-visibilite-ia/" className="btn btn--outline">
+                Tester ma visibilité IA{' '}
                 <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                   <use href="/icons.svg#i-solid-arrow-up-right-from-square" />
                 </svg>
@@ -154,11 +154,11 @@ export default function HomePage() {
               <div>
                 <p className="home-geo__label">Notre priorité : le GEO</p>
                 <h2 className="home-geo__title" id="home-geo-title">
-                  Votre entreprise recommandée par ChatGPT, Gemini et les IA
+                  Mesurez puis améliorez ce que les IA disent de vous
                 </h2>
                 <p className="home-geo__text">
-                  Vos clients demandent déjà aux IA quel prestataire choisir. Nous mesurons ce qu’elles disent de vous,
-                  corrigeons votre site et renforçons votre présence sur les sources qu’elles citent.
+                  Nous mesurons ce que ChatGPT, Gemini et les autres IA disent de votre entreprise, corrigeons votre site
+                  et renforçons votre présence sur les sources qu’elles citent.
                 </p>
               </div>
               <ul className="home-geo__links">
@@ -738,12 +738,13 @@ export default function HomePage() {
               <span className="seo-about__bracket seo-about__bracket--bl" aria-hidden="true" />
             </span>
             <h2 className="seo-about__title">
-              Kameo, votre agence web à Paris <br />
+              Kameo, votre agence GEO et web à Paris <br />
               <span className="seo-about__title-muted">depuis 2023</span>
             </h2>
             <p className="seo-about__text">
-              Implantée au cœur du 2<sup>e</sup> arrondissement, <strong>Kameo est une agence web parisienne</strong>{' '}
-              spécialisée dans la création de sites internet sur-mesure pour PME, startups et marques premium. Depuis
+              Avec une adresse à Paris 2<sup>e</sup> et des rendez-vous en visio partout en France,{' '}
+              <strong>Kameo est une agence GEO et web</strong> : nous travaillons la visibilité de votre entreprise dans
+              les réponses des IA et créons des sites internet sur-mesure pour PME, startups et marques premium. Depuis
               2023, plus de 50 entreprises nous ont confié leur présence en ligne : du site vitrine WordPress au
               e-commerce WooCommerce, en passant par le <Link href="/expertises-branding/">branding</Link> et le{' '}
               <Link href="/expertises-motion/">motion design</Link>.{' '}
@@ -1155,11 +1156,11 @@ export default function HomePage() {
                 </summary>
                 <div className="expertise-faq__a">
                   <p>
-                    Kameo est une agence web parisienne fondée en 2023 par Benjamin Dayan. C'est une équipe intégrée de 6
-                    personnes, spécialisée dans deux
-                    métiers : la création de sites WordPress sur-mesure et le développement d'applications métier,
-                    c'est-à-dire des CRM, des
-                    marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note Trustpilot 4,6/5 sur{' '}
+                    Kameo est une agence GEO et web à Paris, fondée en 2023 par Benjamin Dayan. C'est une équipe
+                    intégrée de 6 personnes, spécialisée dans trois métiers : le GEO (la visibilité dans les réponses
+                    des IA), la création de sites WordPress sur-mesure et le développement d'applications métier,
+                    c'est-à-dire des CRM, des marketplaces et des SaaS intégrant l'IA. Plus de 50 projets livrés, note
+                    Trustpilot 4,6/5 sur{' '}
                     {PROOF.avisNombre} avis.
                   </p>
                 </div>

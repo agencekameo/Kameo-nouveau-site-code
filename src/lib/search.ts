@@ -5,7 +5,7 @@ import { REALISATIONS } from '@/content/realisations';
 export type SearchDoc = { path: string; title: string; text: string; kind: 'Page' | 'Réalisation' | 'Article' };
 
 const PAGES: SearchDoc[] = [
-  ['/', 'Agence web Paris : création de site internet sur-mesure', 'Sites web haut de gamme, WordPress, e-commerce, SEO natif, devis gratuit.'],
+  ['/', 'Agence GEO et web à Paris : visibilité IA et sites', 'GEO (référencement IA), sites WordPress et e-commerce sur-mesure, applications métier, devis gratuit.'],
   ['/notre-agence/', 'Notre agence', "L'équipe Kameo, agence web de 6 personnes : web, branding et motion."],
   ['/benjamin-dayan/', 'Benjamin Dayan, fondateur', 'Parcours du fondateur et président de Kameo : WordPress, SEO, direction artistique.'],
   ['/agence-wordpress-paris/', 'Agence WordPress Paris', 'Création, refonte et maintenance de sites WordPress sur-mesure.'],

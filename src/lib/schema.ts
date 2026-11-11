@@ -53,7 +53,7 @@ const contactPoint = (): Json => ({
 });
 
 const ORG_DESCRIPTION =
-  "Agence web à Paris fondée en 2023 par Benjamin Dayan : création, refonte et maintenance de sites WordPress sur-mesure (Elementor Pro ou thème codé), développement d'applications sur-mesure (CRM, marketplaces, SaaS avec IA), GEO (visibilité dans les réponses des IA), branding et motion design. " +
+  "Agence GEO et web à Paris fondée en 2023 par Benjamin Dayan : GEO (visibilité dans les réponses de ChatGPT, Gemini, Perplexity et Claude), création, refonte et maintenance de sites WordPress sur-mesure (Elementor Pro ou thème codé), développement d'applications sur-mesure (CRM, marketplaces, SaaS avec IA), branding et motion design. " +
   `Équipe de ${COMPANY.teamSize} personnes ; rendez-vous en visio, sans déplacement, pour des clients à Paris, en Île-de-France et dans toute la France.`;
 
 export const personBenjamin = (): Json => ({
