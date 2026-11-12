@@ -6,7 +6,9 @@
  * Offres : PDF « Offres GEO » de Benjamin (novembre 2026). Prix relevés le 09/11/2026 à sa
  * demande : Essentiel 290 → 500 € HT par mois ; puis, le même jour, Croissance 390 → 700 et
  * Autorité 690 → 1 000 € HT par mois, Audit Express 490 → 500 et Audit Complet 790 → 800 € HT
- * (« croissance 700€, autorité 1000€ », « 500€ express, 800€ complet »).
+ * (« croissance 700€, autorité 1000€ », « 500€ express, 800€ complet »). Puis, le 12/11/2026,
+ * baisse des accompagnements à sa demande : Essentiel 350, Croissance 500 et Autorité 800 € HT
+ * par mois (« essentiel à 350, croissance à 500 et autorité à 800 ») ; audits inchangés.
  *
  * Les réponses des FAQ sont en HTML simple (<strong>, <a>) : affichées telles quelles et
  * reprises sans balises dans le FAQPage, pour que le balisage décrive exactement la page.
@@ -68,7 +70,7 @@ export const GEO_PLANS: GeoOffer[] = [
   {
     id: 'essentiel',
     name: 'Essentiel',
-    price: 500,
+    price: 350,
     monthly: true,
     tagline: "On corrige votre site et on vous dit quoi faire à l'extérieur.",
     items: [
@@ -83,7 +85,7 @@ export const GEO_PLANS: GeoOffer[] = [
   {
     id: 'croissance',
     name: 'Croissance',
-    price: 700,
+    price: 500,
     monthly: true,
     tagline: 'On ne se contente plus de conseiller : on crée votre présence externe.',
     items: [
@@ -98,7 +100,7 @@ export const GEO_PLANS: GeoOffer[] = [
   {
     id: 'autorite',
     name: 'Autorité',
-    price: 1000,
+    price: 800,
     monthly: true,
     tagline: 'On produit les contenus qui font de vous la référence de votre secteur.',
     items: [

@@ -4,7 +4,7 @@ seoTitle: "Prix GEO : tarif d'un audit et d'une agence GEO en 2026 | Kameo"
 description: "Combien coûte le GEO (référencement IA) en 2026 ? Prix d'un audit et d'un accompagnement, ce que comprend chaque offre et comment comparer deux devis."
 excerpt: "Audit, accompagnement mensuel, outil de suivi : les prix du GEO relevés en novembre 2026, ce que comprend chaque niveau, les questions à poser pour comparer deux offres et les signaux d'alerte."
 date: "2026-11-09T16:00:00+01:00"
-modified: "2026-11-09T16:00:00+01:00"
+modified: "2026-11-12T16:02:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-prix-geo.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -99,11 +99,11 @@ Nos prix sont publics : prenez-les comme un repère, à passer au crible des qu
 |---|---|---|
 | Audit GEO Express | 500 €, une fois | Visibilité sur ChatGPT, Gemini, Perplexity et Claude, diagnostic technique, plan d'action priorisé |
 | Audit GEO Complet | 800 €, une fois | L'Express, plus 3 concurrents comparés, les sources que les IA citent dans votre secteur, une restitution d'une heure en visio |
-| Essentiel | 500 € par mois | Corrections techniques, mesure mensuelle de 50 questions clés sur ces 4 IA, rapport mensuel, stratégie de notoriété (fiches, avis, comparatifs) |
-| Croissance | 700 € par mois | L'Essentiel, plus la création de vos fiches et profils (jusqu'à 3 par mois), l'inscription dans les annuaires et comparatifs, une stratégie de collecte d'avis |
-| Autorité | 1 000 € par mois | Croissance, plus jusqu'à 5 contenus rédigés ou réécrits par mois, une cartographie mensuelle des médias cités par les IA, un appel mensuel |
+| Essentiel | 350 € par mois | Corrections techniques, mesure mensuelle de 50 questions clés sur ces 4 IA, rapport mensuel, stratégie de notoriété (fiches, avis, comparatifs) |
+| Croissance | 500 € par mois | L'Essentiel, plus la création de vos fiches et profils (jusqu'à 3 par mois), l'inscription dans les annuaires et comparatifs, une stratégie de collecte d'avis |
+| Autorité | 800 € par mois | Croissance, plus jusqu'à 5 contenus rédigés ou réécrits par mois, une cartographie mensuelle des médias cités par les IA, un appel mensuel |
 
-Les accompagnements demandent 6 mois minimum, le temps que les IA prennent en compte les changements, soit au moins 3 000 € HT pour Essentiel. L'Audit GEO Express y est offert au démarrage, un mois est offert pour un engagement annuel, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit.
+Les accompagnements demandent 6 mois minimum, le temps que les IA prennent en compte les changements, soit au moins 2 100 € HT pour Essentiel. L'Audit GEO Express y est offert au démarrage, un mois est offert pour un engagement annuel, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit.
 
 Essentiel se situe sous l'entrée de gamme relevée chez les agences. Son périmètre est précis : la mesure, les corrections du site et des conseils pour l'extérieur, sans création de fiches ni de contenus. Tout est fait en interne, sans sous-traitance. Notre méthode est présentée sur la page [agence GEO](/agence-geo/).
 
@@ -126,7 +126,7 @@ Selon notre relevé de novembre 2026 : de 200 à 600 € chez un freelance ou 
 <details>
 <summary>Combien coûte une agence GEO par mois ?</summary>
 
-Pour une PME, de 650 à 2 500 € par mois selon le périmètre, et à partir d'environ 3 000 € dans les grandes agences (relevé de Kameo, novembre 2026). Chez Kameo : 500, 700 ou 1 000 € HT par mois, avec 6 mois minimum.
+Pour une PME, de 650 à 2 500 € par mois selon le périmètre, et à partir d'environ 3 000 € dans les grandes agences (relevé de Kameo, novembre 2026). Chez Kameo : 350, 500 ou 800 € HT par mois, avec 6 mois minimum.
 
 </details>
 
