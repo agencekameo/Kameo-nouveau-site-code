@@ -6,6 +6,7 @@ import {
   GeoEngines,
   GeoFaq,
   GeoHeroActions,
+  GeoMaj,
   GeoMidCta,
   GeoOfferCard,
   GeoPromoBanner,
@@ -122,6 +123,7 @@ export default function AccompagnementGeoPage() {
             </div>
             <GeoHeroActions anchor="#formules" anchorLabel="Voir les 3 formules" />
             <GeoEngines items={GEO_ENGINES} />
+            <GeoMaj path={PATH} />
           </div>
         </section>
 

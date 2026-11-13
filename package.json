@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "migrate:pages": "node migration/generate-pages.mjs"
+    "migrate:pages": "node migration/generate-pages.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.3",

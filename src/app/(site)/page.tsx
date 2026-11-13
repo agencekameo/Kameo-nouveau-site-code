@@ -988,8 +988,8 @@ export default function HomePage() {
                         </svg>
                       </span>
                       <div className="widget__head-text">
-                        <strong>Marketo.</strong>
-                        <small>Ecom Solutions</small>
+                        <strong>Votre marque</strong>
+                        <small>Réseaux et fiche Google</small>
                       </div>
                       <svg className="icon widget__chev" viewBox="0 0 320 512" aria-hidden="true" focusable="false">
                         <use href="/icons.svg#i-solid-sort" />
@@ -1000,13 +1000,13 @@ export default function HomePage() {
                         <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                           <use href="/icons.svg#i-solid-table-cells-large" />
                         </svg>
-                        Overview
+                        Vue d’ensemble
                       </li>
                       <li className="is-muted">
                         <svg className="icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false">
                           <use href="/icons.svg#i-solid-chart-pie" />
                         </svg>
-                        Performance
+                        Performances
                       </li>
                     </ul>
                   </div>
@@ -1018,14 +1018,14 @@ export default function HomePage() {
                         </svg>
                       </span>
                       <div className="widget__int-text">
-                        <strong>Integrations</strong>
-                        <p>Boost you workflow with powerful third-party apps</p>
+                        <strong>Connexions</strong>
+                        <p>Vos réseaux sociaux et votre fiche Google, suivis au même endroit</p>
                       </div>
                     </div>
                     <div className="widget__tabs">
-                      <span className="is-active">All apps</span>
-                      <span>Connected</span>
-                      <span>Disconnected</span>
+                      <span className="is-active">Tous</span>
+                      <span>Reliés</span>
+                      <span>À relier</span>
                     </div>
                   </div>
                 </div>

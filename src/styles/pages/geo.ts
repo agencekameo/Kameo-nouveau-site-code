@@ -91,6 +91,8 @@ const css = `
 .geo-plan__for { font-size: 14px; line-height: 1.5; color: rgba(15,17,21,.6); margin: 0 0 20px; }
 .geo-plan__price { font-family: 'Satoshi', sans-serif; font-size: 44px; font-weight: 900; letter-spacing: -.04em; line-height: 1; color: #0f1115; margin: 0 0 6px; }
 .geo-plan__price small { margin-left: 4px; font-size: 14px; font-weight: 600; letter-spacing: 0; color: rgba(15,17,21,.55); }
+/* Date de mise à jour sous le héros des pages GEO */
+.geo-maj { margin: 18px 0 0; font-size: 13px; color: rgba(15,17,21,.5); text-align: center; }
 /* Offre en cours (GEO_PROMO) : étiquette noire et prix normal barré au-dessus du prix */
 .geo-plan__promo { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; }
 .geo-plan__promo-tag { padding: 4px 10px; border-radius: 999px; background: #0f1115; color: #fff; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }

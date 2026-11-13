@@ -145,7 +145,7 @@ export default function Footer() {
           <p className="footer__col-title">Nous contacter</p>
           <address className="footer__nap">
             <p>
-              Kameo Agence Web
+              Kameo, agence GEO et web
               <br />9 rue des Colonnes
               <br />
               75002 Paris

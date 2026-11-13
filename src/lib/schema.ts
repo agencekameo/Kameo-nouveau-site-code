@@ -102,7 +102,7 @@ export const organization = (): Json => ({
   address: postalAddress(),
   areaServed: areaServed(),
   knowsLanguage: 'fr',
-  slogan: 'Design web stratégique et campagnes conçues pour générer des résultats.',
+  slogan: 'Faites-vous recommander par les IA, avec un site sur-mesure qui convertit.',
   knowsAbout: [
     'WordPress', 'WooCommerce', 'Elementor', 'SEO technique', 'Schema.org', 'Motion Design', 'Branding', 'SaaS',
     'React', 'Next.js', 'Claude API', 'OpenAI API', 'Stripe Connect', 'Développement sur-mesure', 'CRM sur-mesure',

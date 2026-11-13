@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
-import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMidCta, GeoPromoBanner, GeoTerms, faqSchema } from '@/components/geo/GeoBlocks';
+import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMaj, GeoMidCta, GeoPromoBanner, GeoTerms, faqSchema } from '@/components/geo/GeoBlocks';
 import {
   GEO_AUDITS,
   GEO_ENGINES,
@@ -89,6 +89,7 @@ export default function AgenceGeoPage() {
             </div>
             <GeoHeroActions anchor="#offres" anchorLabel="Voir les offres et les prix" />
             <GeoEngines items={GEO_ENGINES} />
+            <GeoMaj path={PATH} />
           </div>
         </section>
 

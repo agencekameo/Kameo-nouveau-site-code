@@ -6,9 +6,9 @@ import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 
 const PATH = '/contact/';
-const TITLE = 'Contact Kameo, agence web à Paris | Devis sous 24 h';
+const TITLE = 'Contact Kameo, agence GEO et web à Paris | Devis sous 24 h';
 const DESCRIPTION =
-  'Contactez Kameo, agence web Paris : devis gratuit sous 24h pour votre projet site, branding ou motion. Email, tél, rendez-vous Calendly.';
+  'Contactez Kameo, agence GEO et web : devis gratuit sous 24 h pour votre projet GEO, site, branding ou motion. E-mail, téléphone ou rendez-vous en visio.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Contact', path: '/contact/' },

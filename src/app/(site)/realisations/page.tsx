@@ -8,7 +8,7 @@ import { pageMetadata } from '@/lib/seo';
 import { itemListSchema, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
 
 const PATH = '/realisations/';
-const TITLE = 'Portfolio agence web Paris : nos réalisations | Kameo';
+const TITLE = 'Portfolio de Kameo, agence GEO et web : nos réalisations';
 // v3 — le nombre de réalisations suit le portfolio réel (la v2 annonçait 21 pour 22 publiées)
 const DESCRIPTION = `Portfolio de l’agence Kameo : ${REALISATIONS.length} réalisations clients en web, branding et motion design. PME, startups et marques premium accompagnées avec succès.`;
 const CRUMBS: Crumb[] = [

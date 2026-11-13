@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import Icon from '@/components/Icon';
 import JsonLd from '@/components/JsonLd';
-import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMidCta, GeoOfferCard, faqSchema } from '@/components/geo/GeoBlocks';
+import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMaj, GeoMidCta, GeoOfferCard, faqSchema } from '@/components/geo/GeoBlocks';
 import { FAQ_AUDIT, GEO_AUDITS, GEO_ENGINES, euros } from '@/content/geo';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
@@ -64,6 +64,7 @@ export default function AuditGeoPage() {
             </div>
             <GeoHeroActions anchor="#audits" anchorLabel="Comparer les 2 audits" cta="Demander mon audit" />
             <GeoEngines items={GEO_ENGINES} />
+            <GeoMaj path={PATH} />
           </div>
         </section>
 

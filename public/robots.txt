@@ -1,4 +1,10 @@
-# robots.txt — Kameo — v2.10.0 (audit du 09/10/2026)
+# robots.txt — Kameo — v2.11.0 (13/11/2026)
+#
+# v2.11.0 : plus aucune règle WordPress. Le site n'est plus sous WordPress :
+# /wp-admin/, /wp-includes/ et /wp-json/ renvoient 404, la recherche « /?s= »
+# est en « noindex, follow » et « ?replytocom= » pointe vers la page canonique.
+# Les bloquer empêchait Google et Bing de constater ces 404, ce noindex et
+# ces canoniques, et donc de retirer les anciennes adresses de leur index.
 #
 # CORRECTION APPORTÉE PAR L'AUDIT
 # La version précédente déclarait 16 groupes « User-agent: <bot IA> » suivis
@@ -47,11 +53,6 @@ User-agent: Meta-ExternalAgent
 User-agent: Amazonbot
 User-agent: Bytespider
 
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /wp-json/
-Disallow: /?s=
-Disallow: /*?replytocom=
-Allow: /wp-admin/admin-ajax.php
+Allow: /
 
 Sitemap: https://agence-kameo.fr/sitemap_index.xml

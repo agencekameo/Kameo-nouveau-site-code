@@ -12,6 +12,7 @@ import {
   type FaqItem,
   type GeoOffer,
 } from '@/content/geo';
+import { pageInfo } from '@/content/pages';
 import { CONTACT, abs } from '@/lib/site';
 
 /* Blocs communs aux pages GEO (/agence-geo/, /audit-geo/, /accompagnement-geo/). */
@@ -39,6 +40,19 @@ export function GeoHeroActions({ anchor, anchorLabel, cta = 'Diagnostic express 
         {anchorLabel}
       </a>
     </div>
+  );
+}
+
+const FR_DATE = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris' });
+
+/** « Mis à jour le … » sous le héros : date de la page dans src/content/pages.ts, la même que dans les données structurées. */
+export function GeoMaj({ path }: { path: string }) {
+  const info = pageInfo(path);
+  if (!info) return null;
+  return (
+    <p className="geo-maj">
+      Mis à jour le <time dateTime={info.modified.slice(0, 10)}>{FR_DATE.format(new Date(info.modified))}</time>
+    </p>
   );
 }
 

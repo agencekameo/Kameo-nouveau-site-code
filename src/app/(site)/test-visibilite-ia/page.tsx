@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
-import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, faqSchema, fr } from '@/components/geo/GeoBlocks';
+import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMaj, faqSchema, fr } from '@/components/geo/GeoBlocks';
 import { GEO_ENGINES, type FaqItem } from '@/content/geo';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
@@ -81,6 +81,7 @@ export default function TestVisibiliteIaPage() {
             </p>
             <GeoHeroActions anchor="#test" anchorLabel="Commencer le test" />
             <GeoEngines items={GEO_ENGINES} />
+            <GeoMaj path={PATH} />
           </div>
         </section>
 

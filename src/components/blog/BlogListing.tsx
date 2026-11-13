@@ -6,9 +6,9 @@ import { getPage, pageCount } from '@/lib/blog';
 import { blogSchema, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
 
 /* Archive du blog (page-blog.php), page 1 et pages /blog/page/N/. */
-export const BLOG_TITLE = 'Blog Kameo : conseils web, branding et SEO';
+export const BLOG_TITLE = 'Blog Kameo : GEO, SEO, web et branding';
 export const BLOG_DESCRIPTION =
-  'Conseils, stratégies et tendances web par l’agence Kameo. Branding, développement, motion design et growth marketing pour PME et startups.';
+  'Guides GEO et SEO, conseils web, branding et motion par Kameo, agence GEO et web : être cité par les IA et avoir un site qui convertit, pour PME et startups.';
 const CRUMBS: Crumb[] = [
   { name: 'Accueil', path: '/' },
   { name: 'Blog', path: '/blog/' },

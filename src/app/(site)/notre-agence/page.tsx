@@ -6,9 +6,9 @@ import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 
 const PATH = '/notre-agence/';
-const TITLE = 'Agence digitale à Paris : découvrir l’équipe Kameo';
+const TITLE = 'Kameo, agence GEO et web : découvrir l’équipe';
 const DESCRIPTION =
-  'L’agence Kameo à Paris : une agence à taille humaine pour vos projets web, branding et motion. 50+ clients, 4,6/5 Trustpilot, devis sous 24 h.';
+  'Kameo, agence GEO et web à taille humaine : vos projets GEO, web, branding et motion, en visio partout en France. 50+ clients, 4,6/5 sur Trustpilot.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Notre agence', path: '/notre-agence/' },
