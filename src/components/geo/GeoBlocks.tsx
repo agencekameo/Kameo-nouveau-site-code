@@ -1,6 +1,17 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
-import { GEO_MIN_MONTHS, GEO_TERMS, euros, type FaqItem, type GeoOffer } from '@/content/geo';
+import {
+  GEO_MIN_MONTHS,
+  GEO_PROMO,
+  GEO_TERMS,
+  euros,
+  prixBarre,
+  prixDuJour,
+  promoGeoActive,
+  remiseMaxGeo,
+  type FaqItem,
+  type GeoOffer,
+} from '@/content/geo';
 import { CONTACT, abs } from '@/lib/site';
 
 /* Blocs communs aux pages GEO (/agence-geo/, /audit-geo/, /accompagnement-geo/). */
@@ -42,8 +53,9 @@ export function GeoEngines({ items }: { items: readonly string[] }) {
   );
 }
 
-/** Carte d'une offre (audit ou accompagnement), prix HT. */
+/** Carte d'une offre (audit ou accompagnement), prix HT ; pendant l'offre en cours, prix normal barré. */
 export function GeoOfferCard({ offer, badge, more }: { offer: GeoOffer; badge?: string; more?: { href: string; label: string } }) {
+  const barre = prixBarre(offer);
   return (
     <article className={'geo-plan' + (badge ? ' geo-plan--featured' : '')}>
       {badge && (
@@ -54,8 +66,17 @@ export function GeoOfferCard({ offer, badge, more }: { offer: GeoOffer; badge?: 
       )}
       <h3 className="geo-plan__name">{offer.name}</h3>
       <p className="geo-plan__for">{fr(offer.tagline)}</p>
+      {barre !== null && (
+        <p className="geo-plan__promo">
+          <span className="geo-plan__promo-tag">{GEO_PROMO.nom}</span>
+          <del>
+            <span className="sr-only">Prix normal : </span>
+            {euros(barre)}
+          </del>
+        </p>
+      )}
       <p className="geo-plan__price">
-        {euros(offer.price)}
+        {euros(prixDuJour(offer))}
         <small>{offer.monthly ? 'HT / mois' : 'HT'}</small>
       </p>
       <p className="geo-plan__note">{offer.monthly ? `Engagement de ${GEO_MIN_MONTHS} mois minimum` : 'Paiement unique, sans abonnement'}</p>
@@ -74,6 +95,20 @@ export function GeoOfferCard({ offer, badge, more }: { offer: GeoOffer; badge?: 
         </Link>
       )}
     </article>
+  );
+}
+
+/** Bandeau de l'offre en cours (Black Friday…) au-dessus des formules ; rien hors offre. */
+export function GeoPromoBanner() {
+  if (!promoGeoActive()) return null;
+  return (
+    <p className="geo-promo-banner">
+      <span className="geo-promo-banner__tag">{GEO_PROMO.nom}</span>
+      <span>
+        Jusqu’à <strong>−{remiseMaxGeo()}&nbsp;%</strong> sur l’accompagnement GEO pour toute signature jusqu’au{' '}
+        <strong>{GEO_PROMO.finTexte}</strong>. Le prix est conservé pendant tout votre engagement.
+      </span>
+    </p>
   );
 }
 

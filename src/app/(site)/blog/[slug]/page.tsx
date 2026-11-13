@@ -8,6 +8,7 @@ import JsonLd from '@/components/JsonLd';
 import ArticleToc from '@/components/blog/ArticleToc';
 import BlogCard from '@/components/blog/BlogCard';
 import BookingFab from '@/components/blog/BookingFab';
+import { offreGeoHtml } from '@/content/geo';
 import { frDate, getAllPosts, getPost, type Post } from '@/lib/blog';
 import { blogPosting, faqFromHtml, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
@@ -107,7 +108,9 @@ export default async function ArticlePage({ params }: Props) {
   if (!post) notFound();
   const remote = post.source === 'outil' ? post.remote : undefined;
 
-  const { html, items } = buildToc(post.html);
+  // Repère <!-- offre-geo --> : l'offre GEO en cours (Black Friday…), rien hors offre. Remplacé à
+  // l'affichage, pas dans le cache des articles, pour disparaître seul à la fin de l'offre.
+  const { html, items } = buildToc(post.html.replace('<!-- offre-geo -->', offreGeoHtml()));
   const updated = new Date(post.modified).getTime() - new Date(post.date).getTime() > DAY;
   const crumbs: Crumb[] = [
     { name: 'Accueil', path: '/' },

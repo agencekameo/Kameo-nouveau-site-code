@@ -91,6 +91,13 @@ const css = `
 .geo-plan__for { font-size: 14px; line-height: 1.5; color: rgba(15,17,21,.6); margin: 0 0 20px; }
 .geo-plan__price { font-family: 'Satoshi', sans-serif; font-size: 44px; font-weight: 900; letter-spacing: -.04em; line-height: 1; color: #0f1115; margin: 0 0 6px; }
 .geo-plan__price small { margin-left: 4px; font-size: 14px; font-weight: 600; letter-spacing: 0; color: rgba(15,17,21,.55); }
+/* Offre en cours (GEO_PROMO) : étiquette noire et prix normal barré au-dessus du prix */
+.geo-plan__promo { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; }
+.geo-plan__promo-tag { padding: 4px 10px; border-radius: 999px; background: #0f1115; color: #fff; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.geo-plan__promo del { font-size: 17px; font-weight: 700; color: rgba(15,17,21,.42); text-decoration-thickness: 2px; }
+.geo-promo-banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; max-width: 1120px; margin: 0 auto clamp(30px,4vw,42px); padding: 14px 22px; border-radius: 16px; background: #0f1115; color: rgba(255,255,255,.88); font-size: 15px; line-height: 1.5; text-align: center; }
+.geo-promo-banner strong { color: #F8903C; font-weight: 800; }
+.geo-promo-banner__tag { padding: 5px 12px; border-radius: 999px; background: var(--accent-gradient); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
 .geo-plan__note { font-size: 12.5px; font-weight: 600; color: rgba(15,17,21,.5); margin: 0 0 22px; }
 .geo-plan__list { list-style: none; margin: 0 0 26px; padding: 22px 0 0; border-top: 1px solid rgba(15,17,21,.07); flex: 1; display: grid; gap: 11px; align-content: start; }
 .geo-plan__list li { position: relative; padding-left: 24px; font-size: 14px; line-height: 1.5; color: rgba(15,17,21,.76); }
@@ -127,6 +134,7 @@ const css = `
 .geo-table--plans thead th:not(:first-child), .geo-table--plans td { text-align: center; }
 .geo-table--plans tbody th { width: 40%; font-weight: 700; }
 .geo-table__price td { font-weight: 900; color: #0f1115; }
+.geo-table__price del { display: block; font-size: 12.5px; font-weight: 600; color: rgba(15,17,21,.42); }
 @media (max-width: 640px) {
   /* SEO / GEO : une carte par critère, les deux réponses l'une sous l'autre */
   .geo-table--stack { min-width: 0; }
@@ -155,6 +163,7 @@ const css = `
 .geo-path__offers { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 8px; flex: 1; align-content: start; }
 .geo-path__offers li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 14px; border-radius: 12px; background: #F9FAFB; font-size: 14.5px; font-weight: 700; color: #0f1115; }
 .geo-path__offers li span { font-weight: 900; white-space: nowrap; }
+.geo-path__offers li del { margin-right: 6px; font-weight: 700; color: rgba(15,17,21,.4); }
 .geo-path__offers li small { font-weight: 600; font-size: 12px; color: rgba(15,17,21,.5); }
 .geo-path__link { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; color: #ED6E63; }
 .geo-path:hover .geo-path__link { text-decoration: underline; text-underline-offset: 3px; }

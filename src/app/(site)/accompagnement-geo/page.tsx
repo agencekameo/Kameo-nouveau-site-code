@@ -1,8 +1,31 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
-import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMidCta, GeoOfferCard, GeoTerms, faqSchema } from '@/components/geo/GeoBlocks';
-import { FAQ_ACCOMPAGNEMENT, GEO_AUDITS, GEO_ENGINES, GEO_MIN_MONTHS, GEO_PLANS, GEO_QUESTIONS, euros } from '@/content/geo';
+import {
+  GeoCta,
+  GeoEngines,
+  GeoFaq,
+  GeoHeroActions,
+  GeoMidCta,
+  GeoOfferCard,
+  GeoPromoBanner,
+  GeoTerms,
+  faqSchema,
+} from '@/components/geo/GeoBlocks';
+import {
+  GEO_AUDITS,
+  GEO_ENGINES,
+  GEO_MIN_MONTHS,
+  GEO_PLANS,
+  GEO_PROMO,
+  GEO_QUESTIONS,
+  euros,
+  faqAccompagnement,
+  prixBarre,
+  prixDuJour,
+  promoGeoActive,
+  remiseMaxGeo,
+} from '@/content/geo';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import css from '@/styles/pages/geo';
@@ -10,15 +33,24 @@ import css from '@/styles/pages/geo';
 const PATH = '/accompagnement-geo/';
 const [ESSENTIEL, CROISSANCE, AUTORITE] = GEO_PLANS;
 const EXPRESS = GEO_AUDITS[0];
-const TITLE = `Accompagnement GEO dès ${euros(ESSENTIEL.price)} HT/mois, audit offert | Kameo`;
-const DESCRIPTION = `Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété. 3 formules de ${euros(ESSENTIEL.price)} à ${euros(AUTORITE.price)} HT/mois, audit offert.`;
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Agence GEO', path: '/agence-geo/' },
   { name: 'Accompagnement GEO', path: PATH },
 ];
 
-export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
+/* Titre et description suivent l'offre en cours (GEO_PROMO) : calculés à l'affichage. */
+const titre = () =>
+  promoGeoActive()
+    ? `${GEO_PROMO.nom} : accompagnement GEO dès ${euros(prixDuJour(ESSENTIEL))} HT/mois | Kameo`
+    : `Accompagnement GEO dès ${euros(prixDuJour(ESSENTIEL))} HT/mois, audit offert | Kameo`;
+const description = () =>
+  `Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété. 3 formules de ${euros(prixDuJour(ESSENTIEL))} à ${euros(prixDuJour(AUTORITE))} HT/mois, ` +
+  (promoGeoActive() ? `offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte}.` : 'audit offert.');
+
+export function generateMetadata(): Metadata {
+  return pageMetadata({ path: PATH, title: titre(), description: description() });
+}
 
 const REPONSES = GEO_QUESTIONS * GEO_ENGINES.length;
 const YES = '✓';
@@ -40,6 +72,8 @@ const ROWS: [string, boolean, boolean, boolean][] = [
 ];
 
 export default function AccompagnementGeoPage() {
+  const promo = promoGeoActive();
+  const faq = faqAccompagnement();
   return (
     <>
       <Breadcrumb items={CRUMBS} />
@@ -63,7 +97,15 @@ export default function AccompagnementGeoPage() {
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
-                Dès <strong>{euros(ESSENTIEL.price)} HT/mois</strong>
+                {promo ? (
+                  <>
+                    <strong>{GEO_PROMO.nom}</strong>&nbsp;: dès <strong>{euros(prixDuJour(ESSENTIEL))} HT/mois</strong>
+                  </>
+                ) : (
+                  <>
+                    Dès <strong>{euros(prixDuJour(ESSENTIEL))} HT/mois</strong>
+                  </>
+                )}
               </span>
               <span className="expertise-trust__sep" aria-hidden="true">
                 ·
@@ -97,12 +139,28 @@ export default function AccompagnementGeoPage() {
                   sur les plateformes que les IA consultent, avis clients et contenus.
                 </p>
                 <p className="geo-brief__text">
-                  Kameo propose trois formules&nbsp;: <strong>{ESSENTIEL.name}</strong> à {euros(ESSENTIEL.price)} HT,{' '}
-                  <strong>{CROISSANCE.name}</strong> à {euros(CROISSANCE.price)} HT et <strong>{AUTORITE.name}</strong>{' '}
-                  à {euros(AUTORITE.price)} HT par mois, avec un engagement de {GEO_MIN_MONTHS} mois minimum.
+                  Kameo propose trois formules&nbsp;: <strong>{ESSENTIEL.name}</strong> à {euros(prixDuJour(ESSENTIEL))}{' '}
+                  HT, <strong>{CROISSANCE.name}</strong> à {euros(prixDuJour(CROISSANCE))} HT et{' '}
+                  <strong>{AUTORITE.name}</strong> à {euros(prixDuJour(AUTORITE))} HT par mois, avec un engagement de{' '}
+                  {GEO_MIN_MONTHS} mois minimum.
+                  {promo && (
+                    <>
+                      {' '}
+                      Ce sont les prix {GEO_PROMO.nom}, au lieu de {euros(ESSENTIEL.price)}, {euros(CROISSANCE.price)} et{' '}
+                      {euros(AUTORITE.price)}, pour toute signature jusqu’au {GEO_PROMO.finTexte}.
+                    </>
+                  )}
                 </p>
               </div>
               <ul className="geo-brief__facts">
+                {promo && (
+                  <li>
+                    <span>
+                      <strong>Offre {GEO_PROMO.nom}</strong>&nbsp;: jusqu’à −{remiseMaxGeo()}&nbsp;% jusqu’au{' '}
+                      {GEO_PROMO.finTexte}, prix conservé pendant tout l’engagement
+                    </span>
+                  </li>
+                )}
                 <li>
                   <span>
                     <strong>Audit GEO Express offert</strong> au démarrage (valeur {euros(EXPRESS.price)} HT)
@@ -143,6 +201,7 @@ export default function AccompagnementGeoPage() {
                 Progresser chaque mois, avec l’audit offert au démarrage. Prix hors taxes, par mois.
               </p>
             </header>
+            <GeoPromoBanner />
             <div className="geo-plans__grid">
               <GeoOfferCard offer={ESSENTIEL} />
               <GeoOfferCard offer={CROISSANCE} badge="Recommandé" />
@@ -190,9 +249,20 @@ export default function AccompagnementGeoPage() {
                   ))}
                   <tr className="geo-table__price">
                     <th scope="row">Prix par mois</th>
-                    {GEO_PLANS.map((p) => (
-                      <td key={p.id}>{euros(p.price)} HT</td>
-                    ))}
+                    {GEO_PLANS.map((p) => {
+                      const barre = prixBarre(p);
+                      return (
+                        <td key={p.id}>
+                          {euros(prixDuJour(p))} HT
+                          {barre !== null && (
+                            <del>
+                              <span className="sr-only">Prix normal : </span>
+                              {euros(barre)}
+                            </del>
+                          )}
+                        </td>
+                      );
+                    })}
                   </tr>
                 </tbody>
               </table>
@@ -285,7 +355,7 @@ export default function AccompagnementGeoPage() {
           label="Voir l’audit GEO"
         />
 
-        <GeoFaq items={FAQ_ACCOMPAGNEMENT} title="Vos questions sur l’accompagnement GEO" />
+        <GeoFaq items={faq} title="Vos questions sur l’accompagnement GEO" />
 
         <GeoCta
           title="Choisissez votre accompagnement GEO"
@@ -297,8 +367,8 @@ export default function AccompagnementGeoPage() {
       <JsonLd
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'accompagnement-geo' }),
-          faqSchema(FAQ_ACCOMPAGNEMENT, PATH),
-          websiteGraph({ path: PATH, title: TITLE }),
+          faqSchema(faq, PATH),
+          websiteGraph({ path: PATH, title: titre() }),
         ]}
       />
     </>

@@ -2,8 +2,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
-import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMidCta, GeoTerms, faqSchema } from '@/components/geo/GeoBlocks';
-import { FAQ_AGENCE, GEO_AUDITS, GEO_ENGINES, GEO_PLANS, GEO_QUESTIONS, GEO_RESOURCES, euros } from '@/content/geo';
+import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMidCta, GeoPromoBanner, GeoTerms, faqSchema } from '@/components/geo/GeoBlocks';
+import {
+  GEO_AUDITS,
+  GEO_ENGINES,
+  GEO_PLANS,
+  GEO_PROMO,
+  GEO_QUESTIONS,
+  GEO_RESOURCES,
+  euros,
+  faqAgence,
+  prixBarre,
+  prixDuJour,
+  promoGeoActive,
+} from '@/content/geo';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { PROOF } from '@/lib/site';
@@ -11,19 +23,24 @@ import css from '@/styles/pages/geo';
 
 const PATH = '/agence-geo/';
 const TITLE = 'Agence GEO Paris : référencement IA sur ChatGPT et Gemini | Kameo';
-const DESCRIPTION = `Agence GEO (Generative Engine Optimization) : soyez cité par ChatGPT, Gemini, Perplexity et Claude. Audit dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement dès ${euros(GEO_PLANS[0].price)} HT/mois.`;
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Agence GEO', path: PATH },
 ];
 
-export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, description: DESCRIPTION });
+/* Prix des accompagnements : suivent l'offre en cours (GEO_PROMO), donc calculés à l'affichage. */
+export function generateMetadata(): Metadata {
+  const description = `Agence GEO (Generative Engine Optimization) : soyez cité par ChatGPT, Gemini, Perplexity et Claude. Audit dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement dès ${euros(prixDuJour(GEO_PLANS[0]))} HT/mois.`;
+  return pageMetadata({ path: PATH, title: TITLE, description });
+}
 
 const AUDIT_MIN = euros(GEO_AUDITS[0].price);
-const PLAN_MIN = euros(GEO_PLANS[0].price);
 const REPONSES = GEO_QUESTIONS * GEO_ENGINES.length;
 
 export default function AgenceGeoPage() {
+  const promo = promoGeoActive();
+  const PLAN_MIN = euros(prixDuJour(GEO_PLANS[0]));
+  const faq = faqAgence();
   return (
     <>
       <Breadcrumb items={CRUMBS} />
@@ -53,7 +70,15 @@ export default function AgenceGeoPage() {
                 ·
               </span>
               <span className="expertise-trust__item">
-                Accompagnement dès <strong>{PLAN_MIN} HT/mois</strong>
+                {promo ? (
+                  <>
+                    <strong>{GEO_PROMO.nom}</strong>&nbsp;: accompagnement dès <strong>{PLAN_MIN} HT/mois</strong>
+                  </>
+                ) : (
+                  <>
+                    Accompagnement dès <strong>{PLAN_MIN} HT/mois</strong>
+                  </>
+                )}
               </span>
               <span className="expertise-trust__sep" aria-hidden="true">
                 ·
@@ -82,10 +107,11 @@ export default function AgenceGeoPage() {
                   liens, le GEO vise une place dans la réponse elle-même.
                 </p>
                 <p className="geo-brief__text">
-                  Kameo, agence web fondée en 2023, propose deux formats : un <Link href="/audit-geo/">audit GEO</Link>{' '}
-                  ponctuel (Express {euros(GEO_AUDITS[0].price)} HT, Complet {euros(GEO_AUDITS[1].price)} HT) et un{' '}
-                  <Link href="/accompagnement-geo/">accompagnement GEO</Link> mensuel, de {PLAN_MIN} à{' '}
-                  {euros(GEO_PLANS[2].price)} HT par mois.
+                  Kameo, agence GEO et web fondée en 2023, propose deux formats : un{' '}
+                  <Link href="/audit-geo/">audit GEO</Link> ponctuel (Express {euros(GEO_AUDITS[0].price)} HT, Complet{' '}
+                  {euros(GEO_AUDITS[1].price)} HT) et un <Link href="/accompagnement-geo/">accompagnement GEO</Link>{' '}
+                  mensuel, de {PLAN_MIN} à {euros(prixDuJour(GEO_PLANS[2]))} HT par mois
+                  {promo ? ` (prix ${GEO_PROMO.nom} jusqu’au ${GEO_PROMO.finTexte})` : ''}.
                 </p>
               </div>
               <ul className="geo-brief__facts">
@@ -409,6 +435,7 @@ export default function AgenceGeoPage() {
                 accompagnement&nbsp;: l’Audit GEO Express y est offert.
               </p>
             </header>
+            <GeoPromoBanner />
             <div className="geo-paths">
               <Link href="/audit-geo/" className="geo-path">
                 <p className="geo-path__kicker">Audits ponctuels</p>
@@ -437,14 +464,23 @@ export default function AgenceGeoPage() {
                   contenus, selon la formule.
                 </p>
                 <ul className="geo-path__offers">
-                  {GEO_PLANS.map((o) => (
-                    <li key={o.id}>
-                      {o.name}
-                      <span>
-                        {euros(o.price)} <small>HT/mois</small>
-                      </span>
-                    </li>
-                  ))}
+                  {GEO_PLANS.map((o) => {
+                    const barre = prixBarre(o);
+                    return (
+                      <li key={o.id}>
+                        {o.name}
+                        <span>
+                          {barre !== null && (
+                            <del>
+                              <span className="sr-only">Prix normal : </span>
+                              {euros(barre)}
+                            </del>
+                          )}
+                          {euros(prixDuJour(o))} <small>HT/mois</small>
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
                 <span className="geo-path__link">Comparer les formules →</span>
               </Link>
@@ -688,7 +724,7 @@ export default function AgenceGeoPage() {
           </div>
         </section>
 
-        <GeoFaq items={FAQ_AGENCE} title="Vos questions sur le GEO et notre agence" />
+        <GeoFaq items={faq} title="Vos questions sur le GEO et notre agence" />
 
         <GeoCta
           title="Faites partie des réponses que les IA recommandent"
@@ -700,7 +736,7 @@ export default function AgenceGeoPage() {
       <JsonLd
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'agence-geo' }),
-          faqSchema(FAQ_AGENCE, PATH),
+          faqSchema(faq, PATH),
           websiteGraph({ path: PATH, title: TITLE }),
         ]}
       />

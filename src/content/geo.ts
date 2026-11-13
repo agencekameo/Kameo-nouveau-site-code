@@ -9,6 +9,8 @@
  * (« croissance 700€, autorité 1000€ », « 500€ express, 800€ complet »). Puis, le 12/11/2026,
  * baisse des accompagnements à sa demande : Essentiel 350, Croissance 500 et Autorité 800 € HT
  * par mois (« essentiel à 350, croissance à 500 et autorité à 800 ») ; audits inchangés.
+ * Le 13/11/2026, ces prix deviennent une offre Black Friday (« 350 au lieu de 500… ») : prix
+ * normaux 500, 700 et 1 000 € HT (price), prix de l'offre dans promoPrice (voir GEO_PROMO).
  *
  * Les réponses des FAQ sont en HTML simple (<strong>, <a>) : affichées telles quelles et
  * reprises sans balises dans le FAQPage, pour que le balisage décrive exactement la page.
@@ -25,8 +27,10 @@ export const GEO_MIN_MONTHS = 6;
 export type GeoOffer = {
   id: string;
   name: string;
-  /** Prix HT, en euros (par mois pour les accompagnements). */
+  /** Prix normal HT, en euros (par mois pour les accompagnements). */
   price: number;
+  /** Prix HT pendant l'offre en cours (GEO_PROMO) : à lire avec prixDuJour(), jamais directement. */
+  promoPrice?: number;
   monthly: boolean;
   /** Pour qui, en une phrase. */
   tagline: string;
@@ -70,7 +74,8 @@ export const GEO_PLANS: GeoOffer[] = [
   {
     id: 'essentiel',
     name: 'Essentiel',
-    price: 350,
+    price: 500,
+    promoPrice: 350,
     monthly: true,
     tagline: "On corrige votre site et on vous dit quoi faire à l'extérieur.",
     items: [
@@ -85,7 +90,8 @@ export const GEO_PLANS: GeoOffer[] = [
   {
     id: 'croissance',
     name: 'Croissance',
-    price: 500,
+    price: 700,
+    promoPrice: 500,
     monthly: true,
     tagline: 'On ne se contente plus de conseiller : on crée votre présence externe.',
     items: [
@@ -100,7 +106,8 @@ export const GEO_PLANS: GeoOffer[] = [
   {
     id: 'autorite',
     name: 'Autorité',
-    price: 800,
+    price: 1000,
+    promoPrice: 800,
     monthly: true,
     tagline: 'On produit les contenus qui font de vous la référence de votre secteur.',
     items: [
@@ -112,6 +119,22 @@ export const GEO_PLANS: GeoOffer[] = [
     cta: 'Réserver un rendez-vous',
   },
 ];
+
+/**
+ * Offre Black Friday 2026 sur les accompagnements, décidée par Benjamin le 13/11/2026 : le prix
+ * promoPrice vaut pour toute signature jusqu'au 30 novembre 2026 inclus et reste celui du client
+ * pendant tout son engagement ; ensuite, le site repasse seul aux prix normaux (price).
+ * Pour que la bascule se fasse sans nouvelle mise en ligne : tout ce qui dépend de l'offre est
+ * calculé à l'affichage, par les fonctions ci-dessous (jamais dans une constante de module, figée au
+ * démarrage du serveur), et les pages sont régénérées toutes les heures (revalidate du gabarit
+ * (site)/layout.tsx ; 60 s pour le blog et llms.txt).
+ */
+export const GEO_PROMO = {
+  nom: 'Black Friday',
+  /** Dernier instant de l'offre, heure de Paris. */
+  fin: '2026-11-30T23:59:59+01:00',
+  finTexte: '30 novembre',
+} as const;
 
 /** Conditions des accompagnements (PDF « Offres GEO »). */
 export const GEO_TERMS = [
@@ -137,17 +160,53 @@ export const GEO_RESOURCES: GeoResource[] = [
 /** « 1 000 € » : espaces insécables entre les milliers et avant l'euro. */
 export const euros = (n: number) => n.toLocaleString('fr-FR').replace(/\s/g, ' ') + ' €';
 
+/** L'offre GEO_PROMO est-elle en cours ? À appeler à l'affichage. */
+export const promoGeoActive = (maintenant: Date = new Date()) => maintenant.getTime() <= Date.parse(GEO_PROMO.fin);
+
+/** Prix payé aujourd'hui : celui de l'offre en cours s'il y en a une, sinon le prix normal. */
+export const prixDuJour = (o: GeoOffer) => (o.promoPrice !== undefined && promoGeoActive() ? o.promoPrice : o.price);
+
+/** Prix normal à barrer à côté du prix de l'offre ; null hors offre. */
+export const prixBarre = (o: GeoOffer) => (o.promoPrice !== undefined && promoGeoActive() ? o.price : null);
+
+/** Plus forte remise de l'offre, en % arrondi (30 % pour Essentiel). */
+export const remiseMaxGeo = () =>
+  Math.round(Math.max(0, ...GEO_PLANS.map((p) => (p.promoPrice !== undefined ? 1 - p.promoPrice / p.price : 0))) * 100);
+
+/** Conditions de l'offre en une phrase ; vide hors offre. */
+export const phrasePromoGeo = () =>
+  promoGeoActive()
+    ? `Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : le prix est conservé pendant tout l'engagement.`
+    : '';
+
 export type FaqItem = { q: string; a: string };
 
 const [express, complet] = GEO_AUDITS;
 const [essentiel, croissance, autorite] = GEO_PLANS;
 const prixAudits = `l'<strong>${express.name} à ${euros(express.price)} HT</strong> et l'<strong>${complet.name} à ${euros(complet.price)} HT</strong>`;
-const prixPlans = `<strong>${essentiel.name} à ${euros(essentiel.price)} HT</strong>, <strong>${croissance.name} à ${euros(croissance.price)} HT</strong> et <strong>${autorite.name} à ${euros(autorite.price)} HT par mois</strong>`;
+/** « Essentiel à 350 € HT au lieu de 500 €, … » pendant l'offre ; prix normaux ensuite. */
+const prixPlans = () => {
+  const un = (p: GeoOffer, unite = '') => {
+    const barre = prixBarre(p);
+    return `<strong>${p.name} à ${euros(prixDuJour(p))} HT${unite}</strong>${barre !== null ? ` au lieu de ${euros(barre)}` : ''}`;
+  };
+  return `${un(essentiel)}, ${un(croissance)} et ${un(autorite, ' par mois')}`;
+};
+/** La phrase de l'offre, précédée d'une espace ; rien hors offre. */
+const suitePromo = () => (promoGeoActive() ? ` ${phrasePromoGeo()}` : '');
 
-export const FAQ_AGENCE: FaqItem[] = [
+/** Paragraphe de l'offre en cours pour un article (repère <!-- offre-geo -->) ; vide hors offre. */
+export const offreGeoHtml = () => {
+  if (!promoGeoActive()) return '';
+  const un = (p: GeoOffer) => `${p.name} à ${euros(prixDuJour(p))} HT au lieu de ${euros(p.price)}`;
+  return `<p><strong>Offre ${GEO_PROMO.nom}</strong> : pour toute signature jusqu'au ${GEO_PROMO.finTexte}, ${un(essentiel)} par mois, ${un(croissance)} et ${un(autorite)}. Le prix est conservé pendant tout l'engagement. <a href="/accompagnement-geo/#formules">Voir les formules</a></p>`;
+};
+
+/** FAQ de /agence-geo/ : fonction, pour suivre l'offre en cours. */
+export const faqAgence = (): FaqItem[] => [
   {
     q: "Qu'est-ce qu'une agence GEO ?",
-    a: `Une agence GEO aide une entreprise à apparaître dans les réponses des intelligences artificielles génératives : ChatGPT, Gemini, Perplexity, Claude ou les Aperçus IA de Google. Elle mesure ce que ces IA disent de l'entreprise, corrige ce qui les empêche de la citer (site illisible pour leurs robots, pages qui ne répondent pas aux questions, informations contradictoires) et renforce sa présence sur les sites qu'elles utilisent comme sources. Kameo propose un <a href="/audit-geo/">audit GEO</a> dès ${euros(express.price)} HT et un <a href="/accompagnement-geo/">accompagnement GEO</a> mensuel dès ${euros(essentiel.price)} HT.`,
+    a: `Une agence GEO aide une entreprise à apparaître dans les réponses des intelligences artificielles génératives : ChatGPT, Gemini, Perplexity, Claude ou les Aperçus IA de Google. Elle mesure ce que ces IA disent de l'entreprise, corrige ce qui les empêche de la citer (site illisible pour leurs robots, pages qui ne répondent pas aux questions, informations contradictoires) et renforce sa présence sur les sites qu'elles utilisent comme sources. Kameo propose un <a href="/audit-geo/">audit GEO</a> dès ${euros(express.price)} HT et un <a href="/accompagnement-geo/">accompagnement GEO</a> mensuel dès ${euros(prixDuJour(essentiel))} HT${promoGeoActive() ? ` (offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte})` : ''}.`,
   },
   {
     q: "Comment s'appelle le référencement sur les IA ?",
@@ -167,7 +226,7 @@ export const FAQ_AGENCE: FaqItem[] = [
   },
   {
     q: 'Combien coûte une agence GEO ?',
-    a: `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits}, en paiement unique. Accompagnements mensuels : ${prixPlans}, avec un engagement de ${GEO_MIN_MONTHS} mois minimum et l'Audit GEO Express offert au démarrage.`,
+    a: `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec un engagement de ${GEO_MIN_MONTHS} mois minimum et l'Audit GEO Express offert au démarrage.${suitePromo()}`,
   },
   {
     q: 'Combien de temps faut-il pour être cité par ChatGPT ou les autres IA ?',
@@ -234,14 +293,15 @@ export const FAQ_AUDIT: FaqItem[] = [
   },
 ];
 
-export const FAQ_ACCOMPAGNEMENT: FaqItem[] = [
+/** FAQ de /accompagnement-geo/ : fonction, pour suivre l'offre en cours. */
+export const faqAccompagnement = (): FaqItem[] => [
   {
     q: "Qu'est-ce qu'un accompagnement GEO ?",
     a: `C'est un suivi mensuel de votre visibilité dans les réponses des IA, avec le travail qui va avec. Chaque mois, Kameo mesure ${GEO_QUESTIONS} questions clés sur ChatGPT, Gemini, Perplexity et Claude, applique les corrections sur votre site et, selon la formule, crée vos fiches, développe vos avis et rédige des contenus pensés pour les IA.`,
   },
   {
     q: 'Combien coûte un accompagnement GEO ?',
-    a: `Trois formules à prix publics : ${prixPlans}. L'Audit GEO Express et son plan d'action sont offerts au démarrage, et un mois est offert pour tout engagement annuel.`,
+    a: `Trois formules à prix publics : ${prixPlans()}.${suitePromo()} L'Audit GEO Express et son plan d'action sont offerts au démarrage, et un mois est offert pour tout engagement annuel.`,
   },
   {
     q: `Pourquoi un engagement de ${GEO_MIN_MONTHS} mois minimum ?`,

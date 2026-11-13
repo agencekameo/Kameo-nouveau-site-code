@@ -6125,6 +6125,10 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 }
 .home-geo__links a:hover { border-color: rgba(237,110,99,.45); transform: translateX(2px); }
 .home-geo__links a span { font-weight: 800; color: #ED6E63; white-space: nowrap; }
+/* Offre en cours (GEO_PROMO) : étiquette devant le prix de l'accompagnement */
+.home-geo__links a span.home-geo__offre { display: inline-flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px 8px; white-space: normal; text-align: right; }
+.home-geo__offre b { font-weight: 800; white-space: nowrap; }
+.home-geo__promo { padding: 3px 8px; border-radius: 999px; background: #0F1115; color: #fff; font-family: var(--ff-sans); font-size: 10.5px; font-style: normal; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
 .home-geo__links a.home-geo__main { background: #0F1115; border-color: #0F1115; color: #fff; }
 .home-geo__links a.home-geo__main span { color: #F8903C; }
 @media (max-width: 860px) {

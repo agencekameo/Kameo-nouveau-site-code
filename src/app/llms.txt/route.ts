@@ -1,13 +1,33 @@
 import { getAllPostsOrRepo } from '@/lib/blog';
 import { NB_WOOCOMMERCE, REALISATIONS, REALISATIONS_WORDPRESS } from '@/content/realisations';
 import { CONTACT, CONTENT_UPDATED, PROOF, SITE_URL, SOCIAL } from '@/lib/site';
-import { GEO_AUDITS, GEO_ENGINES, GEO_MIN_MONTHS, GEO_PLANS, GEO_QUESTIONS } from '@/content/geo';
+import {
+  GEO_AUDITS,
+  GEO_ENGINES,
+  GEO_MIN_MONTHS,
+  GEO_PLANS,
+  GEO_PROMO,
+  GEO_QUESTIONS,
+  prixBarre,
+  prixDuJour,
+  promoGeoActive,
+} from '@/content/geo';
 
 /* Prix GEO en texte brut (espaces simples) et liste des IA « ChatGPT, Gemini, Perplexity et Claude ». */
 const euro = (n: number) => n.toLocaleString('fr-FR').replace(/\s/g, ' ') + ' €';
 const IA = GEO_ENGINES.join(', ').replace(/, (?=[^,]*$)/, ' et ');
 const [express, complet] = GEO_AUDITS;
 const plans = GEO_PLANS;
+/* Offre en cours (Black Friday…) : calculée à chaque génération (revalidate 60 s), datée avec l'année. */
+const finPromo = () => `${GEO_PROMO.finTexte} ${GEO_PROMO.fin.slice(0, 4)}`;
+const prixPlan = (p: (typeof GEO_PLANS)[number]) => {
+  const barre = prixBarre(p);
+  return `${euro(prixDuJour(p))} HT par mois${barre !== null ? ` au lieu de ${euro(barre)}` : ''}`;
+};
+const offrePromo = () =>
+  promoGeoActive()
+    ? ` Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${finPromo()} : prix conservé pendant tout l'engagement, puis retour aux prix normaux pour les nouvelles signatures.`
+    : '';
 
 /* /llms.txt (standard llmstxt.org) — synthèse du site pour les moteurs génératifs.
    Source unique, reprise de la section 0 de functions.php. v3 : ajout des articles de
@@ -30,7 +50,7 @@ export async function GET() {
     : '';
   const txt = `# Kameo, agence GEO et web à Paris
 
-> Agence GEO et web fondée en 2023 par Benjamin Dayan. Priorité : le GEO, ou référencement IA, pour que votre entreprise soit citée par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${euro(plans[0].price)} HT par mois. Kameo crée aussi des sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et développe des applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
+> Agence GEO et web fondée en 2023 par Benjamin Dayan. Priorité : le GEO, ou référencement IA, pour que votre entreprise soit citée par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${prixPlan(plans[0])}${promoGeoActive() ? ` (offre ${GEO_PROMO.nom} jusqu'au ${finPromo()})` : ''}. Kameo crée aussi des sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et développe des applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
 
 Dernière mise à jour : ${maj}
 
@@ -61,7 +81,7 @@ Dernière mise à jour : ${maj}
 
 - [Agence GEO](${home}agence-geo/) : GEO (Generative Engine Optimization), aussi appelé référencement IA. Kameo mesure ce que ${IA} disent d'une entreprise, corrige son site (accès des robots d'IA, pages qui répondent, informations cohérentes) et renforce sa présence sur les sources que les IA consultent. Prix publics.
 - [Audit GEO](${home}audit-geo/) : ${express.name} à ${euro(express.price)} HT (visibilité dans les 4 IA, diagnostic technique, plan d'action priorisé) ; ${complet.name} à ${euro(complet.price)} HT (en plus : 3 concurrents directs, sources citées par les IA dans le secteur, restitution d'une heure en visio). Paiement unique ; prix déduit si un accompagnement démarre dans le mois.
-- [Accompagnement GEO](${home}accompagnement-geo/) : ${plans.map((p) => `${p.name} ${euro(p.price)} HT par mois`).join(', ')}. Mesure mensuelle de ${GEO_QUESTIONS} questions clés sur les 4 IA, corrections du site, fiches et annuaires, avis, contenus selon la formule. Engagement de ${GEO_MIN_MONTHS} mois minimum, Audit GEO Express offert au démarrage, 1 mois offert pour un engagement annuel.
+- [Accompagnement GEO](${home}accompagnement-geo/) : ${plans.map((p) => `${p.name} ${prixPlan(p)}`).join(', ')}.${offrePromo()} Mesure mensuelle de ${GEO_QUESTIONS} questions clés sur les 4 IA, corrections du site, fiches et annuaires, avis, contenus selon la formule. Engagement de ${GEO_MIN_MONTHS} mois minimum, Audit GEO Express offert au démarrage, 1 mois offert pour un engagement annuel.
 - [Test gratuit de visibilité dans les IA](${home}test-visibilite-ia/) : 10 questions à poser soi-même à ChatGPT, Gemini, Perplexity et Claude, sans inscription, et la grille pour lire les réponses.
 - [Glossaire GEO](${home}glossaire-geo/) : définitions courtes et sourcées des mots du référencement IA (Aperçus IA, OAI-SearchBot, part de voix, llms.txt…).
 - [Guide : référencement ChatGPT](${home}blog/referencement-chatgpt/) : comment ChatGPT choisit ses sources et 8 étapes pour être cité.
