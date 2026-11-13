@@ -102,6 +102,9 @@ export const SITE_ICON = '/wp-content/uploads/2026/05/cropped-favicon-dark';
 /** Balise de validation de la propriété Search Console, présente sur l'accueil WordPress. */
 export const GOOGLE_SITE_VERIFICATION = 'i8B4YTZYfB95QooLeJsDbIMjkJtJ-zv4_r8QuzANVw0';
 
+/** Balise de validation de Bing Webmaster Tools (compte dev.agencekameo, 13/11/2026). À garder : Bing la revérifie. */
+export const BING_SITE_VERIFICATION = 'B3DFF50B5A3DB81F33893A4E168A3DF9';
+
 export const CONTENT_UPDATED = '2026-11-03T10:00:00+00:00';
 
 /** URL absolue d'un chemin du site ; une URL déjà absolue (images de l'outil de rédaction) est gardée telle quelle. */

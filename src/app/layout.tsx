@@ -6,7 +6,7 @@ import '@/styles/consent.css';
 import AudienceTracker from '@/components/consent/AudienceTracker';
 import GoogleAnalytics from '@/components/consent/GoogleAnalytics';
 import CookieBanner from '@/components/consent/CookieBanner';
-import { GEO, SITE_ICON, SITE_NAME, SITE_URL } from '@/lib/site';
+import { BING_SITE_VERIFICATION, GEO, SITE_ICON, SITE_NAME, SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     ],
     apple: `${SITE_ICON}-180x180.png`,
   },
+  // Preuve de propriété pour Bing Webmaster Tools, sur toutes les pages. L'accueil redéfinit « verification »
+  // (Google) dans src/lib/seo.ts, qui y remet aussi cette balise.
+  verification: { other: { 'msvalidate.01': BING_SITE_VERIFICATION } },
   other: {
     'msapplication-TileImage': `${SITE_URL}${SITE_ICON}-270x270.png`,
     'geo.region': 'FR-75',

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { pageInfo } from '@/content/pages';
-import { SITE_NAME, abs } from './site';
+import { BING_SITE_VERIFICATION, SITE_NAME, abs } from './site';
 
 /**
  * Métadonnées d'une page, au format qu'émettait Rank Math avec les filtres du
@@ -72,7 +72,10 @@ export function pageMetadata(seo: PageSeo): Metadata {
       description: seo.description || undefined,
       images: [image],
     },
-    ...(seo.googleVerification ? { verification: { google: seo.googleVerification } } : {}),
+    // Ce bloc remplace celui du layout racine : on y remet la balise Bing, sinon elle disparaîtrait de l'accueil.
+    ...(seo.googleVerification
+      ? { verification: { google: seo.googleVerification, other: { 'msvalidate.01': BING_SITE_VERIFICATION } } }
+      : {}),
     ...(isArticle
       ? {
           other: {
