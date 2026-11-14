@@ -97,6 +97,47 @@ async function envoyer(): Promise<void> {
   console.log(`[IndexNow] ${etat.adresses.length} adresse(s), statut ${etat.statut}${etat.detail ? ` : ${etat.detail}` : ''}`);
 }
 
+/**
+ * Annonce immédiate d'adresses précises, appelée par /api/revalidate au moment
+ * où l'outil de rédaction publie.
+ *
+ * ⚠ COMPLÉMENT de `indexNowAuDemarrage`, pas doublon. Le démarrage n'a lieu
+ * qu'à une mise en ligne ; or un article paraît SANS mise en ligne. Jusqu'ici
+ * un article publié attendait donc le prochain déploiement pour être annoncé —
+ * et la fenêtre de 3 jours du démarrage le ratait s'il tardait davantage.
+ *
+ * ⚠ N'écrit pas FICHIER_ETAT : cet état sert à ne pas réannoncer deux fois la
+ * même VERSION au démarrage. L'écraser ici ferait réannoncer tout le site au
+ * prochain redémarrage.
+ *
+ * Ne lève jamais : une publication doit réussir même si Bing est injoignable.
+ */
+export async function annoncerPublication(adresses: string[]): Promise<void> {
+  if (process.env.INDEXNOW === 'off' || process.env.NODE_ENV !== 'production') return;
+  const urls = [...new Set(adresses.filter((a) => a.startsWith('/')))].map((a) => `${SITE_URL}${a}`);
+  if (!urls.length) return;
+  if (process.env.INDEXNOW_ESSAI === '1') {
+    console.log(`[IndexNow] essai : ${urls.length} adresse(s) auraient été annoncées`);
+    return;
+  }
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({
+        host: new URL(SITE_URL).host,
+        key: INDEXNOW_KEY,
+        keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
+        urlList: urls.slice(0, 10_000),
+      }),
+      signal: AbortSignal.timeout(5000),
+    });
+    console.log(`[IndexNow] publication : ${urls.length} adresse(s), statut ${res.status}`);
+  } catch (err) {
+    console.warn(`[IndexNow] publication abandonnée : ${String(err).slice(0, 200)}`);
+  }
+}
+
 /** Appelé au démarrage du serveur par src/instrumentation.ts ; l'envoi part une minute plus tard. */
 export function indexNowAuDemarrage(): void {
   if (process.env.INDEXNOW === 'off') return;

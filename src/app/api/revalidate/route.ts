@@ -3,6 +3,7 @@ import { revalidatePath, revalidateTag } from 'next/cache';
 import { after } from 'next/server';
 import { revalidateBlog } from '@/lib/blog-api';
 import { BLOG_TOOL } from '@/lib/blog-tool';
+import { annoncerPublication } from '@/lib/indexnow';
 
 /*
  * POST /api/revalidate : appelée par l'outil de rédaction « Blog » à chaque publication, et pour
@@ -57,6 +58,13 @@ export async function POST(request: Request) {
     for (const p of warm) {
       await fetch(origin + p, { headers: { 'x-kameo-warmup': '1' }, signal: AbortSignal.timeout(15_000) }).catch(() => {});
     }
+    // ── Annonce à IndexNow ──────────────────────────────────────────────────
+    // APRÈS le réchauffage : on n'invite Bing à venir lire qu'une page que le
+    // serveur vient de régénérer. Et après la réponse, pour ne pas faire
+    // patienter l'outil de rédaction.
+    // ⚠ Complément de l'annonce au démarrage (src/lib/indexnow.ts), qui ne part
+    // qu'à une mise en ligne : un article paraît sans mise en ligne.
+    await annoncerPublication(blogPages);
   });
   return Response.json({ ok: true });
 }
