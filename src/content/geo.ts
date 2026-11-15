@@ -229,6 +229,10 @@ export const faqAgence = (): FaqItem[] => [
     a: `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec un engagement de ${GEO_MIN_MONTHS} mois minimum et l'Audit GEO Express offert au démarrage.${suitePromo()}`,
   },
   {
+    q: 'Comment choisir une agence GEO à Paris ?',
+    a: "Vérifiez quatre points : des prix publics, une mesure faite IA par IA avec les mêmes questions chaque mois, des corrections appliquées sur votre site et pas seulement conseillées, et aucune promesse de « première place dans ChatGPT ». Inutile en revanche de vous déplacer : chez Kameo, agence GEO dont l'adresse est au 9 rue des Colonnes, à Paris 2e, audits, restitutions et points mensuels se font en visio, à Paris comme partout en France.",
+  },
+  {
     q: 'Combien de temps faut-il pour être cité par ChatGPT ou les autres IA ?',
     a: `Il n'y a pas de délai fixe : chaque IA met à jour ses sources à son rythme. Les corrections techniques peuvent produire leurs premiers effets en quelques semaines, mais une progression nette se mesure en général sur plusieurs mois. C'est pourquoi nos accompagnements durent ${GEO_MIN_MONTHS} mois minimum et suivent les mêmes ${GEO_QUESTIONS} questions chaque mois.`,
   },

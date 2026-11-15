@@ -787,7 +787,7 @@ export default function HomePage() {
             <p className="seo-about__text">
               Et pour que votre entreprise soit aussi recommandée par ChatGPT, Gemini, Perplexity et Claude, notre{' '}
               <strong>
-                <Link href="/agence-geo/">agence GEO</Link>
+                <Link href="/agence-geo/">agence GEO à Paris</Link>
               </strong>{' '}
               mesure votre visibilité dans leurs réponses, corrige votre site et renforce votre présence sur les sources
               qu’elles consultent.

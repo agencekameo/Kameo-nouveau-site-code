@@ -30,7 +30,7 @@ const CRUMBS = [
 
 /* Prix des accompagnements : suivent l'offre en cours (GEO_PROMO), donc calculés à l'affichage. */
 export function generateMetadata(): Metadata {
-  const description = `Agence GEO (Generative Engine Optimization) : soyez cité par ChatGPT, Gemini, Perplexity et Claude. Audit dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement dès ${euros(prixDuJour(GEO_PLANS[0]))} HT/mois.`;
+  const description = `Agence GEO à Paris (Generative Engine Optimization) : soyez cité par ChatGPT, Gemini, Perplexity et Claude. Audit dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement dès ${euros(prixDuJour(GEO_PLANS[0]))} HT/mois.`;
   return pageMetadata({ path: PATH, title: TITLE, description });
 }
 
@@ -51,16 +51,17 @@ export default function AgenceGeoPage() {
           <div className="container page-hero__inner">
             <span className="page-hero__eyebrow">
               <span className="page-hero__bracket page-hero__bracket--tr" aria-hidden="true" />
-              Agence GEO · Référencement IA <span className="page-hero__bracket page-hero__bracket--bl" aria-hidden="true" />
+              Agence GEO Paris · Référencement IA <span className="page-hero__bracket page-hero__bracket--bl" aria-hidden="true" />
             </span>
             <h1 className="page-hero__title">
-              Agence GEO&nbsp;: faites partie des réponses <br />
+              Agence GEO à&nbsp;Paris&nbsp;: faites partie des réponses <br />
               <span className="page-hero__title-muted">que ChatGPT, Gemini et les IA recommandent</span>
             </h1>
             <p className="page-hero__text">
               Vos futurs clients ne posent plus seulement leurs questions à Google&nbsp;: ils demandent à ChatGPT, Gemini,
-              Perplexity ou Claude quel prestataire choisir. Kameo mesure ce que ces IA disent de vous, corrige ce qui
-              les empêche de vous citer et installe votre marque parmi les entreprises qu’elles recommandent.
+              Perplexity ou Claude quel prestataire choisir. Agence GEO à Paris, Kameo mesure ce que ces IA disent de
+              vous, corrige ce qui les empêche de vous citer et installe votre marque parmi les entreprises qu’elles
+              recommandent, en visio partout en France.
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">
@@ -108,7 +109,7 @@ export default function AgenceGeoPage() {
                   liens, le GEO vise une place dans la réponse elle-même.
                 </p>
                 <p className="geo-brief__text">
-                  Kameo, agence GEO et web fondée en 2023, propose deux formats : un{' '}
+                  Kameo, agence GEO et web à Paris fondée en 2023, propose deux formats : un{' '}
                   <Link href="/audit-geo/">audit GEO</Link> ponctuel (Express {euros(GEO_AUDITS[0].price)} HT, Complet{' '}
                   {euros(GEO_AUDITS[1].price)} HT) et un <Link href="/accompagnement-geo/">accompagnement GEO</Link>{' '}
                   mensuel, de {PLAN_MIN} à {euros(prixDuJour(GEO_PLANS[2]))} HT par mois

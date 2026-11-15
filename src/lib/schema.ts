@@ -243,7 +243,7 @@ const services = (): Record<
   'agence-geo': {
     name: 'Agence GEO (Generative Engine Optimization)',
     serviceType: 'Generative Engine Optimization (GEO)',
-    alternateName: ['Référencement IA', 'SEO pour les IA'],
+    alternateName: ['Agence GEO Paris', 'Référencement IA', 'SEO pour les IA'],
     description: `Visibilité des entreprises dans les réponses de ${IA} : mesure, corrections du site et notoriété. Audit GEO dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement mensuel dès ${euros(prixDuJour(GEO_PLANS[0]))} HT.`,
     offers: [...offresAuditGeo(), ...offresAccompagnementGeo()],
   },
