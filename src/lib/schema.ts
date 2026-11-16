@@ -191,7 +191,7 @@ function offreMensuelle(min: number): Json {
 const offresWordpress = (): Json[] => [
   { ...offre(1299), name: 'Landing page WordPress' },
   { ...offre(1999), name: 'Site vitrine WordPress' },
-  { ...offre(2999), name: 'E-commerce WordPress (WooCommerce)' },
+  { ...offre(2999.99), name: 'E-commerce WordPress (WooCommerce)' },
 ];
 
 /* Offres GEO à prix publics, HT (src/content/geo.ts) : audits en paiement unique, accompagnements au mois. */
@@ -299,7 +299,7 @@ const services = (): Record<
     serviceType: 'E-commerce website development',
     description:
       "Création de boutique en ligne sur-mesure : Shopify Plus, WooCommerce, Prestashop ou headless Next.js. Tunnel optimisé, SEO intégré, catalogue jusqu'à 10 000 SKU.",
-    offers: offre(2999, 50000),
+    offers: offre(2999.99, 50000),
   },
   'creation-marketplace': {
     name: 'Création de marketplace multi-vendeurs',

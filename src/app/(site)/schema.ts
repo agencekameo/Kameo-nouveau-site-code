@@ -55,7 +55,7 @@ export const pageSchemas = (): object[] => [
         name: 'Combien coûte un site chez Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Une landing WordPress démarre à 1 299 € HT, un site vitrine à 1 999 € HT, une boutique WooCommerce à 2 999 € HT. Pour une application métier sur-mesure (CRM, marketplace, SaaS), comptez à partir de 7 999 € HT ; pour un e-commerce sur-mesure, à partir de 12 000 € HT. Le devis chiffré arrive sous 24 h après un échange découverte de 30 minutes, sans frais.',
+          text: 'Une landing WordPress démarre à 1 299 € HT, un site vitrine à 1 999 € HT, une boutique WooCommerce à 2 999,99 € HT. Pour une application métier sur-mesure (CRM, marketplace, SaaS), comptez à partir de 7 999 € HT ; pour un e-commerce sur-mesure, à partir de 12 000 € HT. Le devis chiffré arrive sous 24 h après un échange découverte de 30 minutes, sans frais.',
         },
       },
       {

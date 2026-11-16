@@ -39,7 +39,7 @@ export default function CreationSiteEcommercePage() {
             <p className="page-hero__text">
               Vous voulez une boutique en ligne qui convertit, pas un thème Shopify générique clone de vos concurrents.
               Kameo conçoit votre e-commerce en partant de votre tunnel de vente, de vos règles métier et de votre
-              stratégie SEO. Boutique WooCommerce jusqu'à 50 produits à 2 999 € HT, livrée en 1 mois ; e-commerce
+              stratégie SEO. Boutique WooCommerce jusqu'à 50 produits à 2 999,99 € HT, livrée en 1 mois ; e-commerce
               sur-mesure dès 12 000 € HT. Devis détaillé sous 24 h.
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
@@ -247,7 +247,7 @@ export default function CreationSiteEcommercePage() {
               </h2>
               <p className="ccrea-stack__intro" style={{ marginTop: '14px' }}>
                 WooCommerce est l'extension e-commerce de WordPress, la plateforme d'environ trois quarts des sites que
-                nous livrons. Notre offre WooCommerce : une boutique jusqu'à 50 produits pour 2 999 € HT, livrée en 1
+                nous livrons. Notre offre WooCommerce : une boutique jusqu'à 50 produits pour 2 999,99 € HT, livrée en 1
                 mois (
                 <Link
                   href="/creation-site-wordpress/#formats"
@@ -447,7 +447,7 @@ export default function CreationSiteEcommercePage() {
                     Oui. WooCommerce, l'extension e-commerce de WordPress, fait partie de notre cœur de métier : environ
                     trois quarts des sites que nous livrons sont sous WordPress, et notre portfolio compte trois
                     boutiques WooCommerce, Medical Market, CasaJaia et SED Manutention. Notre offre WooCommerce coûte{' '}
-                    <strong>2 999 € HT</strong> pour une boutique jusqu'à 50 produits, livrée en 1 mois. Au-delà de 50
+                    <strong>2 999,99 € HT</strong> pour une boutique jusqu'à 50 produits, livrée en 1 mois. Au-delà de 50
                     produits ou pour des intégrations spécifiques, nous établissons un devis sur-mesure ; un e-commerce
                     entièrement sur-mesure démarre à 12 000 € HT. Et si Shopify convient mieux à votre projet, nous vous
                     le disons dès le brief.

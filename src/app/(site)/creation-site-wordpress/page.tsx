@@ -12,7 +12,7 @@ import { PROOF } from '@/lib/site';
 const PATH = '/creation-site-wordpress/';
 const TITLE = 'Création site WordPress Paris : 3 formats dès 1 299 € | Kameo';
 const DESCRIPTION =
-  'Création site WordPress à Paris : landing 1 299 €, vitrine 1 999 €, e-commerce 2 999 €. Elementor Pro ou thème codé, SEO inclus. Devis gratuit sous 24 h.';
+  'Création site WordPress à Paris : landing 1 299 €, vitrine 1 999 €, e-commerce 2 999,99 € HT. Elementor Pro ou thème codé, SEO inclus. Devis gratuit sous 24 h.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Agence WordPress Paris', path: '/agence-wordpress-paris/' },
@@ -180,7 +180,7 @@ export default function CreationSiteWordpressPage() {
               <h2 className="pricing__title">Nos offres de création de site WordPress</h2>
               <p className="pricing__intro">
                 Landing page dès <strong>1&nbsp;299 € HT</strong>, site vitrine dès <strong>1&nbsp;999 € HT</strong>,
-                e-commerce dès <strong>2&nbsp;999 € HT</strong>. Échelonnement 3× sans frais au-delà de 3&nbsp;000 € HT.
+                e-commerce dès <strong>2&nbsp;999,99 € HT</strong>. Échelonnement 3× sans frais au-delà de 3&nbsp;000 € HT.
               </p>
             </header>
             <div className="pricing__wrap">
@@ -342,7 +342,7 @@ export default function CreationSiteWordpressPage() {
                 <div className="pcard-offer__price-block">
                   <span className="pcard-offer__from">À partir de</span>
                   <p className="pcard-offer__price">
-                    2&nbsp;999 € <small>/HT</small>
+                    2&nbsp;999,99 € <small>/HT</small>
                   </p>
                 </div>
                 <ul className="pcard-offer__list">
@@ -521,7 +521,7 @@ export default function CreationSiteWordpressPage() {
                       <strong>1 999 €</strong>
                     </td>
                     <td>
-                      <strong>2 999 €</strong>
+                      <strong>2 999,99 €</strong>
                     </td>
                   </tr>
                 </tbody>
@@ -1635,7 +1635,7 @@ export default function CreationSiteWordpressPage() {
               </details>
               <details className="expertise-faq__item">
                 <summary className="expertise-faq__q">
-                  Que comprend le tarif e-commerce 2 999 € HT sur WooCommerce ?{' '}
+                  Que comprend le tarif e-commerce 2 999,99 € HT sur WooCommerce ?{' '}
                   <span className="expertise-faq__chevron" aria-hidden="true">
                     <svg
                       viewBox="0 0 24 24"

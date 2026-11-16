@@ -36,7 +36,7 @@ export const pageSchemas: object[] = [
         offers: [
           { '@type': 'Offer', name: 'Landing page WordPress', price: '1299', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', price: '1299', priceCurrency: 'EUR', valueAddedTaxIncluded: false } },
           { '@type': 'Offer', name: 'Site vitrine WordPress', price: '1999', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', price: '1999', priceCurrency: 'EUR', valueAddedTaxIncluded: false } },
-          { '@type': 'Offer', name: 'E-commerce WordPress (WooCommerce)', price: '2999', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', price: '2999', priceCurrency: 'EUR', valueAddedTaxIncluded: false } },
+          { '@type': 'Offer', name: 'E-commerce WordPress (WooCommerce)', price: '2999.99', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', price: '2999.99', priceCurrency: 'EUR', valueAddedTaxIncluded: false } },
         ],
         provider: {
           '@id': 'https://agence-kameo.fr/#organization',
@@ -79,7 +79,7 @@ export const pageSchemas: object[] = [
             name: "WordPress est-il adapté au site d'une PME ?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Oui, dans la plupart des cas : environ trois quarts des sites que nous livrons sont sous WordPress. Une PME y gagne un site qu'elle peut modifier elle-même et dont elle reste propriétaire, avec un budget connu d'avance : 1 999 € HT pour un site vitrine livré en 14 jours. Pour une application métier complexe, nous recommandons plutôt un développement sur-mesure.",
+              text: "Oui, dans la plupart des cas : environ trois quarts des sites que nous livrons sont sous WordPress. Une PME y gagne un site qu'elle peut modifier elle-même et dont elle reste propriétaire, avec un budget connu d'avance : 1 999 € HT pour un site vitrine livré en 14 jours, 2 999,99 € HT pour un e-commerce WooCommerce livré en 1 mois. Pour une application métier complexe, nous recommandons plutôt un développement sur-mesure.",
             },
           },
           {

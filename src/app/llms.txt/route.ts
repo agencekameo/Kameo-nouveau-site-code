@@ -49,7 +49,7 @@ export async function GET() {
     : '';
   const txt = `# Kameo, agence GEO et web à Paris
 
-> Agence GEO et web fondée en 2023 par Benjamin Dayan. Priorité : le GEO, ou référencement IA, pour que votre entreprise soit citée par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${prixPlan(plans[0])}${promoGeoActive() ? ` (offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte})` : ''}. Kameo crée aussi des sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et développe des applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
+> Agence GEO et web fondée en 2023 par Benjamin Dayan. Priorité : le GEO, ou référencement IA, pour que votre entreprise soit citée par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${prixPlan(plans[0])}${promoGeoActive() ? ` (offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte})` : ''}. Kameo crée aussi des sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999,99 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et développe des applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
 
 Dernière mise à jour : ${maj}
 
@@ -64,10 +64,10 @@ Dernière mise à jour : ${maj}
 ## Métier 1 : création de sites internet
 
 - [Agence WordPress Paris](${home}agence-wordpress-paris/) : création, refonte et maintenance de sites WordPress sur-mesure. Devis sous 24 h.
-- [Création de site WordPress](${home}creation-site-wordpress/) : landing dès 1 299 € HT, vitrine dès 1 999 € HT, e-commerce WooCommerce dès 2 999 € HT. Référencement inclus.
+- [Création de site WordPress](${home}creation-site-wordpress/) : landing dès 1 299 € HT, vitrine dès 1 999 € HT, e-commerce WooCommerce dès 2 999,99 € HT. Référencement inclus.
 - [Refonte WordPress](${home}refonte-wordpress/) : audit sous 48 h, plan de redirections 301 maîtrisé, design sur-mesure, performance.
 - [Maintenance WordPress](${home}maintenance-wordpress/) : forfaits sans engagement dès 79 € HT par mois. Mises à jour, sauvegardes, sécurité, supervision.
-- [Création de site e-commerce](${home}creation-site-ecommerce/) : WooCommerce (boutique jusqu'à 50 produits à 2 999 € HT, livrée en 1 mois), Shopify, architecture découplée ; e-commerce sur-mesure à partir de 12 000 € HT.
+- [Création de site e-commerce](${home}creation-site-ecommerce/) : WooCommerce (boutique jusqu'à 50 produits à 2 999,99 € HT, livrée en 1 mois), Shopify, architecture découplée ; e-commerce sur-mesure à partir de 12 000 € HT.
 
 ## Métier 2 : développement sur-mesure et applications métier
 

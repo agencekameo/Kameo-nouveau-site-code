@@ -3,7 +3,7 @@ title: "Comment créer un site internet vitrine pour une PME locale ?"
 description: "Découvrez comment créer un site vitrine PME locale performant : étapes, conseils SEO local et astuces pour attirer plus de clients près de chez vous."
 excerpt: "Créer un site vitrine PME locale efficace : guide complet pour gagner en visibilité, séduire vos clients de proximité et booster votre activité."
 date: "2026-07-06T16:37:53+00:00"
-modified: "2026-10-16T16:47:04+00:00"
+modified: "2026-11-16T09:47:00+00:00"
 image: "/wp-content/uploads/2026/07/NexusGames-CommentcrerunsiteinternetvitrinepourunePMElocale.png"
 imageWidth: 1024
 imageHeight: 1024
@@ -60,7 +60,7 @@ format: html
 </tr>
 <tr>
 <td>Agence premium / e-commerce</td>
-<td>2 999 € et plus</td>
+<td>2 999,99 € HT et plus</td>
 <td>Entreprise avec besoins avancés</td>
 </tr>
 </table>

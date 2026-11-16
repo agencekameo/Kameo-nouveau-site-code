@@ -42,7 +42,7 @@ export default function AgenceWordpressParisPage() {
             <p className="page-hero__text">
               Kameo est une agence WordPress fondée en 2023, avec une adresse à Paris 2<sup>e</sup>. Nous créons,
               refondons et maintenons des sites WordPress sur-mesure pour PME, startups et marques exigeantes, à prix
-              publics : landing page 1 299 € HT, site vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT. Site
+              publics : landing page 1 299 € HT, site vitrine 1 999 € HT, e-commerce WooCommerce 2 999,99 € HT. Site
               vitrine livré en 14 jours, devis sous 24 h. Plus de {PROOF.projetsTotal} sites livrés depuis 2023, dont
               environ trois quarts sous WordPress.
             </p>
@@ -652,7 +652,7 @@ export default function AgenceWordpressParisPage() {
                   <use href="/icons.svg#i-solid-bag-shopping" />
                 </svg>
                 <strong style={{ color: '#0f1115', fontWeight: '700' }}>E-commerce WooCommerce</strong>· catalogue · 1
-                mois · 2 999 € HT{' '}
+                mois · 2 999,99 € HT{' '}
               </span>
             </div>
             <p style={{ fontSize: '14px', color: 'rgba(15,17,21,.6)', margin: '-14px auto 28px', maxWidth: '60ch' }}>
@@ -1361,7 +1361,7 @@ export default function AgenceWordpressParisPage() {
                     Oui, dans la plupart des cas : environ trois quarts des sites que nous livrons sont sous
                     WordPress. Une PME y gagne un site qu'elle
                     peut modifier elle-même et dont elle reste propriétaire, avec un budget connu d'avance : 1 999 € HT
-                    pour un site vitrine livré en 14 jours. Pour une application métier complexe, nous recommandons
+                    pour un site vitrine livré en 14 jours, 2 999,99 € HT pour un e-commerce WooCommerce livré en 1 mois. Pour une application métier complexe, nous recommandons
                     plutôt un <Link href="/developpement-sur-mesure/">développement sur-mesure</Link>.
                   </p>
                 </div>

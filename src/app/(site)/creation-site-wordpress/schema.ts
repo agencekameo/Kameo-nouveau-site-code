@@ -81,11 +81,11 @@ export const pageSchemas: object[] = [
           {
             '@type': 'Offer',
             name: 'E-commerce WordPress (WooCommerce)',
-            price: '2999',
+            price: '2999.99',
             priceCurrency: 'EUR',
             priceSpecification: {
               '@type': 'PriceSpecification',
-              price: '2999',
+              price: '2999.99',
               priceCurrency: 'EUR',
               valueAddedTaxIncluded: false,
             },
@@ -115,7 +115,7 @@ export const pageSchemas: object[] = [
           },
           {
             '@type': 'Question',
-            name: "Que comprend le tarif e-commerce 2 999 € HT sur WooCommerce ?",
+            name: "Que comprend le tarif e-commerce 2 999,99 € HT sur WooCommerce ?",
             acceptedAnswer: {
               '@type': 'Answer',
               text: "Le forfait e-commerce couvre WooCommerce sur-mesure pour jusqu'à 50 fiches produits (catalogue manuel ou import CSV), le tunnel de commande optimisé, le paiement Stripe ou Mollie, la gestion des stocks, les fiches produits SEO-friendly, le pixel Meta + GA4 e-commerce, et la formation à la gestion catalogue. Au-delà de 50 SKU ou pour des intégrations spécifiques (ERP, marketplace, dropshipping), devis sur-mesure.",

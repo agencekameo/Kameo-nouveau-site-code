@@ -162,7 +162,7 @@ export default function RealisationsWordPressPage() {
           <div className="container">
             <h2 className="rwp-title">Un projet WordPress ?</h2>
             <p className="rwp-lead">
-              Landing page dès 1 299 € HT, site vitrine dès 1 999 € HT, boutique WooCommerce dès 2 999 € HT. Devis sous
+              Landing page dès 1 299 € HT, site vitrine dès 1 999 € HT, boutique WooCommerce dès 2 999,99 € HT. Devis sous
               24 h.
             </p>
             <div className="rwp-cta__links">
