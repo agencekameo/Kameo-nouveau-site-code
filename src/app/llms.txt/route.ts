@@ -18,15 +18,14 @@ const euro = (n: number) => n.toLocaleString('fr-FR').replace(/\s/g, ' ') + ' �
 const IA = GEO_ENGINES.join(', ').replace(/, (?=[^,]*$)/, ' et ');
 const [express, complet] = GEO_AUDITS;
 const plans = GEO_PLANS;
-/* Offre en cours (Black Friday…) : calculée à chaque génération (revalidate 60 s), datée avec l'année. */
-const finPromo = () => `${GEO_PROMO.finTexte} ${GEO_PROMO.fin.slice(0, 4)}`;
+/* Offre en cours (Black Friday…) : calculée à chaque génération (revalidate 60 s) ; GEO_PROMO.finTexte porte l'année. */
 const prixPlan = (p: (typeof GEO_PLANS)[number]) => {
   const barre = prixBarre(p);
   return `${euro(prixDuJour(p))} HT par mois${barre !== null ? ` au lieu de ${euro(barre)}` : ''}`;
 };
 const offrePromo = () =>
   promoGeoActive()
-    ? ` Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${finPromo()} : prix conservé pendant tout l'engagement, puis retour aux prix normaux pour les nouvelles signatures.`
+    ? ` Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : prix conservé pendant tout l'engagement, puis retour aux prix normaux pour les nouvelles signatures.`
     : '';
 
 /* /llms.txt (standard llmstxt.org) — synthèse du site pour les moteurs génératifs.
@@ -50,7 +49,7 @@ export async function GET() {
     : '';
   const txt = `# Kameo, agence GEO et web à Paris
 
-> Agence GEO et web fondée en 2023 par Benjamin Dayan. Priorité : le GEO, ou référencement IA, pour que votre entreprise soit citée par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${prixPlan(plans[0])}${promoGeoActive() ? ` (offre ${GEO_PROMO.nom} jusqu'au ${finPromo()})` : ''}. Kameo crée aussi des sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et développe des applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
+> Agence GEO et web fondée en 2023 par Benjamin Dayan. Priorité : le GEO, ou référencement IA, pour que votre entreprise soit citée par ${IA} : audit dès ${euro(express.price)} HT, accompagnement dès ${prixPlan(plans[0])}${promoGeoActive() ? ` (offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte})` : ''}. Kameo crée aussi des sites WordPress sur-mesure à prix publics (landing 1 299 € HT, vitrine 1 999 € HT, e-commerce WooCommerce 2 999 € HT, site vitrine livré en 14 jours), construits avec Elementor Pro ou sur un thème codé selon le projet, et développe des applications métier (CRM, outils internes, marketplaces, SaaS). Équipe de 6 personnes : les deux dirigeants, Benjamin Dayan et Louison Boutet, pilotent les projets et accompagnent les clients en visio, partout en France. Adresse : 9 rue des Colonnes, 75002 Paris. Note Trustpilot ${avis}/5 sur ${nbAvis} avis vérifiés. Plus de ${projets} projets livrés, dont environ trois quarts de sites WordPress, et ${cas} présentés en études de cas.
 
 Dernière mise à jour : ${maj}
 

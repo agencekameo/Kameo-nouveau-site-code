@@ -4,7 +4,7 @@ seoTitle: "GEO WordPress : un site lisible par ChatGPT et les IA | Kameo"
 description: "GEO WordPress : 10 points à vérifier pour que ChatGPT, Gemini et les autres IA lisent votre site, du robots.txt au llms.txt. Comment vérifier, quoi faire."
 excerpt: "Réglage de visibilité, robots.txt, pare-feu, JavaScript, indexation, llms.txt : la liste de contrôle en 10 points pour qu'un site WordPress soit lisible par ChatGPT, Gemini, Perplexity et Claude, avec pour chacun comment vérifier et quoi faire."
 date: "2026-11-09T16:40:00+01:00"
-modified: "2026-11-09T16:40:00+01:00"
+modified: "2026-11-16T10:30:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-geo-wordpress.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -161,7 +161,7 @@ Oui pour l'essentiel : Elementor produit, comme WordPress, des pages complètes 
 <details>
 <summary>Combien de temps après ces corrections serai-je cité ?</summary>
 
-Personne ne peut le dire, ni garantir une citation. OpenAI tient compte d'un nouveau robots.txt en 24 heures environ, mais le reste évolue plus lentement : apprenez à [mesurer votre visibilité dans les IA](/blog/mesurer-visibilite-ia/) sur plusieurs mois.
+En général, les premiers effets se voient 4 à 6 semaines après les corrections, mais personne ne peut garantir une citation. OpenAI tient compte d'un nouveau robots.txt en 24 heures environ, et le reste évolue plus lentement : apprenez à [mesurer votre visibilité dans les IA](/blog/mesurer-visibilite-ia/) sur plusieurs mois.
 
 </details>
 

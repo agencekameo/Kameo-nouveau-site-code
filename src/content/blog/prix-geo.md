@@ -4,7 +4,7 @@ seoTitle: "Prix GEO : tarif d'un audit et d'une agence GEO en 2026 | Kameo"
 description: "Combien coûte le GEO (référencement IA) en 2026 ? Prix d'un audit et d'un accompagnement, ce que comprend chaque offre et comment comparer deux devis."
 excerpt: "Audit, accompagnement mensuel, outil de suivi : les prix du GEO relevés en novembre 2026, ce que comprend chaque niveau, les questions à poser pour comparer deux offres et les signaux d'alerte."
 date: "2026-11-09T16:00:00+01:00"
-modified: "2026-11-13T12:04:00+01:00"
+modified: "2026-11-16T10:30:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-prix-geo.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -113,7 +113,7 @@ Essentiel se situe sous l'entrée de gamme relevée chez les agences. Son périm
 
 Vous achetez un travail et une mesure, pas un résultat garanti.
 
-- **Pendant un accompagnement**, vous devez voir chaque mois le travail réalisé et la mesure. Certains changements sont pris en compte vite (OpenAI relit un robots.txt modifié en 24 heures environ), d'autres demandent des mois. Aucun délai fiable n'est publié pour être cité.
+- **Pendant un accompagnement**, vous devez voir chaque mois le travail réalisé et la mesure. Certains changements sont pris en compte vite (OpenAI relit un robots.txt modifié en 24 heures environ). En général, les premiers effets dans les réponses des IA se voient 4 à 6 semaines après les corrections, et une vraie progression demande des mois. Aucun délai n'est garanti.
 - **Côté visites, restez réaliste.** Les IA n'apportaient que 0,26 % du trafic des sites français de janvier à avril 2026 (SE Ranking, juin 2026). Mais elles interviennent au moment du choix : 55 % des utilisateurs d'IA déclarent avoir déjà acheté après avoir interrogé une IA (Havas Market, mai 2026).
 
 ## Questions fréquentes sur le prix du GEO

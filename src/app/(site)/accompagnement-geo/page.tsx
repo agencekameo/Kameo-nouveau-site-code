@@ -336,7 +336,8 @@ export default function AccompagnementGeoPage() {
             </header>
             <div className="geo-prose">
               <p>
-                Les IA ne prennent pas en compte vos changements du jour au lendemain. Une page corrigée doit être
+                Les IA ne prennent pas en compte vos changements du jour au lendemain&nbsp;: en général, les premiers effets
+                se voient 4&nbsp;à&nbsp;6&nbsp;semaines après les corrections. Une page corrigée doit être
                 relue par leurs robots, une nouvelle fiche doit être indexée, des avis doivent s’accumuler, et chaque IA
                 renouvelle ses sources à son propre rythme.
               </p>

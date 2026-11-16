@@ -4,7 +4,7 @@ seoTitle: "Pourquoi ChatGPT ne cite pas mon entreprise : 8 causes | Kameo"
 description: "Votre entreprise n'apparaît pas dans ChatGPT ? Un test de 10 minutes, puis 8 causes fréquentes : comment les vérifier et les corriger. Chiffres sourcés."
 excerpt: "ChatGPT recommande vos concurrents, jamais vous ? Faites le constat en 10 minutes, puis passez en revue les 8 causes les plus fréquentes, avec pour chacune comment la vérifier et comment la corriger."
 date: "2026-11-09T16:20:00+01:00"
-modified: "2026-11-09T16:20:00+01:00"
+modified: "2026-11-16T10:30:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-chatgpt-ne-cite-pas-mon-entreprise.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -141,7 +141,7 @@ Reposez d'abord la question plusieurs fois : les réponses varient. Si l'absenc
 <details>
 <summary>Combien de temps faut-il pour que les corrections se voient ?</summary>
 
-Il n'existe pas de délai fiable. Un changement de robots.txt est pris en compte en 24 heures environ, mais une page doit encore être indexée, lue et jugée utile, et le travail sur les avis ou les comparatifs prend des mois. Mesurez dans la durée.
+En général, comptez 4 à 6 semaines après les corrections pour voir les premiers effets, sans garantie. Un changement de robots.txt est pris en compte en 24 heures environ, mais une page doit encore être indexée, lue et jugée utile, et le travail sur les avis ou les comparatifs prend des mois. Mesurez dans la durée.
 
 </details>
 

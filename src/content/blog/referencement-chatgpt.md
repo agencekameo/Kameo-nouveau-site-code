@@ -4,7 +4,7 @@ seoTitle: "Référencement ChatGPT : comment être cité et recommandé | Kameo"
 description: "Être référencé sur ChatGPT : comment l'IA choisit ses sources, 8 étapes pour être cité, les erreurs à éviter et comment mesurer. Chiffres datés et sourcés."
 excerpt: "Comment ChatGPT choisit les entreprises qu'il cite, et ce que vous pouvez faire, étape par étape, pour en faire partie : robots, indexation, pages qui répondent, sources tierces, avis et mesure."
 date: "2026-11-09T12:00:00+01:00"
-modified: "2026-11-09T17:30:00+01:00"
+modified: "2026-11-16T10:30:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-referencement-chatgpt.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -110,7 +110,7 @@ Les plateformes d'avis font partie des sources que les IA consultent pour juger 
 
 ## Combien de temps pour être cité par ChatGPT ?
 
-Il n'existe pas de délai fiable publié : méfiez-vous des chiffres précis qui circulent sans source. Ce qui est sûr : un changement de robots.txt est pris en compte en 24 heures environ, une page doit être indexée pour être trouvée, et ce que les modèles « savent » de vous n'évolue qu'avec leurs nouvelles versions. Comptez plusieurs mois de travail régulier, mesurés sur les mêmes questions, pour juger d'une vraie progression.
+Il n'existe pas de délai fiable publié, et personne ne peut garantir une citation. Notre repère : en général, les premiers effets se voient 4 à 6 semaines après les corrections. Ce qui est sûr : un changement de robots.txt est pris en compte en 24 heures environ, une page doit être indexée pour être trouvée, et ce que les modèles « savent » de vous n'évolue qu'avec leurs nouvelles versions. Comptez plusieurs mois de travail régulier, mesurés sur les mêmes questions, pour juger d'une vraie progression.
 
 ## Questions fréquentes sur le référencement ChatGPT
 

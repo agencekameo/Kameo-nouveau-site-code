@@ -61,7 +61,8 @@ export default function AgenceGeoPage() {
               Vos futurs clients ne posent plus seulement leurs questions à Google&nbsp;: ils demandent à ChatGPT, Gemini,
               Perplexity ou Claude quel prestataire choisir. Agence GEO à Paris, Kameo mesure ce que ces IA disent de
               vous, corrige ce qui les empêche de vous citer et installe votre marque parmi les entreprises qu’elles
-              recommandent, en visio partout en France.
+              recommandent, en visio partout en France. En général, les premiers effets dans les IA se voient{' '}
+              <strong>4&nbsp;à&nbsp;6&nbsp;semaines</strong> après les corrections.
             </p>
             <div className="expertise-trust" role="group" aria-label="Indicateurs de confiance">
               <span className="expertise-trust__item">

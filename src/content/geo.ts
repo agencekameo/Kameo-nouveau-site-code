@@ -133,7 +133,8 @@ export const GEO_PROMO = {
   nom: 'Black Friday',
   /** Dernier instant de l'offre, heure de Paris. */
   fin: '2026-11-30T23:59:59+01:00',
-  finTexte: '30 novembre',
+  /** Date affichée partout (pages, FAQ, guide des prix, llms.txt), avec l'année depuis le 16/11/2026. */
+  finTexte: '30 novembre 2026',
 } as const;
 
 /** Conditions des accompagnements (PDF « Offres GEO »). */
@@ -234,7 +235,7 @@ export const faqAgence = (): FaqItem[] => [
   },
   {
     q: 'Combien de temps faut-il pour être cité par ChatGPT ou les autres IA ?',
-    a: `Il n'y a pas de délai fixe : chaque IA met à jour ses sources à son rythme. Les corrections techniques peuvent produire leurs premiers effets en quelques semaines, mais une progression nette se mesure en général sur plusieurs mois. C'est pourquoi nos accompagnements durent ${GEO_MIN_MONTHS} mois minimum et suivent les mêmes ${GEO_QUESTIONS} questions chaque mois.`,
+    a: `En général, les premiers effets se voient 4 à 6 semaines après les corrections. Ce délai n'est pas garanti : chaque IA renouvelle ses sources à son rythme, et une progression nette se mesure sur plusieurs mois. C'est pourquoi nos accompagnements durent ${GEO_MIN_MONTHS} mois minimum et suivent les mêmes ${GEO_QUESTIONS} questions chaque mois.`,
   },
   {
     q: 'Peut-on garantir d’apparaître dans ChatGPT ?',
@@ -309,7 +310,7 @@ export const faqAccompagnement = (): FaqItem[] => [
   },
   {
     q: `Pourquoi un engagement de ${GEO_MIN_MONTHS} mois minimum ?`,
-    a: `Parce que les IA mettent du temps à prendre en compte les changements : nouvelles pages, données structurées, fiches et avis ne sont pas repris du jour au lendemain. ${GEO_MIN_MONTHS} mois, c'est le temps qu'il faut pour mesurer une vraie progression sur les mêmes ${GEO_QUESTIONS} questions.`,
+    a: `Parce que les IA mettent du temps à prendre en compte les changements : les premiers effets se voient en général 4 à 6 semaines après les corrections, et nouvelles pages, fiches et avis ne pèsent vraiment qu'au fil des mois. ${GEO_MIN_MONTHS} mois, c'est le temps qu'il faut pour mesurer une vraie progression sur les mêmes ${GEO_QUESTIONS} questions.`,
   },
   {
     q: 'Quelle formule choisir ?',
