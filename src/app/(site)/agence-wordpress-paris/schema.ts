@@ -39,7 +39,7 @@ export const pageSchemas: object[] = [
           { '@type': 'Offer', name: 'E-commerce WordPress (WooCommerce)', price: '2999', priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', price: '2999', priceCurrency: 'EUR', valueAddedTaxIncluded: false } },
         ],
         provider: {
-          '@id': 'https://agence-kameo.fr/#localbusiness',
+          '@id': 'https://agence-kameo.fr/#organization',
         },
         areaServed: [
           {

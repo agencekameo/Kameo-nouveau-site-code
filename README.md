@@ -47,7 +47,7 @@ rédaction n'a besoin d'aucune variable : ses réglages sont dans le code (`src/
 | Articles du blog                                           | `src/content/blog/*.md` (voir le `README.md` du dossier), publiés par n8n (`docs/api-blog-n8n.md`) ou par l'outil de rédaction « Blog » (réglages : `src/lib/blog-tool.ts`) |
 | Landing page Ads / confirmation de RDV                     | `src/app/(standalone)/…`                        |
 | Titres et meta descriptions                                | constantes `TITLE` / `DESCRIPTION` de chaque page |
-| Données structurées (Organization, LocalBusiness, Service…) | `src/lib/schema.ts`                             |
+| Données structurées (Organization, Service…)                | `src/lib/schema.ts`                             |
 | Redirections 301 et URLs supprimées (410)                  | `src/lib/redirects.ts`                          |
 | Styles                                                     | `src/styles/main.css` (CSS du thème, inchangé)  |
 | Bandeau cookies, traceurs soumis au consentement           | `src/components/consent/`, `src/lib/consent.ts` |
@@ -84,9 +84,10 @@ Dockerfile, docker-compose.yml   mise en production avec la base des articles n8
 - **URLs identiques** à WordPress, « / » final compris (ajouté par une redirection 301 comme sous WordPress).
 - **Titres, meta descriptions, canonicals, robots, Open Graph, Twitter** : repris des filtres du thème
   appliqués à Rank Math (`kameo_get_custom_title`, `kameo_get_custom_description`).
-- **Données structurées** de la section 9b du thème, aux mêmes `@id` : Person, Organization,
-  LocalBusiness, BreadcrumbList, Service + Offer, Blog, BlogPosting, ItemList, CreativeWork, FAQPage,
-  et le graphe complet des 4 pages du silo WordPress.
+- **Données structurées** de la section 9b du thème, aux mêmes `@id` : Person, Organization
+  (seule entité de l'entreprise : la fiche LocalBusiness du thème a été retirée), BreadcrumbList,
+  Service + Offer, Blog, BlogPosting, ItemList, CreativeWork, FAQPage, et le graphe complet des
+  4 pages du silo WordPress.
 - **Fil d'Ariane visible** aligné sur le balisage.
 - **Sitemaps** aux mêmes adresses que Rank Math (`/sitemap_index.xml`, `/sitemap.xml` y redirige).
 - **robots.txt, llms.txt, humans.txt, security.txt** et le flux `/feed/`.

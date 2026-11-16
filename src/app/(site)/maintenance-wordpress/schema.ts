@@ -37,7 +37,7 @@ export const pageSchemas: object[] = [
         description:
           'Maintenance WordPress à Paris : mises à jour, sauvegardes, monitoring sécurité 24/7, support technique. Forfaits dès 79 € HT/mois sans engagement.',
         provider: {
-          '@id': 'https://agence-kameo.fr/#localbusiness',
+          '@id': 'https://agence-kameo.fr/#organization',
         },
         areaServed: [
           {

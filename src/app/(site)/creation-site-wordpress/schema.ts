@@ -37,7 +37,7 @@ export const pageSchemas: object[] = [
         description:
           'Création de site WordPress à Paris : landing page, vitrine, e-commerce WooCommerce sur-mesure. Design sur-mesure, Elementor Pro ou thème codé, SEO inclus, livraison en 14 jours à 1 mois.',
         provider: {
-          '@id': 'https://agence-kameo.fr/#localbusiness',
+          '@id': 'https://agence-kameo.fr/#organization',
         },
         areaServed: [
           {

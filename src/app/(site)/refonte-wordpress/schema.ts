@@ -37,7 +37,7 @@ export const pageSchemas: object[] = [
         description:
           'Refonte de site WordPress à Paris sans perdre votre SEO existant. Audit gratuit 48 h, plan de redirections 301 maîtrisé, monitoring 90 jours post-bascule.',
         provider: {
-          '@id': 'https://agence-kameo.fr/#localbusiness',
+          '@id': 'https://agence-kameo.fr/#organization',
         },
         areaServed: [
           {

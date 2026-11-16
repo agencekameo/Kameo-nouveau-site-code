@@ -1,8 +1,14 @@
 /**
  * Données structurées — port de la section 9b de functions.php (v2.10.7).
  * Mêmes entités, mêmes @id : Person #benjamin et #louison, Organization
- * #organization, LocalBusiness #localbusiness, BreadcrumbList, Blog, BlogPosting,
- * ItemList, Service + Offer, CreativeWork des réalisations.
+ * #organization, BreadcrumbList, Blog, BlogPosting, ItemList, Service + Offer,
+ * CreativeWork des réalisations.
+ *
+ * Une seule entité décrit l'entreprise : Organization #organization, à laquelle tout renvoie.
+ * La fiche ProfessionalService/LocalBusiness #localbusiness, qui la doublait (même nom, même
+ * adresse, même zone, plus un priceRange « €€ »), a été retirée le 16/11/2026 à la demande de
+ * Benjamin : deux entreprises décrites brouillent l'identité de Kameo, et LocalBusiness suggère
+ * un lieu qui reçoit des clients. Ne pas la recréer.
  *
  * Identité : uniquement des faits vérifiés (mentions légales, site.ts). Pas de Review
  * ni d'AggregateRating issus de Trustpilot (avis recueillis sur un autre site, interdit
@@ -16,7 +22,6 @@ import { ADDRESS, COMPANY, CONTACT, HOURS, PROFILES, SITE_URL, SOCIAL, abs } fro
 
 const HOME = SITE_URL + '/';
 const ORG_ID = HOME + '#organization';
-const LOCAL_ID = HOME + '#localbusiness';
 const BENJAMIN_ID = HOME + '#benjamin';
 const LOUISON_ID = HOME + '#louison';
 const LOGO = abs('/images/hero.webp');
@@ -123,29 +128,13 @@ export const organization = (): Json => ({
   contactPoint: contactPoint(),
 });
 
-export const localBusiness = (): Json => ({
-  '@context': 'https://schema.org',
-  '@type': ['ProfessionalService', 'LocalBusiness'],
-  '@id': LOCAL_ID,
-  name: COMPANY.name,
-  url: HOME,
-  image: OG_IMG,
-  description: ORG_DESCRIPTION,
-  parentOrganization: { '@id': ORG_ID },
-  telephone: CONTACT.phoneE164,
-  email: CONTACT.email,
-  priceRange: '€€',
-  address: postalAddress(),
-  areaServed: areaServed(),
-});
-
 /**
- * Les entités d'identité (Person ×2, Organization, LocalBusiness) sans @context, prêtes à
+ * Les entités d'identité (Person ×2, Organization) sans @context, prêtes à
  * être insérées dans le @graph d'une page (pages du silo WordPress) : chaque @id porte
  * alors exactement les mêmes données sur tout le site.
  */
 export function identityGraphNodes(): Json[] {
-  return [personBenjamin(), personLouison(), organization(), localBusiness()].map((node) => {
+  return [personBenjamin(), personLouison(), organization()].map((node) => {
     const copy = { ...node };
     delete copy['@context'];
     return copy;
@@ -422,7 +411,8 @@ export function faqFromHtml(html: string, path: string): Json | null {
 
 /**
  * Le bloc que le thème émettait dans le <head> de chaque page hors silo WordPress
- * (Person ×2, Organization, LocalBusiness, BreadcrumbList puis nœuds propres au type).
+ * (Person ×2, Organization, BreadcrumbList puis nœuds propres au type ; sans la fiche
+ * LocalBusiness du thème, retirée le 16/11/2026).
  * Les 4 pages du silo WordPress portent à la place leur propre @graph unifié
  * (voir identityGraphNodes() pour y reprendre les mêmes entités).
  */
@@ -432,7 +422,7 @@ export function themeSchemas(opts: {
   serviceSlug?: string;
   extra?: Json[];
 }): Json[] {
-  const out: Json[] = [personBenjamin(), personLouison(), organization(), localBusiness()];
+  const out: Json[] = [personBenjamin(), personLouison(), organization()];
   if (opts.crumbs && opts.crumbs.length) out.push(breadcrumbList(opts.path, opts.crumbs));
   if (opts.extra) out.push(...opts.extra);
   if (opts.serviceSlug) {
