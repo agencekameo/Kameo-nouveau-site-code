@@ -370,6 +370,72 @@ export default function AgenceGeoPage() {
           label="Découvrir l’audit GEO"
         />
 
+        {/* ============ RÉSULTATS CLIENTS ============ */}
+        {/* Relevés donnés par Benjamin le 16/11/2026 (OmegaCloud : capture de l'outil de suivi GEO de Kameo).
+            [À COMPLÉTER] Défikart : date exacte du relevé, nombre de réponses (x sur 6) et délai entre la mise en
+            ligne du site et le résultat. [À COMPLÉTER] OmegaCloud : travail réalisé par Kameo et durée.
+            Ne rien ajouter ici sans relevé daté ; toujours préciser qu'OmegaCloud est du même groupe que Kameo. */}
+        <section className="geo-section" id="resultats" aria-labelledby="geo-results-title">
+          <div className="container">
+            <header className="geo-head">
+              <span className="geo-head__eyebrow">Résultats clients</span>
+              <h2 className="geo-head__title" id="geo-results-title">
+                Nos clients dans les réponses des IA
+              </h2>
+              <p className="geo-head__intro">
+                Des relevés datés, sur les questions que posent leurs clients. Les réponses des IA varient d’un essai à
+                l’autre&nbsp;: ce sont des constats à une date, pas des garanties.
+              </p>
+            </header>
+            <ul className="geo-cards geo-cards--2">
+              <li className="geo-card geo-result">
+                <span className="geo-card__tag">Karting indoor · Toulouse</span>
+                <h3 className="geo-card__title">
+                  <Link href="/realisations/defikart/">Défikart</Link>
+                </h3>
+                <p className="geo-result__figure">
+                  1<sup>er</sup> sur ChatGPT
+                </p>
+                <p className="geo-result__lead">Cité en premier par ChatGPT à la question «&nbsp;karting toulouse&nbsp;».</p>
+                <p className="geo-card__text">
+                  Défikart est un karting indoor de Toulouse&nbsp;: piste de 400&nbsp;mètres, anniversaires et
+                  team-building, pour les particuliers, les familles et les entreprises. Nous avons conçu sa direction
+                  artistique et son site WordPress, réalisé en 14&nbsp;jours, avec un parcours par public.{' '}
+                  <Link href="/realisations/defikart/">Voir la réalisation</Link>
+                </p>
+                <p className="geo-result__src">Relevé Kameo, novembre 2026.</p>
+              </li>
+              <li className="geo-card geo-result">
+                <span className="geo-card__tag">Hébergement cloud · Rennes</span>
+                <h3 className="geo-card__title">OmegaCloud</h3>
+                <p className="geo-result__figure">6 réponses sur 6</p>
+                <p className="geo-result__lead">
+                  ChatGPT le cite dans toutes ses réponses à la question «&nbsp;Quels sont les meilleurs hébergeurs de VPS
+                  Windows en France&nbsp;?&nbsp;», en 2<sup>e</sup> position (1<sup>re</sup> au mieux).
+                </p>
+                <ul className="geo-result__list">
+                  <li>
+                    VPS pour le trading&nbsp;: cité par Claude dans 3 réponses sur 6 (en 1<sup>re</sup> position), par
+                    ChatGPT dans 3 sur 6 (2<sup>e</sup>, 1<sup>re</sup> au mieux) et par Perplexity dans 1 sur 6
+                    (3<sup>e</sup>).
+                  </li>
+                  <li>VPS Linux&nbsp;: pas encore cité (0 réponse sur 24).</li>
+                  <li>Gemini ne le cite encore sur aucune des trois questions.</li>
+                </ul>
+                <p className="geo-card__text">
+                  OmegaCloud, hébergeur français basé à Rennes, appartient au même groupe que Kameo&nbsp;: nous le
+                  précisons, comme dans notre{' '}
+                  <Link href="/blog/meilleur-hebergeur-vps-windows/">comparatif des VPS Windows</Link>.
+                </p>
+                <p className="geo-result__src">
+                  Relevés Kameo des 14 et 15 novembre 2026&nbsp;: 6 réponses par IA et par question, sur ChatGPT,
+                  Gemini, Claude et Perplexity.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
         {/* ============ MÉTHODE ============ */}
         <section className="geo-section geo-section--soft" aria-labelledby="geo-method-title">
           <div className="container">

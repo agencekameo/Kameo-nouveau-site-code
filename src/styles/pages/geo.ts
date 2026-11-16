@@ -67,6 +67,17 @@ const css = `
 @media (max-width: 960px) { .geo-cards { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 640px) { .geo-cards, .geo-cards--2 { grid-template-columns: 1fr; } }
 
+/* Résultats clients (/agence-geo/) */
+.geo-result { display: flex; flex-direction: column; }
+.geo-result > .geo-card__tag { align-self: flex-start; }
+.geo-result__figure { font-family: 'Satoshi', sans-serif; font-size: clamp(28px,3vw,38px); font-weight: 900; letter-spacing: -.04em; line-height: 1.05; color: #ED6E63; margin: 6px 0 10px; }
+.geo-result__figure sup { font-size: .5em; letter-spacing: 0; }
+.geo-result__lead { font-size: 15px; line-height: 1.55; font-weight: 600; color: #0f1115; margin: 0 0 14px; }
+.geo-result__list { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 8px; }
+.geo-result__list li { position: relative; padding-left: 16px; font-size: 14.5px; line-height: 1.55; color: rgba(15,17,21,.72); }
+.geo-result__list li::before { content: ''; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: #ED6E63; }
+.geo-result__src { font-size: 12px; line-height: 1.45; color: rgba(15,17,21,.5); margin: auto 0 0; padding-top: 16px; }
+
 /* Les 3 étapes de la méthode */
 .geo-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1120px; margin: 0 auto; padding: 0; list-style: none; }
 .geo-step { position: relative; background: #fff; border: 1px solid rgba(15,17,21,.07); border-radius: 22px; padding: clamp(26px,3vw,34px); overflow: hidden; }
