@@ -111,12 +111,6 @@ export default function Footer() {
               <Link href="/benjamin-dayan/">Benjamin Dayan, fondateur</Link>
             </li>
             <li>
-              <Link href="/agence-wordpress-paris/">Expertises</Link>
-            </li>
-            <li>
-              <Link href="/realisations/">Réalisations</Link>
-            </li>
-            <li>
               <Link href="/contact/">Contact</Link>
             </li>
             <li>
@@ -125,7 +119,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="footer__col">
-          <p className="footer__col-title">Expertises</p>
+          <p className="footer__col-title">Web</p>
           <ul>
             <li>
               <Link href="/agence-wordpress-paris/">Agence WordPress</Link>
@@ -134,10 +128,16 @@ export default function Footer() {
               <Link href="/developpement-sur-mesure/">Développement sur-mesure</Link>
             </li>
             <li>
-              <Link href="/expertises-motion/">Motion design</Link>
+              <Link href="/realisations/">Réalisations</Link>
             </li>
+          </ul>
+          <p className="footer__col-title footer__col-title--suite">Image de marque</p>
+          <ul>
             <li>
               <Link href="/expertises-branding/">Branding</Link>
+            </li>
+            <li>
+              <Link href="/expertises-motion/">Motion design</Link>
             </li>
           </ul>
         </div>

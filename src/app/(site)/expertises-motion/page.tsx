@@ -5,7 +5,8 @@ import JsonLd from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
-import { PROOF } from '@/lib/site';
+import Icon from '@/components/Icon';
+import { CONTACT, PROOF } from '@/lib/site';
 
 const PATH = '/expertises-motion/';
 const TITLE = 'Agence motion design Paris : vidéos sur-mesure | Kameo';
@@ -13,7 +14,6 @@ const DESCRIPTION =
   'Création de vidéos motion design, trailers et animations par notre agence motion parisienne. Brand film, teaser, motion branding pour PME et marques.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
-  { name: 'Expertises', path: '/agence-wordpress-paris/' },
   { name: 'Motion design', path: '/expertises-motion/' },
 ];
 
@@ -596,6 +596,10 @@ export default function ExpertisesMotionPage() {
                     </span>
                   </li>
                 </ul>
+                <a href={CONTACT.calendly} target="_blank" rel="noopener" className="pcard-offer__cta">
+                  <Icon name="calendar-check" />
+                  Réserver un rendez-vous
+                </a>
               </article>
               {/* Brand Film */}
               <article className="pcard-offer">
@@ -697,6 +701,10 @@ export default function ExpertisesMotionPage() {
                     </span>
                   </li>
                 </ul>
+                <a href={CONTACT.calendly} target="_blank" rel="noopener" className="pcard-offer__cta">
+                  <Icon name="calendar-check" />
+                  Réserver un rendez-vous
+                </a>
               </article>
               {/* Campagne Premium */}
               <article className="pcard-offer pcard-offer--dark">
@@ -801,6 +809,10 @@ export default function ExpertisesMotionPage() {
                     Accompagnement dédié
                   </li>
                 </ul>
+                <a href={CONTACT.calendly} target="_blank" rel="noopener" className="pcard-offer__cta">
+                  <Icon name="calendar-check" />
+                  Réserver un rendez-vous
+                </a>
               </article>
             </div>
           </div>

@@ -595,7 +595,7 @@ export default function NotreAgencePage() {
                 <div className="faq-item__body">
                   <p>
                     Les délais varient selon la complexité et le type de projet. Vous trouverez les délais précis pour
-                    chaque prestation sur les pages de nos services dans la catégorie "Expertises". Nous établissons
+                    chaque prestation sur les pages de nos services, dans les rubriques GEO, Web et Image de marque du menu. Nous établissons
                     également un planning détaillé dès le début de notre collaboration.
                   </p>
                 </div>

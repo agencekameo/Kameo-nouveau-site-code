@@ -8,16 +8,17 @@ import MobileNav from './MobileNav';
 import { CONTACT } from '@/lib/site';
 import { GEO_AUDITS, GEO_PLANS, euros, prixDuJour } from '@/content/geo';
 
-/* Navigation flottante pilule + mega menu Expertises (header.php + js/main.js). */
+/* Navigation flottante pilule + mega menus GEO, Web et Image de marque (header.php + js/main.js). */
 
-const EXPERTISE_SLUGS = [
+const WEB_SLUGS = [
   'agence-wordpress-paris', 'creation-site-wordpress', 'refonte-wordpress', 'maintenance-wordpress',
-  'expertises-branding', 'expertises-motion', 'developpement-sur-mesure', 'creation-site-ecommerce',
-  'creation-marketplace', 'creation-crm-sur-mesure', 'creation-saas-ia',
+  'developpement-sur-mesure', 'creation-site-ecommerce', 'creation-marketplace', 'creation-crm-sur-mesure',
+  'creation-saas-ia', 'realisations',
 ];
+const MARQUE_SLUGS = ['expertises-branding', 'expertises-motion'];
 /* Entrée « GEO » du menu, placée en premier depuis le recentrage de Kameo sur le GEO (09/11/2026). */
 const GEO_SLUGS = ['agence-geo', 'audit-geo', 'accompagnement-geo', 'glossaire-geo', 'test-visibilite-ia'];
-type Menu = 'geo' | 'exp' | null;
+type Menu = 'geo' | 'web' | 'marque' | null;
 
 /** Slug courant au sens de header.php : front-page, slug de page, « realisations » ou « blog ». */
 export function currentSlug(pathname: string): string {
@@ -217,23 +218,23 @@ export default function Header() {
             </div>
           </div>
           <div
-            className={'nav__sub' + (openMenu === 'exp' ? ' is-open' : '')}
+            className={'nav__sub' + (openMenu === 'web' ? ' is-open' : '')}
             data-sub=""
-            onMouseEnter={() => openSub('exp')}
+            onMouseEnter={() => openSub('web')}
             onMouseLeave={scheduleClose}
           >
             <button
-              className={'nav__link nav__link--has-sub' + (EXPERTISE_SLUGS.includes(slug) ? ' nav__link--active' : '')}
+              className={'nav__link nav__link--has-sub' + (WEB_SLUGS.includes(slug) ? ' nav__link--active' : '')}
               type="button"
-              aria-expanded={openMenu === 'exp' ? 'true' : 'false'}
+              aria-expanded={openMenu === 'web' ? 'true' : 'false'}
               aria-haspopup="true"
               data-sub-trigger=""
-              onClick={toggle('exp')}
+              onClick={toggle('web')}
             >
-              Expertises <Icon name="chevron-down" />
+              Web <Icon name="chevron-down" />
             </button>
-            <div className="mega-menu" role="menu" aria-label="Expertises">
-              <p className="mega-menu__label">Expertises</p>
+            <div className="mega-menu" role="menu" aria-label="Web">
+              <p className="mega-menu__label">Création et développement web</p>
               <div className="mega-group">
                 <Link href="/agence-wordpress-paris/" className="mega-item" role="menuitem">
                   <span className="mega-item__icon">
@@ -307,6 +308,53 @@ export default function Header() {
                   </MegaSub>
                 </div>
               </div>
+              <Link href="/realisations/" className="mega-item" role="menuitem">
+                <span className="mega-item__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+                    <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+                    <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+                    <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
+                  </svg>
+                </span>
+                <div className="mega-item__body">
+                  <strong className="mega-item__title">Réalisations</strong>
+                  <p className="mega-item__desc">Sites, e-commerce et applications livrés</p>
+                </div>
+              </Link>
+              <Link href="/realisations/wordpress/" className="mega-item" role="menuitem">
+                <span className="mega-item__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2.5" />
+                    <circle cx="8.5" cy="9.5" r="1.5" />
+                    <path d="M21 16l-5-5-9 9" />
+                  </svg>
+                </span>
+                <div className="mega-item__body">
+                  <strong className="mega-item__title">Portfolio WordPress</strong>
+                  <p className="mega-item__desc">Nos sites WordPress et boutiques WooCommerce</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+          <div
+            className={'nav__sub' + (openMenu === 'marque' ? ' is-open' : '')}
+            data-sub=""
+            onMouseEnter={() => openSub('marque')}
+            onMouseLeave={scheduleClose}
+          >
+            <button
+              className={'nav__link nav__link--has-sub' + (MARQUE_SLUGS.includes(slug) ? ' nav__link--active' : '')}
+              type="button"
+              aria-expanded={openMenu === 'marque' ? 'true' : 'false'}
+              aria-haspopup="true"
+              data-sub-trigger=""
+              onClick={toggle('marque')}
+            >
+              Image de marque <Icon name="chevron-down" />
+            </button>
+            <div className="mega-menu" role="menu" aria-label="Image de marque">
+              <p className="mega-menu__label">Image de marque</p>
               <Link href="/expertises-branding/" className="mega-item" role="menuitem">
                 <span className="mega-item__icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
@@ -338,9 +386,6 @@ export default function Header() {
           </div>
           <Link href="/notre-agence/" className={'nav__link' + active('notre-agence')}>
             Notre agence
-          </Link>
-          <Link href="/realisations/" className={'nav__link' + active('realisations')}>
-            Réalisations
           </Link>
           <Link href="/contact/" className={'nav__link' + active('contact')}>
             Contact

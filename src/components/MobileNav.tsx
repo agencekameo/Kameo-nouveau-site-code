@@ -25,7 +25,7 @@ const GEO: Sub[] = [
   { href: '/agence-geo/#ressources', icon: 'fa-file-lines', title: 'Guides GEO', desc: 'ChatGPT, prix, mesure, WordPress…', match: [] },
   { href: '/glossaire-geo/', icon: 'fa-list-check', title: 'Glossaire GEO', desc: 'Les mots du référencement IA', match: ['glossaire-geo'] },
 ];
-const EXPERTISES: Sub[] = [
+const WEB: Sub[] = [
   { href: '/agence-wordpress-paris/', icon: 'fa-desktop', title: 'Agence WordPress', desc: "Vue d'ensemble de notre offre", match: ['agence-wordpress-paris', 'expertises-web'] },
   { href: '/creation-site-wordpress/', icon: 'fa-file-lines', title: 'Création WordPress', desc: 'Landing, vitrine, e-commerce sur-mesure', match: ['creation-site-wordpress'] },
   { href: '/refonte-wordpress/', icon: 'fa-arrows-rotate', title: 'Refonte WordPress', desc: 'Moderniser sans perdre votre SEO', match: ['refonte-wordpress'] },
@@ -35,11 +35,13 @@ const EXPERTISES: Sub[] = [
   { href: '/creation-marketplace/', icon: 'fa-shop', title: 'Création marketplace', desc: 'Multi-vendeurs, Stripe Connect', match: ['creation-marketplace'] },
   { href: '/creation-crm-sur-mesure/', icon: 'fa-users-gear', title: 'CRM sur-mesure', desc: 'Alternative Salesforce / HubSpot', match: ['creation-crm-sur-mesure'] },
   { href: '/creation-saas-ia/', icon: 'fa-brain', title: 'SaaS avec IA', desc: 'Claude, GPT, RAG, multi-tenant', match: ['creation-saas-ia'] },
+  { href: '/realisations/', icon: 'fa-table-cells', title: 'Réalisations', desc: 'Sites et applications livrés', match: ['realisations'] },
+];
+const MARQUE: Sub[] = [
   { href: '/expertises-branding/', icon: 'fa-palette', title: 'Branding', desc: 'Logo, Charte graphique…', match: ['expertises-branding'] },
   { href: '/expertises-motion/', icon: 'fa-film', title: 'Motion design', desc: 'Animations & trailers', match: ['expertises-motion'] },
 ];
 const AFTER: Item[] = [
-  { href: '/realisations/', icon: 'fa-table-cells', text: 'Réalisations', match: ['realisations'] },
   { href: '/contact/', icon: 'fa-envelope', text: 'Contact', match: ['contact'] },
   { href: '/blog/', icon: 'fa-pen-nib', text: 'Blog', match: ['blog'] },
 ];
@@ -187,9 +189,24 @@ export default function MobileNav({
                 ))}
               </div>
               <div className="mnav__sep" />
-              <span className="mnav__label">Expertises</span>
+              <span className="mnav__label">Web</span>
               <div className="mnav__sub">
-                {EXPERTISES.map((s) => (
+                {WEB.map((s) => (
+                  <Link key={s.href} href={s.href} className={'mnav__sub-item' + (isCurrent(s.match) ? ' is-active' : '')}>
+                    <span className="mnav__sub-icon">
+                      <Icon name={s.icon} />
+                    </span>
+                    <span className="mnav__sub-body">
+                      <strong className="mnav__sub-title">{s.title}</strong>
+                      <span className="mnav__sub-desc">{s.desc}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+              <div className="mnav__sep" />
+              <span className="mnav__label">Image de marque</span>
+              <div className="mnav__sub">
+                {MARQUE.map((s) => (
                   <Link key={s.href} href={s.href} className={'mnav__sub-item' + (isCurrent(s.match) ? ' is-active' : '')}>
                     <span className="mnav__sub-icon">
                       <Icon name={s.icon} />

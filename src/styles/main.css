@@ -3100,6 +3100,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   margin-bottom: 18px;
   letter-spacing: -0.01em;
 }
+.footer__col-title--suite { margin-top: 26px; }
 .footer__col ul { display: grid; gap: 10px; }
 .footer__col a {
   font-size: 14px;
@@ -3923,6 +3924,26 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   gap: 12px;
   margin-top: 4px;
 }
+/* Bouton de prise de rendez-vous en bas des cartes d'offres (Branding, Motion design) */
+.pcard-offer__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 13px 18px;
+  border-radius: 100px;
+  background: #0f1115;
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+.pcard-offer__cta:hover { background: #2b2f38; transform: translateY(-1px); }
+.pcard-offer--dark .pcard-offer__cta { background: #fff; color: #0f1115; }
+.pcard-offer--dark .pcard-offer__cta:hover { background: #e9eaee; }
+.pcard-offer__list:has(+ .pcard-offer__cta) { margin-bottom: 10px; }
 .pcard-offer__list li {
   display: flex;
   align-items: center;

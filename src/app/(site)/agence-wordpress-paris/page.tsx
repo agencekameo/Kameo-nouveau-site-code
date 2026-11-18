@@ -20,7 +20,6 @@ const DESCRIPTION =
   'Agence WordPress à Paris : création, refonte et maintenance de sites sur-mesure. Prix publics dès 1 299 € HT, site vitrine livré en 14 jours, devis sous 24 h.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
-  { name: 'Expertises', path: '/agence-wordpress-paris/' },
   { name: 'Agence WordPress Paris', path: '/agence-wordpress-paris/' },
 ];
 

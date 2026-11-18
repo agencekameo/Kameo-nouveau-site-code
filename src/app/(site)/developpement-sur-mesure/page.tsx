@@ -14,7 +14,7 @@ const DESCRIPTION =
   'Développement d’applications sur-mesure à Paris : e-commerce, marketplace, CRM et SaaS avec IA. Code propriétaire, devis chiffré sous 24 h.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
-  { name: 'Expertises', path: '/agence-wordpress-paris/' },
+  { name: 'Web', path: '/agence-wordpress-paris/' },
   { name: 'Développement sur-mesure', path: '/developpement-sur-mesure/' },
 ];
 

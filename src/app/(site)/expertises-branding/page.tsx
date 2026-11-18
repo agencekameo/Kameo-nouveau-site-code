@@ -5,7 +5,8 @@ import JsonLd from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
-import { PROOF } from '@/lib/site';
+import Icon from '@/components/Icon';
+import { CONTACT, PROOF } from '@/lib/site';
 
 const PATH = '/expertises-branding/';
 const TITLE = 'Agence branding Paris : logo et identité dès 499 € | Kameo';
@@ -13,7 +14,6 @@ const DESCRIPTION =
   'Création d’identité visuelle, logo et charte graphique par notre agence branding parisienne. Branding premium sur-mesure pour PME, startups et marques.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
-  { name: 'Expertises', path: '/agence-wordpress-paris/' },
   { name: 'Branding', path: '/expertises-branding/' },
 ];
 
@@ -578,6 +578,10 @@ export default function ExpertisesBrandingPage() {
                     </span>
                   </li>
                 </ul>
+                <a href={CONTACT.calendly} target="_blank" rel="noopener" className="pcard-offer__cta">
+                  <Icon name="calendar-check" />
+                  Réserver un rendez-vous
+                </a>
               </article>
               <article className="pcard-offer">
                 <span className="pcard-offer__icon" aria-hidden="true">
@@ -681,6 +685,10 @@ export default function ExpertisesBrandingPage() {
                     </span>
                   </li>
                 </ul>
+                <a href={CONTACT.calendly} target="_blank" rel="noopener" className="pcard-offer__cta">
+                  <Icon name="calendar-check" />
+                  Réserver un rendez-vous
+                </a>
               </article>
               <article className="pcard-offer pcard-offer--dark">
                 <span className="pcard-offer__icon" aria-hidden="true">
@@ -802,6 +810,10 @@ export default function ExpertisesBrandingPage() {
                     Flyers / menu
                   </li>
                 </ul>
+                <a href={CONTACT.calendly} target="_blank" rel="noopener" className="pcard-offer__cta">
+                  <Icon name="calendar-check" />
+                  Réserver un rendez-vous
+                </a>
               </article>
             </div>
           </div>

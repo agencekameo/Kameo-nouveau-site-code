@@ -85,7 +85,7 @@ Dernière mise à jour : ${maj}
 - [Glossaire GEO](${home}glossaire-geo/) : définitions courtes et sourcées des mots du référencement IA (Aperçus IA, OAI-SearchBot, part de voix, llms.txt…).
 - [Guide : référencement ChatGPT](${home}blog/referencement-chatgpt/) : comment ChatGPT choisit ses sources et 8 étapes pour être cité.
 
-## Expertises complémentaires
+## Image de marque
 
 - [Branding et identité visuelle](${home}expertises-branding/) : logo, charte graphique, déclinaisons. Forfait essentiel dès 499 € HT.
 - [Motion design](${home}expertises-motion/) : brand film, teaser, motion branding, vidéos animées.
