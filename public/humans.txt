@@ -3,7 +3,8 @@ Fondateur & CEO : Benjamin Dayan
 Directeur général : Louison Boutet
 Site : https://agence-kameo.fr/
 LinkedIn : https://www.linkedin.com/in/benjamin-dayan/
-Localisation : Paris, France
+Siège social : 1862 avenue La Lauragaise, 31670 Labège, France (transfert à Paris en cours)
+Adresse à Paris : 9 rue des Colonnes, 75002 Paris, France
 
 /* SITE */
 Dernière mise à jour : 2026-10-30

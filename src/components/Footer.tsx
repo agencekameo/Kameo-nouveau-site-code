@@ -3,7 +3,7 @@ import CookieSettingsLink from './consent/CookieSettingsLink';
 import Icon from './Icon';
 import LaFabriqueBadge from './LaFabriqueBadge';
 import { CLIENT_LOGOS, logoSrc } from '@/lib/clients';
-import { CONTACT, SOCIAL } from '@/lib/site';
+import { CONTACT, HEAD_OFFICE_LINE, SOCIAL } from '@/lib/site';
 
 /* CTA + watermark + colonnes + légal (footer.php). */
 
@@ -155,6 +155,7 @@ export default function Footer() {
               <br />
               <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
             </p>
+            <p className="footer__nap-siege">Siège social&nbsp;: {HEAD_OFFICE_LINE}</p>
           </address>
           <div className="footer__socials" aria-label="Réseaux sociaux">
             <a href={SOCIAL.instagram} target="_blank" rel="noopener" aria-label="Instagram Kameo">

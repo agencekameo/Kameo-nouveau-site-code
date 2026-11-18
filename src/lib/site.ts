@@ -40,7 +40,7 @@ export const COMPANY = {
 /**
  * Adresse publique (adresse de correspondance). Personne ne travaille à cette adresse
  * et aucun client n'y est reçu : les rendez-vous se font en visio. Le siège social
- * est à Labège (transfert à Paris en cours, voir les mentions légales).
+ * est à Labège : voir HEAD_OFFICE.
  */
 export const ADDRESS = {
   streetAddress: '9 rue des Colonnes',
@@ -49,6 +49,22 @@ export const ADDRESS = {
   addressRegion: 'Île-de-France',
   addressCountry: 'FR',
 } as const;
+
+/**
+ * Siège social inscrit au registre, seul établissement ouvert (celui du SIRET de COMPANY).
+ * Quand le transfert à Paris sera inscrit : mettre à jour ce bloc, HEAD_OFFICE_LINE, le SIRET,
+ * les mentions légales, la politique de confidentialité, llms.txt et humans.txt.
+ */
+export const HEAD_OFFICE = {
+  streetAddress: '1862 avenue La Lauragaise',
+  postalCode: '31670',
+  addressLocality: 'Labège',
+  addressRegion: 'Occitanie',
+  addressCountry: 'FR',
+} as const;
+
+/** Le siège en une ligne : pied de page, Contact et Notre agence. */
+export const HEAD_OFFICE_LINE = '1862 avenue La Lauragaise, 31670 Labège (transfert à Paris en cours)';
 
 /** Joignabilité par téléphone et e-mail (ce ne sont pas des horaires d'accueil). */
 export const HOURS = {

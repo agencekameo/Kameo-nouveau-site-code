@@ -4,6 +4,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
+import { HEAD_OFFICE_LINE } from '@/lib/site';
 
 const PATH = '/notre-agence/';
 const TITLE = 'Kameo, agence GEO et web : découvrir l’équipe';
@@ -78,6 +79,10 @@ export default function NotreAgencePage() {
                   portfolio WordPress
                 </Link>
                 .
+              </p>
+              <p className="about__text">
+                Le siège social de Kameo est au {HEAD_OFFICE_LINE}, et notre adresse à Paris au 9 rue des Colonnes,
+                75002 Paris. Les rendez-vous se font en visio, sans déplacement, partout en France.
               </p>
               <p className="about__text">
                 <strong>Notre ADN&nbsp;?</strong> Proximité, réactivité et dynamisme.

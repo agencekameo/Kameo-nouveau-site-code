@@ -2683,6 +2683,12 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
   font-size: 14px;
   color: var(--c-muted, #697289);
 }
+.cinfo__note {
+  margin-top: 2px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--c-muted, #697289);
+}
 
 /* --- Responsive --- */
 @media (max-width: 900px) {
@@ -3035,6 +3041,7 @@ em { font-style: italic; color: var(--c-accent); font-family: var(--ff-mono); fo
 .footer__nap p { font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, .65); margin-bottom: 12px; }
 .footer__nap a { color: rgba(255, 255, 255, .85); transition: color .2s; }
 .footer__nap a:hover { color: #fff; }
+.footer__nap p.footer__nap-siege { font-size: 12.5px; line-height: 1.5; color: rgba(255, 255, 255, .55); }
 .footer__socials {
   display: inline-flex;
   gap: 10px;

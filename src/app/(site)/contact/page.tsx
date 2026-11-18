@@ -4,6 +4,7 @@ import JsonLd from '@/components/JsonLd';
 import ContactForm from '@/components/ContactForm';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
+import { HEAD_OFFICE_LINE } from '@/lib/site';
 
 const PATH = '/contact/';
 const TITLE = 'Contact Kameo, agence GEO et web à Paris | Devis sous 24 h';
@@ -100,6 +101,7 @@ export default function ContactPage() {
                   <div>
                     <span className="cinfo__label">Adresse postale</span>
                     <p className="cinfo__value">9 rue des Colonnes, 75002 Paris</p>
+                    <p className="cinfo__note">Siège social&nbsp;: {HEAD_OFFICE_LINE}</p>
                   </div>
                 </div>
                 <div className="cinfo__item">

@@ -18,7 +18,7 @@
  */
 import { GEO_AUDITS, GEO_ENGINES, GEO_PLANS, GEO_PROMO, euros, prixBarre, prixDuJour } from '@/content/geo';
 import { pageInfo } from '@/content/pages';
-import { ADDRESS, COMPANY, CONTACT, HOURS, PROFILES, SITE_URL, SOCIAL, abs } from './site';
+import { ADDRESS, COMPANY, CONTACT, HEAD_OFFICE, HOURS, PROFILES, SITE_URL, SOCIAL, abs } from './site';
 
 const HOME = SITE_URL + '/';
 const ORG_ID = HOME + '#organization';
@@ -37,8 +37,11 @@ const areaServed = (): Json[] => [
   { '@type': 'Country', name: 'France' },
 ];
 
-/* Adresse publique de correspondance, identique dans tous les nœuds. */
-const postalAddress = (): Json => ({ '@type': 'PostalAddress', ...ADDRESS });
+/* Le siège social inscrit au registre (celui du SIRET), en premier, puis l'adresse à Paris. */
+const postalAddresses = (): Json[] => [
+  { '@type': 'PostalAddress', name: 'Siège social', description: 'Transfert à Paris en cours', ...HEAD_OFFICE },
+  { '@type': 'PostalAddress', name: 'Adresse à Paris', ...ADDRESS },
+];
 
 /* Téléphone et e-mail, joignables du lundi au vendredi de 9 h à 17 h, en français. */
 const contactPoint = (): Json => ({
@@ -104,7 +107,7 @@ export const organization = (): Json => ({
     { '@type': 'PropertyValue', propertyID: 'SIRET', value: COMPANY.siret },
     { '@type': 'PropertyValue', propertyID: 'SIREN', value: COMPANY.siren },
   ],
-  address: postalAddress(),
+  address: postalAddresses(),
   areaServed: areaServed(),
   knowsLanguage: 'fr',
   slogan: 'Faites-vous recommander par les IA, avec un site sur-mesure qui convertit.',
@@ -194,34 +197,45 @@ const offresWordpress = (): Json[] => [
   { ...offre(2999.99), name: 'E-commerce WordPress (WooCommerce)' },
 ];
 
-/* Offres GEO à prix publics, HT (src/content/geo.ts) : audits en paiement unique, accompagnements au mois. */
-function offreGeo(name: string, price: number, monthly: boolean, path: string, validUntil?: string): Json {
-  const spec: Json = { price: String(price), priceCurrency: 'EUR', valueAddedTaxIncluded: false };
+/*
+ * Offres GEO à prix publics, HT (src/content/geo.ts) : audits en paiement unique, accompagnements au mois.
+ * Pendant une offre (Black Friday…), seul le prix réduit a une date de fin (validThrough) : le prix normal est
+ * donné à côté (ListPrice) et l'offre elle-même n'expire pas. L'offre finie, il ne reste que le prix normal.
+ */
+function offreGeo(name: string, price: number, monthly: boolean, path: string, promo?: { prixNormal: number; fin: string }): Json {
+  const spec = (montant: number): Json => ({
+    ...(monthly ? { '@type': 'UnitPriceSpecification', unitCode: 'MON', unitText: 'mois' } : { '@type': 'PriceSpecification' }),
+    price: String(montant),
+    priceCurrency: 'EUR',
+    valueAddedTaxIncluded: false,
+  });
   return {
     '@type': 'Offer',
     name,
     url: abs(path),
     price: String(price),
     priceCurrency: 'EUR',
-    // Prix de l'offre en cours (Black Friday…) : valable jusqu'à sa date de fin.
-    ...(validUntil ? { priceValidUntil: validUntil } : {}),
     availability: 'https://schema.org/InStock',
-    priceSpecification: monthly
-      ? { '@type': 'UnitPriceSpecification', ...spec, unitCode: 'MON', unitText: 'mois' }
-      : { '@type': 'PriceSpecification', ...spec },
+    priceSpecification: promo
+      ? [
+          { ...spec(price), validThrough: promo.fin },
+          { ...spec(promo.prixNormal), priceType: 'https://schema.org/ListPrice' },
+        ]
+      : spec(price),
   };
 }
 const offresAuditGeo = (): Json[] => GEO_AUDITS.map((o) => offreGeo(o.name, o.price, false, '/audit-geo/'));
 const offresAccompagnementGeo = (): Json[] =>
-  GEO_PLANS.map((o) =>
-    offreGeo(
+  GEO_PLANS.map((o) => {
+    const prixNormal = prixBarre(o);
+    return offreGeo(
       `Accompagnement GEO ${o.name}`,
       prixDuJour(o),
       true,
       '/accompagnement-geo/',
-      prixBarre(o) !== null ? GEO_PROMO.fin.slice(0, 10) : undefined,
-    ),
-  );
+      prixNormal !== null ? { prixNormal, fin: GEO_PROMO.fin } : undefined,
+    );
+  });
 const IA = GEO_ENGINES.join(', ').replace(/, (?=[^,]*$)/, ' et ');
 
 /* Fonction et non constante : les prix GEO suivent l'offre en cours (GEO_PROMO), calculés à l'affichage. */

@@ -197,6 +197,10 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   '/categories/site-vitrine': '/blog/',
   '/author/admin': '/benjamin-dayan/',
   '/accueil': '/',
+  // anciennes adresses connues d'Internet Archive, en erreur jusqu'à l'audit GEO du 18/11/2026
+  '/parametres-des-cookies': '/politique-de-confidentialite/',
+  '/site-web-responsive-la-cle-pour-votre-entreprise': '/creation-site-wordpress/',
+  '/community-management-les-bonnes-pratiques-pour-les-entreprises-locales': '/blog/chatgpt-entreprise-locale/',
 };
 
 /**
@@ -227,7 +231,6 @@ export const GONE: string[] = [
   // Brouillons Elementor et anciennes offres abandonnées (réseaux sociaux, fiche Google, publicité)
   '/elementor-5166',
   '/elementor-5099',
-  '/community-management-les-bonnes-pratiques-pour-les-entreprises-locales',
   '/comment-la-gestion-des-reseaux-sociaux-boost-les-ventes-de-votre-tpe-pme',
   '/expertises/fiche-google',
   '/expertises/réseaux-sociaux',
