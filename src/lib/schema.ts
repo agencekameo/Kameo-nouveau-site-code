@@ -74,7 +74,7 @@ export const personBenjamin = (): Json => ({
   image: abs('/images/benjamin.webp'),
   worksFor: { '@id': ORG_ID },
   sameAs: [SOCIAL.founderLinkedin],
-  knowsAbout: ['WordPress', 'SEO', 'Design web', 'Direction artistique', 'SaaS IA', 'Motion Design'],
+  knowsAbout: ['GEO (Generative Engine Optimization)', 'Référencement IA', 'WordPress', 'SEO', 'Design web', 'Direction artistique', 'SaaS IA', 'Motion Design'],
 });
 
 /** Directeur général (mandataire social avec Benjamin Dayan) : aucun autre attribut que ceux vérifiés. */
@@ -454,7 +454,7 @@ export function themeSchemas(opts: {
  */
 export type GraphImage = { url: string; width?: number; height?: number; caption?: string };
 
-export function websiteGraph(opts: { path: string; title: string; published?: string; modified?: string; image?: GraphImage }): Json {
+export function websiteGraph(opts: { path: string; title: string; published?: string; modified?: string; image?: GraphImage; signee?: boolean }): Json {
   const url = abs(opts.path);
   const info = pageInfo(opts.path);
   const isHome = opts.path === '/';
@@ -502,6 +502,8 @@ export function websiteGraph(opts: { path: string; title: string; published?: st
         name: opts.title,
         ...(published ? { datePublished: published } : {}),
         ...(modified ? { dateModified: modified } : {}),
+        // Pages signées à l'écran (« Rédigé par Benjamin Dayan ») : même auteur pour les robots.
+        ...(opts.signee ? { author: { '@id': BENJAMIN_ID } } : {}),
         ...(isHome ? { about: { '@id': ORG_ID } } : {}),
         isPartOf: { '@id': HOME + '#website' },
         ...(img ? { primaryImageOfPage: { '@id': img.url } } : {}),

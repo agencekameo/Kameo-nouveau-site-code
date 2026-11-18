@@ -52,6 +52,8 @@ export function GeoMaj({ path }: { path: string }) {
   return (
     <p className="geo-maj">
       Mis à jour le <time dateTime={info.modified.slice(0, 10)}>{FR_DATE.format(new Date(info.modified))}</time>
+      <br />
+      Rédigé par <Link href="/benjamin-dayan/">Benjamin Dayan</Link>, fondateur de Kameo
     </p>
   );
 }

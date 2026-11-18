@@ -4,7 +4,7 @@ seoTitle: "GEO WordPress : un site lisible par ChatGPT et les IA | Kameo"
 description: "GEO WordPress : 10 points à vérifier pour que ChatGPT, Gemini et les autres IA lisent votre site, du robots.txt au llms.txt. Comment vérifier, quoi faire."
 excerpt: "Réglage de visibilité, robots.txt, pare-feu, JavaScript, indexation, llms.txt : la liste de contrôle en 10 points pour qu'un site WordPress soit lisible par ChatGPT, Gemini, Perplexity et Claude, avec pour chacun comment vérifier et quoi faire."
 date: "2026-11-09T16:40:00+01:00"
-modified: "2026-11-16T10:30:00+01:00"
+modified: "2026-11-18T21:40:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-geo-wordpress.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -167,7 +167,7 @@ En général, les premiers effets se voient 4 à 6 semaines après les correctio
 
 ## Faire vérifier votre site WordPress
 
-Vous pouvez faire ces contrôles vous-même. Pour un état des lieux, notre [audit GEO](/audit-geo/) vérifie votre site, pose les questions de vos clients aux IA et vous remet un plan d'action priorisé. L'[accompagnement GEO](/accompagnement-geo/) applique ensuite les corrections techniques et mesure chaque mois votre visibilité sur 50 questions clés. Notre méthode est détaillée sur la page [agence GEO](/agence-geo/).
+Vous pouvez faire ces contrôles vous-même. Pour un état des lieux, notre [audit GEO](/audit-geo/) vérifie votre site, pose les questions de vos clients aux IA et vous remet un plan d'action priorisé. L'[accompagnement GEO](/accompagnement-geo/) applique ensuite les corrections techniques et mesure chaque mois votre visibilité sur 50 questions clés. Notre méthode est détaillée sur la page [agence GEO à Paris](/agence-geo/).
 
 ## Sources
 

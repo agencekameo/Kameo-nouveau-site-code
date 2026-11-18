@@ -750,7 +750,7 @@ export default function AgenceGeoPage() {
             <header className="geo-head">
               <span className="geo-head__eyebrow">Paris et partout en France</span>
               <h2 className="geo-head__title" id="geo-local-title">
-                Une agence GEO à Paris, des rendez-vous en visio
+                Agence GEO (Generative Engine Optimization) à&nbsp;Paris, des rendez-vous en visio
               </h2>
             </header>
             <div className="geo-prose">
@@ -806,7 +806,7 @@ export default function AgenceGeoPage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'agence-geo' }),
           faqSchema(faq, PATH),
-          websiteGraph({ path: PATH, title: TITLE }),
+          websiteGraph({ path: PATH, title: TITLE, signee: true }),
         ]}
       />
     </>

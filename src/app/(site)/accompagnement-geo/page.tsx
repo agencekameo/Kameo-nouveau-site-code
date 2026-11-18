@@ -371,7 +371,7 @@ export default function AccompagnementGeoPage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'accompagnement-geo' }),
           faqSchema(faq, PATH),
-          websiteGraph({ path: PATH, title: titre() }),
+          websiteGraph({ path: PATH, title: titre(), signee: true }),
         ]}
       />
     </>

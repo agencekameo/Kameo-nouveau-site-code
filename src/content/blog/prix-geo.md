@@ -4,7 +4,7 @@ seoTitle: "Prix GEO : tarif d'un audit et d'une agence GEO en 2026 | Kameo"
 description: "Combien coûte le GEO (référencement IA) en 2026 ? Prix d'un audit et d'un accompagnement, ce que comprend chaque offre et comment comparer deux devis."
 excerpt: "Audit, accompagnement mensuel, outil de suivi : les prix du GEO relevés en novembre 2026, ce que comprend chaque niveau, les questions à poser pour comparer deux offres et les signaux d'alerte."
 date: "2026-11-09T16:00:00+01:00"
-modified: "2026-11-16T10:30:00+01:00"
+modified: "2026-11-18T21:40:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-prix-geo.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -107,7 +107,7 @@ Nos prix sont publics : prenez-les comme un repère, à passer au crible des qu
 
 Les accompagnements demandent 6 mois minimum, le temps que les IA prennent en compte les changements, soit au moins 3 000 € HT pour Essentiel. L'Audit GEO Express y est offert au démarrage, un mois est offert pour un engagement annuel, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit.
 
-Essentiel se situe sous l'entrée de gamme relevée chez les agences. Son périmètre est précis : la mesure, les corrections du site et des conseils pour l'extérieur, sans création de fiches ni de contenus. Tout est fait en interne, sans sous-traitance. Notre méthode est présentée sur la page [agence GEO](/agence-geo/).
+Essentiel se situe sous l'entrée de gamme relevée chez les agences. Son périmètre est précis : la mesure, les corrections du site et des conseils pour l'extérieur, sans création de fiches ni de contenus. Tout est fait en interne, sans sous-traitance. Notre méthode est présentée sur la page [agence GEO à Paris](/agence-geo/).
 
 ## Ce qu'on peut raisonnablement attendre
 

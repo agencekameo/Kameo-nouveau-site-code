@@ -8,9 +8,13 @@ import { websiteGraph } from '@/lib/schema';
 import { pageSchemas } from './schema';
 import css from './styles';
 import { PROOF } from '@/lib/site';
+import { pageInfo } from '@/content/pages';
 import { NB_WOOCOMMERCE, REALISATIONS_WORDPRESS } from '@/content/realisations';
 
 const PATH = '/agence-wordpress-paris/';
+/* Date de mise à jour affichée : celle de src/content/pages.ts, plus jamais écrite à la main. */
+const MAJ = pageInfo(PATH)?.modified ?? new Date().toISOString();
+const MAJ_TEXTE = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris' }).format(new Date(MAJ));
 const TITLE = 'Agence WordPress Paris : sites dès 1 299 € HT | Kameo';
 const DESCRIPTION =
   'Agence WordPress à Paris : création, refonte et maintenance de sites sur-mesure. Prix publics dès 1 299 € HT, site vitrine livré en 14 jours, devis sous 24 h.';
@@ -67,7 +71,13 @@ export default function AgenceWordpressParisPage() {
               </span>
             </div>
             <p style={{ margin: '14px 0 0', fontSize: '13px', opacity: 0.6 }}>
-              Mis à jour le <time dateTime="2026-10-31">31 octobre 2026</time>
+              Mis à jour le <time dateTime={MAJ.slice(0, 10)}>{MAJ_TEXTE}</time>
+              <br />
+              Rédigé par{' '}
+              <Link href="/benjamin-dayan/" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
+                Benjamin Dayan
+              </Link>
+              , fondateur de Kameo
             </p>
             <a
               href="https://calendly.com/contact-agence-kameo/30min"
@@ -1565,7 +1575,7 @@ export default function AgenceWordpressParisPage() {
         </section>
       </main>
 
-      <JsonLd data={[...pageSchemas, websiteGraph({ path: PATH, title: TITLE })]} />
+      <JsonLd data={[...pageSchemas, websiteGraph({ path: PATH, title: TITLE, signee: true })]} />
     </>
   );
 }

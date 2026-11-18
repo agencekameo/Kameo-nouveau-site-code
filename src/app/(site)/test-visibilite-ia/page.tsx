@@ -278,7 +278,7 @@ export default function TestVisibiliteIaPage() {
       </main>
 
       <JsonLd
-        data={[...themeSchemas({ path: PATH, crumbs: CRUMBS }), faqSchema(FAQ_TEST, PATH), websiteGraph({ path: PATH, title: TITLE })]}
+        data={[...themeSchemas({ path: PATH, crumbs: CRUMBS }), faqSchema(FAQ_TEST, PATH), websiteGraph({ path: PATH, title: TITLE, signee: true })]}
       />
     </>
   );

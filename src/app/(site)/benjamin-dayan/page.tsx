@@ -10,7 +10,7 @@ import css from './styles';
 const PATH = '/benjamin-dayan/';
 const TITLE = 'Benjamin Dayan, fondateur de l’agence Kameo à Paris';
 const DESCRIPTION =
-  'Benjamin Dayan, fondateur et président de l’agence web Kameo à Paris. Parcours, expertise WordPress, SEO et direction artistique.';
+  'Benjamin Dayan, fondateur et président de Kameo, agence GEO et web à Paris. Parcours, expertise GEO, WordPress, SEO et direction artistique.';
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Benjamin Dayan', path: '/benjamin-dayan/' },
@@ -65,8 +65,8 @@ export default function BenjaminDayanPage() {
               <span className="bio-hero__eyebrow">Fondateur et président</span>
               <h1 className="bio-hero__title">Benjamin Dayan</h1>
               <p className="bio-hero__role">
-                Fondateur et président de Kameo, agence web parisienne créée en 2023. Passionné par le design web stratégique
-                et le SEO, il pilote la direction artistique et le développement de l'agence.
+                Fondateur et président de Kameo, agence GEO et web créée en 2023. Passionné par le design web stratégique
+                et le référencement, il pilote les projets GEO, la direction artistique et le développement de l'agence.
               </p>
               <div className="bio-hero__links">
                 <a
@@ -104,10 +104,19 @@ export default function BenjaminDayanPage() {
                 Il dirige aujourd’hui l’agence avec Louison Boutet, directeur général, au sein d’une{' '}
                 <Link href="/notre-agence/">équipe de 6 personnes</Link>.
               </p>
+              <p>
+                Depuis novembre 2026, ils pilotent ensemble l’offre de référencement IA de Kameo, avec une{' '}
+                <Link href="/agence-geo/">agence GEO à&nbsp;Paris</Link>&nbsp;: des audits et des accompagnements pour que les
+                entreprises soient citées par ChatGPT, Gemini, Perplexity et Claude.
+              </p>
             </div>
             <div className="bio-body__section">
               <h2>Expertise</h2>
               <ul>
+                <li>
+                  <strong>GEO (référencement IA)</strong>, mesure et corrections pour être cité par ChatGPT, Gemini,
+                  Perplexity et Claude
+                </li>
                 <li>
                   <strong>WordPress sur-mesure</strong>, Elementor Pro, thèmes codés, WooCommerce
                 </li>

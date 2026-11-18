@@ -327,7 +327,7 @@ export default function AuditGeoPage() {
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'audit-geo' }),
           faqSchema(FAQ_AUDIT, PATH),
-          websiteGraph({ path: PATH, title: TITLE }),
+          websiteGraph({ path: PATH, title: TITLE, signee: true }),
         ]}
       />
     </>

@@ -230,6 +230,10 @@ export const faqAgence = (): FaqItem[] => [
     a: `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec un engagement de ${GEO_MIN_MONTHS} mois minimum et l'Audit GEO Express offert au démarrage.${suitePromo()}`,
   },
   {
+    q: 'Quelles sont les meilleures agences GEO à Paris ?',
+    a: `Il n'existe pas de classement officiel : chaque liste applique ses propres critères, et certaines sont publiées par des agences elles-mêmes. Pour comparer, regardez les prix affichés, la méthode de mesure et les résultats datés. À titre de repère, Kameo figure à la 8e place de la sélection <a href="https://www.lafabriquedunet.fr/agences/pages/agences-geo-ile-de-france-paris" target="_blank" rel="noopener">« Les meilleures agences GEO à Paris » de La Fabrique du Net</a> (relevé du 18 novembre 2026). Nous ne nous disons pas « la meilleure » : nos prix, notre méthode et nos résultats clients sont sur cette page pour que vous puissiez juger.`,
+  },
+  {
     q: 'Comment choisir une agence GEO à Paris ?',
     a: "Vérifiez quatre points : des prix publics, une mesure faite IA par IA avec les mêmes questions chaque mois, des corrections appliquées sur votre site et pas seulement conseillées, et aucune promesse de « première place dans ChatGPT ». Inutile en revanche de vous déplacer : chez Kameo, agence GEO dont l'adresse est au 9 rue des Colonnes, à Paris 2e, audits, restitutions et points mensuels se font en visio, à Paris comme partout en France.",
   },
