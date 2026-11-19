@@ -4,20 +4,20 @@ seoTitle: "Prix GEO : tarif d'un audit et d'une agence GEO en 2026 | Kameo"
 description: "Combien coûte le GEO (référencement IA) en 2026 ? Prix d'un audit et d'un accompagnement, ce que comprend chaque offre et comment comparer deux devis."
 excerpt: "Audit, accompagnement mensuel, outil de suivi : les prix du GEO relevés en novembre 2026, ce que comprend chaque niveau, les questions à poser pour comparer deux offres et les signaux d'alerte."
 date: "2026-11-09T16:00:00+01:00"
-modified: "2026-11-18T21:40:00+01:00"
+modified: "2026-11-19T14:15:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-prix-geo.jpg"
 imageWidth: 1600
 imageHeight: 900
 imageAlt: "Prix du GEO en 2026 : ce que coûtent un audit et un accompagnement pour être cité par les IA"
 format: markdown
 ---
-Un audit GEO (référencement IA) coûte en 2026 entre 200 et 2 700 € environ : de 200 à 600 € chez un freelance ou sur une plateforme, de 1 500 à 2 700 € HT dans une agence française. L'accompagnement mensuel d'une PME par une agence coûte de 650 à 2 500 € par mois, et à partir d'environ 3 000 € dans les grandes agences. Les outils de suivi seuls coûtent 75 à 450 € par mois : ils mesurent votre visibilité dans les IA, mais ne corrigent rien.
+Un audit GEO (référencement IA) coûte en 2026 entre 200 et 5 000 € environ : de 200 à 600 € chez un freelance ou sur une plateforme, de 1 000 à 5 000 € HT dans une agence française. L'accompagnement mensuel d'une PME par une agence coûte de 350 à 3 000 € HT par mois, et à partir d'environ 3 000 € dans les grandes agences. Les outils de suivi seuls coûtent 75 à 450 € par mois : ils mesurent votre visibilité dans les IA, mais ne corrigent rien.
 
 Ces fourchettes viennent de notre relevé de novembre 2026. Voici pourquoi les prix du référencement IA varient autant et comment comparer deux devis, avec nos propres prix comme exemple.
 
-> **En bref.** Le prix du GEO dépend surtout du travail humain inclus : mesurer, corriger le site, développer votre présence ailleurs, produire des contenus. Comptez 200 à 2 700 € pour un audit et 650 à 2 500 € par mois pour accompagner une PME (relevé de Kameo, novembre 2026). Pour comparer, regardez les IA suivies, le nombre de questions, qui corrige, ce qui est exclu et le coût total. Fuyez toute garantie de citation.
+> **En bref.** Le prix du GEO dépend surtout du travail humain inclus : mesurer, corriger le site, développer votre présence ailleurs, produire des contenus. Comptez 200 à 5 000 € pour un audit et 350 à 3 000 € par mois pour accompagner une PME (relevé de Kameo, novembre 2026). Pour comparer, regardez les IA suivies, le nombre de questions, qui corrige, ce qui est exclu et le coût total. Fuyez toute garantie de citation.
 
-> **Qui a écrit ce guide ?** L'équipe de Kameo, une agence web qui vend elle-même des audits et des accompagnements GEO : nos prix figurent plus bas, à côté de ceux du marché. Chaque chiffre extérieur est daté et sourcé en fin d'article. Informations vérifiées le 9 novembre 2026.
+> **Qui a écrit ce guide ?** L'équipe de Kameo, une agence web qui vend elle-même des audits et des accompagnements GEO : nos prix figurent plus bas, à côté de ceux du marché. Chaque chiffre extérieur est daté et sourcé en fin d'article. Informations vérifiées le 19 novembre 2026.
 
 ## Pourquoi les prix du GEO varient autant
 
@@ -31,19 +31,19 @@ Le [GEO](/glossaire-geo/#geo) consiste à faire citer et recommander une entrepr
 
 ## Les prix du GEO en 2026 : audit, accompagnement, outils
 
-Peu d'agences affichent leurs tarifs : lors de notre relevé de novembre 2026, 7 agences sur 8 bien placées sur la recherche « agence GEO » ne les publiaient pas. Voici les fourchettes relevées, sans nommer de prestataire :
+Peu d'agences affichent leurs tarifs : dans le [classement de Koïno](https://www.koino.fr/articles/top-10-des-meilleures-agences-de-referencement-ia-seo-aio-geo-en-france) mis à jour le 17 novembre 2026, seules 2 agences sur 10 publient leurs prix GEO. Voici les fourchettes relevées chez les prestataires qui les affichent, sans les nommer :
 
 | Type d'offre | Prix relevé (Kameo, novembre 2026) |
 |---|---|
 | Audit par un freelance ou sur une plateforme | 200 à 600 € |
 | Audit packagé d'une petite structure | 600 à 1 500 € |
-| Audit d'une agence française | 1 500 à 2 700 € HT |
+| Audit d'une agence française | 1 000 à 5 000 € HT |
 | Outil de suivi seul | 75 à 450 € par mois |
-| Accompagnement d'agence, entrée de gamme PME | 650 à 1 000 € par mois |
-| Accompagnement d'agence, cœur du marché PME | 950 à 2 500 € par mois |
+| Accompagnement d'agence, entrée de gamme PME | 350 à 1 000 € HT par mois |
+| Accompagnement d'agence, cœur du marché PME | 1 000 à 3 000 € HT par mois |
 | Accompagnement d'une grande agence | à partir d'environ 3 000 € par mois |
 
-Ces fourchettes sont indicatives : un devis dépend toujours du périmètre.
+Ces fourchettes sont indicatives : un devis dépend toujours du périmètre. Elles ne comptent pas Kameo, dont les prix figurent plus bas.
 
 ## Ce que comprend chaque niveau
 
@@ -107,7 +107,7 @@ Nos prix sont publics : prenez-les comme un repère, à passer au crible des qu
 
 Les accompagnements demandent 6 mois minimum, le temps que les IA prennent en compte les changements, soit au moins 3 000 € HT pour Essentiel. L'Audit GEO Express y est offert au démarrage, un mois est offert pour un engagement annuel, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit.
 
-Essentiel se situe sous l'entrée de gamme relevée chez les agences. Son périmètre est précis : la mesure, les corrections du site et des conseils pour l'extérieur, sans création de fiches ni de contenus. Tout est fait en interne, sans sous-traitance. Notre méthode est présentée sur la page [agence GEO à Paris](/agence-geo/).
+Essentiel se situe dans le bas de la fourchette relevée chez les agences. Son périmètre est précis : la mesure, les corrections du site et des conseils pour l'extérieur, sans création de fiches ni de contenus. Tout est fait en interne, sans sous-traitance. Notre méthode est présentée sur la page [agence GEO à Paris](/agence-geo/).
 
 ## Ce qu'on peut raisonnablement attendre
 
@@ -121,14 +121,14 @@ Vous achetez un travail et une mesure, pas un résultat garanti.
 <details>
 <summary>Quel est le tarif d'un audit GEO ?</summary>
 
-Selon notre relevé de novembre 2026 : de 200 à 600 € chez un freelance ou sur une plateforme, de 600 à 1 500 € dans une petite structure, de 1 500 à 2 700 € HT dans une agence française. Chez Kameo : 500 € HT pour l'Express, 800 € HT pour le Complet.
+Selon notre relevé de novembre 2026 : de 200 à 600 € chez un freelance ou sur une plateforme, de 600 à 1 500 € dans une petite structure, de 1 000 à 5 000 € HT dans une agence française. Chez Kameo : 500 € HT pour l'Express, 800 € HT pour le Complet.
 
 </details>
 
 <details>
 <summary>Combien coûte une agence GEO par mois ?</summary>
 
-Pour une PME, de 650 à 2 500 € par mois selon le périmètre, et à partir d'environ 3 000 € dans les grandes agences (relevé de Kameo, novembre 2026). Chez Kameo : 500, 700 ou 1 000 € HT par mois, avec 6 mois minimum.
+Pour une PME, de 350 à 3 000 € HT par mois selon le périmètre, et à partir d'environ 3 000 € dans les grandes agences (relevé de Kameo, novembre 2026). Chez Kameo : 500, 700 ou 1 000 € HT par mois, avec 6 mois minimum.
 
 </details>
 
@@ -152,7 +152,8 @@ Avant d'engager un budget mensuel, commencez par un [audit GEO](/audit-geo/) : 
 
 ## Sources
 
-- Kameo, relevé des prix du GEO, novembre 2026 (prestataires non nommés).
+- Kameo, relevé des prix affichés par les prestataires, du 9 au 19 novembre 2026 (prestataires non nommés).
+- Koïno, [Top 10 des agences de référencement IA, SEO et GEO](https://www.koino.fr/articles/top-10-des-meilleures-agences-de-referencement-ia-seo-aio-geo-en-france), mise à jour du 17 novembre 2026.
 - Ahrefs, [les listes « meilleurs X » dans les réponses des IA](https://ahrefs.com/blog/best-lists-research/), décembre 2025.
 - Arcom et Médiamétrie, [Baromètre de l'audience des services d'IA](https://www.arcom.fr/en/find-out-more/studies-and-data/studies-reviews-and-reports/artificial-intelligence-services-audience-barometer-1st-edition), juin 2026.
 - Search Engine Journal, [Bing ajoute le GEO à ses consignes](https://www.searchenginejournal.com/bing-adds-geo-to-official-guidelines-expands-ai-abuse-definitions/568442/), février 2026.
