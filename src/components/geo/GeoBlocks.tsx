@@ -7,6 +7,7 @@ import {
   prixBarre,
   prixDuJour,
   promoGeoActive,
+  remiseGeoUniforme,
   remiseMaxGeo,
   termsGeo,
   type FaqItem,
@@ -126,8 +127,17 @@ export function GeoPromoBanner() {
     <p className="geo-promo-banner">
       <span className="geo-promo-banner__tag">{GEO_PROMO.nom}</span>
       <span>
-        Jusqu’à <strong>−{remiseMaxGeo()}&nbsp;%</strong> sur l’accompagnement GEO pour toute signature jusqu’au{' '}
-        <strong>{GEO_PROMO.finTexte}</strong>. Le prix est conservé pendant tout votre engagement.
+        {remiseGeoUniforme() ? (
+          <>
+            <strong>−{remiseMaxGeo()}&nbsp;%</strong> sur chaque formule d’accompagnement GEO
+          </>
+        ) : (
+          <>
+            Jusqu’à <strong>−{remiseMaxGeo()}&nbsp;%</strong> sur l’accompagnement GEO
+          </>
+        )}{' '}
+        pour toute signature jusqu’au <strong>{GEO_PROMO.finTexte}</strong>. Le prix est conservé pendant tout votre
+        engagement.
       </span>
     </p>
   );

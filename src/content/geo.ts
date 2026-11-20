@@ -15,9 +15,11 @@
  * Grille de décembre : décidée par Benjamin le 20/11/2026 (« Oui, on part dessus ») d'après le
  * rapport « Offres GEO concurrentes et grille Kameo » (reports/) : Essentiel 500, Croissance 800 et
  * Autorité 1 500 € HT par mois ; 20, 40 ou 60 questions suivies ; 3 mois d'engagement, puis sans
- * engagement ; garantie de livrables. Elle remplace celle de novembre pour toute signature à partir
- * du 1er décembre 2026 (GEO_BASCULE), à la fin de l'offre Black Friday, sans nouvelle mise en ligne.
- * Les clients signés jusqu'au 30/11 gardent leur prix et le contenu de leur formule.
+ * engagement ; garantie de livrables. Prévue d'abord pour le 1er décembre 2026, elle est affichée dès
+ * le 20/11/2026 à la demande de Benjamin (« Dès maintenant affiche les nouvelles offres, en incluant
+ * la réduction blackfriday en retirant 30% par offre »), avec l'offre Black Friday : −30 % sur chaque
+ * formule, soit 350, 560 et 1 050 € HT par mois jusqu'au 30/11/2026 (GEO_PROMO), puis les prix
+ * normaux. La grille de novembre ne s'affiche plus (GEO_BASCULE passée) ; à retirer du code.
  *
  * Tout ce qui dépend de la date (offre en cours, grille) est calculé à l'affichage, par les
  * fonctions ci-dessous, jamais dans une constante de module figée au démarrage du serveur ; les
@@ -36,9 +38,9 @@ export const GEO_QUESTIONS = 50;
 /** Grille de novembre : engagement minimum des accompagnements, en mois. */
 export const GEO_MIN_MONTHS = 6;
 
-/** Premier instant de la grille de décembre, heure de Paris (fin de l'offre Black Friday). */
-export const GEO_BASCULE = '2026-12-01T00:00:00+01:00';
-/** La grille de décembre est-elle en vigueur ? À appeler à l'affichage. */
+/** Premier instant de la nouvelle grille (dite « de décembre »), heure de Paris : affichée dès le 20/11/2026. */
+export const GEO_BASCULE = '2026-11-20T00:00:00+01:00';
+/** La nouvelle grille est-elle en vigueur ? À appeler à l'affichage. */
 export const grilleDecembreActive = (maintenant: Date = new Date()) => maintenant.getTime() >= Date.parse(GEO_BASCULE);
 
 /** Articles dont un repère suit la grille (voir reperesGeo) : leur texte change seul le jour de la bascule. */
@@ -201,6 +203,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
     id: 'essentiel',
     name: 'Essentiel',
     price: 500,
+    promoPrice: 350,
     monthly: true,
     questions: 20,
     tagline: 'Votre site devient lisible par les IA, et vous savez chaque mois où vous en êtes.',
@@ -219,6 +222,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
     id: 'croissance',
     name: 'Croissance',
     price: 800,
+    promoPrice: 560,
     monthly: true,
     questions: 40,
     tagline: 'Nous créons votre présence partout où les IA cherchent leurs réponses.',
@@ -238,6 +242,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
     id: 'autorite',
     name: 'Autorité',
     price: 1500,
+    promoPrice: 1050,
     monthly: true,
     questions: 60,
     tagline: 'Nous faisons parler de vous dans les sources que les IA citent.',
@@ -262,7 +267,8 @@ export const plansGeo = (): GeoOffer[] => (grilleDecembreActive() ? PLANS_DECEMB
 /**
  * Offre Black Friday 2026 sur les accompagnements, décidée par Benjamin le 13/11/2026 : le prix
  * promoPrice vaut pour toute signature jusqu'au 30 novembre 2026 inclus et reste celui du client
- * pendant tout son engagement ; ensuite, la grille de décembre s'applique.
+ * pendant tout son engagement. Depuis le 20/11/2026, elle porte sur la nouvelle grille : −30 % sur
+ * chaque formule (350, 560 et 1 050 € HT par mois) ; ensuite, prix normaux 500, 800 et 1 500 €.
  */
 export const GEO_PROMO = {
   nom: 'Black Friday',
@@ -329,7 +335,6 @@ export const GEO_RESOURCES: GeoResource[] = [
 
 /** « 1 000 € » : espaces insécables entre les milliers et avant l'euro. */
 export const euros = (n: number) => n.toLocaleString('fr-FR').replace(/\s/g, ' ') + ' €';
-/** « 1 440 » : espace insécable entre les milliers. */
 
 /** L'offre GEO_PROMO est-elle en cours ? À appeler à l'affichage. */
 export const promoGeoActive = (maintenant: Date = new Date()) => maintenant.getTime() <= Date.parse(GEO_PROMO.fin);
@@ -340,9 +345,17 @@ export const prixDuJour = (o: GeoOffer) => (o.promoPrice !== undefined && promoG
 /** Prix normal à barrer à côté du prix de l'offre ; null hors offre. */
 export const prixBarre = (o: GeoOffer) => (o.promoPrice !== undefined && promoGeoActive() ? o.price : null);
 
-/** Plus forte remise de l'offre, en % arrondi (30 % pour Essentiel). */
+/** Plus forte remise de l'offre, en % arrondi (30 %). */
 export const remiseMaxGeo = () =>
   Math.round(Math.max(0, ...plansGeo().map((p) => (p.promoPrice !== undefined ? 1 - p.promoPrice / p.price : 0))) * 100);
+
+/** Même remise sur toutes les formules (−30 % chacune) : on écrit « −30 % » et non « jusqu'à −30 % ». */
+export const remiseGeoUniforme = () => {
+  const remises = plansGeo()
+    .filter((p) => p.promoPrice !== undefined)
+    .map((p) => Math.round((1 - (p.promoPrice ?? p.price) / p.price) * 100));
+  return remises.length > 0 && remises.every((r) => r === remises[0]);
+};
 
 /** Conditions de l'offre en une phrase ; vide hors offre. */
 export const phrasePromoGeo = () =>
@@ -385,7 +398,10 @@ export const offreGeoHtml = () => {
 /** Espaces insécables de la typographie française (avant : ; ? ! », après «), pour les textes insérés dans les articles. */
 const insecables = (s: string) => s.replace(/ ([?!:;»])/g, '\u00a0$1').replace(/« /g, '«\u00a0');
 
-/** Grille de décembre : tableau et conditions de Kameo dans le guide des prix (repère <!-- grille-kameo -->). */
+/**
+ * Grille de décembre : tableau et conditions de Kameo dans le guide des prix (repère <!-- grille-kameo -->), avec
+ * l'offre en cours sous le tableau (le repère <!-- offre-geo --> du guide est dans le bloc remplacé).
+ */
 const grilleKameoHtml = () => {
   const [express, complet] = AUDITS_DECEMBRE;
   const [essentiel, croissance, autorite] = PLANS_DECEMBRE;
@@ -398,9 +414,20 @@ const grilleKameoHtml = () => {
     ligne(croissance, `${euros(croissance.price)} par mois`, `40 questions (${reponsesParMois(40)} réponses par mois), fiches Google, Bing, Apple Plans et ChatGPT, 2 inscriptions par mois dans les annuaires et sites d'avis, méthode de demande d'avis, 5 pages améliorées et un point mensuel`),
     ligne(autorite, `${euros(autorite.price)} par mois`, `60 questions (${nombre(reponsesParMois(60))} réponses par mois), 3 démarches par mois auprès de comparatifs et de médias, 4 nouveaux contenus, 10 pages améliorées, une heure par mois avec le fondateur`),
     '</tbody></table>',
+    offreGeoHtml(),
     "<p>Les accompagnements demandent 3 mois d'engagement, puis sont sans engagement, résiliables par simple e-mail. L'audit est offert au démarrage, 12 mois coûtent le prix de 11, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit. Un livrable prévu et non fait est déduit de la facture suivante.</p>",
     '<p>Essentiel se situe dans le bas de la fourchette relevée chez les agences. Tout est fait en interne, sans sous-traitance. Notre méthode est présentée sur la page <a href="/agence-geo/">agence GEO à Paris</a>.</p>',
   ].join(''));
+};
+
+/** Grille de décembre : réponse « Chez Kameo : … » de la FAQ du guide des prix (repère <!-- prix-kameo-mois -->). */
+const prixKameoMois = () => {
+  const liste = (prix: number[]) => `${prix.slice(0, -1).map(nombre).join(', ')} ou ${euros(prix[prix.length - 1])}`;
+  const normal = `Chez Kameo : ${liste(PLANS_DECEMBRE.map((p) => p.price))} HT par mois, avec 3 mois d'engagement, puis sans engagement.`;
+  const promo = PLANS_DECEMBRE.map((p) => p.promoPrice);
+  return promoGeoActive() && promo.every((n) => n !== undefined)
+    ? `${normal} Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : ${liste(promo as number[])} HT par mois.`
+    : normal;
 };
 
 /** Grille de décembre : la mesure de Kameo dans le guide sur la mesure (repère <!-- mesure-kameo -->). */
@@ -421,7 +448,7 @@ export const reperesGeo = (html: string): string => {
   if (grilleDecembreActive()) {
     out = out
       .replace(/<!-- grille-kameo -->[\s\S]*?<!-- \/grille-kameo -->/, grilleKameoHtml())
-      .replace(/<!-- prix-kameo-mois -->[\s\S]*?<!-- \/prix-kameo-mois -->/, insecables(`Chez Kameo : 500, 800 ou ${euros(1500)} HT par mois, avec 3 mois d'engagement, puis sans engagement.`))
+      .replace(/<!-- prix-kameo-mois -->[\s\S]*?<!-- \/prix-kameo-mois -->/, insecables(prixKameoMois()))
       .replace(/<!-- mesure-kameo -->[\s\S]*?<!-- \/mesure-kameo -->/, mesureKameoHtml());
   }
   return out;
@@ -457,7 +484,7 @@ export const faqAgence = (): FaqItem[] => {
     {
       q: 'Combien coûte une agence GEO ?',
       a: dec
-        ? `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits()}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec 3 mois d'engagement, puis sans engagement, et l'audit offert au démarrage.`
+        ? `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits()}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec 3 mois d'engagement, puis sans engagement, et l'audit offert au démarrage.${suitePromo()}`
         : `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits()}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec un engagement de ${GEO_MIN_MONTHS} mois minimum et l'Audit GEO Express offert au démarrage.${suitePromo()}`,
     },
     {
@@ -594,7 +621,7 @@ export const faqAccompagnement = (): FaqItem[] => {
     },
     {
       q: 'Combien coûte un accompagnement GEO ?',
-      a: `Trois formules à prix publics : ${prixPlans()}, avec 3 mois d'engagement, puis sans engagement. L'audit est offert au démarrage, et 12 mois coûtent le prix de 11.`,
+      a: `Trois formules à prix publics : ${prixPlans()}, avec 3 mois d'engagement, puis sans engagement.${suitePromo()} L'audit est offert au démarrage, et 12 mois coûtent le prix de 11.`,
     },
     {
       q: "Pourquoi 3 mois d'engagement ?",

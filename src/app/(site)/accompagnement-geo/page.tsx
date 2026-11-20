@@ -31,6 +31,7 @@ import {
   prixBarre,
   prixDuJour,
   promoGeoActive,
+  remiseGeoUniforme,
   remiseMaxGeo,
   reponsesParMois,
 } from '@/content/geo';
@@ -45,7 +46,7 @@ const CRUMBS = [
   { name: 'Accompagnement GEO', path: PATH },
 ];
 
-/* Titre et description suivent l'offre en cours (GEO_PROMO) et la grille (01/12/2026) : calculés à l'affichage. */
+/* Titre et description suivent l'offre en cours (GEO_PROMO) et la grille (nouvelle depuis le 20/11/2026) : calculés à l'affichage. */
 const titre = () => {
   const [essentiel] = plansGeo();
   return promoGeoActive()
@@ -55,11 +56,12 @@ const titre = () => {
 const description = () => {
   const plans = plansGeo();
   const de = `3 formules de ${euros(prixDuJour(plans[0]))} à ${euros(prixDuJour(plans[2]))} HT/mois, `;
-  if (promoGeoActive())
-    return `Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété. ${de}offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte}.`;
-  return grilleDecembreActive()
-    ? `Accompagnement GEO : de 20 à 60 questions suivies sur ChatGPT, Gemini, Perplexity et Claude, corrections, fiches et notoriété. ${de}3 mois d'engagement.`
-    : `Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété. ${de}audit offert.`;
+  const dec = grilleDecembreActive();
+  const debut = dec
+    ? 'Accompagnement GEO : de 20 à 60 questions suivies sur ChatGPT, Gemini, Perplexity et Claude, corrections, fiches et notoriété.'
+    : 'Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété.';
+  if (promoGeoActive()) return `${debut} ${de}offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte}.`;
+  return `${debut} ${de}${dec ? "3 mois d'engagement." : 'audit offert.'}`;
 };
 
 export function generateMetadata(): Metadata {
@@ -204,8 +206,9 @@ export default function AccompagnementGeoPage() {
                 {promo && (
                   <li>
                     <span>
-                      <strong>Offre {GEO_PROMO.nom}</strong>&nbsp;: jusqu’à −{remiseMaxGeo()}&nbsp;% jusqu’au{' '}
-                      {GEO_PROMO.finTexte}, prix conservé pendant tout l’engagement
+                      <strong>Offre {GEO_PROMO.nom}</strong>&nbsp;:{' '}
+                      {remiseGeoUniforme() ? <>−{remiseMaxGeo()}&nbsp;% sur chaque formule</> : <>jusqu’à −{remiseMaxGeo()}&nbsp;%</>}{' '}
+                      jusqu’au {GEO_PROMO.finTexte}, prix conservé pendant tout l’engagement
                     </span>
                   </li>
                 )}
