@@ -124,6 +124,11 @@ const css = `
 .geo-plan__cta--ghost { background: #fff; color: #0f1115; border: 1px solid rgba(15,17,21,.14); box-shadow: none; }
 .geo-plan__more { display: block; margin-top: 12px; text-align: center; font-size: 13.5px; font-weight: 700; color: #ED6E63; text-decoration: none; }
 .geo-plan__more:hover { text-decoration: underline; text-underline-offset: 2px; }
+/* Prix alignés d'une carte à l'autre : en-tête, prix, liste et bouton calés sur les mêmes lignes de la grille */
+.geo-plan__head, .geo-plan__pricing, .geo-plan__foot { display: flex; flex-direction: column; }
+@supports (grid-template-rows: subgrid) {
+  .geo-plans__grid > .geo-plan { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; }
+}
 @media (max-width: 960px) { .geo-plans__grid, .geo-plans__grid--2 { grid-template-columns: 1fr; max-width: 520px; } .geo-plan__badge { left: 50%; transform: translateX(-50%); white-space: nowrap; } }
 
 /* Conditions des accompagnements */

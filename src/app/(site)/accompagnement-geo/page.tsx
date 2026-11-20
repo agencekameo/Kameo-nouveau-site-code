@@ -100,8 +100,9 @@ const ROWS_DECEMBRE: [string, Cell, Cell, Cell][] = [
   ['Fiches Google et Bing', 'À faire vous-même, textes prêts', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour'],
   ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '2 inscriptions par mois', '2 inscriptions par mois'],
   ['Demandes d’avis clients', 'Conseils', 'Méthode et modèles de réponse', 'Méthode et modèles de réponse'],
+  ['Erreurs des IA corrigées à la source', false, true, true],
   ['Comparatifs, médias et partenaires', false, false, '3 démarches par mois, sans place payante'],
-  ['Nouveaux contenus', false, false, '4 par mois, validés par vous'],
+  ['Nouveaux contenus', false, '2 par mois, validés par vous', '4 par mois, validés par vous'],
   ['Rapport mensuel', true, true, true],
   ['Point en visio', 'Au démarrage et au bilan des 3 mois', '30 minutes chaque mois', '1 heure chaque mois avec le fondateur'],
 ];

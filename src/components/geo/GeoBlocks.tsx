@@ -82,41 +82,47 @@ export function GeoOfferCard({ offer, badge, more }: { offer: GeoOffer; badge?: 
           {badge}
         </span>
       )}
-      <h3 className="geo-plan__name">{offer.name}</h3>
-      <p className="geo-plan__for">{fr(offer.tagline)}</p>
-      {offer.pourQui && (
-        <p className="geo-plan__who">
-          <strong>Pour qui&nbsp;:</strong> {fr(offer.pourQui.charAt(0).toLowerCase() + offer.pourQui.slice(1))}
+      <div className="geo-plan__head">
+        <h3 className="geo-plan__name">{offer.name}</h3>
+        <p className="geo-plan__for">{fr(offer.tagline)}</p>
+        {offer.pourQui && (
+          <p className="geo-plan__who">
+            <strong>Pour qui&nbsp;:</strong> {fr(offer.pourQui.charAt(0).toLowerCase() + offer.pourQui.slice(1))}
+          </p>
+        )}
+      </div>
+      <div className="geo-plan__pricing">
+        {barre !== null && (
+          <p className="geo-plan__promo">
+            <span className="geo-plan__promo-tag">{GEO_PROMO.nom}</span>
+            <del>
+              <span className="sr-only">Prix normal : </span>
+              {euros(barre)}
+            </del>
+          </p>
+        )}
+        <p className="geo-plan__price">
+          {euros(prixDuJour(offer))}
+          <small>{offer.monthly ? 'HT / mois' : 'HT'}</small>
         </p>
-      )}
-      {barre !== null && (
-        <p className="geo-plan__promo">
-          <span className="geo-plan__promo-tag">{GEO_PROMO.nom}</span>
-          <del>
-            <span className="sr-only">Prix normal : </span>
-            {euros(barre)}
-          </del>
-        </p>
-      )}
-      <p className="geo-plan__price">
-        {euros(prixDuJour(offer))}
-        <small>{offer.monthly ? 'HT / mois' : 'HT'}</small>
-      </p>
-      <p className="geo-plan__note">{offer.monthly ? noteEngagementGeo() : 'Paiement unique, sans abonnement'}</p>
+        <p className="geo-plan__note">{offer.monthly ? noteEngagementGeo() : 'Paiement unique, sans abonnement'}</p>
+      </div>
       <ul className="geo-plan__list">
         {offer.items.map((it) => (
           <li key={it}>{fr(it)}</li>
         ))}
       </ul>
-      <a href={CONTACT.calendly} target="_blank" rel="noopener" className="geo-plan__cta">
-        <Icon name="calendar-check" />
-        {offer.cta}
-      </a>
-      {more && (
-        <Link href={more.href} className="geo-plan__more">
-          {more.label} →
-        </Link>
-      )}
+      <div className="geo-plan__foot">
+        <a href={CONTACT.calendly} target="_blank" rel="noopener" className="geo-plan__cta">
+          <Icon name="calendar-check" />
+          {offer.cta}
+        </a>
+        {more && (
+          <Link href={more.href} className="geo-plan__more">
+            {more.label} →
+          </Link>
+        )}
+      </div>
     </article>
   );
 }
