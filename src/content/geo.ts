@@ -252,7 +252,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
       `60 questions suivies et 5 concurrents : ${nombre(reponsesParMois(60))} réponses analysées par mois.`,
       'Vos fiches Google et Bing créées ou reprises, puis tenues à jour.',
       '3 démarches par mois auprès de comparatifs, de médias ou de partenaires choisis parmi les sources des IA, sans jamais payer de place.',
-      '4 nouveaux contenus par mois : pages, articles ou publications LinkedIn signées par vous, validés avant publication.',
+      '4 nouveaux contenus par mois sur votre site (pages ou articles), validés par vous avant publication.',
       '10 pages existantes améliorées chaque mois.',
       '1 heure chaque mois avec Benjamin Dayan, fondateur, et un bilan chaque trimestre.',
     ],
