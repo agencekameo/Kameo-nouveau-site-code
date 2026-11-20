@@ -61,7 +61,7 @@ const description = () => {
     ? 'Accompagnement GEO : de 20 à 60 questions suivies sur ChatGPT, Gemini, Perplexity et Claude, corrections, fiches et notoriété.'
     : 'Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété.';
   if (promoGeoActive()) return `${debut} ${de}offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte}.`;
-  return `${debut} ${de}${dec ? "3 mois d'engagement." : 'audit offert.'}`;
+  return `${debut} ${de}${dec ? "6 mois d'engagement." : 'audit offert.'}`;
 };
 
 export function generateMetadata(): Metadata {
@@ -96,11 +96,11 @@ const ROWS_DECEMBRE: [string, Cell, Cell, Cell][] = [
   ['Corrections techniques de votre site', true, true, true],
   ['Indexation dans Google, Bing et Brave', true, true, true],
   ['Pages existantes améliorées chaque mois', '3', '5', '10'],
-  ['Fiche ChatGPT (Business Hub)', true, true, true],
+  ['Fiche ChatGPT (Business Hub)', false, true, true],
   ['Fiches Google et Bing', 'À faire vous-même, textes prêts', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour'],
   ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '2 inscriptions par mois', '2 inscriptions par mois'],
   ['Demandes d’avis clients', 'Conseils', 'Méthode et modèles de réponse', 'Méthode et modèles de réponse'],
-  ['Erreurs des IA corrigées à la source', false, true, true],
+  ['Erreurs des IA corrigées à la source', true, true, true],
   ['Comparatifs, médias et partenaires', false, false, '3 démarches par mois, sans place payante'],
   ['Nouveaux contenus', false, '2 par mois, validés par vous', '4 par mois, validés par vous'],
   ['Rapport mensuel', true, true, true],
@@ -195,7 +195,7 @@ export default function AccompagnementGeoPage() {
                   Kameo propose trois formules&nbsp;: <strong>{ESSENTIEL.name}</strong> à {euros(prixDuJour(ESSENTIEL))}{' '}
                   HT, <strong>{CROISSANCE.name}</strong> à {euros(prixDuJour(CROISSANCE))} HT et{' '}
                   <strong>{AUTORITE.name}</strong> à {euros(prixDuJour(AUTORITE))} HT par mois,{' '}
-                  {dec ? <>avec 3&nbsp;mois d’engagement, puis sans engagement.</> : <>avec un engagement de {GEO_MIN_MONTHS} mois minimum.</>}
+                  {dec ? <>avec 6&nbsp;mois d’engagement, puis sans engagement.</> : <>avec un engagement de {GEO_MIN_MONTHS} mois minimum.</>}
                   {promo && (
                     <>
                       {' '}
@@ -212,7 +212,7 @@ export default function AccompagnementGeoPage() {
                       <strong>Offre {GEO_PROMO.nom}</strong>&nbsp;:{' '}
                       {remiseGeoUniforme() ? <>−{remiseMaxGeo()}&nbsp;% sur chaque formule</> : <>jusqu’à −{remiseMaxGeo()}&nbsp;%</>}{' '}
                       jusqu’au {GEO_PROMO.finTexte}, prix conservé pendant tout l’engagement
-                      {dec ? <>, soit 6&nbsp;mois si vous vous engagez sur 6&nbsp;mois</> : null}
+                      {dec ? <>, 6&nbsp;mois au minimum</> : null}
                     </span>
                   </li>
                 )}
@@ -233,12 +233,12 @@ export default function AccompagnementGeoPage() {
                     </li>
                     <li>
                       <span>
-                        <strong>Fiche ChatGPT et indexation</strong> dans Google, Bing et Brave, dans les 3 formules
+                        <strong>Indexation</strong> dans Google, Bing et Brave et <strong>erreurs des IA corrigées</strong>, dans les 3 formules
                       </span>
                     </li>
                     <li>
                       <span>
-                        <strong>3 mois d’engagement</strong>, puis sans engagement
+                        <strong>6 mois d’engagement</strong>, puis sans engagement
                       </span>
                     </li>
                     <li>
@@ -442,7 +442,7 @@ export default function AccompagnementGeoPage() {
             <header className="geo-head">
               <span className="geo-head__eyebrow">Engagement</span>
               <h2 className="geo-head__title" id="geo-time-title">
-                {dec ? <>Pourquoi 3&nbsp;mois d’engagement&nbsp;?</> : <>Pourquoi {GEO_MIN_MONTHS} mois minimum&nbsp;?</>}
+                {dec ? <>Pourquoi 6&nbsp;mois d’engagement&nbsp;?</> : <>Pourquoi {GEO_MIN_MONTHS} mois minimum&nbsp;?</>}
               </h2>
             </header>
             <div className="geo-prose">
@@ -454,8 +454,9 @@ export default function AccompagnementGeoPage() {
               </p>
               {dec ? (
                 <p>
-                  Leurs réponses varient aussi d’un essai à l’autre&nbsp;: un relevé isolé ne prouve rien. Trois mois,
-                  c’est six relevés et assez de réponses pour un premier bilan, IA par IA. Ensuite, la formule est sans
+                  Leurs réponses varient aussi d’un essai à l’autre&nbsp;: un relevé isolé ne prouve rien. Six mois,
+                  c’est douze relevés&nbsp;: assez pour distinguer une vraie progression d’une variation passagère, IA par
+                  IA. Ensuite, la formule est sans
                   engagement&nbsp;: vous restez si le travail vous convient, et vous pouvez résilier par simple e-mail,
                   avec 30&nbsp;jours de préavis.
                 </p>

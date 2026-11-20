@@ -146,8 +146,7 @@ export function GeoPromoBanner() {
         pour toute signature jusqu’au <strong>{GEO_PROMO.finTexte}</strong>.{' '}
         {grilleDecembreActive() ? (
           <>
-            Le prix est garanti pendant tout votre engagement&nbsp;: engagez-vous sur <strong>6&nbsp;mois</strong> au lieu
-            de 3 et gardez ce prix 6&nbsp;mois.
+            Le prix est garanti pendant tout votre engagement, <strong>6&nbsp;mois</strong> au minimum.
           </>
         ) : (
           <>Le prix est conservé pendant tout votre engagement.</>

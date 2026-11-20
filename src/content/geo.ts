@@ -14,8 +14,8 @@
  *
  * Grille de décembre : décidée par Benjamin le 20/11/2026 (« Oui, on part dessus ») d'après le
  * rapport « Offres GEO concurrentes et grille Kameo » (reports/) : Essentiel 500, Croissance 800 et
- * Autorité 1 500 € HT par mois ; 20, 40 ou 60 questions suivies ; 3 mois d'engagement, puis sans
- * engagement ; garantie de livrables. Prévue d'abord pour le 1er décembre 2026, elle est affichée dès
+ * Autorité 1 500 € HT par mois ; 20, 40 ou 60 questions suivies ; 6 mois d'engagement (3 au départ,
+ * 6 depuis le 20/11/2026 à sa demande), puis sans engagement ; garantie de livrables. Prévue d'abord pour le 1er décembre 2026, elle est affichée dès
  * le 20/11/2026 à la demande de Benjamin (« Dès maintenant affiche les nouvelles offres, en incluant
  * la réduction blackfriday en retirant 30% par offre »), avec l'offre Black Friday ; le même jour, à
  * sa demande, Croissance passe à 600 € et Autorité à 1 100 € : 350, 600 et 1 100 € HT par mois
@@ -211,7 +211,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
     items: [
       "Audit GEO Express offert au démarrage : votre mesure de départ et votre plan d'action.",
       `20 questions suivies, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines : ${reponsesParMois(20)} réponses analysées par mois.`,
-      'Votre fiche entreprise ChatGPT (Business Hub) revendiquée, vérifiée avec vous et tenue à jour, si votre entreprise y est éligible.',
+      'Les erreurs des IA sur votre entreprise (adresse, prix, services) repérées et corrigées à la source : sur votre site, ou en demandant la correction au site qui les a diffusées.',
       'Vos pages indexées dans Google, Bing et Brave, les moteurs où les IA cherchent leurs sources, avec un contrôle chaque mois.',
       'Corrections techniques de votre site (accès des robots des IA, informations identiques partout) et 3 pages existantes améliorées chaque mois.',
       '3 actions par mois à faire vous-même (fiches Google et Bing, annuaires, avis), avec les textes prêts.',
@@ -232,7 +232,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
       "Tout l'Essentiel, avec l'Audit GEO Complet offert au démarrage.",
       `40 questions suivies et 3 concurrents : ${reponsesParMois(40)} réponses analysées par mois.`,
       '2 nouveaux contenus par mois sur votre site (pages ou articles), écrits pour répondre aux questions que vous suivez, validés par vous avant publication.',
-      'Les erreurs des IA sur votre entreprise (adresse, prix, services) repérées et corrigées à la source : sur votre site, ou en demandant la correction au site qui les a diffusées.',
+      'Votre fiche entreprise ChatGPT (Business Hub) revendiquée, vérifiée avec vous et tenue à jour, si votre entreprise y est éligible.',
       "2 inscriptions par mois dans les annuaires et sites d'avis que les IA citent dans votre secteur.",
       "Une méthode de demande d'avis conforme à la loi, avec des modèles de réponse.",
       '5 pages existantes améliorées et un point de 30 minutes en visio chaque mois.',
@@ -287,10 +287,7 @@ export type GeoTerm = { icon: string; html: string };
 export const termsGeo = (): GeoTerm[] =>
   grilleDecembreActive()
     ? [
-        { icon: 'unlock-keyhole', html: '<strong>3 mois d’engagement</strong>, puis sans engagement : résiliation par simple e-mail, avec 30 jours de préavis.' },
-        ...(promoGeoActive()
-          ? [{ icon: 'calendar-check', html: `<strong>${GEO_PROMO.nom} gardé 6 mois</strong> si vous vous engagez sur 6 mois au lieu de 3 : ${remiseGeoUniforme() ? `−${remiseMaxGeo()} %` : 'le prix réduit'} pendant 6 mois.` }]
-          : []),
+        { icon: 'unlock-keyhole', html: '<strong>6 mois d’engagement</strong>, puis sans engagement : résiliation par simple e-mail, avec 30 jours de préavis.' },
         { icon: 'piggy-bank', html: '<strong>12 mois pour le prix de 11</strong> si vous vous engagez sur un an.' },
         { icon: 'shield-halved', html: '<strong>Garantie de livrables</strong> : un livrable prévu et non fait dans le mois est déduit de votre facture suivante.' },
         { icon: 'percent', html: '<strong>Audit déduit</strong> si vous passez à un accompagnement dans le mois qui suit votre audit.' },
@@ -303,11 +300,11 @@ export const termsGeo = (): GeoTerm[] =>
 
 /** Engagement sous le prix d'une formule d'accompagnement. */
 export const noteEngagementGeo = () =>
-  grilleDecembreActive() ? '3 mois d’engagement, puis sans engagement' : `Engagement de ${GEO_MIN_MONTHS} mois minimum`;
+  grilleDecembreActive() ? '6 mois d’engagement, puis sans engagement' : `Engagement de ${GEO_MIN_MONTHS} mois minimum`;
 
 /** Grille de décembre : nos engagements, écrits noir sur blanc (page Accompagnement GEO). */
 export const GEO_ENGAGEMENTS: [string, string][] = [
-  ['Changer de formule', 'Vers le haut à tout moment, sans nouvel engagement ; vers le bas à la fin de chaque mois, après les 3 premiers mois.'],
+  ['Changer de formule', 'Vers le haut à tout moment, sans nouvel engagement ; vers le bas à la fin de chaque mois, après les 6 premiers mois.'],
   ['Notre garantie', "Chaque livrable prévu dans votre formule est fait dans le mois ; sinon, il est déduit de votre facture suivante, sauf s'il attend un accès ou une validation de votre part."],
   ['Ce que personne ne peut garantir', "Qu'une IA vous cite : ce sont elles qui choisissent leurs sources. Nous nous engageons sur le travail prévu et sur une mesure transparente."],
   ['Ce qui vous appartient', "Vos fiches, vos comptes, vos contenus, votre liste de questions et l'historique des mesures, que vous gardez si vous partez."],
@@ -321,7 +318,7 @@ export const GEO_RAPPORT: [string, string][] = [
   ['Qui est cité à votre place', 'Les marques et les concurrents nommés dans les mêmes réponses.'],
   ['D’où viennent les réponses', 'Les sites que les IA citent sur vos questions.'],
   ['Vos pages indexées', 'Celles que Google, Bing et Brave connaissent, et celles qui manquent encore.'],
-  ['Ce que cela vous apporte', 'Vos visites venues des IA (si vous avez Google Analytics), vos citations dans Copilot, et les mentions, vues et clics de votre fiche ChatGPT.'],
+  ['Ce que cela vous apporte', 'Vos visites venues des IA (si vous avez Google Analytics), vos citations dans Copilot et, dès Croissance, les mentions, vues et clics de votre fiche ChatGPT.'],
   ['Ce que nous avons fait', 'La liste des livrables du mois et le plan du mois suivant.'],
   ['Vos données', "La liste de vos questions et l'export de toutes les réponses, sur simple demande."],
 ];
@@ -367,7 +364,7 @@ export const remiseGeoUniforme = () => {
 /** Conditions de l'offre en une phrase ; vide hors offre. */
 export const phrasePromoGeo = () =>
   promoGeoActive()
-    ? `Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ', soit 6 mois si vous vous engagez sur 6 mois au lieu de 3' : ''}.`
+    ? `Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ', 6 mois au minimum' : ''}.`
     : '';
 
 /** Grille de décembre : « de 20 à 60 questions », « de 480 à 1 440 réponses ». */
@@ -399,7 +396,7 @@ export const offreGeoHtml = () => {
   if (!promoGeoActive()) return '';
   const [essentiel, croissance, autorite] = plansGeo();
   const un = (p: GeoOffer) => `${p.name} à ${euros(prixDuJour(p))} HT au lieu de ${euros(p.price)}`;
-  return `<p><strong>Offre ${GEO_PROMO.nom}</strong> : pour toute signature jusqu'au ${GEO_PROMO.finTexte}, ${un(essentiel)} par mois, ${un(croissance)} et ${un(autorite)}. Le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ' : engagez-vous sur 6 mois au lieu de 3 pour le garder 6 mois' : ''}. <a href="/accompagnement-geo/#formules">Voir les formules</a></p>`;
+  return `<p><strong>Offre ${GEO_PROMO.nom}</strong> : pour toute signature jusqu'au ${GEO_PROMO.finTexte}, ${un(essentiel)} par mois, ${un(croissance)} et ${un(autorite)}. Le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ', 6 mois au minimum' : ''}. <a href="/accompagnement-geo/#formules">Voir les formules</a></p>`;
 };
 
 /** Espaces insécables de la typographie française (avant : ; ? ! », après «), pour les textes insérés dans les articles. */
@@ -417,12 +414,12 @@ const grilleKameoHtml = () => {
     '<table><thead><tr><th>Offre</th><th>Prix HT</th><th>Ce qui est inclus</th></tr></thead><tbody>',
     ligne(express, `${euros(express.price)}, une fois`, `20 questions posées 3 fois à ChatGPT, Gemini, Perplexity et Claude (${reponsesAudit(20)} réponses), diagnostic technique, plan d'action priorisé`),
     ligne(complet, `${euros(complet.price)}, une fois`, `40 questions (${reponsesAudit(40)} réponses), 3 concurrents comparés, les sources que les IA citent dans votre secteur, une restitution d'une heure en visio`),
-    ligne(essentiel, `${euros(essentiel.price)} par mois`, `20 questions suivies toutes les deux semaines (${reponsesParMois(20)} réponses par mois), fiche ChatGPT, indexation dans Google, Bing et Brave, corrections techniques, 3 pages améliorées par mois, 3 actions par mois à faire vous-même, rapport mensuel`),
-    ligne(croissance, `${euros(croissance.price)} par mois`, `40 questions (${reponsesParMois(40)} réponses par mois), 2 nouveaux contenus par mois, les erreurs des IA corrigées à la source, 2 inscriptions par mois dans les annuaires et sites d'avis, méthode de demande d'avis, 5 pages améliorées et un point mensuel`),
+    ligne(essentiel, `${euros(essentiel.price)} par mois`, `20 questions suivies toutes les deux semaines (${reponsesParMois(20)} réponses par mois), indexation dans Google, Bing et Brave, erreurs des IA corrigées à la source, corrections techniques, 3 pages améliorées par mois, 3 actions par mois à faire vous-même, rapport mensuel`),
+    ligne(croissance, `${euros(croissance.price)} par mois`, `40 questions (${reponsesParMois(40)} réponses par mois), fiche ChatGPT, 2 nouveaux contenus par mois, 2 inscriptions par mois dans les annuaires et sites d'avis, méthode de demande d'avis, 5 pages améliorées et un point mensuel`),
     ligne(autorite, `${euros(autorite.price)} par mois`, `60 questions (${nombre(reponsesParMois(60))} réponses par mois), fiches Google et Bing, 3 démarches par mois auprès de comparatifs et de médias, 4 nouveaux contenus, 10 pages améliorées, une heure par mois avec le fondateur`),
     '</tbody></table>',
     offreGeoHtml(),
-    "<p>Les accompagnements demandent 3 mois d'engagement, puis sont sans engagement, résiliables par simple e-mail. L'audit est offert au démarrage, 12 mois coûtent le prix de 11, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit. Un livrable prévu et non fait est déduit de la facture suivante.</p>",
+    "<p>Les accompagnements demandent 6 mois d'engagement, puis sont sans engagement, résiliables par simple e-mail. L'audit est offert au démarrage, 12 mois coûtent le prix de 11, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit. Un livrable prévu et non fait est déduit de la facture suivante.</p>",
     '<p>Essentiel se situe dans le bas de la fourchette relevée chez les agences. Tout est fait en interne, sans sous-traitance. Notre méthode est présentée sur la page <a href="/agence-geo/">agence GEO à Paris</a>.</p>',
   ].join(''));
 };
@@ -430,7 +427,7 @@ const grilleKameoHtml = () => {
 /** Grille de décembre : réponse « Chez Kameo : … » de la FAQ du guide des prix (repère <!-- prix-kameo-mois -->). */
 const prixKameoMois = () => {
   const liste = (prix: number[]) => `${prix.slice(0, -1).map(nombre).join(', ')} ou ${euros(prix[prix.length - 1])}`;
-  const normal = `Chez Kameo : ${liste(PLANS_DECEMBRE.map((p) => p.price))} HT par mois, avec 3 mois d'engagement, puis sans engagement.`;
+  const normal = `Chez Kameo : ${liste(PLANS_DECEMBRE.map((p) => p.price))} HT par mois, avec 6 mois d'engagement, puis sans engagement.`;
   const promo = PLANS_DECEMBRE.map((p) => p.promoPrice);
   return promoGeoActive() && promo.every((n) => n !== undefined)
     ? `${normal} Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : ${liste(promo as number[])} HT par mois.`
@@ -491,7 +488,7 @@ export const faqAgence = (): FaqItem[] => {
     {
       q: 'Combien coûte une agence GEO ?',
       a: dec
-        ? `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits()}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec 3 mois d'engagement, puis sans engagement, et l'audit offert au démarrage.${suitePromo()}`
+        ? `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits()}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec 6 mois d'engagement, puis sans engagement, et l'audit offert au démarrage.${suitePromo()}`
         : `Chez Kameo, les prix sont publics. Audits ponctuels : ${prixAudits()}, en paiement unique. Accompagnements mensuels : ${prixPlans()}, avec un engagement de ${GEO_MIN_MONTHS} mois minimum et l'Audit GEO Express offert au démarrage.${suitePromo()}`,
     },
     {
@@ -624,31 +621,31 @@ export const faqAccompagnement = (): FaqItem[] => {
   return [
     {
       q: "Qu'est-ce qu'un accompagnement GEO ?",
-      a: `C'est un suivi de votre visibilité dans les réponses des IA, avec le travail qui la fait progresser. Kameo suit de ${f.min} à ${f.max} questions clés selon la formule, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines, corrige votre site, veille à l'indexation de vos pages, tient à jour votre fiche ChatGPT, améliore vos pages et, selon la formule, écrit de nouveaux contenus, fait corriger à la source les erreurs des IA, développe vos avis, crée vos fiches Google et Bing et vous fait citer par les sources des IA.`,
+      a: `C'est un suivi de votre visibilité dans les réponses des IA, avec le travail qui la fait progresser. Kameo suit de ${f.min} à ${f.max} questions clés selon la formule, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines, corrige votre site, veille à l'indexation de vos pages, fait corriger à la source les erreurs des IA, améliore vos pages et, selon la formule, tient à jour votre fiche ChatGPT, écrit de nouveaux contenus, développe vos avis, crée vos fiches Google et Bing et vous fait citer par les sources des IA.`,
     },
     {
       q: 'Combien coûte un accompagnement GEO ?',
-      a: `Trois formules à prix publics : ${prixPlans()}, avec 3 mois d'engagement, puis sans engagement.${suitePromo()} L'audit est offert au démarrage, et 12 mois coûtent le prix de 11.`,
+      a: `Trois formules à prix publics : ${prixPlans()}, avec 6 mois d'engagement, puis sans engagement.${suitePromo()} L'audit est offert au démarrage, et 12 mois coûtent le prix de 11.`,
     },
     {
-      q: "Pourquoi 3 mois d'engagement ?",
-      a: "Parce que trois mois, c'est six relevés : assez de réponses pour un premier bilan, IA par IA. En général, les premiers effets se voient 4 à 6 semaines après les corrections, sans garantie. Ensuite, la formule est sans engagement : vous restez si le travail vous convient, et vous pouvez résilier par simple e-mail, avec 30 jours de préavis.",
+      q: "Pourquoi 6 mois d'engagement ?",
+      a: "Parce que les IA mettent du temps à tenir compte des changements : en général, les premiers effets se voient 4 à 6 semaines après les corrections, sans garantie, et une fiche, des avis ou des citations dans leurs sources demandent plusieurs mois. Six mois, c'est douze relevés : assez pour distinguer une vraie progression d'une variation passagère, IA par IA. Ensuite, la formule est sans engagement : vous restez si le travail vous convient, et vous pouvez résilier par simple e-mail, avec 30 jours de préavis.",
     },
     {
       q: 'Quelle formule choisir ?',
-      a: "Elle dépend de l'étendue de votre activité. <strong>Essentiel</strong> pour une activité principale, sur une zone ou toute la France : votre site est corrigé et indexé, votre fiche ChatGPT tenue à jour, vos questions mesurées, et vous recevez chaque mois 3 actions à faire vous-même. <strong>Croissance</strong> jusqu'à 3 services ou 3 villes : nous écrivons 2 contenus par mois, faisons corriger à la source les erreurs des IA sur votre entreprise, vous inscrivons dans les annuaires et sites d'avis qu'elles citent et mettons en place la demande d'avis. <strong>Autorité</strong> jusqu'à 6 services ou villes, ou dans un secteur très disputé : nous créons et tenons à jour vos fiches Google et Bing, démarchons les comparatifs et les médias que les IA citent, et produisons 4 contenus par mois.",
+      a: "Elle dépend de l'étendue de votre activité. <strong>Essentiel</strong> pour une activité principale, sur une zone ou toute la France : votre site est corrigé et indexé, les erreurs des IA sur votre entreprise corrigées à la source, vos questions mesurées, et vous recevez chaque mois 3 actions à faire vous-même. <strong>Croissance</strong> jusqu'à 3 services ou 3 villes : nous créons et tenons à jour votre fiche ChatGPT, écrivons 2 contenus par mois, vous inscrivons dans les annuaires et sites d'avis que les IA citent et mettons en place la demande d'avis. <strong>Autorité</strong> jusqu'à 6 services ou villes, ou dans un secteur très disputé : nous créons et tenons à jour vos fiches Google et Bing, démarchons les comparatifs et les médias que les IA citent, et produisons 4 contenus par mois.",
     },
     {
       q: 'Puis-je changer de formule ?',
-      a: 'Oui. Vers le haut à tout moment, sans nouvel engagement ; vers le bas à la fin de chaque mois, après les 3 premiers mois.',
+      a: 'Oui. Vers le haut à tout moment, sans nouvel engagement ; vers le bas à la fin de chaque mois, après les 6 premiers mois.',
     },
     {
       q: 'Créez-vous ma fiche ChatGPT ?',
-      a: "Oui, dans les trois formules, si votre entreprise y est éligible. Depuis le 10 novembre 2026, ChatGPT permet aux entreprises de revendiquer gratuitement leur fiche depuis son Business Hub. Nous la revendiquons avec vous (la vérification se fait par SMS, appel ou enregistrement DNS), la complétons et la tenons à jour. Son tableau de bord (mentions, vues de la fiche et clics vers votre site) entre dans votre rapport mensuel. La fiche ne garantit pas d'être recommandé : ChatGPT continue de choisir ses sources.",
+      a: "Oui, avec Croissance et Autorité, si votre entreprise y est éligible. Depuis le 10 novembre 2026, ChatGPT permet aux entreprises de revendiquer gratuitement leur fiche depuis son Business Hub. Nous la revendiquons avec vous (la vérification se fait par SMS, appel ou enregistrement DNS), la complétons et la tenons à jour. Son tableau de bord (mentions, vues de la fiche et clics vers votre site) entre dans votre rapport mensuel. La fiche ne garantit pas d'être recommandé : ChatGPT continue de choisir ses sources.",
     },
     {
       q: 'Que faites-vous si une IA dit quelque chose de faux sur mon entreprise ?',
-      a: "Avec Croissance et Autorité, nous repérons dans les réponses suivies les erreurs sur votre entreprise (adresse, prix, services, horaires), retrouvons le site qui les a diffusées et les faisons corriger à la source : nous corrigeons nous-mêmes votre site, et demandons la correction aux annuaires ou aux sites tiers. Les IA en tiennent compte à leur rythme, sans délai garanti.",
+      a: "Dans les trois formules, nous repérons dans les réponses suivies les erreurs sur votre entreprise (adresse, prix, services, horaires), retrouvons le site qui les a diffusées et les faisons corriger à la source : nous corrigeons nous-mêmes votre site, et demandons la correction aux annuaires ou aux sites tiers. Les IA en tiennent compte à leur rythme, sans délai garanti.",
     },
     {
       q: "Vous occupez-vous de l'indexation de mes pages ?",
