@@ -212,7 +212,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
       "Audit GEO Express offert au démarrage : votre mesure de départ et votre plan d'action.",
       `20 questions suivies, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines : ${reponsesParMois(20)} réponses analysées par mois.`,
       'Les erreurs des IA sur votre entreprise (adresse, prix, services) repérées et corrigées à la source : sur votre site, ou en demandant la correction au site qui les a diffusées.',
-      'Vos pages indexées dans Google, Bing et Brave, les moteurs où les IA cherchent leurs sources, avec un contrôle chaque mois.',
+      'Vos pages inscrites dans Google, Bing et Brave, les moteurs de recherche où les IA trouvent leurs réponses, puis vérifiées chaque mois.',
       'Corrections techniques de votre site (accès des robots des IA, informations identiques partout) et 3 pages existantes améliorées chaque mois.',
       '3 actions par mois à faire vous-même (fiches Google et Bing, annuaires, avis), avec les textes prêts.',
       'Rapport mensuel, point en visio au démarrage et au bilan des 3 mois.',
