@@ -97,7 +97,7 @@ const ROWS_DECEMBRE: [string, Cell, Cell, Cell][] = [
   ['Indexation dans Google, Bing et Brave', true, true, true],
   ['Pages existantes améliorées chaque mois', '3', '5', '10'],
   ['Fiche ChatGPT (Business Hub)', true, true, true],
-  ['Fiches Google, Bing et Apple Plans', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour', 'Créées ou reprises, puis tenues à jour'],
+  ['Fiches Google et Bing', 'À faire vous-même, textes prêts', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour'],
   ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '2 inscriptions par mois', '2 inscriptions par mois'],
   ['Demandes d’avis clients', 'Conseils', 'Méthode et modèles de réponse', 'Méthode et modèles de réponse'],
   ['Comparatifs, médias et partenaires', false, false, '3 démarches par mois, sans place payante'],
@@ -369,7 +369,7 @@ export default function AccompagnementGeoPage() {
             </div>
             {dec && (
               <p className="geo-table__note">
-                {fr('Essentiel : 3 actions par mois à faire vous-même (fiches Google, Bing et Apple, annuaires, avis), avec les textes prêts. Fiche ChatGPT : si votre entreprise y est éligible.')}
+                {fr('Essentiel et Croissance : 3 actions par mois à faire vous-même (fiches Google et Bing, annuaires, avis), avec les textes prêts. Fiche ChatGPT : si votre entreprise y est éligible.')}
               </p>
             )}
           </div>
