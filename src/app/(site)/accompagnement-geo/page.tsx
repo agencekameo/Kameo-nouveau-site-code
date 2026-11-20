@@ -94,8 +94,10 @@ const ROWS_DECEMBRE: [string, Cell, Cell, Cell][] = [
   ['Réponses analysées chaque mois', nombre(reponsesParMois(20)), nombre(reponsesParMois(40)), nombre(reponsesParMois(60))],
   ['Concurrents suivis', 'Ceux cités à votre place', '3, choisis avec vous', '5, choisis avec vous'],
   ['Corrections techniques de votre site', true, true, true],
+  ['Indexation dans Google, Bing et Brave', true, true, true],
   ['Pages existantes améliorées chaque mois', '3', '5', '10'],
-  ['Fiches Google, Bing, Apple Plans et ChatGPT', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour', 'Créées ou reprises, puis tenues à jour'],
+  ['Fiche ChatGPT (Business Hub)', true, true, true],
+  ['Fiches Google, Bing et Apple Plans', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour', 'Créées ou reprises, puis tenues à jour'],
   ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '2 inscriptions par mois', '2 inscriptions par mois'],
   ['Demandes d’avis clients', 'Conseils', 'Méthode et modèles de réponse', 'Méthode et modèles de réponse'],
   ['Comparatifs, médias et partenaires', false, false, '3 démarches par mois, sans place payante'],
@@ -225,6 +227,11 @@ export default function AccompagnementGeoPage() {
                           {f.min} à {f.max} questions
                         </strong>{' '}
                         posées 3 fois à {GEO_ENGINES.length} IA toutes les deux semaines
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <strong>Fiche ChatGPT et indexation</strong> dans Google, Bing et Brave, dans les 3 formules
                       </span>
                     </li>
                     <li>
@@ -361,7 +368,7 @@ export default function AccompagnementGeoPage() {
             </div>
             {dec && (
               <p className="geo-table__note">
-                {fr('Essentiel : 3 actions par mois à faire vous-même (fiches, annuaires, avis), avec les textes prêts. Fiche ChatGPT : si votre entreprise y est éligible.')}
+                {fr('Essentiel : 3 actions par mois à faire vous-même (fiches Google, Bing et Apple, annuaires, avis), avec les textes prêts. Fiche ChatGPT : si votre entreprise y est éligible.')}
               </p>
             )}
           </div>

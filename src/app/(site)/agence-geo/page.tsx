@@ -491,6 +491,7 @@ export default function AgenceGeoPage() {
                   <li>Accès des robots d’IA (robots.txt, pare-feu, hébergeur)</li>
                   <li>Pages qui répondent clairement, lisibles sans JavaScript</li>
                   <li>Informations identiques partout, données structurées à jour</li>
+                  <li>Pages indexées dans Google, Bing et Brave, où les IA cherchent</li>
                 </ul>
               </li>
               <li className="geo-step">
@@ -500,7 +501,7 @@ export default function AgenceGeoPage() {
                   On renforce votre présence sur les sites, annuaires et médias que les IA utilisent comme sources.
                 </p>
                 <ul className="geo-step__list">
-                  <li>Fiches et profils sur les plateformes clés</li>
+                  <li>Fiche ChatGPT, fiches et profils sur les plateformes clés</li>
                   <li>Annuaires, comparatifs et listes que les IA consultent</li>
                   <li>Avis clients et médias de votre secteur</li>
                 </ul>
@@ -659,7 +660,8 @@ export default function AgenceGeoPage() {
                 <p className="geo-card__text">
                   Pour les questions de choix ou d’actualité, ChatGPT cherche sur le web et cite ses sources. C’est son
                   robot de recherche, OAI-SearchBot, qui doit pouvoir lire votre site&nbsp;; GPTBot, lui, sert à
-                  l’entraînement.
+                  l’entraînement. Depuis le 10&nbsp;novembre 2026, une entreprise éligible peut aussi revendiquer sa fiche
+                  dans ChatGPT, depuis le Business Hub.
                 </p>
                 <p className="geo-card__text">
                   Notre guide&nbsp;: <Link href="/blog/referencement-chatgpt/">le référencement ChatGPT en 8 étapes</Link>.
@@ -685,8 +687,9 @@ export default function AgenceGeoPage() {
                 <span className="geo-card__tag">Anthropic</span>
                 <h3 className="geo-card__title">Claude</h3>
                 <p className="geo-card__text">
-                  L’assistant d’Anthropic peut chercher sur le web et cite alors ses sources. Ses robots, comme
-                  ClaudeBot et Claude-SearchBot, doivent avoir accès à vos pages.
+                  L’assistant d’Anthropic peut chercher sur le web et cite alors ses sources&nbsp;; Anthropic liste Brave
+                  Search parmi ses sous-traitants pour cette recherche. Ses robots, comme ClaudeBot et Claude-SearchBot,
+                  doivent avoir accès à vos pages.
                 </p>
               </li>
               <li className="geo-card">

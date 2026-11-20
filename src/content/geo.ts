@@ -211,9 +211,10 @@ const PLANS_DECEMBRE: GeoOffer[] = [
     items: [
       "Audit GEO Express offert au démarrage : votre mesure de départ et votre plan d'action.",
       `20 questions suivies, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines : ${reponsesParMois(20)} réponses analysées par mois.`,
-      'Corrections techniques de votre site : accès des robots des IA, Search Console et Bing Webmaster Tools, informations identiques partout.',
-      '3 pages existantes améliorées chaque mois.',
-      '3 actions par mois à faire vous-même (fiches, annuaires, avis), avec les textes prêts.',
+      'Votre fiche entreprise ChatGPT (Business Hub) revendiquée, vérifiée avec vous et tenue à jour, si votre entreprise y est éligible.',
+      'Vos pages indexées dans Google, Bing et Brave, les moteurs où les IA cherchent leurs sources, avec un contrôle chaque mois.',
+      'Corrections techniques de votre site (accès des robots des IA, informations identiques partout) et 3 pages existantes améliorées chaque mois.',
+      '3 actions par mois à faire vous-même (fiches Google, Bing et Apple, annuaires, avis), avec les textes prêts.',
       'Rapport mensuel, point en visio au démarrage et au bilan des 3 mois.',
     ],
     cta: 'Réserver un rendez-vous',
@@ -230,7 +231,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
     items: [
       "Tout l'Essentiel, avec l'Audit GEO Complet offert au démarrage.",
       `40 questions suivies et 3 concurrents : ${reponsesParMois(40)} réponses analysées par mois.`,
-      'Vos fiches Google, Bing, Apple Plans et ChatGPT créées ou reprises, puis tenues à jour (ChatGPT : si votre entreprise y est éligible).',
+      'Vos fiches Google, Bing et Apple Plans créées ou reprises, puis tenues à jour.',
       "2 inscriptions par mois dans les annuaires et sites d'avis que les IA citent dans votre secteur.",
       "Une méthode de demande d'avis conforme à la loi, avec des modèles de réponse.",
       '5 pages existantes améliorées et un point de 30 minutes en visio chaque mois.',
@@ -314,7 +315,8 @@ export const GEO_RAPPORT: [string, string][] = [
   ['Comment vous apparaissez', 'Absent, mentionné, cité avec un lien ou recommandé.'],
   ['Qui est cité à votre place', 'Les marques et les concurrents nommés dans les mêmes réponses.'],
   ['D’où viennent les réponses', 'Les sites que les IA citent sur vos questions.'],
-  ['Ce que cela vous apporte', 'Vos visites venues des IA (si vous avez Google Analytics) et vos citations dans Copilot.'],
+  ['Vos pages indexées', 'Celles que Google, Bing et Brave connaissent, et celles qui manquent encore.'],
+  ['Ce que cela vous apporte', 'Vos visites venues des IA (si vous avez Google Analytics), vos citations dans Copilot, et les mentions, vues et clics de votre fiche ChatGPT.'],
   ['Ce que nous avons fait', 'La liste des livrables du mois et le plan du mois suivant.'],
   ['Vos données', "La liste de vos questions et l'export de toutes les réponses, sur simple demande."],
 ];
@@ -410,8 +412,8 @@ const grilleKameoHtml = () => {
     '<table><thead><tr><th>Offre</th><th>Prix HT</th><th>Ce qui est inclus</th></tr></thead><tbody>',
     ligne(express, `${euros(express.price)}, une fois`, `20 questions posées 3 fois à ChatGPT, Gemini, Perplexity et Claude (${reponsesAudit(20)} réponses), diagnostic technique, plan d'action priorisé`),
     ligne(complet, `${euros(complet.price)}, une fois`, `40 questions (${reponsesAudit(40)} réponses), 3 concurrents comparés, les sources que les IA citent dans votre secteur, une restitution d'une heure en visio`),
-    ligne(essentiel, `${euros(essentiel.price)} par mois`, `20 questions suivies toutes les deux semaines (${reponsesParMois(20)} réponses par mois), corrections techniques, 3 pages améliorées par mois, 3 actions par mois à faire vous-même, rapport mensuel`),
-    ligne(croissance, `${euros(croissance.price)} par mois`, `40 questions (${reponsesParMois(40)} réponses par mois), fiches Google, Bing, Apple Plans et ChatGPT, 2 inscriptions par mois dans les annuaires et sites d'avis, méthode de demande d'avis, 5 pages améliorées et un point mensuel`),
+    ligne(essentiel, `${euros(essentiel.price)} par mois`, `20 questions suivies toutes les deux semaines (${reponsesParMois(20)} réponses par mois), fiche ChatGPT, indexation dans Google, Bing et Brave, corrections techniques, 3 pages améliorées par mois, 3 actions par mois à faire vous-même, rapport mensuel`),
+    ligne(croissance, `${euros(croissance.price)} par mois`, `40 questions (${reponsesParMois(40)} réponses par mois), fiches Google, Bing et Apple Plans, 2 inscriptions par mois dans les annuaires et sites d'avis, méthode de demande d'avis, 5 pages améliorées et un point mensuel`),
     ligne(autorite, `${euros(autorite.price)} par mois`, `60 questions (${nombre(reponsesParMois(60))} réponses par mois), 3 démarches par mois auprès de comparatifs et de médias, 4 nouveaux contenus, 10 pages améliorées, une heure par mois avec le fondateur`),
     '</tbody></table>',
     offreGeoHtml(),
@@ -617,7 +619,7 @@ export const faqAccompagnement = (): FaqItem[] => {
   return [
     {
       q: "Qu'est-ce qu'un accompagnement GEO ?",
-      a: `C'est un suivi de votre visibilité dans les réponses des IA, avec le travail qui la fait progresser. Kameo suit de ${f.min} à ${f.max} questions clés selon la formule, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines, corrige votre site, améliore vos pages et, selon la formule, crée vos fiches, développe vos avis et vous fait citer par les sources des IA.`,
+      a: `C'est un suivi de votre visibilité dans les réponses des IA, avec le travail qui la fait progresser. Kameo suit de ${f.min} à ${f.max} questions clés selon la formule, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines, corrige votre site, veille à l'indexation de vos pages, tient à jour votre fiche ChatGPT, améliore vos pages et, selon la formule, crée vos autres fiches, développe vos avis et vous fait citer par les sources des IA.`,
     },
     {
       q: 'Combien coûte un accompagnement GEO ?',
@@ -629,11 +631,19 @@ export const faqAccompagnement = (): FaqItem[] => {
     },
     {
       q: 'Quelle formule choisir ?',
-      a: "Elle dépend de l'étendue de votre activité. <strong>Essentiel</strong> pour une activité principale, sur une zone ou toute la France : votre site est corrigé, vos questions mesurées, et vous recevez chaque mois 3 actions à faire vous-même. <strong>Croissance</strong> jusqu'à 3 services ou 3 villes : nous créons et tenons à jour vos fiches, vos annuaires et vos avis. <strong>Autorité</strong> jusqu'à 6 services ou villes, ou dans un secteur très disputé : nous démarchons aussi les comparatifs et les médias que les IA citent, et produisons 4 contenus par mois.",
+      a: "Elle dépend de l'étendue de votre activité. <strong>Essentiel</strong> pour une activité principale, sur une zone ou toute la France : votre site est corrigé et indexé, votre fiche ChatGPT tenue à jour, vos questions mesurées, et vous recevez chaque mois 3 actions à faire vous-même. <strong>Croissance</strong> jusqu'à 3 services ou 3 villes : nous créons et tenons à jour vos fiches, vos annuaires et vos avis. <strong>Autorité</strong> jusqu'à 6 services ou villes, ou dans un secteur très disputé : nous démarchons aussi les comparatifs et les médias que les IA citent, et produisons 4 contenus par mois.",
     },
     {
       q: 'Puis-je changer de formule ?',
       a: 'Oui. Vers le haut à tout moment, sans nouvel engagement ; vers le bas à la fin de chaque mois, après les 3 premiers mois.',
+    },
+    {
+      q: 'Créez-vous ma fiche ChatGPT ?',
+      a: "Oui, dans les trois formules, si votre entreprise y est éligible. Depuis le 10 novembre 2026, ChatGPT permet aux entreprises de revendiquer gratuitement leur fiche depuis son Business Hub. Nous la revendiquons avec vous (la vérification se fait par SMS, appel ou enregistrement DNS), la complétons et la tenons à jour. Son tableau de bord (mentions, vues de la fiche et clics vers votre site) entre dans votre rapport mensuel. La fiche ne garantit pas d'être recommandé : ChatGPT continue de choisir ses sources.",
+    },
+    {
+      q: "Vous occupez-vous de l'indexation de mes pages ?",
+      a: "Oui, dans les trois formules. Une IA qui cherche sur le web ne peut citer qu'une page que son moteur connaît : Gemini et les Aperçus IA s'appuient sur Google, Copilot sur Bing, dont ChatGPT cite souvent les premiers résultats, et la recherche web de Claude sur Brave Search, qu'Anthropic liste parmi ses sous-traitants. Nous déclarons votre site dans la Search Console et dans Bing Webmaster Tools, branchons IndexNow pour signaler chaque nouvelle page, envoyons vos pages à Brave, puis vérifions chaque mois qu'elles sont indexées. Les moteurs restent seuls juges de ce qu'ils indexent.",
     },
     {
       q: 'Comment mesurez-vous ma visibilité ?',

@@ -262,7 +262,7 @@ const services = (): Record<
     serviceType: 'Accompagnement mensuel en Generative Engine Optimization',
     alternateName: ['Suivi de visibilité IA', 'Stratégie GEO'],
     description: grilleDecembreActive()
-      ? `Suivi de la visibilité dans ${IA} (de ${fourchetteQuestions().min} à ${fourchetteQuestions().max} questions, posées 3 fois toutes les deux semaines), corrections du site, présence externe et contenus selon la formule. Dès ${euros(prixDuJour(plansGeo()[0]))} HT par mois, 3 mois d'engagement puis sans engagement.`
+      ? `Suivi de la visibilité dans ${IA} (de ${fourchetteQuestions().min} à ${fourchetteQuestions().max} questions, posées 3 fois toutes les deux semaines), corrections du site, indexation dans Google, Bing et Brave, fiche ChatGPT, présence externe et contenus selon la formule. Dès ${euros(prixDuJour(plansGeo()[0]))} HT par mois, 3 mois d'engagement puis sans engagement.`
       : `Suivi mensuel de la visibilité dans ${IA} (50 questions clés), corrections du site, présence externe et contenus optimisés pour les IA. Dès ${euros(prixDuJour(plansGeo()[0]))} HT par mois, 6 mois minimum.`,
     offers: offresAccompagnementGeo(),
   },
