@@ -1,5 +1,6 @@
 import { getAllPostsOrRepo } from './blog';
 import { REMOTE_LOCALE, getRemoteSitemap, sitePath } from './blog-remote';
+import { dateArticleGeo } from '@/content/geo';
 import { pageInfo } from '@/content/pages';
 import { REALISATIONS } from '@/content/realisations';
 import { CONTENT_UPDATED, abs } from './site';
@@ -65,7 +66,7 @@ export const postEntries = async (): Promise<Entry[]> => {
   const [posts, alternates] = await Promise.all([getAllPostsOrRepo(), remoteAlternates()]);
   return posts.map((p) => ({
     loc: abs(p.path),
-    lastmod: p.modified,
+    lastmod: dateArticleGeo(p.path, p.modified),
     images: p.images.map(abs),
     ...(p.source === 'outil' ? { alternates: alternates.get(p.path) ?? { [REMOTE_LOCALE]: abs(p.path), 'x-default': abs(p.path) } } : {}),
   }));

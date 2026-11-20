@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import {
-  GEO_MIN_MONTHS,
   GEO_PROMO,
-  GEO_TERMS,
   euros,
+  noteEngagementGeo,
   prixBarre,
   prixDuJour,
   promoGeoActive,
   remiseMaxGeo,
+  termsGeo,
   type FaqItem,
   type GeoOffer,
 } from '@/content/geo';
@@ -82,6 +82,11 @@ export function GeoOfferCard({ offer, badge, more }: { offer: GeoOffer; badge?: 
       )}
       <h3 className="geo-plan__name">{offer.name}</h3>
       <p className="geo-plan__for">{fr(offer.tagline)}</p>
+      {offer.pourQui && (
+        <p className="geo-plan__who">
+          <strong>Pour qui&nbsp;:</strong> {fr(offer.pourQui.charAt(0).toLowerCase() + offer.pourQui.slice(1))}
+        </p>
+      )}
       {barre !== null && (
         <p className="geo-plan__promo">
           <span className="geo-plan__promo-tag">{GEO_PROMO.nom}</span>
@@ -95,7 +100,7 @@ export function GeoOfferCard({ offer, badge, more }: { offer: GeoOffer; badge?: 
         {euros(prixDuJour(offer))}
         <small>{offer.monthly ? 'HT / mois' : 'HT'}</small>
       </p>
-      <p className="geo-plan__note">{offer.monthly ? `Engagement de ${GEO_MIN_MONTHS} mois minimum` : 'Paiement unique, sans abonnement'}</p>
+      <p className="geo-plan__note">{offer.monthly ? noteEngagementGeo() : 'Paiement unique, sans abonnement'}</p>
       <ul className="geo-plan__list">
         {offer.items.map((it) => (
           <li key={it}>{fr(it)}</li>
@@ -128,18 +133,16 @@ export function GeoPromoBanner() {
   );
 }
 
-const TERM_ICONS = ['calendar-check', 'piggy-bank', 'percent'];
-
-/** Conditions : 6 mois minimum, 1 mois offert à l'année, audit déduit. */
+/** Conditions des accompagnements de la grille en vigueur (engagement, remise à l'année, garantie, audit déduit). */
 export function GeoTerms() {
   return (
     <ul className="geo-terms">
-      {GEO_TERMS.map((t, i) => (
+      {termsGeo().map((t, i) => (
         <li key={i}>
           <span className="geo-terms__icon" aria-hidden="true">
-            <Icon name={TERM_ICONS[i]} />
+            <Icon name={t.icon} />
           </span>
-          <span dangerouslySetInnerHTML={{ __html: fr(t) }} />
+          <span dangerouslySetInnerHTML={{ __html: fr(t.html) }} />
         </li>
       ))}
     </ul>

@@ -12,42 +12,55 @@ import {
   GeoPromoBanner,
   GeoTerms,
   faqSchema,
+  fr,
 } from '@/components/geo/GeoBlocks';
 import {
-  GEO_AUDITS,
+  GEO_ENGAGEMENTS,
   GEO_ENGINES,
   GEO_MIN_MONTHS,
-  GEO_PLANS,
   GEO_PROMO,
   GEO_QUESTIONS,
+  GEO_RAPPORT,
+  auditsGeo,
   euros,
   faqAccompagnement,
+  fourchetteQuestions,
+  grilleDecembreActive,
+  nombre,
+  plansGeo,
   prixBarre,
   prixDuJour,
   promoGeoActive,
   remiseMaxGeo,
+  reponsesParMois,
 } from '@/content/geo';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import css from '@/styles/pages/geo';
 
 const PATH = '/accompagnement-geo/';
-const [ESSENTIEL, CROISSANCE, AUTORITE] = GEO_PLANS;
-const EXPRESS = GEO_AUDITS[0];
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Agence GEO', path: '/agence-geo/' },
   { name: 'Accompagnement GEO', path: PATH },
 ];
 
-/* Titre et description suivent l'offre en cours (GEO_PROMO) : calculés à l'affichage. */
-const titre = () =>
-  promoGeoActive()
-    ? `${GEO_PROMO.nom} : accompagnement GEO dès ${euros(prixDuJour(ESSENTIEL))} HT/mois | Kameo`
-    : `Accompagnement GEO dès ${euros(prixDuJour(ESSENTIEL))} HT/mois, audit offert | Kameo`;
-const description = () =>
-  `Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété. 3 formules de ${euros(prixDuJour(ESSENTIEL))} à ${euros(prixDuJour(AUTORITE))} HT/mois, ` +
-  (promoGeoActive() ? `offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte}.` : 'audit offert.');
+/* Titre et description suivent l'offre en cours (GEO_PROMO) et la grille (01/12/2026) : calculés à l'affichage. */
+const titre = () => {
+  const [essentiel] = plansGeo();
+  return promoGeoActive()
+    ? `${GEO_PROMO.nom} : accompagnement GEO dès ${euros(prixDuJour(essentiel))} HT/mois | Kameo`
+    : `Accompagnement GEO dès ${euros(prixDuJour(essentiel))} HT/mois, audit offert | Kameo`;
+};
+const description = () => {
+  const plans = plansGeo();
+  const de = `3 formules de ${euros(prixDuJour(plans[0]))} à ${euros(prixDuJour(plans[2]))} HT/mois, `;
+  if (promoGeoActive())
+    return `Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété. ${de}offre ${GEO_PROMO.nom} jusqu'au ${GEO_PROMO.finTexte}.`;
+  return grilleDecembreActive()
+    ? `Accompagnement GEO : de 20 à 60 questions suivies sur ChatGPT, Gemini, Perplexity et Claude, corrections, fiches et notoriété. ${de}3 mois d'engagement.`
+    : `Accompagnement GEO : mesure mensuelle sur ChatGPT, Gemini, Perplexity et Claude, corrections et notoriété. ${de}audit offert.`;
+};
 
 export function generateMetadata(): Metadata {
   return pageMetadata({ path: PATH, title: titre(), description: description() });
@@ -57,8 +70,9 @@ const REPONSES = GEO_QUESTIONS * GEO_ENGINES.length;
 const YES = '✓';
 const NO = '—';
 
-/* Comparatif des formules : [ligne, Essentiel, Croissance, Autorité] */
-const ROWS: [string, boolean, boolean, boolean][] = [
+/* Comparatif des formules : [ligne, Essentiel, Croissance, Autorité] ; une cellule est incluse (✓), absente (—) ou décrite. */
+type Cell = boolean | string;
+const ROWS_NOVEMBRE: [string, Cell, Cell, Cell][] = [
   ['Audit GEO Express et plan d’action offerts au démarrage', true, true, true],
   ['Corrections techniques appliquées sur votre site', true, true, true],
   [`Mesure mensuelle : ${GEO_QUESTIONS} questions clés × ${GEO_ENGINES.length} IA`, true, true, true],
@@ -71,9 +85,30 @@ const ROWS: [string, boolean, boolean, boolean][] = [
   ['Cartographie mensuelle des médias cités par les IA', false, false, true],
   ['Call mensuel de suivi', false, false, true],
 ];
+const ROWS_DECEMBRE: [string, Cell, Cell, Cell][] = [
+  ['Pour qui', 'Une activité principale, sur une zone ou toute la France', 'Jusqu’à 3 services ou 3 villes', 'Jusqu’à 6 services ou villes, ou un secteur très disputé'],
+  ['Audit offert au démarrage', 'Audit GEO Express', 'Audit GEO Complet', 'Audit GEO Complet élargi (60 questions, 5 concurrents)'],
+  ['Questions suivies sur les 4 IA', '20', '40', '60'],
+  ['Réponses analysées chaque mois', nombre(reponsesParMois(20)), nombre(reponsesParMois(40)), nombre(reponsesParMois(60))],
+  ['Concurrents suivis', 'Ceux cités à votre place', '3, choisis avec vous', '5, choisis avec vous'],
+  ['Corrections techniques de votre site', true, true, true],
+  ['Pages existantes améliorées chaque mois', '3', '5', '10'],
+  ['Fiches Google, Bing, Apple Plans et ChatGPT', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour', 'Créées ou reprises, puis tenues à jour'],
+  ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '2 inscriptions par mois', '2 inscriptions par mois'],
+  ['Demandes d’avis clients', 'Conseils', 'Méthode et modèles de réponse', 'Méthode et modèles de réponse'],
+  ['Comparatifs, médias et partenaires', false, false, '3 démarches par mois, sans place payante'],
+  ['Nouveaux contenus', false, false, '4 par mois, validés par vous'],
+  ['Rapport mensuel', true, true, true],
+  ['Point en visio', 'Au démarrage et au bilan des 3 mois', '30 minutes chaque mois', '1 heure chaque mois avec le fondateur'],
+];
 
 export default function AccompagnementGeoPage() {
   const promo = promoGeoActive();
+  const dec = grilleDecembreActive();
+  const [ESSENTIEL, CROISSANCE, AUTORITE] = plansGeo();
+  const [EXPRESS, COMPLET] = auditsGeo();
+  const f = fourchetteQuestions();
+  const rows = dec ? ROWS_DECEMBRE : ROWS_NOVEMBRE;
   const faq = faqAccompagnement();
   return (
     <>
@@ -112,13 +147,24 @@ export default function AccompagnementGeoPage() {
                 ·
               </span>
               <span className="expertise-trust__item">
-                Audit Express <strong>offert</strong>
+                {dec ? 'Audit' : 'Audit Express'} <strong>offert</strong>
               </span>
               <span className="expertise-trust__sep" aria-hidden="true">
                 ·
               </span>
               <span className="expertise-trust__item">
-                <strong>{REPONSES} réponses</strong> analysées chaque mois
+                {dec ? (
+                  <>
+                    <strong>
+                      {f.min} à {f.max} questions
+                    </strong>{' '}
+                    suivies sur 4 IA
+                  </>
+                ) : (
+                  <>
+                    <strong>{REPONSES} réponses</strong> analysées chaque mois
+                  </>
+                )}
               </span>
             </div>
             <GeoHeroActions anchor="#formules" anchorLabel="Voir les 3 formules" />
@@ -143,8 +189,8 @@ export default function AccompagnementGeoPage() {
                 <p className="geo-brief__text">
                   Kameo propose trois formules&nbsp;: <strong>{ESSENTIEL.name}</strong> à {euros(prixDuJour(ESSENTIEL))}{' '}
                   HT, <strong>{CROISSANCE.name}</strong> à {euros(prixDuJour(CROISSANCE))} HT et{' '}
-                  <strong>{AUTORITE.name}</strong> à {euros(prixDuJour(AUTORITE))} HT par mois, avec un engagement de{' '}
-                  {GEO_MIN_MONTHS} mois minimum.
+                  <strong>{AUTORITE.name}</strong> à {euros(prixDuJour(AUTORITE))} HT par mois,{' '}
+                  {dec ? <>avec 3&nbsp;mois d’engagement, puis sans engagement.</> : <>avec un engagement de {GEO_MIN_MONTHS} mois minimum.</>}
                   {promo && (
                     <>
                       {' '}
@@ -163,29 +209,64 @@ export default function AccompagnementGeoPage() {
                     </span>
                   </li>
                 )}
-                <li>
-                  <span>
-                    <strong>Audit GEO Express offert</strong> au démarrage (valeur {euros(EXPRESS.price)} HT)
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <strong>
-                      {GEO_QUESTIONS} questions × {GEO_ENGINES.length} IA
-                    </strong>{' '}
-                    mesurées chaque mois, soit {REPONSES} réponses
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <strong>Rapport mensuel clair</strong> : ce qui progresse, ce qui recule, qui est cité à votre place
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <strong>1 mois offert</strong> pour tout engagement annuel
-                  </span>
-                </li>
+                {dec ? (
+                  <>
+                    <li>
+                      <span>
+                        <strong>Audit offert</strong> au démarrage (valeur {euros(EXPRESS.price)} à {euros(COMPLET.price)} HT)
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <strong>
+                          {f.min} à {f.max} questions
+                        </strong>{' '}
+                        posées 3 fois à {GEO_ENGINES.length} IA toutes les deux semaines
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <strong>3 mois d’engagement</strong>, puis sans engagement
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <strong>Garantie de livrables</strong> : un livrable manquant est déduit de la facture
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <strong>12 mois pour le prix de 11</strong>
+                      </span>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <span>
+                        <strong>Audit GEO Express offert</strong> au démarrage (valeur {euros(EXPRESS.price)} HT)
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <strong>
+                          {GEO_QUESTIONS} questions × {GEO_ENGINES.length} IA
+                        </strong>{' '}
+                        mesurées chaque mois, soit {REPONSES} réponses
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <strong>Rapport mensuel clair</strong> : ce qui progresse, ce qui recule, qui est cité à votre place
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        <strong>1 mois offert</strong> pour tout engagement annuel
+                      </span>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>
@@ -238,20 +319,26 @@ export default function AccompagnementGeoPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {ROWS.map(([label, ...cells]) => (
+                  {rows.map(([label, ...cells]) => (
                     <tr key={label}>
                       <th scope="row">{label}</th>
-                      {cells.map((on, i) => (
-                        <td key={i} className={on ? 'is-yes' : 'is-no'}>
-                          <span aria-hidden="true">{on ? YES : NO}</span>
-                          <span className="sr-only">{on ? 'Inclus' : 'Non inclus'}</span>
-                        </td>
-                      ))}
+                      {cells.map((on, i) =>
+                        typeof on === 'string' ? (
+                          <td key={i} className="is-txt">
+                            {fr(on)}
+                          </td>
+                        ) : (
+                          <td key={i} className={on ? 'is-yes' : 'is-no'}>
+                            <span aria-hidden="true">{on ? YES : NO}</span>
+                            <span className="sr-only">{on ? 'Inclus' : 'Non inclus'}</span>
+                          </td>
+                        ),
+                      )}
                     </tr>
                   ))}
                   <tr className="geo-table__price">
                     <th scope="row">Prix par mois</th>
-                    {GEO_PLANS.map((p) => {
+                    {[ESSENTIEL, CROISSANCE, AUTORITE].map((p) => {
                       const barre = prixBarre(p);
                       return (
                         <td key={p.id}>
@@ -269,6 +356,11 @@ export default function AccompagnementGeoPage() {
                 </tbody>
               </table>
             </div>
+            {dec && (
+              <p className="geo-table__note">
+                {fr('Essentiel : 3 actions par mois à faire vous-même (fiches, annuaires, avis), avec les textes prêts. Fiche ChatGPT : si votre entreprise y est éligible.')}
+              </p>
+            )}
           </div>
         </section>
 
@@ -284,8 +376,9 @@ export default function AccompagnementGeoPage() {
                 Un cycle mensuel, du constat aux actions
               </h2>
               <p className="expertise-process__intro">
-                Le premier mois démarre par l’Audit GEO Express et son plan d’action&nbsp;; ensuite, le même cycle se répète
-                chaque mois.
+                {fr(
+                  `Le premier mois démarre par ${dec ? 'l’audit' : 'l’Audit GEO Express'} et son plan d’action ; ensuite, le même cycle se répète chaque mois.`,
+                )}
               </p>
             </header>
             <ol className="expertise-process__steps">
@@ -293,8 +386,11 @@ export default function AccompagnementGeoPage() {
                 <span className="expertise-process__num">01</span>
                 <h3 className="expertise-process__step-title">Mesurer</h3>
                 <p className="expertise-process__step-text">
-                  Vos {GEO_QUESTIONS} questions clés posées à ChatGPT, Gemini, Perplexity et Claude&nbsp;: absent, mentionné,
-                  cité ou recommandé, IA par IA.
+                  {fr(
+                    dec
+                      ? `Vos ${f.min} à ${f.max} questions clés posées 3 fois à ChatGPT, Gemini, Perplexity et Claude, toutes les deux semaines : absent, mentionné, cité ou recommandé, IA par IA.`
+                      : `Vos ${GEO_QUESTIONS} questions clés posées à ChatGPT, Gemini, Perplexity et Claude : absent, mentionné, cité ou recommandé, IA par IA.`,
+                  )}
                 </p>
               </li>
               <li className="expertise-process__step">
@@ -317,21 +413,24 @@ export default function AccompagnementGeoPage() {
                 <span className="expertise-process__num">04</span>
                 <h3 className="expertise-process__step-title">Rendre compte</h3>
                 <p className="expertise-process__step-text">
-                  Un rapport mensuel clair et les priorités du mois suivant&nbsp;; avec la formule Autorité, un call pour en
-                  parler.
+                  {fr(
+                    dec
+                      ? 'Un rapport mensuel clair et les priorités du mois suivant ; un point en visio chaque mois avec Croissance et Autorité.'
+                      : 'Un rapport mensuel clair et les priorités du mois suivant ; avec la formule Autorité, un call pour en parler.',
+                  )}
                 </p>
               </li>
             </ol>
           </div>
         </section>
 
-        {/* ============ POURQUOI 6 MOIS ============ */}
+        {/* ============ POURQUOI L'ENGAGEMENT ============ */}
         <section className="geo-section" aria-labelledby="geo-time-title">
           <div className="container">
             <header className="geo-head">
               <span className="geo-head__eyebrow">Engagement</span>
               <h2 className="geo-head__title" id="geo-time-title">
-                Pourquoi {GEO_MIN_MONTHS} mois minimum&nbsp;?
+                {dec ? <>Pourquoi 3&nbsp;mois d’engagement&nbsp;?</> : <>Pourquoi {GEO_MIN_MONTHS} mois minimum&nbsp;?</>}
               </h2>
             </header>
             <div className="geo-prose">
@@ -341,15 +440,74 @@ export default function AccompagnementGeoPage() {
                 relue par leurs robots, une nouvelle fiche doit être indexée, des avis doivent s’accumuler, et chaque IA
                 renouvelle ses sources à son propre rythme.
               </p>
-              <p>
-                Leurs réponses varient aussi d’un essai à l’autre&nbsp;: un mois isolé ne prouve rien. Suivre les mêmes{' '}
-                {GEO_QUESTIONS} questions pendant {GEO_MIN_MONTHS} mois permet de distinguer une vraie progression
-                d’une variation passagère. C’est le délai réaliste pour juger le travail, et nous le disons avant de
-                commencer.
-              </p>
+              {dec ? (
+                <p>
+                  Leurs réponses varient aussi d’un essai à l’autre&nbsp;: un relevé isolé ne prouve rien. Trois mois,
+                  c’est six relevés et assez de réponses pour un premier bilan, IA par IA. Ensuite, la formule est sans
+                  engagement&nbsp;: vous restez si le travail vous convient, et vous pouvez résilier par simple e-mail,
+                  avec 30&nbsp;jours de préavis.
+                </p>
+              ) : (
+                <p>
+                  Leurs réponses varient aussi d’un essai à l’autre&nbsp;: un mois isolé ne prouve rien. Suivre les mêmes{' '}
+                  {GEO_QUESTIONS} questions pendant {GEO_MIN_MONTHS} mois permet de distinguer une vraie progression
+                  d’une variation passagère. C’est le délai réaliste pour juger le travail, et nous le disons avant de
+                  commencer.
+                </p>
+              )}
             </div>
           </div>
         </section>
+
+        {dec && (
+          <>
+            {/* ============ RAPPORT MENSUEL ============ */}
+            <section className="geo-section geo-section--soft" aria-labelledby="geo-report-title">
+              <div className="container">
+                <header className="geo-head">
+                  <span className="geo-head__eyebrow">Rapport mensuel</span>
+                  <h2 className="geo-head__title" id="geo-report-title">
+                    Ce que vous voyez chaque mois
+                  </h2>
+                  <p className="geo-head__intro">Dans toutes les formules, un rapport clair, IA par IA.</p>
+                </header>
+                <div className="geo-table-wrap">
+                  <table className="geo-table">
+                    <caption className="sr-only">Contenu du rapport mensuel</caption>
+                    <tbody>
+                      {GEO_RAPPORT.map(([titreLigne, texte]) => (
+                        <tr key={titreLigne}>
+                          <th scope="row">{titreLigne}</th>
+                          <td>{fr(texte)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            {/* ============ NOS ENGAGEMENTS ============ */}
+            <section className="geo-section" aria-labelledby="geo-commit-title">
+              <div className="container">
+                <header className="geo-head">
+                  <span className="geo-head__eyebrow">Nos engagements</span>
+                  <h2 className="geo-head__title" id="geo-commit-title">
+                    Ce qui est garanti, et ce qui ne l’est pas
+                  </h2>
+                </header>
+                <ul className="geo-cards geo-cards--2">
+                  {GEO_ENGAGEMENTS.map(([titreCarte, texte]) => (
+                    <li key={titreCarte} className="geo-card">
+                      <h3 className="geo-card__title">{titreCarte}</h3>
+                      <p className="geo-card__text">{fr(texte)}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          </>
+        )}
 
         <GeoMidCta
           title="Pas encore sûr de la formule ?"

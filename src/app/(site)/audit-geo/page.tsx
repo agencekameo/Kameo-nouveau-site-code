@@ -4,15 +4,16 @@ import Breadcrumb from '@/components/Breadcrumb';
 import Icon from '@/components/Icon';
 import JsonLd from '@/components/JsonLd';
 import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMaj, GeoMidCta, GeoOfferCard, faqSchema } from '@/components/geo/GeoBlocks';
-import { FAQ_AUDIT, GEO_AUDITS, GEO_ENGINES, euros } from '@/content/geo';
+import { GEO_ENGINES, auditsGeo, euros, faqAudit } from '@/content/geo';
 import { pageMetadata } from '@/lib/seo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import css from '@/styles/pages/geo';
 
 const PATH = '/audit-geo/';
-const [EXPRESS, COMPLET] = GEO_AUDITS;
-const TITLE = `Audit GEO dès ${euros(EXPRESS.price)} HT : votre visibilité dans les IA | Kameo`;
-const DESCRIPTION = `Audit GEO : ce que ChatGPT, Gemini, Perplexity et Claude disent de vous, et un plan d’action priorisé. Express ${euros(EXPRESS.price)} HT, Complet ${euros(COMPLET.price)} HT.`;
+/* Prix des audits pour le titre et la description (les mêmes dans les deux grilles) ; le contenu des cartes est lu à l'affichage. */
+const [EXPRESS0, COMPLET0] = auditsGeo();
+const TITLE = `Audit GEO dès ${euros(EXPRESS0.price)} HT : votre visibilité dans les IA | Kameo`;
+const DESCRIPTION = `Audit GEO : ce que ChatGPT, Gemini, Perplexity et Claude disent de vous, et un plan d’action priorisé. Express ${euros(EXPRESS0.price)} HT, Complet ${euros(COMPLET0.price)} HT.`;
 const CRUMBS = [
   { name: 'Accueil', path: '/' },
   { name: 'Agence GEO', path: '/agence-geo/' },
@@ -24,6 +25,8 @@ export const metadata: Metadata = pageMetadata({ path: PATH, title: TITLE, descr
 const BOTH = 'Express et Complet';
 
 export default function AuditGeoPage() {
+  const [EXPRESS, COMPLET] = auditsGeo();
+  const faq = faqAudit();
   return (
     <>
       <Breadcrumb items={CRUMBS} />
@@ -314,7 +317,7 @@ export default function AuditGeoPage() {
           </div>
         </section>
 
-        <GeoFaq items={FAQ_AUDIT} title="Vos questions sur l’audit GEO" />
+        <GeoFaq items={faq} title="Vos questions sur l’audit GEO" />
 
         <GeoCta
           title="Découvrez ce que les IA disent de vous"
@@ -326,7 +329,7 @@ export default function AuditGeoPage() {
       <JsonLd
         data={[
           ...themeSchemas({ path: PATH, crumbs: CRUMBS, serviceSlug: 'audit-geo' }),
-          faqSchema(FAQ_AUDIT, PATH),
+          faqSchema(faq, PATH),
           websiteGraph({ path: PATH, title: TITLE, signee: true }),
         ]}
       />

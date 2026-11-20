@@ -16,7 +16,7 @@
  * d'ouverture sur l'adresse parisienne, où aucun client n'est reçu : les horaires
  * sont ceux de la joignabilité (ContactPoint.hoursAvailable).
  */
-import { GEO_AUDITS, GEO_ENGINES, GEO_PLANS, GEO_PROMO, euros, prixBarre, prixDuJour } from '@/content/geo';
+import { GEO_ENGINES, GEO_PROMO, auditsGeo, euros, fourchetteQuestions, grilleDecembreActive, plansGeo, prixBarre, prixDuJour } from '@/content/geo';
 import { pageInfo } from '@/content/pages';
 import { ADDRESS, COMPANY, CONTACT, HEAD_OFFICE, HOURS, PROFILES, SITE_URL, SOCIAL, abs } from './site';
 
@@ -224,9 +224,9 @@ function offreGeo(name: string, price: number, monthly: boolean, path: string, p
       : spec(price),
   };
 }
-const offresAuditGeo = (): Json[] => GEO_AUDITS.map((o) => offreGeo(o.name, o.price, false, '/audit-geo/'));
+const offresAuditGeo = (): Json[] => auditsGeo().map((o) => offreGeo(o.name, o.price, false, '/audit-geo/'));
 const offresAccompagnementGeo = (): Json[] =>
-  GEO_PLANS.map((o) => {
+  plansGeo().map((o) => {
     const prixNormal = prixBarre(o);
     return offreGeo(
       `Accompagnement GEO ${o.name}`,
@@ -247,21 +247,23 @@ const services = (): Record<
     name: 'Agence GEO (Generative Engine Optimization)',
     serviceType: 'Generative Engine Optimization (GEO)',
     alternateName: ['Agence GEO Paris', 'Référencement IA', 'SEO pour les IA'],
-    description: `Visibilité des entreprises dans les réponses de ${IA} : mesure, corrections du site et notoriété. Audit GEO dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement mensuel dès ${euros(prixDuJour(GEO_PLANS[0]))} HT.`,
+    description: `Visibilité des entreprises dans les réponses de ${IA} : mesure, corrections du site et notoriété. Audit GEO dès ${euros(auditsGeo()[0].price)} HT, accompagnement mensuel dès ${euros(prixDuJour(plansGeo()[0]))} HT.`,
     offers: [...offresAuditGeo(), ...offresAccompagnementGeo()],
   },
   'audit-geo': {
     name: 'Audit GEO',
     serviceType: 'Audit de visibilité dans les IA génératives',
     alternateName: ['Audit de visibilité IA', 'Audit référencement IA'],
-    description: `Audit de la visibilité d'une entreprise dans les réponses de ${IA}, diagnostic technique du site et plan d'action priorisé. Express ${euros(GEO_AUDITS[0].price)} HT, Complet ${euros(GEO_AUDITS[1].price)} HT.`,
+    description: `Audit de la visibilité d'une entreprise dans les réponses de ${IA}, diagnostic technique du site et plan d'action priorisé. Express ${euros(auditsGeo()[0].price)} HT, Complet ${euros(auditsGeo()[1].price)} HT.`,
     offers: offresAuditGeo(),
   },
   'accompagnement-geo': {
     name: 'Accompagnement GEO',
     serviceType: 'Accompagnement mensuel en Generative Engine Optimization',
     alternateName: ['Suivi de visibilité IA', 'Stratégie GEO'],
-    description: `Suivi mensuel de la visibilité dans ${IA} (50 questions clés), corrections du site, présence externe et contenus optimisés pour les IA. Dès ${euros(prixDuJour(GEO_PLANS[0]))} HT par mois, 6 mois minimum.`,
+    description: grilleDecembreActive()
+      ? `Suivi de la visibilité dans ${IA} (de ${fourchetteQuestions().min} à ${fourchetteQuestions().max} questions, posées 3 fois toutes les deux semaines), corrections du site, présence externe et contenus selon la formule. Dès ${euros(prixDuJour(plansGeo()[0]))} HT par mois, 3 mois d'engagement puis sans engagement.`
+      : `Suivi mensuel de la visibilité dans ${IA} (50 questions clés), corrections du site, présence externe et contenus optimisés pour les IA. Dès ${euros(prixDuJour(plansGeo()[0]))} HT par mois, 6 mois minimum.`,
     offers: offresAccompagnementGeo(),
   },
   'agence-wordpress-paris': {

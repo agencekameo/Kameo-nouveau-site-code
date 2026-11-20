@@ -1,4 +1,4 @@
-import { GEO_AUDITS, GEO_PLANS, euros, prixDuJour } from '@/content/geo';
+import { auditsGeo, euros, plansGeo, prixDuJour } from '@/content/geo';
 import { PROOF } from '@/lib/site';
 
 /* Données structurées propres à la page (émises dans le corps par le gabarit WordPress).
@@ -39,7 +39,7 @@ export const pageSchemas = (): object[] => [
         name: 'Quels services propose Kameo ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Deux piliers. D'abord les sites internet : création WordPress sur-mesure dès 1 299 € HT, refonte, maintenance dès 79 € HT par mois et e-commerce. Ensuite les applications métier : CRM sur-mesure dès 7 999 € HT, marketplace dès 8 000 € HT et SaaS avec IA dès 8 000 € HT. S'y ajoute la visibilité dans les IA (GEO) : audit GEO dès ${euros(GEO_AUDITS[0].price)} HT et accompagnement GEO dès ${euros(prixDuJour(GEO_PLANS[0]))} HT par mois.`,
+          text: `Deux piliers. D'abord les sites internet : création WordPress sur-mesure dès 1 299 € HT, refonte, maintenance dès 79 € HT par mois et e-commerce. Ensuite les applications métier : CRM sur-mesure dès 7 999 € HT, marketplace dès 8 000 € HT et SaaS avec IA dès 8 000 € HT. S'y ajoute la visibilité dans les IA (GEO) : audit GEO dès ${euros(auditsGeo()[0].price)} HT et accompagnement GEO dès ${euros(prixDuJour(plansGeo()[0]))} HT par mois.`,
         },
       },
       {
@@ -47,7 +47,7 @@ export const pageSchemas = (): object[] => [
         name: 'Kameo peut-elle rendre mon entreprise visible dans ChatGPT et les IA ?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Oui, c'est désormais notre priorité : le GEO (Generative Engine Optimization), aussi appelé référencement IA. Nous mesurons ce que ChatGPT, Gemini, Perplexity et Claude disent de votre entreprise, nous corrigeons votre site et nous renforçons votre présence sur les sites qu'ils utilisent comme sources. Audit GEO dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement dès ${euros(prixDuJour(GEO_PLANS[0]))} HT par mois. Aucune agence ne peut garantir une citation : nous nous engageons sur le travail et sur une mesure transparente, chaque mois.`,
+          text: `Oui, c'est désormais notre priorité : le GEO (Generative Engine Optimization), aussi appelé référencement IA. Nous mesurons ce que ChatGPT, Gemini, Perplexity et Claude disent de votre entreprise, nous corrigeons votre site et nous renforçons votre présence sur les sites qu'ils utilisent comme sources. Audit GEO dès ${euros(auditsGeo()[0].price)} HT, accompagnement dès ${euros(prixDuJour(plansGeo()[0]))} HT par mois. Aucune agence ne peut garantir une citation : nous nous engageons sur le travail et sur une mesure transparente, chaque mois.`,
         },
       },
       {

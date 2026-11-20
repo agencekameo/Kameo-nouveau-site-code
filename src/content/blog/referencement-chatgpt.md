@@ -151,7 +151,7 @@ Pas dans la réponse elle-même. Les publicités, arrivées en France le 24 aoû
 
 ## Savoir ce que ChatGPT dit de vous
 
-Vous pouvez appliquer ces étapes vous-même. Si vous préférez un état des lieux précis, notre [audit GEO](/audit-geo/) pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé. Pour progresser mois après mois, l'[accompagnement GEO](/accompagnement-geo/) mesure 50 questions clés chaque mois et applique les corrections. Notre méthode complète est présentée sur la page [agence GEO à Paris](/agence-geo/).
+Vous pouvez appliquer ces étapes vous-même. Si vous préférez un état des lieux précis, notre [audit GEO](/audit-geo/) pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé. Pour progresser mois après mois, l'[accompagnement GEO](/accompagnement-geo/) suit chaque mois vos questions clés et applique les corrections. Notre méthode complète est présentée sur la page [agence GEO à Paris](/agence-geo/).
 
 ## Sources
 

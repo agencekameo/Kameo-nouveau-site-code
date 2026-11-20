@@ -8,7 +8,7 @@ import JsonLd from '@/components/JsonLd';
 import ArticleToc from '@/components/blog/ArticleToc';
 import BlogCard from '@/components/blog/BlogCard';
 import BookingFab from '@/components/blog/BookingFab';
-import { offreGeoHtml } from '@/content/geo';
+import { dateArticleGeo, reperesGeo } from '@/content/geo';
 import { frDate, getAllPosts, getPost, type Post } from '@/lib/blog';
 import { blogPosting, faqFromHtml, themeSchemas, websiteGraph, type Crumb } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     imageWidth: post.image?.width,
     imageHeight: post.image?.height,
     publishedTime: post.date,
-    modifiedTime: post.modified,
+    modifiedTime: dateArticleGeo(post.path, post.modified),
     readingMinutes: post.rankMathMinutes,
     author: post.remote?.author?.name,
     languages: post.remote?.languages,
@@ -108,10 +108,12 @@ export default async function ArticlePage({ params }: Props) {
   if (!post) notFound();
   const remote = post.source === 'outil' ? post.remote : undefined;
 
-  // Repère <!-- offre-geo --> : l'offre GEO en cours (Black Friday…), rien hors offre. Remplacé à
-  // l'affichage, pas dans le cache des articles, pour disparaître seul à la fin de l'offre.
-  const { html, items } = buildToc(post.html.replace('<!-- offre-geo -->', offreGeoHtml()));
-  const updated = new Date(post.modified).getTime() - new Date(post.date).getTime() > DAY;
+  // Repères GEO (<!-- offre-geo -->, grille de Kameo) : remplacés à l'affichage, pas dans le cache
+  // des articles, pour suivre seuls l'offre en cours et la grille du 01/12/2026 (voir reperesGeo).
+  const corps = reperesGeo(post.html);
+  const modifie = dateArticleGeo(post.path, post.modified);
+  const { html, items } = buildToc(corps);
+  const updated = new Date(modifie).getTime() - new Date(post.date).getTime() > DAY;
   const crumbs: Crumb[] = [
     { name: 'Accueil', path: '/' },
     { name: 'Blog', path: '/blog/' },
@@ -138,14 +140,14 @@ export default async function ArticlePage({ params }: Props) {
   const remoteLd = (remote?.jsonLd ?? []).flatMap(withoutBreadcrumbs);
   const types = ldTypes(remoteLd);
   const hasArticle = ['BlogPosting', 'Article', 'NewsArticle', 'TechArticle'].some((t) => types.has(t));
-  const faq = remote && types.has('FAQPage') ? null : faqFromHtml(post.html, post.path);
+  const faq = remote && types.has('FAQPage') ? null : faqFromHtml(corps, post.path);
   const article = blogPosting({
     path: post.path,
     title: post.title,
     description: post.excerpt,
     image: post.image?.src,
     datePublished: post.date,
-    dateModified: post.modified,
+    dateModified: modifie,
     wordCount: post.wordCount,
   });
 
@@ -178,7 +180,7 @@ export default async function ArticlePage({ params }: Props) {
               <span>
                 {updated ? (
                   <>
-                    Mis à jour le <time dateTime={post.modified}>{frDate(post.modified)}</time>
+                    Mis à jour le <time dateTime={modifie}>{frDate(modifie)}</time>
                   </>
                 ) : (
                   <time dateTime={post.date}>{frDate(post.date)}</time>
@@ -251,7 +253,7 @@ export default async function ArticlePage({ params }: Props) {
             path: post.path,
             title: post.seoTitle,
             published: post.date,
-            modified: post.modified,
+            modified: modifie,
             image: post.image
               ? { url: post.image.src, width: post.image.width, height: post.image.height, caption: post.image.alt }
               : undefined,

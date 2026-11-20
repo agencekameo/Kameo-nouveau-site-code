@@ -147,7 +147,7 @@ En général, comptez 4 à 6 semaines après les corrections pour voir les pr
 
 ## Trouver précisément ce qui vous bloque
 
-Pour un état des lieux précis, notre [audit GEO](/audit-geo/) pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé ; sa version complète vous compare à 3 concurrents directs et liste les sites que les IA citent dans votre secteur. Pour corriger et mesurer dans la durée, l'[accompagnement GEO](/accompagnement-geo/) suit 50 questions clés chaque mois. Rendez-vous en visio, partout en France.
+Pour un état des lieux précis, notre [audit GEO](/audit-geo/) pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé ; sa version complète vous compare à 3 concurrents directs et liste les sites que les IA citent dans votre secteur. Pour corriger et mesurer dans la durée, l'[accompagnement GEO](/accompagnement-geo/) suit vos questions clés chaque mois. Rendez-vous en visio, partout en France.
 
 ## Sources
 

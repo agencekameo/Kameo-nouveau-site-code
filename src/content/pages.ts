@@ -4,6 +4,8 @@
  * Utilisées pour les données structurées WebPage, les balises article:* et les sitemaps.
  * Après une modification de fond d'une page, avancer sa date « modified ».
  */
+import { GEO_BASCULE, grilleDecembreActive } from '@/content/geo';
+
 export type PageInfo = { label: string; published: string; modified: string };
 
 export const PAGES: Record<string, PageInfo> = {
@@ -37,6 +39,14 @@ export const PAGES: Record<string, PageInfo> = {
 };
 
 /** Informations d'une page ; les pages de pagination du blog reprennent celles du blog. */
+/* Pages qui décrivent les offres GEO : à partir du 01/12/2026, la grille de décembre les modifie seule ;
+   leur date de mise à jour (affichée, données structurées, sitemaps) passe alors à cette date. */
+const PAGES_GRILLE_GEO = new Set(['/agence-geo/', '/audit-geo/', '/accompagnement-geo/']);
+
 export function pageInfo(path: string): PageInfo | undefined {
-  return PAGES[path] ?? (path.startsWith('/blog/page/') ? PAGES['/blog/'] : undefined);
+  const info = PAGES[path] ?? (path.startsWith('/blog/page/') ? PAGES['/blog/'] : undefined);
+  if (info && PAGES_GRILLE_GEO.has(path) && grilleDecembreActive() && Date.parse(info.modified) < Date.parse(GEO_BASCULE)) {
+    return { ...info, modified: GEO_BASCULE };
+  }
+  return info;
 }

@@ -21,7 +21,7 @@ const PAGES: SearchDoc[] = [
   ['/creation-saas-ia/', 'Création de SaaS avec IA', 'Intégration Claude et GPT, RAG, multi-tenant, billing Stripe.'],
   ['/agence-geo/', 'Agence GEO : référencement IA', 'Être cité par ChatGPT, Gemini, Perplexity et Claude : mesure, corrections, notoriété.'],
   ['/audit-geo/', 'Audit GEO', 'Visibilité dans les IA et plan d’action. Express 500 € HT, Complet 800 € HT.'],
-  ['/accompagnement-geo/', 'Accompagnement GEO', 'Suivi mensuel de la visibilité IA, de 500 à 1 000 € HT par mois, audit offert.'],
+  ['/accompagnement-geo/', 'Accompagnement GEO', 'Suivi de la visibilité dans les IA, trois formules à prix publics, audit offert.'],
   ['/glossaire-geo/', 'Glossaire GEO', 'Les mots du référencement IA expliqués : Aperçus IA, OAI-SearchBot, part de voix, llms.txt.'],
   ['/test-visibilite-ia/', 'Test gratuit de visibilité dans les IA', '10 questions à poser à ChatGPT, Gemini, Perplexity et Claude, et la grille pour lire les réponses.'],
   ['/realisations/', 'Réalisations', 'Portfolio des projets web, branding et motion design.'],

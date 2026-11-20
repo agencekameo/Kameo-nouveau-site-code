@@ -136,7 +136,7 @@ Oui : les 5 étapes de ce guide ne demandent pas d'outil payant. Le plus diffici
 
 ## Savoir où vous en êtes dans les IA
 
-Vous pouvez appliquer ces étapes vous-même. Pour un état des lieux, notre [audit GEO](/audit-geo/) pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé. Pour progresser mois après mois, l'[accompagnement GEO](/accompagnement-geo/) mesure chaque mois votre visibilité sur 50 questions clés et applique les corrections.
+Vous pouvez appliquer ces étapes vous-même. Pour un état des lieux, notre [audit GEO](/audit-geo/) pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé. Pour progresser mois après mois, l'[accompagnement GEO](/accompagnement-geo/) mesure chaque mois votre visibilité sur vos questions clés et applique les corrections.
 
 ## Sources
 

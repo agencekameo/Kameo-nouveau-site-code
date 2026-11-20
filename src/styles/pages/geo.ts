@@ -112,6 +112,8 @@ const css = `
 .geo-promo-banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; max-width: 1120px; margin: 0 auto clamp(30px,4vw,42px); padding: 14px 22px; border-radius: 16px; background: #0f1115; color: rgba(255,255,255,.88); font-size: 15px; line-height: 1.5; text-align: center; }
 .geo-promo-banner strong { color: #F8903C; font-weight: 800; }
 .geo-promo-banner__tag { padding: 5px 12px; border-radius: 999px; background: var(--accent-gradient); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.geo-plan__who { font-size: 13px; line-height: 1.5; color: rgba(15,17,21,.6); margin: -12px 0 18px; }
+.geo-plan__who strong { color: #0f1115; font-weight: 700; }
 .geo-plan__note { font-size: 12.5px; font-weight: 600; color: rgba(15,17,21,.5); margin: 0 0 22px; }
 .geo-plan__list { list-style: none; margin: 0 0 26px; padding: 22px 0 0; border-top: 1px solid rgba(15,17,21,.07); flex: 1; display: grid; gap: 11px; align-content: start; }
 .geo-plan__list li { position: relative; padding-left: 24px; font-size: 14px; line-height: 1.5; color: rgba(15,17,21,.76); }
@@ -125,7 +127,7 @@ const css = `
 @media (max-width: 960px) { .geo-plans__grid, .geo-plans__grid--2 { grid-template-columns: 1fr; max-width: 520px; } .geo-plan__badge { left: 50%; transform: translateX(-50%); white-space: nowrap; } }
 
 /* Conditions des accompagnements */
-.geo-terms { list-style: none; display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: 1120px; margin: clamp(28px,4vw,40px) auto 0; padding: 0; }
+.geo-terms { list-style: none; display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 14px; max-width: 1120px; margin: clamp(28px,4vw,40px) auto 0; padding: 0; }
 .geo-terms li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; background: #F9FAFB; border: 1px solid rgba(15,17,21,.06); border-radius: 16px; padding: 16px 18px; font-size: 14px; line-height: 1.55; color: rgba(15,17,21,.7); }
 .geo-section--soft .geo-terms li { background: #fff; }
 .geo-terms li strong { color: #0f1115; }
@@ -147,6 +149,8 @@ const css = `
 .geo-table td.is-no { color: rgba(15,17,21,.28); }
 .geo-table--plans thead th:not(:first-child), .geo-table--plans td { text-align: center; }
 .geo-table--plans tbody th { width: 40%; font-weight: 700; }
+.geo-table td.is-txt { text-align: center; font-size: 13.5px; line-height: 1.45; color: rgba(15,17,21,.78); }
+.geo-table__note { max-width: 1120px; margin: 14px auto 0; font-size: 13px; line-height: 1.5; color: rgba(15,17,21,.55); }
 .geo-table__price td { font-weight: 900; color: #0f1115; }
 .geo-table__price del { display: block; font-size: 12.5px; font-weight: 600; color: rgba(15,17,21,.42); }
 @media (max-width: 640px) {

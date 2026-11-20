@@ -4,14 +4,17 @@ import Breadcrumb from '@/components/Breadcrumb';
 import JsonLd from '@/components/JsonLd';
 import { GeoCta, GeoEngines, GeoFaq, GeoHeroActions, GeoMaj, GeoMidCta, GeoPromoBanner, GeoTerms, faqSchema } from '@/components/geo/GeoBlocks';
 import {
-  GEO_AUDITS,
   GEO_ENGINES,
-  GEO_PLANS,
   GEO_PROMO,
   GEO_QUESTIONS,
   GEO_RESOURCES,
+  auditsGeo,
   euros,
   faqAgence,
+  fourchetteQuestions,
+  grilleDecembreActive,
+  nombre,
+  plansGeo,
   prixBarre,
   prixDuJour,
   promoGeoActive,
@@ -30,16 +33,20 @@ const CRUMBS = [
 
 /* Prix des accompagnements : suivent l'offre en cours (GEO_PROMO), donc calculés à l'affichage. */
 export function generateMetadata(): Metadata {
-  const description = `Agence GEO à Paris (Generative Engine Optimization) : soyez cité par ChatGPT, Gemini, Perplexity et Claude. Audit dès ${euros(GEO_AUDITS[0].price)} HT, accompagnement dès ${euros(prixDuJour(GEO_PLANS[0]))} HT/mois.`;
+  const description = `Agence GEO à Paris (Generative Engine Optimization) : soyez cité par ChatGPT, Gemini, Perplexity et Claude. Audit dès ${euros(auditsGeo()[0].price)} HT, accompagnement dès ${euros(prixDuJour(plansGeo()[0]))} HT/mois.`;
   return pageMetadata({ path: PATH, title: TITLE, description });
 }
 
-const AUDIT_MIN = euros(GEO_AUDITS[0].price);
+const AUDIT_MIN = euros(auditsGeo()[0].price);
 const REPONSES = GEO_QUESTIONS * GEO_ENGINES.length;
 
 export default function AgenceGeoPage() {
   const promo = promoGeoActive();
-  const PLAN_MIN = euros(prixDuJour(GEO_PLANS[0]));
+  const PLAN_MIN = euros(prixDuJour(plansGeo()[0]));
+  const dec = grilleDecembreActive();
+  const f = fourchetteQuestions();
+  const AUDITS = auditsGeo();
+  const PLANS = plansGeo();
   const faq = faqAgence();
   return (
     <>
@@ -111,9 +118,9 @@ export default function AgenceGeoPage() {
                 </p>
                 <p className="geo-brief__text">
                   Kameo, agence GEO et web à Paris fondée en 2023, propose deux formats : un{' '}
-                  <Link href="/audit-geo/">audit GEO</Link> ponctuel (Express {euros(GEO_AUDITS[0].price)} HT, Complet{' '}
-                  {euros(GEO_AUDITS[1].price)} HT) et un <Link href="/accompagnement-geo/">accompagnement GEO</Link>{' '}
-                  mensuel, de {PLAN_MIN} à {euros(prixDuJour(GEO_PLANS[2]))} HT par mois
+                  <Link href="/audit-geo/">audit GEO</Link> ponctuel (Express {euros(AUDITS[0].price)} HT, Complet{' '}
+                  {euros(AUDITS[1].price)} HT) et un <Link href="/accompagnement-geo/">accompagnement GEO</Link>{' '}
+                  mensuel, de {PLAN_MIN} à {euros(prixDuJour(PLANS[2]))} HT par mois
                   {promo ? ` (prix ${GEO_PROMO.nom} jusqu’au ${GEO_PROMO.finTexte})` : ''}.
                 </p>
               </div>
@@ -125,8 +132,19 @@ export default function AgenceGeoPage() {
                 </li>
                 <li>
                   <span>
-                    <strong>{REPONSES} réponses analysées</strong> chaque mois en accompagnement ({GEO_QUESTIONS}{' '}
-                    questions × {GEO_ENGINES.length} IA)
+                    {dec ? (
+                      <>
+                        <strong>
+                          {f.min} à {f.max} questions suivies
+                        </strong>{' '}
+                        en accompagnement, posées 3 fois à {GEO_ENGINES.length} IA toutes les deux semaines
+                      </>
+                    ) : (
+                      <>
+                        <strong>{REPONSES} réponses analysées</strong> chaque mois en accompagnement ({GEO_QUESTIONS}{' '}
+                        questions × {GEO_ENGINES.length} IA)
+                      </>
+                    )}
                   </span>
                 </li>
                 <li>
@@ -514,7 +532,7 @@ export default function AgenceGeoPage() {
                   d’action priorisé.
                 </p>
                 <ul className="geo-path__offers">
-                  {GEO_AUDITS.map((o) => (
+                  {AUDITS.map((o) => (
                     <li key={o.id}>
                       {o.name}
                       <span>
@@ -529,11 +547,11 @@ export default function AgenceGeoPage() {
                 <p className="geo-path__kicker">Accompagnements mensuels</p>
                 <h3 className="geo-path__title">Accompagnement GEO</h3>
                 <p className="geo-path__text">
-                  Progresser chaque mois&nbsp;: mesure sur {GEO_QUESTIONS} questions clés, corrections, présence externe et
+                  Progresser chaque mois&nbsp;: mesure sur {dec ? `${f.min} à ${f.max}` : GEO_QUESTIONS} questions clés, corrections, présence externe et
                   contenus, selon la formule.
                 </p>
                 <ul className="geo-path__offers">
-                  {GEO_PLANS.map((o) => {
+                  {PLANS.map((o) => {
                     const barre = prixBarre(o);
                     return (
                       <li key={o.id}>
@@ -603,8 +621,18 @@ export default function AgenceGeoPage() {
                   >
                     SparkToro (janvier 2026)
                   </a>
-                  , la même liste de marques revient moins d’une fois sur 100. D’où {GEO_QUESTIONS} questions suivies
-                  chaque mois sur {GEO_ENGINES.length} IA, soit {REPONSES} réponses, plutôt qu’un «&nbsp;rang&nbsp;» trompeur.
+                  , la même liste de marques revient moins d’une fois sur 100. D’où{' '}
+                  {dec ? (
+                    <>
+                      {f.min} à {f.max} questions suivies, posées 3 fois à chaque IA toutes les deux semaines, soit
+                      jusqu’à {nombre(f.reponsesMax)} réponses par mois, plutôt qu’un «&nbsp;rang&nbsp;» trompeur.
+                    </>
+                  ) : (
+                    <>
+                      {GEO_QUESTIONS} questions suivies chaque mois sur {GEO_ENGINES.length} IA, soit {REPONSES} réponses,
+                      plutôt qu’un «&nbsp;rang&nbsp;» trompeur.
+                    </>
+                  )}
                 </p>
               </li>
             </ul>

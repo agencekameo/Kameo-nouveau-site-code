@@ -95,6 +95,8 @@ Pour le SEO, voyez notre guide sur [la différence entre GEO et SEO](/blog/geo-v
 
 Nos prix sont publics : prenez-les comme un repère, à passer au crible des questions ci-dessus.
 
+<!-- grille-kameo -->
+
 | Offre | Prix HT | Ce qui est inclus |
 |---|---|---|
 | Audit GEO Express | 500 €, une fois | Visibilité sur ChatGPT, Gemini, Perplexity et Claude, diagnostic technique, plan d'action priorisé |
@@ -108,6 +110,8 @@ Nos prix sont publics : prenez-les comme un repère, à passer au crible des qu
 Les accompagnements demandent 6 mois minimum, le temps que les IA prennent en compte les changements, soit au moins 3 000 € HT pour Essentiel. L'Audit GEO Express y est offert au démarrage, un mois est offert pour un engagement annuel, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit.
 
 Essentiel se situe dans le bas de la fourchette relevée chez les agences. Son périmètre est précis : la mesure, les corrections du site et des conseils pour l'extérieur, sans création de fiches ni de contenus. Tout est fait en interne, sans sous-traitance. Notre méthode est présentée sur la page [agence GEO à Paris](/agence-geo/).
+
+<!-- /grille-kameo -->
 
 ## Ce qu'on peut raisonnablement attendre
 
@@ -128,7 +132,7 @@ Selon notre relevé de novembre 2026 : de 200 à 600 € chez un freelance ou 
 <details>
 <summary>Combien coûte une agence GEO par mois ?</summary>
 
-Pour une PME, de 350 à 3 000 € HT par mois selon le périmètre, et à partir d'environ 3 000 € dans les grandes agences (relevé de Kameo, novembre 2026). Chez Kameo : 500, 700 ou 1 000 € HT par mois, avec 6 mois minimum.
+Pour une PME, de 350 à 3 000 € HT par mois selon le périmètre, et à partir d'environ 3 000 € dans les grandes agences (relevé de Kameo, novembre 2026). <!-- prix-kameo-mois -->Chez Kameo : 500, 700 ou 1 000 € HT par mois, avec 6 mois minimum.<!-- /prix-kameo-mois -->
 
 </details>
 
@@ -148,7 +152,7 @@ En partie : autoriser les robots d'IA, être bien indexé sur Google et Bing, g
 
 ## Connaître le budget adapté à votre situation
 
-Avant d'engager un budget mensuel, commencez par un [audit GEO](/audit-geo/) : il pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé. Pour progresser mois après mois, l'[accompagnement GEO](/accompagnement-geo/) mesure 50 questions clés et applique les corrections. Rendez-vous en visio, partout en France ; le diagnostic express de 30 minutes, où l'on pose en direct 5 questions de vos clients aux IA, est gratuit.
+Avant d'engager un budget mensuel, commencez par un [audit GEO](/audit-geo/) : il pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé. Pour progresser mois après mois, l'[accompagnement GEO](/accompagnement-geo/) suit vos questions clés et applique les corrections. Rendez-vous en visio, partout en France ; le diagnostic express de 30 minutes, où l'on pose en direct 5 questions de vos clients aux IA, est gratuit.
 
 ## Sources
 

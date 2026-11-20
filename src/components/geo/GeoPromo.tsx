@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { GEO_AUDITS, euros } from '@/content/geo';
+import { auditsGeo, euros } from '@/content/geo';
 
 /*
  * Encart « Votre site est-il lisible par les IA ? » sur les pages web (WordPress, refonte,
@@ -36,7 +36,7 @@ export default function GeoPromo({ variant }: { variant: Variant }) {
           </div>
           <div className="geo-promo__actions">
             <Link href="/audit-geo/" className="geo-promo__btn">
-              Audit GEO dès {euros(GEO_AUDITS[0].price)} HT
+              Audit GEO dès {euros(auditsGeo()[0].price)} HT
             </Link>
             <Link href="/blog/referencement-chatgpt/" className="geo-promo__link">
               Lire le guide : référencement ChatGPT →

@@ -2,24 +2,25 @@ import { getAllPostsOrRepo } from '@/lib/blog';
 import { NB_WOOCOMMERCE, REALISATIONS, REALISATIONS_WORDPRESS } from '@/content/realisations';
 import { CONTACT, CONTENT_UPDATED, PROOF, SITE_URL, SOCIAL } from '@/lib/site';
 import {
-  GEO_AUDITS,
   GEO_ENGINES,
   GEO_MIN_MONTHS,
-  GEO_PLANS,
   GEO_PROMO,
   GEO_QUESTIONS,
+  auditsGeo,
+  grilleDecembreActive,
+  plansGeo,
   prixBarre,
   prixDuJour,
   promoGeoActive,
+  reponsesAudit,
+  type GeoOffer,
 } from '@/content/geo';
 
 /* Prix GEO en texte brut (espaces simples) et liste des IA « ChatGPT, Gemini, Perplexity et Claude ». */
 const euro = (n: number) => n.toLocaleString('fr-FR').replace(/\s/g, ' ') + ' €';
 const IA = GEO_ENGINES.join(', ').replace(/, (?=[^,]*$)/, ' et ');
-const [express, complet] = GEO_AUDITS;
-const plans = GEO_PLANS;
 /* Offre en cours (Black Friday…) : calculée à chaque génération (revalidate 60 s) ; GEO_PROMO.finTexte porte l'année. */
-const prixPlan = (p: (typeof GEO_PLANS)[number]) => {
+const prixPlan = (p: GeoOffer) => {
   const barre = prixBarre(p);
   return `${euro(prixDuJour(p))} HT par mois${barre !== null ? ` au lieu de ${euro(barre)}` : ''}`;
 };
@@ -42,6 +43,10 @@ export async function GET() {
   const projets = PROOF.projetsTotal;
   const cas = REALISATIONS.length;
   const posts = await getAllPostsOrRepo();
+  // Grille des offres GEO en vigueur (bascule du 01/12/2026), lue à chaque génération.
+  const [express, complet] = auditsGeo();
+  const plans = plansGeo();
+  const dec = grilleDecembreActive();
   // date du dernier changement réel : contenu des pages ou article le plus récent
   const maj = [CONTENT_UPDATED, ...posts.map((p) => p.modified)].sort().at(-1)!.slice(0, 10);
   const blog = posts.length
@@ -79,8 +84,8 @@ Dernière mise à jour : ${maj}
 ## GEO : visibilité dans les réponses des IA
 
 - [Agence GEO](${home}agence-geo/) : GEO (Generative Engine Optimization), aussi appelé référencement IA. Kameo mesure ce que ${IA} disent d'une entreprise, corrige son site (accès des robots d'IA, pages qui répondent, informations cohérentes) et renforce sa présence sur les sources que les IA consultent. Prix publics.
-- [Audit GEO](${home}audit-geo/) : ${express.name} à ${euro(express.price)} HT (visibilité dans les 4 IA, diagnostic technique, plan d'action priorisé) ; ${complet.name} à ${euro(complet.price)} HT (en plus : 3 concurrents directs, sources citées par les IA dans le secteur, restitution d'une heure en visio). Paiement unique ; prix déduit si un accompagnement démarre dans le mois.
-- [Accompagnement GEO](${home}accompagnement-geo/) : ${plans.map((p) => `${p.name} ${prixPlan(p)}`).join(', ')}.${offrePromo()} Mesure mensuelle de ${GEO_QUESTIONS} questions clés sur les 4 IA, corrections du site, fiches et annuaires, avis, contenus selon la formule. Engagement de ${GEO_MIN_MONTHS} mois minimum, Audit GEO Express offert au démarrage, 1 mois offert pour un engagement annuel.
+- [Audit GEO](${home}audit-geo/) : ${express.name} à ${euro(express.price)} HT (${dec ? `20 questions posées 3 fois aux 4 IA, soit ${reponsesAudit(20)} réponses, diagnostic technique, plan d'action priorisé` : "visibilité dans les 4 IA, diagnostic technique, plan d'action priorisé"}) ; ${complet.name} à ${euro(complet.price)} HT (en plus : ${dec ? `40 questions au lieu de 20, soit ${reponsesAudit(40)} réponses, ` : ''}3 concurrents directs, sources citées par les IA dans le secteur, restitution d'une heure en visio). Paiement unique ; prix déduit si un accompagnement démarre dans le mois.
+- [Accompagnement GEO](${home}accompagnement-geo/) : ${plans.map((p) => `${p.name} ${prixPlan(p)}`).join(', ')}.${offrePromo()}${dec ? ` Chaque question posée 3 fois à ${IA} toutes les deux semaines : ${plans.map((p) => `${p.questions} questions pour ${p.name}`).join(', ')}. Corrections du site et pages améliorées dans toutes les formules ; fiches Google, Bing, Apple et ChatGPT, annuaires et avis dès Croissance ; comparatifs, médias et 4 contenus par mois dans Autorité. 3 mois d'engagement, puis sans engagement ; audit offert au démarrage ; 12 mois pour le prix de 11 ; garantie de livrables.` : ` Mesure mensuelle de ${GEO_QUESTIONS} questions clés sur les 4 IA, corrections du site, fiches et annuaires, avis, contenus selon la formule. Engagement de ${GEO_MIN_MONTHS} mois minimum, Audit GEO Express offert au démarrage, 1 mois offert pour un engagement annuel.`}
 - [Test gratuit de visibilité dans les IA](${home}test-visibilite-ia/) : 10 questions à poser soi-même à ChatGPT, Gemini, Perplexity et Claude, sans inscription, et la grille pour lire les réponses.
 - [Glossaire GEO](${home}glossaire-geo/) : définitions courtes et sourcées des mots du référencement IA (Aperçus IA, OAI-SearchBot, part de voix, llms.txt…).
 - [Guide : référencement ChatGPT](${home}blog/referencement-chatgpt/) : comment ChatGPT choisit ses sources et 8 étapes pour être cité.

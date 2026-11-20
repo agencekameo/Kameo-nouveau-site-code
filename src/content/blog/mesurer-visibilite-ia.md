@@ -130,7 +130,10 @@ Exemple de calcul : 30 questions posées 2 fois à ChatGPT donnent 60 réponses
 
 ## Comment Kameo mesure la visibilité de ses clients
 
+<!-- mesure-kameo -->
+
 En accompagnement, nous établissons avec chaque client 50 questions clés, celles que ses clients posent vraiment. Chaque mois, nous les posons à ChatGPT, Gemini, Perplexity et Claude dans des conditions comparables, soit 200 réponses analysées, et nous jugeons l'évolution sur plusieurs mois plutôt que sur une réponse isolée. Le rapport montre, IA par IA, si l'entreprise est absente, mentionnée, citée avec un lien ou recommandée, qui apparaît à sa place, quelles sources sont citées et l'évolution d'un mois sur l'autre. Pas de « position », pas de garantie : une tendance.
+<!-- /mesure-kameo -->
 
 Nous avons d'abord appliqué la méthode GEO à notre propre site (robots d'IA autorisés, informations identiques partout, pages qui répondent), sans résultats chiffrés à publier pour l'instant. Notre démarche est présentée sur la page [agence GEO](/agence-geo/).
 
@@ -166,7 +169,7 @@ De 75 à 450 € par mois selon notre relevé de novembre 2026. Ces outils mesu
 
 ## Savoir où vous en êtes dans les IA
 
-Vous pouvez appliquer cette méthode vous-même. Pour un état des lieux précis, notre [audit GEO](/audit-geo/) pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé. Pour une mesure de 50 questions clés chaque mois, avec les corrections qui vont avec, découvrez l'[accompagnement GEO](/accompagnement-geo/).
+Vous pouvez appliquer cette méthode vous-même. Pour un état des lieux précis, notre [audit GEO](/audit-geo/) pose les questions de vos clients à ChatGPT, Gemini, Perplexity et Claude, vérifie votre site et vous remet un plan d'action priorisé. Pour mesurer vos questions clés dans la durée, avec les corrections qui vont avec, découvrez l'[accompagnement GEO](/accompagnement-geo/).
 
 ## Sources
 

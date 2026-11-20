@@ -128,7 +128,7 @@ Corrigez l'information à la source : votre fiche Google, votre site, puis chaq
 
 ## Savoir si les IA recommandent votre établissement
 
-Pour savoir précisément ce que ChatGPT, Gemini, Perplexity et Claude disent de vous, notre [audit GEO](/audit-geo/) pose les questions de vos clients, vérifie votre site et vous remet un plan d'action priorisé. Pour avancer chaque mois, l'[accompagnement GEO](/accompagnement-geo/) mesure 50 questions clés et, selon la formule, crée vos fiches sur les plateformes clés, vous inscrit dans les annuaires et met en place la collecte d'avis. Notre méthode est détaillée sur la page [agence GEO](/agence-geo/). Rendez-vous en visio, partout en France.
+Pour savoir précisément ce que ChatGPT, Gemini, Perplexity et Claude disent de vous, notre [audit GEO](/audit-geo/) pose les questions de vos clients, vérifie votre site et vous remet un plan d'action priorisé. Pour avancer chaque mois, l'[accompagnement GEO](/accompagnement-geo/) suit vos questions clés et, selon la formule, crée vos fiches sur les plateformes clés, vous inscrit dans les annuaires et met en place la collecte d'avis. Notre méthode est détaillée sur la page [agence GEO](/agence-geo/). Rendez-vous en visio, partout en France.
 
 ## Sources
 

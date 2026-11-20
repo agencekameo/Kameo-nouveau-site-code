@@ -5,7 +5,7 @@ import CalendlyPopup from '@/components/CalendlyPopup';
 import { pageMetadata } from '@/lib/seo';
 import { GOOGLE_SITE_VERIFICATION, PROOF } from '@/lib/site';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
-import { GEO_AUDITS, GEO_PLANS, GEO_PROMO, euros, prixDuJour, promoGeoActive } from '@/content/geo';
+import { GEO_PROMO, auditsGeo, euros, plansGeo, prixDuJour, promoGeoActive } from '@/content/geo';
 import { pageSchemas } from './schema';
 
 const PATH = '/';
@@ -169,7 +169,7 @@ export default function HomePage() {
                 </li>
                 <li>
                   <Link href="/audit-geo/">
-                    Audit GEO <span>dès {euros(GEO_AUDITS[0].price)} HT</span>
+                    Audit GEO <span>dès {euros(auditsGeo()[0].price)} HT</span>
                   </Link>
                 </li>
                 <li>
@@ -178,10 +178,10 @@ export default function HomePage() {
                     {promoGeoActive() ? (
                       <span className="home-geo__offre">
                         <em className="home-geo__promo">{GEO_PROMO.nom}</em>
-                        <b>dès {euros(prixDuJour(GEO_PLANS[0]))} HT/mois</b>
+                        <b>dès {euros(prixDuJour(plansGeo()[0]))} HT/mois</b>
                       </span>
                     ) : (
-                      <span>dès {euros(prixDuJour(GEO_PLANS[0]))} HT/mois</span>
+                      <span>dès {euros(prixDuJour(plansGeo()[0]))} HT/mois</span>
                     )}
                   </Link>
                 </li>
@@ -819,8 +819,8 @@ export default function HomePage() {
                     votre marque comme une référence.
                   </p>
                   <ul className="bento__geo-chips">
-                    <li>Audit dès {euros(GEO_AUDITS[0].price)} HT</li>
-                    <li>Accompagnement dès {euros(prixDuJour(GEO_PLANS[0]))} HT/mois</li>
+                    <li>Audit dès {euros(auditsGeo()[0].price)} HT</li>
+                    <li>Accompagnement dès {euros(prixDuJour(plansGeo()[0]))} HT/mois</li>
                     <li>4 IA mesurées chaque mois</li>
                   </ul>
                   <Link href="/agence-geo/" className="bento__geo-cta">
@@ -1247,8 +1247,8 @@ export default function HomePage() {
                     <Link href="/creation-crm-sur-mesure/">CRM sur-mesure</Link> dès 7 999 € HT,{' '}
                     <Link href="/creation-marketplace/">marketplace</Link> dès 8 000 € HT et{' '}
                     <Link href="/creation-saas-ia/">SaaS avec IA</Link> dès 8 000 € HT. S'y ajoute la visibilité dans
-                    les IA (GEO) : <Link href="/audit-geo/">audit GEO</Link> dès {euros(GEO_AUDITS[0].price)} HT et{' '}
-                    <Link href="/accompagnement-geo/">accompagnement GEO</Link> dès {euros(prixDuJour(GEO_PLANS[0]))} HT par
+                    les IA (GEO) : <Link href="/audit-geo/">audit GEO</Link> dès {euros(auditsGeo()[0].price)} HT et{' '}
+                    <Link href="/accompagnement-geo/">accompagnement GEO</Link> dès {euros(prixDuJour(plansGeo()[0]))} HT par
                     mois.
                   </p>
                 </div>
@@ -1275,8 +1275,8 @@ export default function HomePage() {
                     Optimization), aussi appelé référencement IA. Nous mesurons ce que ChatGPT, Gemini, Perplexity et
                     Claude disent de votre entreprise, nous corrigeons votre site et nous renforçons votre présence sur les
                     sites qu'ils utilisent comme sources. <Link href="/audit-geo/">Audit GEO</Link> dès{' '}
-                    {euros(GEO_AUDITS[0].price)} HT, <Link href="/accompagnement-geo/">accompagnement</Link> dès{' '}
-                    {euros(prixDuJour(GEO_PLANS[0]))} HT par mois. Aucune agence ne peut garantir une citation : nous nous
+                    {euros(auditsGeo()[0].price)} HT, <Link href="/accompagnement-geo/">accompagnement</Link> dès{' '}
+                    {euros(prixDuJour(plansGeo()[0]))} HT par mois. Aucune agence ne peut garantir une citation : nous nous
                     engageons sur le travail et sur une mesure transparente, chaque mois.
                   </p>
                 </div>

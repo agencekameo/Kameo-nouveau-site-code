@@ -167,7 +167,7 @@ En général, les premiers effets se voient 4 à 6 semaines après les correctio
 
 ## Faire vérifier votre site WordPress
 
-Vous pouvez faire ces contrôles vous-même. Pour un état des lieux, notre [audit GEO](/audit-geo/) vérifie votre site, pose les questions de vos clients aux IA et vous remet un plan d'action priorisé. L'[accompagnement GEO](/accompagnement-geo/) applique ensuite les corrections techniques et mesure chaque mois votre visibilité sur 50 questions clés. Notre méthode est détaillée sur la page [agence GEO à Paris](/agence-geo/).
+Vous pouvez faire ces contrôles vous-même. Pour un état des lieux, notre [audit GEO](/audit-geo/) vérifie votre site, pose les questions de vos clients aux IA et vous remet un plan d'action priorisé. L'[accompagnement GEO](/accompagnement-geo/) applique ensuite les corrections techniques et mesure chaque mois votre visibilité sur vos questions clés. Notre méthode est détaillée sur la page [agence GEO à Paris](/agence-geo/).
 
 ## Sources
 

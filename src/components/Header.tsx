@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
 import MobileNav from './MobileNav';
 import { CONTACT } from '@/lib/site';
-import { GEO_AUDITS, GEO_PLANS, euros, prixDuJour } from '@/content/geo';
+import { auditsGeo, euros, plansGeo, prixDuJour } from '@/content/geo';
 
 /* Navigation flottante pilule + mega menus GEO, Web et Image de marque (header.php + js/main.js). */
 
@@ -173,12 +173,12 @@ export default function Header() {
                   </div>
                 </Link>
                 <div className="mega-group__sub">
-                  <MegaSub href="/audit-geo/" title={`Audit GEO · dès ${euros(GEO_AUDITS[0].price)} HT`}>
+                  <MegaSub href="/audit-geo/" title={`Audit GEO · dès ${euros(auditsGeo()[0].price)} HT`}>
                     <circle cx="11" cy="11" r="7" />
                     <path d="M21 21l-4.3-4.3" />
                     <path d="M8.5 13v-1.5M11 13V9M13.5 13v-2.5" />
                   </MegaSub>
-                  <MegaSub href="/accompagnement-geo/" title={`Accompagnement GEO · dès ${euros(prixDuJour(GEO_PLANS[0]))} HT/mois`}>
+                  <MegaSub href="/accompagnement-geo/" title={`Accompagnement GEO · dès ${euros(prixDuJour(plansGeo()[0]))} HT/mois`}>
                     <polyline points="3 17 9 11 13 15 21 7" />
                     <polyline points="15 7 21 7 21 13" />
                   </MegaSub>
