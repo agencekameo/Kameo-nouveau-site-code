@@ -26,7 +26,7 @@ const prixPlan = (p: GeoOffer) => {
 };
 const offrePromo = () =>
   promoGeoActive()
-    ? ` Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : prix conservé pendant tout l'engagement, puis retour aux prix normaux pour les nouvelles signatures.`
+    ? ` Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : prix conservé pendant tout l'engagement (3 mois au minimum, 6 mois pour un engagement de 6 mois), puis retour aux prix normaux pour les nouvelles signatures.`
     : '';
 
 /* /llms.txt (standard llmstxt.org) — synthèse du site pour les moteurs génératifs.

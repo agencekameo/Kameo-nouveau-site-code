@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Icon from '@/components/Icon';
 import {
   GEO_PROMO,
+  grilleDecembreActive,
   euros,
   noteEngagementGeo,
   prixBarre,
@@ -136,8 +137,15 @@ export function GeoPromoBanner() {
             Jusqu’à <strong>−{remiseMaxGeo()}&nbsp;%</strong> sur l’accompagnement GEO
           </>
         )}{' '}
-        pour toute signature jusqu’au <strong>{GEO_PROMO.finTexte}</strong>. Le prix est conservé pendant tout votre
-        engagement.
+        pour toute signature jusqu’au <strong>{GEO_PROMO.finTexte}</strong>.{' '}
+        {grilleDecembreActive() ? (
+          <>
+            Le prix est garanti pendant tout votre engagement&nbsp;: engagez-vous sur <strong>6&nbsp;mois</strong> au lieu
+            de 3 et gardez ce prix 6&nbsp;mois.
+          </>
+        ) : (
+          <>Le prix est conservé pendant tout votre engagement.</>
+        )}
       </span>
     </p>
   );

@@ -211,6 +211,7 @@ export default function AccompagnementGeoPage() {
                       <strong>Offre {GEO_PROMO.nom}</strong>&nbsp;:{' '}
                       {remiseGeoUniforme() ? <>−{remiseMaxGeo()}&nbsp;% sur chaque formule</> : <>jusqu’à −{remiseMaxGeo()}&nbsp;%</>}{' '}
                       jusqu’au {GEO_PROMO.finTexte}, prix conservé pendant tout l’engagement
+                      {dec ? <>, soit 6&nbsp;mois si vous vous engagez sur 6&nbsp;mois</> : null}
                     </span>
                   </li>
                 )}

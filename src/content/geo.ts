@@ -286,6 +286,9 @@ export const termsGeo = (): GeoTerm[] =>
   grilleDecembreActive()
     ? [
         { icon: 'unlock-keyhole', html: '<strong>3 mois d’engagement</strong>, puis sans engagement : résiliation par simple e-mail, avec 30 jours de préavis.' },
+        ...(promoGeoActive()
+          ? [{ icon: 'calendar-check', html: `<strong>${GEO_PROMO.nom} gardé 6 mois</strong> si vous vous engagez sur 6 mois au lieu de 3 : −${remiseMaxGeo()} % pendant 6 mois.` }]
+          : []),
         { icon: 'piggy-bank', html: '<strong>12 mois pour le prix de 11</strong> si vous vous engagez sur un an.' },
         { icon: 'shield-halved', html: '<strong>Garantie de livrables</strong> : un livrable prévu et non fait dans le mois est déduit de votre facture suivante.' },
         { icon: 'percent', html: '<strong>Audit déduit</strong> si vous passez à un accompagnement dans le mois qui suit votre audit.' },
@@ -362,7 +365,7 @@ export const remiseGeoUniforme = () => {
 /** Conditions de l'offre en une phrase ; vide hors offre. */
 export const phrasePromoGeo = () =>
   promoGeoActive()
-    ? `Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : le prix est conservé pendant tout l'engagement.`
+    ? `Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ', soit 6 mois si vous vous engagez sur 6 mois au lieu de 3' : ''}.`
     : '';
 
 /** Grille de décembre : « de 20 à 60 questions », « de 480 à 1 440 réponses ». */
@@ -394,7 +397,7 @@ export const offreGeoHtml = () => {
   if (!promoGeoActive()) return '';
   const [essentiel, croissance, autorite] = plansGeo();
   const un = (p: GeoOffer) => `${p.name} à ${euros(prixDuJour(p))} HT au lieu de ${euros(p.price)}`;
-  return `<p><strong>Offre ${GEO_PROMO.nom}</strong> : pour toute signature jusqu'au ${GEO_PROMO.finTexte}, ${un(essentiel)} par mois, ${un(croissance)} et ${un(autorite)}. Le prix est conservé pendant tout l'engagement. <a href="/accompagnement-geo/#formules">Voir les formules</a></p>`;
+  return `<p><strong>Offre ${GEO_PROMO.nom}</strong> : pour toute signature jusqu'au ${GEO_PROMO.finTexte}, ${un(essentiel)} par mois, ${un(croissance)} et ${un(autorite)}. Le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ' : engagez-vous sur 6 mois au lieu de 3 pour le garder 6 mois' : ''}. <a href="/accompagnement-geo/#formules">Voir les formules</a></p>`;
 };
 
 /** Espaces insécables de la typographie française (avant : ; ? ! », après «), pour les textes insérés dans les articles. */
