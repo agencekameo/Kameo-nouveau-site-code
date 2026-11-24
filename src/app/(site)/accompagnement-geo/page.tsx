@@ -74,7 +74,10 @@ const NO = '—';
 
 /* Comparatif des formules : [ligne, Essentiel, Croissance, Autorité] ; une cellule est incluse (✓), absente (—) ou décrite. */
 type Cell = boolean | string;
-const ROWS_NOVEMBRE: [string, Cell, Cell, Cell][] = [
+type Row = [string, Cell, Cell, Cell];
+/* Blocs du comparatif : un titre (facultatif) et ses lignes. */
+type Groupe = { titre?: string; rows: Row[] };
+const ROWS_NOVEMBRE: Row[] = [
   ['Audit GEO Express et plan d’action offerts au démarrage', true, true, true],
   ['Corrections techniques appliquées sur votre site', true, true, true],
   [`Mesure mensuelle : ${GEO_QUESTIONS} questions clés × ${GEO_ENGINES.length} IA`, true, true, true],
@@ -87,24 +90,48 @@ const ROWS_NOVEMBRE: [string, Cell, Cell, Cell][] = [
   ['Cartographie mensuelle des médias cités par les IA', false, false, true],
   ['Call mensuel de suivi', false, false, true],
 ];
-const ROWS_DECEMBRE: [string, Cell, Cell, Cell][] = [
-  ['Pour qui', 'Une activité principale, sur une zone ou toute la France', 'Jusqu’à 3 services ou 3 villes', 'Jusqu’à 6 services ou villes, ou un secteur très disputé'],
-  ['Audit offert au démarrage', 'Audit GEO Express', 'Audit GEO Complet', 'Audit GEO Complet élargi (60 questions, 5 concurrents)'],
-  ['Questions suivies sur les 4 IA', '20', '40', '60'],
-  ['Réponses analysées chaque mois', nombre(reponsesParMois(20)), nombre(reponsesParMois(40)), nombre(reponsesParMois(60))],
-  ['Concurrents suivis', 'Ceux cités à votre place', '3, choisis avec vous', '5, choisis avec vous'],
-  ['Corrections techniques de votre site', true, true, true],
-  ['Indexation dans Google, Bing et Brave', true, true, true],
-  ['Pages existantes améliorées chaque mois', '3', '5', '10'],
-  ['Fiche ChatGPT (Business Hub)', false, true, true],
-  ['Fiches Google et Bing', 'À faire vous-même, textes prêts', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour'],
-  ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '2 inscriptions par mois', '2 inscriptions par mois'],
-  ['Demandes d’avis clients', 'Conseils', 'Méthode et modèles de réponse', 'Méthode et modèles de réponse'],
-  ['Erreurs des IA corrigées à la source', true, true, true],
-  ['Comparatifs, médias et partenaires', false, false, '3 démarches par mois, sans place payante'],
-  ['Nouveaux contenus', false, '2 par mois, validés par vous', '4 par mois, validés par vous'],
-  ['Rapport mensuel', true, true, true],
-  ['Point en visio', 'Au démarrage et au bilan des 3 mois', '30 minutes chaque mois', '1 heure chaque mois avec le fondateur'],
+/* Grille de décembre : d'abord ce que partagent les 3 formules, puis ce qui change, formule par formule (demande de Benjamin, 23/11/2026). */
+const GROUPES_DECEMBRE: Groupe[] = [
+  {
+    titre: 'Inclus dans les 3 formules',
+    rows: [
+      ['Corrections techniques de votre site', true, true, true],
+      ['Indexation dans Google, Bing et Brave', true, true, true],
+      ['Erreurs des IA corrigées à la source', true, true, true],
+      ['Rapport mensuel', true, true, true],
+    ],
+  },
+  {
+    titre: 'Ce qui augmente d’une formule à l’autre',
+    rows: [
+      ['Audit offert au démarrage', 'Audit GEO Express', 'Audit GEO Complet', 'Audit GEO Complet élargi (60 questions, 5 concurrents)'],
+      ['Questions suivies sur les 4 IA', '20', '40', '60'],
+      ['Réponses analysées chaque mois', nombre(reponsesParMois(20)), nombre(reponsesParMois(40)), nombre(reponsesParMois(60))],
+      ['Concurrents suivis', 'Ceux cités à votre place', '3, choisis avec vous', '5, choisis avec vous'],
+      ['Pages existantes améliorées chaque mois', '3', '5', '10'],
+      ['Point en visio', 'Au démarrage et au bilan des 3 mois', '30 minutes chaque mois', '1 heure chaque mois avec le fondateur'],
+    ],
+  },
+  {
+    titre: 'En plus dès Croissance',
+    rows: [
+      ['Fiche ChatGPT (Business Hub)', false, true, true],
+      ['Nouveaux contenus', false, '2 par mois, validés par vous', '4 par mois, validés par vous'],
+      ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '2 inscriptions par mois', '2 inscriptions par mois'],
+      ['Demandes d’avis clients', 'Conseils', 'Méthode et modèles de réponse', 'Méthode et modèles de réponse'],
+    ],
+  },
+  {
+    titre: 'En plus avec Autorité',
+    rows: [
+      ['Fiches Google et Bing', 'À faire vous-même, textes prêts', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour'],
+      ['Comparatifs, médias et partenaires', false, false, '3 démarches par mois, sans place payante'],
+    ],
+  },
+  {
+    titre: 'Pour choisir',
+    rows: [['Pour qui', 'Une activité principale, sur une zone ou toute la France', 'Jusqu’à 3 services ou 3 villes', 'Jusqu’à 6 services ou villes, ou un secteur très disputé']],
+  },
 ];
 
 export default function AccompagnementGeoPage() {
@@ -113,7 +140,7 @@ export default function AccompagnementGeoPage() {
   const [ESSENTIEL, CROISSANCE, AUTORITE] = plansGeo();
   const [EXPRESS, COMPLET] = auditsGeo();
   const f = fourchetteQuestions();
-  const rows = dec ? ROWS_DECEMBRE : ROWS_NOVEMBRE;
+  const groupes: Groupe[] = dec ? GROUPES_DECEMBRE : [{ rows: ROWS_NOVEMBRE }];
   const faq = faqAccompagnement();
   return (
     <>
@@ -330,42 +357,53 @@ export default function AccompagnementGeoPage() {
                     <th scope="col">{AUTORITE.name}</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {rows.map(([label, ...cells]) => (
-                    <tr key={label}>
-                      <th scope="row">{label}</th>
-                      {cells.map((on, i) =>
-                        typeof on === 'string' ? (
-                          <td key={i} className="is-txt">
-                            {fr(on)}
-                          </td>
-                        ) : (
-                          <td key={i} className={on ? 'is-yes' : 'is-no'}>
-                            <span aria-hidden="true">{on ? YES : NO}</span>
-                            <span className="sr-only">{on ? 'Inclus' : 'Non inclus'}</span>
-                          </td>
-                        ),
-                      )}
-                    </tr>
-                  ))}
-                  <tr className="geo-table__price">
-                    <th scope="row">Prix par mois</th>
-                    {[ESSENTIEL, CROISSANCE, AUTORITE].map((p) => {
-                      const barre = prixBarre(p);
-                      return (
-                        <td key={p.id}>
-                          {euros(prixDuJour(p))} HT
-                          {barre !== null && (
-                            <del>
-                              <span className="sr-only">Prix normal : </span>
-                              {euros(barre)}
-                            </del>
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                </tbody>
+                {groupes.map((g, gi) => (
+                  <tbody key={g.titre ?? gi}>
+                    {g.titre && (
+                      <tr className="geo-table__group">
+                        <th colSpan={4} scope="rowgroup">
+                          {fr(g.titre)}
+                        </th>
+                      </tr>
+                    )}
+                    {g.rows.map(([label, ...cells]) => (
+                      <tr key={label}>
+                        <th scope="row">{label}</th>
+                        {cells.map((on, i) =>
+                          typeof on === 'string' ? (
+                            <td key={i} className="is-txt">
+                              {fr(on)}
+                            </td>
+                          ) : (
+                            <td key={i} className={on ? 'is-yes' : 'is-no'}>
+                              <span aria-hidden="true">{on ? YES : NO}</span>
+                              <span className="sr-only">{on ? 'Inclus' : 'Non inclus'}</span>
+                            </td>
+                          ),
+                        )}
+                      </tr>
+                    ))}
+                    {gi === groupes.length - 1 && (
+                      <tr className="geo-table__price">
+                        <th scope="row">Prix par mois</th>
+                        {[ESSENTIEL, CROISSANCE, AUTORITE].map((p) => {
+                          const barre = prixBarre(p);
+                          return (
+                            <td key={p.id}>
+                              {euros(prixDuJour(p))} HT
+                              {barre !== null && (
+                                <del>
+                                  <span className="sr-only">Prix normal : </span>
+                                  {euros(barre)}
+                                </del>
+                              )}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    )}
+                  </tbody>
+                ))}
               </table>
             </div>
             {dec && (

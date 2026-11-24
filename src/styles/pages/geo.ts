@@ -158,7 +158,10 @@ const css = `
 .geo-table__note { max-width: 1120px; margin: 14px auto 0; font-size: 13px; line-height: 1.5; color: rgba(15,17,21,.55); }
 .geo-table__price td { font-weight: 900; color: #0f1115; }
 .geo-table__price del { display: block; font-size: 12.5px; font-weight: 600; color: rgba(15,17,21,.42); }
+/* Comparatif des formules : titre de chaque bloc (commun, puis ce qui change formule par formule) */
+.geo-table--plans .geo-table__group th { width: auto; padding: 12px 18px; background: rgba(237,110,99,.06); border-top: 1px solid rgba(15,17,21,.07); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #ED6E63; text-align: left; }
 @media (max-width: 640px) {
+  .geo-table--plans .geo-table__group th { padding: 10px 8px; font-size: 10.5px; letter-spacing: .05em; }
   /* SEO / GEO : une carte par critère, les deux réponses l'une sous l'autre */
   .geo-table--stack { min-width: 0; }
   .geo-table--stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -171,7 +174,8 @@ const css = `
   .geo-table--stack td.is-geo::before { color: #ED6E63; }
   /* Comparatif des formules : tient dans la largeur, sans défilement */
   .geo-table--plans { min-width: 0; font-size: 12.5px; }
-  .geo-table--plans th, .geo-table--plans td { padding: 11px 8px; }
+  .geo-table--plans th, .geo-table--plans td { padding: 11px 6px; }
+  .geo-table--plans td.is-txt { font-size: 12px; }
   .geo-table--plans thead th { font-size: 10px; letter-spacing: .04em; }
   .geo-table--plans tbody th { width: 46%; }
 }
