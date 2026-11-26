@@ -2,6 +2,9 @@
  * Offres GEO (visibilité dans les réponses des IA) : source unique des prix, des offres et des
  * FAQ des pages /agence-geo/, /audit-geo/ et /accompagnement-geo/, reprise par leurs données
  * structurées, llms.txt, l'en-tête, l'accueil et les guides du blog (repères <!-- … -->).
+ * La landing /visibilite-ia/ (src/app/(standalone)/visibilite-ia/Body.tsx) lit ici ses prix et ses offres, mais
+ * en reprend aussi un résumé écrit à la main (points(), BLOCAGES, étapes de la méthode) : à mettre à jour en même
+ * temps que les offres.
  *
  * Grille de novembre : PDF « Offres GEO » de Benjamin (novembre 2026). Prix relevés le 09/11/2026
  * à sa demande : Essentiel 290 → 500 € HT par mois ; puis, le même jour, Croissance 390 → 700 et

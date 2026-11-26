@@ -230,7 +230,7 @@ slug, l'article de l'outil l'emporte (il peut reprendre un ancien article à la 
 
 ## Suivi des campagnes Meta (Google Tag Manager)
 
-La landing page Ads (`/appel-strategique/`) et la confirmation de rendez-vous (`/rdv-confirme/`) chargent le
+Les landing pages Ads (`/appel-strategique/`, `/visibilite-ia/`) et la confirmation de rendez-vous (`/rdv-confirme/`) chargent le
 conteneur **GTM-W8S6WQB9** (compte Google Tag Manager « Agence Kameo »), uniquement après accord
 « Publicité » dans le bandeau cookies (`src/components/consent/TagManager.tsx`) : toute balise ajoutée
 au conteneur est donc soumise à ce choix. Le pixel Meta n'est plus codé dans le site, il est dans GTM
