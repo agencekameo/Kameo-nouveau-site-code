@@ -6,21 +6,23 @@ import { CONTACT } from '@/lib/site';
 /*
  * Landing page Ads : bouton WhatsApp flottant en bas à droite (06 62 37 99 85). Simple lien wa.me,
  * sans script ni cookie. Une bulle « Une question ? » apparaît après quelques secondes ; fermée,
- * elle ne revient pas pendant la visite. Le message prérempli signale que le contact vient du site.
+ * elle ne revient pas pendant la visite. Le message prérempli signale que le contact vient du site ;
+ * une landing peut le remplacer (prop message, par exemple sur /visibilite-ia/). La prop bubble={false}
+ * supprime la bulle (sur /visibilite-ia/, elle détournait l'attention du héros) ; par défaut, rien ne change.
  */
 const MESSAGE = 'Bonjour Kameo, j’ai une question sur mon projet de site.';
-const HREF = `${CONTACT.whatsapp}?text=${encodeURIComponent(MESSAGE)}`;
 const BUBBLE_DELAY_MS = 6000;
 
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ message = MESSAGE, bubble: withBubble = true }: { message?: string; bubble?: boolean }) {
+  const HREF = `${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`;
   const [bubble, setBubble] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    if (dismissed) return;
+    if (dismissed || !withBubble) return;
     const t = window.setTimeout(() => setBubble(true), BUBBLE_DELAY_MS);
     return () => window.clearTimeout(t);
-  }, [dismissed]);
+  }, [dismissed, withBubble]);
 
   const dismiss = () => {
     setBubble(false);

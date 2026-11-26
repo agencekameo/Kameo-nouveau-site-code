@@ -717,8 +717,8 @@ export default function PolitiqueDeConfidentialitePage() {
                       </li>
                       <li>taap.it&nbsp;: pages vues, clics et parcours sur le site</li>
                       <li>
-                        Microsoft Clarity&nbsp;: cartes de chaleur et relecture des visites de la landing page (cookies _clck
-                        et _clsk)
+                        Microsoft Clarity&nbsp;: cartes de chaleur et relecture des visites des pages «&nbsp;Appel
+                        stratégique&nbsp;» et «&nbsp;Visibilité IA&nbsp;» (cookies _clck et _clsk)
                       </li>
                       <li>Déposés uniquement après votre accord</li>
                     </ul>
@@ -745,8 +745,8 @@ export default function PolitiqueDeConfidentialitePage() {
                         sécurité, mesure d’audience) dès son chargement&nbsp;: quand vous ouvrez la prise de rendez-vous
                         ou demandez à afficher le calendrier, ou plus tôt si vous avez accepté les cookies de mesure
                         d’audience et publicitaires, pour qu’il s’affiche sans attente&nbsp;: dès votre arrivée sur la
-                        page d’accueil (sur ordinateur) et sur la page «&nbsp;Appel stratégique&nbsp;», et sur les
-                        articles du blog dès que vous survolez un bouton de prise de rendez-vous
+                        page d’accueil (sur ordinateur) et sur les pages «&nbsp;Appel stratégique&nbsp;» et «&nbsp;Visibilité
+                        IA&nbsp;», et sur les articles du blog dès que vous survolez un bouton de prise de rendez-vous
                       </li>
                       <li>Google Maps&nbsp;: carte d’accès à l’agence, qui dépose ses propres cookies lorsqu’elle s’affiche</li>
                       <li>
