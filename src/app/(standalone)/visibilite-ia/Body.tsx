@@ -135,6 +135,16 @@ function Cta({ cta, children, size, outline, label, sub }: { cta: string; childr
 
 const SUB_CTA = <>Diagnostic gratuit · 30&nbsp;min en visio</>;
 
+/** Note Trustpilot : la même pastille au-dessus du titre et sous l'équipe. */
+const TrustBadge = () => (
+  <Ext href={SOCIAL.trustpilot} className="vi-badge">
+    <Stars />
+    <span>
+      <strong>{PROOF.avisNote}/5</strong> Trustpilot · {PROOF.avisNombre}&nbsp;avis
+    </span>
+  </Ext>
+);
+
 function Head({ id, eyebrow, children, sub }: { id: string; eyebrow: string; children: ReactNode; sub?: ReactNode }) {
   return (
     <header className="vi-head" data-vi-reveal="">
@@ -276,6 +286,92 @@ const points = (express: GeoOffer, complet: GeoOffer): Record<string, { lead?: s
   },
 });
 
+/*
+ * Résultats clients : relevés datés de l'outil de suivi Kameo (captures du 23/11/2026), logos dans
+ * public/images/logo clients/. Défikart est un client web : jamais présenté comme un travail GEO. OmegaCloud
+ * appartient au même groupe que Kameo : toujours le dire.
+ */
+type CasClient = { id: string; logo: { src: string; w: number; h: number }; nom: string; activite: string; tag: string; ia: string; big: ReactNode; txt: ReactNode; source: string };
+const CAS: CasClient[] = [
+  {
+    id: 'defikart',
+    logo: { src: '/images/logo clients/Defikart.webp', w: 180, h: 180 },
+    nom: 'Défikart',
+    activite: 'karting, Toulouse',
+    tag: 'Site créé par Kameo',
+    ia: 'ChatGPT',
+    big: (
+      <>
+        1<sup>er</sup>
+      </>
+    ),
+    txt: (
+      <>
+        nommé par ChatGPT sur <span className="vi-nowrap">«&nbsp;karting toulouse&nbsp;»</span>
+      </>
+    ),
+    source: 'Relevé Kameo · novembre 2026',
+  },
+  {
+    id: 'cdp69',
+    logo: { src: '/images/logo clients/CDP69.png', w: 180, h: 180 },
+    nom: 'CDP69',
+    activite: 'autocars, Lyon',
+    tag: 'Accompagné depuis le 16/11/2026',
+    ia: '4 IA',
+    big: (
+      <>
+        3<sup>e</sup>
+      </>
+    ),
+    txt: (
+      <>
+        en 7&nbsp;jours sur «&nbsp;transport scolaire sortie pédagogique Lyon&nbsp;», où il était absent. Désormais cité par les 4&nbsp;IA.
+      </>
+    ),
+    source: 'Relevés Kameo · 16 et 23/11/2026',
+  },
+  {
+    id: 'omega',
+    logo: { src: '/images/logo clients/OmegaCloud.svg', w: 1189, h: 222 },
+    nom: 'OmegaCloud',
+    activite: 'hébergeur, Rennes',
+    tag: 'Même groupe que Kameo',
+    ia: '4 IA',
+    big: <>31&nbsp;%</>,
+    txt: (
+      <>
+        des réponses des 4&nbsp;IA le citent, contre 11&nbsp;% neuf jours plus tôt. 1<sup>er</sup> sur «&nbsp;meilleurs VPS pour le trading en
+        France&nbsp;».
+      </>
+    ),
+    source: 'Relevés Kameo · 14 et 23/11/2026',
+  },
+];
+
+function Cas({ c, i }: { c: CasClient; i: number }) {
+  return (
+    <article className="vi-case" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties} aria-labelledby={`case-${c.id}`}>
+      <div className="vi-case__top">
+        <span className={`vi-case__logo vi-case__logo--${c.id}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={c.logo.src} width={c.logo.w} height={c.logo.h} alt="" loading="lazy" decoding="async" />
+        </span>
+        <span className="vi-ai">{c.ia}</span>
+      </div>
+      <h3 className="vi-case__name" id={`case-${c.id}`}>
+        {c.nom} <span>· {c.activite}</span>
+      </h3>
+      <p className="vi-case__group">{c.tag}</p>
+      <p className="vi-case__big">
+        <span className="vi-gt">{c.big}</span>
+      </p>
+      <p className="vi-case__txt">{c.txt}</p>
+      <p className="vi-case__src">{c.source}</p>
+    </article>
+  );
+}
+
 /** FAQ : libellé affiché (mots du visiteur) et réponse lue dans geo.ts par sa question exacte. */
 const FAQ_GEO: [string, 'agence' | 'accompagnement', string][] = [
   ['Le GEO remplace-t-il mon référencement Google ?', 'agence', 'Le GEO remplace-t-il le SEO ?'],
@@ -352,7 +448,8 @@ export default function Body() {
       (f): f is { label: string; a: string } => !!f.a,
     ),
   ];
-  const defaut = plans.find((p) => p.id === 'croissance') ?? plans[0];
+  /* Sur téléphone, Essentiel s'ouvre par défaut (demande de Benjamin, 27/11/2026) ; « Recommandé » reste sur la formule mise en avant. */
+  const defaut = plans.find((p) => p.id === 'essentiel') ?? plans[0];
 
   return (
     <>
@@ -419,12 +516,9 @@ export default function Body() {
             <div className="vi-hero__halo" aria-hidden="true" />
             <div className="vi-wrap vi-hero__grid">
               <div className="vi-hero__text">
-                <p className="vi-pill">
-                  <span className="vi-pill__dot" aria-hidden="true" />
-                  PME, indépendants, commerces
-                </p>
+                <TrustBadge />
                 <h1 className="vi-h1" id="vi-h1">
-                  Vos clients demandent à ChatGPT qui choisir. Votre nom est-il <span className="vi-gt">dans la réponse</span>&nbsp;?
+                  Soyez l’entreprise que <span className="vi-gt">ChatGPT recommande</span>
                 </h1>
                 <p className="vi-lead">On mesure ce que les IA disent de vous, et on corrige ce qui les empêche de vous citer.</p>
                 <div className="vi-hero__cta">
@@ -432,12 +526,6 @@ export default function Body() {
                     Voir ce que les IA disent de moi
                   </Cta>
                 </div>
-                <Ext href={SOCIAL.trustpilot} className="vi-rating">
-                  <Stars />
-                  <span>
-                    <strong>{PROOF.avisNote}/5</strong> sur Trustpilot · {PROOF.avisNombre}&nbsp;avis
-                  </span>
-                </Ext>
               </div>
               <HeroChat />
             </div>
@@ -447,7 +535,7 @@ export default function Body() {
           <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
             <div className="vi-wrap">
               <Head id="enjeu-t" eyebrow="Ce qui a changé">
-                Quand ChatGPT recommande un concurrent, <span className="vi-dim">personne ne vous prévient.</span>
+                ChatGPT ne cite que quelques noms. <span className="vi-dim">Et vous&nbsp;?</span>
               </Head>
               <ol className="vi-cards">
                 {ETAPES.map((e, i) => (
@@ -480,39 +568,13 @@ export default function Body() {
           {/* ━━ 3 · Résultats clients ━━ */}
           <section className="vi-sec" id="resultats" aria-labelledby="resultats-t">
             <div className="vi-wrap">
-              <Head id="resultats-t" eyebrow="Résultats clients" sub="Des constats datés : les réponses des IA varient d’un essai à l’autre.">
-                Ce que ChatGPT répond pour nos clients
+              <Head id="resultats-t" eyebrow="Résultats clients" sub="Relevés datés : les réponses des IA varient d’un essai à l’autre.">
+                Nos clients, cités par les IA
               </Head>
               <div className="vi-cases">
-                <article className="vi-case" data-vi-reveal="" aria-labelledby="case-defikart">
-                  <div className="vi-case__top">
-                    <Tile id="solid-location-dot" sm />
-                    <span className="vi-ai">ChatGPT</span>
-                  </div>
-                  <h3 className="vi-case__name" id="case-defikart">
-                    Défikart <span>· karting, Toulouse</span>
-                  </h3>
-                  <p className="vi-case__big vi-gt">Nommé en premier</p>
-                  <p className="vi-case__txt">
-                    à la question <span className="vi-nowrap">«&nbsp;karting toulouse&nbsp;»</span>
-                  </p>
-                  <p className="vi-case__src">Relevé Kameo · novembre 2026</p>
-                </article>
-                <article className="vi-case" data-vi-reveal="" style={{ '--vi-i': 1 } as CSSProperties} aria-labelledby="case-omega">
-                  <div className="vi-case__top">
-                    <Tile id="solid-tower-broadcast" sm />
-                    <span className="vi-ai">ChatGPT</span>
-                  </div>
-                  <h3 className="vi-case__name" id="case-omega">
-                    OmegaCloud <span>· hébergeur, Rennes</span>
-                  </h3>
-                  <p className="vi-case__group">Même groupe que Kameo</p>
-                  <p className="vi-case__big">
-                    <span className="vi-gt">6&nbsp;réponses sur&nbsp;6</span>
-                  </p>
-                  <p className="vi-case__txt">le citent pour «&nbsp;les meilleurs hébergeurs de VPS Windows en France&nbsp;»</p>
-                  <p className="vi-case__src">Relevés Kameo · 14 et 15/11/2026</p>
-                </article>
+                {CAS.map((c, i) => (
+                  <Cas key={c.id} c={c} i={i} />
+                ))}
               </div>
             </div>
           </section>
@@ -521,7 +583,7 @@ export default function Body() {
           <section className="vi-sec vi-sec--soft" id="methode" aria-labelledby="methode-t">
             <div className="vi-wrap">
               <Head id="methode-t" eyebrow="Notre méthode" sub="Et chaque mois, un rapport clair, IA par IA.">
-                Mesurer, corriger, faire autorité.
+                3 étapes pour être cité
               </Head>
               <ol className="vi-cards">
                 {METHODE.map((m, i) => (
@@ -546,7 +608,7 @@ export default function Body() {
           <section className="vi-sec" id="formules" aria-labelledby="formules-t">
             <div className="vi-wrap">
               <Head id="formules-t" eyebrow="Formules et prix" sub="Prix hors taxes, par mois, affichés avant tout rendez-vous.">
-                Trois formules, des prix publics
+                3 formules, des prix clairs
               </Head>
 
               {promo && (
@@ -582,7 +644,7 @@ export default function Body() {
                 </div>
                 <ul className="vi-plans">
                   {plans.map((p) => {
-                    const star = p.id === defaut.id;
+                    const star = !!p.featured;
                     const barre = promo ? prixBarre(p) : null;
                     const pts = POINTS[p.id];
                     return (
@@ -686,9 +748,11 @@ export default function Body() {
               <div className="vi-promise" data-vi-reveal="">
                 <Tile id="solid-shield-halved" />
                 <h2 className="vi-h2" id="garanties-t">
-                  Personne ne peut garantir la 1<sup>re</sup> place dans ChatGPT. Nous non plus.
+                  Travail non fait, travail non facturé.
                 </h2>
-                <p className="vi-promise__p">Nous nous engageons sur le travail prévu, chaque mois, et sur une mesure transparente.</p>
+                <p className="vi-promise__p">
+                  Chaque mois, ce qui est prévu dans votre formule est fait et mesuré. Sinon, c’est déduit de votre facture suivante.
+                </p>
               </div>
 
               <div className="vi-team" data-vi-reveal="" style={{ '--vi-i': 1 } as CSSProperties}>
@@ -707,15 +771,10 @@ export default function Body() {
                     </figure>
                   ))}
                 </div>
-                <p className="vi-team__p">Une équipe de 6 à Paris, sans sous-traitance.</p>
+                <p className="vi-team__p">Une équipe de 6, sans sous-traitance. Rendez-vous en visio, partout en France.</p>
                 <ul className="vi-badges">
                   <li>
-                    <Ext href={SOCIAL.trustpilot} className="vi-badge">
-                      <Stars />
-                      <span>
-                        <strong>{PROOF.avisNote}/5</strong> Trustpilot · {PROOF.avisNombre}&nbsp;avis
-                      </span>
-                    </Ext>
+                    <TrustBadge />
                   </li>
                   <li>
                     <Ext href={FABRIQUE_URL} className="vi-badge">
@@ -736,8 +795,8 @@ export default function Body() {
           {/* ━━ 7 · FAQ ━━ */}
           <section className="vi-sec" id="faq" aria-labelledby="faq-t">
             <div className="vi-wrap vi-faqwrap">
-              <Head id="faq-t" eyebrow="Questions fréquentes">
-                Avant de réserver
+              <Head id="faq-t" eyebrow="FAQ">
+                Vos questions
               </Head>
               <div className="vi-faq">
                 {faq.map((f) => (
@@ -758,7 +817,7 @@ export default function Body() {
             <div className="vi-wrap vi-final__in" data-vi-reveal="">
               <Slot>Votre entreprise, cette fois&nbsp;?</Slot>
               <h2 className="vi-h2 vi-final__t" id="diagnostic-t">
-                Votre nom est-il <span className="vi-gt">dans la réponse</span>&nbsp;? <span className="vi-nowrap">Regardons-le</span> ensemble.
+                Que dit <span className="vi-gt">ChatGPT</span> de vous&nbsp;?
               </h2>
               <ul className="vi-final__pts">
                 <li>

@@ -155,12 +155,15 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-offre {
   position: relative; display: flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 44px; padding: 8px var(--vi-gutter);
-  background: linear-gradient(90deg, rgba(225,75,137,.08), rgba(248,144,60,.08)), #fff;
-  font: 500 13.5px/1.35 var(--vi-ff-body); color: var(--vi-ink); text-decoration: none;
+  background: var(--vi-ink);
+  font: 500 13.5px/1.35 var(--vi-ff-body); color: #fff; text-decoration: none;
 }
-.vi-offre::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--vi-grad-h); opacity: .5; }
+.vi-offre::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--vi-grad-h); }
+@media (hover: hover) { .vi-offre:hover { background: var(--vi-ink-2); } }
+.vi-offre .vi-chip-promo { background: var(--vi-grad); color: var(--vi-ink); }
+.vi-offre .vi-count { color: rgba(255,255,255,.78); }
 .vi-offre__txt { min-width: 0; font-weight: 600; }
-.vi-offre__date { font-weight: 400; }
+.vi-offre__date { font-weight: 400; color: rgba(255,255,255,.78); }
 .vi-offre__long, .vi-offre__count { display: none; }
 .vi-offre__go .vi-ico { width: 16px; height: 16px; stroke-width: 2; }
 @media (min-width: 640px) {
@@ -199,14 +202,10 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-hero { position: relative; padding: 12px 0 56px; }
 .vi-hero__halo { position: absolute; inset: -120px 0 auto; height: 620px; pointer-events: none; background: radial-gradient(60% 50% at 85% 20%, rgba(248,144,60,.10), transparent 70%), radial-gradient(50% 45% at 15% 0%, rgba(225,75,137,.08), transparent 70%); }
 .vi-hero__grid { position: relative; display: grid; gap: 40px; }
-.vi-pill { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; border-radius: 999px; background: #fff; border: 1px solid var(--vi-line); font: 500 13px/1 var(--vi-ff-body); color: var(--vi-ink-2); }
-.vi-pill__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--vi-grad); }
+.vi-hero .vi-badge { display: inline-flex; }
 .vi-h1 { margin-top: 16px; font: 900 clamp(2rem, 1.45rem + 2.8vw, 4rem)/1.03 var(--vi-ff-head); letter-spacing: -0.035em; }
 .vi-lead { margin-top: 14px; max-width: 32em; font-size: 17px; line-height: 1.5; color: var(--vi-text); }
 .vi-hero__cta { margin-top: 24px; }
-.vi-rating { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 10px; font: 500 14px/1.3 var(--vi-ff-body); color: var(--vi-ink-2); text-decoration: none; }
-.vi-rating strong { color: var(--vi-ink); }
-@media (hover: hover) { .vi-rating:hover span:last-child { text-decoration: underline; text-underline-offset: 3px; } }
 @media (min-width: 768px) {
   .vi-hero { padding: 32px 0 88px; }
   .vi-hero__text, .vi-chat { max-width: 640px; }
@@ -320,18 +319,26 @@ body:has(.vi) { background: #FFFFFF; }
 /* ━━ 3 · Résultats ━━ */
 .vi-cases { display: grid; gap: 16px; }
 .vi-case { display: flex; flex-direction: column; padding: 22px 22px 20px; border-radius: 24px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-2); }
-.vi-case__top { display: flex; align-items: center; justify-content: space-between; }
+.vi-case__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.vi-case__logo { display: flex; align-items: center; height: 64px; }
+.vi-case__logo img { display: block; width: auto; height: 64px; max-width: 160px; object-fit: contain; object-position: left center; }
+.vi-case__logo--omega img { width: 150px; height: auto; }
+.vi-case__logo--defikart img { filter: brightness(.55) contrast(1.15); }
 .vi-case__name { margin-top: 16px; font: 800 20px/1.25 var(--vi-ff-head); letter-spacing: -0.02em; }
 .vi-case__name span { font: 500 14px/1 var(--vi-ff-body); letter-spacing: 0; color: var(--vi-muted); }
 .vi-case__group { margin-top: 8px; display: inline-flex; align-self: flex-start; align-items: center; height: 24px; padding: 0 9px; border-radius: 6px; background: var(--vi-bg-sunk); font: 400 11.5px/1 var(--vi-ff-mono); color: var(--vi-ink-2); }
 .vi-case__big { margin-top: 16px; font: 900 40px/1.02 var(--vi-ff-head); letter-spacing: -0.035em; color: var(--vi-ink); }
-.vi-case__txt { margin-top: 8px; font-size: 15.5px; color: var(--vi-text); }
-.vi-case__src { margin-top: auto; padding-top: 16px; font: 400 11.5px/1.5 var(--vi-ff-mono); color: var(--vi-muted); }
-.vi-case__txt + .vi-case__src { margin-top: 16px; border-top: 1px dashed var(--vi-line-2); }
+.vi-case__txt { margin-top: 8px; margin-bottom: 18px; font-size: 15.5px; color: var(--vi-text); }
+.vi-case__src { margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--vi-line-2); font: 400 11.5px/1.5 var(--vi-ff-mono); color: var(--vi-muted); }
 @media (min-width: 768px) {
   .vi-cases { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 980px; margin-inline: auto; }
+  .vi-case:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .vi-case { padding: 28px 30px 24px; }
   .vi-case__big { font-size: 48px; }
+}
+@media (min-width: 1024px) {
+  .vi-cases { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1120px; }
+  .vi-case:last-child:nth-child(odd) { grid-column: auto; }
 }
 
 /* ━━ 5 · Formules ━━ */
@@ -402,7 +409,7 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-promise__p { margin-top: 12px; max-width: 30em; font-size: 16px; color: var(--vi-muted); }
 .vi-team__faces { display: flex; justify-content: center; gap: 28px; }
 .vi-face { display: grid; justify-items: center; gap: 10px; margin: 0; }
-.vi-face img { display: block; width: 84px; height: 84px; border-radius: 50%; object-fit: cover; filter: grayscale(1); background: var(--vi-bg-sunk); box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--vi-line); }
+.vi-face img { display: block; width: 84px; height: 84px; border-radius: 50%; object-fit: cover; background: var(--vi-bg-sunk); box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--vi-line); }
 .vi-face figcaption strong { display: block; font: 700 16px/1.25 var(--vi-ff-head); color: var(--vi-ink); }
 .vi-face figcaption span { display: block; margin-top: 2px; font-size: 13.5px; color: var(--vi-muted); }
 .vi-team__p { margin-top: 18px; font-size: 15.5px; color: var(--vi-ink-2); }
