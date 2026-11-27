@@ -15,6 +15,7 @@
 import type { CSSProperties, ReactNode } from 'react';
 import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
 import { fr } from '@/components/geo/GeoBlocks';
+import AiRotator from '@/components/landing-geo/AiRotator';
 import Countdown from '@/components/landing-geo/Countdown';
 import {
   GEO_ENGINES,
@@ -155,27 +156,6 @@ function Cta({ cta, children, size, outline, label, sub }: { cta: string; childr
 }
 
 const SUB_CTA = <>Diagnostic gratuit · 30&nbsp;min en visio</>;
-
-/**
- * Texte qui s'écrit lettre par lettre (titre : « en 1 mois »), en CSS seul : chaque lettre apparaît à son tour, un
- * curseur la suit puis clignote à la fin. La place est réservée dès le départ (pas de saut de mise en page) ; les
- * lecteurs d'écran lisent le texte entier ; sans animation si le visiteur la refuse (styles.ts).
- */
-function Typed({ text }: { text: string }) {
-  const chars = [...text];
-  return (
-    <span className="vi-type">
-      <span className="sr-only">{text}</span>
-      <span aria-hidden="true">
-        {chars.map((c, i) => (
-          <span key={i} className={'vi-type__c' + (i === chars.length - 1 ? ' is-last' : '')} style={{ '--c': i } as CSSProperties}>
-            {c}
-          </span>
-        ))}
-      </span>
-    </span>
-  );
-}
 
 /** Note Trustpilot : la même pastille au-dessus du titre et sous l'équipe. */
 const TrustBadge = () => (
@@ -537,11 +517,12 @@ export default function Body({ v }: { v: Variante }) {
             <div className="vi-wrap vi-hero__grid">
               <div className="vi-hero__text">
                 <TrustBadge />
+                {/* Le nom de l'IA change tout seul (AiRotator, 27/11/2026) ; « en 1 mois » fixe, sur la ligne suivante : la case
+                    des noms a la largeur du plus long, l'espace d'un nom court reste ainsi invisible en fin de ligne. */}
                 <h1 className="vi-h1" id="vi-h1">
-                  <Nw>{v.h1}</Nw>{' '}
-                  <span className="vi-gt">
-                    ChatGPT <Typed text={`en${nb}1${nb}mois`} />
-                  </span>
+                  <Nw>{v.h1}</Nw> <AiRotator />
+                  <br />
+                  <span className="vi-gt">{`en${nb}1${nb}mois`}</span>
                 </h1>
                 <p className="vi-lead">
                   <Nw>{v.lead}</Nw>
