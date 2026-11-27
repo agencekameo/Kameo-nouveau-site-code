@@ -19,8 +19,6 @@ import {
   GEO_PROMO,
   auditsGeo,
   euros,
-  faqAccompagnement,
-  faqAgence,
   noteEngagementGeo,
   plansGeo,
   prixBarre,
@@ -28,7 +26,6 @@ import {
   promoGeoActive,
   remiseGeoUniforme,
   remiseMaxGeo,
-  type FaqItem,
   type GeoOffer,
 } from '@/content/geo';
 import { CONTACT, PROOF, SOCIAL } from '@/lib/site';
@@ -285,7 +282,7 @@ const ETAPES: { illu: 'ask' | 'answer' | 'call'; t: string; p: string }[] = [
 const METHODE: { illu: 'measure' | 'fix' | 'authority'; t: string; p: string }[] = [
   { illu: 'measure', t: 'Mesurer', p: 'Les questions de vos clients, posées aux 4 IA toutes les deux semaines.' },
   { illu: 'fix', t: 'Corriger', p: 'Votre site rendu lisible par les IA, et leurs erreurs sur vous corrigées.' },
-  { illu: 'authority', t: 'Faire autorité', p: 'Votre présence là où les IA puisent leurs réponses.' },
+  { illu: 'authority', t: 'Notoriété', p: 'Votre présence là où les IA puisent leurs réponses.' },
 ];
 
 /** Trois points par carte, lus dans les offres de geo.ts (nom des audits par auditsGeo()). */
@@ -394,13 +391,6 @@ function Cas({ c, i }: { c: CasClient; i: number }) {
   );
 }
 
-/** FAQ : libellé affiché (mots du visiteur) et réponse lue dans geo.ts par sa question exacte. */
-const FAQ_GEO: [string, 'agence' | 'accompagnement', string][] = [
-  ['Le GEO remplace-t-il mon référencement Google ?', 'agence', 'Le GEO remplace-t-il le SEO ?'],
-  ['Combien de temps avant les premiers effets ?', 'agence', 'Combien de temps faut-il pour être cité par ChatGPT ou les autres IA ?'],
-  ['Je ne suis pas technique. Que faut-il vous fournir ?', 'accompagnement', 'Que faut-il vous fournir pour démarrer ?'],
-];
-
 /* ───────────────────────── Visuel du héros ───────────────────────── */
 
 /** « La réponse » : illustration (pas une capture), rangées composées une à une au chargement (CSS seul). */
@@ -454,22 +444,7 @@ export default function Body() {
   const plans = plansGeo();
   const [EXPRESS, COMPLET] = auditsGeo();
   const POINTS = points(EXPRESS, COMPLET);
-  const moisEngagement = Number(noteEngagementGeo().match(/\d+/)?.[0] ?? 6);
   const remise = remiseGeoUniforme() ? <>−{remiseMaxGeo()}&nbsp;% sur chaque formule</> : <>Jusqu’à −{remiseMaxGeo()}&nbsp;%</>;
-  const faqSrc: Record<'agence' | 'accompagnement', FaqItem[]> = { agence: faqAgence(), accompagnement: faqAccompagnement() };
-  const faq = [
-    {
-      label: 'Que se passe-t-il pendant le diagnostic gratuit ?',
-      a: `30${nb}minutes en visio. Nous posons en direct 5${nb}questions de vos clients à ${GEO_ENGINES.slice(0, -1).join(', ')} et ${GEO_ENGINES[GEO_ENGINES.length - 1]}, en partage d’écran, puis nous choisissons ensemble le bon format : audit ou accompagnement.`,
-    },
-    {
-      label: 'Le diagnostic m’engage-t-il à signer ?',
-      a: `Non. Vous voyez les réponses des IA, que vous signiez ou non. Si vous choisissez un accompagnement, il comprend ${moisEngagement}${nb}mois d’engagement, puis il est sans engagement.`,
-    },
-    ...FAQ_GEO.map(([label, from, q]) => ({ label, a: faqSrc[from].find((f) => f.q === q)?.a })).filter(
-      (f): f is { label: string; a: string } => !!f.a,
-    ),
-  ];
   /* Sur téléphone, Essentiel s'ouvre par défaut (demande de Benjamin, 27/11/2026) ; « Recommandé » reste sur la formule mise en avant. */
   const defaut = plans.find((p) => p.id === 'essentiel') ?? plans[0];
 
@@ -810,27 +785,7 @@ export default function Body() {
             </div>
           </section>
 
-          {/* ━━ 7 · FAQ ━━ */}
-          <section className="vi-sec" id="faq" aria-labelledby="faq-t">
-            <div className="vi-wrap vi-faqwrap">
-              <Head id="faq-t" eyebrow="FAQ">
-                Vos questions
-              </Head>
-              <div className="vi-faq">
-                {faq.map((f) => (
-                  <details key={f.label} className="vi-faq__item">
-                    <summary className="vi-faq__q">
-                      <span>{fr(f.label)}</span>
-                      <span className="vi-faq__icon" aria-hidden="true" />
-                    </summary>
-                    <p className="vi-faq__a">{t(f.a)}</p>
-                  </details>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ━━ 8 · Diagnostic (CTA final) ━━ */}
+          {/* ━━ 7 · Diagnostic (CTA final) ; la FAQ a été retirée le 27/11/2026 à la demande de Benjamin ━━ */}
           <section className="vi-sec vi-final" id="diagnostic" aria-labelledby="diagnostic-t">
             <div className="vi-wrap vi-final__in" data-vi-reveal="">
               <Slot>Votre entreprise, cette fois&nbsp;?</Slot>

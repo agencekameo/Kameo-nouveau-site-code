@@ -435,23 +435,7 @@ body:has(.vi) { background: #FFFFFF; }
 }
 @media (min-width: 1024px) { .vi-team { padding: 64px 48px; } .vi-team__faces { gap: 48px; margin-top: 36px; } }
 
-/* ━━ 7 · FAQ ━━ */
-.vi-faq { border-top: 1px solid var(--vi-line); }
-.vi-faq__item { border-bottom: 1px solid var(--vi-line); }
-.vi-faq__q { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 14px 0; font: 700 17px/1.35 var(--vi-ff-head); letter-spacing: -0.01em; color: var(--vi-ink); cursor: pointer; list-style: none; }
-.vi-faq__q::-webkit-details-marker { display: none; }
-.vi-faq__icon { position: relative; width: 28px; height: 28px; flex: none; border-radius: 50%; border: 1px solid var(--vi-line-2); }
-.vi-faq__icon::before, .vi-faq__icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 11px; height: 1.5px; margin: -.75px 0 0 -5.5px; background: var(--vi-ink); border-radius: 1px; transition: transform 200ms var(--vi-ease-std); }
-.vi-faq__icon::after { transform: rotate(90deg); }
-.vi-faq__item[open] .vi-faq__icon::after { transform: rotate(0); }
-.vi-faq__a { max-width: 62ch; padding-bottom: 20px; font-size: 15.5px; line-height: 1.6; }
-@media (min-width: 1024px) {
-  .vi-faqwrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 64px; align-items: start; }
-  .vi-faqwrap .vi-head { position: sticky; top: 104px; margin: 0; text-align: left; }
-  .vi-faq__q { font-size: 18px; }
-}
-
-/* ━━ 8 · Diagnostic (final) ━━ */
+/* ━━ 7 · Diagnostic (final) ━━ */
 .vi-final { overflow: hidden; background: radial-gradient(60% 60% at 50% 0%, rgba(225,75,137,.10), transparent 70%), radial-gradient(50% 50% at 90% 100%, rgba(248,144,60,.10), transparent 70%), var(--vi-bg-soft); }
 .vi-final__in { display: flex; flex-direction: column; align-items: center; max-width: 760px; text-align: center; }
 .vi-final .vi-slot { width: auto; padding-right: 18px; background: #fff; }
