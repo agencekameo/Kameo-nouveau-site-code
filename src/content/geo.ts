@@ -28,7 +28,9 @@
  * Croissance : 900€ Autorité : 1450€ ») : audits 650 et 990 € HT, accompagnements 600, 900 et 1 450 € HT par mois.
  * L'offre Black Friday garde ses prix (350, 600 et 1 100 €) jusqu'au 30/11/2026. Ces nouveaux prix n'ayant jamais été
  * pratiqués avant l'offre, ils sont présentés comme les prix des signatures « à partir du 1er décembre », jamais barrés
- * ni traduits en pourcentage de remise (sinon, fausse réduction). Le même jour, à sa demande : les 3 démarches par mois
+ * ni traduits en pourcentage de remise (sinon, fausse réduction). Puis, le même jour, Benjamin arrête l'offre
+ * (« enleve les offres blackfriday ») : GEO_PROMO.fin passe au 27/11/2026, 16 h 30, et le site n'affiche plus que les
+ * prix normaux. Le même jour, à sa demande : les 3 démarches par mois
  * auprès de comparatifs et de médias passent d'Autorité à Croissance, Croissance passe à 1 inscription par mois dans
  * les annuaires (au lieu de 2), et la méthode de demande d'avis est retirée.
  *
@@ -283,13 +285,15 @@ export const plansGeo = (): GeoOffer[] => (grilleDecembreActive() ? PLANS_DECEMB
  * pendant tout son engagement. Depuis le 20/11/2026, elle porte sur la nouvelle grille : 350, 600 et
  * 1 100 € HT par mois. Depuis le 27/11/2026, les prix normaux sont 600, 900 et 1 450 € : jamais pratiqués avant l'offre,
  * ils sont annoncés comme ceux des signatures à partir du 1er décembre (prixApresOffre), sans prix barré ni pourcentage.
+ * Le 27/11/2026, Benjamin arrête l'offre plus tôt (« enleve les offres blackfriday ») : fin fixée au 27/11/2026, 16 h 30.
+ * Plus rien ne s'affiche (tout dépend de promoGeoActive) ; le mécanisme reste pour une prochaine offre.
  */
 export const GEO_PROMO = {
   nom: 'Black Friday',
   /** Dernier instant de l'offre, heure de Paris. */
-  fin: '2026-11-30T23:59:59+01:00',
+  fin: '2026-11-27T16:30:00+01:00',
   /** Date affichée partout (pages, FAQ, guide des prix, llms.txt), avec l'année depuis le 16/11/2026. */
-  finTexte: '30 novembre 2026',
+  finTexte: '27 novembre 2026',
   /** Premier instant des prix normaux pour les nouvelles signatures, heure de Paris (données structurées). */
   reprise: '2026-12-01T00:00:00+01:00',
   /** « À partir du 1er décembre » : sans l'année dans les cartes de prix, avec l'année dans les phrases. */

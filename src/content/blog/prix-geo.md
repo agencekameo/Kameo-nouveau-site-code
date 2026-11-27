@@ -4,7 +4,7 @@ seoTitle: "Prix GEO : tarif d'un audit et d'une agence GEO en 2026 | Kameo"
 description: "Combien coûte le GEO (référencement IA) en 2026 ? Prix d'un audit et d'un accompagnement, ce que comprend chaque offre et comment comparer deux devis."
 excerpt: "Audit, accompagnement mensuel, outil de suivi : les prix du GEO relevés en novembre 2026, ce que comprend chaque niveau, les questions à poser pour comparer deux offres et les signaux d'alerte."
 date: "2026-11-09T16:00:00+01:00"
-modified: "2026-11-27T16:20:00+01:00"
+modified: "2026-11-27T16:40:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-prix-geo.jpg"
 imageWidth: 1600
 imageHeight: 900
