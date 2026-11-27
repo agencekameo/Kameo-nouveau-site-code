@@ -81,6 +81,18 @@ body:has(.vi) { background: #FFFFFF; }
 }
 @media (forced-colors: active) { .vi-gt { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; } }
 .vi-dim { color: var(--vi-faint); }
+/* Titre : « en 1 mois » s'écrit lettre par lettre, puis le curseur clignote (seulement si le mouvement est accepté).
+   La lettre cachée (visibility) garde sa place et sort du masque du dégradé : le dégradé ne bouge pas. */
+.vi-type__c { position: relative; }
+@media (prefers-reduced-motion: no-preference) {
+  /* linear, pas steps() : la lettre devient visible dès le début de son animation, même si un arrondi l'empêche d'atteindre 100 %. */
+  .vi-type__c { animation: vi-type-c 10ms linear both; animation-delay: calc(500ms + var(--c) * 90ms); }
+  .vi-type__c::after { content: ""; position: absolute; top: .14em; bottom: .1em; right: -.08em; width: .07em; border-radius: 2px; background: #CF5B1F; opacity: 0; animation: vi-type-caret 90ms linear; animation-delay: calc(500ms + var(--c) * 90ms); }
+  .vi-type__c.is-last::after { animation: vi-type-blink 900ms steps(1, end) 4; animation-delay: calc(500ms + var(--c) * 90ms); }
+}
+@keyframes vi-type-c { from { visibility: hidden; } to { visibility: visible; } }
+@keyframes vi-type-caret { from, to { opacity: 1; } }
+@keyframes vi-type-blink { 0% { opacity: 1; } 50% { opacity: 0; } }
 .vi-inline { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--vi-line-2); }
 @media (hover: hover) { .vi-inline:hover { text-decoration-color: currentColor; } }
 

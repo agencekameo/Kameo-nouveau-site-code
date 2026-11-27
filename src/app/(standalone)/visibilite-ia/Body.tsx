@@ -135,6 +135,27 @@ function Cta({ cta, children, size, outline, label, sub }: { cta: string; childr
 
 const SUB_CTA = <>Diagnostic gratuit · 30&nbsp;min en visio</>;
 
+/**
+ * Texte qui s'écrit lettre par lettre (titre : « en 1 mois »), en CSS seul : chaque lettre apparaît à son tour, un
+ * curseur la suit puis clignote à la fin. La place est réservée dès le départ (pas de saut de mise en page) ; les
+ * lecteurs d'écran lisent le texte entier ; sans animation si le visiteur la refuse (styles.ts).
+ */
+function Typed({ text }: { text: string }) {
+  const chars = [...text];
+  return (
+    <span className="vi-type">
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {chars.map((c, i) => (
+          <span key={i} className={'vi-type__c' + (i === chars.length - 1 ? ' is-last' : '')} style={{ '--c': i } as CSSProperties}>
+            {c}
+          </span>
+        ))}
+      </span>
+    </span>
+  );
+}
+
 /** Note Trustpilot : la même pastille au-dessus du titre et sous l'équipe. */
 const TrustBadge = () => (
   <Ext href={SOCIAL.trustpilot} className="vi-badge">
@@ -519,7 +540,10 @@ export default function Body() {
               <div className="vi-hero__text">
                 <TrustBadge />
                 <h1 className="vi-h1" id="vi-h1">
-                  Devenez visible sur <span className="vi-gt">ChatGPT en 1&nbsp;mois</span>
+                  Devenez visible sur{' '}
+                  <span className="vi-gt">
+                    ChatGPT <Typed text={`en 1${nb}mois`} />
+                  </span>
                 </h1>
                 <p className="vi-lead">On mesure ce que les IA disent de vous, et on corrige ce qui les empêche de vous citer.</p>
                 <div className="vi-hero__cta">
