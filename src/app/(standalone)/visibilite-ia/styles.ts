@@ -454,10 +454,9 @@ body:has(.vi) { background: #FFFFFF; }
 @media (min-width: 640px) { .vi-final__alt { display: flex; justify-content: center; width: auto; } .vi-final__alt .vi-btn-ghost { padding: 0 20px; } }
 
 /* ━━ Ligne légale ━━ */
-.vi-legal { padding: 24px 0; border-top: 1px solid var(--vi-line); background: #fff; }
-.vi-legal p { text-align: center; font: 400 13px/2 var(--vi-ff-body); color: var(--vi-muted); }
+.vi-legal { margin-top: 56px; text-align: center; font: 400 11.5px/1.8 var(--vi-ff-body); color: var(--vi-faint); }
 .vi-legal a, .vi-legal .ckb-settings { color: inherit; font: inherit; text-decoration: none; }
-.vi-legal .ckb-settings { display: inline; min-height: 0; min-width: 0; padding: 0; vertical-align: baseline; }
+.vi-legal .ckb-settings { display: inline; min-height: 0; min-width: 0; padding: 0; vertical-align: baseline; background: none; border: 0; cursor: pointer; }
 .vi-legal a:hover, .vi-legal .ckb-settings:hover { color: var(--vi-ink); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ━━ Barre d'action mobile (< 768 px) ━━ */

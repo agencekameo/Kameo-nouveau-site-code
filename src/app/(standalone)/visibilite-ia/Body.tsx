@@ -842,25 +842,21 @@ export default function Body() {
                 </a>
               </div>
             </div>
+            {/* Plus de pied de page (demande de Benjamin, 27/11/2026) : les liens légaux restent, en une ligne discrète,
+                pour la CNIL (retrait du consentement aux cookies) et les régies publicitaires. */}
+            <p className="vi-wrap vi-legal">
+              <a href="/mentions-legales/" target="_blank" rel="noopener">
+                Mentions légales<span className="sr-only"> (nouvel onglet)</span>
+              </a>
+              <span aria-hidden="true"> · </span>
+              <a href="/politique-de-confidentialite/" target="_blank" rel="noopener">
+                Confidentialité<span className="sr-only"> (nouvel onglet)</span>
+              </a>
+              <span aria-hidden="true"> · </span>
+              <CookieSettingsLink />
+            </p>
           </section>
         </main>
-
-        {/* ━━ Ligne légale ━━ */}
-        <footer className="vi-legal" id="vi-legal">
-          <p className="vi-wrap">
-            <span>© {new Date().getFullYear()} Kameo</span>
-            <span aria-hidden="true"> · </span>
-            <a href="/mentions-legales/" target="_blank" rel="noopener">
-              Mentions légales<span className="sr-only"> (nouvel onglet)</span>
-            </a>
-            <span aria-hidden="true"> · </span>
-            <a href="/politique-de-confidentialite/" target="_blank" rel="noopener">
-              Confidentialité<span className="sr-only"> (nouvel onglet)</span>
-            </a>
-            <span aria-hidden="true"> · </span>
-            <CookieSettingsLink />
-          </p>
-        </footer>
 
         {/* ━━ Barre d'action mobile (affichée par ViEffects une fois le héros passé) ━━ */}
         <div className="vi-sticky" id="vi-sticky">
