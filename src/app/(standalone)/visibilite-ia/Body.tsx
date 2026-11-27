@@ -287,18 +287,18 @@ const points = (express: GeoOffer, complet: GeoOffer): Record<string, { lead?: s
 });
 
 /*
- * Résultats clients : relevés datés de l'outil de suivi Kameo (captures du 23/11/2026), logos dans
- * public/images/logo clients/. Défikart est un client web : jamais présenté comme un travail GEO. OmegaCloud
- * appartient au même groupe que Kameo : toujours le dire.
+ * Résultats clients : relevés de l'outil de suivi Kameo (captures du 23/11/2026), logos dans
+ * public/images/logo clients/. Sous chaque cas : depuis quand le client est suivi (demande de Benjamin, 27/11/2026).
+ * Défikart est un client web (site publié en juillet 2026) : jamais présenté comme un travail GEO. OmegaCloud
+ * appartient au même groupe que Kameo : toujours le dire, au moins dans sa ligne de date.
  */
-type CasClient = { id: string; logo: { src: string; w: number; h: number }; nom: string; activite: string; tag: string; ia: string; big: ReactNode; txt: ReactNode; source: string };
+type CasClient = { id: string; logo: { src: string; w: number; h: number }; nom: string; activite: string; ia: string; big: ReactNode; txt: ReactNode; depuis: string };
 const CAS: CasClient[] = [
   {
     id: 'defikart',
-    logo: { src: '/images/logo clients/Defikart.webp', w: 180, h: 180 },
+    logo: { src: '/images/logo clients/Defikart-couleur.png', w: 312, h: 312 },
     nom: 'Défikart',
     activite: 'karting, Toulouse',
-    tag: 'Site créé par Kameo',
     ia: 'ChatGPT',
     big: (
       <>
@@ -310,14 +310,13 @@ const CAS: CasClient[] = [
         nommé par ChatGPT sur <span className="vi-nowrap">«&nbsp;karting toulouse&nbsp;»</span>
       </>
     ),
-    source: 'Relevé Kameo · novembre 2026',
+    depuis: 'Client depuis juillet 2026',
   },
   {
     id: 'cdp69',
     logo: { src: '/images/logo clients/CDP69.png', w: 180, h: 180 },
     nom: 'CDP69',
     activite: 'autocars, Lyon',
-    tag: 'Accompagné depuis le 16/11/2026',
     ia: '4 IA',
     big: (
       <>
@@ -329,23 +328,26 @@ const CAS: CasClient[] = [
         en 7&nbsp;jours sur «&nbsp;transport scolaire sortie pédagogique Lyon&nbsp;», où il était absent. Désormais cité par les 4&nbsp;IA.
       </>
     ),
-    source: 'Relevés Kameo · 16 et 23/11/2026',
+    depuis: 'Accompagné depuis le 16/11/2026',
   },
   {
     id: 'omega',
     logo: { src: '/images/logo clients/OmegaCloud.svg', w: 1189, h: 222 },
     nom: 'OmegaCloud',
     activite: 'hébergeur, Rennes',
-    tag: 'Même groupe que Kameo',
     ia: '4 IA',
-    big: <>31&nbsp;%</>,
-    txt: (
+    big: (
       <>
-        des réponses des 4&nbsp;IA le citent, contre 11&nbsp;% neuf jours plus tôt. 1<sup>er</sup> sur «&nbsp;meilleurs VPS pour le trading en
-        France&nbsp;».
+        1<sup>er</sup>
       </>
     ),
-    source: 'Relevés Kameo · 14 et 23/11/2026',
+    txt: (
+      <>
+        sur «&nbsp;meilleurs VPS pour le trading en France&nbsp;». Et 31&nbsp;% des réponses des 4&nbsp;IA le citent, contre 11&nbsp;% neuf jours
+        plus tôt.
+      </>
+    ),
+    depuis: 'Même groupe que Kameo · accompagné depuis le 14/11/2026',
   },
 ];
 
@@ -362,12 +364,11 @@ function Cas({ c, i }: { c: CasClient; i: number }) {
       <h3 className="vi-case__name" id={`case-${c.id}`}>
         {c.nom} <span>· {c.activite}</span>
       </h3>
-      <p className="vi-case__group">{c.tag}</p>
       <p className="vi-case__big">
         <span className="vi-gt">{c.big}</span>
       </p>
       <p className="vi-case__txt">{c.txt}</p>
-      <p className="vi-case__src">{c.source}</p>
+      <p className="vi-case__src">{c.depuis}</p>
     </article>
   );
 }
@@ -534,8 +535,16 @@ export default function Body() {
           {/* ━━ 2 · Ce qui a changé ━━ */}
           <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
             <div className="vi-wrap">
-              <Head id="enjeu-t" eyebrow="Ce qui a changé">
-                ChatGPT ne cite que quelques noms. <span className="vi-dim">Et vous&nbsp;?</span>
+              <Head
+                id="enjeu-t"
+                eyebrow="Ce qui a changé"
+                sub={
+                  <span className="vi-srcline">
+                    Source&nbsp;: <Ext href={ARCOM_URL}>Arcom et Médiamétrie, juin 2026</Ext>
+                  </span>
+                }
+              >
+                <span className="vi-gt">33&nbsp;millions</span> de Français utilisent un service d’IA chaque mois.
               </Head>
               <ol className="vi-cards">
                 {ETAPES.map((e, i) => (
@@ -553,22 +562,13 @@ export default function Body() {
                   </li>
                 ))}
               </ol>
-              <div className="vi-stat" data-vi-reveal="">
-                <Tile id="solid-users" />
-                <p className="vi-stat__t">
-                  <strong className="vi-gt">33&nbsp;millions</strong> de Français utilisent un service d’IA chaque mois.
-                </p>
-                <p className="vi-src">
-                  <Ext href={ARCOM_URL}>Arcom et Médiamétrie, juin 2026</Ext>
-                </p>
-              </div>
             </div>
           </section>
 
           {/* ━━ 3 · Résultats clients ━━ */}
           <section className="vi-sec" id="resultats" aria-labelledby="resultats-t">
             <div className="vi-wrap">
-              <Head id="resultats-t" eyebrow="Résultats clients" sub="Relevés datés : les réponses des IA varient d’un essai à l’autre.">
+              <Head id="resultats-t" eyebrow="Résultats clients" sub="Relevés Kameo de novembre 2026 : les réponses des IA varient d’un essai à l’autre.">
                 Nos clients, cités par les IA
               </Head>
               <div className="vi-cases">
