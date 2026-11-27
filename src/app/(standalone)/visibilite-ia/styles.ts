@@ -401,12 +401,9 @@ body:has(.vi) { background: #FFFFFF; }
 }
 
 /* ━━ 6 · Engagement et équipe ━━ */
-.vi-trustgrid { display: grid; gap: 16px; }
-.vi-promise, .vi-team { padding: 28px 22px; border-radius: 24px; background: var(--vi-block); border: 1px solid var(--vi-line); text-align: center; }
-.vi-promise { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.vi-promise .vi-h2 { margin-top: 18px; font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2.125rem); }
-.vi-promise__p { margin-top: 12px; max-width: 30em; font-size: 16px; color: var(--vi-muted); }
-.vi-team__faces { display: flex; justify-content: center; gap: 28px; }
+.vi-team { padding: 32px 22px; border-radius: 24px; background: var(--vi-block); border: 1px solid var(--vi-line); text-align: center; }
+.vi-team__t { margin-top: 12px; }
+.vi-team__faces { display: flex; justify-content: center; gap: 28px; margin-top: 28px; }
 .vi-face { display: grid; justify-items: center; gap: 10px; margin: 0; }
 .vi-face img { display: block; width: 84px; height: 84px; border-radius: 50%; object-fit: cover; background: var(--vi-bg-sunk); box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--vi-line); }
 .vi-face figcaption strong { display: block; font: 700 16px/1.25 var(--vi-ff-head); color: var(--vi-ink); }
@@ -420,8 +417,11 @@ body:has(.vi) { background: #FFFFFF; }
 /* Dans le bloc équipe (gris), les pastilles passent en blanc */
 .vi-team .vi-badge { background: #fff; }
 @media (hover: hover) { .vi-team .vi-badge:hover { background: var(--vi-bg-soft); } }
-@media (min-width: 768px) { .vi-promise, .vi-team { padding: 40px; } }
-@media (min-width: 1024px) { .vi-trustgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } .vi-promise, .vi-team { padding: 48px; } }
+@media (min-width: 768px) {
+  .vi-team { padding: 48px 40px; }
+  .vi-badges { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 860px; margin-inline: auto; }
+}
+@media (min-width: 1024px) { .vi-team { padding: 64px 48px; } .vi-team__faces { gap: 48px; margin-top: 36px; } }
 
 /* ━━ 7 · FAQ ━━ */
 .vi-faq { border-top: 1px solid var(--vi-line); }

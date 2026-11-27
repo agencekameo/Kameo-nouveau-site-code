@@ -742,20 +742,14 @@ export default function Body() {
             </div>
           </section>
 
-          {/* ━━ 6 · Engagement et équipe ━━ */}
-          <section className="vi-sec vi-sec--soft" id="garanties" aria-labelledby="garanties-t">
-            <div className="vi-wrap vi-trustgrid">
-              <div className="vi-promise" data-vi-reveal="">
-                <Tile id="solid-shield-halved" />
-                <h2 className="vi-h2" id="garanties-t">
-                  Travail non fait, travail non facturé.
+          {/* ━━ 6 · Équipe (bloc pleine largeur, demande de Benjamin du 27/11/2026) ━━ */}
+          <section className="vi-sec vi-sec--soft" id="equipe" aria-labelledby="equipe-t">
+            <div className="vi-wrap">
+              <div className="vi-team" data-vi-reveal="">
+                <p className="vi-eyebrow">Notre équipe</p>
+                <h2 className="vi-h2 vi-team__t" id="equipe-t">
+                  Une équipe <span className="vi-gt">jeune, dynamique et performante</span>
                 </h2>
-                <p className="vi-promise__p">
-                  Chaque mois, ce qui est prévu dans votre formule est fait et mesuré. Sinon, c’est déduit de votre facture suivante.
-                </p>
-              </div>
-
-              <div className="vi-team" data-vi-reveal="" style={{ '--vi-i': 1 } as CSSProperties}>
                 <div className="vi-team__faces">
                   {[
                     { src: '/images/benjamin.webp', nom: 'Benjamin Dayan', role: 'Président' },

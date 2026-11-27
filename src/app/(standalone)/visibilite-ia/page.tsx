@@ -16,7 +16,7 @@ import css from './styles';
 /*
  * Landing page Ads « visibilité IA » : promotion de l'accompagnement GEO (fond blanc), noindex, hors sitemap.
  * Même socle que /appel-strategique/ : GTM (pixel Meta, ClicCalendly, Schedule sur /rdv-confirme/), Clarity,
- * consentement, fenêtre Calendly (ouverture automatique après #garanties), bouton WhatsApp (sans bulle).
+ * consentement, fenêtre Calendly (ouverture automatique après #equipe), bouton WhatsApp (sans bulle).
  */
 const PATH = '/visibilite-ia/';
 const TITLE = 'Que disent ChatGPT et les IA de votre entreprise ? | Kameo';
@@ -47,11 +47,11 @@ export default function Page() {
       <Body />
       <JsonLd data={[...themeSchemas({ path: PATH }), websiteGraph({ path: PATH, title: TITLE })]} />
       <ViEffects offre={offre} />
-      {/* Ouverture automatique une fois les prix et les garanties dépassés (une fois par visite) */}
+      {/* Ouverture automatique une fois les prix et l'équipe dépassés (une fois par visite) */}
       <CalendlyModal
         label="Réserver votre diagnostic gratuit"
         utm={{ utm_source: 'landing', utm_campaign: 'geo' }}
-        autoOpenAfter="#garanties"
+        autoOpenAfter="#equipe"
         notice={
           <>
             Voyons ensemble ce que les IA disent de vous. C’est <strong>gratuit</strong>.
