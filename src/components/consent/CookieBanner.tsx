@@ -14,6 +14,8 @@ import { onConsentOpen, readConsent, saveConsent } from '@/lib/consent';
  * Reciblage (accord de Benjamin du 27/11/2026) : la case « Publicité » annonce aussi l'affichage de
  * nos annonces sur Facebook et Instagram aux visiteurs du site ; un accord donné pour « mesurer »
  * ne vaut pas pour « cibler ». La question a été reposée à tous (version 2, src/lib/consent.ts).
+ * ChatGPT Ads (demande de Benjamin du 27/11/2026) : la case « Publicité » nomme aussi la mesure de
+ * nos campagnes ChatGPT (pixel OpenAI, mesure seulement) ; question reposée à tous (version 3).
  */
 export default function CookieBanner() {
   const [open, setOpen] = useState(false);
@@ -62,7 +64,7 @@ export default function CookieBanner() {
           <label className="ckb__opt">
             <span>
               <strong>Publicité</strong>
-              <span>Mesure de nos campagnes Meta, et affichage de nos annonces sur Facebook et Instagram aux personnes qui ont visité le site.</span>
+              <span>Mesure de nos campagnes Meta et ChatGPT, et affichage de nos annonces sur Facebook et Instagram aux personnes qui ont visité le site.</span>
             </span>
             <input type="checkbox" role="switch" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} />
           </label>

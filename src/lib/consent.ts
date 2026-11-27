@@ -7,15 +7,19 @@
  *  - audience  : mesure d'audience taap.it et Google Analytics 4 (toutes les pages,
  *                src/components/consent/GoogleAnalytics.tsx) et Microsoft Clarity (landing page),
  *                src/components/consent/ClarityTracker.tsx ;
- *  - marketing : Google Tag Manager GTM-W8S6WQB9 et le pixel Meta qu'il charge (landing page Ads et
- *                confirmation de rendez-vous), src/components/consent/TagManager.tsx : mesure des
- *                campagnes Meta et reciblage (affichage de nos annonces aux visiteurs du site).
+ *  - marketing : Google Tag Manager GTM-W8S6WQB9 et les pixels qu'il charge (landing page Ads et
+ *                confirmation de rendez-vous), src/components/consent/TagManager.tsx : pixel Meta
+ *                (mesure des campagnes Meta et reciblage, c'est-à-dire l'affichage de nos annonces
+ *                aux visiteurs du site) et pixel de mesure ChatGPT Ads d'OpenAI (mesure seulement).
  *
  * Version 2 (27/11/2026, accord de Benjamin) : la case « Publicité » annonce désormais le reciblage.
  * Un accord donné en version 1 (« mesure » seulement) ne vaut pas pour cibler : les choix de la
  * version 1 sont ignorés et le bandeau se rouvre pour tous les visiteurs.
+ * Version 3 (27/11/2026, demande de Benjamin : suivre les conversions ChatGPT Ads) : la case
+ * « Publicité » nomme aussi ChatGPT, nouveau destinataire (OpenAI). Les choix de la version 2 ne
+ * le couvraient pas : ils sont ignorés et le bandeau se rouvre pour tous les visiteurs.
  */
-const VERSION = 2;
+const VERSION = 3;
 export type Consent = { v: typeof VERSION; audience: boolean; marketing: boolean; date: string };
 
 const COOKIE = 'kameo_consent';

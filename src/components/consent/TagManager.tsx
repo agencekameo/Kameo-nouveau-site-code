@@ -9,6 +9,9 @@ import { onConsent, readConsent, type Consent } from '@/lib/consent';
  * ajoutée au conteneur est donc soumise à ce choix. Le conteneur porte le pixel Meta 820736740875530
  * (PageView, Schedule à la confirmation de rendez-vous, ClicCalendly au clic sur un lien Calendly,
  * Contact au clic sur le bouton WhatsApp de la landing), qui n'est plus codé dans le site. Pas de <noscript> : sans JavaScript, aucun accord n'est possible.
+ * Depuis le 27/11/2026, il porte aussi le pixel de mesure ChatGPT Ads (OpenAI, Pixel ID
+ * QXSp3GFUV7rLCttgmQ8vns) : appointment_scheduled à la confirmation de rendez-vous et l'événement
+ * personnalisé clic_calendly, sur les mêmes déclencheurs que Schedule et ClicCalendly.
  */
 export const GTM_ID = 'GTM-W8S6WQB9';
 

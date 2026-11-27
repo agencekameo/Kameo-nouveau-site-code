@@ -310,6 +310,7 @@ export default function PolitiqueDeConfidentialitePage() {
                       <li>Actualités et nouveaux services</li>
                       <li>Invitations à des événements</li>
                       <li>Nos annonces sur Facebook et Instagram auprès des visiteurs du site (cookies publicitaires)</li>
+                      <li>Mesure de l’efficacité de nos annonces Meta et ChatGPT (cookies publicitaires)</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-accent)', marginTop: '8px', fontWeight: '600' }}>
                       Base légale&nbsp;: Consentement
@@ -343,9 +344,10 @@ export default function PolitiqueDeConfidentialitePage() {
                     (Microsoft Ireland), uniquement avec votre consentement
                   </li>
                   <li>
-                    <strong>Publicité&nbsp;:</strong> Meta Platforms Ireland (pixel Meta), chargé par Google Tag Manager
-                    (Google Ireland), uniquement avec votre consentement&nbsp;: mesure de nos campagnes et affichage de nos
-                    annonces sur Facebook et Instagram aux personnes qui ont visité nos pages
+                    <strong>Publicité&nbsp;:</strong> Meta Platforms Ireland (pixel Meta) et OpenAI (pixel de mesure de
+                    ChatGPT Ads), chargés par Google Tag Manager (Google Ireland), uniquement avec votre consentement&nbsp;:
+                    mesure de nos campagnes, et affichage de nos annonces sur Facebook et Instagram aux personnes qui ont
+                    visité nos pages
                   </li>
                   <li>
                     <strong>Prise de rendez-vous&nbsp;:</strong> Calendly
@@ -731,8 +733,8 @@ export default function PolitiqueDeConfidentialitePage() {
                   <div className="legal__service-card">
                     <strong>Cookies publicitaires</strong>
                     <ul>
-                      <li>Pixel Meta (Facebook, Instagram) sur nos pages de campagne</li>
-                      <li>Chargé par Google Tag Manager, lui-même activé seulement après votre accord</li>
+                      <li>Pixel Meta (Facebook, Instagram) et pixel de mesure de ChatGPT Ads (OpenAI) sur nos pages de campagne</li>
+                      <li>Chargés par Google Tag Manager, lui-même activé seulement après votre accord</li>
                       <li>Mesure de l’efficacité de nos publicités</li>
                       <li>
                         Affichage de nos annonces sur Facebook et Instagram aux personnes qui ont visité nos pages
@@ -741,6 +743,15 @@ export default function PolitiqueDeConfidentialitePage() {
                       <li>
                         Meta peut aussi utiliser ces données pour choisir les publicités qu’il vous montre, selon sa{' '}
                         <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">
+                          politique de confidentialité
+                        </a>
+                      </li>
+                      <li>
+                        Le pixel d’OpenAI relie votre visite à un clic sur notre annonce dans ChatGPT, puis note le clic
+                        vers notre calendrier et la prise de rendez-vous (cookies __oppref, 30&nbsp;jours, et __obref,
+                        1&nbsp;an). OpenAI traite aussi ces données pour son propre compte, notamment pour mesurer et
+                        améliorer ses services, selon sa{' '}
+                        <a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noopener">
                           politique de confidentialité
                         </a>
                       </li>
