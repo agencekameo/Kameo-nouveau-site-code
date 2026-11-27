@@ -290,7 +290,7 @@ const points = (express: GeoOffer, complet: GeoOffer): Record<string, { lead?: s
  * Résultats clients : relevés de l'outil de suivi Kameo (captures du 23/11/2026), logos dans
  * public/images/logo clients/. Sous chaque cas : depuis quand le client est suivi (demande de Benjamin, 27/11/2026).
  * Défikart est un client web (site publié en juillet 2026) : jamais présenté comme un travail GEO. OmegaCloud
- * appartient au même groupe que Kameo : toujours le dire, au moins dans sa ligne de date.
+ * appartient au même groupe que Kameo : la mention a été retirée de cette page à la demande de Benjamin (27/11/2026).
  */
 type CasClient = { id: string; logo: { src: string; w: number; h: number }; nom: string; activite: string; ia: string; big: ReactNode; txt: ReactNode; depuis: string };
 const CAS: CasClient[] = [
@@ -347,7 +347,7 @@ const CAS: CasClient[] = [
         plus tôt.
       </>
     ),
-    depuis: 'Même groupe que Kameo · accompagné depuis le 14/11/2026',
+    depuis: 'Accompagné depuis le 14/11/2026',
   },
 ];
 
