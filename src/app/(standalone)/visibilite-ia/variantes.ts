@@ -151,7 +151,8 @@ const ECOLE: Variante = {
     'Avis, classements, annuaires : votre présence là où les IA puisent leurs réponses.',
   ],
   sources: ['Avis', 'Classements', 'Annuaires', 'Médias'],
-  formulesSub: 'Prix hors taxes, par mois, affichés avant tout rendez-vous. Une à deux inscriptions de plus par an couvrent la formule Essentiel.',
+  /* « Quelques » : une à deux inscriptions pour une école (3 000 à 10 000 € par an), davantage pour une formation courte. */
+  formulesSub: 'Prix hors taxes, par mois, affichés avant tout rendez-vous. Quelques inscriptions de plus par an couvrent la formule Essentiel.',
   qui: 'vos futurs étudiants',
   pourQui: {
     essentiel: 'Un établissement, un campus.',

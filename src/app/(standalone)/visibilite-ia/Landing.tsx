@@ -7,7 +7,7 @@ import TagManager from '@/components/consent/TagManager';
 import { fr } from '@/components/geo/GeoBlocks';
 import WhatsAppButton from '@/components/landing/WhatsAppButton';
 import ViEffects from '@/components/landing-geo/ViEffects';
-import { GEO_PROMO, euros, plansGeo, prixDuJour, promoGeoActive } from '@/content/geo';
+import { euros, plansGeo, promoGeoActive } from '@/content/geo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
 import Body from './Body';
@@ -24,12 +24,14 @@ import type { Variante } from './variantes';
 
 const titre = (v: Variante) => `Que disent ChatGPT et les IA ${v.deVotre} ? | Kameo`;
 
+/*
+ * Description (résumé du lien lu par Facebook et Instagram pour l'aperçu des pubs) : toujours le prix public, jamais
+ * l'offre du moment. Meta lit cet aperçu quand les pubs sont créées et peut le garder après la fin de l'offre ; les pubs
+ * de la campagne GEO ne doivent citer ni « Black Friday » ni ses prix (relecture du plan, 27/11/2026).
+ */
 export function metadataLanding(v: Variante): Metadata {
   const [essentiel] = plansGeo();
-  const base = `Que disent ChatGPT, Gemini, Perplexity et Claude ${v.deVotre} ? Diagnostic gratuit de 30 min en visio.`;
-  const description = promoGeoActive()
-    ? `${base} ${GEO_PROMO.nom} : accompagnement GEO dès ${euros(prixDuJour(essentiel))} HT/mois pour toute signature jusqu’au ${GEO_PROMO.finTexte}.`
-    : `${base} Accompagnement GEO à prix publics, dès ${euros(prixDuJour(essentiel))} HT/mois.`;
+  const description = `Que disent ChatGPT, Gemini, Perplexity et Claude ${v.deVotre} ? Diagnostic gratuit de 30 min en visio. Accompagnement GEO à prix publics, dès ${euros(essentiel.price)} HT/mois.`;
   return pageMetadata({ path: v.path, title: titre(v), description: fr(description).replace(/(\d) (?=\d{3}\b|€)/g, '$1 '), noindex: true });
 }
 
