@@ -518,7 +518,7 @@ export default function Body() {
               <div className="vi-hero__text">
                 <TrustBadge />
                 <h1 className="vi-h1" id="vi-h1">
-                  Soyez l’entreprise que <span className="vi-gt">ChatGPT recommande</span>
+                  Devenez visible sur <span className="vi-gt">ChatGPT en 1&nbsp;mois</span>
                 </h1>
                 <p className="vi-lead">On mesure ce que les IA disent de vous, et on corrige ce qui les empêche de vous citer.</p>
                 <div className="vi-hero__cta">
