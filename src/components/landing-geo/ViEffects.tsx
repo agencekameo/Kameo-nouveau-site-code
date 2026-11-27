@@ -8,9 +8,9 @@ import { onConsent } from '@/lib/consent';
  * - Révélations au défilement ([data-vi-reveal], [data-vi-fill]) : l'état final est l'état par défaut du CSS ;
  *   l'état de départ n'existe que sous .vi.vi-io, posé APRÈS avoir marqué .is-in ce qui est déjà à l'écran.
  *   Rien n'est caché sans JavaScript ni avec prefers-reduced-motion.
- * - Barre d'action mobile (#vi-sticky) et bouton de l'en-tête collant (ordinateur, classe .is-past-hero sur .vi) :
+ * - Barre d'action mobile (#vi-sticky) et trait sous l'en-tête collant (ordinateur, classe .is-past-hero sur .vi) :
  *   affichés quand le bouton du héros est passé, retirés quand #diagnostic est à l'écran ou que la fenêtre
- *   Calendly (.lpcal) est ouverte.
+ *   Calendly (.lpcal) est ouverte. Le bouton de l'en-tête, lui, est visible dès l'arrivée (27/11/2026).
  * - Microsoft Clarity (seulement s'il est chargé, accord « Mesure d'audience ») : cta_<emplacement> au clic
  *   (data-cta), whatsapp_* et tel_*, whatsapp_flottant, formule_details, faq_ouverte ; étiquettes de session
  *   « offre », « metier » (general, auto-ecole, ecole : version de la page) et « utm_source ». Jamais de contenu saisi.

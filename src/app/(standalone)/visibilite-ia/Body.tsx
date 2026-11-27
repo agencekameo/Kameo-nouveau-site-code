@@ -502,9 +502,9 @@ export default function Body({ v }: { v: Variante }) {
                 <IPhone />
                 <span className="vi-top__num">{CONTACT.phone}</span>
               </a>
-              {/* Ordinateur : visible une fois le héros passé (ViEffects : .is-past-hero) */}
+              {/* Ordinateur : visible dès l'arrivée, texte explicite (demande de Benjamin du 27/11/2026) */}
               <a className="vi-btn vi-top__cta" href={CONTACT.calendly} data-cta="top">
-                Voir ce que les IA disent de moi
+                Réserver mon diagnostic gratuit
               </a>
             </div>
           </div>
@@ -517,12 +517,14 @@ export default function Body({ v }: { v: Variante }) {
             <div className="vi-wrap vi-hero__grid">
               <div className="vi-hero__text">
                 <TrustBadge />
-                {/* Le nom de l'IA change tout seul (AiRotator, 27/11/2026) ; « en 1 mois » fixe, sur la ligne suivante : la case
-                    des noms a la largeur du plus long, l'espace d'un nom court reste ainsi invisible en fin de ligne. */}
+                {/* Titre sur 2 lignes (demande de Benjamin du 27/11/2026) : la 2e ligne, insécable, commence par le nom de l'IA qui
+                    change tout seul (AiRotator), suivi de « en 1 mois » ; « Perplexity en 1 mois » tient sur une ligne jusqu'à 360 px. */}
                 <h1 className="vi-h1" id="vi-h1">
-                  <Nw>{v.h1}</Nw> <AiRotator />
+                  <Nw>{v.h1}</Nw>
                   <br />
-                  <span className="vi-gt">{`en${nb}1${nb}mois`}</span>
+                  <span className="vi-h1__l2">
+                    <AiRotator /> <span className="vi-gt">{`en${nb}1${nb}mois`}</span>
+                  </span>
                 </h1>
                 <p className="vi-lead">
                   <Nw>{v.lead}</Nw>

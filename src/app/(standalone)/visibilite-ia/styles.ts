@@ -81,14 +81,18 @@ body:has(.vi) { background: #FFFFFF; }
 }
 @media (forced-colors: active) { .vi-gt { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; } }
 .vi-dim { color: var(--vi-faint); }
-/* Titre : le nom de l'IA change tout seul (AiRotator). Les 4 noms sont empilés dans une seule case de grille, large
-   comme le plus long : la mise en page ne bouge pas. Sans animation (refus du visiteur, ou avant JavaScript) : ChatGPT seul. */
-.vi-rot__box { display: inline-grid; }
-.vi-rot__w { grid-area: 1 / 1; visibility: hidden; }
-.vi-rot__w.is-on { visibility: visible; }
+/* Titre : 2e ligne insécable, le nom de l'IA (AiRotator) puis « en 1 mois ». Seul le nom affiché occupe la case ; les autres
+   sont posés par-dessus, hors du flux. La case glisse d'une largeur à l'autre (largeur posée par AiRotator, en em).
+   overflow-x: clip coupe le nom qui arrive pendant que la case s'élargit, sans toucher aux jambages (p, y). */
+.vi-h1__l2 { white-space: nowrap; }
+.vi-rot__box { display: inline-block; position: relative; white-space: nowrap; overflow-x: clip; }
+.vi-rot__w { display: inline-block; }
+.vi-rot__w:not(.is-on) { position: absolute; left: 0; top: 0; visibility: hidden; }
 @media (prefers-reduced-motion: no-preference) {
-  .vi-rot__w { visibility: visible; opacity: 0; transform: translateY(.28em); transition: opacity .4s ease, transform .4s ease; }
-  .vi-rot__w.is-on { opacity: 1; transform: none; }
+  .vi-rot__box { transition: width .45s ease; }
+  .vi-rot__w { transition: opacity .35s ease, transform .35s ease; }
+  .vi-rot__w:not(.is-on) { visibility: visible; opacity: 0; transform: translateY(.28em); }
+  .vi-rot__w.is-on { opacity: 1; transform: none; transition-delay: .12s; }
   .vi-rot__w.is-out { transform: translateY(-.28em); }
 }
 .vi-inline { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--vi-line-2); }
@@ -210,7 +214,8 @@ body:has(.vi) { background: #FFFFFF; }
 @media (min-width: 1024px) {
   .vi-top { position: sticky; top: 0; background: rgba(255,255,255,.88); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid transparent; transition: border-color .2s; }
   .vi.is-past-hero .vi-top { border-bottom-color: var(--vi-line); }
-  .vi.is-past-hero .vi-top__cta { display: inline-flex !important; width: auto; min-height: 44px; padding: 0 20px; font-size: 15px; }
+  /* Bouton de l'en-tête visible dès l'arrivée, texte explicite (27/11/2026) */
+  .vi-top__cta { display: inline-flex !important; width: auto; min-height: 44px; padding: 0 22px; font-size: 15px; }
   .vi section[id] { scroll-margin-top: 88px; }
 }
 
