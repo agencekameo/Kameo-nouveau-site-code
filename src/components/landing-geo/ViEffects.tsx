@@ -13,12 +13,12 @@ import { onConsent } from '@/lib/consent';
  *   Calendly (.lpcal) est ouverte.
  * - Microsoft Clarity (seulement s'il est chargé, accord « Mesure d'audience ») : cta_<emplacement> au clic
  *   (data-cta), whatsapp_* et tel_*, whatsapp_flottant, formule_details, faq_ouverte ; étiquettes de session
- *   « offre » et « utm_source ». Jamais de contenu saisi.
+ *   « offre », « metier » (general, auto-ecole, ecole : version de la page) et « utm_source ». Jamais de contenu saisi.
  */
 
 const clarity = (...args: unknown[]) => window.clarity?.(...args);
 
-export default function ViEffects({ offre }: { offre: boolean }) {
+export default function ViEffects({ offre, metier = 'general' }: { offre: boolean; metier?: string }) {
   // Révélations
   useEffect(() => {
     const root = document.querySelector<HTMLElement>('.vi');
@@ -115,6 +115,7 @@ export default function ViEffects({ offre }: { offre: boolean }) {
     const tag = () => {
       if (!window.clarity) return;
       clarity('set', 'offre', offre ? 'oui' : 'non');
+      clarity('set', 'metier', metier);
       const src = new URLSearchParams(location.search).get('utm_source');
       if (src) clarity('set', 'utm_source', src.slice(0, 60));
     };
@@ -125,7 +126,7 @@ export default function ViEffects({ offre }: { offre: boolean }) {
       document.removeEventListener('toggle', onToggle, true);
       off();
     };
-  }, [offre]);
+  }, [offre, metier]);
 
   return null;
 }

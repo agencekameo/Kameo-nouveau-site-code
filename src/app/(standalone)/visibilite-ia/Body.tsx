@@ -9,6 +9,8 @@
  * ([data-vi-promo]) a son équivalent permanent ([data-vi-nopromo], rendu masqué), Countdown bascule à l'échéance.
  * Icônes : sprite du site (/icons.svg). Illustrations : HTML et CSS décoratifs (aria-hidden), sans chiffre inventé.
  * Toutes les classes sont préfixées vi- (styles.ts).
+ * Une page, trois versions : générale, auto-écoles, écoles (variantes.ts) ; tous les textes propres à une cible
+ * viennent de la variante reçue (v), le reste est commun.
  */
 import type { CSSProperties, ReactNode } from 'react';
 import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
@@ -29,8 +31,10 @@ import {
   type GeoOffer,
 } from '@/content/geo';
 import { CONTACT, PROOF, SOCIAL } from '@/lib/site';
+import type { FormuleId, Variante } from './variantes';
 
-const nb = ' ';
+/** Espace insécable, écrite en échappement : un copier-coller l'avait changée en espace normale (titre coupé entre « 1 » et « mois », prix coupés). */
+const nb = '\u00a0';
 
 /** Prix jamais coupés en fin de ligne : euros() de geo.ts met une espace normale. */
 const eur = (n: number) => euros(n).replace(/ /g, nb);
@@ -39,9 +43,8 @@ const JOUR_MOIS_FIN = `${GEO_PROMO.fin.slice(8, 10)}/${GEO_PROMO.fin.slice(5, 7)
 /** Texte lu dans geo.ts : espaces insécables (fr), apostrophes typographiques (hors balises HTML). */
 const t = (s: string) => fr(s).replace(/'(?![^<]*>)/g, '’');
 
-/** Message prérempli de WhatsApp, le même partout sur la page (bouton flottant, final, barre mobile). */
-export const MESSAGE_WA = 'Bonjour Kameo, je voudrais savoir ce que les IA disent de mon entreprise.';
-const WA_HREF = `${CONTACT.whatsapp}?text=${encodeURIComponent(MESSAGE_WA)}`;
+/** Lien WhatsApp avec le message prérempli de la variante, le même partout sur la page (bouton flottant, final, barre mobile). */
+const waHref = (v: Variante) => `${CONTACT.whatsapp}?text=${encodeURIComponent(v.messageWa)}`;
 const TEL_HREF = `tel:${CONTACT.phoneE164}`;
 const FABRIQUE_URL = 'https://www.lafabriquedunet.fr/agences/pages/agences-geo-ile-de-france-paris';
 const ARCOM_URL =
@@ -103,6 +106,27 @@ const IWhatsApp = () => (
 );
 
 /* ───────────────────────── Briques ───────────────────────── */
+
+/** Mot à trait d'union (auto-école, post-bac, conseilles-tu ?) : jamais coupé au trait d'union en fin de ligne. */
+const MOT_TRAIT = /([A-Za-zÀ-ÖØ-öø-ÿŒœ]+(?:-[A-Za-zÀ-ÖØ-öø-ÿŒœ]+)+(?: [?!:;»])?)/;
+/** Texte d'une variante : espaces insécables (fr) et mots à trait d'union insécables. */
+function Nw({ children }: { children: string }) {
+  const parts = fr(children).split(MOT_TRAIT);
+  if (parts.length === 1) return <>{parts[0]}</>;
+  return (
+    <>
+      {parts.map((p, i) =>
+        i % 2 ? (
+          <span key={i} className="vi-nowrap">
+            {p}
+          </span>
+        ) : (
+          p || null
+        ),
+      )}
+    </>
+  );
+}
 
 /** Lien externe : nouvel onglet, annoncé aux lecteurs d'écran. */
 function Ext({ href, children, className, label, cta }: { href: string; children: ReactNode; className?: string; label?: string; cta?: string }) {
@@ -192,13 +216,13 @@ function Slot({ children = <>Votre entreprise&nbsp;?</>, sm }: { children?: Reac
 
 /* ───────────────────────── Mini-illustrations (décoratives) ───────────────────────── */
 
-function Illu({ kind }: { kind: 'ask' | 'answer' | 'call' | 'measure' | 'fix' | 'authority' }) {
+function Illu({ kind, v }: { kind: 'ask' | 'answer' | 'call' | 'measure' | 'fix' | 'authority'; v: Variante }) {
   return (
     <div className={`vi-illu vi-illu--${kind}`} aria-hidden="true">
       {kind === 'ask' && (
         <div className="vi-mini-ask">
           <span className="vi-mini-ask__ia">IA</span>
-          <span className="vi-mini-ask__txt">Qui me conseilles-tu&nbsp;?</span>
+          <span className="vi-mini-ask__txt">{fr(v.miniAsk)}</span>
           <span className="vi-mini-ask__send">
             <IArrow />
           </span>
@@ -218,8 +242,8 @@ function Illu({ kind }: { kind: 'ask' | 'answer' | 'call' | 'measure' | 'fix' | 
       {kind === 'call' && (
         <div className="vi-mini-call">
           <span className="vi-mini-call__pill">
-            <Icon id="solid-phone" />
-            Appel · Entreprise&nbsp;A
+            <Icon id={v.miniCall.icon} />
+            {v.miniCall.txt}
           </span>
           <span className="vi-mini-call__stat">
             <span>Votre site</span>
@@ -254,11 +278,11 @@ function Illu({ kind }: { kind: 'ask' | 'answer' | 'call' | 'measure' | 'fix' | 
       )}
       {kind === 'authority' && (
         <div className="vi-mini-net">
-          <span className="vi-mini-net__chip vi-mini-net__chip--a">Avis</span>
-          <span className="vi-mini-net__chip vi-mini-net__chip--b">Annuaires</span>
+          <span className="vi-mini-net__chip vi-mini-net__chip--a">{v.sources[0]}</span>
+          <span className="vi-mini-net__chip vi-mini-net__chip--b">{v.sources[1]}</span>
           <span className="vi-mini-net__you">Vous</span>
-          <span className="vi-mini-net__chip vi-mini-net__chip--c">Comparatifs</span>
-          <span className="vi-mini-net__chip vi-mini-net__chip--d">Médias</span>
+          <span className="vi-mini-net__chip vi-mini-net__chip--c">{v.sources[2]}</span>
+          <span className="vi-mini-net__chip vi-mini-net__chip--d">{v.sources[3]}</span>
         </div>
       )}
     </div>
@@ -267,23 +291,13 @@ function Illu({ kind }: { kind: 'ask' | 'answer' | 'call' | 'measure' | 'fix' | 
 
 /* ───────────────────────── Contenus ───────────────────────── */
 
-const HERO_ROWS = [
-  { name: 'Entreprise A', desc: 'très bien notée' },
-  { name: 'Entreprise B', desc: 'citée dans un comparatif' },
-  { name: 'Entreprise C', desc: 'prix clairs sur son site' },
-];
-
-const ETAPES: { illu: 'ask' | 'answer' | 'call'; t: string; p: string }[] = [
-  { illu: 'ask', t: 'Votre client demande à une IA', p: 'Plutôt que de chercher sur Google.' },
-  { illu: 'answer', t: 'L’IA cite quelques noms', p: 'Pas de deuxième page.' },
-  { illu: 'call', t: 'Il appelle l’un d’eux', p: 'Sans passer par votre site.' },
-];
-
-const METHODE: { illu: 'measure' | 'fix' | 'authority'; t: string; p: string }[] = [
-  { illu: 'measure', t: 'Mesurer', p: 'Les questions de vos clients, posées aux 4 IA toutes les deux semaines.' },
-  { illu: 'fix', t: 'Corriger', p: 'Votre site rendu lisible par les IA, et leurs erreurs sur vous corrigées.' },
-  { illu: 'authority', t: 'Notoriété', p: 'Votre présence là où les IA puisent leurs réponses.' },
-];
+/* Textes des cartes : variantes.ts (etapes, methode) ; ici, l'illustration de chaque carte et les titres communs. */
+const ILLU_ETAPES = ['ask', 'answer', 'call'] as const;
+const METHODE = [
+  { illu: 'measure', t: 'Mesurer' },
+  { illu: 'fix', t: 'Corriger' },
+  { illu: 'authority', t: 'Notoriété' },
+] as const;
 
 /** Trois points par carte, lus dans les offres de geo.ts (nom des audits par auditsGeo()). */
 const points = (express: GeoOffer, complet: GeoOffer): Record<string, { lead?: string; items: string[] }> => ({
@@ -394,12 +408,12 @@ function Cas({ c, i }: { c: CasClient; i: number }) {
 /* ───────────────────────── Visuel du héros ───────────────────────── */
 
 /** « La réponse » : illustration (pas une capture), rangées composées une à une au chargement (CSS seul). */
-function HeroChat() {
+function HeroChat({ v }: { v: Variante }) {
+  const { q, rows, cites, slot } = v.chat;
   return (
     <figure className="vi-chat" aria-labelledby="vi-chat-desc">
       <p id="vi-chat-desc" className="sr-only">
-        Illustration&nbsp;: une IA répond à «&nbsp;Je cherche un plombier à Nantes. Qui me conseilles-tu&nbsp;?&nbsp;» en citant trois
-        entreprises. La place de la vôtre reste vide.
+        {fr(`Illustration : une IA répond à « ${q} » en citant ${cites}. La place de la vôtre reste vide.`)}
       </p>
       <div className="vi-chat__card" aria-hidden="true">
         <div className="vi-chat__bar">
@@ -411,23 +425,30 @@ function HeroChat() {
         </div>
         <div className="vi-chat__body">
           <p className="vi-chat__q">
-            Je cherche un plombier à Nantes. Qui me <span className="vi-nowrap">conseilles-tu&nbsp;?</span>
+            <Nw>{q}</Nw>
           </p>
           <p className="vi-chat__who">
             <span className="vi-chat__ia">IA</span>
             Réponse de l’IA
           </p>
           <ol className="vi-chat__list">
-            {HERO_ROWS.map((r, i) => (
+            {rows.map((r, i) => (
               <li key={r.name} className="vi-chat__row" style={{ '--i': i } as CSSProperties}>
                 <span className="vi-chat__n">{i + 1}</span>
                 <span className="vi-chat__txt">
-                  <b>{r.name}</b> <span>— {r.desc}</span>
+                  <b>
+                    <Nw>{r.name}</Nw>
+                  </b>{' '}
+                  <span>
+                    — <Nw>{r.desc}</Nw>
+                  </span>
                 </span>
               </li>
             ))}
-            <li className="vi-chat__row vi-chat__row--you" style={{ '--i': HERO_ROWS.length } as CSSProperties}>
-              <Slot />
+            <li className="vi-chat__row vi-chat__row--you" style={{ '--i': rows.length } as CSSProperties}>
+              <Slot>
+                <Nw>{slot}</Nw>
+              </Slot>
             </li>
           </ol>
         </div>
@@ -439,7 +460,9 @@ function HeroChat() {
 
 /* ───────────────────────── Page ───────────────────────── */
 
-export default function Body() {
+export default function Body({ v }: { v: Variante }) {
+  const WA = waHref(v);
+  const cas = v.ordreCas ? v.ordreCas.flatMap((id) => CAS.filter((c) => c.id === id)) : CAS;
   const promo = promoGeoActive();
   const plans = plansGeo();
   const [EXPRESS, COMPLET] = auditsGeo();
@@ -515,19 +538,21 @@ export default function Body() {
               <div className="vi-hero__text">
                 <TrustBadge />
                 <h1 className="vi-h1" id="vi-h1">
-                  Devenez visible sur{' '}
+                  <Nw>{v.h1}</Nw>{' '}
                   <span className="vi-gt">
-                    ChatGPT <Typed text={`en 1${nb}mois`} />
+                    ChatGPT <Typed text={`en${nb}1${nb}mois`} />
                   </span>
                 </h1>
-                <p className="vi-lead">On mesure ce que les IA disent de vous, et on corrige ce qui les empêche de vous citer.</p>
+                <p className="vi-lead">
+                  <Nw>{v.lead}</Nw>
+                </p>
                 <div className="vi-hero__cta">
                   <Cta cta="hero" size="lg" sub={SUB_CTA}>
                     Voir ce que les IA disent de moi
                   </Cta>
                 </div>
               </div>
-              <HeroChat />
+              <HeroChat v={v} />
             </div>
           </section>
 
@@ -546,16 +571,20 @@ export default function Body() {
                 <span className="vi-gt">33&nbsp;millions</span> de Français utilisent un service d’IA chaque mois.
               </Head>
               <ol className="vi-cards">
-                {ETAPES.map((e, i) => (
+                {v.etapes.map((e, i) => (
                   <li key={e.t} className="vi-card" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
-                    <Illu kind={e.illu} />
+                    <Illu kind={ILLU_ETAPES[i]} v={v} />
                     <div className="vi-card__body">
                       <span className="vi-card__n" aria-hidden="true">
                         {i + 1}
                       </span>
                       <div>
-                        <h3 className="vi-card__t">{e.t}</h3>
-                        <p className="vi-card__p">{e.p}</p>
+                        <h3 className="vi-card__t">
+                          <Nw>{e.t}</Nw>
+                        </h3>
+                        <p className="vi-card__p">
+                          <Nw>{e.p}</Nw>
+                        </p>
                       </div>
                     </div>
                   </li>
@@ -571,7 +600,7 @@ export default function Body() {
                 Nos clients, cités par les IA
               </Head>
               <div className="vi-cases">
-                {CAS.map((c, i) => (
+                {cas.map((c, i) => (
                   <Cas key={c.id} c={c} i={i} />
                 ))}
               </div>
@@ -587,14 +616,16 @@ export default function Body() {
               <ol className="vi-cards">
                 {METHODE.map((m, i) => (
                   <li key={m.t} className="vi-card" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
-                    <Illu kind={m.illu} />
+                    <Illu kind={m.illu} v={v} />
                     <div className="vi-card__body">
                       <span className="vi-card__n" aria-hidden="true">
                         {i + 1}
                       </span>
                       <div>
                         <h3 className="vi-card__t">{m.t}</h3>
-                        <p className="vi-card__p">{fr(m.p)}</p>
+                        <p className="vi-card__p">
+                          <Nw>{v.methode[i]}</Nw>
+                        </p>
                       </div>
                     </div>
                   </li>
@@ -606,7 +637,7 @@ export default function Body() {
           {/* ━━ 5 · Formules ━━ */}
           <section className="vi-sec" id="formules" aria-labelledby="formules-t">
             <div className="vi-wrap">
-              <Head id="formules-t" eyebrow="Formules et prix" sub="Prix hors taxes, par mois, affichés avant tout rendez-vous.">
+              <Head id="formules-t" eyebrow="Formules et prix" sub={v.formulesSub}>
                 3 formules, des prix clairs
               </Head>
 
@@ -646,6 +677,7 @@ export default function Body() {
                     const star = !!p.featured;
                     const barre = promo ? prixBarre(p) : null;
                     const pts = POINTS[p.id];
+                    const qui = v.pourQui?.[p.id as FormuleId] ?? p.pourQui;
                     return (
                       <li key={p.id} id={`formule-${p.id}`} className={`vi-plan vi-plan--${p.id}` + (star ? ' vi-plan--star' : '')}>
                         <article className="vi-plan__in" aria-labelledby={`vi-plan-${p.id}`}>
@@ -655,7 +687,11 @@ export default function Body() {
                             </h3>
                             {star && <span className="vi-plan__badge">Recommandé</span>}
                           </div>
-                          {p.pourQui && <p className="vi-plan__who">{t(p.pourQui)}</p>}
+                          {qui && (
+                            <p className="vi-plan__who">
+                              <Nw>{t(qui)}</Nw>
+                            </p>
+                          )}
                           <div className="vi-plan__price">
                             {barre !== null && (
                               <p className="vi-plan__was" data-vi-promo="">
@@ -690,7 +726,9 @@ export default function Body() {
                                 {p.questions && (
                                   <li>
                                     <ICheck />
-                                    <span>{p.questions}&nbsp;questions de vos clients suivies</span>
+                                    <span>
+                                      {p.questions}&nbsp;questions de {v.qui} suivies
+                                    </span>
                                   </li>
                                 )}
                                 {pts.items.map((it) => (
@@ -788,9 +826,11 @@ export default function Body() {
           {/* ━━ 7 · Diagnostic (CTA final) ; la FAQ a été retirée le 27/11/2026 à la demande de Benjamin ━━ */}
           <section className="vi-sec vi-final" id="diagnostic" aria-labelledby="diagnostic-t">
             <div className="vi-wrap vi-final__in" data-vi-reveal="">
-              <Slot>Votre entreprise, cette fois&nbsp;?</Slot>
+              <Slot>
+                <Nw>{v.final.slot}</Nw>
+              </Slot>
               <h2 className="vi-h2 vi-final__t" id="diagnostic-t">
-                Que dit <span className="vi-gt">ChatGPT</span> de vous&nbsp;?
+                Que dit <span className="vi-gt">ChatGPT</span> <Nw>{`${v.deVous} ?`}</Nw>
               </h2>
               <ul className="vi-final__pts">
                 <li>
@@ -798,7 +838,8 @@ export default function Body() {
                   30&nbsp;min en visio
                 </li>
                 <li>
-                  <Icon id="solid-comment-dots" />5 questions posées en direct aux 4&nbsp;IA
+                  <Icon id="solid-comment-dots" />
+                  <Nw>{v.final.point}</Nw>
                 </li>
                 <li>
                   <Icon id="solid-circle-check" />
@@ -811,7 +852,7 @@ export default function Body() {
                 </Cta>
               </div>
               <div className="vi-final__alt">
-                <Ext href={WA_HREF} className="vi-btn-ghost" cta="whatsapp-final" label="Écrire sur WhatsApp à Kameo (nouvel onglet)">
+                <Ext href={WA} className="vi-btn-ghost" cta="whatsapp-final" label="Écrire sur WhatsApp à Kameo (nouvel onglet)">
                   <IWhatsApp />
                   WhatsApp
                 </Ext>
@@ -839,7 +880,7 @@ export default function Body() {
 
         {/* ━━ Barre d'action mobile (affichée par ViEffects une fois le héros passé) ━━ */}
         <div className="vi-sticky" id="vi-sticky">
-          <Ext href={WA_HREF} className="vi-sticky__wa" cta="whatsapp-sticky" label="Écrire à Kameo sur WhatsApp (nouvel onglet)">
+          <Ext href={WA} className="vi-sticky__wa" cta="whatsapp-sticky" label="Écrire à Kameo sur WhatsApp (nouvel onglet)">
             <IWhatsApp />
           </Ext>
           <a className="vi-sticky__cta" href={CONTACT.calendly} data-cta="sticky">
