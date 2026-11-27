@@ -8,9 +8,15 @@
  *                src/components/consent/GoogleAnalytics.tsx) et Microsoft Clarity (landing page),
  *                src/components/consent/ClarityTracker.tsx ;
  *  - marketing : Google Tag Manager GTM-W8S6WQB9 et le pixel Meta qu'il charge (landing page Ads et
- *                confirmation de rendez-vous), src/components/consent/TagManager.tsx.
+ *                confirmation de rendez-vous), src/components/consent/TagManager.tsx : mesure des
+ *                campagnes Meta et reciblage (affichage de nos annonces aux visiteurs du site).
+ *
+ * Version 2 (27/11/2026, accord de Benjamin) : la case « Publicité » annonce désormais le reciblage.
+ * Un accord donné en version 1 (« mesure » seulement) ne vaut pas pour cibler : les choix de la
+ * version 1 sont ignorés et le bandeau se rouvre pour tous les visiteurs.
  */
-export type Consent = { v: 1; audience: boolean; marketing: boolean; date: string };
+const VERSION = 2;
+export type Consent = { v: typeof VERSION; audience: boolean; marketing: boolean; date: string };
 
 const COOKIE = 'kameo_consent';
 const MAX_AGE = 182 * 24 * 3600; // 6 mois
@@ -23,7 +29,7 @@ export function readConsent(): Consent | null {
   if (!raw) return null;
   try {
     const c = JSON.parse(decodeURIComponent(raw.slice(COOKIE.length + 1)));
-    return c && c.v === 1 ? { v: 1, audience: !!c.audience, marketing: !!c.marketing, date: String(c.date) } : null;
+    return c && c.v === VERSION ? { v: VERSION, audience: !!c.audience, marketing: !!c.marketing, date: String(c.date) } : null;
   } catch {
     return null;
   }
@@ -32,7 +38,7 @@ export function readConsent(): Consent | null {
 /** Enregistre le choix ; un retrait de consentement recharge la page pour arrêter les traceurs. */
 export function saveConsent(choice: { audience: boolean; marketing: boolean }): void {
   const before = readConsent();
-  const c: Consent = { v: 1, audience: choice.audience, marketing: choice.marketing, date: new Date().toISOString() };
+  const c: Consent = { v: VERSION, audience: choice.audience, marketing: choice.marketing, date: new Date().toISOString() };
   const secure = location.protocol === 'https:' ? '; Secure' : '';
   document.cookie = `${COOKIE}=${encodeURIComponent(JSON.stringify(c))}; Max-Age=${MAX_AGE}; Path=/; SameSite=Lax${secure}`;
   const withdrawn = (before?.audience && !c.audience) || (before?.marketing && !c.marketing);

@@ -22,7 +22,7 @@ export default function PolitiqueDeConfidentialitePage() {
               <svg className="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
                 <use href="/icons.svg#i-solid-shield-halved" />
               </svg>
-              Dernière mise à jour&nbsp;: 3 novembre 2026{' '}
+              Dernière mise à jour&nbsp;: 27 novembre 2026{' '}
             </span>
             <h1 className="legal-hero__title">Politique de confidentialité</h1>
             <p className="legal-hero__desc">
@@ -309,6 +309,7 @@ export default function PolitiqueDeConfidentialitePage() {
                       <li>Envoi de newsletters</li>
                       <li>Actualités et nouveaux services</li>
                       <li>Invitations à des événements</li>
+                      <li>Nos annonces sur Facebook et Instagram auprès des visiteurs du site (cookies publicitaires)</li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-accent)', marginTop: '8px', fontWeight: '600' }}>
                       Base légale&nbsp;: Consentement
@@ -342,8 +343,9 @@ export default function PolitiqueDeConfidentialitePage() {
                     (Microsoft Ireland), uniquement avec votre consentement
                   </li>
                   <li>
-                    <strong>Mesure publicitaire&nbsp;:</strong> Meta Platforms (pixel Meta), chargé par Google Tag Manager
-                    (Google Ireland), uniquement avec votre consentement
+                    <strong>Publicité&nbsp;:</strong> Meta Platforms Ireland (pixel Meta), chargé par Google Tag Manager
+                    (Google Ireland), uniquement avec votre consentement&nbsp;: mesure de nos campagnes et affichage de nos
+                    annonces sur Facebook et Instagram aux personnes qui ont visité nos pages
                   </li>
                   <li>
                     <strong>Prise de rendez-vous&nbsp;:</strong> Calendly
@@ -732,6 +734,16 @@ export default function PolitiqueDeConfidentialitePage() {
                       <li>Pixel Meta (Facebook, Instagram) sur nos pages de campagne</li>
                       <li>Chargé par Google Tag Manager, lui-même activé seulement après votre accord</li>
                       <li>Mesure de l’efficacité de nos publicités</li>
+                      <li>
+                        Affichage de nos annonces sur Facebook et Instagram aux personnes qui ont visité nos pages
+                        (reciblage)&nbsp;: une visite reste au plus 180&nbsp;jours dans nos listes
+                      </li>
+                      <li>
+                        Meta peut aussi utiliser ces données pour choisir les publicités qu’il vous montre, selon sa{' '}
+                        <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">
+                          politique de confidentialité
+                        </a>
+                      </li>
                     </ul>
                     <p style={{ fontSize: '12px', color: 'var(--c-accent)', marginTop: '6px', fontWeight: '600' }}>
                       Base légale&nbsp;: Consentement

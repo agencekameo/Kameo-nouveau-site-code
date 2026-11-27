@@ -11,6 +11,9 @@ import { onConsentOpen, readConsent, saveConsent } from '@/lib/consent';
  * Ordre des boutons (choix de Benjamin du 05/11/2026) : « Refuser » à gauche, « Accepter » à
  * droite. Texte court (05/11/2026) : finalités et possibilité de changer d'avis, le détail est
  * derrière « En savoir plus ».
+ * Reciblage (accord de Benjamin du 27/11/2026) : la case « Publicité » annonce aussi l'affichage de
+ * nos annonces sur Facebook et Instagram aux visiteurs du site ; un accord donné pour « mesurer »
+ * ne vaut pas pour « cibler ». La question a été reposée à tous (version 2, src/lib/consent.ts).
  */
 export default function CookieBanner() {
   const [open, setOpen] = useState(false);
@@ -43,8 +46,8 @@ export default function CookieBanner() {
       </p>
       <p className="ckb__sign">Benjamin, fondateur de Kameo</p>
       <p className="ckb__text" id="ckb-text">
-        Avec votre accord, nous mesurons l’audience du site et l’efficacité de nos publicités. Vous pouvez changer
-        d’avis à tout moment.{' '}
+        Avec votre accord, nous mesurons l’audience du site et l’efficacité de nos publicités, et nous pouvons vous
+        montrer nos annonces sur Facebook et Instagram. Vous pouvez changer d’avis à tout moment.{' '}
         <a href="/politique-de-confidentialite/#section-9">En savoir plus</a>
       </p>
       {details && (
@@ -59,7 +62,7 @@ export default function CookieBanner() {
           <label className="ckb__opt">
             <span>
               <strong>Publicité</strong>
-              <span>Mesure de l’efficacité de nos campagnes Meta (Facebook, Instagram).</span>
+              <span>Mesure de nos campagnes Meta, et affichage de nos annonces sur Facebook et Instagram aux personnes qui ont visité le site.</span>
             </span>
             <input type="checkbox" role="switch" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} />
           </label>
