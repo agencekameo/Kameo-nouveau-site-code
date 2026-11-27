@@ -24,6 +24,14 @@
  * sa demande, Croissance passe à 600 € et Autorité à 1 100 € : 350, 600 et 1 100 € HT par mois
  * (−30, −25 et −27 %) jusqu'au 30/11/2026 (GEO_PROMO), puis les prix normaux. La grille de novembre ne s'affiche plus (GEO_BASCULE passée) ; à retirer du code.
  *
+ * Le 27/11/2026, nouveaux prix à la demande de Benjamin (« audit express : 650€ Audit complet 990€ Essentiel : 600€
+ * Croissance : 900€ Autorité : 1450€ ») : audits 650 et 990 € HT, accompagnements 600, 900 et 1 450 € HT par mois.
+ * L'offre Black Friday garde ses prix (350, 600 et 1 100 €) jusqu'au 30/11/2026. Ces nouveaux prix n'ayant jamais été
+ * pratiqués avant l'offre, ils sont présentés comme les prix des signatures « à partir du 1er décembre », jamais barrés
+ * ni traduits en pourcentage de remise (sinon, fausse réduction). Le même jour, à sa demande : les 3 démarches par mois
+ * auprès de comparatifs et de médias passent d'Autorité à Croissance, Croissance passe à 1 inscription par mois dans
+ * les annuaires (au lieu de 2), et la méthode de demande d'avis est retirée.
+ *
  * Tout ce qui dépend de la date (offre en cours, grille) est calculé à l'affichage, par les
  * fonctions ci-dessous, jamais dans une constante de module figée au démarrage du serveur ; les
  * pages sont régénérées toutes les heures (revalidate du gabarit (site)/layout.tsx ; 60 s pour le
@@ -171,7 +179,7 @@ const AUDITS_DECEMBRE: GeoOffer[] = [
   {
     id: 'express',
     name: 'Audit GEO Express',
-    price: 500,
+    price: 650,
     monthly: false,
     questions: 20,
     tagline: 'Pour savoir rapidement où vous en êtes et quoi corriger en priorité.',
@@ -185,7 +193,7 @@ const AUDITS_DECEMBRE: GeoOffer[] = [
   {
     id: 'complet',
     name: 'Audit GEO Complet',
-    price: 800,
+    price: 990,
     monthly: false,
     questions: 40,
     tagline: 'Pour comprendre pourquoi vos concurrents sont cités avant vous.',
@@ -205,7 +213,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
   {
     id: 'essentiel',
     name: 'Essentiel',
-    price: 500,
+    price: 600,
     promoPrice: 350,
     monthly: true,
     questions: 20,
@@ -225,7 +233,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
   {
     id: 'croissance',
     name: 'Croissance',
-    price: 800,
+    price: 900,
     promoPrice: 600,
     monthly: true,
     questions: 40,
@@ -236,8 +244,8 @@ const PLANS_DECEMBRE: GeoOffer[] = [
       `40 questions suivies et 3 concurrents : ${reponsesParMois(40)} réponses analysées par mois.`,
       '2 nouveaux contenus par mois sur votre site (pages ou articles), écrits pour répondre aux questions que vous suivez, validés par vous avant publication.',
       'Votre fiche entreprise ChatGPT (Business Hub) revendiquée, vérifiée avec vous et tenue à jour, si votre entreprise y est éligible.',
-      "2 inscriptions par mois dans les annuaires et sites d'avis que les IA citent dans votre secteur.",
-      "Une méthode de demande d'avis conforme à la loi, avec des modèles de réponse.",
+      "1 inscription par mois dans les annuaires et sites d'avis que les IA citent dans votre secteur.",
+      '3 démarches par mois auprès de comparatifs, de médias ou de partenaires choisis parmi les sources des IA, sans jamais payer de place.',
       '5 pages existantes améliorées et un point de 30 minutes en visio chaque mois.',
     ],
     featured: true,
@@ -246,7 +254,7 @@ const PLANS_DECEMBRE: GeoOffer[] = [
   {
     id: 'autorite',
     name: 'Autorité',
-    price: 1500,
+    price: 1450,
     promoPrice: 1100,
     monthly: true,
     questions: 60,
@@ -256,7 +264,6 @@ const PLANS_DECEMBRE: GeoOffer[] = [
       'Tout Croissance, avec un Audit GEO Complet élargi à vos 60 questions et à 5 concurrents.',
       `60 questions suivies et 5 concurrents : ${nombre(reponsesParMois(60))} réponses analysées par mois.`,
       'Vos fiches Google et Bing créées ou reprises, puis tenues à jour.',
-      '3 démarches par mois auprès de comparatifs, de médias ou de partenaires choisis parmi les sources des IA, sans jamais payer de place.',
       '4 nouveaux contenus par mois sur votre site (pages ou articles), validés par vous avant publication.',
       '10 pages existantes améliorées chaque mois.',
       '1 heure chaque mois avec Benjamin Dayan, fondateur, et un bilan chaque trimestre.',
@@ -274,7 +281,8 @@ export const plansGeo = (): GeoOffer[] => (grilleDecembreActive() ? PLANS_DECEMB
  * Offre Black Friday 2026 sur les accompagnements, décidée par Benjamin le 13/11/2026 : le prix
  * promoPrice vaut pour toute signature jusqu'au 30 novembre 2026 inclus et reste celui du client
  * pendant tout son engagement. Depuis le 20/11/2026, elle porte sur la nouvelle grille : 350, 600 et
- * 1 100 € HT par mois au lieu de 500, 800 et 1 500 € (jusqu'à −30 %) ; ensuite, les prix normaux.
+ * 1 100 € HT par mois. Depuis le 27/11/2026, les prix normaux sont 600, 900 et 1 450 € : jamais pratiqués avant l'offre,
+ * ils sont annoncés comme ceux des signatures à partir du 1er décembre (prixApresOffre), sans prix barré ni pourcentage.
  */
 export const GEO_PROMO = {
   nom: 'Black Friday',
@@ -282,6 +290,11 @@ export const GEO_PROMO = {
   fin: '2026-11-30T23:59:59+01:00',
   /** Date affichée partout (pages, FAQ, guide des prix, llms.txt), avec l'année depuis le 16/11/2026. */
   finTexte: '30 novembre 2026',
+  /** Premier instant des prix normaux pour les nouvelles signatures, heure de Paris (données structurées). */
+  reprise: '2026-12-01T00:00:00+01:00',
+  /** « À partir du 1er décembre » : sans l'année dans les cartes de prix, avec l'année dans les phrases. */
+  repriseCourte: '1er décembre',
+  repriseTexte: '1er décembre 2026',
 } as const;
 
 export type GeoTerm = { icon: string; html: string };
@@ -349,25 +362,23 @@ export const promoGeoActive = (maintenant: Date = new Date()) => maintenant.getT
 /** Prix payé aujourd'hui : celui de l'offre en cours s'il y en a une, sinon le prix normal. */
 export const prixDuJour = (o: GeoOffer) => (o.promoPrice !== undefined && promoGeoActive() ? o.promoPrice : o.price);
 
-/** Prix normal à barrer à côté du prix de l'offre ; null hors offre. */
-export const prixBarre = (o: GeoOffer) => (o.promoPrice !== undefined && promoGeoActive() ? o.price : null);
+/**
+ * Pendant l'offre, prix normal de la formule, celui des signatures à partir du 1er décembre (GEO_PROMO.reprise) ; null hors
+ * offre. À afficher comme tel (« 600 € à partir du 1er décembre »), jamais barré ni en « au lieu de » : il n'a pas été
+ * pratiqué avant l'offre (prix du 27/11/2026).
+ */
+export const prixApresOffre = (o: GeoOffer) => (o.promoPrice !== undefined && promoGeoActive() ? o.price : null);
 
-/** Plus forte remise de l'offre, en % arrondi (30 %). */
-export const remiseMaxGeo = () =>
-  Math.round(Math.max(0, ...plansGeo().map((p) => (p.promoPrice !== undefined ? 1 - p.promoPrice / p.price : 0))) * 100);
-
-/** Même remise sur toutes les formules (−30 % chacune) : on écrit « −30 % » et non « jusqu'à −30 % ». */
-export const remiseGeoUniforme = () => {
-  const remises = plansGeo()
-    .filter((p) => p.promoPrice !== undefined)
-    .map((p) => Math.round((1 - (p.promoPrice ?? p.price) / p.price) * 100));
-  return remises.length > 0 && remises.every((r) => r === remises[0]);
+/** « 600, 900 et 1 450 € » : prix normaux des formules, pour les phrases. */
+const prixNormauxPlans = () => {
+  const prix = plansGeo().map((p) => p.price);
+  return `${prix.slice(0, -1).map(nombre).join(', ')} et ${euros(prix[prix.length - 1])}`;
 };
 
-/** Conditions de l'offre en une phrase ; vide hors offre. */
+/** Conditions de l'offre en une phrase, avec les prix à partir du 1er décembre ; vide hors offre. */
 export const phrasePromoGeo = () =>
   promoGeoActive()
-    ? `Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ', 6 mois au minimum' : ''}.`
+    ? `Offre ${GEO_PROMO.nom} pour toute signature jusqu'au ${GEO_PROMO.finTexte} : le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ', 6 mois au minimum' : ''}. À partir du ${GEO_PROMO.repriseTexte} : ${prixNormauxPlans()} HT par mois.`
     : '';
 
 /** Grille de décembre : « de 20 à 60 questions », « de 480 à 1 440 réponses ». */
@@ -382,24 +393,21 @@ const prixAudits = () => {
   const [express, complet] = auditsGeo();
   return `l'<strong>${express.name} à ${euros(express.price)} HT</strong> et l'<strong>${complet.name} à ${euros(complet.price)} HT</strong>`;
 };
-/** « Essentiel à 350 € HT au lieu de 500 €, … » pendant l'offre ; prix normaux ensuite. */
+/** « Essentiel à 350 € HT, … » pendant l'offre (prix d'après l'offre dans suitePromo) ; prix normaux ensuite. */
 const prixPlans = () => {
   const [essentiel, croissance, autorite] = plansGeo();
-  const un = (p: GeoOffer, unite = '') => {
-    const barre = prixBarre(p);
-    return `<strong>${p.name} à ${euros(prixDuJour(p))} HT${unite}</strong>${barre !== null ? ` au lieu de ${euros(barre)}` : ''}`;
-  };
+  const un = (p: GeoOffer, unite = '') => `<strong>${p.name} à ${euros(prixDuJour(p))} HT${unite}</strong>`;
   return `${un(essentiel)}, ${un(croissance)} et ${un(autorite, ' par mois')}`;
 };
 /** La phrase de l'offre, précédée d'une espace ; rien hors offre. */
 const suitePromo = () => (promoGeoActive() ? ` ${phrasePromoGeo()}` : '');
 
-/** Paragraphe de l'offre en cours pour un article (repère <!-- offre-geo -->) ; vide hors offre. */
+/** Paragraphe de l'offre en cours pour un article (repère <!-- offre-geo -->), sous un tableau des prix normaux ; vide hors offre. */
 export const offreGeoHtml = () => {
   if (!promoGeoActive()) return '';
   const [essentiel, croissance, autorite] = plansGeo();
-  const un = (p: GeoOffer) => `${p.name} à ${euros(prixDuJour(p))} HT au lieu de ${euros(p.price)}`;
-  return `<p><strong>Offre ${GEO_PROMO.nom}</strong> : pour toute signature jusqu'au ${GEO_PROMO.finTexte}, ${un(essentiel)} par mois, ${un(croissance)} et ${un(autorite)}. Le prix est conservé pendant tout l'engagement${grilleDecembreActive() ? ', 6 mois au minimum' : ''}. <a href="/accompagnement-geo/#formules">Voir les formules</a></p>`;
+  const un = (p: GeoOffer) => `${p.name} à ${euros(prixDuJour(p))} HT`;
+  return `<p><strong>Offre ${GEO_PROMO.nom}</strong> : pour toute signature jusqu'au ${GEO_PROMO.finTexte}, ${un(essentiel)} par mois, ${un(croissance)} et ${un(autorite)}, prix conservé pendant tout l'engagement${grilleDecembreActive() ? ', 6 mois au minimum' : ''}. Les prix du tableau s'appliquent aux signatures à partir du ${GEO_PROMO.repriseTexte}. <a href="/accompagnement-geo/#formules">Voir les formules</a></p>`;
 };
 
 /** Espaces insécables de la typographie française (avant : ; ? ! », après «), pour les textes insérés dans les articles. */
@@ -418,8 +426,8 @@ const grilleKameoHtml = () => {
     ligne(express, `${euros(express.price)}, une fois`, `20 questions posées 3 fois à ChatGPT, Gemini, Perplexity et Claude (${reponsesAudit(20)} réponses), diagnostic technique, plan d'action priorisé`),
     ligne(complet, `${euros(complet.price)}, une fois`, `40 questions (${reponsesAudit(40)} réponses), 3 concurrents comparés, les sources que les IA citent dans votre secteur, une restitution d'une heure en visio`),
     ligne(essentiel, `${euros(essentiel.price)} par mois`, `20 questions suivies toutes les deux semaines (${reponsesParMois(20)} réponses par mois), indexation dans Google, Bing et Brave, erreurs des IA corrigées à la source, corrections techniques, 3 pages améliorées par mois, 3 actions par mois à faire vous-même, rapport mensuel`),
-    ligne(croissance, `${euros(croissance.price)} par mois`, `40 questions (${reponsesParMois(40)} réponses par mois), fiche ChatGPT, 2 nouveaux contenus par mois, 2 inscriptions par mois dans les annuaires et sites d'avis, méthode de demande d'avis, 5 pages améliorées et un point mensuel`),
-    ligne(autorite, `${euros(autorite.price)} par mois`, `60 questions (${nombre(reponsesParMois(60))} réponses par mois), fiches Google et Bing, 3 démarches par mois auprès de comparatifs et de médias, 4 nouveaux contenus, 10 pages améliorées, une heure par mois avec le fondateur`),
+    ligne(croissance, `${euros(croissance.price)} par mois`, `40 questions (${reponsesParMois(40)} réponses par mois), fiche ChatGPT, 2 nouveaux contenus par mois, 1 inscription par mois dans les annuaires et sites d'avis, 3 démarches par mois auprès de comparatifs et de médias, 5 pages améliorées et un point mensuel`),
+    ligne(autorite, `${euros(autorite.price)} par mois`, `60 questions (${nombre(reponsesParMois(60))} réponses par mois) et 5 concurrents, fiches Google et Bing, 4 nouveaux contenus, 10 pages améliorées, une heure par mois avec le fondateur`),
     '</tbody></table>',
     offreGeoHtml(),
     "<p>Les accompagnements demandent 6 mois d'engagement, puis sont sans engagement, résiliables par simple e-mail. L'audit est offert au démarrage, 12 mois coûtent le prix de 11, et le prix d'un audit est déduit si vous démarrez un accompagnement dans le mois qui suit. Un livrable prévu et non fait est déduit de la facture suivante.</p>",
@@ -437,6 +445,13 @@ const prixKameoMois = () => {
     : normal;
 };
 
+/** Grille de décembre : prix des audits dans la FAQ du guide des prix (repère <!-- prix-kameo-audit -->, ajouté le 27/11/2026). */
+const prixKameoAudit = () => {
+  const [express, complet] = AUDITS_DECEMBRE;
+  const prix = (o: GeoOffer) => `${euros(o.price)} HT`.replace(/ /g, '\u00a0');
+  return `Chez Kameo : ${prix(express)} pour l'Express, ${prix(complet)} pour le Complet.`;
+};
+
 /** Grille de décembre : la mesure de Kameo dans le guide sur la mesure (repère <!-- mesure-kameo -->). */
 const mesureKameoHtml = () => {
   const f = fourchetteQuestions();
@@ -446,9 +461,9 @@ const mesureKameoHtml = () => {
 /**
  * Repères des articles du blog, remplacés à l'affichage (pas dans le cache des articles) :
  * <!-- offre-geo --> devient l'offre en cours (rien hors offre) ; à partir du 01/12/2026, les blocs
- * <!-- grille-kameo -->…<!-- /grille-kameo -->, <!-- prix-kameo-mois -->…<!-- /prix-kameo-mois -->
- * et <!-- mesure-kameo -->…<!-- /mesure-kameo --> sont remplacés par la grille de décembre ; avant,
- * leur texte (grille de novembre) reste tel quel.
+ * <!-- grille-kameo -->…<!-- /grille-kameo -->, <!-- prix-kameo-mois -->…<!-- /prix-kameo-mois -->,
+ * <!-- prix-kameo-audit -->…<!-- /prix-kameo-audit --> et <!-- mesure-kameo -->…<!-- /mesure-kameo --> sont
+ * remplacés par la grille de décembre ; avant, leur texte (grille de novembre) reste tel quel.
  */
 export const reperesGeo = (html: string): string => {
   let out = html.replace('<!-- offre-geo -->', offreGeoHtml());
@@ -456,6 +471,7 @@ export const reperesGeo = (html: string): string => {
     out = out
       .replace(/<!-- grille-kameo -->[\s\S]*?<!-- \/grille-kameo -->/, grilleKameoHtml())
       .replace(/<!-- prix-kameo-mois -->[\s\S]*?<!-- \/prix-kameo-mois -->/, insecables(prixKameoMois()))
+      .replace(/<!-- prix-kameo-audit -->[\s\S]*?<!-- \/prix-kameo-audit -->/, insecables(prixKameoAudit()))
       .replace(/<!-- mesure-kameo -->[\s\S]*?<!-- \/mesure-kameo -->/, mesureKameoHtml());
   }
   return out;
@@ -624,7 +640,7 @@ export const faqAccompagnement = (): FaqItem[] => {
   return [
     {
       q: "Qu'est-ce qu'un accompagnement GEO ?",
-      a: `C'est un suivi de votre visibilité dans les réponses des IA, avec le travail qui la fait progresser. Kameo suit de ${f.min} à ${f.max} questions clés selon la formule, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines, corrige votre site, veille à l'indexation de vos pages, fait corriger à la source les erreurs des IA, améliore vos pages et, selon la formule, tient à jour votre fiche ChatGPT, écrit de nouveaux contenus, développe vos avis, crée vos fiches Google et Bing et vous fait citer par les sources des IA.`,
+      a: `C'est un suivi de votre visibilité dans les réponses des IA, avec le travail qui la fait progresser. Kameo suit de ${f.min} à ${f.max} questions clés selon la formule, posées 3 fois à ChatGPT, Gemini, Perplexity et Claude toutes les deux semaines, corrige votre site, veille à l'indexation de vos pages, fait corriger à la source les erreurs des IA, améliore vos pages et, selon la formule, tient à jour votre fiche ChatGPT, écrit de nouveaux contenus, vous inscrit dans les annuaires, démarche les comparatifs et les médias que les IA citent, et crée vos fiches Google et Bing.`,
     },
     {
       q: 'Combien coûte un accompagnement GEO ?',
@@ -636,7 +652,7 @@ export const faqAccompagnement = (): FaqItem[] => {
     },
     {
       q: 'Quelle formule choisir ?',
-      a: "Elle dépend de l'étendue de votre activité. <strong>Essentiel</strong> pour une activité principale, sur une zone ou toute la France : votre site est corrigé et indexé, les erreurs des IA sur votre entreprise corrigées à la source, vos questions mesurées, et vous recevez chaque mois 3 actions à faire vous-même. <strong>Croissance</strong> jusqu'à 3 services ou 3 villes : nous créons et tenons à jour votre fiche ChatGPT, écrivons 2 contenus par mois, vous inscrivons dans les annuaires et sites d'avis que les IA citent et mettons en place la demande d'avis. <strong>Autorité</strong> jusqu'à 6 services ou villes, ou dans un secteur très disputé : nous créons et tenons à jour vos fiches Google et Bing, démarchons les comparatifs et les médias que les IA citent, et produisons 4 contenus par mois.",
+      a: "Elle dépend de l'étendue de votre activité. <strong>Essentiel</strong> pour une activité principale, sur une zone ou toute la France : votre site est corrigé et indexé, les erreurs des IA sur votre entreprise corrigées à la source, vos questions mesurées, et vous recevez chaque mois 3 actions à faire vous-même. <strong>Croissance</strong> jusqu'à 3 services ou 3 villes : nous créons et tenons à jour votre fiche ChatGPT, écrivons 2 contenus par mois, vous inscrivons chaque mois dans un annuaire ou un site d'avis et démarchons les comparatifs et les médias que les IA citent. <strong>Autorité</strong> jusqu'à 6 services ou villes, ou dans un secteur très disputé : nous créons et tenons à jour vos fiches Google et Bing, produisons 4 contenus par mois et suivons 5 concurrents.",
     },
     {
       q: 'Puis-je changer de formule ?',
@@ -660,7 +676,7 @@ export const faqAccompagnement = (): FaqItem[] => {
     },
     {
       q: 'Comment collectez-vous les avis clients ?',
-      a: "Avec les formules Croissance et Autorité, nous mettons en place une méthode pour demander un avis à vos vrais clients, au bon moment et sur les bonnes plateformes, avec des modèles de réponse. Nous n'achetons pas d'avis et ne trions pas les clients sollicités : les faux avis sont interdits par le Code de la consommation (article L121-4), et les plateformes comme les IA s'en méfient.",
+      a: "Dans les trois formules, les demandes d'avis font partie des actions à faire vous-même que nous vous préparons chaque mois, avec les textes prêts : c'est vous qui les envoyez à vos vrais clients. Nous n'achetons pas d'avis et ne trions pas les clients sollicités : les faux avis sont interdits par le Code de la consommation (article L121-4), et les plateformes comme les IA s'en méfient.",
     },
     {
       q: 'Quelle différence avec un outil de suivi de visibilité IA ?',

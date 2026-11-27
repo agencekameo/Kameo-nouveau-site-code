@@ -4,7 +4,7 @@ seoTitle: "Prix GEO : tarif d'un audit et d'une agence GEO en 2026 | Kameo"
 description: "Combien coûte le GEO (référencement IA) en 2026 ? Prix d'un audit et d'un accompagnement, ce que comprend chaque offre et comment comparer deux devis."
 excerpt: "Audit, accompagnement mensuel, outil de suivi : les prix du GEO relevés en novembre 2026, ce que comprend chaque niveau, les questions à poser pour comparer deux offres et les signaux d'alerte."
 date: "2026-11-09T16:00:00+01:00"
-modified: "2026-11-19T14:15:00+01:00"
+modified: "2026-11-27T16:20:00+01:00"
 image: "/wp-content/uploads/2026/11/kameo-prix-geo.jpg"
 imageWidth: 1600
 imageHeight: 900
@@ -125,7 +125,7 @@ Vous achetez un travail et une mesure, pas un résultat garanti.
 <details>
 <summary>Quel est le tarif d'un audit GEO ?</summary>
 
-Selon notre relevé de novembre 2026 : de 200 à 600 € chez un freelance ou sur une plateforme, de 600 à 1 500 € dans une petite structure, de 1 000 à 5 000 € HT dans une agence française. Chez Kameo : 500 € HT pour l'Express, 800 € HT pour le Complet.
+Selon notre relevé de novembre 2026 : de 200 à 600 € chez un freelance ou sur une plateforme, de 600 à 1 500 € dans une petite structure, de 1 000 à 5 000 € HT dans une agence française. <!-- prix-kameo-audit -->Chez Kameo : 650 € HT pour l'Express, 990 € HT pour le Complet.<!-- /prix-kameo-audit -->
 
 </details>
 

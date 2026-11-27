@@ -16,7 +16,7 @@
  * d'ouverture sur l'adresse parisienne, où aucun client n'est reçu : les horaires
  * sont ceux de la joignabilité (ContactPoint.hoursAvailable).
  */
-import { GEO_ENGINES, GEO_PROMO, auditsGeo, euros, fourchetteQuestions, grilleDecembreActive, plansGeo, prixBarre, prixDuJour } from '@/content/geo';
+import { GEO_ENGINES, GEO_PROMO, auditsGeo, euros, fourchetteQuestions, grilleDecembreActive, plansGeo, prixApresOffre, prixDuJour } from '@/content/geo';
 import { pageInfo } from '@/content/pages';
 import { ADDRESS, COMPANY, CONTACT, HEAD_OFFICE, HOURS, PROFILES, SITE_URL, SOCIAL, abs } from './site';
 
@@ -199,10 +199,11 @@ const offresWordpress = (): Json[] => [
 
 /*
  * Offres GEO à prix publics, HT (src/content/geo.ts) : audits en paiement unique, accompagnements au mois.
- * Pendant une offre (Black Friday…), seul le prix réduit a une date de fin (validThrough) : le prix normal est
- * donné à côté (ListPrice) et l'offre elle-même n'expire pas. L'offre finie, il ne reste que le prix normal.
+ * Pendant une offre (Black Friday…), le prix de l'offre vaut jusqu'à sa fin (validThrough) et le prix normal à partir
+ * du lendemain (validFrom) : depuis le 27/11/2026, ce prix normal n'a jamais été pratiqué avant l'offre, donc pas de
+ * ListPrice (prix de référence). L'offre elle-même n'expire pas ; l'offre finie, il ne reste que le prix normal.
  */
-function offreGeo(name: string, price: number, monthly: boolean, path: string, promo?: { prixNormal: number; fin: string }): Json {
+function offreGeo(name: string, price: number, monthly: boolean, path: string, promo?: { prixNormal: number; fin: string; reprise: string }): Json {
   const spec = (montant: number): Json => ({
     ...(monthly ? { '@type': 'UnitPriceSpecification', unitCode: 'MON', unitText: 'mois' } : { '@type': 'PriceSpecification' }),
     price: String(montant),
@@ -219,7 +220,7 @@ function offreGeo(name: string, price: number, monthly: boolean, path: string, p
     priceSpecification: promo
       ? [
           { ...spec(price), validThrough: promo.fin },
-          { ...spec(promo.prixNormal), priceType: 'https://schema.org/ListPrice' },
+          { ...spec(promo.prixNormal), validFrom: promo.reprise },
         ]
       : spec(price),
   };
@@ -227,13 +228,13 @@ function offreGeo(name: string, price: number, monthly: boolean, path: string, p
 const offresAuditGeo = (): Json[] => auditsGeo().map((o) => offreGeo(o.name, o.price, false, '/audit-geo/'));
 const offresAccompagnementGeo = (): Json[] =>
   plansGeo().map((o) => {
-    const prixNormal = prixBarre(o);
+    const prixNormal = prixApresOffre(o);
     return offreGeo(
       `Accompagnement GEO ${o.name}`,
       prixDuJour(o),
       true,
       '/accompagnement-geo/',
-      prixNormal !== null ? { prixNormal, fin: GEO_PROMO.fin } : undefined,
+      prixNormal !== null ? { prixNormal, fin: GEO_PROMO.fin, reprise: GEO_PROMO.reprise } : undefined,
     );
   });
 const IA = GEO_ENGINES.join(', ').replace(/, (?=[^,]*$)/, ' et ');

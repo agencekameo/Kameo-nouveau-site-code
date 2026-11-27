@@ -105,10 +105,10 @@ const css = `
 /* Date de mise à jour sous le héros des pages GEO */
 .geo-maj { margin: 18px 0 0; font-size: 13px; line-height: 1.6; color: rgba(15,17,21,.55); text-align: center; }
 .geo-maj a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-/* Offre en cours (GEO_PROMO) : étiquette noire et prix normal barré au-dessus du prix */
+/* Offre en cours (GEO_PROMO) : étiquette noire et, à côté, le prix des signatures à partir du 1er décembre (jamais barré) */
 .geo-plan__promo { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; }
 .geo-plan__promo-tag { padding: 4px 10px; border-radius: 999px; background: #0f1115; color: #fff; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
-.geo-plan__promo del { font-size: 17px; font-weight: 700; color: rgba(15,17,21,.42); text-decoration-thickness: 2px; }
+.geo-plan__after { font-size: 13.5px; font-weight: 700; line-height: 1.35; color: rgba(15,17,21,.55); }
 .geo-promo-banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; max-width: 1120px; margin: 0 auto clamp(30px,4vw,42px); padding: 14px 22px; border-radius: 16px; background: #0f1115; color: rgba(255,255,255,.88); font-size: 15px; line-height: 1.5; text-align: center; }
 .geo-promo-banner strong { color: #F8903C; font-weight: 800; }
 .geo-promo-banner__tag { padding: 5px 12px; border-radius: 999px; background: var(--accent-gradient); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
@@ -157,7 +157,7 @@ const css = `
 .geo-table td.is-txt { text-align: center; font-size: 13.5px; line-height: 1.45; color: rgba(15,17,21,.78); }
 .geo-table__note { max-width: 1120px; margin: 14px auto 0; font-size: 13px; line-height: 1.5; color: rgba(15,17,21,.55); }
 .geo-table__price td { font-weight: 900; color: #0f1115; }
-.geo-table__price del { display: block; font-size: 12.5px; font-weight: 600; color: rgba(15,17,21,.42); }
+.geo-table__price small { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: rgba(15,17,21,.5); }
 /* Comparatif des formules : titre de chaque bloc (commun, puis ce qui change formule par formule) */
 .geo-table--plans .geo-table__group th { width: auto; padding: 12px 18px; background: rgba(237,110,99,.06); border-top: 1px solid rgba(15,17,21,.07); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #ED6E63; text-align: left; }
 @media (max-width: 640px) {
@@ -190,7 +190,6 @@ const css = `
 .geo-path__offers { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 8px; flex: 1; align-content: start; }
 .geo-path__offers li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 14px; border-radius: 12px; background: #F9FAFB; font-size: 14.5px; font-weight: 700; color: #0f1115; }
 .geo-path__offers li span { font-weight: 900; white-space: nowrap; }
-.geo-path__offers li del { margin-right: 6px; font-weight: 700; color: rgba(15,17,21,.4); }
 .geo-path__offers li small { font-weight: 600; font-size: 12px; color: rgba(15,17,21,.5); }
 .geo-path__link { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; color: #ED6E63; }
 .geo-path:hover .geo-path__link { text-decoration: underline; text-underline-offset: 3px; }

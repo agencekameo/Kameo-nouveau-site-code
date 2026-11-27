@@ -5,11 +5,10 @@ import {
   grilleDecembreActive,
   euros,
   noteEngagementGeo,
-  prixBarre,
+  plansGeo,
+  prixApresOffre,
   prixDuJour,
   promoGeoActive,
-  remiseGeoUniforme,
-  remiseMaxGeo,
   termsGeo,
   type FaqItem,
   type GeoOffer,
@@ -71,9 +70,12 @@ export function GeoEngines({ items }: { items: readonly string[] }) {
   );
 }
 
-/** Carte d'une offre (audit ou accompagnement), prix HT ; pendant l'offre en cours, prix normal barré. */
+/**
+ * Carte d'une offre (audit ou accompagnement), prix HT ; pendant l'offre en cours, étiquette de l'offre et prix des
+ * signatures à partir du 1er décembre, jamais barré (voir prixApresOffre).
+ */
 export function GeoOfferCard({ offer, badge, more }: { offer: GeoOffer; badge?: string; more?: { href: string; label: string } }) {
-  const barre = prixBarre(offer);
+  const apres = prixApresOffre(offer);
   return (
     <article className={'geo-plan' + (badge ? ' geo-plan--featured' : '')}>
       {badge && (
@@ -92,13 +94,12 @@ export function GeoOfferCard({ offer, badge, more }: { offer: GeoOffer; badge?: 
         )}
       </div>
       <div className="geo-plan__pricing">
-        {barre !== null && (
+        {apres !== null && (
           <p className="geo-plan__promo">
             <span className="geo-plan__promo-tag">{GEO_PROMO.nom}</span>
-            <del>
-              <span className="sr-only">Prix normal : </span>
-              {euros(barre)}
-            </del>
+            <span className="geo-plan__after">
+              {euros(apres)} à partir du {GEO_PROMO.repriseCourte.replace(' ', '\u00a0')}
+            </span>
           </p>
         )}
         <p className="geo-plan__price">
@@ -134,16 +135,8 @@ export function GeoPromoBanner() {
     <p className="geo-promo-banner">
       <span className="geo-promo-banner__tag">{GEO_PROMO.nom}</span>
       <span>
-        {remiseGeoUniforme() ? (
-          <>
-            <strong>−{remiseMaxGeo()}&nbsp;%</strong> sur chaque formule d’accompagnement GEO
-          </>
-        ) : (
-          <>
-            Jusqu’à <strong>−{remiseMaxGeo()}&nbsp;%</strong> sur l’accompagnement GEO
-          </>
-        )}{' '}
-        pour toute signature jusqu’au <strong>{GEO_PROMO.finTexte}</strong>.{' '}
+        Accompagnement GEO dès <strong>{euros(prixDuJour(plansGeo()[0]))}&nbsp;HT/mois</strong> pour toute signature jusqu’au{' '}
+        <strong>{GEO_PROMO.finTexte}</strong>.{' '}
         {grilleDecembreActive() ? (
           <>
             Le prix est garanti pendant tout votre engagement, <strong>6&nbsp;mois</strong> au minimum.

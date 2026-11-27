@@ -15,7 +15,6 @@ import {
   grilleDecembreActive,
   nombre,
   plansGeo,
-  prixBarre,
   prixDuJour,
   promoGeoActive,
 } from '@/content/geo';
@@ -552,23 +551,14 @@ export default function AgenceGeoPage() {
                   contenus, selon la formule.
                 </p>
                 <ul className="geo-path__offers">
-                  {PLANS.map((o) => {
-                    const barre = prixBarre(o);
-                    return (
-                      <li key={o.id}>
-                        {o.name}
-                        <span>
-                          {barre !== null && (
-                            <del>
-                              <span className="sr-only">Prix normal : </span>
-                              {euros(barre)}
-                            </del>
-                          )}
-                          {euros(prixDuJour(o))} <small>HT/mois</small>
-                        </span>
-                      </li>
-                    );
-                  })}
+                  {PLANS.map((o) => (
+                    <li key={o.id}>
+                      {o.name}
+                      <span>
+                        {euros(prixDuJour(o))} <small>HT/mois</small>
+                      </span>
+                    </li>
+                  ))}
                 </ul>
                 <span className="geo-path__link">Comparer les formules →</span>
               </Link>

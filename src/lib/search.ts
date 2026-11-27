@@ -1,5 +1,6 @@
 import { getAllPostsOrRepo } from './blog';
 import { REALISATIONS } from '@/content/realisations';
+import { auditsGeo, euros } from '@/content/geo';
 
 /* Index de la recherche interne (formulaire de la page 404). */
 export type SearchDoc = { path: string; title: string; text: string; kind: 'Page' | 'Réalisation' | 'Article' };
@@ -20,7 +21,7 @@ const PAGES: SearchDoc[] = [
   ['/creation-crm-sur-mesure/', 'Création de CRM sur-mesure', 'Pipeline adapté à votre métier, intégrations, hébergement en France.'],
   ['/creation-saas-ia/', 'Création de SaaS avec IA', 'Intégration Claude et GPT, RAG, multi-tenant, billing Stripe.'],
   ['/agence-geo/', 'Agence GEO : référencement IA', 'Être cité par ChatGPT, Gemini, Perplexity et Claude : mesure, corrections, notoriété.'],
-  ['/audit-geo/', 'Audit GEO', 'Visibilité dans les IA et plan d’action. Express 500 € HT, Complet 800 € HT.'],
+  ['/audit-geo/', 'Audit GEO', `Visibilité dans les IA et plan d’action. Express ${euros(auditsGeo()[0].price)} HT, Complet ${euros(auditsGeo()[1].price)} HT.`],
   ['/accompagnement-geo/', 'Accompagnement GEO', 'Suivi de la visibilité dans les IA, trois formules à prix publics, audit offert.'],
   ['/glossaire-geo/', 'Glossaire GEO', 'Les mots du référencement IA expliqués : Aperçus IA, OAI-SearchBot, part de voix, llms.txt.'],
   ['/test-visibilite-ia/', 'Test gratuit de visibilité dans les IA', '10 questions à poser à ChatGPT, Gemini, Perplexity et Claude, et la grille pour lire les réponses.'],

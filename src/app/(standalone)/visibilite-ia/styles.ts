@@ -152,7 +152,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-chip-promo { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: #0F1115; color: #fff; font: 400 11px/1 var(--vi-ff-mono); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; flex: none; }
 .vi-count { font: 400 12.5px/1.4 var(--vi-ff-mono); color: var(--vi-ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .vi-count::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: var(--vi-coral); vertical-align: 1px; }
-.vi .vi-strike { text-decoration: line-through; text-decoration-thickness: 1.5px; text-decoration-color: var(--vi-coral); text-decoration-skip-ink: none; color: var(--vi-muted); }
 .vi-ai { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 14px 0 12px; border-radius: 999px; background: #fff; border: 1px solid var(--vi-line); font: 500 14px/1 var(--vi-ff-body); color: var(--vi-ink-2); white-space: nowrap; }
 .vi-ai::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--vi-grad); }
 .vi-src { margin-top: 10px; font: 400 12px/1.5 var(--vi-ff-mono); color: var(--vi-muted); }
@@ -385,6 +384,8 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-plan__who { margin-top: 6px; font-size: 15px; color: var(--vi-muted); }
 .vi-plan__price { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--vi-line-3); }
 .vi-plan__was { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 15px; }
+/* Prix des signatures à partir du 1er décembre, pendant l'offre : jamais barré (prix du 27/11/2026, jamais pratiqué avant l'offre). */
+.vi-plan__after { font: 600 14px/1.35 var(--vi-ff-body); color: var(--vi-muted); }
 .vi-plan__amount { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
 .vi-plan__num { font: 900 48px/1 var(--vi-ff-head); letter-spacing: -0.04em; color: var(--vi-ink); }
 .vi-plan__unit { font: 500 15px/1.2 var(--vi-ff-body); color: var(--vi-muted); }

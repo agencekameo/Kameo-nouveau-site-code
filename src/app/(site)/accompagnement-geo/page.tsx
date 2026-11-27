@@ -28,11 +28,9 @@ import {
   grilleDecembreActive,
   nombre,
   plansGeo,
-  prixBarre,
+  prixApresOffre,
   prixDuJour,
   promoGeoActive,
-  remiseGeoUniforme,
-  remiseMaxGeo,
   reponsesParMois,
 } from '@/content/geo';
 import { pageMetadata } from '@/lib/seo';
@@ -90,7 +88,8 @@ const ROWS_NOVEMBRE: Row[] = [
   ['Cartographie mensuelle des médias cités par les IA', false, false, true],
   ['Call mensuel de suivi', false, false, true],
 ];
-/* Grille de décembre : d'abord ce que partagent les 3 formules, puis ce qui change, formule par formule (demande de Benjamin, 23/11/2026). */
+/* Grille de décembre : d'abord ce que partagent les 3 formules, puis ce qui change, formule par formule (demande de Benjamin, 23/11/2026).
+   27/11/2026, à sa demande : démarches auprès des comparatifs et médias dès Croissance, 1 inscription par mois, plus de méthode d'avis. */
 const GROUPES_DECEMBRE: Groupe[] = [
   {
     titre: 'Inclus dans les 3 formules',
@@ -117,15 +116,14 @@ const GROUPES_DECEMBRE: Groupe[] = [
     rows: [
       ['Fiche ChatGPT (Business Hub)', false, true, true],
       ['Nouveaux contenus', false, '2 par mois, validés par vous', '4 par mois, validés par vous'],
-      ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '2 inscriptions par mois', '2 inscriptions par mois'],
-      ['Demandes d’avis clients', 'Conseils', 'Méthode et modèles de réponse', 'Méthode et modèles de réponse'],
+      ['Annuaires et sites d’avis', 'À faire vous-même, textes prêts', '1 inscription par mois', '1 inscription par mois'],
+      ['Comparatifs, médias et partenaires', false, '3 démarches par mois, sans place payante', '3 démarches par mois, sans place payante'],
     ],
   },
   {
     titre: 'En plus avec Autorité',
     rows: [
       ['Fiches Google et Bing', 'À faire vous-même, textes prêts', 'À faire vous-même, textes prêts', 'Créées ou reprises, puis tenues à jour'],
-      ['Comparatifs, médias et partenaires', false, false, '3 démarches par mois, sans place payante'],
     ],
   },
   {
@@ -226,8 +224,9 @@ export default function AccompagnementGeoPage() {
                   {promo && (
                     <>
                       {' '}
-                      Ce sont les prix {GEO_PROMO.nom}, au lieu de {euros(ESSENTIEL.price)}, {euros(CROISSANCE.price)} et{' '}
-                      {euros(AUTORITE.price)}, pour toute signature jusqu’au {GEO_PROMO.finTexte}.
+                      Ce sont les prix {GEO_PROMO.nom}, pour toute signature jusqu’au {GEO_PROMO.finTexte}&nbsp;; à partir
+                      du {GEO_PROMO.repriseTexte}&nbsp;: {euros(ESSENTIEL.price)}, {euros(CROISSANCE.price)} et{' '}
+                      {euros(AUTORITE.price)} HT par mois.
                     </>
                   )}
                 </p>
@@ -236,9 +235,8 @@ export default function AccompagnementGeoPage() {
                 {promo && (
                   <li>
                     <span>
-                      <strong>Offre {GEO_PROMO.nom}</strong>&nbsp;:{' '}
-                      {remiseGeoUniforme() ? <>−{remiseMaxGeo()}&nbsp;% sur chaque formule</> : <>jusqu’à −{remiseMaxGeo()}&nbsp;%</>}{' '}
-                      jusqu’au {GEO_PROMO.finTexte}, prix conservé pendant tout l’engagement
+                      <strong>Offre {GEO_PROMO.nom}</strong>&nbsp;: dès {euros(prixDuJour(ESSENTIEL))}&nbsp;HT/mois pour toute
+                      signature jusqu’au {GEO_PROMO.finTexte}, prix conservé pendant tout l’engagement
                       {dec ? <>, 6&nbsp;mois au minimum</> : null}
                     </span>
                   </li>
@@ -387,15 +385,14 @@ export default function AccompagnementGeoPage() {
                       <tr className="geo-table__price">
                         <th scope="row">Prix par mois</th>
                         {[ESSENTIEL, CROISSANCE, AUTORITE].map((p) => {
-                          const barre = prixBarre(p);
+                          const apres = prixApresOffre(p);
                           return (
                             <td key={p.id}>
                               {euros(prixDuJour(p))} HT
-                              {barre !== null && (
-                                <del>
-                                  <span className="sr-only">Prix normal : </span>
-                                  {euros(barre)}
-                                </del>
+                              {apres !== null && (
+                                <small>
+                                  {euros(apres)} à partir du {GEO_PROMO.repriseCourte.replace(' ', '\u00a0')}
+                                </small>
                               )}
                             </td>
                           );

@@ -24,11 +24,9 @@ import {
   euros,
   noteEngagementGeo,
   plansGeo,
-  prixBarre,
+  prixApresOffre,
   prixDuJour,
   promoGeoActive,
-  remiseGeoUniforme,
-  remiseMaxGeo,
   type GeoOffer,
 } from '@/content/geo';
 import { CONTACT, PROOF, SOCIAL } from '@/lib/site';
@@ -41,6 +39,8 @@ const nb = '\u00a0';
 const eur = (n: number) => euros(n).replace(/ /g, nb);
 /** « 30/11 » tiré de GEO_PROMO.fin, jamais écrit en dur. */
 const JOUR_MOIS_FIN = `${GEO_PROMO.fin.slice(8, 10)}/${GEO_PROMO.fin.slice(5, 7)}`;
+/** « 1er décembre » sans coupure : début des prix normaux pour les nouvelles signatures. */
+const REPRISE = GEO_PROMO.repriseCourte.replace(' ', nb);
 /** Texte lu dans geo.ts : espaces insécables (fr), apostrophes typographiques (hors balises HTML). */
 const t = (s: string) => fr(s).replace(/'(?![^<]*>)/g, '’');
 
@@ -279,7 +279,7 @@ const METHODE = [
   { illu: 'authority', t: 'Notoriété' },
 ] as const;
 
-/** Trois points par carte, lus dans les offres de geo.ts (nom des audits par auditsGeo()). */
+/** Trois ou quatre points par carte, résumés des offres de geo.ts (nom des audits par auditsGeo()) ; formules revues le 27/11/2026. */
 const points = (express: GeoOffer, complet: GeoOffer): Record<string, { lead?: string; items: string[] }> => ({
   essentiel: {
     items: [`${express.name} offert au démarrage`, 'Erreurs des IA corrigées à la source', 'Corrections techniques et 3 pages améliorées par mois'],
@@ -289,12 +289,13 @@ const points = (express: GeoOffer, complet: GeoOffer): Record<string, { lead?: s
     items: [
       `${complet.name} offert au démarrage`,
       'Fiche ChatGPT revendiquée, si vous êtes éligible',
-      '2 contenus et 2 inscriptions (annuaires, avis) par mois',
+      '2 contenus et 1 inscription (annuaires, avis) par mois',
+      '3 démarches par mois auprès de comparatifs et de médias',
     ],
   },
   autorite: {
     lead: 'Tout Croissance, et :',
-    items: ['3 démarches par mois auprès de comparatifs et de médias', '4 nouveaux contenus par mois', '1 heure par mois avec Benjamin Dayan, fondateur'],
+    items: ['Fiches Google et Bing créées, puis tenues à jour', '4 nouveaux contenus par mois', '1 heure par mois avec Benjamin Dayan, fondateur'],
   },
 });
 
@@ -447,7 +448,17 @@ export default function Body({ v }: { v: Variante }) {
   const plans = plansGeo();
   const [EXPRESS, COMPLET] = auditsGeo();
   const POINTS = points(EXPRESS, COMPLET);
-  const remise = remiseGeoUniforme() ? <>−{remiseMaxGeo()}&nbsp;% sur chaque formule</> : <>Jusqu’à −{remiseMaxGeo()}&nbsp;%</>;
+  /* Pendant l'offre : son prix de départ, jamais un pourcentage (les prix normaux du 27/11/2026 n'ont pas été pratiqués avant l'offre). */
+  const desPrix = (
+    <>
+      Dès {eur(prixDuJour(plans[0]))}
+      {nb}HT/mois
+    </>
+  );
+  const prixApres = `${plans
+    .slice(0, -1)
+    .map((p) => eur(p.price))
+    .join(', ')} et ${eur(plans[plans.length - 1].price)}`;
   /* Sur téléphone, Essentiel s'ouvre par défaut (demande de Benjamin, 27/11/2026) ; « Recommandé » reste sur la formule mise en avant. */
   const defaut = plans.find((p) => p.id === 'essentiel') ?? plans[0];
 
@@ -471,7 +482,7 @@ export default function Body({ v }: { v: Variante }) {
           <a className="vi-offre" href="#formules" data-vi-promo="" data-cta="bandeau-offre">
             <span className="vi-chip-promo">{GEO_PROMO.nom}</span>
             <span className="vi-offre__txt">
-              {remise}
+              {desPrix}
               <span className="vi-offre__date">
                 {' '}
                 jusqu’au <span className="vi-offre__long">{GEO_PROMO.finTexte}</span>
@@ -628,7 +639,9 @@ export default function Body({ v }: { v: Variante }) {
                 <div className="vi-promo" data-vi-promo="" data-vi-reveal="">
                   <span className="vi-chip-promo">{GEO_PROMO.nom}</span>
                   <p className="vi-promo__txt">
-                    {remise} pour toute signature jusqu’au {GEO_PROMO.finTexte}. Prix conservé pendant l’engagement.
+                    {desPrix} pour toute signature jusqu’au {GEO_PROMO.finTexte}, prix conservé pendant l’engagement. À partir du{' '}
+                    {GEO_PROMO.repriseTexte.replace(' ', nb)}&nbsp;: {prixApres}
+                    {nb}HT/mois.
                   </p>
                   <Countdown end={GEO_PROMO.fin} />
                 </div>
@@ -658,7 +671,7 @@ export default function Body({ v }: { v: Variante }) {
                 <ul className="vi-plans">
                   {plans.map((p) => {
                     const star = !!p.featured;
-                    const barre = promo ? prixBarre(p) : null;
+                    const apres = promo ? prixApresOffre(p) : null;
                     const pts = POINTS[p.id];
                     const qui = v.pourQui?.[p.id as FormuleId] ?? p.pourQui;
                     return (
@@ -676,17 +689,17 @@ export default function Body({ v }: { v: Variante }) {
                             </p>
                           )}
                           <div className="vi-plan__price">
-                            {barre !== null && (
+                            {apres !== null && (
                               <p className="vi-plan__was" data-vi-promo="">
                                 <span className="vi-chip-promo">{GEO_PROMO.nom}</span>
-                                <del className="vi-strike">
-                                  <span className="sr-only">Prix après l’offre&nbsp;: </span>
-                                  {eur(barre)}&nbsp;HT
-                                </del>
+                                <span className="vi-plan__after">
+                                  {eur(apres)}
+                                  {nb}HT dès le {REPRISE}
+                                </span>
                               </p>
                             )}
                             <p className="vi-plan__amount">
-                              {barre !== null ? (
+                              {apres !== null ? (
                                 <>
                                   <span className="vi-plan__num" data-vi-promo="">
                                     {eur(prixDuJour(p))}
