@@ -536,7 +536,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-plan__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .vi-plan__name { font: 800 24px/1.1 var(--vi-ff-head); letter-spacing: -0.025em; }
 .vi-plan__badge { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: var(--vi-grad); color: var(--vi-ink); font: 700 11.5px/1 var(--vi-ff-head); letter-spacing: .05em; text-transform: uppercase; }
-.vi-plan__who { margin-top: 6px; font-size: 15px; color: var(--vi-muted); }
 /* Logos des 4 IA mesurées, sous le nom et la description de la formule */
 .vi-ia-logos { display: flex; align-items: center; gap: 14px; margin-top: 14px; }
 .vi-ia-logos svg { display: block; width: 22px; height: 22px; flex: none; }
@@ -635,14 +634,17 @@ body:has(.vi) { background: #FFFFFF; }
 /* Réservation intégrée à la page (Calendly, demande de Benjamin du 28/11/2026) */
 /* Calendly dessine son propre cadre : pas de second cadre autour. En attendant (chargement, ou clic sans accord cookies) :
    une carte avec la silhouette du calendrier. */
-.vi-cal { position: relative; width: 100%; max-width: 1040px; text-align: left; }
+/* Largeur limitée à 440 px (28/11/2026, « couper les bords inutiles ») : Calendly passe alors dans sa présentation compacte,
+   le calendrier occupe toute la carte au lieu de flotter au milieu de grandes marges blanches. Coins arrondis et ombre
+   donnés par l'encart (l'iframe en position fixe pendant le rendu à l'avance n'est pas concernée par overflow). */
+.vi-cal { position: relative; width: 100%; max-width: 440px; overflow: hidden; border-radius: 20px; background: #fff; box-shadow: var(--vi-sh-4); text-align: left; }
 .vi-cal__frame { display: block; width: 100%; border: 0; opacity: 0; transition: opacity .3s ease, height .3s ease; }
 .vi-cal__frame.is-ready { opacity: 1; }
 /* Rendu à l'avance (CalendlyInline) : dans l'écran pour que le navigateur dessine Calendly, mais invisible, derrière la
    page et sans clic ; la priorité !important couvre .is-ready, prêt avant l'arrivée du visiteur. */
 .vi-cal__frame.is-warming { position: fixed !important; top: 0; left: 0; z-index: -1; opacity: 0 !important; pointer-events: none; transition: none; }
 .vi-cal__frame.is-warming + .vi-cal__wait { position: relative; }
-.vi-cal__wait { position: relative; display: grid; place-items: center; width: 100%; max-width: 640px; min-height: 460px; margin: 0 auto; padding: 28px 20px; overflow: hidden; border-radius: 20px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-4); text-align: center; }
+.vi-cal__wait { position: relative; display: grid; place-items: center; width: 100%; min-height: 460px; margin: 0 auto; padding: 28px 20px; overflow: hidden; background: #fff; text-align: center; }
 .vi-cal__frame + .vi-cal__wait { position: absolute; top: 0; left: 0; right: 0; }
 .vi-cal__skel { position: absolute; inset: 28px 16px auto; display: flex; flex-direction: column; align-items: center; gap: 22px; opacity: .5; pointer-events: none; }
 .vi-cal__skel-t { font: 700 17px/1.2 var(--vi-ff-head); color: var(--vi-ink); }

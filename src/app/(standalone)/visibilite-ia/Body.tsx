@@ -34,7 +34,7 @@ import {
   type GeoOffer,
 } from '@/content/geo';
 import { CONTACT, PROOF, SOCIAL } from '@/lib/site';
-import type { FormuleId, Variante } from './variantes';
+import type { Variante } from './variantes';
 
 /** Espace insécable, écrite en échappement : un copier-coller l'avait changée en espace normale (titre coupé entre « 1 » et « mois », prix coupés). */
 const nb = '\u00a0';
@@ -820,7 +820,6 @@ export default function Body({ v }: { v: Variante }) {
                     const star = !!p.featured;
                     const apres = promo ? prixApresLanding(p) : null;
                     const pts = POINTS[p.id];
-                    const qui = v.pourQui?.[p.id as FormuleId] ?? p.pourQui;
                     return (
                       <li key={p.id} id={`formule-${p.id}`} className={`vi-plan vi-plan--${p.id}` + (star ? ' vi-plan--star' : '')}>
                         <article className="vi-plan__in" aria-labelledby={`vi-plan-${p.id}`}>
@@ -830,11 +829,7 @@ export default function Body({ v }: { v: Variante }) {
                             </h3>
                             {star && <span className="vi-plan__badge">Recommandé</span>}
                           </div>
-                          {qui && (
-                            <p className="vi-plan__who">
-                              <Nw>{t(qui)}</Nw>
-                            </p>
-                          )}
+                          {/* Description « pour qui » sous le nom retirée le 28/11/2026 (demande) */}
                           <LogosIA />
                           {/* Réduction rendue évidente (28/11/2026) : pastille « −30 % Black Friday », prix de l'offre en dégradé,
                               puis le prix à partir du 1er décembre, jamais barré (prix fixé le 27/11/2026, jamais pratiqué avant
