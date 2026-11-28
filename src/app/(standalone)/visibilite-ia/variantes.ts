@@ -84,7 +84,7 @@ const AUTO_ECOLE: Variante = {
   deVotre: 'de votre auto-école',
   deVous: 'de votre auto-école',
   messageWa: 'Bonjour Kameo, je voudrais savoir ce que les IA disent de mon auto-école.',
-  h1: 'Rendez votre auto-école visible sur',
+  h1: 'Rendez votre auto-école 1re sur',
   lead: 'On mesure ce que les IA disent de votre auto-école, et on corrige ce qui les empêche de la citer.',
   chat: {
     q: 'Quelle auto-école choisir à Lyon ?',
@@ -126,7 +126,7 @@ const ECOLE: Variante = {
   deVotre: 'de votre école',
   deVous: 'de votre école',
   messageWa: 'Bonjour Kameo, je voudrais savoir ce que les IA disent de mon école.',
-  h1: 'Rendez votre école visible sur',
+  h1: 'Rendez votre école 1re sur',
   lead: 'On mesure ce que les IA disent de votre école, et on corrige ce qui les empêche de la citer.',
   chat: {
     q: 'Quelle école de commerce post-bac choisir à Bordeaux ?',
