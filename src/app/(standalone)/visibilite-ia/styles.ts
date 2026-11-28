@@ -202,6 +202,19 @@ body:has(.vi) { background: #FFFFFF; }
   .vi-offre { flex-wrap: nowrap; gap: 16px; font-size: 14px; }
   .vi-offre .vi-count { font-size: 13px; }
 }
+/* Bandeau collant en haut de l'écran (28/11/2026). Téléphone et tablette : .vi-stick n'a pas de boîte, le bandeau colle seul
+   (la barre du haut défile). Ordinateur : bandeau et barre du haut collent ensemble (.vi-stick). Sous la fenêtre Calendly
+   et le bandeau cookies (z-index 10001 et 10000), au-dessus de la page. */
+.vi-stick { display: contents; }
+.vi-offre { position: sticky; top: 0; z-index: 40; }
+/* Ancres (« Voir nos accompagnements », « Voir les avis clients ») : la section ne passe pas sous le bandeau */
+.vi:has(.vi-offre:not([hidden])) section[id] { scroll-margin-top: 72px; }
+@media (min-width: 1024px) {
+  .vi-stick { display: block; position: sticky; top: 0; z-index: 40; }
+  .vi-stick .vi-offre { position: relative; top: auto; }
+  .vi-stick .vi-top { position: relative !important; top: auto; }
+  .vi:has(.vi-offre:not([hidden])) section[id] { scroll-margin-top: 132px; }
+}
 
 /* ━━ Barre du haut ━━ */
 .vi-top { position: relative; z-index: 30; }
@@ -500,9 +513,15 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-ia-logos { display: flex; align-items: center; gap: 14px; margin-top: 14px; }
 .vi-ia-logos svg { display: block; width: 22px; height: 22px; flex: none; }
 .vi-plan__price { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--vi-line-3); }
-.vi-plan__was { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 15px; }
-/* Prix des signatures à partir du 1er décembre, pendant l'offre : jamais barré (prix du 27/11/2026, jamais pratiqué avant l'offre). */
-.vi-plan__after { font: 600 14px/1.35 var(--vi-ff-body); color: var(--vi-muted); }
+/* Réduction Black Friday (28/11/2026) : pastille « −30 % | BLACK FRIDAY », prix de l'offre en dégradé, puis « au lieu de 600 €
+   HT/mois à partir du 1er décembre ». Ce prix n'est jamais barré (fixé le 27/11/2026, jamais pratiqué avant l'offre). */
+.vi-plan__deal { display: inline-flex; align-items: stretch; height: 32px; margin-bottom: 12px; overflow: hidden; border-radius: 10px; box-shadow: 0 6px 16px -8px rgba(237,110,99,.7); }
+.vi-plan__pct { display: inline-flex; align-items: center; padding: 0 11px; background: var(--vi-grad); color: var(--vi-ink); font: 900 17px/1 var(--vi-ff-head); letter-spacing: -0.02em; white-space: nowrap; }
+.vi-plan__dealname { display: inline-flex; align-items: center; padding: 0 11px; background: var(--vi-ink); color: #fff; font: 400 11.5px/1 var(--vi-ff-mono); letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; }
+.vi-plan__num[data-vi-promo] { background: var(--vi-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+@media (forced-colors: active) { .vi-plan__num[data-vi-promo] { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; } }
+.vi-plan__after { margin-top: 8px; font: 500 14.5px/1.4 var(--vi-ff-body); color: var(--vi-muted); }
+.vi-plan__after strong { font-weight: 700; color: var(--vi-ink-2); white-space: nowrap; }
 .vi-plan__amount { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
 .vi-plan__num { font: 900 48px/1 var(--vi-ff-head); letter-spacing: -0.04em; color: var(--vi-ink); }
 .vi-plan__unit { font: 500 15px/1.2 var(--vi-ff-body); color: var(--vi-muted); }
