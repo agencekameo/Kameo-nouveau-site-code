@@ -14,7 +14,7 @@ import { CONTACT } from '@/lib/site';
  * et c'est Calendly qui demande l'accord pour ses cookies non indispensables (politique de confidentialité, § 9.2). Avec
  * notre accord, son bandeau est masqué.
  * Préchargement, pour être déjà affiché quand le visiteur arrive à la section (« instantané ») : sur ordinateur dès que la
- * page est prête ; sur téléphone 2 s après l'arrivée sur preloadAfter (les résultats clients depuis le 28/11/2026, avant :
+ * page est prête ; sur téléphone 2 s après l'arrivée sur preloadAfter (la 2e section de la page, les avis, depuis le 28/11/2026 ; avant :
  * les formules ; quand leur haut monte dans les 40 % du haut de l'écran) : le calendrier a le temps de se dessiner avant
  * que le visiteur n'arrive à la réservation, et le téléphone n'est pas occupé pendant le haut de page (blocages signalés le
  * 04/11/2026) ; dans tous les cas dès que la section est à 2 écrans.
