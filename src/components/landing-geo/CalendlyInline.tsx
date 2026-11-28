@@ -9,8 +9,12 @@ import { CONTACT } from '@/lib/site';
  * « un formulaire Calendly intégré directement à la page »). Même intégration que CalendlyModal (sans widget.js :
  * embed_domain, embed_type, paramètres utm_* de la page, à défaut ceux reçus en props) et même règle de consentement
  * (politique de confidentialité, § 9.2) : Calendly pèse environ 4 Mo et dépose ses propres traceurs, il n'est chargé
- * d'office qu'avec l'accord « Mesure d'audience » ET « Publicité », quand la section approche de l'écran. Sans cet accord,
- * le bouton « Voir les créneaux disponibles » le charge (action du visiteur).
+ * d'office qu'avec l'accord « Mesure d'audience » ET « Publicité ». Il est alors préchargé, pour être déjà affiché quand
+ * le visiteur arrive à la section (demande de Benjamin du 28/11/2026 : « instantané ») : sur ordinateur dès que la page
+ * est prête ; sur téléphone 2 s après l'arrivée sur preloadAfter (les formules, quand leur haut monte dans les 40 % du
+ * haut de l'écran), moment où la fenêtre CalendlyModal se précharge aussi : ses fichiers sont alors en cache, et le
+ * téléphone n'est pas occupé pendant le haut de page (blocages signalés le 04/11/2026) ; dans tous les cas dès que la
+ * section est à 2 écrans. Sans cet accord, le bouton « Voir les créneaux disponibles » le charge (action du visiteur).
  * Hauteur : message calendly.page_height. Réservation confirmée (calendly.event_scheduled) : la page part vers
  * /rdv-confirme/, qui déclenche les conversions (Schedule pour Meta, appointment_scheduled pour ChatGPT Ads).
  */
@@ -18,6 +22,8 @@ const CALENDLY_ORIGIN = 'https://calendly.com';
 const CONFIRM_PATH = '/rdv-confirme/';
 const UTM_KEYS = ['utm_campaign', 'utm_source', 'utm_medium', 'utm_content', 'utm_term'] as const;
 const START_HEIGHT = 700;
+/** Téléphone : décalage après la fenêtre CalendlyModal, préchargée au même moment. */
+const PHONE_DELAY_MS = 2000;
 
 type Utm = Partial<Record<(typeof UTM_KEYS)[number], string>>;
 
@@ -39,7 +45,7 @@ function embedUrl(utm: Utm) {
   return url.toString();
 }
 
-export default function CalendlyInline({ utm = {} }: { utm?: Utm }) {
+export default function CalendlyInline({ utm = {}, preloadAfter }: { utm?: Utm; preloadAfter?: string }) {
   const [src, setSrc] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [height, setHeight] = useState(START_HEIGHT);
@@ -48,30 +54,63 @@ export default function CalendlyInline({ utm = {} }: { utm?: Utm }) {
   const utmRef = useRef(utm);
   const load = () => setSrc((s) => s ?? embedUrl(utmRef.current));
 
-  // Avec l'accord cookies (à l'arrivée ou pendant la visite) : chargement quand la section approche de l'écran
+  // Avec l'accord cookies (à l'arrivée ou pendant la visite) : préchargement (voir en tête de fichier)
   useEffect(() => {
     const el = box.current;
     if (!el) return;
-    let io: IntersectionObserver | null = null;
-    const watch = (c: Consent | null) => {
-      if (!consented(c) || io) return;
-      io = new IntersectionObserver(
+    let armed = false;
+    const stops: (() => void)[] = [];
+    const stopAll = () => stops.splice(0).forEach((stop) => stop());
+    const start = () => {
+      stopAll();
+      setSrc((s) => s ?? embedUrl(utmRef.current));
+    };
+    const later = (ms: number) => {
+      const id = window.setTimeout(start, ms);
+      stops.push(() => window.clearTimeout(id));
+    };
+    /** then() la première fois que target entre dans la zone (rootMargin), puis plus d'observation. */
+    const when = (target: Element, rootMargin: string, then: () => void) => {
+      const io = new IntersectionObserver(
         (entries) => {
           if (!entries.some((e) => e.isIntersecting)) return;
-          io?.disconnect();
-          setSrc((s) => s ?? embedUrl(utmRef.current));
+          io.disconnect();
+          then();
         },
-        { rootMargin: '600px 0px' },
+        { rootMargin },
       );
-      io.observe(el);
+      io.observe(target);
+      stops.push(() => io.disconnect());
     };
-    watch(readConsent());
-    const off = onConsent(watch);
+    const arm = (c: Consent | null) => {
+      if (!consented(c) || armed) return;
+      armed = true;
+      when(el, '0px 0px 200% 0px', start); // dans tous les cas : section à 2 écrans
+      if (window.matchMedia('(max-width: 767px)').matches) {
+        const target = preloadAfter ? document.querySelector(preloadAfter) : null;
+        if (target) when(target, '0px 0px -60% 0px', () => later(PHONE_DELAY_MS));
+        return;
+      }
+      // Ordinateur : dès que la page est prête
+      const idle = () => {
+        if (typeof window.requestIdleCallback === 'function') {
+          const id = window.requestIdleCallback(start, { timeout: 3000 });
+          stops.push(() => window.cancelIdleCallback(id));
+        } else later(1500);
+      };
+      if (document.readyState === 'complete') idle();
+      else {
+        window.addEventListener('load', idle, { once: true });
+        stops.push(() => window.removeEventListener('load', idle));
+      }
+    };
+    arm(readConsent());
+    const off = onConsent(arm);
     return () => {
       off();
-      io?.disconnect();
+      stopAll();
     };
-  }, []);
+  }, [preloadAfter]);
 
   // Messages de l'iframe Calendly : hauteur, affichage, réservation confirmée
   useEffect(() => {

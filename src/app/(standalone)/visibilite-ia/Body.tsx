@@ -590,28 +590,29 @@ export default function Body({ v }: { v: Variante }) {
                     Voir nos accompagnements
                   </Cta>
                 </div>
-                {/* Preuves sous le bouton, dans la colonne de gauche (demandes de Benjamin du 28/11/2026) : les logos clients qui
-                    défilent s'arrêtent avant le téléphone, les 3 chiffres en petits blocs sont dessous. « +50 » :
-                    PROOF.projetsTotal (50 projets, src/lib/site.ts). */}
-                <div className="vi-proof">
-                  <LogosClients />
-                  <ul className="vi-stats">
-                    <li>
-                      <b className="vi-gt">+{PROOF.projetsTotal}</b>
-                      <span>entreprises accompagnées</span>
-                    </li>
-                    <li>
-                      <b className="vi-gt">100&nbsp;%</b>
-                      <span>de clients satisfaits</span>
-                    </li>
-                    <li>
-                      <b className="vi-gt">2&nbsp;semaines</b>
-                      <span>en moyenne pour les premiers résultats</span>
-                    </li>
-                  </ul>
-                </div>
+                {/* Logos clients qui défilent sous le bouton, dans la colonne de gauche : ils s'arrêtent avant le téléphone
+                    (demande de Benjamin du 28/11/2026). */}
+                <LogosClients />
               </div>
               <HeroChat v={v} />
+            </div>
+            {/* 3 chiffres en petits blocs sous le haut de page, sur toute la largeur (demande de Benjamin du 28/11/2026).
+                « +50 » : PROOF.projetsTotal (50 projets, src/lib/site.ts). */}
+            <div className="vi-wrap">
+              <ul className="vi-stats">
+                <li>
+                  <b className="vi-gt">+{PROOF.projetsTotal}</b>
+                  <span>entreprises accompagnées</span>
+                </li>
+                <li>
+                  <b className="vi-gt">100&nbsp;%</b>
+                  <span>de clients satisfaits</span>
+                </li>
+                <li>
+                  <b className="vi-gt">2&nbsp;semaines</b>
+                  <span>en moyenne pour les premiers résultats</span>
+                </li>
+              </ul>
             </div>
           </section>
 
@@ -885,7 +886,7 @@ export default function Body({ v }: { v: Variante }) {
               <Head id="diagnostic-t">
                 Réservez votre <span className="vi-gt">diagnostic gratuit</span>
               </Head>
-              <CalendlyInline utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
+              <CalendlyInline preloadAfter="#formules" utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
             </div>
             {/* Plus de pied de page (demande de Benjamin, 27/11/2026) : les liens légaux restent, en une ligne discrète,
                 pour la CNIL (retrait du consentement aux cookies) et les régies publicitaires. */}

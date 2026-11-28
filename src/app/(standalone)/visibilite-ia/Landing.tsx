@@ -45,9 +45,11 @@ export default function Landing({ v }: { v: Variante }) {
       <JsonLd data={[...themeSchemas({ path: v.path }), websiteGraph({ path: v.path, title: titre(v) })]} />
       <ViEffects offre={offre} metier={v.metier ?? 'general'} />
       {/* Fenêtre Calendly des boutons de la page. Plus d'ouverture automatique depuis le 28/11/2026 : la dernière section
-          intègre Calendly directement (CalendlyInline), la fenêtre l'aurait recouverte. */}
+          intègre Calendly directement (CalendlyInline), la fenêtre l'aurait recouverte. Préchargement avec l'accord cookies :
+          dès que la page est prête sur ordinateur, à l'arrivée sur les formules sur téléphone (preloadAfter). */}
       <CalendlyModal
         label="Réserver votre diagnostic gratuit"
+        preloadAfter="#formules"
         utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }}
         notice={
           <>

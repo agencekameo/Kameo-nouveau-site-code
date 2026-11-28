@@ -59,6 +59,9 @@ type Props = {
   label?: string;
   /** Préchargement, avec l'accord cookies : dès que la page est prête, ou au survol d'un lien. */
   preload?: 'idle' | 'intent';
+  /** Landing sur téléphone : préchargement quand le haut de cet élément (sélecteur CSS) monte dans les 40 % du haut de
+   *  l'écran, plutôt que dès que la page est prête. À défaut : autoOpenAfter. */
+  preloadAfter?: string;
   /** Paramètres utm_* par défaut ; ceux de l'adresse de la page priment. */
   utm?: Utm;
   /** Message affiché en haut de la fenêtre. */
@@ -108,6 +111,7 @@ export default function CalendlyModal({
   utm,
   notice,
   autoOpenAfter,
+  preloadAfter,
 }: Props) {
   const [src, setSrc] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
@@ -138,9 +142,10 @@ export default function CalendlyModal({
 
     // Landing sur téléphone : pas dès l'arrivée. Calendly pèse 4 Mo et occupe le téléphone pendant qu'on
     // fait défiler les réalisations (blocages signalés le 04/11/2026) ; il se charge quand le haut de
-    // l'élément autoOpenAfter (les tarifs, 2 000 px sur téléphone) monte dans les 40 % du haut de l'écran :
-    // les réalisations, juste au-dessus, sont alors passées, et l'ouverture automatique encore loin.
-    const target = autoOpenAfter && window.matchMedia('(max-width: 767px)').matches ? document.querySelector(autoOpenAfter) : null;
+    // l'élément preloadAfter, à défaut autoOpenAfter (les tarifs, 2 000 px sur téléphone), monte dans les 40 % du
+    // haut de l'écran : les réalisations, juste au-dessus, sont alors passées, et l'ouverture automatique encore loin.
+    const after = preloadAfter ?? autoOpenAfter;
+    const target = after && window.matchMedia('(max-width: 767px)').matches ? document.querySelector(after) : null;
     if (target) {
       let io: IntersectionObserver | null = null;
       const watch = (c: Consent | null) => {
@@ -188,7 +193,7 @@ export default function CalendlyModal({
       off();
       cancel();
     };
-  }, [preload, autoOpenAfter]);
+  }, [preload, autoOpenAfter, preloadAfter]);
 
   // Clic sur un lien calendly.com de la page (hors fenêtre) : ouverture
   useEffect(() => {

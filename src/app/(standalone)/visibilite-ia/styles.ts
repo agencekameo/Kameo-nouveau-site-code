@@ -232,28 +232,29 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-h1 { margin-top: 16px; font: 900 clamp(2rem, 1.45rem + 2.8vw, 4rem)/1.03 var(--vi-ff-head); letter-spacing: -0.035em; }
 .vi-lead { margin-top: 14px; max-width: 32em; font-size: 17px; line-height: 1.5; color: var(--vi-text); }
 .vi-hero__cta { margin-top: 24px; }
-/* Preuves sous le bouton du héros, dans la colonne de gauche (28/11/2026) : logos clients qui défilent (styles .logos__* de
-   main.css), arrêtés au bord de la colonne avant le téléphone, puis 3 chiffres en petits blocs. */
-.vi-proof { margin-top: 28px; }
+/* Logos clients qui défilent sous le bouton du héros, dans la colonne de gauche (28/11/2026) : styles .logos__* de
+   main.css, arrêtés au bord de la colonne avant le téléphone. */
+.vi-hero .vi-logos { margin-top: 28px; }
 .vi-logos .logos__viewport { max-width: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent); }
 .vi-logos .logos__viewport::before, .vi-logos .logos__viewport::after { display: none; }
 .vi-logos .logos__track { gap: 44px; }
 .vi-logos .logo-item img { height: 34px; }
-/* Téléphone : un bloc par ligne, chiffre à gauche ; à partir de 640 px : 3 blocs côte à côte, chiffre au-dessus. */
-.vi-stats { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 22px; }
+/* 3 chiffres en petits blocs sous le haut de page, sur toute la largeur (28/11/2026). Téléphone : un bloc par ligne,
+   chiffre à gauche ; à partir de 640 px : 3 blocs côte à côte, chiffre au-dessus, centrés. */
+.vi-stats { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 40px; }
 .vi-stats li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: var(--vi-block); border: 1px solid var(--vi-line); }
 .vi-stats b { font: 900 24px/1 var(--vi-ff-head); letter-spacing: -0.03em; white-space: nowrap; }
 .vi-stats span { font: 500 14px/1.3 var(--vi-ff-body); color: var(--vi-text); }
 @media (min-width: 640px) {
-  .vi-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-  .vi-stats li { flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px 18px; }
-  .vi-stats b { font-size: 26px; }
+  .vi-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 48px; }
+  .vi-stats li { flex-direction: column; justify-content: center; gap: 8px; padding: 20px 16px; text-align: center; }
+  .vi-stats b { font-size: 28px; }
 }
-/* Colonne de gauche plus étroite entre 1024 et 1279 px : blocs et chiffres un peu plus petits. */
-@media (min-width: 1024px) and (max-width: 1279.98px) {
-  .vi-stats li { padding: 14px; }
-  .vi-stats b { font-size: 22px; }
-  .vi-stats span { font-size: 13px; }
+@media (min-width: 1024px) {
+  .vi-stats { gap: 16px; margin-top: 64px; }
+  .vi-stats li { padding: 26px 24px; }
+  .vi-stats b { font-size: 36px; }
+  .vi-stats span { font-size: 15px; }
 }
 @media (min-width: 768px) {
   .vi-hero { padding: 32px 0 88px; }
