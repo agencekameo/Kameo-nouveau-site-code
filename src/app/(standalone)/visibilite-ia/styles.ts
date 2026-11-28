@@ -85,8 +85,12 @@ body:has(.vi) { background: #FFFFFF; }
    sont posés par-dessus, hors du flux. La case glisse d'une largeur à l'autre (largeur posée par AiRotator, en em).
    overflow-x: clip coupe le nom qui arrive pendant que la case s'élargit, sans toucher aux jambages (p, y). */
 .vi-h1__l2 { white-space: nowrap; }
-.vi-rot__box { display: inline-block; position: relative; white-space: nowrap; overflow-x: clip; }
-.vi-rot__w { display: inline-block; }
+/* Avec l'espacement serré du titre, l'encre de la dernière lettre (le « y » de Perplexity) dépassait de la case du mot :
+   le dégradé (background-clip: text) ne la peignait pas et overflow-x la coupait (signalé par Benjamin le 28/11/2026).
+   Marge intérieure à droite (et en bas pour les jambages) : la zone peinte et la case s'agrandissent ; la marge négative de
+   la case garde « en 1 mois » à la même place, avec ou sans JavaScript. */
+.vi-rot__box { display: inline-block; position: relative; white-space: nowrap; overflow-x: clip; margin-right: -.14em; }
+.vi-rot__w { display: inline-block; padding: 0 .14em .1em 0; margin-bottom: -.1em; }
 .vi-rot__w:not(.is-on) { position: absolute; left: 0; top: 0; visibility: hidden; }
 @media (prefers-reduced-motion: no-preference) {
   .vi-rot__box { transition: width .45s ease; }
