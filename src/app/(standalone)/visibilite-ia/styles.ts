@@ -107,9 +107,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-head .vi-sub { margin-inline: auto; }
 /* Plus de petit titre au-dessus des titres de section (28/11/2026) */
 .vi-head .vi-h2 { margin-top: 0; }
-/* « 33 millions de Français utilisent l'IA » sur une seule ligne dès que la largeur le permet (demande de Benjamin du 28/11/2026) */
-#enjeu .vi-head { max-width: none; }
-@media (min-width: 900px) { #enjeu .vi-h2 { white-space: nowrap; } }
 .vi-eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 400 12px/1.4 var(--vi-ff-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--vi-ink-2); }
 .vi-eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 1.5px; background: var(--vi-grad); flex: none; }
 .vi-h2 { margin-top: 12px; font: 800 clamp(1.75rem, 1.35rem + 1.7vw, 2.75rem)/1.1 var(--vi-ff-head); letter-spacing: -0.03em; }
@@ -162,18 +159,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-src { margin-top: 10px; font: 400 12px/1.5 var(--vi-ff-mono); color: var(--vi-muted); }
 .vi-src a { color: inherit; text-decoration: underline dotted; text-underline-offset: 3px; }
 @media (hover: hover) { .vi-src a:hover { color: var(--vi-ink); text-decoration-style: solid; } }
-
-/* Emplacement « Votre entreprise ? » : cadre en pointillés dégradés */
-.vi-slot { position: relative; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 10px 14px; border-radius: 12px; background: var(--vi-tint-soft); }
-.vi-slot__frame { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.vi-slot__frame rect { fill: none; stroke: url(#vi-grad-stroke); stroke-width: 1.5; stroke-dasharray: 6 5; vector-effect: non-scaling-stroke; }
-.vi-slot__q { position: relative; width: 28px; height: 28px; flex: none; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid transparent; background: linear-gradient(#fff,#fff) padding-box, var(--vi-grad) border-box; font: 900 14px/1 var(--vi-ff-head); }
-.vi-slot__q > span { background: var(--vi-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
-.vi-slot__label { font: 700 15.5px/1.25 var(--vi-ff-head); color: var(--vi-ink); letter-spacing: -0.01em; }
-@media (prefers-reduced-motion: no-preference) {
-  .vi-slot__q::after { content: ""; position: absolute; inset: -1.5px; border-radius: 50%; border: 2px solid rgba(237,110,99,.45); opacity: 0; animation: vi-pulse 2400ms cubic-bezier(.4,0,.2,1) 1.6s 3; }
-}
-@keyframes vi-pulse { 0% { opacity: .9; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.7); } }
 
 /* ━━ Bandeau d'offre ━━ */
 .vi-offre {
@@ -253,9 +238,7 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-lead { margin-top: 14px; max-width: 32em; font-size: 17px; line-height: 1.5; color: var(--vi-text); }
 .vi-hero__cta { margin-top: 24px; }
 /* Photo des dirigeants à droite du titre, à la place du téléphone (28/11/2026, format Pennylane) */
-/* La petite réponse ChatGPT déborde du bas de la photo (28/11/2026) : la photo n'est plus coupée (overflow), l'image garde
-   ses coins arrondis. */
-.vi-hero__photo { position: relative; margin: 0 0 30px; aspect-ratio: 3 / 2; border-radius: 20px; background: var(--vi-bg-sunk); box-shadow: var(--vi-sh-2); }
+.vi-hero__photo { position: relative; margin: 0; aspect-ratio: 3 / 2; border-radius: 20px; background: var(--vi-bg-sunk); box-shadow: var(--vi-sh-2); }
 .vi-hero__photo img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
 
 /* Problème, solution, résultat sous le titre (proposition 3 retenue le 28/11/2026, à la place de la phrase d'accroche) */
@@ -268,15 +251,17 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-psr li.is-win { font-weight: 700; color: var(--vi-ink); }
 @media (min-width: 1024px) { .vi-psr { margin-top: 22px; gap: 12px; } .vi-psr li { font-size: 17px; } }
 
-/* Étiquette et petite réponse ChatGPT posées sur la photo (illustration) */
-.vi-hero__chip { position: absolute; top: 14px; right: 14px; display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(15,17,21,.78); color: #fff; font: 600 13px/1 var(--vi-ff-body); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-.vi-hero__reco { position: absolute; left: 12px; right: 12px; bottom: -28px; padding: 12px 14px; border-radius: 18px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-4); }
-.vi-hero__reco-q { font: 400 12px/1.4 var(--vi-ff-mono); color: var(--vi-muted); }
-.vi-hero__win { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding: 9px 12px; border-radius: 14px; background: var(--vi-tint); border: 1px solid rgba(237,110,99,.3); }
-.vi-hero__win-n { display: grid; place-items: center; width: 26px; height: 26px; flex: none; border-radius: 50%; background: var(--vi-grad); color: var(--vi-ink); font: 800 13px/1 var(--vi-ff-head); }
-.vi-hero__win strong { flex: 1; font: 800 15px/1.2 var(--vi-ff-head); color: var(--vi-ink); }
-.vi-hero__win-ok .vi-i { width: 18px; height: 18px; fill: #0F7B4F; }
-@media (min-width: 1024px) { .vi-hero__reco { left: -36px; right: auto; width: 340px; bottom: -32px; } }
+/* Étiquette posée sur la photo */
+/* Une grande pastille avec les prénoms (28/11/2026) : une ligne ; sous 480 px, les prénoms puis le rôle sur deux lignes. */
+.vi-hero__chip { position: absolute; top: 12px; left: 12px; max-width: calc(100% - 24px); padding: 9px 14px; border-radius: 16px; background: rgba(15,17,21,.8); color: #fff; font: 500 14px/1.3 var(--vi-ff-body); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.vi-hero__chip strong { font-weight: 700; color: inherit; }
+@media (max-width: 479.98px) {
+  .vi-hero__chip-sep { display: none; }
+  .vi-hero__chip-role { display: block; }
+  .vi-hero__chip-role::first-letter { text-transform: uppercase; }
+}
+@media (min-width: 480px) { .vi-hero__chip { top: 14px; left: auto; right: 14px; padding: 9px 16px; border-radius: 999px; white-space: nowrap; } }
+@media (min-width: 1024px) { .vi-hero__chip { top: 18px; right: 18px; padding: 11px 20px; font-size: 15.5px; } }
 /* Bande de preuves façon Pennylane (28/11/2026) : logos clients qui défilent (styles .logos__* de main.css), coupés à
    droite par les chiffres et le lien vers les avis. Téléphone : logos puis texte, l'un sous l'autre. */
 .vi-proof { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 36px; }
@@ -312,163 +297,35 @@ body:has(.vi) { background: #FFFFFF; }
   .vi-hero__cta { margin-top: 32px; }
 }
 
-/* Visuel « la réponse » : téléphone et écran façon ChatGPT (illustration, 28/11/2026), dans la section des 3 étapes (#methode)
-   depuis le 28/11/2026. */
-.vi-chat { margin: 0; display: grid; justify-items: center; }
-
-/* ━━ Méthode et téléphone ChatGPT, une seule section (28/11/2026) ━━
-   Téléphone et tablette : le téléphone (un peu réduit), puis les 3 étapes en liste compacte, sans mini-illustrations.
-   Ordinateur : téléphone à gauche, étapes à droite en cartes horizontales avec leur mini-illustration. */
-.vi-how { display: grid; gap: 32px; justify-items: center; }
-/* iPhone réaliste (28/11/2026, « on dirait plutôt un iPad ») : proportions d'un iPhone (9:19,5), plus haut que large ;
-   conversation en haut et barre de saisie en bas de l'écran, comme dans l'application ; boutons sur les côtés. */
-.vi-how .vi-phone { width: min(100%, 272px); aspect-ratio: 9 / 19.5; padding: 8px; border-radius: 44px; }
-.vi-how .vi-phone::before, .vi-how .vi-phone::after { content: ""; position: absolute; width: 3px; border-radius: 2px; background: #2C2F36; }
-.vi-how .vi-phone::before { left: -3px; top: 21%; height: 44px; box-shadow: 0 58px 0 #2C2F36; }
-.vi-how .vi-phone::after { right: -3px; top: 27%; height: 72px; }
-.vi-how .vi-phone__screen { height: 100%; border-radius: 36px; }
-/* Texte réparti sur la hauteur de l'écran (28/11/2026) : corps un peu plus grand et espacements plus généreux, pour que la
-   conversation occupe l'écran au lieu de laisser un grand vide au-dessus de la barre de saisie (mesuré : 74 à 94 px libres
-   sur téléphone, 148 px sur ordinateur, ramenés à une vingtaine à une quarantaine, sans texte coupé sur les 3 versions). */
-.vi-how .vi-gpt__body { flex: 1; min-height: 0; overflow: hidden; gap: 18px; padding: 16px 14px 10px; }
-.vi-how .vi-gpt__q, .vi-how .vi-gpt__a { font-size: 14px; }
-.vi-how .vi-gpt__q { padding: 11px 14px; }
-.vi-how .vi-gpt__list { margin-top: 8px; }
-.vi-how .vi-gpt__list li { margin-top: 7px; }
-.vi-how .vi-gpt__you { margin-top: 16px; }
-.vi-how .vi-gpt__you .vi-slot { min-height: 50px; }
-.vi-how .vi-gpt__acts { margin-top: 14px; }
-.vi-how .vi-gpt__input { min-height: 44px; margin: 0 8px; }
-.vi-how .vi-gpt__ph { font-size: 14px; }
-.vi-how__steps { display: grid; gap: 12px; width: 100%; max-width: 560px; }
-.vi-how__step { overflow: hidden; border-radius: 20px; background: var(--vi-block); border: 1px solid var(--vi-line); }
-.vi-how__step .vi-illu { display: none; }
-.vi-how__body { display: grid; grid-template-columns: 32px minmax(0, 1fr); align-items: start; gap: 14px; padding: 18px 20px; }
-.vi-how__body .vi-card__t { font-size: 18px; }
-.vi-how__body .vi-card__p { font-size: 15px; }
-@media (min-width: 1024px) {
-  /* Plus d'air entre le téléphone et les étapes, étapes moins larges (28/11/2026) : l'ensemble est centré */
-  .vi-how { grid-template-columns: auto minmax(0, 520px); column-gap: clamp(72px, 8vw, 120px); align-items: center; justify-content: center; justify-items: stretch; }
-  .vi-how .vi-chat { justify-items: center; }
-  .vi-how .vi-phone { width: 300px; }
-  .vi-how .vi-gpt__body { gap: 26px; padding: 20px 16px 12px; }
-  .vi-how .vi-gpt__q, .vi-how .vi-gpt__a { font-size: 15px; line-height: 1.55; }
-  .vi-how .vi-gpt__q { padding: 13px 16px; border-radius: 22px; }
-  .vi-how .vi-gpt__list { margin-top: 10px; }
-  .vi-how .vi-gpt__list li { margin-top: 10px; }
-  .vi-how .vi-gpt__you { margin-top: 22px; }
-  .vi-how .vi-gpt__you .vi-slot { min-height: 54px; }
-  .vi-how .vi-gpt__acts { margin-top: 20px; }
-  .vi-how__steps { max-width: none; gap: 16px; }
-  .vi-how__step { display: grid; grid-template-columns: 220px minmax(0, 1fr); }
-  .vi-how__step .vi-illu { display: grid; height: auto; min-height: 150px; padding: 14px 12px; border-bottom: 0; border-right: 1px solid var(--vi-line-3); }
-  .vi-how__body { align-content: center; padding: 20px 22px; }
-  .vi-how__body .vi-card__t { font-size: 20px; }
-  .vi-how .vi-mini-bars__row { grid-template-columns: 66px minmax(0, 1fr); gap: 8px; font-size: 11px; }
-  /* Réseau de la Notoriété resserré pour la vignette de 220 px */
-  .vi-how .vi-mini-net { column-gap: 6px; row-gap: 12px; }
-  .vi-how .vi-mini-net::before { left: 8%; right: 8%; }
-  .vi-how .vi-mini-net__chip { height: 24px; padding: 0 8px; font-size: 11px; }
-  .vi-how .vi-mini-net__you { width: 50px; height: 50px; font-size: 12.5px; }
-}
-.vi-phone { position: relative; width: min(100%, 320px); padding: 9px; border-radius: 46px; background: #121418; box-shadow: var(--vi-sh-4), inset 0 0 0 1.5px #2C2F36; }
-.vi-phone__screen { position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: 37px; background: #fff; color: #0D0D0D; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, sans-serif; }
-.vi-phone__status { position: relative; display: flex; align-items: center; justify-content: space-between; height: 46px; padding: 4px 26px 0 32px; font: 600 14px/1 -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
-.vi-phone__island { position: absolute; top: 11px; left: 50%; width: 92px; height: 27px; border-radius: 20px; background: #121418; transform: translateX(-50%); }
-.vi-phone__sys { display: flex; align-items: center; gap: 5px; }
-.vi-phone__sys svg { width: 17px; height: 11px; fill: #0D0D0D; }
-.vi-phone__sys .vi-phone__wifi { width: 16px; height: 12px; fill: none; stroke: #0D0D0D; stroke-width: 2.6; stroke-linecap: round; }
-.vi-phone__bat { position: relative; width: 24px; height: 12px; padding: 1.5px; border: 1px solid rgba(13,13,13,.45); border-radius: 4px; }
-.vi-phone__bat i { display: block; width: 78%; height: 100%; border-radius: 2px; background: #0D0D0D; }
-.vi-phone__home { display: block; width: 112px; height: 5px; margin: 8px auto 9px; border-radius: 3px; background: #121418; }
-.vi-gpt__ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.vi-gpt__bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 16px 8px; color: #0D0D0D; }
-.vi-gpt__title { display: inline-flex; align-items: center; gap: 2px; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
-.vi-gpt__title .vi-gpt__chev { width: 16px; height: 16px; color: #8F8F8F; stroke-width: 2.2; }
-.vi-gpt__body { display: flex; flex-direction: column; gap: 14px; padding: 10px 16px 14px; }
-.vi-gpt__q { align-self: flex-end; max-width: 84%; padding: 10px 14px; border-radius: 20px; background: #F2F2F2; font-size: 14.5px; line-height: 1.4; }
-.vi-gpt__a { font-size: 14.5px; line-height: 1.5; color: #0D0D0D; }
-.vi-gpt__list { margin: 6px 0 0; padding-left: 1.25em; list-style: decimal; }
-.vi-gpt__list li { margin-top: 4px; padding-left: 2px; }
-.vi-gpt__list li::marker { font-weight: 600; }
-.vi-gpt__list b { font-weight: 650; }
-.vi-gpt__you { margin-top: 12px; }
-.vi-gpt__you .vi-slot { width: 100%; min-height: 46px; }
-.vi-gpt__acts { display: flex; gap: 14px; margin-top: 12px; color: #8F8F8F; }
-.vi-gpt__acts .vi-gpt__ico { width: 17px; height: 17px; }
-.vi-gpt__input { display: flex; align-items: center; gap: 10px; min-height: 48px; margin: 4px 10px 0; padding: 6px 6px 6px 12px; border: 1px solid #E3E3E3; border-radius: 26px; background: #fff; box-shadow: 0 6px 18px rgba(0,0,0,.06); color: #6B6B6B; }
-.vi-gpt__ph { flex: 1; min-width: 0; font-size: 15px; color: #8F8F8F; white-space: nowrap; }
-.vi-gpt__plus { color: #0D0D0D; }
-.vi-gpt__voice { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 50%; background: #0D0D0D; color: #fff; }
-.vi-gpt__voice .vi-gpt__ico { width: 18px; height: 18px; stroke-width: 2.4; }
-@media (min-width: 1024px) {
-  .vi-phone { width: 340px; }
-  .vi-gpt__q, .vi-gpt__a { font-size: 15px; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .vi-gpt__row { animation: vi-rise 600ms var(--vi-ease-out) both; animation-delay: calc(500ms + var(--i, 0) * 260ms); }
-}
-@keyframes vi-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-/* ━━ Cartes illustrées (2 · Ce qui a changé, 4 · Méthode), comme /appel-strategique/ ━━ */
-.vi-cards { display: grid; gap: 16px; }
-.vi-card { overflow: hidden; border-radius: 24px; background: var(--vi-block); border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-2); }
-.vi-card__body { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; padding: 20px 20px 22px; }
-.vi-card__n { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #fff; font: 700 14px/1 var(--vi-ff-head); color: var(--vi-ink); }
-.vi-card__t { font: 800 19px/1.25 var(--vi-ff-head); letter-spacing: -0.02em; }
-.vi-card__p { margin-top: 4px; font-size: 15.5px; color: var(--vi-muted); }
+/* ━━ Film (HeroFilm.tsx), sous les logos clients : 4:5 sur téléphone et tablette (largeur limitée), 2:1 sur ordinateur ;
+   en plein écran, le film de l'orientation. L'image est mise à l'échelle, jamais recadrée (contain). Boutons lecture et
+   plein écran en bas à gauche, là où le film ne dessine rien (à gauche du téléphone, ou sous lui en 4:5). ━━ */
+.vi-film { margin-top: 40px; }
+.vi-film__box { position: relative; aspect-ratio: 4 / 5; max-width: 520px; margin-inline: auto; overflow: hidden; border-radius: 20px; background: #F4F5F8; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-2); }
+.vi-film__box img, .vi-film__video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
+.vi-film__video { opacity: 0; transition: opacity 200ms linear; }
+.vi-film__video.is-shown { opacity: 1; }
+/* Téléphone : ronds de 32 px dans la bande libre sous le téléphone du film, zone de toucher de 48 px (::after). */
+.vi-film__ctrl { position: absolute; left: 10px; bottom: 8px; z-index: 1; display: flex; gap: 12px; }
+.vi-film__btn { position: relative; display: grid; place-items: center; width: 32px; height: 32px; min-width: 0; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: rgba(15,17,21,.8); color: #fff; cursor: pointer; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background-color 160ms var(--vi-ease-std); }
+.vi-film__btn::after { content: ""; position: absolute; inset: -8px; }
+.vi-film__btn svg { width: 14px; height: 14px; fill: currentColor; }
+.vi .vi-film__btn:focus-visible { border-radius: 50%; }
+@media (hover: hover) { .vi-film__btn:hover { background: var(--vi-ink); } }
+.vi-film__box:fullscreen { width: 100%; height: 100%; max-width: none; aspect-ratio: auto; border: 0; border-radius: 0; box-shadow: none; }
+.vi-film__box:fullscreen .vi-film__ctrl { left: 24px; bottom: 24px; }
 @media (min-width: 768px) {
-  .vi-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-  .vi-card__body { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 22px 24px 26px; }
-  .vi-card__t { font-size: 20px; }
+  .vi-film { margin-top: 48px; }
+  .vi-film__ctrl { left: 14px; bottom: 14px; gap: 10px; }
+  .vi-film__btn { width: 40px; height: 40px; }
+  .vi-film__btn svg { width: 18px; height: 18px; }
 }
-
-/* Mini-illustrations : décor HTML et CSS, dans un cadre teinté à fine grille */
-.vi-illu {
-  position: relative; display: grid; place-items: center; height: 164px; padding: 18px 20px;
-  background:
-    radial-gradient(60% 80% at 50% 100%, rgba(225,75,137,.08), transparent 70%),
-    linear-gradient(var(--vi-line-3) 1px, transparent 1px) 0 0 / 22px 22px,
-    linear-gradient(90deg, var(--vi-line-3) 1px, transparent 1px) 0 0 / 22px 22px,
-    var(--vi-bg-soft);
-  border-bottom: 1px solid var(--vi-line-3);
+@media (min-width: 1024px) {
+  .vi-film { margin-top: 64px; }
+  .vi-film__box { aspect-ratio: 2 / 1; max-width: none; border-radius: 28px; }
+  .vi-film__ctrl { left: 18px; bottom: 18px; }
+  .vi-film__btn { width: 44px; height: 44px; }
 }
-.vi-mini-ask { display: flex; align-items: center; gap: 10px; width: 100%; max-width: 300px; min-height: 52px; padding: 6px 6px 6px 8px; border-radius: 26px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-2); }
-.vi-mini-ask__ia { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius: 50%; background: var(--vi-ink); color: #fff; font: 700 11px/1 var(--vi-ff-head); }
-/* Les questions des versions par cible sont plus longues (« Quelle est la meilleure auto-école ? ») : 2 lignes au besoin. */
-.vi-mini-ask__txt { flex: 1; min-width: 0; font: 500 14.5px/1.25 var(--vi-ff-body); color: var(--vi-ink); }
-.vi-mini-ask__send { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border-radius: 50%; background: var(--vi-grad); color: var(--vi-ink); }
-.vi-mini-ask__send .vi-ico { width: 16px; height: 16px; stroke-width: 2.2; }
-.vi-mini-list { display: grid; gap: 6px; width: 100%; max-width: 260px; }
-.vi-mini-list__row { display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 8px; border-radius: 8px; background: #fff; border: 1px solid var(--vi-line); }
-.vi-mini-list__row b { display: grid; place-items: center; width: 16px; height: 16px; flex: none; border-radius: 50%; background: var(--vi-bg-sunk); font: 700 9.5px/1 var(--vi-ff-head); color: var(--vi-ink-2); }
-.vi-mini-list__row i { display: block; width: var(--w); height: 6px; border-radius: 3px; background: #DADDE3; }
-.vi-slot--sm { min-height: 30px; padding: 0 8px; gap: 8px; border-radius: 8px; background: #fff; }
-.vi-slot--sm .vi-slot__q { width: 18px; height: 18px; font-size: 10px; border-width: 1.25px; }
-.vi-slot--sm .vi-slot__label { font-size: 12.5px; }
-.vi-mini-call { display: grid; justify-items: center; gap: 10px; }
-.vi-mini-call__pill { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px 0 6px; border-radius: 999px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-2); font: 600 14px/1 var(--vi-ff-body); color: var(--vi-ink); white-space: nowrap; }
-.vi-mini-call__pill .vi-i { box-sizing: content-box; width: 14px; height: 14px; padding: 9px; border-radius: 50%; background: #E8F5EE; fill: var(--vi-wa); }
-.vi-mini-call__stat { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; border-radius: 8px; background: #fff; border: 1px dashed var(--vi-line-2); font: 400 11.5px/1 var(--vi-ff-mono); color: var(--vi-muted); }
-.vi-mini-call__stat b { font-weight: 400; color: var(--vi-coral); }
-.vi-mini-bars { display: grid; gap: 9px; width: 100%; max-width: 270px; }
-.vi-mini-bars__row { display: grid; grid-template-columns: 74px minmax(0, 1fr); align-items: center; gap: 10px; font: 400 11.5px/1 var(--vi-ff-mono); color: var(--vi-ink-2); }
-.vi-mini-bars__row i { position: relative; display: block; height: 10px; border-radius: 5px; background: #E9EBEF; overflow: hidden; }
-.vi-mini-bars__row i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: inherit; background: var(--vi-grad-h); }
-.vi-mini-page { width: 100%; max-width: 240px; padding: 0 0 10px; border-radius: 12px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-2); overflow: hidden; }
-.vi-mini-page__bar { display: flex; gap: 5px; padding: 8px 10px; margin-bottom: 6px; border-bottom: 1px solid var(--vi-line-3); }
-.vi-mini-page__bar i { width: 7px; height: 7px; border-radius: 50%; background: #DADDE3; }
-.vi-mini-page__row { display: flex; align-items: center; gap: 8px; padding: 5px 12px; }
-.vi-mini-page__row .vi-i { width: 15px; height: 15px; fill: #0F7B4F; }
-.vi-mini-page__row i { display: block; height: 7px; border-radius: 4px; background: #E3E6EA; }
-.vi-mini-net { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: auto auto; align-items: center; column-gap: 18px; row-gap: 14px; width: 100%; max-width: 300px; }
-.vi-mini-net::before { content: ""; position: absolute; left: 12%; right: 12%; top: 50%; border-top: 1px dashed var(--vi-line-2); }
-.vi-mini-net__chip { position: relative; justify-self: center; height: 28px; padding: 0 11px; display: inline-flex; align-items: center; border-radius: 999px; background: #fff; border: 1px solid var(--vi-line); font: 500 12px/1 var(--vi-ff-body); color: var(--vi-ink-2); white-space: nowrap; box-shadow: var(--vi-sh-1); }
-.vi-mini-net__chip--a { grid-column: 1; grid-row: 1; } .vi-mini-net__chip--b { grid-column: 1; grid-row: 2; }
-.vi-mini-net__chip--c { grid-column: 3; grid-row: 1; } .vi-mini-net__chip--d { grid-column: 3; grid-row: 2; }
-.vi-mini-net__you { position: relative; grid-column: 2; grid-row: 1 / span 2; display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; border: 1.5px solid transparent; background: linear-gradient(#fff,#fff) padding-box, var(--vi-grad) border-box; font: 800 14px/1 var(--vi-ff-head); color: var(--vi-ink); box-shadow: var(--vi-sh-glow); }
-
-/* Chiffre sourcé */
 
 /* ━━ 3 · Résultats ━━ */
 .vi-cases { display: grid; gap: 16px; }
@@ -652,7 +509,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-cal__skel-grid i { width: 30px; height: 30px; border-radius: 50%; background: var(--vi-bg-sunk); }
 .vi-cal__gate { position: relative; display: grid; justify-items: center; gap: 12px; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.9); box-shadow: 0 8px 30px rgba(15,17,21,.08); }
 .vi-cal__gate p { max-width: 30em; font: 500 13.5px/1.45 var(--vi-ff-body); color: var(--vi-muted); }
-.vi-final .vi-slot { width: auto; padding-right: 18px; background: #fff; }
 .vi-final__t { margin-top: 24px; font-weight: 900; font-size: clamp(1.875rem, 1.4rem + 2vw, 3rem); line-height: 1.06; letter-spacing: -0.035em; }
 .vi-final__pts { display: grid; gap: 10px; margin-top: 20px; }
 .vi-final__pts li { display: flex; align-items: center; justify-content: center; gap: 10px; font: 500 15.5px/1.35 var(--vi-ff-body); color: var(--vi-ink-2); }
