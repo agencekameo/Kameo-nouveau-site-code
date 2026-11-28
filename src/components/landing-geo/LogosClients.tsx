@@ -20,8 +20,8 @@ const LOGOS = [
 
 export default function LogosClients() {
   return (
-    <div className="vi-logos">
-      <p className="logos__eyebrow">Ils nous font confiance</p>
+    /* « Ils nous font confiance » retiré de l'affichage (demande de Benjamin du 28/11/2026), gardé pour les lecteurs d'écran */
+    <div className="vi-logos" role="group" aria-label="Ils nous font confiance">
       <div className="logos__viewport">
         <div className="logos__track">
           {LOGOS.map((l) => (

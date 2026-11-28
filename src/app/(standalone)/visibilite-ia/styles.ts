@@ -111,6 +111,8 @@ body:has(.vi) { background: #FFFFFF; }
 @media (hover: hover) { .vi-srcline a:hover { color: var(--vi-ink); text-decoration-style: solid; } }
 .vi-head { max-width: 720px; margin: 0 auto var(--vi-head-gap); text-align: center; }
 .vi-head .vi-sub { margin-inline: auto; }
+/* Plus de petit titre au-dessus des titres de section (28/11/2026) */
+.vi-head .vi-h2, .vi-team__t { margin-top: 0; }
 /* « 33 millions de Français utilisent l'IA » sur une seule ligne dès que la largeur le permet (demande de Benjamin du 28/11/2026) */
 #enjeu .vi-head { max-width: none; }
 @media (min-width: 900px) { #enjeu .vi-h2 { white-space: nowrap; } }
@@ -247,7 +249,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-stats b { font: 900 24px/1 var(--vi-ff-head); letter-spacing: -0.03em; white-space: nowrap; }
 .vi-stats span { font: 500 14px/1.3 var(--vi-ff-body); color: var(--vi-text); }
 .vi-logos { margin-top: 28px; }
-.vi-logos .logos__eyebrow { margin-bottom: 14px; }
 .vi-logos .logos__viewport { max-width: none; }
 .vi-logos .logo-item img { height: 40px; }
 @media (min-width: 640px) {
@@ -305,7 +306,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-gpt__plus { color: #0D0D0D; }
 .vi-gpt__voice { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 50%; background: #0D0D0D; color: #fff; }
 .vi-gpt__voice .vi-gpt__ico { width: 18px; height: 18px; stroke-width: 2.4; }
-.vi-chat__foot { margin-top: 14px; font: 400 11px/1.3 var(--vi-ff-mono); color: var(--vi-muted); text-align: center; }
 @media (min-width: 1024px) {
   .vi-phone { width: 340px; }
   .vi-gpt__q, .vi-gpt__a { font-size: 15px; }

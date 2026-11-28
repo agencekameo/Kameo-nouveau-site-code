@@ -184,14 +184,13 @@ const TrustBadge = () => (
   </Ext>
 );
 
-function Head({ id, eyebrow, children, sub }: { id: string; eyebrow: string; children: ReactNode; sub?: ReactNode }) {
+/** Titre de section, seul : petits titres et descriptions retirés de toutes les sections (demande de Benjamin du 28/11/2026). */
+function Head({ id, children }: { id: string; children: ReactNode }) {
   return (
     <header className="vi-head" data-vi-reveal="">
-      <p className="vi-eyebrow">{eyebrow}</p>
       <h2 className="vi-h2" id={id}>
         {children}
       </h2>
-      {sub && <p className="vi-sub">{sub}</p>}
     </header>
   );
 }
@@ -494,7 +493,6 @@ function HeroChat({ v }: { v: Variante }) {
           <span className="vi-phone__home" />
         </div>
       </div>
-      <figcaption className="vi-chat__foot">Illustration · réponse fictive</figcaption>
     </figure>
   );
 }
@@ -634,7 +632,7 @@ export default function Body({ v }: { v: Variante }) {
           {/* ━━ 2 · Résultats clients (avant « Ce qui a changé » depuis le 28/11/2026, demande de Benjamin) ━━ */}
           <section className="vi-sec" id="resultats" aria-labelledby="resultats-t">
             <div className="vi-wrap">
-              <Head id="resultats-t" eyebrow="Résultats clients" sub="Relevés Kameo de novembre 2026 : les réponses des IA varient d’un essai à l’autre.">
+              <Head id="resultats-t">
                 Nos clients, cités par les IA
               </Head>
               <div className="vi-cases">
@@ -649,7 +647,7 @@ export default function Body({ v }: { v: Variante }) {
           <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
             <div className="vi-wrap">
               {/* Chiffre Arcom et Médiamétrie (juin 2026) ; mention de la source retirée à la demande de Benjamin du 28/11/2026. */}
-              <Head id="enjeu-t" eyebrow="Ce qui a changé">
+              <Head id="enjeu-t">
                 <span className="vi-gt">33&nbsp;millions</span> de Français utilisent l’IA
               </Head>
               <ol className="vi-cards">
@@ -678,7 +676,7 @@ export default function Body({ v }: { v: Variante }) {
           {/* ━━ 4 · Formules (avant la méthode depuis le 28/11/2026, demande de Benjamin) ━━ */}
           <section className="vi-sec" id="formules" aria-labelledby="formules-t">
             <div className="vi-wrap">
-              <Head id="formules-t" eyebrow="Formules et prix" sub={v.formulesSub}>
+              <Head id="formules-t">
                 3 formules, des prix clairs
               </Head>
 
@@ -827,7 +825,7 @@ export default function Body({ v }: { v: Variante }) {
           {/* ━━ 5 · Méthode ━━ */}
           <section className="vi-sec vi-sec--soft" id="methode" aria-labelledby="methode-t">
             <div className="vi-wrap">
-              <Head id="methode-t" eyebrow="Notre méthode" sub="Et chaque mois, un rapport clair, IA par IA.">
+              <Head id="methode-t">
                 3 étapes pour être cité
               </Head>
               <ol className="vi-cards">
@@ -855,7 +853,6 @@ export default function Body({ v }: { v: Variante }) {
           <section className="vi-sec vi-sec--soft" id="equipe" aria-labelledby="equipe-t">
             <div className="vi-wrap">
               <div className="vi-team" data-vi-reveal="">
-                <p className="vi-eyebrow">Notre équipe</p>
                 <h2 className="vi-h2 vi-team__t" id="equipe-t">
                   Une équipe <span className="vi-gt">jeune, dynamique et performante</span>
                 </h2>
@@ -899,7 +896,7 @@ export default function Body({ v }: { v: Variante }) {
               l'action) ; la FAQ a été retirée le 27/11/2026 à sa demande ━━ */}
           <section className="vi-sec vi-final" id="diagnostic" aria-labelledby="diagnostic-t">
             <div className="vi-wrap vi-final__in">
-              <Head id="diagnostic-t" eyebrow="Diagnostic gratuit" sub={<Nw>{`30 min en visio : ${v.final.point}. Gratuit, que vous signiez ou non.`}</Nw>}>
+              <Head id="diagnostic-t">
                 Réservez votre <span className="vi-gt">diagnostic gratuit</span>
               </Head>
               <CalendlyInline utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
