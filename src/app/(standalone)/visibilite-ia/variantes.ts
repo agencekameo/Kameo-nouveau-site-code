@@ -25,7 +25,7 @@ export type Variante = {
   h1: string;
   lead: string;
   /** Illustration du héros : question posée à l'IA, réponses, place vide. */
-  chat: { q: string; rows: { name: string; desc: string }[]; cites: string; slot: string };
+  chat: { q: string; rows: { name: string; desc: string }[]; cites: string; slot: string; intro?: string };
   /** Section « Ce qui a changé » : trois cartes et leurs mini-illustrations. */
   etapes: [Carte, Carte, Carte];
   miniAsk: string;
@@ -87,7 +87,7 @@ const AUTO_ECOLE: Variante = {
   h1: 'Rendez votre auto-école 1re sur',
   lead: 'On mesure ce que les IA disent de votre auto-école, et on corrige ce qui les empêche de la citer.',
   chat: {
-    q: 'Quelle auto-école choisir à Lyon ?',
+    q: 'Quelle est la meilleure auto-école à Lyon ?',
     rows: [
       { name: 'Auto-école A', desc: 'très bien notée' },
       { name: 'Auto-école B', desc: 'taux de réussite affiché' },
@@ -95,14 +95,15 @@ const AUTO_ECOLE: Variante = {
     ],
     cites: 'trois auto-écoles',
     slot: 'Votre auto-école ?',
+    intro: 'Voici trois auto-écoles bien notées à Lyon :',
   },
   etapes: [
     { t: 'Un futur élève demande à une IA', p: 'Souvent avec ses parents.' },
     { t: 'L’IA cite quelques auto-écoles', p: 'Pas de deuxième page.' },
     { t: 'Il s’inscrit chez l’une d’elles', p: 'Sans passer par votre site.' },
   ],
-  /* Court : la bulle coupe au-delà d'environ 22 caractères sur téléphone. */
-  miniAsk: 'Quelle auto-école ?',
+  /* Question telle qu'un futur élève la pose (demande de Benjamin du 28/11/2026) ; la bulle passe sur 2 lignes si besoin. */
+  miniAsk: 'Quelle est la meilleure auto-école ?',
   miniCall: { icon: 'solid-user-check', txt: 'Inscription · Auto-école A' },
   methode: [
     'Les questions de vos futurs élèves, posées aux 4 IA toutes les deux semaines.',
@@ -117,6 +118,8 @@ const AUTO_ECOLE: Variante = {
     croissance: "Jusqu'à 3 agences ou 3 villes.",
     autorite: "Jusqu'à 6 agences ou villes, ou une ville très disputée.",
   },
+  /* Une entreprise locale de transport (CDP69, Lyon) parle davantage à une auto-école qu'un hébergeur. */
+  ordreCas: ['cdp69', 'defikart', 'omega'],
   final: { slot: 'Votre auto-école, cette fois ?', point: '5 questions de vos futurs élèves, posées en direct aux 4 IA' },
 };
 
@@ -129,7 +132,7 @@ const ECOLE: Variante = {
   h1: 'Rendez votre école 1re sur',
   lead: 'On mesure ce que les IA disent de votre école, et on corrige ce qui les empêche de la citer.',
   chat: {
-    q: 'Quelle école de commerce post-bac choisir à Bordeaux ?',
+    q: 'Quelle est la meilleure école de commerce à Bordeaux ?',
     rows: [
       { name: 'École A', desc: 'très bien notée' },
       { name: 'École B', desc: 'citée dans un classement' },
@@ -137,13 +140,14 @@ const ECOLE: Variante = {
     ],
     cites: 'trois écoles',
     slot: 'Votre école ?',
+    intro: 'Voici trois écoles reconnues à Bordeaux :',
   },
   etapes: [
     { t: 'Un futur étudiant demande à une IA', p: 'Plutôt que de chercher sur Google.' },
     { t: 'L’IA cite quelques écoles', p: 'Pas de deuxième page.' },
     { t: 'Il s’inscrit dans l’une d’elles', p: 'Sans passer par votre site.' },
   ],
-  miniAsk: 'Quelle école ?',
+  miniAsk: 'Quelle est la meilleure école privée ?',
   miniCall: { icon: 'solid-user-check', txt: 'Inscription · École A' },
   methode: [
     'Les questions de vos futurs étudiants, posées aux 4 IA toutes les deux semaines.',

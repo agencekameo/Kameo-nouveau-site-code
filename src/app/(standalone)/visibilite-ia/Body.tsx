@@ -405,50 +405,96 @@ function Cas({ c, i }: { c: CasClient; i: number }) {
 
 /* ───────────────────────── Visuel du héros ───────────────────────── */
 
-/** « La réponse » : illustration (pas une capture), rangées composées une à une au chargement (CSS seul). */
+/** Pictogrammes de l'écran du téléphone (dessins simples, traits) : SVG décoratifs. */
+const GptIco = ({ d, className = '' }: { d: string; className?: string }) => (
+  <svg className={'vi-gpt__ico ' + className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d={d} />
+  </svg>
+);
+
+/**
+ * « La réponse » : un téléphone avec l'écran de l'application ChatGPT (demande de Benjamin du 28/11/2026 : « un téléphone et
+ * un vrai design de ChatGPT, pour qu'on comprenne l'idée »). Illustration dessinée, pas une capture, réponse fictive (mention
+ * sous le téléphone). Rangées composées une à une au chargement (CSS seul).
+ */
 function HeroChat({ v }: { v: Variante }) {
-  const { q, rows, cites, slot } = v.chat;
+  const { q, rows, cites, slot, intro } = v.chat;
   return (
     <figure className="vi-chat" aria-labelledby="vi-chat-desc">
       <p id="vi-chat-desc" className="sr-only">
-        {fr(`Illustration : une IA répond à « ${q} » en citant ${cites}. La place de la vôtre reste vide.`)}
+        {fr(`Illustration : sur un téléphone, ChatGPT répond à « ${q} » en citant ${cites}. La place de la vôtre reste vide.`)}
       </p>
-      <div className="vi-chat__card" aria-hidden="true">
-        {/* Un seul onglet, ChatGPT : Gemini, Perplexity et Claude retirés du haut de page (demande de Benjamin du 28/11/2026) */}
-        <div className="vi-chat__bar">
-          <span className="vi-chat__tab is-on">ChatGPT</span>
-        </div>
-        <div className="vi-chat__body">
-          <p className="vi-chat__q">
-            <Nw>{q}</Nw>
-          </p>
-          <p className="vi-chat__who">
-            <span className="vi-chat__ia">IA</span>
-            Réponse de l’IA
-          </p>
-          <ol className="vi-chat__list">
-            {rows.map((r, i) => (
-              <li key={r.name} className="vi-chat__row" style={{ '--i': i } as CSSProperties}>
-                <span className="vi-chat__n">{i + 1}</span>
-                <span className="vi-chat__txt">
-                  <b>
-                    <Nw>{r.name}</Nw>
-                  </b>{' '}
-                  <span>
+      <div className="vi-phone" aria-hidden="true">
+        <div className="vi-phone__screen">
+          <div className="vi-phone__status">
+            <span>9:41</span>
+            <span className="vi-phone__island" />
+            <span className="vi-phone__sys">
+              <svg viewBox="0 0 18 12">
+                <rect x="0" y="8" width="3" height="4" rx="1" />
+                <rect x="5" y="5.5" width="3" height="6.5" rx="1" />
+                <rect x="10" y="3" width="3" height="9" rx="1" />
+                <rect x="15" y="0" width="3" height="12" rx="1" />
+              </svg>
+              <svg viewBox="0 0 24 18" className="vi-phone__wifi">
+                <path d="M2 6.5a15 15 0 0 1 20 0M5.5 10a10 10 0 0 1 13 0M9 13.5a5 5 0 0 1 6 0" />
+              </svg>
+              <span className="vi-phone__bat">
+                <i />
+              </span>
+            </span>
+          </div>
+          <div className="vi-gpt__bar">
+            <GptIco d="M4 9h16M4 15h10" />
+            <span className="vi-gpt__title">
+              ChatGPT
+              <GptIco d="m9 6 6 6-6 6" className="vi-gpt__chev" />
+            </span>
+            <GptIco d="M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6M17.5 3.5a2.1 2.1 0 0 1 3 3L13 14l-4 1 1-4z" />
+          </div>
+          <div className="vi-gpt__body">
+            <p className="vi-gpt__q">
+              <Nw>{q}</Nw>
+            </p>
+            <div className="vi-gpt__a">
+              <p className="vi-gpt__row" style={{ '--i': 0 } as CSSProperties}>
+                <Nw>{intro ?? `Voici ${cites} à contacter :`}</Nw>
+              </p>
+              <ol className="vi-gpt__list">
+                {rows.map((r, i) => (
+                  <li key={r.name} className="vi-gpt__row" style={{ '--i': i + 1 } as CSSProperties}>
+                    <b>
+                      <Nw>{r.name}</Nw>
+                    </b>{' '}
                     — <Nw>{r.desc}</Nw>
-                  </span>
-                </span>
-              </li>
-            ))}
-            <li className="vi-chat__row vi-chat__row--you" style={{ '--i': rows.length } as CSSProperties}>
-              <Slot>
-                <Nw>{slot}</Nw>
-              </Slot>
-            </li>
-          </ol>
+                  </li>
+                ))}
+              </ol>
+              <div className="vi-gpt__row vi-gpt__you" style={{ '--i': rows.length + 1 } as CSSProperties}>
+                <Slot>
+                  <Nw>{slot}</Nw>
+                </Slot>
+              </div>
+              <div className="vi-gpt__acts">
+                <GptIco d="M8 8h11a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zM4 16V5a1 1 0 0 1 1-1h11" />
+                <GptIco d="M7 11v9H4v-9zM7 11l4-7a2 2 0 0 1 3 1.7V9h5a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.8 20H7" />
+                <GptIco d="M7 13V4H4v9zM7 13l4 7a2 2 0 0 0 3-1.7V15h5a2 2 0 0 0 2-2.3l-1.2-7A2 2 0 0 0 17.8 4H7" />
+                <GptIco d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5" />
+              </div>
+            </div>
+          </div>
+          <div className="vi-gpt__input">
+            <GptIco d="M12 5v14M5 12h14" className="vi-gpt__plus" />
+            <span className="vi-gpt__ph">Poser une question</span>
+            <GptIco d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5 11a7 7 0 0 0 14 0M12 18v3" />
+            <span className="vi-gpt__voice">
+              <GptIco d="M6 10v4M10 7v10M14 9v6M18 11v2" />
+            </span>
+          </div>
+          <span className="vi-phone__home" />
         </div>
-        <p className="vi-chat__foot">Illustration · réponse fictive</p>
       </div>
+      <figcaption className="vi-chat__foot">Illustration · réponse fictive</figcaption>
     </figure>
   );
 }
@@ -528,7 +574,7 @@ export default function Body({ v }: { v: Variante }) {
                 <span className="vi-top__num">{CONTACT.phone}</span>
               </a>
               {/* Ordinateur : visible dès l'arrivée, texte explicite (demande de Benjamin du 27/11/2026) */}
-              <a className="vi-btn vi-top__cta" href={CONTACT.calendly} data-cta="top">
+              <a className="vi-btn vi-btn--white vi-top__cta" href={CONTACT.calendly} data-cta="top">
                 Réserver mon diagnostic gratuit
               </a>
             </div>
@@ -740,7 +786,7 @@ export default function Body({ v }: { v: Variante }) {
                               ))}
                             </ul>
                           </details>
-                          <Cta cta={`formule-${p.id}`} label={`Réserver mon diagnostic gratuit (formule ${p.name})`}>
+                          <Cta cta={`formule-${p.id}`} white label={`Réserver mon diagnostic gratuit (formule ${p.name})`}>
                             Réserver mon diagnostic
                           </Cta>
                         </article>

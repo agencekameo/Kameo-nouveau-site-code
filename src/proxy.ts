@@ -33,6 +33,17 @@ export function proxy(req: NextRequest) {
     return redirectSameOrigin(dest, url);
   }
 
+  // Versions par cible de la landing GEO (/visibilite-ia/auto-ecole/ et /visibilite-ia/ecole/) : un lien en « ?metier=… »
+  // mène à la bonne version au lieu de la page générale, avec les autres paramètres (utm…). 302 : simple aiguillage.
+  const metier = url.searchParams.get('metier');
+  if ((url.pathname === '/visibilite-ia' || url.pathname === '/visibilite-ia/') && (metier === 'auto-ecole' || metier === 'ecole')) {
+    const dest = new URL(`/visibilite-ia/${metier}/`, req.url);
+    url.searchParams.forEach((v, k) => {
+      if (k !== 'metier') dest.searchParams.append(k, v);
+    });
+    return NextResponse.redirect(dest, 302);
+  }
+
   if (isGone(path)) {
     const r = url.clone();
     r.pathname = '/gone-410/';

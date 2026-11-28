@@ -138,9 +138,9 @@ body:has(.vi) { background: #FFFFFF; }
   .vi-btn:hover::after { transform: translateX(120%); }
 }
 .vi-btn:active { transform: scale(.985); }
-/* Texte blanc sur le dégradé (bouton du haut de page, demande de Benjamin du 28/11/2026) : ombre légère pour la lisibilité côté orange. */
-.vi-btn--white { color: #fff; }
-.vi-btn--white .vi-btn__main { text-shadow: 0 1px 2px rgba(15,17,21,.28); }
+/* Texte blanc sur le dégradé (boutons du haut de page, de la barre du haut et des formules, demandes de Benjamin du 28/11/2026) :
+   ombre légère pour la lisibilité côté orange. */
+.vi-btn--white { color: #fff; text-shadow: 0 1px 2px rgba(15,17,21,.28); }
 .vi-btn--outline { background: #fff; box-shadow: inset 0 0 0 1.5px var(--vi-ink); }
 .vi-btn--outline::after { display: none; }
 .vi-btn--outline .vi-btn__arrow { background: var(--vi-ink); color: #fff; box-shadow: none; }
@@ -249,34 +249,45 @@ body:has(.vi) { background: #FFFFFF; }
   .vi-hero__cta { margin-top: 32px; }
 }
 
-/* Visuel « la réponse » */
-.vi-chat { margin: 0; }
-.vi-chat__card { overflow: hidden; border-radius: 24px; background: var(--vi-block); border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-4); }
-.vi-chat__bar { display: flex; gap: 4px; padding: 10px 12px; border-bottom: 1px solid var(--vi-line-3); overflow: hidden; }
-.vi-chat__tab { display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 999px; font: 500 12.5px/1 var(--vi-ff-body); color: var(--vi-muted); white-space: nowrap; }
-.vi-chat__tab.is-on { background: #fff; color: var(--vi-ink); }
-.vi-chat__body { padding: 18px 16px 16px; }
-.vi-chat__q { width: fit-content; max-width: 88%; margin-left: auto; padding: 11px 14px; border-radius: 18px 18px 4px 18px; background: #fff; font: 500 15px/1.4 var(--vi-ff-body); color: var(--vi-ink); }
-.vi-chat__who { display: flex; align-items: center; gap: 8px; margin-top: 16px; font: 400 11.5px/1 var(--vi-ff-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--vi-muted); }
-.vi-chat__ia { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: var(--vi-ink); color: #fff; font: 700 10px/1 var(--vi-ff-head); letter-spacing: 0; }
-.vi-chat__list { display: grid; gap: 8px; margin-top: 12px; }
-.vi-chat__row { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--vi-line); background: #fff; font-size: 14.5px; line-height: 1.35; }
-.vi-chat__n { display: grid; place-items: center; width: 24px; height: 24px; flex: none; border-radius: 50%; background: var(--vi-bg-sunk); font: 600 12px/1 var(--vi-ff-body); color: var(--vi-ink-2); }
-.vi-chat__txt b { color: var(--vi-ink); }
-.vi-chat__txt span { color: var(--vi-muted); }
-.vi-chat__row--you { padding: 0; border: 0; background: none; }
-.vi-chat__row--you .vi-slot { flex: 1; }
-.vi-chat__foot { padding: 10px 16px; border-top: 1px solid var(--vi-line-3); font: 400 11px/1.3 var(--vi-ff-mono); color: var(--vi-muted); text-align: right; }
+/* Visuel « la réponse » : téléphone et écran façon ChatGPT (illustration, 28/11/2026) */
+.vi-chat { margin: 0; display: grid; justify-items: center; }
+.vi-phone { position: relative; width: min(100%, 320px); padding: 9px; border-radius: 46px; background: #121418; box-shadow: var(--vi-sh-4), inset 0 0 0 1.5px #2C2F36; }
+.vi-phone__screen { position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: 37px; background: #fff; color: #0D0D0D; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, sans-serif; }
+.vi-phone__status { position: relative; display: flex; align-items: center; justify-content: space-between; height: 46px; padding: 4px 26px 0 32px; font: 600 14px/1 -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
+.vi-phone__island { position: absolute; top: 11px; left: 50%; width: 92px; height: 27px; border-radius: 20px; background: #121418; transform: translateX(-50%); }
+.vi-phone__sys { display: flex; align-items: center; gap: 5px; }
+.vi-phone__sys svg { width: 17px; height: 11px; fill: #0D0D0D; }
+.vi-phone__sys .vi-phone__wifi { width: 16px; height: 12px; fill: none; stroke: #0D0D0D; stroke-width: 2.6; stroke-linecap: round; }
+.vi-phone__bat { position: relative; width: 24px; height: 12px; padding: 1.5px; border: 1px solid rgba(13,13,13,.45); border-radius: 4px; }
+.vi-phone__bat i { display: block; width: 78%; height: 100%; border-radius: 2px; background: #0D0D0D; }
+.vi-phone__home { display: block; width: 112px; height: 5px; margin: 8px auto 9px; border-radius: 3px; background: #121418; }
+.vi-gpt__ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.vi-gpt__bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 16px 8px; color: #0D0D0D; }
+.vi-gpt__title { display: inline-flex; align-items: center; gap: 2px; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+.vi-gpt__title .vi-gpt__chev { width: 16px; height: 16px; color: #8F8F8F; stroke-width: 2.2; }
+.vi-gpt__body { display: flex; flex-direction: column; gap: 14px; padding: 10px 16px 14px; }
+.vi-gpt__q { align-self: flex-end; max-width: 84%; padding: 10px 14px; border-radius: 20px; background: #F2F2F2; font-size: 14.5px; line-height: 1.4; }
+.vi-gpt__a { font-size: 14.5px; line-height: 1.5; color: #0D0D0D; }
+.vi-gpt__list { margin: 6px 0 0; padding-left: 1.25em; list-style: decimal; }
+.vi-gpt__list li { margin-top: 4px; padding-left: 2px; }
+.vi-gpt__list li::marker { font-weight: 600; }
+.vi-gpt__list b { font-weight: 650; }
+.vi-gpt__you { margin-top: 12px; }
+.vi-gpt__you .vi-slot { width: 100%; min-height: 46px; }
+.vi-gpt__acts { display: flex; gap: 14px; margin-top: 12px; color: #8F8F8F; }
+.vi-gpt__acts .vi-gpt__ico { width: 17px; height: 17px; }
+.vi-gpt__input { display: flex; align-items: center; gap: 10px; min-height: 48px; margin: 4px 10px 0; padding: 6px 6px 6px 12px; border: 1px solid #E3E3E3; border-radius: 26px; background: #fff; box-shadow: 0 6px 18px rgba(0,0,0,.06); color: #6B6B6B; }
+.vi-gpt__ph { flex: 1; min-width: 0; font-size: 15px; color: #8F8F8F; white-space: nowrap; }
+.vi-gpt__plus { color: #0D0D0D; }
+.vi-gpt__voice { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 50%; background: #0D0D0D; color: #fff; }
+.vi-gpt__voice .vi-gpt__ico { width: 18px; height: 18px; stroke-width: 2.4; }
+.vi-chat__foot { margin-top: 14px; font: 400 11px/1.3 var(--vi-ff-mono); color: var(--vi-muted); text-align: center; }
 @media (min-width: 1024px) {
-  .vi-chat__bar { padding: 12px 16px; }
-  .vi-chat__tab { height: 30px; padding: 0 12px; font-size: 13px; }
-  .vi-chat__body { padding: 24px 24px 20px; }
-  .vi-chat__q { font-size: 16px; }
-  .vi-chat__row { min-height: 54px; font-size: 15px; }
-  .vi-chat__foot { padding: 12px 24px; }
+  .vi-phone { width: 340px; }
+  .vi-gpt__q, .vi-gpt__a { font-size: 15px; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .vi-chat__row { animation: vi-rise 600ms var(--vi-ease-out) both; animation-delay: calc(500ms + var(--i, 0) * 260ms); }
+  .vi-gpt__row { animation: vi-rise 600ms var(--vi-ease-out) both; animation-delay: calc(500ms + var(--i, 0) * 260ms); }
 }
 @keyframes vi-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
@@ -303,9 +314,10 @@ body:has(.vi) { background: #FFFFFF; }
     var(--vi-bg-soft);
   border-bottom: 1px solid var(--vi-line-3);
 }
-.vi-mini-ask { display: flex; align-items: center; gap: 10px; width: 100%; max-width: 280px; height: 52px; padding: 0 6px 0 8px; border-radius: 999px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-2); }
+.vi-mini-ask { display: flex; align-items: center; gap: 10px; width: 100%; max-width: 300px; min-height: 52px; padding: 6px 6px 6px 8px; border-radius: 26px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-2); }
 .vi-mini-ask__ia { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius: 50%; background: var(--vi-ink); color: #fff; font: 700 11px/1 var(--vi-ff-head); }
-.vi-mini-ask__txt { flex: 1; min-width: 0; font: 500 14.5px/1.2 var(--vi-ff-body); color: var(--vi-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Les questions des versions par cible sont plus longues (« Quelle est la meilleure auto-école ? ») : 2 lignes au besoin. */
+.vi-mini-ask__txt { flex: 1; min-width: 0; font: 500 14.5px/1.25 var(--vi-ff-body); color: var(--vi-ink); }
 .vi-mini-ask__send { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border-radius: 50%; background: var(--vi-grad); color: var(--vi-ink); }
 .vi-mini-ask__send .vi-ico { width: 16px; height: 16px; stroke-width: 2.2; }
 .vi-mini-list { display: grid; gap: 6px; width: 100%; max-width: 260px; }
