@@ -71,7 +71,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-tile--sm { width: 40px; height: 40px; border-radius: 12px; }
 .vi-tile--sm .vi-i { width: 18px; height: 18px; }
 @media (forced-colors: active) { .vi-tile .vi-i, .vi-badge__ico { fill: CanvasText; } }
-.vi-wa-ico { display: block; width: 20px; height: 20px; flex: none; fill: currentColor; }
 .vi-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .vi-wrap { width: 100%; max-width: calc(1160px + 2 * var(--vi-gutter)); margin-inline: auto; padding-inline: var(--vi-gutter); }
 .vi-gt {
@@ -520,7 +519,7 @@ body:has(.vi) { background: #FFFFFF; }
 @media (max-width: 767.98px) {
   .vi { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
   .vi-sticky {
-    display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 10px; align-items: center;
+    display: grid; grid-template-columns: minmax(0, 1fr); align-items: center;
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 300;
     padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
     background: rgba(255,255,255,.92); -webkit-backdrop-filter: saturate(1.4) blur(16px); backdrop-filter: saturate(1.4) blur(16px);
@@ -532,8 +531,6 @@ body:has(.vi) { background: #FFFFFF; }
   .vi-fab { display: none !important; }
   html:has(.vi-sticky.is-shown) { scroll-padding-bottom: 88px; }
 }
-.vi-sticky__wa { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 1px solid var(--vi-line-2); color: var(--vi-wa); }
-.vi-sticky__wa .vi-wa-ico { width: 24px; height: 24px; }
 .vi-sticky__cta { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 52px; padding: 6px 6px 6px 18px; border-radius: 999px; background: var(--vi-grad); color: var(--vi-ink); box-shadow: var(--vi-sh-btn); text-decoration: none; }
 .vi-sticky__txt { min-width: 0; }
 .vi-sticky__l1 { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 700 15px/1.15 var(--vi-ff-head); letter-spacing: -0.01em; }

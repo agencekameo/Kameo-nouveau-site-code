@@ -45,8 +45,6 @@ const REPRISE = PROMO_LANDING.repriseCourte.replace(' ', nb);
 /** Texte lu dans geo.ts : espaces insécables (fr), apostrophes typographiques (hors balises HTML). */
 const t = (s: string) => fr(s).replace(/'(?![^<]*>)/g, '’');
 
-/** Lien WhatsApp avec le message prérempli de la variante (rond de la barre mobile, seul accès WhatsApp depuis le 28/11/2026). */
-const waHref = (v: Variante) => `${CONTACT.whatsapp}?text=${encodeURIComponent(v.messageWa)}`;
 const FABRIQUE_URL = 'https://www.lafabriquedunet.fr/agences/pages/agences-geo-ile-de-france-paris';
 
 /* ───────────────────────── Icônes ───────────────────────── */
@@ -98,11 +96,6 @@ const Stars = () => (
     <IStar />
     <IStar />
   </span>
-);
-const IWhatsApp = () => (
-  <svg className="vi-wa-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M12 2.2A9.7 9.7 0 0 0 3.6 16.8L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3c-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.6-.4z" />
-  </svg>
 );
 
 /* ───────────────────────── Briques ───────────────────────── */
@@ -498,7 +491,6 @@ function HeroChat({ v }: { v: Variante }) {
 /* ───────────────────────── Page ───────────────────────── */
 
 export default function Body({ v }: { v: Variante }) {
-  const WA = waHref(v);
   const cas = v.ordreCas ? v.ordreCas.flatMap((id) => CAS.filter((c) => c.id === id)) : CAS;
   const promo = promoLandingActive();
   const plans = plansGeo();
@@ -919,11 +911,9 @@ export default function Body({ v }: { v: Variante }) {
           Prendre rendez-vous
         </a>
 
-        {/* ━━ Barre d'action mobile (affichée par ViEffects une fois le héros passé) ━━ */}
+        {/* ━━ Barre d'action mobile (affichée par ViEffects une fois le héros passé), sans le rond WhatsApp depuis le
+            28/11/2026 (demande de Benjamin) : plus aucun accès WhatsApp ni téléphone sur la landing. ━━ */}
         <div className="vi-sticky" id="vi-sticky">
-          <Ext href={WA} className="vi-sticky__wa" cta="whatsapp-sticky" label="Écrire à Kameo sur WhatsApp (nouvel onglet)">
-            <IWhatsApp />
-          </Ext>
           <a className="vi-sticky__cta" href={CONTACT.calendly} data-cta="sticky">
             <span className="vi-sticky__txt">
               <span className="vi-sticky__l1">Prendre rendez-vous avec un expert</span>

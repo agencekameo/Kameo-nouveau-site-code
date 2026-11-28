@@ -14,7 +14,7 @@ import { onConsent } from '@/lib/consent';
  *   Le bouton flottant (.vi-fab) est visible dès l'arrivée ; .is-fab-off sur .vi le masque quand #diagnostic est à
  *   l'écran ou que la fenêtre Calendly est ouverte.
  * - Microsoft Clarity (seulement s'il est chargé, accord « Mesure d'audience ») : cta_<emplacement> au clic
- *   (data-cta, dont cta_flottant), whatsapp_*, formule_details, faq_ouverte ; étiquettes de session
+ *   (data-cta, dont cta_flottant et cta_sticky), formule_details, faq_ouverte ; étiquettes de session
  *   « offre », « metier » (general, auto-ecole, ecole : version de la page) et « utm_source ». Jamais de contenu saisi.
  */
 
@@ -98,8 +98,7 @@ export default function ViEffects({ offre, metier = 'general' }: { offre: boolea
       const el = (e.target as Element | null)?.closest?.<HTMLElement>('.vi [data-cta], .vi-sticky [data-cta]');
       const where = el?.dataset.cta;
       if (!where) return;
-      const name = /^(whatsapp|tel)/.test(where) ? where : `cta_${where}`;
-      clarity('event', name.replace(/-/g, '_'));
+      clarity('event', `cta_${where}`.replace(/-/g, '_'));
     };
     const onToggle = (e: Event) => {
       const d = e.target as HTMLDetailsElement | null;

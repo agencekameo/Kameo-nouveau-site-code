@@ -2,7 +2,7 @@
  * Textes de la landing /visibilite-ia/ selon la cible de la campagne Meta GEO (lancée le 01/12/2026) : la page
  * générale, /visibilite-ia/auto-ecole/ et /visibilite-ia/ecole/ (validé par Benjamin le 27/11/2026 : « personnalise
  * plus d'éléments que uniquement le haut de landing »). Même page, mêmes prix, mêmes preuves : seuls changent les mots
- * du visiteur (élèves, étudiants), la question posée à l'IA et ce qui en découle, jusqu'au message WhatsApp.
+ * du visiteur (élèves, étudiants), la question posée à l'IA et ce qui en découle, jusqu'au texte de la fenêtre Calendly.
  * Les versions par cible sont noindex et hors du sitemap, comme la page générale : ne pas les ajouter à pages.ts.
  * Espaces insécables : fr() les pose avant « ? ! : ; » au rendu ; « 4 IA » les porte ici ( ).
  */
@@ -19,8 +19,6 @@ export type Variante = {
   deVotre: string;
   /** « de vous » : titre final et fenêtre Calendly. */
   deVous: string;
-  /** Message prérempli de WhatsApp (bouton flottant, final, barre mobile). */
-  messageWa: string;
   /** Titre : début de phrase, avant « ChatGPT en 1 mois ». */
   h1: string;
   lead: string;
@@ -47,7 +45,6 @@ export const GENERAL: Variante = {
   path: '/visibilite-ia/',
   deVotre: 'de votre entreprise',
   deVous: 'de vous',
-  messageWa: 'Bonjour Kameo, je voudrais savoir ce que les IA disent de mon entreprise.',
   h1: 'Devenez 1er sur',
   lead: 'On mesure ce que les IA disent de vous, et on corrige ce qui les empêche de vous citer.',
   chat: {
@@ -83,7 +80,6 @@ const AUTO_ECOLE: Variante = {
   path: '/visibilite-ia/auto-ecole/',
   deVotre: 'de votre auto-école',
   deVous: 'de votre auto-école',
-  messageWa: 'Bonjour Kameo, je voudrais savoir ce que les IA disent de mon auto-école.',
   h1: 'Rendez votre auto-école 1re sur',
   lead: 'On mesure ce que les IA disent de votre auto-école, et on corrige ce qui les empêche de la citer.',
   chat: {
@@ -128,7 +124,6 @@ const ECOLE: Variante = {
   path: '/visibilite-ia/ecole/',
   deVotre: 'de votre école',
   deVous: 'de votre école',
-  messageWa: 'Bonjour Kameo, je voudrais savoir ce que les IA disent de mon école.',
   h1: 'Rendez votre école 1re sur',
   lead: 'On mesure ce que les IA disent de votre école, et on corrige ce qui les empêche de la citer.',
   chat: {
