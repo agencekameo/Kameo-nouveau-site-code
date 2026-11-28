@@ -20,6 +20,7 @@ import CalendlyInline from '@/components/landing-geo/CalendlyInline';
 import LogosClients from '@/components/landing-geo/LogosClients';
 import LogosIA from '@/components/landing-geo/LogosIA';
 import Countdown from '@/components/landing-geo/Countdown';
+import { AVIS_TRUSTPILOT, type AvisClient } from '@/content/avis';
 import {
   GEO_ENGINES,
   PROMO_LANDING,
@@ -45,7 +46,6 @@ const REPRISE = PROMO_LANDING.repriseCourte.replace(' ', nb);
 /** Texte lu dans geo.ts : espaces insécables (fr), apostrophes typographiques (hors balises HTML). */
 const t = (s: string) => fr(s).replace(/'(?![^<]*>)/g, '’');
 
-const FABRIQUE_URL = 'https://www.lafabriquedunet.fr/agences/pages/agences-geo-ile-de-france-paris';
 
 /* ───────────────────────── Icônes ───────────────────────── */
 
@@ -54,12 +54,6 @@ const Icon = ({ id, className = '' }: { id: string; className?: string }) => (
   <svg className={'vi-i ' + className} aria-hidden="true" focusable="false">
     <use href={`/icons.svg#i-${id}`} />
   </svg>
-);
-/** Pastille d'icône (fond teinté, icône en dégradé). */
-const Tile = ({ id, sm }: { id: string; sm?: boolean }) => (
-  <span className={'vi-tile' + (sm ? ' vi-tile--sm' : '')} aria-hidden="true">
-    <Icon id={id} />
-  </span>
 );
 
 const Ico = ({ children, className = '' }: { children: ReactNode; className?: string }) => (
@@ -165,7 +159,7 @@ function Cta({
   );
 }
 
-/** Note Trustpilot : la même pastille au-dessus du titre et sous l'équipe. */
+/** Note Trustpilot : la même pastille au-dessus du titre du haut de page et sous le titre des avis. */
 const TrustBadge = () => (
   <Ext href={SOCIAL.trustpilot} className="vi-badge">
     <Stars />
@@ -395,6 +389,58 @@ function Cas({ c, i }: { c: CasClient; i: number }) {
   );
 }
 
+/* ───────────────────────── Avis Trustpilot ───────────────────────── */
+
+/**
+ * Carte d'avis : toute la carte mène à l'avis sur Trustpilot (lien étiré). Les cartes en double (dup), qui ne servent
+ * qu'à la boucle du défilement, sont cachées aux lecteurs d'écran et sorties de l'ordre de tabulation.
+ */
+function Avis({ a, dup }: { a: AvisClient; dup?: boolean }) {
+  return (
+    <article className="vi-rev">
+      <div className="vi-rev__top">
+        <Stars />
+        <span className="vi-rev__src">Trustpilot</span>
+      </div>
+      <p className="vi-rev__t">{fr(a.titre)}</p>
+      <p className="vi-rev__txt">«&nbsp;{fr(a.texte)}&nbsp;»</p>
+      <div className="vi-rev__foot">
+        <span className="vi-rev__av" style={{ background: a.couleur }} aria-hidden="true">
+          {a.initiales}
+        </span>
+        <span className="vi-rev__who">
+          <strong>{a.nom}</strong>
+          <span>{a.role}</span>
+        </span>
+        <a className="vi-rev__link" href={a.url} target="_blank" rel="noopener" tabIndex={dup ? -1 : undefined} data-cta={dup ? undefined : 'avis'}>
+          <span className="sr-only">Lire l’avis de {a.nom} sur Trustpilot (nouvel onglet)</span>
+          <Icon id="solid-arrow-up-right-from-square" />
+        </a>
+      </div>
+    </article>
+  );
+}
+
+/** Une rangée qui défile en boucle : les avis, puis leur copie (masquée) pour une boucle sans à-coup. */
+function AvisRow({ avis, reverse }: { avis: AvisClient[]; reverse?: boolean }) {
+  return (
+    <div className={'vi-marquee' + (reverse ? ' vi-marquee--rev' : '')}>
+      <ul className="vi-marquee__track" style={{ '--dur': `${avis.length * 8}s` } as CSSProperties}>
+        {avis.map((a) => (
+          <li key={a.url}>
+            <Avis a={a} />
+          </li>
+        ))}
+        {avis.map((a) => (
+          <li key={`dup-${a.url}`} className="vi-marquee__dup" aria-hidden="true">
+            <Avis a={a} dup />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /* ───────────────────────── Visuel du héros ───────────────────────── */
 
 /** Pictogrammes de l'écran du téléphone (dessins simples, traits) : SVG décoratifs. */
@@ -505,10 +551,6 @@ export default function Body({ v }: { v: Variante }) {
       {nb}HT/mois
     </>
   );
-  const prixApres = `${plans
-    .slice(0, -1)
-    .map((p) => eur(p.price))
-    .join(', ')} et ${eur(plans[plans.length - 1].price)}`;
   /* Sur téléphone, Essentiel s'ouvre par défaut (demande de Benjamin, 27/11/2026) ; « Recommandé » reste sur la formule mise en avant. */
   const defaut = plans.find((p) => p.id === 'essentiel') ?? plans[0];
 
@@ -527,18 +569,12 @@ export default function Body({ v }: { v: Variante }) {
           </defs>
         </svg>
 
-        {/* ━━ Bandeau d'offre (seulement pendant l'offre) ━━ */}
+        {/* ━━ Bandeau d'offre (seulement pendant l'offre) : le prix, puis le compte à rebours à la seconde, qui dit seul
+            jusqu'à quand l'offre vaut (« jusqu'à lundi soir (30 novembre) » retiré le 28/11/2026, à la demande). ━━ */}
         {promo && (
           <a className="vi-offre" href="#formules" data-vi-promo="" data-cta="bandeau-offre">
             <span className="vi-chip-promo">{PROMO_LANDING.nom}</span>
-            <span className="vi-offre__txt">
-              {desPrix}
-              <span className="vi-offre__date">
-                {' '}
-                jusqu’à <span className="vi-offre__long">{PROMO_LANDING.finTexte.replace(/ /g, nb)}</span>
-                <span className="vi-offre__short">{PROMO_LANDING.finCourte.replace(/ /g, nb)}</span>
-              </span>
-            </span>
+            <span className="vi-offre__txt">{desPrix}</span>
             <span className="vi-offre__count">
               <Countdown end={PROMO_LANDING.fin} />
             </span>
@@ -592,33 +628,43 @@ export default function Body({ v }: { v: Variante }) {
                     Voir nos accompagnements
                   </Cta>
                 </div>
-                {/* Logos clients qui défilent sous le bouton, dans la colonne de gauche : ils s'arrêtent avant le téléphone
-                    (demande de Benjamin du 28/11/2026). */}
-                <LogosClients />
               </div>
-              <HeroChat v={v} />
+              {/* Photo des dirigeants à la place du téléphone (28/11/2026, format Pennylane) ; le téléphone ChatGPT a sa propre
+                  section juste après. Image prioritaire (premier écran), deux tailles. */}
+              <figure className="vi-hero__photo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/benjamin-louison-podcast.webp"
+                  srcSet="/images/benjamin-louison-podcast-800.webp 800w, /images/benjamin-louison-podcast.webp 1600w"
+                  sizes="(min-width: 1024px) 640px, (min-width: 768px) 640px, 100vw"
+                  width={1600}
+                  height={1067}
+                  alt="Benjamin Dayan et Louison Boutet, les dirigeants de Kameo"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </figure>
             </div>
-            {/* 3 chiffres sous le haut de page, sur toute la largeur, en noir et sans fond (demandes de Benjamin du 28/11/2026).
-                « +50 » : PROOF.projetsTotal (50 projets, src/lib/site.ts). */}
-            <div className="vi-wrap">
-              <ul className="vi-stats">
-                <li>
-                  <b>+{PROOF.projetsTotal}</b>
-                  <span>entreprises accompagnées</span>
-                </li>
-                <li>
-                  <b>100&nbsp;%</b>
-                  <span>de clients satisfaits</span>
-                </li>
-                <li>
-                  <b>2&nbsp;semaines</b>
-                  <span>en moyenne pour les premiers résultats</span>
-                </li>
-              </ul>
+            {/* Bande de preuves façon Pennylane (28/11/2026) : logos clients qui défilent, coupés à droite par les chiffres et
+                le lien vers les avis. Chiffres de Benjamin du 28/11/2026 ; « +50 » : PROOF.projetsTotal (src/lib/site.ts). */}
+            <div className="vi-wrap vi-proof">
+              <LogosClients />
+              <div className="vi-proof__txt">
+                <p>
+                  <strong className="vi-gt">+{PROOF.projetsTotal}&nbsp;entreprises accompagnées</strong>, 100&nbsp;% de clients satisfaits et
+                  des premiers résultats en 2&nbsp;semaines en moyenne.
+                </p>
+                <a className="vi-proof__link" href="#avis" data-cta="preuves-avis">
+                  Voir les avis clients
+                  <svg className="vi-ico" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                    <path d="M8 5l5 5-5 5" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </section>
 
-          {/* ━━ 2 · Résultats clients (avant « Ce qui a changé » depuis le 28/11/2026, demande de Benjamin) ━━ */}
+          {/* ━━ 2 · Résultats clients, juste après le haut de page (28/11/2026) ━━ */}
           <section className="vi-sec" id="resultats" aria-labelledby="resultats-t">
             <div className="vi-wrap">
               <Head id="resultats-t">
@@ -632,37 +678,40 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 3 · Ce qui a changé ━━ */}
-          <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
+          {/* ━━ 3 · Méthode et téléphone ChatGPT (après les résultats clients depuis le 28/11/2026), réunis en une section (28/11/2026) : « Et vous, êtes-vous dans la réponse ? »
+              et « 3 étapes pour être cité » ne font plus qu'un. Ordinateur : téléphone à gauche, étapes à droite en cartes
+              horizontales (mini-illustration à gauche, texte à droite). Téléphone et tablette : le téléphone, puis les étapes en
+              liste compacte, sans les mini-illustrations (le téléphone illustre déjà), pour gagner de la place. ━━ */}
+          <section className="vi-sec vi-sec--soft" id="methode" aria-labelledby="methode-t">
             <div className="vi-wrap">
-              {/* Chiffre Arcom et Médiamétrie (juin 2026) ; mention de la source retirée à la demande de Benjamin du 28/11/2026. */}
-              <Head id="enjeu-t">
-                <span className="vi-gt">33&nbsp;millions</span> de Français utilisent l’IA
+              <Head id="methode-t">
+                3 étapes pour être <span className="vi-gt">dans la réponse</span>
               </Head>
-              <ol className="vi-cards">
-                {v.etapes.map((e, i) => (
-                  <li key={e.t} className="vi-card" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
-                    <Illu kind={ILLU_ETAPES[i]} v={v} />
-                    <div className="vi-card__body">
-                      <span className="vi-card__n" aria-hidden="true">
-                        {i + 1}
-                      </span>
-                      <div>
-                        <h3 className="vi-card__t">
-                          <Nw>{e.t}</Nw>
-                        </h3>
-                        <p className="vi-card__p">
-                          <Nw>{e.p}</Nw>
-                        </p>
+              <div className="vi-how">
+                <HeroChat v={v} />
+                <ol className="vi-how__steps">
+                  {METHODE.map((m, i) => (
+                    <li key={m.t} className="vi-how__step" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
+                      <Illu kind={m.illu} v={v} />
+                      <div className="vi-how__body">
+                        <span className="vi-card__n" aria-hidden="true">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <h3 className="vi-card__t">{m.t}</h3>
+                          <p className="vi-card__p">
+                            <Nw>{v.methode[i]}</Nw>
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
           </section>
 
-          {/* ━━ 4 · Formules (avant la méthode depuis le 28/11/2026, demande de Benjamin) ━━ */}
+          {/* ━━ 4 · Formules (ordre des sections revu le 28/11/2026) ━━ */}
           <section className="vi-sec" id="formules" aria-labelledby="formules-t">
             <div className="vi-wrap">
               <Head id="formules-t">
@@ -670,13 +719,12 @@ export default function Body({ v }: { v: Variante }) {
               </Head>
 
               {promo && (
+                /* Ligne d'offre raccourcie le 28/11/2026 (« beaucoup trop de texte ») : plus de prix répétés, ils sont dans les
+                   cartes juste dessous (prix de l'offre, puis prix normal dès le 1er décembre) ; le compte à rebours dit la fin. */
                 <div className="vi-promo" data-vi-promo="" data-vi-reveal="">
                   <span className="vi-chip-promo">{PROMO_LANDING.nom}</span>
                   <p className="vi-promo__txt">
-                    {desPrix} pour tout diagnostic réservé d’ici {PROMO_LANDING.finTexte.replace(/ /g, nb)}&nbsp;: ce prix reste le vôtre
-                    pendant tout l’engagement si vous signez ensuite. Pour un diagnostic réservé à partir du{' '}
-                    {PROMO_LANDING.repriseTexte.replace(' ', nb)}&nbsp;: {prixApres}
-                    {nb}HT/mois.
+                    Réservez votre diagnostic avant la fin&nbsp;: ces prix restent les vôtres pendant tout l’engagement.
                   </p>
                   <Countdown end={PROMO_LANDING.fin} />
                 </div>
@@ -794,41 +842,52 @@ export default function Body({ v }: { v: Variante }) {
                   })}
                 </ul>
               </fieldset>
-              <ul className="vi-perks" data-vi-reveal="">
-                <li>
-                  <Tile id="solid-magnifying-glass-chart" sm />
-                  <span>Audit offert au démarrage</span>
-                </li>
-                <li>
-                  <Tile id="solid-piggy-bank" sm />
-                  <span>12&nbsp;mois pour le prix de 11</span>
-                </li>
-                <li>
-                  <Tile id="solid-handshake" sm />
-                  <span>Formule choisie ensemble</span>
-                </li>
-              </ul>
+              {/* Pastilles sous les formules (audit offert, 12 mois pour 11, formule choisie ensemble) retirées le 28/11/2026. */}
             </div>
           </section>
 
-          {/* ━━ 5 · Méthode ━━ */}
-          <section className="vi-sec vi-sec--soft" id="methode" aria-labelledby="methode-t">
+          {/* ━━ 5 · Avis Trustpilot : tous les avis, avec le lien de chacun, sur deux rangées qui défilent en sens inverse
+              (demande du 28/11/2026). Défilement en pause au survol et au clavier, sans bouton pause (choix du 28/11/2026) ;
+              avec « réduire les animations », les rangées deviennent de simples bandes à faire glisser. Avis sur nos
+              projets web et SEO (src/content/avis.ts), jamais présentés comme des résultats GEO. ━━ */}
+          <section className="vi-sec" id="avis" aria-labelledby="avis-t">
             <div className="vi-wrap">
-              <Head id="methode-t">
-                3 étapes pour être cité
+              <Head id="avis-t">
+                Nos clients <span className="vi-gt">nous recommandent</span>
+              </Head>
+              <div className="vi-avis__note" data-vi-reveal="">
+                <TrustBadge />
+              </div>
+            </div>
+            {/* Pas de bouton pause (demande du 28/11/2026) : le défilement s'arrête seulement le temps du survol d'une carte
+                ou du passage au clavier, pour pouvoir lire et cliquer. */}
+            <div className="vi-avis">
+              <AvisRow avis={AVIS_TRUSTPILOT.filter((_, i) => i % 2 === 0)} />
+              <AvisRow avis={AVIS_TRUSTPILOT.filter((_, i) => i % 2 === 1)} reverse />
+            </div>
+          </section>
+
+          {/* ━━ 6 · Ce qui a changé (33 millions), à la place de la méthode depuis le 28/11/2026 ━━ */}
+          <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
+            <div className="vi-wrap">
+              {/* Chiffre Arcom et Médiamétrie (juin 2026) ; mention de la source retirée à la demande de Benjamin du 28/11/2026. */}
+              <Head id="enjeu-t">
+                <span className="vi-gt">33&nbsp;millions</span> de Français utilisent l’IA
               </Head>
               <ol className="vi-cards">
-                {METHODE.map((m, i) => (
-                  <li key={m.t} className="vi-card" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
-                    <Illu kind={m.illu} v={v} />
+                {v.etapes.map((e, i) => (
+                  <li key={e.t} className="vi-card" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
+                    <Illu kind={ILLU_ETAPES[i]} v={v} />
                     <div className="vi-card__body">
                       <span className="vi-card__n" aria-hidden="true">
                         {i + 1}
                       </span>
                       <div>
-                        <h3 className="vi-card__t">{m.t}</h3>
+                        <h3 className="vi-card__t">
+                          <Nw>{e.t}</Nw>
+                        </h3>
                         <p className="vi-card__p">
-                          <Nw>{v.methode[i]}</Nw>
+                          <Nw>{e.p}</Nw>
                         </p>
                       </div>
                     </div>
@@ -838,57 +897,14 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 6 · Équipe (bloc pleine largeur, demande de Benjamin du 27/11/2026) ━━ */}
-          <section className="vi-sec vi-sec--soft" id="equipe" aria-labelledby="equipe-t">
-            <div className="vi-wrap">
-              <div className="vi-team" data-vi-reveal="">
-                <h2 className="vi-h2 vi-team__t" id="equipe-t">
-                  Une équipe <span className="vi-gt">jeune, dynamique et performante</span>
-                </h2>
-                <div className="vi-team__faces">
-                  {[
-                    { src: '/images/benjamin.webp', nom: 'Benjamin Dayan', role: 'Président' },
-                    { src: '/images/Louison.webp', nom: 'Louison Boutet', role: 'Directeur général' },
-                  ].map((m) => (
-                    <figure key={m.nom} className="vi-face">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={m.src} width={400} height={400} alt="" loading="lazy" decoding="async" />
-                      <figcaption>
-                        <strong>{m.nom}</strong>
-                        <span>{m.role}</span>
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
-                <p className="vi-team__p">Une équipe de 6, sans sous-traitance. Rendez-vous en visio, partout en France.</p>
-                <ul className="vi-badges">
-                  <li>
-                    <TrustBadge />
-                  </li>
-                  <li>
-                    <Ext href={FABRIQUE_URL} className="vi-badge">
-                      <Icon id="solid-medal" className="vi-badge__ico" />
-                      <span>
-                        <strong>
-                          8<sup>e</sup>
-                        </strong>{' '}
-                        des «&nbsp;meilleures agences GEO à Paris&nbsp;» · La Fabrique du Net
-                      </span>
-                    </Ext>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          {/* ━━ 7 · Réservation : Calendly intégré à la page (demande de Benjamin du 28/11/2026, à la place du dernier appel à
+          {/* ━━ 7 · Réservation, dernière section de la page (équipe retirée le 28/11/2026) : Calendly intégré à la page (demande de Benjamin du 28/11/2026, à la place du dernier appel à
               l'action) ; la FAQ a été retirée le 27/11/2026 à sa demande ━━ */}
           <section className="vi-sec vi-final" id="diagnostic" aria-labelledby="diagnostic-t">
             <div className="vi-wrap vi-final__in">
               <Head id="diagnostic-t">
                 Réservez votre <span className="vi-gt">diagnostic gratuit</span>
               </Head>
-              <CalendlyInline preloadAfter="#formules" utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
+              <CalendlyInline preloadAfter="#resultats" utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
             </div>
             {/* Plus de pied de page (demande de Benjamin, 27/11/2026) : les liens légaux restent, en une ligne discrète,
                 pour la CNIL (retrait du consentement aux cookies) et les régies publicitaires. */}
@@ -904,6 +920,7 @@ export default function Body({ v }: { v: Variante }) {
               <CookieSettingsLink />
             </p>
           </section>
+          {/* Section « Une équipe jeune, dynamique et performante » retirée le 28/11/2026 (demande). */}
         </main>
 
         {/* ━━ Bouton flottant (à partir de 768 px), à la place du bouton WhatsApp depuis le 28/11/2026 (demande de Benjamin) :

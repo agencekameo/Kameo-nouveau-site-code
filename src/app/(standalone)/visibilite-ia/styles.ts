@@ -66,11 +66,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-stars { display: inline-flex; gap: 2px; flex: none; }
 /* Icônes du sprite (/icons.svg) et pastilles d'icône */
 .vi-i { display: block; width: 20px; height: 20px; flex: none; fill: currentColor; }
-.vi-tile { display: grid; place-items: center; width: 48px; height: 48px; flex: none; border-radius: 14px; background: linear-gradient(136.79deg, rgba(225,75,137,.12) 5.13%, rgba(248,144,60,.12) 84.98%); box-shadow: inset 0 0 0 1px rgba(237,110,99,.16); }
-.vi-tile .vi-i { width: 22px; height: 22px; fill: url(#vi-grad-stroke); }
-.vi-tile--sm { width: 40px; height: 40px; border-radius: 12px; }
-.vi-tile--sm .vi-i { width: 18px; height: 18px; }
-@media (forced-colors: active) { .vi-tile .vi-i, .vi-badge__ico { fill: CanvasText; } }
 .vi-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .vi-wrap { width: 100%; max-width: calc(1160px + 2 * var(--vi-gutter)); margin-inline: auto; padding-inline: var(--vi-gutter); }
 .vi-gt {
@@ -111,7 +106,7 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-head { max-width: 720px; margin: 0 auto var(--vi-head-gap); text-align: center; }
 .vi-head .vi-sub { margin-inline: auto; }
 /* Plus de petit titre au-dessus des titres de section (28/11/2026) */
-.vi-head .vi-h2, .vi-team__t { margin-top: 0; }
+.vi-head .vi-h2 { margin-top: 0; }
 /* « 33 millions de Français utilisent l'IA » sur une seule ligne dès que la largeur le permet (demande de Benjamin du 28/11/2026) */
 #enjeu .vi-head { max-width: none; }
 @media (min-width: 900px) { #enjeu .vi-h2 { white-space: nowrap; } }
@@ -191,14 +186,21 @@ body:has(.vi) { background: #FFFFFF; }
 @media (hover: hover) { .vi-offre:hover { background: var(--vi-ink-2); } }
 .vi-offre .vi-chip-promo { background: var(--vi-grad); color: var(--vi-ink); }
 .vi-offre .vi-count { color: rgba(255,255,255,.78); }
-.vi-offre__txt { min-width: 0; font-weight: 600; }
-.vi-offre__date { font-weight: 400; color: rgba(255,255,255,.78); }
-.vi-offre__long, .vi-offre__count { display: none; }
+.vi-offre__txt { min-width: 0; font-weight: 600; white-space: nowrap; }
+/* Compte à rebours visible aussi sur téléphone (seule indication de fin depuis le 28/11/2026) : sous 640 px, il passe
+   sur une 2e ligne, centrée, avec la flèche. */
+.vi-offre { flex-wrap: wrap; row-gap: 2px; }
+.vi-offre__count { display: inline-flex; align-items: center; }
+.vi-offre .vi-count { font-size: 12.5px; color: #fff; }
 .vi-offre__go .vi-ico { width: 16px; height: 16px; stroke-width: 2; }
+@media (max-width: 639.98px) {
+  .vi-offre { padding-top: 7px; padding-bottom: 8px; }
+  .vi-offre__count { flex-basis: 100%; justify-content: center; }
+  .vi-offre__go { display: none; }
+}
 @media (min-width: 640px) {
-  .vi-offre { gap: 16px; font-size: 14px; }
-  .vi-offre__long { display: inline; } .vi-offre__short { display: none; }
-  .vi-offre__count { display: inline; }
+  .vi-offre { flex-wrap: nowrap; gap: 16px; font-size: 14px; }
+  .vi-offre .vi-count { font-size: 13px; }
 }
 
 /* ━━ Barre du haut ━━ */
@@ -232,41 +234,102 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-h1 { margin-top: 16px; font: 900 clamp(2rem, 1.45rem + 2.8vw, 4rem)/1.03 var(--vi-ff-head); letter-spacing: -0.035em; }
 .vi-lead { margin-top: 14px; max-width: 32em; font-size: 17px; line-height: 1.5; color: var(--vi-text); }
 .vi-hero__cta { margin-top: 24px; }
-/* Logos clients qui défilent sous le bouton du héros, dans la colonne de gauche (28/11/2026) : styles .logos__* de
-   main.css, arrêtés au bord de la colonne avant le téléphone. */
-.vi-hero .vi-logos { margin-top: 28px; }
-.vi-logos .logos__viewport { max-width: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent); }
+/* Photo des dirigeants à droite du titre, à la place du téléphone (28/11/2026, format Pennylane) */
+.vi-hero__photo { margin: 0; overflow: hidden; aspect-ratio: 3 / 2; border-radius: 20px; background: var(--vi-bg-sunk); box-shadow: var(--vi-sh-2); }
+.vi-hero__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Bande de preuves façon Pennylane (28/11/2026) : logos clients qui défilent (styles .logos__* de main.css), coupés à
+   droite par les chiffres et le lien vers les avis. Téléphone : logos puis texte, l'un sous l'autre. */
+.vi-proof { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 36px; }
+.vi-logos { min-width: 0; }
+.vi-logos .logos__viewport { max-width: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); }
 .vi-logos .logos__viewport::before, .vi-logos .logos__viewport::after { display: none; }
 .vi-logos .logos__track { gap: 44px; }
 .vi-logos .logo-item img { height: 34px; }
-/* 3 chiffres sous le haut de page, sur toute la largeur, en noir et sans fond (28/11/2026). Téléphone : l'un sous l'autre ;
-   à partir de 640 px : côte à côte. Chiffre au-dessus, centré. */
-.vi-stats { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
-.vi-stats li { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
-.vi-stats b { font: 900 28px/1 var(--vi-ff-head); letter-spacing: -0.03em; white-space: nowrap; color: var(--vi-ink); }
-.vi-stats span { font: 500 14px/1.35 var(--vi-ff-body); color: var(--vi-text); }
-@media (min-width: 640px) { .vi-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; } }
-@media (min-width: 1024px) {
-  .vi-stats { gap: 24px; margin-top: 64px; }
-  .vi-stats b { font-size: 36px; }
-  .vi-stats span { font-size: 15px; }
-}
+.vi-proof__txt p { font: 500 15.5px/1.45 var(--vi-ff-body); color: var(--vi-ink-2); }
+.vi-proof__txt strong { font-weight: 700; }
+.vi-proof__link { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; font: 600 15px/1.2 var(--vi-ff-body); color: var(--vi-ink); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
+.vi-proof__link .vi-ico { width: 16px; height: 16px; stroke-width: 2; transition: transform 200ms var(--vi-ease-std); }
+@media (hover: hover) { .vi-proof__link:hover .vi-ico { transform: translateX(3px); } }
 @media (min-width: 768px) {
   .vi-hero { padding: 32px 0 88px; }
-  .vi-hero__text, .vi-chat { max-width: 640px; }
+  .vi-hero__text, .vi-hero__photo { max-width: 640px; }
   .vi-lead { font-size: 19px; }
+  .vi-proof { margin-top: 48px; }
 }
 @media (min-width: 1024px) {
   .vi-hero { padding: 40px 0 112px; }
-  .vi-hero__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); column-gap: clamp(40px, 5vw, 80px); align-items: center; }
-  .vi-hero__text, .vi-chat { max-width: none; }
+  /* Photo plus grande (28/11/2026) : colonne de droite plus large que le texte, format un peu plus haut (7:5) */
+  .vi-hero__grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); column-gap: clamp(32px, 4vw, 56px); align-items: center; }
+  .vi-hero__text, .vi-hero__photo { max-width: none; }
+  .vi-hero__photo { aspect-ratio: 7 / 5; border-radius: 24px; }
+  /* Logos à gauche, coupés net par un fondu court à droite ; chiffres et lien à droite */
+  .vi-proof { grid-template-columns: minmax(0, 1fr) minmax(320px, 400px); column-gap: 48px; align-items: center; margin-top: 64px; }
+  .vi-logos .logos__viewport { -webkit-mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 72px), transparent); mask-image: linear-gradient(90deg, transparent, #000 48px, #000 calc(100% - 72px), transparent); }
+  .vi-proof__txt p { font-size: 16px; }
   .vi-h1 { margin-top: 24px; }
   .vi-lead { margin-top: 20px; }
   .vi-hero__cta { margin-top: 32px; }
 }
 
-/* Visuel « la réponse » : téléphone et écran façon ChatGPT (illustration, 28/11/2026) */
+/* Visuel « la réponse » : téléphone et écran façon ChatGPT (illustration, 28/11/2026), dans la section des 3 étapes (#methode)
+   depuis le 28/11/2026. */
 .vi-chat { margin: 0; display: grid; justify-items: center; }
+
+/* ━━ Méthode et téléphone ChatGPT, une seule section (28/11/2026) ━━
+   Téléphone et tablette : le téléphone (un peu réduit), puis les 3 étapes en liste compacte, sans mini-illustrations.
+   Ordinateur : téléphone à gauche, étapes à droite en cartes horizontales avec leur mini-illustration. */
+.vi-how { display: grid; gap: 32px; justify-items: center; }
+/* iPhone réaliste (28/11/2026, « on dirait plutôt un iPad ») : proportions d'un iPhone (9:19,5), plus haut que large ;
+   conversation en haut et barre de saisie en bas de l'écran, comme dans l'application ; boutons sur les côtés. */
+.vi-how .vi-phone { width: min(100%, 272px); aspect-ratio: 9 / 19.5; padding: 8px; border-radius: 44px; }
+.vi-how .vi-phone::before, .vi-how .vi-phone::after { content: ""; position: absolute; width: 3px; border-radius: 2px; background: #2C2F36; }
+.vi-how .vi-phone::before { left: -3px; top: 21%; height: 44px; box-shadow: 0 58px 0 #2C2F36; }
+.vi-how .vi-phone::after { right: -3px; top: 27%; height: 72px; }
+.vi-how .vi-phone__screen { height: 100%; border-radius: 36px; }
+/* Texte réparti sur la hauteur de l'écran (28/11/2026) : corps un peu plus grand et espacements plus généreux, pour que la
+   conversation occupe l'écran au lieu de laisser un grand vide au-dessus de la barre de saisie (mesuré : 74 à 94 px libres
+   sur téléphone, 148 px sur ordinateur, ramenés à une vingtaine à une quarantaine, sans texte coupé sur les 3 versions). */
+.vi-how .vi-gpt__body { flex: 1; min-height: 0; overflow: hidden; gap: 18px; padding: 16px 14px 10px; }
+.vi-how .vi-gpt__q, .vi-how .vi-gpt__a { font-size: 14px; }
+.vi-how .vi-gpt__q { padding: 11px 14px; }
+.vi-how .vi-gpt__list { margin-top: 8px; }
+.vi-how .vi-gpt__list li { margin-top: 7px; }
+.vi-how .vi-gpt__you { margin-top: 16px; }
+.vi-how .vi-gpt__you .vi-slot { min-height: 50px; }
+.vi-how .vi-gpt__acts { margin-top: 14px; }
+.vi-how .vi-gpt__input { min-height: 44px; margin: 0 8px; }
+.vi-how .vi-gpt__ph { font-size: 14px; }
+.vi-how__steps { display: grid; gap: 12px; width: 100%; max-width: 560px; }
+.vi-how__step { overflow: hidden; border-radius: 20px; background: var(--vi-block); border: 1px solid var(--vi-line); }
+.vi-how__step .vi-illu { display: none; }
+.vi-how__body { display: grid; grid-template-columns: 32px minmax(0, 1fr); align-items: start; gap: 14px; padding: 18px 20px; }
+.vi-how__body .vi-card__t { font-size: 18px; }
+.vi-how__body .vi-card__p { font-size: 15px; }
+@media (min-width: 1024px) {
+  /* Plus d'air entre le téléphone et les étapes, étapes moins larges (28/11/2026) : l'ensemble est centré */
+  .vi-how { grid-template-columns: auto minmax(0, 520px); column-gap: clamp(72px, 8vw, 120px); align-items: center; justify-content: center; justify-items: stretch; }
+  .vi-how .vi-chat { justify-items: center; }
+  .vi-how .vi-phone { width: 300px; }
+  .vi-how .vi-gpt__body { gap: 26px; padding: 20px 16px 12px; }
+  .vi-how .vi-gpt__q, .vi-how .vi-gpt__a { font-size: 15px; line-height: 1.55; }
+  .vi-how .vi-gpt__q { padding: 13px 16px; border-radius: 22px; }
+  .vi-how .vi-gpt__list { margin-top: 10px; }
+  .vi-how .vi-gpt__list li { margin-top: 10px; }
+  .vi-how .vi-gpt__you { margin-top: 22px; }
+  .vi-how .vi-gpt__you .vi-slot { min-height: 54px; }
+  .vi-how .vi-gpt__acts { margin-top: 20px; }
+  .vi-how__steps { max-width: none; gap: 16px; }
+  .vi-how__step { display: grid; grid-template-columns: 220px minmax(0, 1fr); }
+  .vi-how__step .vi-illu { display: grid; height: auto; min-height: 150px; padding: 14px 12px; border-bottom: 0; border-right: 1px solid var(--vi-line-3); }
+  .vi-how__body { align-content: center; padding: 20px 22px; }
+  .vi-how__body .vi-card__t { font-size: 20px; }
+  .vi-how .vi-mini-bars__row { grid-template-columns: 66px minmax(0, 1fr); gap: 8px; font-size: 11px; }
+  /* Réseau de la Notoriété resserré pour la vignette de 220 px */
+  .vi-how .vi-mini-net { column-gap: 6px; row-gap: 12px; }
+  .vi-how .vi-mini-net::before { left: 8%; right: 8%; }
+  .vi-how .vi-mini-net__chip { height: 24px; padding: 0 8px; font-size: 11px; }
+  .vi-how .vi-mini-net__you { width: 50px; height: 50px; font-size: 12.5px; }
+}
 .vi-phone { position: relative; width: min(100%, 320px); padding: 9px; border-radius: 46px; background: #121418; box-shadow: var(--vi-sh-4), inset 0 0 0 1.5px #2C2F36; }
 .vi-phone__screen { position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: 37px; background: #fff; color: #0D0D0D; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, sans-serif; }
 .vi-phone__status { position: relative; display: flex; align-items: center; justify-content: space-between; height: 46px; padding: 4px 26px 0 32px; font: 600 14px/1 -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
@@ -397,6 +460,17 @@ body:has(.vi) { background: #FFFFFF; }
 /* ━━ 5 · Formules ━━ */
 .vi-promo { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 20px; padding: 14px 16px; border-radius: 16px; background: var(--vi-tint); }
 .vi-promo__txt { flex: 1 1 220px; font: 500 14.5px/1.45 var(--vi-ff-body); color: var(--vi-ink-2); }
+/* Ligne courte (28/11/2026). Téléphone : pastille et compte à rebours en haut, la phrase dessous. Plus large : une ligne,
+   centrée. */
+@media (max-width: 767.98px) {
+  .vi-promo { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 12px; }
+  .vi-promo .vi-count { grid-column: 2; grid-row: 1; justify-self: end; }
+  .vi-promo__txt { grid-column: 1 / -1; }
+}
+@media (min-width: 768px) {
+  .vi-promo { justify-content: center; gap: 12px 20px; }
+  .vi-promo__txt { flex: 0 1 auto; }
+}
 .vi-planset { min-width: 0; margin: 0; padding: 0; border: 0; }
 .vi-planset__radio { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
 .vi-seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin-bottom: 16px; padding: 4px; border-radius: 999px; background: var(--vi-bg-sunk); }
@@ -448,39 +522,62 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-plan__items li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--vi-line-2); }
 .vi-plan__in > .vi-btn { display: flex; width: 100%; justify-content: space-between; margin-top: auto; min-height: 56px; padding: 6px 6px 6px 22px; font-size: 16px; }
 .vi-plan__in > .vi-btn .vi-btn__arrow { width: 42px; height: 42px; }
-.vi-perks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-width: 560px; margin: 20px auto 0; }
-.vi-perks li { display: grid; justify-items: center; align-content: start; gap: 8px; padding: 14px 6px; border-radius: 16px; background: var(--vi-block); font: 600 13px/1.3 var(--vi-ff-body); color: var(--vi-ink-2); text-align: center; }
 @media (min-width: 1024px) {
   .vi-seg, .vi-planset__radio { display: none; }
   .vi-plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
   .vi-plan__in { padding: 32px 28px 28px; }
   .vi-plan__num { font-size: 56px; }
-  .vi-perks { max-width: 760px; gap: 16px; margin-top: 32px; }
-  .vi-perks li { grid-auto-flow: column; justify-content: center; align-items: center; gap: 12px; padding: 14px 18px; font-size: 14.5px; text-align: left; }
 }
 
-/* ━━ 6 · Engagement et équipe ━━ */
-.vi-team { padding: 32px 22px; border-radius: 24px; background: var(--vi-block); border: 1px solid var(--vi-line); text-align: center; }
-.vi-team__t { margin-top: 12px; }
-.vi-team__faces { display: flex; justify-content: center; gap: 28px; margin-top: 28px; }
-.vi-face { display: grid; justify-items: center; gap: 10px; margin: 0; }
-.vi-face img { display: block; width: 84px; height: 84px; border-radius: 50%; object-fit: cover; background: var(--vi-bg-sunk); box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--vi-line); }
-.vi-face figcaption strong { display: block; font: 700 16px/1.25 var(--vi-ff-head); color: var(--vi-ink); }
-.vi-face figcaption span { display: block; margin-top: 2px; font-size: 13.5px; color: var(--vi-muted); }
-.vi-team__p { margin-top: 18px; font-size: 15.5px; color: var(--vi-ink-2); }
-.vi-badges { display: grid; gap: 8px; margin-top: 18px; }
+/* ━━ Avis Trustpilot : deux rangées qui défilent en sens inverse, sur toute la largeur ━━ */
+.vi-avis__note { display: flex; justify-content: center; margin: calc(16px - var(--vi-head-gap)) 0 28px; }
+.vi-avis__note .vi-badge { display: inline-flex; }
+.vi-avis { position: relative; display: grid; gap: 14px; }
+.vi-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.vi-marquee__track { display: flex; width: max-content; animation: vi-marquee var(--dur, 80s) linear infinite; }
+.vi-marquee--rev .vi-marquee__track { animation-direction: reverse; }
+/* Marge à droite (et non gap) : les deux moitiés de la piste ont la même largeur, la boucle à −50 % tombe juste */
+.vi-marquee__track > li { display: flex; flex: none; width: min(80vw, 320px); margin-right: 14px; }
+@keyframes vi-marquee { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+@media (hover: hover) { .vi-marquee:hover .vi-marquee__track { animation-play-state: paused; } }
+.vi-marquee:focus-within .vi-marquee__track { animation-play-state: paused; }
+.vi-rev { position: relative; display: flex; flex-direction: column; width: 100%; padding: 20px; border-radius: 20px; background: var(--vi-block); border: 1px solid var(--vi-line); transition: border-color 200ms; }
+.vi-rev__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.vi-rev__src { font: 400 11px/1 var(--vi-ff-mono); letter-spacing: .04em; color: var(--vi-muted); }
+.vi-rev__t { margin-top: 12px; font: 700 16.5px/1.3 var(--vi-ff-head); letter-spacing: -0.01em; color: var(--vi-ink); }
+/* Texte limité à 5 lignes (6 sur ordinateur) : les cartes d'une rangée gardent une hauteur raisonnable ; l'avis
+   complet est à un clic sur Trustpilot, et les lecteurs d'écran le lisent en entier. */
+.vi-rev__txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; margin: 8px 0 16px; font-size: 14.5px; line-height: 1.55; color: var(--vi-text); }
+@media (min-width: 768px) { .vi-rev__txt { -webkit-line-clamp: 6; } }
+.vi-rev__foot { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--vi-line); }
+.vi-rev__av { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 50%; color: #fff; font: 700 12.5px/1 var(--vi-ff-head); }
+.vi-rev__who { flex: 1; min-width: 0; }
+.vi-rev__who strong { display: block; font: 700 14px/1.25 var(--vi-ff-head); color: var(--vi-ink); }
+.vi-rev__who span { display: block; overflow: hidden; font-size: 12.5px; color: var(--vi-muted); white-space: nowrap; text-overflow: ellipsis; }
+.vi-rev__link { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 50%; background: #fff; border: 1px solid var(--vi-line); color: var(--vi-ink-2); transition: background-color 200ms, color 200ms; }
+.vi-rev__link .vi-i { width: 13px; height: 13px; }
+/* Lien étiré : toute la carte ouvre l'avis sur Trustpilot */
+.vi-rev__link::after { content: ""; position: absolute; inset: 0; border-radius: 20px; }
+.vi-rev:focus-within { border-color: var(--vi-ink); }
+@media (hover: hover) { .vi-rev:hover { border-color: var(--vi-line-2); } .vi-rev:hover .vi-rev__link { background: var(--vi-ink); color: #fff; } }
+@media (min-width: 768px) {
+  .vi-avis { gap: 18px; }
+  .vi-marquee__track > li { width: 340px; margin-right: 18px; }
+  .vi-rev { padding: 24px; }
+  .vi-marquee { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+}
+/* « Réduire les animations » : plus de défilement automatique, des bandes à faire glisser (sans les copies de boucle) */
+@media (prefers-reduced-motion: reduce) {
+  .vi-marquee { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-mask-image: none; mask-image: none; }
+  .vi-marquee__track { animation: none; padding-inline: var(--vi-gutter); }
+  .vi-marquee__track > li { scroll-snap-align: center; }
+  .vi-marquee__dup { display: none !important; }
+}
+
+/* ━━ Pastille Trustpilot (haut de page, avis) ; section équipe retirée le 28/11/2026 ━━ */
 .vi-badge { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 8px 14px; border-radius: 14px; background: var(--vi-block); font-size: 13.5px; line-height: 1.35; color: var(--vi-ink-2); text-decoration: none; text-align: left; }
 .vi-badge strong { color: var(--vi-ink); }
-.vi-badge__ico { width: 16px; height: 16px; fill: url(#vi-grad-stroke); }
 @media (hover: hover) { .vi-badge:hover { background: var(--vi-bg-sunk); } }
-/* Dans le bloc équipe (gris), les pastilles passent en blanc */
-.vi-team .vi-badge { background: #fff; }
-@media (hover: hover) { .vi-team .vi-badge:hover { background: var(--vi-bg-soft); } }
-@media (min-width: 768px) {
-  .vi-team { padding: 48px 40px; }
-  .vi-badges { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 860px; margin-inline: auto; }
-}
-@media (min-width: 1024px) { .vi-team { padding: 64px 48px; } .vi-team__faces { gap: 48px; margin-top: 36px; } }
 
 /* ━━ 7 · Diagnostic (final) ━━ */
 .vi-final { overflow: hidden; background: radial-gradient(60% 60% at 50% 0%, rgba(225,75,137,.10), transparent 70%), radial-gradient(50% 50% at 90% 100%, rgba(248,144,60,.10), transparent 70%), var(--vi-bg-soft); }
@@ -491,6 +588,10 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-cal { position: relative; width: 100%; max-width: 1040px; text-align: left; }
 .vi-cal__frame { display: block; width: 100%; border: 0; opacity: 0; transition: opacity .3s ease, height .3s ease; }
 .vi-cal__frame.is-ready { opacity: 1; }
+/* Rendu à l'avance (CalendlyInline) : dans l'écran pour que le navigateur dessine Calendly, mais invisible, derrière la
+   page et sans clic ; la priorité !important couvre .is-ready, prêt avant l'arrivée du visiteur. */
+.vi-cal__frame.is-warming { position: fixed !important; top: 0; left: 0; z-index: -1; opacity: 0 !important; pointer-events: none; transition: none; }
+.vi-cal__frame.is-warming + .vi-cal__wait { position: relative; }
 .vi-cal__wait { position: relative; display: grid; place-items: center; width: 100%; max-width: 640px; min-height: 460px; margin: 0 auto; padding: 28px 20px; overflow: hidden; border-radius: 20px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-4); text-align: center; }
 .vi-cal__frame + .vi-cal__wait { position: absolute; top: 0; left: 0; right: 0; }
 .vi-cal__skel { position: absolute; inset: 28px 16px auto; display: flex; flex-direction: column; align-items: center; gap: 22px; opacity: .5; pointer-events: none; }
