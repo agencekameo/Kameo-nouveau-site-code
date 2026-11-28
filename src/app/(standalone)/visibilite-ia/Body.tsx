@@ -569,7 +569,11 @@ export default function Body({ v }: { v: Variante }) {
           </defs>
         </svg>
 
-        {/* ━━ Bandeau d'offre (seulement pendant l'offre) : le prix, puis le compte à rebours à la seconde, qui dit seul
+        {/* Bandeau d'offre et barre du haut regroupés (28/11/2026) : le bandeau reste collé en haut de l'écran pendant le
+            défilement. Téléphone et tablette : le bandeau seul est collant (.vi-stick sans boîte) ; ordinateur : le bandeau
+            et la barre du haut, ensemble. À la fin de l'offre, le bandeau disparaît (Countdown) et seule la barre reste. */}
+        <div className="vi-stick">
+        {/* ━━ Bandeau d'offre (seulement pendant l'offre) : le prix, puis le compte à rebours à la minute, qui dit seul
             jusqu'à quand l'offre vaut (« jusqu'à lundi soir (30 novembre) » retiré le 28/11/2026, à la demande). ━━ */}
         {promo && (
           <a className="vi-offre" href="#formules" data-vi-promo="" data-cta="bandeau-offre">
@@ -602,6 +606,7 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </div>
         </header>
+        </div>
 
         <main id="contenu">
           {/* ━━ 1 · Héros ━━ */}
@@ -772,14 +777,17 @@ export default function Body({ v }: { v: Variante }) {
                             </p>
                           )}
                           <LogosIA />
+                          {/* Réduction rendue évidente (28/11/2026) : pastille « −30 % Black Friday », prix de l'offre en dégradé,
+                              puis le prix à partir du 1er décembre, jamais barré (prix fixé le 27/11/2026, jamais pratiqué avant
+                              l'offre : pas de prix de référence fictif). La remise est calculée sur ce prix, dit en clair. */}
                           <div className="vi-plan__price">
                             {apres !== null && (
-                              <p className="vi-plan__was" data-vi-promo="">
-                                <span className="vi-chip-promo">{PROMO_LANDING.nom}</span>
-                                <span className="vi-plan__after">
-                                  {eur(apres)}
-                                  {nb}HT dès le {REPRISE}
+                              <p className="vi-plan__deal" data-vi-promo="">
+                                <span className="vi-plan__pct">
+                                  −{Math.round(PROMO_LANDING.remise * 100)}
+                                  {nb}%
                                 </span>
+                                <span className="vi-plan__dealname">{PROMO_LANDING.nom}</span>
                               </p>
                             )}
                             <p className="vi-plan__amount">
@@ -797,6 +805,16 @@ export default function Body({ v }: { v: Variante }) {
                               )}
                               <span className="vi-plan__unit">HT / mois</span>
                             </p>
+                            {apres !== null && (
+                              <p className="vi-plan__after" data-vi-promo="">
+                                au lieu de{' '}
+                                <strong>
+                                  {eur(apres)}
+                                  {nb}HT/mois
+                                </strong>{' '}
+                                à partir du {REPRISE}
+                              </p>
+                            )}
                             <p className="vi-plan__engage">{noteEngagementGeo()}</p>
                           </div>
                           {pts && (
