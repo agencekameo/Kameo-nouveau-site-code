@@ -14,12 +14,20 @@ import { CONTACT } from '@/lib/site';
  * et c'est Calendly qui demande l'accord pour ses cookies non indispensables (politique de confidentialité, § 9.2). Avec
  * notre accord, son bandeau est masqué.
  * Préchargement, pour être déjà affiché quand le visiteur arrive à la section (« instantané ») : sur ordinateur dès que la
- * page est prête ; sur téléphone 2 s après l'arrivée sur preloadAfter (les formules, quand leur haut monte dans les 40 % du
- * haut de l'écran), moment où la fenêtre CalendlyModal se précharge aussi avec l'accord : ses fichiers sont alors en cache,
- * et le téléphone n'est pas occupé pendant le haut de page (blocages signalés le 04/11/2026) ; dans tous les cas dès que
- * la section est à 2 écrans.
+ * page est prête ; sur téléphone 2 s après l'arrivée sur preloadAfter (les résultats clients depuis le 28/11/2026, avant :
+ * les formules ; quand leur haut monte dans les 40 % du haut de l'écran) : le calendrier a le temps de se dessiner avant
+ * que le visiteur n'arrive à la réservation, et le téléphone n'est pas occupé pendant le haut de page (blocages signalés le
+ * 04/11/2026) ; dans tous les cas dès que la section est à 2 écrans.
  * Hauteur : message calendly.page_height. Réservation confirmée (calendly.event_scheduled) : la page part vers
  * /rdv-confirme/, qui déclenche les conversions (Schedule pour Meta, appointment_scheduled pour ChatGPT Ads).
+ *
+ * Rendu à l'avance (28/11/2026, « l'encart Calendly met trop de temps à charger ») : le navigateur met en pause le rendu
+ * d'un cadre d'un autre site tant qu'il est hors de l'écran. Préchargé loin de la section, Calendly avait donc téléchargé sa
+ * page mais ne dessinait le calendrier qu'à l'arrivée du visiteur (mesuré dans Edge : 1,8 s sur ordinateur, jusqu'à 4,6 s
+ * sur téléphone). Désormais, dès le préchargement et jusqu'à ce que la section approche de l'écran, l'iframe est posée
+ * dans l'écran mais invisible (position fixe, opacité nulle, derrière la page, sans clic ni clavier : inert) : Calendly
+ * dessine le calendrier pendant que le visiteur lit le reste. À l'approche de la section, l'iframe reprend sa place (sans
+ * rechargement : seul son style change) et le calendrier est déjà prêt.
  */
 const CALENDLY_ORIGIN = 'https://calendly.com';
 const CONFIRM_PATH = '/rdv-confirme/';
@@ -53,9 +61,34 @@ export default function CalendlyInline({ utm = {}, preloadAfter }: { utm?: Utm; 
   const [src, setSrc] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [height, setHeight] = useState(START_HEIGHT);
+  /** Rendu à l'avance : iframe dans l'écran mais invisible, tant que la section n'approche pas (voir en tête). */
+  const [warming, setWarming] = useState(true);
+  const [warmWidth, setWarmWidth] = useState<number | null>(null);
   const box = useRef<HTMLDivElement>(null);
   const frame = useRef<HTMLIFrameElement>(null);
   const utmRef = useRef(utm);
+
+  // Fin du rendu à l'avance : la section approche de l'écran (moins d'un demi-écran), l'iframe reprend sa place
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const measure = () => setWarmWidth(el.clientWidth);
+    measure();
+    window.addEventListener('resize', measure);
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        setWarming(false);
+      },
+      { rootMargin: '0px 0px 50% 0px' },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
 
   // Préchargement, pour tous les visiteurs (voir en tête de fichier)
   useEffect(() => {
@@ -135,11 +168,14 @@ export default function CalendlyInline({ utm = {}, preloadAfter }: { utm?: Utm; 
           ref={frame}
           src={src}
           title="Calendly : choisissez la date de votre diagnostic"
-          className={'vi-cal__frame' + (ready ? ' is-ready' : '')}
-          style={{ height }}
+          className={'vi-cal__frame' + (ready ? ' is-ready' : '') + (warming ? ' is-warming' : '')}
+          style={warming && warmWidth ? { height, width: warmWidth } : { height }}
+          inert={warming}
+          aria-hidden={warming || undefined}
         />
       )}
-      {!ready && (
+      {/* Silhouette aussi pendant le rendu à l'avance, même calendrier prêt : la section garde sa hauteur */}
+      {(!ready || warming) && (
         <div className="vi-cal__wait">
           {/* Silhouette du calendrier, le temps du chargement */}
           <div className="vi-cal__skel" aria-hidden="true">
