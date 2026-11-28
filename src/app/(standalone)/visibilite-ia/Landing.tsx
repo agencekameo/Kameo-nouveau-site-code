@@ -7,7 +7,7 @@ import TagManager from '@/components/consent/TagManager';
 import { fr } from '@/components/geo/GeoBlocks';
 import WhatsAppButton from '@/components/landing/WhatsAppButton';
 import ViEffects from '@/components/landing-geo/ViEffects';
-import { euros, plansGeo, promoGeoActive } from '@/content/geo';
+import { euros, plansGeo, promoLandingActive } from '@/content/geo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
 import Body from './Body';
@@ -36,7 +36,7 @@ export function metadataLanding(v: Variante): Metadata {
 }
 
 export default function Landing({ v }: { v: Variante }) {
-  const offre = promoGeoActive();
+  const offre = promoLandingActive();
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />

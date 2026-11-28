@@ -373,6 +373,40 @@ export const prixDuJour = (o: GeoOffer) => (o.promoPrice !== undefined && promoG
  */
 export const prixApresOffre = (o: GeoOffer) => (o.promoPrice !== undefined && promoGeoActive() ? o.price : null);
 
+/**
+ * Black Friday de la landing /visibilite-ia/ seulement (demande de Benjamin du 28/11/2026 : « sur la landing page
+ * visibilite ia uniquement », jusqu'à lundi soir, soit le 30 novembre) : 30 % de moins sur les trois accompagnements,
+ * soit 420, 630 et 1 015 € HT par mois. Choix de Benjamin du 28/11/2026 :
+ * - prix Black Friday sans pourcentage ni prix barré : les prix de 600, 900 et 1 450 € ne sont affichés que depuis le
+ *   27/11/2026, une remise en pourcentage sur ces prix passerait pour une fausse réduction ;
+ * - le prix vaut pour tout diagnostic réservé avant la fin de l'offre et reste celui du client pendant tout son
+ *   engagement s'il signe ensuite.
+ * Le reste du site (pages, données structurées, llms.txt) n'en parle pas : GEO_PROMO reste terminée. Les annonces
+ * ChatGPT G2 et G3 portent la même offre, jusqu'à la même échéance.
+ */
+export const PROMO_LANDING = {
+  nom: 'Black Friday',
+  remise: 0.3,
+  /** Dernier instant de l'offre, heure de Paris. */
+  fin: '2026-11-30T23:59:59+01:00',
+  /** « jusqu'à lundi soir (30 novembre) » ; version courte pour les petits écrans. */
+  finTexte: 'lundi soir (30 novembre)',
+  finCourte: 'lundi soir (30/11)',
+  /** Prix normaux pour les diagnostics réservés à partir de cette date. */
+  repriseCourte: '1er décembre',
+  repriseTexte: '1er décembre 2026',
+} as const;
+
+/** Le Black Friday de la landing est-il en cours ? À appeler à l'affichage. */
+export const promoLandingActive = (maintenant: Date = new Date()) => maintenant.getTime() <= Date.parse(PROMO_LANDING.fin);
+
+/** Prix d'une formule sur la landing : 30 % de moins pendant PROMO_LANDING (accompagnements seulement), sinon le prix normal. */
+export const prixLanding = (o: GeoOffer) =>
+  o.monthly && promoLandingActive() ? Math.round(o.price * (1 - PROMO_LANDING.remise)) : o.price;
+
+/** Pendant PROMO_LANDING, prix normal d'un accompagnement (diagnostics réservés à partir du 1er décembre) ; null hors offre. Jamais barré. */
+export const prixApresLanding = (o: GeoOffer) => (o.monthly && promoLandingActive() ? o.price : null);
+
 /** « 600, 900 et 1 450 € » : prix normaux des formules, pour les phrases. */
 const prixNormauxPlans = () => {
   const prix = plansGeo().map((p) => p.price);

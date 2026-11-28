@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 /*
- * Landing /visibilite-ia/ : compte à rebours honnête jusqu'à la fin d'une offre (GEO_PROMO.fin).
+ * Landing /visibilite-ia/ : compte à rebours honnête jusqu'à la fin d'une offre (PROMO_LANDING.fin de geo.ts).
  * - Cible fixe, jamais remise à zéro ; jours et heures, puis heures et minutes le dernier jour ; jamais de secondes.
  * - Mise à jour à chaque minute pleine, sans annonce aux lecteurs d'écran (pas d'aria-live).
  * - Rendu serveur et sans JavaScript : rien (la date est déjà écrite dans la phrase).

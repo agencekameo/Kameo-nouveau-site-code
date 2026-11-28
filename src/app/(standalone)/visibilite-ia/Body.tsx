@@ -5,7 +5,7 @@
  * diagnostic gratuit (Calendly).
  * Composant serveur, rien n'exige JavaScript : sur mobile, le choix de formule est un groupe de boutons radio.
  * Faits et chiffres : src/content/geo.ts et src/lib/site.ts (prix, offre, formules, engagements, FAQ) ; relevés
- * clients et chiffre Arcom repris de /agence-geo/. L'offre Black Friday est une couche : chaque élément d'offre
+ * clients et chiffre Arcom repris de /agence-geo/. L'offre Black Friday (PROMO_LANDING de geo.ts, propre à cette landing) est une couche : chaque élément d'offre
  * ([data-vi-promo]) a son équivalent permanent ([data-vi-nopromo], rendu masqué), Countdown bascule à l'échéance.
  * Icônes : sprite du site (/icons.svg). Illustrations : HTML et CSS décoratifs (aria-hidden), sans chiffre inventé.
  * Toutes les classes sont préfixées vi- (styles.ts).
@@ -19,14 +19,14 @@ import AiRotator from '@/components/landing-geo/AiRotator';
 import Countdown from '@/components/landing-geo/Countdown';
 import {
   GEO_ENGINES,
-  GEO_PROMO,
+  PROMO_LANDING,
   auditsGeo,
   euros,
   noteEngagementGeo,
   plansGeo,
-  prixApresOffre,
-  prixDuJour,
-  promoGeoActive,
+  prixApresLanding,
+  prixLanding,
+  promoLandingActive,
   type GeoOffer,
 } from '@/content/geo';
 import { CONTACT, PROOF, SOCIAL } from '@/lib/site';
@@ -37,10 +37,8 @@ const nb = '\u00a0';
 
 /** Prix jamais coupés en fin de ligne : euros() de geo.ts met une espace normale. */
 const eur = (n: number) => euros(n).replace(/ /g, nb);
-/** « 30/11 » tiré de GEO_PROMO.fin, jamais écrit en dur. */
-const JOUR_MOIS_FIN = `${GEO_PROMO.fin.slice(8, 10)}/${GEO_PROMO.fin.slice(5, 7)}`;
-/** « 1er décembre » sans coupure : début des prix normaux pour les nouvelles signatures. */
-const REPRISE = GEO_PROMO.repriseCourte.replace(' ', nb);
+/** « 1er décembre » sans coupure : début des prix normaux (diagnostics réservés à partir de cette date). */
+const REPRISE = PROMO_LANDING.repriseCourte.replace(' ', nb);
 /** Texte lu dans geo.ts : espaces insécables (fr), apostrophes typographiques (hors balises HTML). */
 const t = (s: string) => fr(s).replace(/'(?![^<]*>)/g, '’');
 
@@ -444,14 +442,14 @@ function HeroChat({ v }: { v: Variante }) {
 export default function Body({ v }: { v: Variante }) {
   const WA = waHref(v);
   const cas = v.ordreCas ? v.ordreCas.flatMap((id) => CAS.filter((c) => c.id === id)) : CAS;
-  const promo = promoGeoActive();
+  const promo = promoLandingActive();
   const plans = plansGeo();
   const [EXPRESS, COMPLET] = auditsGeo();
   const POINTS = points(EXPRESS, COMPLET);
-  /* Pendant l'offre : son prix de départ, jamais un pourcentage (les prix normaux du 27/11/2026 n'ont pas été pratiqués avant l'offre). */
+  /* Pendant l'offre : son prix de départ, jamais un pourcentage ni un prix barré (choix de Benjamin du 28/11/2026 : les prix normaux ne sont affichés que depuis le 27/11/2026). */
   const desPrix = (
     <>
-      Dès {eur(prixDuJour(plans[0]))}
+      Dès {eur(prixLanding(plans[0]))}
       {nb}HT/mois
     </>
   );
@@ -480,17 +478,17 @@ export default function Body({ v }: { v: Variante }) {
         {/* ━━ Bandeau d'offre (seulement pendant l'offre) ━━ */}
         {promo && (
           <a className="vi-offre" href="#formules" data-vi-promo="" data-cta="bandeau-offre">
-            <span className="vi-chip-promo">{GEO_PROMO.nom}</span>
+            <span className="vi-chip-promo">{PROMO_LANDING.nom}</span>
             <span className="vi-offre__txt">
               {desPrix}
               <span className="vi-offre__date">
                 {' '}
-                jusqu’au <span className="vi-offre__long">{GEO_PROMO.finTexte}</span>
-                <span className="vi-offre__short">{JOUR_MOIS_FIN}</span>
+                jusqu’à <span className="vi-offre__long">{PROMO_LANDING.finTexte.replace(/ /g, nb)}</span>
+                <span className="vi-offre__short">{PROMO_LANDING.finCourte.replace(/ /g, nb)}</span>
               </span>
             </span>
             <span className="vi-offre__count">
-              <Countdown end={GEO_PROMO.fin} />
+              <Countdown end={PROMO_LANDING.fin} />
             </span>
             <span className="vi-offre__go" aria-hidden="true">
               <IArrow />
@@ -637,13 +635,14 @@ export default function Body({ v }: { v: Variante }) {
 
               {promo && (
                 <div className="vi-promo" data-vi-promo="" data-vi-reveal="">
-                  <span className="vi-chip-promo">{GEO_PROMO.nom}</span>
+                  <span className="vi-chip-promo">{PROMO_LANDING.nom}</span>
                   <p className="vi-promo__txt">
-                    {desPrix} pour toute signature jusqu’au {GEO_PROMO.finTexte}, prix conservé pendant l’engagement. À partir du{' '}
-                    {GEO_PROMO.repriseTexte.replace(' ', nb)}&nbsp;: {prixApres}
+                    {desPrix} pour tout diagnostic réservé d’ici {PROMO_LANDING.finTexte.replace(/ /g, nb)}&nbsp;: ce prix reste le vôtre
+                    pendant tout l’engagement si vous signez ensuite. Pour un diagnostic réservé à partir du{' '}
+                    {PROMO_LANDING.repriseTexte.replace(' ', nb)}&nbsp;: {prixApres}
                     {nb}HT/mois.
                   </p>
-                  <Countdown end={GEO_PROMO.fin} />
+                  <Countdown end={PROMO_LANDING.fin} />
                 </div>
               )}
 
@@ -671,7 +670,7 @@ export default function Body({ v }: { v: Variante }) {
                 <ul className="vi-plans">
                   {plans.map((p) => {
                     const star = !!p.featured;
-                    const apres = promo ? prixApresOffre(p) : null;
+                    const apres = promo ? prixApresLanding(p) : null;
                     const pts = POINTS[p.id];
                     const qui = v.pourQui?.[p.id as FormuleId] ?? p.pourQui;
                     return (
@@ -691,7 +690,7 @@ export default function Body({ v }: { v: Variante }) {
                           <div className="vi-plan__price">
                             {apres !== null && (
                               <p className="vi-plan__was" data-vi-promo="">
-                                <span className="vi-chip-promo">{GEO_PROMO.nom}</span>
+                                <span className="vi-chip-promo">{PROMO_LANDING.nom}</span>
                                 <span className="vi-plan__after">
                                   {eur(apres)}
                                   {nb}HT dès le {REPRISE}
@@ -702,14 +701,14 @@ export default function Body({ v }: { v: Variante }) {
                               {apres !== null ? (
                                 <>
                                   <span className="vi-plan__num" data-vi-promo="">
-                                    {eur(prixDuJour(p))}
+                                    {eur(prixLanding(p))}
                                   </span>
                                   <span className="vi-plan__num" data-vi-nopromo="" hidden>
                                     {eur(p.price)}
                                   </span>
                                 </>
                               ) : (
-                                <span className="vi-plan__num">{eur(prixDuJour(p))}</span>
+                                <span className="vi-plan__num">{eur(prixLanding(p))}</span>
                               )}
                               <span className="vi-plan__unit">HT / mois</span>
                             </p>
