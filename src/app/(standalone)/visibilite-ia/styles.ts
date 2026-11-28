@@ -111,6 +111,9 @@ body:has(.vi) { background: #FFFFFF; }
 @media (hover: hover) { .vi-srcline a:hover { color: var(--vi-ink); text-decoration-style: solid; } }
 .vi-head { max-width: 720px; margin: 0 auto var(--vi-head-gap); text-align: center; }
 .vi-head .vi-sub { margin-inline: auto; }
+/* « 33 millions de Français utilisent l'IA » sur une seule ligne dès que la largeur le permet (demande de Benjamin du 28/11/2026) */
+#enjeu .vi-head { max-width: none; }
+@media (min-width: 900px) { #enjeu .vi-h2 { white-space: nowrap; } }
 .vi-eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 400 12px/1.4 var(--vi-ff-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--vi-ink-2); }
 .vi-eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 1.5px; background: var(--vi-grad); flex: none; }
 .vi-h2 { margin-top: 12px; font: 800 clamp(1.75rem, 1.35rem + 1.7vw, 2.75rem)/1.1 var(--vi-ff-head); letter-spacing: -0.03em; }
@@ -486,7 +489,22 @@ body:has(.vi) { background: #FFFFFF; }
 
 /* ━━ 7 · Diagnostic (final) ━━ */
 .vi-final { overflow: hidden; background: radial-gradient(60% 60% at 50% 0%, rgba(225,75,137,.10), transparent 70%), radial-gradient(50% 50% at 90% 100%, rgba(248,144,60,.10), transparent 70%), var(--vi-bg-soft); }
-.vi-final__in { display: flex; flex-direction: column; align-items: center; max-width: 760px; text-align: center; }
+.vi-final__in { display: flex; flex-direction: column; align-items: center; max-width: 1120px; text-align: center; }
+/* Réservation intégrée à la page (Calendly, demande de Benjamin du 28/11/2026) */
+/* Calendly dessine son propre cadre : pas de second cadre autour. En attendant (chargement, ou clic sans accord cookies) :
+   une carte avec la silhouette du calendrier. */
+.vi-cal { position: relative; width: 100%; max-width: 1040px; text-align: left; }
+.vi-cal__frame { display: block; width: 100%; border: 0; opacity: 0; transition: opacity .3s ease, height .3s ease; }
+.vi-cal__frame.is-ready { opacity: 1; }
+.vi-cal__wait { position: relative; display: grid; place-items: center; width: 100%; max-width: 640px; min-height: 460px; margin: 0 auto; padding: 28px 20px; overflow: hidden; border-radius: 20px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-4); text-align: center; }
+.vi-cal__frame + .vi-cal__wait { position: absolute; top: 0; left: 0; right: 0; }
+.vi-cal__skel { position: absolute; inset: 28px 16px auto; display: flex; flex-direction: column; align-items: center; gap: 22px; opacity: .5; pointer-events: none; }
+.vi-cal__skel-t { font: 700 17px/1.2 var(--vi-ff-head); color: var(--vi-ink); }
+.vi-cal__skel-grid { display: grid; grid-template-columns: repeat(7, 30px); gap: 16px 10px; }
+.vi-cal__skel-grid i { width: 30px; height: 30px; border-radius: 50%; background: var(--vi-bg-sunk); }
+.vi-cal__gate { position: relative; display: grid; justify-items: center; gap: 12px; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.9); box-shadow: 0 8px 30px rgba(15,17,21,.08); }
+.vi-cal__gate p { max-width: 30em; font: 500 13.5px/1.45 var(--vi-ff-body); color: var(--vi-muted); }
+.vi-cal__btn { width: auto; border: 0; cursor: pointer; }
 .vi-final .vi-slot { width: auto; padding-right: 18px; background: #fff; }
 .vi-final__t { margin-top: 24px; font-weight: 900; font-size: clamp(1.875rem, 1.4rem + 2vw, 3rem); line-height: 1.06; letter-spacing: -0.035em; }
 .vi-final__pts { display: grid; gap: 10px; margin-top: 20px; }

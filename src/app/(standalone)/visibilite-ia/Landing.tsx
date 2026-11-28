@@ -45,11 +45,11 @@ export default function Landing({ v }: { v: Variante }) {
       <Body v={v} />
       <JsonLd data={[...themeSchemas({ path: v.path }), websiteGraph({ path: v.path, title: titre(v) })]} />
       <ViEffects offre={offre} metier={v.metier ?? 'general'} />
-      {/* Ouverture automatique une fois les prix et l'équipe dépassés (une fois par visite) */}
+      {/* Fenêtre Calendly des boutons de la page. Plus d'ouverture automatique depuis le 28/11/2026 : la dernière section
+          intègre Calendly directement (CalendlyInline), la fenêtre l'aurait recouverte. */}
       <CalendlyModal
         label="Réserver votre diagnostic gratuit"
         utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }}
-        autoOpenAfter="#equipe"
         notice={
           <>
             Voyons ensemble ce que les IA disent {v.deVous}. C’est <strong>gratuit</strong>.

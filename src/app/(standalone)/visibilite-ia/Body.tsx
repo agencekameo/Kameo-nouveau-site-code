@@ -16,6 +16,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
 import { fr } from '@/components/geo/GeoBlocks';
 import AiRotator from '@/components/landing-geo/AiRotator';
+import CalendlyInline from '@/components/landing-geo/CalendlyInline';
 import LogosClients from '@/components/landing-geo/LogosClients';
 import LogosIA from '@/components/landing-geo/LogosIA';
 import Countdown from '@/components/landing-geo/Countdown';
@@ -649,7 +650,7 @@ export default function Body({ v }: { v: Variante }) {
             <div className="vi-wrap">
               {/* Chiffre Arcom et Médiamétrie (juin 2026) ; mention de la source retirée à la demande de Benjamin du 28/11/2026. */}
               <Head id="enjeu-t" eyebrow="Ce qui a changé">
-                <span className="vi-gt">33&nbsp;millions</span> de Français utilisent un service d’IA chaque mois.
+                <span className="vi-gt">33&nbsp;millions</span> de Français utilisent l’IA
               </Head>
               <ol className="vi-cards">
                 {v.etapes.map((e, i) => (
@@ -894,34 +895,14 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 7 · Diagnostic (CTA final) ; la FAQ a été retirée le 27/11/2026 à la demande de Benjamin ━━ */}
+          {/* ━━ 7 · Réservation : Calendly intégré à la page (demande de Benjamin du 28/11/2026, à la place du dernier appel à
+              l'action) ; la FAQ a été retirée le 27/11/2026 à sa demande ━━ */}
           <section className="vi-sec vi-final" id="diagnostic" aria-labelledby="diagnostic-t">
-            <div className="vi-wrap vi-final__in" data-vi-reveal="">
-              <Slot>
-                <Nw>{v.final.slot}</Nw>
-              </Slot>
-              <h2 className="vi-h2 vi-final__t" id="diagnostic-t">
-                Que dit <span className="vi-gt">ChatGPT</span> <Nw>{`${v.deVous} ?`}</Nw>
-              </h2>
-              <ul className="vi-final__pts">
-                <li>
-                  <Icon id="solid-clock" />
-                  30&nbsp;min en visio
-                </li>
-                <li>
-                  <Icon id="solid-comment-dots" />
-                  <Nw>{v.final.point}</Nw>
-                </li>
-                <li>
-                  <Icon id="solid-circle-check" />
-                  Gratuit, que vous signiez ou non
-                </li>
-              </ul>
-              <div className="vi-final__cta">
-                <Cta cta="final" size="lg" sub={SUB_CTA}>
-                  Prendre rendez-vous avec un expert
-                </Cta>
-              </div>
+            <div className="vi-wrap vi-final__in">
+              <Head id="diagnostic-t" eyebrow="Diagnostic gratuit" sub={<Nw>{`30 min en visio : ${v.final.point}. Gratuit, que vous signiez ou non.`}</Nw>}>
+                Réservez votre <span className="vi-gt">diagnostic gratuit</span>
+              </Head>
+              <CalendlyInline utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
               <div className="vi-final__alt">
                 <Ext href={WA} className="vi-btn-ghost" cta="whatsapp-final" label="Écrire sur WhatsApp à Kameo (nouvel onglet)">
                   <IWhatsApp />
