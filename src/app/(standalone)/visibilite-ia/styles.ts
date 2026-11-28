@@ -134,6 +134,9 @@ body:has(.vi) { background: #FFFFFF; }
   .vi-btn:hover::after { transform: translateX(120%); }
 }
 .vi-btn:active { transform: scale(.985); }
+/* Texte blanc sur le dégradé (bouton du haut de page, demande de Benjamin du 28/11/2026) : ombre légère pour la lisibilité côté orange. */
+.vi-btn--white { color: #fff; }
+.vi-btn--white .vi-btn__main { text-shadow: 0 1px 2px rgba(15,17,21,.28); }
 .vi-btn--outline { background: #fff; box-shadow: inset 0 0 0 1.5px var(--vi-ink); }
 .vi-btn--outline::after { display: none; }
 .vi-btn--outline .vi-btn__arrow { background: var(--vi-ink); color: #fff; box-shadow: none; }
@@ -226,6 +229,8 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-h1 { margin-top: 16px; font: 900 clamp(2rem, 1.45rem + 2.8vw, 4rem)/1.03 var(--vi-ff-head); letter-spacing: -0.035em; }
 .vi-lead { margin-top: 14px; max-width: 32em; font-size: 17px; line-height: 1.5; color: var(--vi-text); }
 .vi-hero__cta { margin-top: 24px; }
+.vi-hero__note { margin-top: 10px; font: 500 14px/1.35 var(--vi-ff-body); color: var(--vi-muted); text-align: center; }
+@media (min-width: 640px) { .vi-hero__note { text-align: left; padding-left: 4px; } }
 @media (min-width: 768px) {
   .vi-hero { padding: 32px 0 88px; }
   .vi-hero__text, .vi-chat { max-width: 640px; }
@@ -382,6 +387,9 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-plan__name { font: 800 24px/1.1 var(--vi-ff-head); letter-spacing: -0.025em; }
 .vi-plan__badge { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: var(--vi-grad); color: var(--vi-ink); font: 700 11.5px/1 var(--vi-ff-head); letter-spacing: .05em; text-transform: uppercase; }
 .vi-plan__who { margin-top: 6px; font-size: 15px; color: var(--vi-muted); }
+/* Logos des 4 IA mesurées, sous le nom et la description de la formule */
+.vi-ia-logos { display: flex; align-items: center; gap: 14px; margin-top: 14px; }
+.vi-ia-logos svg { display: block; width: 22px; height: 22px; flex: none; }
 .vi-plan__price { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--vi-line-3); }
 .vi-plan__was { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 15px; }
 /* Prix des signatures à partir du 1er décembre, pendant l'offre : jamais barré (prix du 27/11/2026, jamais pratiqué avant l'offre). */

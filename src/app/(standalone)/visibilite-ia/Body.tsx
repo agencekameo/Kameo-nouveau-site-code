@@ -16,6 +16,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
 import { fr } from '@/components/geo/GeoBlocks';
 import AiRotator from '@/components/landing-geo/AiRotator';
+import LogosIA from '@/components/landing-geo/LogosIA';
 import Countdown from '@/components/landing-geo/Countdown';
 import {
   GEO_ENGINES,
@@ -137,11 +138,29 @@ function Ext({ href, children, className, label, cta }: { href: string; children
   );
 }
 
-/** Bouton principal : lien Calendly (ouvert dans la fenêtre CalendlyModal), texte encre sur le dégradé. */
-function Cta({ cta, children, size, outline, label, sub }: { cta: string; children: ReactNode; size?: 'lg'; outline?: boolean; label?: string; sub?: ReactNode }) {
-  const cls = ['vi-btn', size && `vi-btn--${size}`, outline && 'vi-btn--outline'].filter(Boolean).join(' ');
+/** Bouton principal : lien Calendly (ouvert dans la fenêtre CalendlyModal) sauf autre href, texte encre sur le dégradé (blanc avec white). */
+function Cta({
+  cta,
+  children,
+  size,
+  outline,
+  white,
+  href = CONTACT.calendly,
+  label,
+  sub,
+}: {
+  cta: string;
+  children: ReactNode;
+  size?: 'lg';
+  outline?: boolean;
+  white?: boolean;
+  href?: string;
+  label?: string;
+  sub?: ReactNode;
+}) {
+  const cls = ['vi-btn', size && `vi-btn--${size}`, outline && 'vi-btn--outline', white && 'vi-btn--white'].filter(Boolean).join(' ');
   return (
-    <a className={cls} href={CONTACT.calendly} data-cta={cta} aria-label={label}>
+    <a className={cls} href={href} data-cta={cta} aria-label={label}>
       <span className="vi-btn__txt">
         <span className="vi-btn__main">{children}</span>
         {sub && <span className="vi-btn__sub">{sub}</span>}
@@ -395,12 +414,9 @@ function HeroChat({ v }: { v: Variante }) {
         {fr(`Illustration : une IA répond à « ${q} » en citant ${cites}. La place de la vôtre reste vide.`)}
       </p>
       <div className="vi-chat__card" aria-hidden="true">
+        {/* Un seul onglet, ChatGPT : Gemini, Perplexity et Claude retirés du haut de page (demande de Benjamin du 28/11/2026) */}
         <div className="vi-chat__bar">
-          {GEO_ENGINES.map((e, i) => (
-            <span key={e} className={'vi-chat__tab' + (i === 0 ? ' is-on' : '')}>
-              {e}
-            </span>
-          ))}
+          <span className="vi-chat__tab is-on">ChatGPT</span>
         </div>
         <div className="vi-chat__body">
           <p className="vi-chat__q">
@@ -538,10 +554,12 @@ export default function Body({ v }: { v: Variante }) {
                 <p className="vi-lead">
                   <Nw>{v.lead}</Nw>
                 </p>
+                {/* Demandes de Benjamin du 28/11/2026 : le bouton mène aux formules, texte blanc, précision sous le bouton. */}
                 <div className="vi-hero__cta">
-                  <Cta cta="hero" size="lg" sub={SUB_CTA}>
-                    Voir ce que les IA disent de moi
+                  <Cta cta="hero-formules" size="lg" white href="#formules">
+                    Voir nos accompagnements
                   </Cta>
+                  <p className="vi-hero__note">{SUB_CTA}</p>
                 </div>
               </div>
               <HeroChat v={v} />
@@ -599,34 +617,7 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 4 · Méthode ━━ */}
-          <section className="vi-sec vi-sec--soft" id="methode" aria-labelledby="methode-t">
-            <div className="vi-wrap">
-              <Head id="methode-t" eyebrow="Notre méthode" sub="Et chaque mois, un rapport clair, IA par IA.">
-                3 étapes pour être cité
-              </Head>
-              <ol className="vi-cards">
-                {METHODE.map((m, i) => (
-                  <li key={m.t} className="vi-card" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
-                    <Illu kind={m.illu} v={v} />
-                    <div className="vi-card__body">
-                      <span className="vi-card__n" aria-hidden="true">
-                        {i + 1}
-                      </span>
-                      <div>
-                        <h3 className="vi-card__t">{m.t}</h3>
-                        <p className="vi-card__p">
-                          <Nw>{v.methode[i]}</Nw>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </section>
-
-          {/* ━━ 5 · Formules ━━ */}
+          {/* ━━ 4 · Formules (avant la méthode depuis le 28/11/2026, demande de Benjamin) ━━ */}
           <section className="vi-sec" id="formules" aria-labelledby="formules-t">
             <div className="vi-wrap">
               <Head id="formules-t" eyebrow="Formules et prix" sub={v.formulesSub}>
@@ -687,6 +678,7 @@ export default function Body({ v }: { v: Variante }) {
                               <Nw>{t(qui)}</Nw>
                             </p>
                           )}
+                          <LogosIA />
                           <div className="vi-plan__price">
                             {apres !== null && (
                               <p className="vi-plan__was" data-vi-promo="">
@@ -748,7 +740,7 @@ export default function Body({ v }: { v: Variante }) {
                               ))}
                             </ul>
                           </details>
-                          <Cta cta={`formule-${p.id}`} outline={!star} label={`Réserver mon diagnostic gratuit (formule ${p.name})`}>
+                          <Cta cta={`formule-${p.id}`} label={`Réserver mon diagnostic gratuit (formule ${p.name})`}>
                             Réserver mon diagnostic
                           </Cta>
                         </article>
@@ -771,6 +763,33 @@ export default function Body({ v }: { v: Variante }) {
                   <span>Formule choisie ensemble</span>
                 </li>
               </ul>
+            </div>
+          </section>
+
+          {/* ━━ 5 · Méthode ━━ */}
+          <section className="vi-sec vi-sec--soft" id="methode" aria-labelledby="methode-t">
+            <div className="vi-wrap">
+              <Head id="methode-t" eyebrow="Notre méthode" sub="Et chaque mois, un rapport clair, IA par IA.">
+                3 étapes pour être cité
+              </Head>
+              <ol className="vi-cards">
+                {METHODE.map((m, i) => (
+                  <li key={m.t} className="vi-card" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
+                    <Illu kind={m.illu} v={v} />
+                    <div className="vi-card__body">
+                      <span className="vi-card__n" aria-hidden="true">
+                        {i + 1}
+                      </span>
+                      <div>
+                        <h3 className="vi-card__t">{m.t}</h3>
+                        <p className="vi-card__p">
+                          <Nw>{v.methode[i]}</Nw>
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </section>
 
@@ -843,7 +862,7 @@ export default function Body({ v }: { v: Variante }) {
               </ul>
               <div className="vi-final__cta">
                 <Cta cta="final" size="lg" sub={SUB_CTA}>
-                  Voir ce que les IA disent de moi
+                  Prendre rendez-vous avec un expert
                 </Cta>
               </div>
               <div className="vi-final__alt">
@@ -880,7 +899,7 @@ export default function Body({ v }: { v: Variante }) {
           </Ext>
           <a className="vi-sticky__cta" href={CONTACT.calendly} data-cta="sticky">
             <span className="vi-sticky__txt">
-              <span className="vi-sticky__l1">Voir ce que les IA disent de moi</span>
+              <span className="vi-sticky__l1">Prendre rendez-vous avec un expert</span>
               <span className="vi-sticky__l2">Gratuit · 30&nbsp;min en visio</span>
             </span>
             <span className="vi-btn__arrow" aria-hidden="true">

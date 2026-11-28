@@ -48,7 +48,7 @@ export const GENERAL: Variante = {
   deVotre: 'de votre entreprise',
   deVous: 'de vous',
   messageWa: 'Bonjour Kameo, je voudrais savoir ce que les IA disent de mon entreprise.',
-  h1: 'Devenez visible sur',
+  h1: 'Devenez 1er sur',
   lead: 'On mesure ce que les IA disent de vous, et on corrige ce qui les empêche de vous citer.',
   chat: {
     q: 'Je cherche un plombier à Nantes. Qui me conseilles-tu ?',
