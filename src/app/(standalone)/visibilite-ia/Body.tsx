@@ -1,13 +1,13 @@
 /*
  * Corps de la landing /visibilite-ia/ (accompagnement GEO, fond blanc). Pensée d'abord pour le téléphone : le
  * trafic vient des publicités (Meta, LinkedIn, Google) et se lit surtout sur mobile. Une idée par écran, une ligne
- * de texte par carte, une mini-illustration par idée (comme /appel-strategique/), un seul appel à l'action : le
- * diagnostic gratuit (Calendly).
+ * de texte par carte, un seul appel à l'action : le diagnostic gratuit (Calendly).
  * Composant serveur, rien n'exige JavaScript : sur mobile, le choix de formule est un groupe de boutons radio.
  * Faits et chiffres : src/content/geo.ts et src/lib/site.ts (prix, offre, formules, engagements, FAQ) ; relevés
- * clients et chiffre Arcom repris de /agence-geo/. L'offre Black Friday (PROMO_LANDING de geo.ts, propre à cette landing) est une couche : chaque élément d'offre
+ * clients repris de /agence-geo/ (le chiffre Arcom est dans le film du haut de page, HeroFilm.tsx). L'offre Black Friday (PROMO_LANDING de geo.ts, propre à cette landing) est une couche : chaque élément d'offre
  * ([data-vi-promo]) a son équivalent permanent ([data-vi-nopromo], rendu masqué), Countdown bascule à l'échéance.
- * Icônes : sprite du site (/icons.svg). Illustrations : HTML et CSS décoratifs (aria-hidden), sans chiffre inventé.
+ * Icônes : sprite du site (/icons.svg). L'histoire (Google hier, l'IA aujourd'hui, Kameo) est racontée par le film du
+ * haut de page (HeroFilm.tsx), qui remplace les illustrations et la section « 3 étapes » (retirée le 28/11/2026).
  * Toutes les classes sont préfixées vi- (styles.ts).
  * Une page, trois versions : générale, auto-écoles, écoles (variantes.ts) ; tous les textes propres à une cible
  * viennent de la variante reçue (v), le reste est commun.
@@ -17,12 +17,12 @@ import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
 import { fr } from '@/components/geo/GeoBlocks';
 import AiRotator from '@/components/landing-geo/AiRotator';
 import CalendlyInline from '@/components/landing-geo/CalendlyInline';
+import HeroFilm from '@/components/landing-geo/HeroFilm';
 import LogosClients from '@/components/landing-geo/LogosClients';
 import LogosIA from '@/components/landing-geo/LogosIA';
 import Countdown from '@/components/landing-geo/Countdown';
 import { AVIS_TRUSTPILOT, type AvisClient } from '@/content/avis';
 import {
-  GEO_ENGINES,
   PROMO_LANDING,
   auditsGeo,
   euros,
@@ -179,106 +179,6 @@ function Head({ id, children }: { id: string; children: ReactNode }) {
     </header>
   );
 }
-
-/** L'emplacement « Votre entreprise ? » : cadre en pointillés dégradés (motif de la page). */
-function Slot({ children = <>Votre entreprise&nbsp;?</>, sm }: { children?: ReactNode; sm?: boolean }) {
-  return (
-    <span className={'vi-slot' + (sm ? ' vi-slot--sm' : '')}>
-      <svg className="vi-slot__frame" aria-hidden="true" focusable="false">
-        <rect x="0" y="0" width="100%" height="100%" rx="12" ry="12" />
-      </svg>
-      <span className="vi-slot__q" aria-hidden="true">
-        <span>?</span>
-      </span>
-      <span className="vi-slot__label">{children}</span>
-    </span>
-  );
-}
-
-/* ───────────────────────── Mini-illustrations (décoratives) ───────────────────────── */
-
-function Illu({ kind, v }: { kind: 'ask' | 'answer' | 'call' | 'measure' | 'fix' | 'authority'; v: Variante }) {
-  return (
-    <div className={`vi-illu vi-illu--${kind}`} aria-hidden="true">
-      {kind === 'ask' && (
-        <div className="vi-mini-ask">
-          <span className="vi-mini-ask__ia">IA</span>
-          <span className="vi-mini-ask__txt">{fr(v.miniAsk)}</span>
-          <span className="vi-mini-ask__send">
-            <IArrow />
-          </span>
-        </div>
-      )}
-      {kind === 'answer' && (
-        <div className="vi-mini-list">
-          {['A', 'B', 'C'].map((l, i) => (
-            <span key={l} className="vi-mini-list__row" style={{ '--w': `${70 - i * 12}%` } as CSSProperties}>
-              <b>{l}</b>
-              <i />
-            </span>
-          ))}
-          <Slot sm>Vous&nbsp;?</Slot>
-        </div>
-      )}
-      {kind === 'call' && (
-        <div className="vi-mini-call">
-          <span className="vi-mini-call__pill">
-            <Icon id={v.miniCall.icon} />
-            {v.miniCall.txt}
-          </span>
-          <span className="vi-mini-call__stat">
-            <span>Votre site</span>
-            <b>aucune visite</b>
-          </span>
-        </div>
-      )}
-      {kind === 'measure' && (
-        <div className="vi-mini-bars">
-          {GEO_ENGINES.map((e, i) => (
-            <span key={e} className="vi-mini-bars__row">
-              <span>{e}</span>
-              <i style={{ '--w': `${[62, 28, 46, 36][i % 4]}%` } as CSSProperties} />
-            </span>
-          ))}
-        </div>
-      )}
-      {kind === 'fix' && (
-        <div className="vi-mini-page">
-          <span className="vi-mini-page__bar">
-            <i />
-            <i />
-            <i />
-          </span>
-          {[78, 64, 52].map((w) => (
-            <span key={w} className="vi-mini-page__row">
-              <Icon id="solid-circle-check" />
-              <i style={{ width: `${w}%` }} />
-            </span>
-          ))}
-        </div>
-      )}
-      {kind === 'authority' && (
-        <div className="vi-mini-net">
-          <span className="vi-mini-net__chip vi-mini-net__chip--a">{v.sources[0]}</span>
-          <span className="vi-mini-net__chip vi-mini-net__chip--b">{v.sources[1]}</span>
-          <span className="vi-mini-net__you">Vous</span>
-          <span className="vi-mini-net__chip vi-mini-net__chip--c">{v.sources[2]}</span>
-          <span className="vi-mini-net__chip vi-mini-net__chip--d">{v.sources[3]}</span>
-        </div>
-      )}
-    </div>
-  );
-}
-
-/* ───────────────────────── Contenus ───────────────────────── */
-
-/* Textes des cartes : variantes.ts (etapes, methode) ; ici, l'illustration de chaque carte et les titres communs. */
-const ILLU_ETAPES = ['ask', 'answer', 'call'] as const;
-const METHODE = [
-  { illu: 'measure', t: 'Mesurer' },
-  { illu: 'fix', t: 'Corriger' },
-  { illu: 'authority', t: 'Notoriété' },
-] as const;
 
 /** Trois ou quatre points par carte, résumés des offres de geo.ts (nom des audits par auditsGeo()) ; formules revues le 27/11/2026. */
 const points = (express: GeoOffer, complet: GeoOffer): Record<string, { lead?: string; items: string[] }> => ({
@@ -441,101 +341,6 @@ function AvisRow({ avis, reverse }: { avis: AvisClient[]; reverse?: boolean }) {
   );
 }
 
-/* ───────────────────────── Visuel du héros ───────────────────────── */
-
-/** Pictogrammes de l'écran du téléphone (dessins simples, traits) : SVG décoratifs. */
-const GptIco = ({ d, className = '' }: { d: string; className?: string }) => (
-  <svg className={'vi-gpt__ico ' + className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d={d} />
-  </svg>
-);
-
-/**
- * « La réponse » : un téléphone avec l'écran de l'application ChatGPT (demande de Benjamin du 28/11/2026 : « un téléphone et
- * un vrai design de ChatGPT, pour qu'on comprenne l'idée »). Illustration dessinée, pas une capture, réponse fictive (mention
- * sous le téléphone). Rangées composées une à une au chargement (CSS seul).
- */
-function HeroChat({ v }: { v: Variante }) {
-  const { q, rows, cites, slot, intro } = v.chat;
-  return (
-    <figure className="vi-chat" aria-labelledby="vi-chat-desc">
-      <p id="vi-chat-desc" className="sr-only">
-        {fr(`Illustration : sur un téléphone, ChatGPT répond à « ${q} » en citant ${cites}. La place de la vôtre reste vide.`)}
-      </p>
-      <div className="vi-phone" aria-hidden="true">
-        <div className="vi-phone__screen">
-          <div className="vi-phone__status">
-            <span>9:41</span>
-            <span className="vi-phone__island" />
-            <span className="vi-phone__sys">
-              <svg viewBox="0 0 18 12">
-                <rect x="0" y="8" width="3" height="4" rx="1" />
-                <rect x="5" y="5.5" width="3" height="6.5" rx="1" />
-                <rect x="10" y="3" width="3" height="9" rx="1" />
-                <rect x="15" y="0" width="3" height="12" rx="1" />
-              </svg>
-              <svg viewBox="0 0 24 18" className="vi-phone__wifi">
-                <path d="M2 6.5a15 15 0 0 1 20 0M5.5 10a10 10 0 0 1 13 0M9 13.5a5 5 0 0 1 6 0" />
-              </svg>
-              <span className="vi-phone__bat">
-                <i />
-              </span>
-            </span>
-          </div>
-          <div className="vi-gpt__bar">
-            <GptIco d="M4 9h16M4 15h10" />
-            <span className="vi-gpt__title">
-              ChatGPT
-              <GptIco d="m9 6 6 6-6 6" className="vi-gpt__chev" />
-            </span>
-            <GptIco d="M12 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6M17.5 3.5a2.1 2.1 0 0 1 3 3L13 14l-4 1 1-4z" />
-          </div>
-          <div className="vi-gpt__body">
-            <p className="vi-gpt__q">
-              <Nw>{q}</Nw>
-            </p>
-            <div className="vi-gpt__a">
-              <p className="vi-gpt__row" style={{ '--i': 0 } as CSSProperties}>
-                <Nw>{intro ?? `Voici ${cites} à contacter :`}</Nw>
-              </p>
-              <ol className="vi-gpt__list">
-                {rows.map((r, i) => (
-                  <li key={r.name} className="vi-gpt__row" style={{ '--i': i + 1 } as CSSProperties}>
-                    <b>
-                      <Nw>{r.name}</Nw>
-                    </b>{' '}
-                    — <Nw>{r.desc}</Nw>
-                  </li>
-                ))}
-              </ol>
-              <div className="vi-gpt__row vi-gpt__you" style={{ '--i': rows.length + 1 } as CSSProperties}>
-                <Slot>
-                  <Nw>{slot}</Nw>
-                </Slot>
-              </div>
-              <div className="vi-gpt__acts">
-                <GptIco d="M8 8h11a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zM4 16V5a1 1 0 0 1 1-1h11" />
-                <GptIco d="M7 11v9H4v-9zM7 11l4-7a2 2 0 0 1 3 1.7V9h5a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.8 20H7" />
-                <GptIco d="M7 13V4H4v9zM7 13l4 7a2 2 0 0 0 3-1.7V15h5a2 2 0 0 0 2-2.3l-1.2-7A2 2 0 0 0 17.8 4H7" />
-                <GptIco d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5" />
-              </div>
-            </div>
-          </div>
-          <div className="vi-gpt__input">
-            <GptIco d="M12 5v14M5 12h14" className="vi-gpt__plus" />
-            <span className="vi-gpt__ph">Poser une question</span>
-            <GptIco d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5 11a7 7 0 0 0 14 0M12 18v3" />
-            <span className="vi-gpt__voice">
-              <GptIco d="M6 10v4M10 7v10M14 9v6M18 11v2" />
-            </span>
-          </div>
-          <span className="vi-phone__home" />
-        </div>
-      </div>
-    </figure>
-  );
-}
-
 /* ───────────────────────── Page ───────────────────────── */
 
 export default function Body({ v }: { v: Variante }) {
@@ -554,7 +359,7 @@ export default function Body({ v }: { v: Variante }) {
   /* Sur téléphone, Essentiel s'ouvre par défaut (demande de Benjamin, 27/11/2026) ; « Recommandé » reste sur la formule mise en avant. */
   const defaut = plans.find((p) => p.id === 'essentiel') ?? plans[0];
   /* Haut de page (proposition 3) : textes tirés de la version. « Vos clients », « Vos futurs élèves »… ; « Votre
-     entreprise », « Votre auto-école »… (place vide de l'illustration, sans le point d'interrogation). */
+     entreprise », « Votre auto-école »… (v.chat.slot sans le point d'interrogation). */
   const quiMaj = v.qui.charAt(0).toUpperCase() + v.qui.slice(1);
   const nomSlot = v.chat.slot.replace(/\s*\?\s*$/, '');
   const nomCite = nomSlot.charAt(0).toLowerCase() + nomSlot.slice(1);
@@ -678,21 +483,14 @@ export default function Body({ v }: { v: Variante }) {
                   fetchPriority="high"
                   decoding="async"
                 />
-                {/* Étiquette et petite réponse ChatGPT posées sur la photo (proposition 3, 28/11/2026) : illustration, la
-                    question est celle de la version. */}
-                <span className="vi-hero__chip">Experts du référencement IA</span>
-                <div className="vi-hero__reco" aria-hidden="true">
-                  <p className="vi-hero__reco-q">
-                    ChatGPT · «&nbsp;<Nw>{v.chat.q}</Nw>&nbsp;»
-                  </p>
-                  <p className="vi-hero__win">
-                    <span className="vi-hero__win-n">1</span>
-                    <strong>{nomSlot}</strong>
-                    <span className="vi-hero__win-ok">
-                      <Icon id="solid-circle-check" />
-                    </span>
-                  </p>
-                </div>
+                {/* Étiquette posée sur la photo (proposition 3, 28/11/2026), avec les prénoms depuis le 28/11/2026 (demande de
+                    Louison : une seule grande pastille). Sur une ligne ; sous 480 px, le rôle passe sous les prénoms. La petite
+                    réponse ChatGPT qui l'accompagnait est retirée le 28/11/2026 : le film plus bas raconte toute l'histoire. */}
+                <span className="vi-hero__chip">
+                  <strong>Benjamin et Louison</strong>
+                  <span className="vi-hero__chip-sep">, </span>
+                  <span className="vi-hero__chip-role">experts du référencement IA</span>
+                </span>
               </figure>
             </div>
             {/* Bande de preuves façon Pennylane (28/11/2026) : logos clients qui défilent, coupés à droite par les chiffres et
@@ -711,6 +509,12 @@ export default function Body({ v }: { v: Variante }) {
                   </svg>
                 </a>
               </div>
+            </div>
+            {/* Film du haut de page (28/11/2026, demande de Louison) : 51 s muettes en boucle, sur toute la largeur, sous les
+                logos clients et juste avant les avis (déplacé le 28/11/2026). Google hier, l'IA aujourd'hui, le client qui part
+                chez un concurrent cité, puis Kameo. Boutons pause et plein écran. */}
+            <div className="vi-wrap vi-film">
+              <HeroFilm />
             </div>
           </section>
 
@@ -742,40 +546,8 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 3 · Méthode et téléphone ChatGPT (après les avis depuis le 28/11/2026), réunis en une section (28/11/2026) : « Et vous, êtes-vous dans la réponse ? »
-              et « 3 étapes pour être cité » ne font plus qu'un. Ordinateur : téléphone à gauche, étapes à droite en cartes
-              horizontales (mini-illustration à gauche, texte à droite). Téléphone et tablette : le téléphone, puis les étapes en
-              liste compacte, sans les mini-illustrations (le téléphone illustre déjà), pour gagner de la place. ━━ */}
-          <section className="vi-sec vi-sec--soft" id="methode" aria-labelledby="methode-t">
-            <div className="vi-wrap">
-              <Head id="methode-t">
-                3 étapes pour être <span className="vi-gt">dans la réponse</span>
-              </Head>
-              <div className="vi-how">
-                <HeroChat v={v} />
-                <ol className="vi-how__steps">
-                  {METHODE.map((m, i) => (
-                    <li key={m.t} className="vi-how__step" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
-                      <Illu kind={m.illu} v={v} />
-                      <div className="vi-how__body">
-                        <span className="vi-card__n" aria-hidden="true">
-                          {i + 1}
-                        </span>
-                        <div>
-                          <h3 className="vi-card__t">{m.t}</h3>
-                          <p className="vi-card__p">
-                            <Nw>{v.methode[i]}</Nw>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-          </section>
-
-          {/* ━━ 4 · Formules (ordre des sections revu le 28/11/2026) ━━ */}
+          {/* ━━ 3 · Formules (ordre des sections revu le 28/11/2026 ; la section « 3 étapes pour être dans la réponse », juste avant,
+              est retirée le 28/11/2026 : le film du haut de page la raconte) ━━ */}
           <section className="vi-sec" id="formules" aria-labelledby="formules-t">
             <div className="vi-wrap">
               <Head id="formules-t">
@@ -918,37 +690,7 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 5 · Ce qui a changé (33 millions), à la place de la méthode depuis le 28/11/2026 ━━ */}
-          <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
-            <div className="vi-wrap">
-              {/* Chiffre Arcom et Médiamétrie (juin 2026) ; mention de la source retirée à la demande de Benjamin du 28/11/2026. */}
-              <Head id="enjeu-t">
-                <span className="vi-gt">33&nbsp;millions</span> de Français utilisent l’IA
-              </Head>
-              <ol className="vi-cards">
-                {v.etapes.map((e, i) => (
-                  <li key={e.t} className="vi-card" data-vi-reveal="" style={{ '--vi-i': i } as CSSProperties}>
-                    <Illu kind={ILLU_ETAPES[i]} v={v} />
-                    <div className="vi-card__body">
-                      <span className="vi-card__n" aria-hidden="true">
-                        {i + 1}
-                      </span>
-                      <div>
-                        <h3 className="vi-card__t">
-                          <Nw>{e.t}</Nw>
-                        </h3>
-                        <p className="vi-card__p">
-                          <Nw>{e.p}</Nw>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </section>
-
-          {/* ━━ 6 · Réservation, dernière section de la page (équipe retirée le 28/11/2026) : Calendly intégré à la page (demande de Benjamin du 28/11/2026, à la place du dernier appel à
+          {/* ━━ 4 · Réservation (section « 33 millions » retirée le 28/11/2026 : son chiffre est dans le film du haut de page), dernière section de la page (équipe retirée le 28/11/2026) : Calendly intégré à la page (demande de Benjamin du 28/11/2026, à la place du dernier appel à
               l'action) ; la FAQ a été retirée le 27/11/2026 à sa demande ━━ */}
           <section className="vi-sec vi-final" id="diagnostic" aria-labelledby="diagnostic-t">
             <div className="vi-wrap vi-final__in">

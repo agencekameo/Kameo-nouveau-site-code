@@ -9,7 +9,6 @@
 
 export type Metier = 'auto-ecole' | 'ecole';
 export type FormuleId = 'essentiel' | 'croissance' | 'autorite';
-type Carte = { t: string; p: string };
 
 export type Variante = {
   /** Absent pour la page générale. Sert aussi d'étiquette Clarity et d'utm_content Calendly. */
@@ -22,16 +21,9 @@ export type Variante = {
   /** Titre : début de phrase, avant « ChatGPT en 1 mois ». */
   h1: string;
   lead: string;
-  /** Illustration du héros : question posée à l'IA, réponses, place vide. */
+  /** Question posée à l'IA, réponses, place vide : les mots de la version pour le film du haut de page (à reprendre dans ses
+   *  props pour un rendu par version) ; la place vide, sans « ? », nomme aussi l'entreprise dans le haut de page. */
   chat: { q: string; rows: { name: string; desc: string }[]; cites: string; slot: string; intro?: string };
-  /** Section « Ce qui a changé » : trois cartes et leurs mini-illustrations. */
-  etapes: [Carte, Carte, Carte];
-  miniAsk: string;
-  miniCall: { icon: string; txt: string };
-  /** Méthode : textes des cartes Mesurer, Corriger, Notoriété (titres communs). */
-  methode: [string, string, string];
-  /** Étiquettes autour de « Vous » dans l'illustration Notoriété. */
-  sources: [string, string, string, string];
   /** Formules : sous-titre, « N questions de … suivies », « pour qui » de chaque formule (sinon geo.ts). */
   formulesSub: string;
   qui: string;
@@ -57,19 +49,6 @@ export const GENERAL: Variante = {
     cites: 'trois entreprises',
     slot: 'Votre entreprise ?',
   },
-  etapes: [
-    { t: 'Votre client demande à une IA', p: 'Plutôt que de chercher sur Google.' },
-    { t: 'L’IA cite quelques noms', p: 'Pas de deuxième page.' },
-    { t: 'Il appelle l’un d’eux', p: 'Sans passer par votre site.' },
-  ],
-  miniAsk: 'Qui me conseilles-tu ?',
-  miniCall: { icon: 'solid-phone', txt: 'Appel · Entreprise A' },
-  methode: [
-    'Les questions de vos clients, posées aux 4 IA toutes les deux semaines.',
-    'Votre site rendu lisible par les IA, et leurs erreurs sur vous corrigées.',
-    'Votre présence là où les IA puisent leurs réponses.',
-  ],
-  sources: ['Avis', 'Annuaires', 'Comparatifs', 'Médias'],
   formulesSub: 'Prix hors taxes, par mois, affichés avant tout rendez-vous.',
   qui: 'vos clients',
   final: { slot: 'Votre entreprise, cette fois ?', point: '5 questions posées en direct aux 4 IA' },
@@ -93,20 +72,6 @@ const AUTO_ECOLE: Variante = {
     slot: 'Votre auto-école ?',
     intro: 'Voici trois auto-écoles bien notées à Lyon :',
   },
-  etapes: [
-    { t: 'Un futur élève demande à une IA', p: 'Souvent avec ses parents.' },
-    { t: 'L’IA cite quelques auto-écoles', p: 'Pas de deuxième page.' },
-    { t: 'Il s’inscrit chez l’une d’elles', p: 'Sans passer par votre site.' },
-  ],
-  /* Question telle qu'un futur élève la pose (demande de Benjamin du 28/11/2026) ; la bulle passe sur 2 lignes si besoin. */
-  miniAsk: 'Quelle est la meilleure auto-école ?',
-  miniCall: { icon: 'solid-user-check', txt: 'Inscription · Auto-école A' },
-  methode: [
-    'Les questions de vos futurs élèves, posées aux 4 IA toutes les deux semaines.',
-    'Votre site rendu lisible par les IA, et leurs erreurs sur vos forfaits ou vos horaires corrigées.',
-    'Avis, annuaires, comparateurs : votre présence là où les IA puisent leurs réponses.',
-  ],
-  sources: ['Avis', 'Annuaires', 'Comparateurs', 'Médias'],
   formulesSub: 'Prix hors taxes, par mois, affichés avant tout rendez-vous. Un seul élève de plus par mois couvre la formule Essentiel.',
   qui: 'vos futurs élèves',
   pourQui: {
@@ -137,19 +102,6 @@ const ECOLE: Variante = {
     slot: 'Votre école ?',
     intro: 'Voici trois écoles reconnues à Bordeaux :',
   },
-  etapes: [
-    { t: 'Un futur étudiant demande à une IA', p: 'Plutôt que de chercher sur Google.' },
-    { t: 'L’IA cite quelques écoles', p: 'Pas de deuxième page.' },
-    { t: 'Il s’inscrit dans l’une d’elles', p: 'Sans passer par votre site.' },
-  ],
-  miniAsk: 'Quelle est la meilleure école privée ?',
-  miniCall: { icon: 'solid-user-check', txt: 'Inscription · École A' },
-  methode: [
-    'Les questions de vos futurs étudiants, posées aux 4 IA toutes les deux semaines.',
-    'Votre site rendu lisible par les IA, et leurs erreurs sur vos formations ou vos frais corrigées.',
-    'Avis, classements, annuaires : votre présence là où les IA puisent leurs réponses.',
-  ],
-  sources: ['Avis', 'Classements', 'Annuaires', 'Médias'],
   /* « Quelques » : une à deux inscriptions pour une école (3 000 à 10 000 € par an), davantage pour une formation courte. */
   formulesSub: 'Prix hors taxes, par mois, affichés avant tout rendez-vous. Quelques inscriptions de plus par an couvrent la formule Essentiel.',
   qui: 'vos futurs étudiants',
