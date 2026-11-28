@@ -381,6 +381,8 @@ function Cas({ c, i }: { c: CasClient; i: number }) {
         </span>
         <span className="vi-ai">{c.ia}</span>
       </div>
+      {/* 5 étoiles aux couleurs de Kameo entre le logo et le nom (demande de Benjamin du 28/11/2026) */}
+      <Stars />
       <h3 className="vi-case__name" id={`case-${c.id}`}>
         {c.nom} <span>· {c.activite}</span>
       </h3>
@@ -596,20 +598,20 @@ export default function Body({ v }: { v: Variante }) {
               </div>
               <HeroChat v={v} />
             </div>
-            {/* 3 chiffres en petits blocs sous le haut de page, sur toute la largeur (demande de Benjamin du 28/11/2026).
+            {/* 3 chiffres sous le haut de page, sur toute la largeur, en noir et sans fond (demandes de Benjamin du 28/11/2026).
                 « +50 » : PROOF.projetsTotal (50 projets, src/lib/site.ts). */}
             <div className="vi-wrap">
               <ul className="vi-stats">
                 <li>
-                  <b className="vi-gt">+{PROOF.projetsTotal}</b>
+                  <b>+{PROOF.projetsTotal}</b>
                   <span>entreprises accompagnées</span>
                 </li>
                 <li>
-                  <b className="vi-gt">100&nbsp;%</b>
+                  <b>100&nbsp;%</b>
                   <span>de clients satisfaits</span>
                 </li>
                 <li>
-                  <b className="vi-gt">2&nbsp;semaines</b>
+                  <b>2&nbsp;semaines</b>
                   <span>en moyenne pour les premiers résultats</span>
                 </li>
               </ul>

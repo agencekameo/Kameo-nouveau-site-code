@@ -239,20 +239,15 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-logos .logos__viewport::before, .vi-logos .logos__viewport::after { display: none; }
 .vi-logos .logos__track { gap: 44px; }
 .vi-logos .logo-item img { height: 34px; }
-/* 3 chiffres en petits blocs sous le haut de page, sur toute la largeur (28/11/2026). Téléphone : un bloc par ligne,
-   chiffre à gauche ; à partir de 640 px : 3 blocs côte à côte, chiffre au-dessus, centrés. */
-.vi-stats { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 40px; }
-.vi-stats li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: var(--vi-block); border: 1px solid var(--vi-line); }
-.vi-stats b { font: 900 24px/1 var(--vi-ff-head); letter-spacing: -0.03em; white-space: nowrap; }
-.vi-stats span { font: 500 14px/1.3 var(--vi-ff-body); color: var(--vi-text); }
-@media (min-width: 640px) {
-  .vi-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 48px; }
-  .vi-stats li { flex-direction: column; justify-content: center; gap: 8px; padding: 20px 16px; text-align: center; }
-  .vi-stats b { font-size: 28px; }
-}
+/* 3 chiffres sous le haut de page, sur toute la largeur, en noir et sans fond (28/11/2026). Téléphone : l'un sous l'autre ;
+   à partir de 640 px : côte à côte. Chiffre au-dessus, centré. */
+.vi-stats { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
+.vi-stats li { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.vi-stats b { font: 900 28px/1 var(--vi-ff-head); letter-spacing: -0.03em; white-space: nowrap; color: var(--vi-ink); }
+.vi-stats span { font: 500 14px/1.35 var(--vi-ff-body); color: var(--vi-text); }
+@media (min-width: 640px) { .vi-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; } }
 @media (min-width: 1024px) {
-  .vi-stats { gap: 16px; margin-top: 64px; }
-  .vi-stats li { padding: 26px 24px; }
+  .vi-stats { gap: 24px; margin-top: 64px; }
   .vi-stats b { font-size: 36px; }
   .vi-stats span { font-size: 15px; }
 }
@@ -379,6 +374,10 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-case__logo img { display: block; width: auto; height: 64px; max-width: 160px; object-fit: contain; object-position: left center; }
 .vi-case__logo--omega img { width: 150px; height: auto; }
 .vi-case__logo--cdp69 img { height: 40px; }
+/* 5 étoiles entre le logo et le nom (28/11/2026) */
+.vi-case > .vi-stars { margin-top: 14px; }
+.vi-case > .vi-stars .vi-star { width: 16px; height: 16px; }
+.vi-case > .vi-stars + .vi-case__name { margin-top: 8px; }
 .vi-case__name { margin-top: 16px; font: 800 20px/1.25 var(--vi-ff-head); letter-spacing: -0.02em; }
 .vi-case__name span { font: 500 14px/1 var(--vi-ff-body); letter-spacing: 0; color: var(--vi-muted); }
 .vi-case__big { margin-top: 16px; font: 900 40px/1.02 var(--vi-ff-head); letter-spacing: -0.035em; color: var(--vi-ink); }
@@ -500,7 +499,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-cal__skel-grid i { width: 30px; height: 30px; border-radius: 50%; background: var(--vi-bg-sunk); }
 .vi-cal__gate { position: relative; display: grid; justify-items: center; gap: 12px; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.9); box-shadow: 0 8px 30px rgba(15,17,21,.08); }
 .vi-cal__gate p { max-width: 30em; font: 500 13.5px/1.45 var(--vi-ff-body); color: var(--vi-muted); }
-.vi-cal__btn { width: auto; border: 0; cursor: pointer; }
 .vi-final .vi-slot { width: auto; padding-right: 18px; background: #fff; }
 .vi-final__t { margin-top: 24px; font-weight: 900; font-size: clamp(1.875rem, 1.4rem + 2vw, 3rem); line-height: 1.06; letter-spacing: -0.035em; }
 .vi-final__pts { display: grid; gap: 10px; margin-top: 20px; }
