@@ -2,8 +2,8 @@
  * Styles de la landing /visibilite-ia/ (accompagnement GEO, fond blanc). Injectés par <style> sur cette page
  * seulement : jetons --vi-*, classes préfixées vi- (aucune collision avec main.css ni avec l'autre landing).
  * Écrits pour le téléphone d'abord (390 px), puis enrichis à 640, 768 et 1024 px.
- * Pièges de main.css neutralisés dans la portée .vi : em en couleur, focus coloré, titres. Le bouton WhatsApp
- * (.lpwa), la fenêtre Calendly (.lpcal) et la barre mobile sont hors du flux : leurs styles sont ici aussi.
+ * Pièges de main.css neutralisés dans la portée .vi : em en couleur, focus coloré, titres. Le bouton flottant
+ * (.vi-fab), la fenêtre Calendly (.lpcal) et la barre mobile sont hors du flux : leurs styles sont ici aussi.
  */
 const css = `
 :root {
@@ -155,10 +155,6 @@ body:has(.vi) { background: #FFFFFF; }
   .vi-btn--lg { min-height: 68px; padding: 10px 10px 10px 30px; font-size: 19px; gap: 16px; }
   .vi-btn--lg .vi-btn__arrow { width: 48px; height: 48px; }
 }
-.vi-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 20px; border-radius: 999px; background: #fff; border: 1px solid var(--vi-line-2); font: 700 15px/1.2 var(--vi-ff-head); color: var(--vi-ink); text-decoration: none; transition: border-color .2s; }
-@media (hover: hover) { .vi-btn-ghost:hover { border-color: var(--vi-ink); } }
-.vi-btn-ghost .vi-ico, .vi-btn-ghost .vi-wa-ico { width: 18px; height: 18px; }
-.vi-btn-ghost .vi-wa-ico { color: var(--vi-wa); }
 
 /* ━━ Pastilles ━━ */
 .vi-chip-promo { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: #0F1115; color: #fff; font: 400 11px/1 var(--vi-ff-mono); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; flex: none; }
@@ -214,16 +210,10 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-logo__mark img { display: block; width: auto; height: 26px; max-width: none; }
 .vi-logo__word { font: 700 20px/1 var(--vi-ff-head); letter-spacing: -0.03em; }
 .vi-top__right { display: flex; align-items: center; gap: 16px; }
-.vi-top__tel { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--vi-line-2); background: #fff; color: var(--vi-ink); }
-.vi-top__tel .vi-ico { width: 18px; height: 18px; }
-.vi-top__num { display: none; }
 .vi-top__cta { display: none !important; }
 @media (min-width: 768px) {
   .vi-top__in { height: 72px; }
   .vi-logo__mark { width: 26px; height: 30px; } .vi-logo__mark img { height: 30px; } .vi-logo__word { font-size: 22px; }
-  .vi-top__tel { display: inline-flex; gap: 8px; width: auto; height: 44px; border: 0; border-radius: 0; background: none; font: 600 15px/1 var(--vi-ff-body); white-space: nowrap; }
-  .vi-top__tel .vi-ico { width: 16px; height: 16px; }
-  .vi-top__num { display: inline; }
 }
 @media (min-width: 1024px) {
   .vi-top { position: sticky; top: 0; background: rgba(255,255,255,.88); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid transparent; transition: border-color .2s; }
@@ -236,30 +226,36 @@ body:has(.vi) { background: #FFFFFF; }
 /* ━━ Héros ━━ */
 .vi-hero { position: relative; padding: 12px 0 56px; }
 .vi-hero__halo { position: absolute; inset: -120px 0 auto; height: 620px; pointer-events: none; background: radial-gradient(60% 50% at 85% 20%, rgba(248,144,60,.10), transparent 70%), radial-gradient(50% 45% at 15% 0%, rgba(225,75,137,.08), transparent 70%); }
-.vi-hero__grid { position: relative; display: grid; gap: 40px; }
+/* minmax(0, 1fr) : la bande de logos (largeur max-content) ne doit pas élargir la colonne du héros sur téléphone. */
+.vi-hero__grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+.vi-hero__text { min-width: 0; }
 .vi-hero .vi-badge { display: inline-flex; }
 .vi-h1 { margin-top: 16px; font: 900 clamp(2rem, 1.45rem + 2.8vw, 4rem)/1.03 var(--vi-ff-head); letter-spacing: -0.035em; }
 .vi-lead { margin-top: 14px; max-width: 32em; font-size: 17px; line-height: 1.5; color: var(--vi-text); }
 .vi-hero__cta { margin-top: 24px; }
-/* Preuves au bas du haut de page (28/11/2026) : 3 chiffres en petits blocs, puis les logos clients (styles .logos__* de main.css) */
-.vi-proof { position: relative; margin-top: 36px; }
+/* Preuves sous le bouton du héros, dans la colonne de gauche (28/11/2026) : logos clients qui défilent (styles .logos__* de
+   main.css), arrêtés au bord de la colonne avant le téléphone, puis 3 chiffres en petits blocs. */
+.vi-proof { margin-top: 28px; }
+.vi-logos .logos__viewport { max-width: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent); }
+.vi-logos .logos__viewport::before, .vi-logos .logos__viewport::after { display: none; }
+.vi-logos .logos__track { gap: 44px; }
+.vi-logos .logo-item img { height: 34px; }
 /* Téléphone : un bloc par ligne, chiffre à gauche ; à partir de 640 px : 3 blocs côte à côte, chiffre au-dessus. */
-.vi-stats { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.vi-stats { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 22px; }
 .vi-stats li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: var(--vi-block); border: 1px solid var(--vi-line); }
 .vi-stats b { font: 900 24px/1 var(--vi-ff-head); letter-spacing: -0.03em; white-space: nowrap; }
 .vi-stats span { font: 500 14px/1.3 var(--vi-ff-body); color: var(--vi-text); }
-.vi-logos { margin-top: 28px; }
-.vi-logos .logos__viewport { max-width: none; }
-.vi-logos .logo-item img { height: 40px; }
 @media (min-width: 640px) {
-  .vi-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-  .vi-stats li { flex-direction: column; align-items: flex-start; gap: 6px; padding: 18px 20px; }
-  .vi-stats b { font-size: 28px; }
-  .vi-stats span { font-size: 14.5px; }
+  .vi-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .vi-stats li { flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px 18px; }
+  .vi-stats b { font-size: 26px; }
 }
-@media (min-width: 1024px) { .vi-proof { margin-top: 64px; } .vi-stats b { font-size: 32px; } }
-.vi-hero__note { margin-top: 10px; font: 500 14px/1.35 var(--vi-ff-body); color: var(--vi-muted); text-align: center; }
-@media (min-width: 640px) { .vi-hero__note { text-align: left; padding-left: 4px; } }
+/* Colonne de gauche plus étroite entre 1024 et 1279 px : blocs et chiffres un peu plus petits. */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .vi-stats li { padding: 14px; }
+  .vi-stats b { font-size: 22px; }
+  .vi-stats span { font-size: 13px; }
+}
 @media (min-width: 768px) {
   .vi-hero { padding: 32px 0 88px; }
   .vi-hero__text, .vi-chat { max-width: 640px; }
@@ -512,9 +508,6 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-final__pts .vi-i { width: 16px; height: 16px; fill: url(#vi-grad-stroke); }
 @media (min-width: 768px) { .vi-final__pts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; } }
 .vi-final__cta { display: flex; justify-content: center; width: 100%; margin-top: 28px; }
-.vi-final__alt { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; margin-top: 24px; }
-.vi-final__alt .vi-btn-ghost { padding: 0 12px; }
-@media (min-width: 640px) { .vi-final__alt { display: flex; justify-content: center; width: auto; } .vi-final__alt .vi-btn-ghost { padding: 0 20px; } }
 
 /* ━━ Ligne légale ━━ */
 .vi-legal { margin-top: 56px; text-align: center; font: 400 11.5px/1.8 var(--vi-ff-body); color: var(--vi-faint); }
@@ -536,7 +529,7 @@ body:has(.vi) { background: #FFFFFF; }
     transition: transform 320ms var(--vi-ease-in), visibility 0s linear 320ms;
   }
   .vi-sticky.is-shown { transform: none; visibility: visible; transition: transform 320ms var(--vi-ease-out), visibility 0s; }
-  .lpwa { display: none !important; }
+  .vi-fab { display: none !important; }
   html:has(.vi-sticky.is-shown) { scroll-padding-bottom: 88px; }
 }
 .vi-sticky__wa { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 1px solid var(--vi-line-2); color: var(--vi-wa); }
@@ -565,13 +558,12 @@ body:has(.vi) { background: #FFFFFF; }
 .lpcal .lpcal__close { color: var(--vi-ink); }
 .lpcal .lpcal__slow a { color: var(--vi-ink); }
 
-/* ━━ Bouton WhatsApp flottant (à partir de 768 px) ━━ */
-.lpwa { position: fixed; right: 24px; bottom: 24px; z-index: 400; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; pointer-events: none; }
-.lpwa > * { pointer-events: auto; }
-.lpwa__btn { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #0F1115; color: #25D366; box-shadow: 0 12px 28px -10px rgba(15,17,21,.45), 0 2px 6px rgba(15,17,21,.14); transition: transform 200ms cubic-bezier(.22,.61,.36,1); }
-.lpwa__btn svg { display: block; width: 28px; height: 28px; fill: currentColor; }
-.lpwa__btn:hover { transform: translateY(-2px); }
-.lpwa__btn:focus-visible { outline: 2px solid #0F1115; outline-offset: 3px; }
+/* ━━ Bouton flottant Calendly (à partir de 768 px), à la place du bouton WhatsApp depuis le 28/11/2026 ━━ */
+.vi-fab { position: fixed; right: 24px; bottom: 24px; z-index: 400; display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 24px 0 20px; border-radius: 999px; background: var(--vi-grad); color: #fff; text-shadow: 0 1px 2px rgba(15,17,21,.28); font: 700 16px/1 var(--vi-ff-head); letter-spacing: -0.01em; text-decoration: none; box-shadow: var(--vi-sh-btn), 0 18px 36px -14px rgba(15,17,21,.35); transition: transform 200ms var(--vi-ease-std), box-shadow 200ms var(--vi-ease-std), opacity 200ms var(--vi-ease-std), visibility 0s; }
+.vi-fab .vi-ico { width: 20px; height: 20px; stroke-width: 2; filter: drop-shadow(0 1px 1px rgba(15,17,21,.22)); }
+@media (hover: hover) { .vi-fab:hover { transform: translateY(-2px); box-shadow: var(--vi-sh-btn-h), 0 22px 40px -14px rgba(15,17,21,.4); } }
+.vi-fab:focus-visible { outline: 2px solid var(--vi-ink); outline-offset: 3px; }
+.vi.is-fab-off .vi-fab { opacity: 0; visibility: hidden; transform: translateY(12px); transition: transform 200ms var(--vi-ease-std), opacity 200ms var(--vi-ease-std), visibility 0s linear 200ms; }
 
 /* ━━ Révélations au défilement (état de départ seulement sous .vi-io, posé par ViEffects) ━━ */
 @media (prefers-reduced-motion: no-preference) {
@@ -580,7 +572,7 @@ body:has(.vi) { background: #FFFFFF; }
 }
 @media print {
   .vi [data-vi-reveal] { opacity: 1 !important; transform: none !important; }
-  .vi-sticky, .lpwa, .vi-offre { display: none !important; }
+  .vi-sticky, .vi-fab, .vi-offre { display: none !important; }
 }
 `;
 

@@ -5,7 +5,6 @@ import CalendlyModal from '@/components/CalendlyModal';
 import ClarityTracker from '@/components/consent/ClarityTracker';
 import TagManager from '@/components/consent/TagManager';
 import { fr } from '@/components/geo/GeoBlocks';
-import WhatsAppButton from '@/components/landing/WhatsAppButton';
 import ViEffects from '@/components/landing-geo/ViEffects';
 import { euros, plansGeo, promoLandingActive } from '@/content/geo';
 import { themeSchemas, websiteGraph } from '@/lib/schema';
@@ -18,7 +17,7 @@ import type { Variante } from './variantes';
  * Landing page Ads « visibilité IA » : promotion de l'accompagnement GEO (fond blanc), noindex, hors sitemap, en trois
  * versions (variantes.ts) : /visibilite-ia/ (générale), /visibilite-ia/auto-ecole/ et /visibilite-ia/ecole/.
  * Même socle que /appel-strategique/ : GTM (pixel Meta, ClicCalendly, Schedule sur /rdv-confirme/), Clarity,
- * consentement, fenêtre Calendly (ouverture automatique après #equipe), bouton WhatsApp (sans bulle).
+ * consentement, fenêtre Calendly (au clic seulement) ; bouton flottant Calendly dans Body.tsx (plus de WhatsApp flottant).
  * Les pages qui l'affichent exportent revalidate = 60 : prix et offre suivent la date (voir page.tsx).
  */
 
@@ -56,7 +55,6 @@ export default function Landing({ v }: { v: Variante }) {
           </>
         }
       />
-      <WhatsAppButton message={v.messageWa} bubble={false} />
       <SiteEffects />
     </>
   );

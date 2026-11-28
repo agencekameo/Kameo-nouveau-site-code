@@ -45,9 +45,8 @@ const REPRISE = PROMO_LANDING.repriseCourte.replace(' ', nb);
 /** Texte lu dans geo.ts : espaces insécables (fr), apostrophes typographiques (hors balises HTML). */
 const t = (s: string) => fr(s).replace(/'(?![^<]*>)/g, '’');
 
-/** Lien WhatsApp avec le message prérempli de la variante, le même partout sur la page (bouton flottant, final, barre mobile). */
+/** Lien WhatsApp avec le message prérempli de la variante (rond de la barre mobile, seul accès WhatsApp depuis le 28/11/2026). */
 const waHref = (v: Variante) => `${CONTACT.whatsapp}?text=${encodeURIComponent(v.messageWa)}`;
-const TEL_HREF = `tel:${CONTACT.phoneE164}`;
 const FABRIQUE_URL = 'https://www.lafabriquedunet.fr/agences/pages/agences-geo-ile-de-france-paris';
 
 /* ───────────────────────── Icônes ───────────────────────── */
@@ -75,14 +74,15 @@ const IArrow = () => (
     <path d="M4 10h11M11 5.5l4.5 4.5-4.5 4.5" />
   </Ico>
 );
+const ICalendar = () => (
+  <Ico>
+    <rect x="3" y="4.25" width="14" height="12.75" rx="2.5" />
+    <path d="M3 8.5h14M7 2.5v3.5M13 2.5v3.5" />
+  </Ico>
+);
 const ICheck = () => (
   <Ico className="vi-check">
     <path d="M4.5 10.5l3.5 3.5 7.5-8" />
-  </Ico>
-);
-const IPhone = () => (
-  <Ico>
-    <path d="M6.6 3.5H4.8c-.7 0-1.3.6-1.2 1.3.6 6 5.4 10.8 11.4 11.4.7.1 1.3-.5 1.3-1.2v-1.8c0-.5-.4-1-.9-1.1l-2.3-.5c-.4-.1-.8 0-1.1.3l-.9.9a9.6 9.6 0 0 1-3.6-3.6l.9-.9c.3-.3.4-.7.3-1.1l-.5-2.3c-.1-.5-.6-.9-1.1-.9z" />
   </Ico>
 );
 const IStar = () => (
@@ -171,8 +171,6 @@ function Cta({
     </a>
   );
 }
-
-const SUB_CTA = <>Diagnostic gratuit · 30&nbsp;min en visio</>;
 
 /** Note Trustpilot : la même pastille au-dessus du titre et sous l'équipe. */
 const TrustBadge = () => (
@@ -567,10 +565,6 @@ export default function Body({ v }: { v: Variante }) {
               <span className="vi-logo__word">Kameo</span>
             </span>
             <div className="vi-top__right">
-              <a className="vi-top__tel" href={TEL_HREF} data-cta="tel-top" aria-label={`Appeler Kameo au ${CONTACT.phone}`}>
-                <IPhone />
-                <span className="vi-top__num">{CONTACT.phone}</span>
-              </a>
               {/* Ordinateur : visible dès l'arrivée, texte explicite (demande de Benjamin du 27/11/2026) */}
               <a className="vi-btn vi-btn--white vi-top__cta" href={CONTACT.calendly} data-cta="top">
                 Réserver mon diagnostic gratuit
@@ -598,34 +592,34 @@ export default function Body({ v }: { v: Variante }) {
                 <p className="vi-lead">
                   <Nw>{v.lead}</Nw>
                 </p>
-                {/* Demandes de Benjamin du 28/11/2026 : le bouton mène aux formules, texte blanc, précision sous le bouton. */}
+                {/* Demandes de Benjamin du 28/11/2026 : le bouton mène aux formules, en texte blanc, sans précision dessous. */}
                 <div className="vi-hero__cta">
                   <Cta cta="hero-formules" size="lg" white href="#formules">
                     Voir nos accompagnements
                   </Cta>
-                  <p className="vi-hero__note">{SUB_CTA}</p>
+                </div>
+                {/* Preuves sous le bouton, dans la colonne de gauche (demandes de Benjamin du 28/11/2026) : les logos clients qui
+                    défilent s'arrêtent avant le téléphone, les 3 chiffres en petits blocs sont dessous. « +50 » :
+                    PROOF.projetsTotal (50 projets, src/lib/site.ts). */}
+                <div className="vi-proof">
+                  <LogosClients />
+                  <ul className="vi-stats">
+                    <li>
+                      <b className="vi-gt">+{PROOF.projetsTotal}</b>
+                      <span>entreprises accompagnées</span>
+                    </li>
+                    <li>
+                      <b className="vi-gt">100&nbsp;%</b>
+                      <span>de clients satisfaits</span>
+                    </li>
+                    <li>
+                      <b className="vi-gt">2&nbsp;semaines</b>
+                      <span>en moyenne pour les premiers résultats</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <HeroChat v={v} />
-            </div>
-            {/* Preuves au bas du haut de page (demande de Benjamin du 28/11/2026) : 3 chiffres en petits blocs, puis les logos
-                clients qui défilent, comme sur l'accueil. « +50 » : PROOF.projetsTotal (50 projets, src/lib/site.ts). */}
-            <div className="vi-wrap vi-proof">
-              <ul className="vi-stats">
-                <li>
-                  <b className="vi-gt">+{PROOF.projetsTotal}</b>
-                  <span>entreprises accompagnées</span>
-                </li>
-                <li>
-                  <b className="vi-gt">100&nbsp;%</b>
-                  <span>de clients satisfaits</span>
-                </li>
-                <li>
-                  <b className="vi-gt">2&nbsp;semaines</b>
-                  <span>en moyenne pour les premiers résultats</span>
-                </li>
-              </ul>
-              <LogosClients />
             </div>
           </section>
 
@@ -900,16 +894,6 @@ export default function Body({ v }: { v: Variante }) {
                 Réservez votre <span className="vi-gt">diagnostic gratuit</span>
               </Head>
               <CalendlyInline utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
-              <div className="vi-final__alt">
-                <Ext href={WA} className="vi-btn-ghost" cta="whatsapp-final" label="Écrire sur WhatsApp à Kameo (nouvel onglet)">
-                  <IWhatsApp />
-                  WhatsApp
-                </Ext>
-                <a href={TEL_HREF} className="vi-btn-ghost" data-cta="tel-final" aria-label={`Appeler le ${CONTACT.phone} (Kameo)`}>
-                  <IPhone />
-                  {CONTACT.phone}
-                </a>
-              </div>
             </div>
             {/* Plus de pied de page (demande de Benjamin, 27/11/2026) : les liens légaux restent, en une ligne discrète,
                 pour la CNIL (retrait du consentement aux cookies) et les régies publicitaires. */}
@@ -926,6 +910,14 @@ export default function Body({ v }: { v: Variante }) {
             </p>
           </section>
         </main>
+
+        {/* ━━ Bouton flottant (à partir de 768 px), à la place du bouton WhatsApp depuis le 28/11/2026 (demande de Benjamin) :
+            lien calendly.com, donc fenêtre Calendly et ClicCalendly comme les autres boutons. ViEffects le masque quand la
+            réservation intégrée (#diagnostic) est à l'écran ou que la fenêtre est ouverte. ━━ */}
+        <a className="vi-fab" href={CONTACT.calendly} data-cta="flottant">
+          <ICalendar />
+          Prendre rendez-vous
+        </a>
 
         {/* ━━ Barre d'action mobile (affichée par ViEffects une fois le héros passé) ━━ */}
         <div className="vi-sticky" id="vi-sticky">

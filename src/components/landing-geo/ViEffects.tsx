@@ -9,10 +9,12 @@ import { onConsent } from '@/lib/consent';
  *   l'état de départ n'existe que sous .vi.vi-io, posé APRÈS avoir marqué .is-in ce qui est déjà à l'écran.
  *   Rien n'est caché sans JavaScript ni avec prefers-reduced-motion.
  * - Barre d'action mobile (#vi-sticky) et trait sous l'en-tête collant (ordinateur, classe .is-past-hero sur .vi) :
- *   affichés quand le bouton du héros est passé, retirés quand #diagnostic est à l'écran ou que la fenêtre
- *   Calendly (.lpcal) est ouverte. Le bouton de l'en-tête, lui, est visible dès l'arrivée (27/11/2026).
+ *   affichés quand le bouton du héros (.vi-hero__cta) est passé, retirés quand #diagnostic est à l'écran ou que la
+ *   fenêtre Calendly (.lpcal) est ouverte. Le bouton de l'en-tête, lui, est visible dès l'arrivée (27/11/2026).
+ *   Le bouton flottant (.vi-fab) est visible dès l'arrivée ; .is-fab-off sur .vi le masque quand #diagnostic est à
+ *   l'écran ou que la fenêtre Calendly est ouverte.
  * - Microsoft Clarity (seulement s'il est chargé, accord « Mesure d'audience ») : cta_<emplacement> au clic
- *   (data-cta), whatsapp_* et tel_*, whatsapp_flottant, formule_details, faq_ouverte ; étiquettes de session
+ *   (data-cta, dont cta_flottant), whatsapp_*, formule_details, faq_ouverte ; étiquettes de session
  *   « offre », « metier » (general, auto-ecole, ecole : version de la page) et « utm_source ». Jamais de contenu saisi.
  */
 
@@ -50,7 +52,7 @@ export default function ViEffects({ offre, metier = 'general' }: { offre: boolea
   // Barre d'action mobile
   useEffect(() => {
     const bar = document.getElementById('vi-sticky');
-    const hero = document.querySelector<HTMLElement>('[data-cta="hero"]');
+    const hero = document.querySelector<HTMLElement>('.vi-hero__cta a');
     const diag = document.getElementById('diagnostic');
     if (!bar || !hero || !diag) return;
     let pastHero = false;
@@ -61,6 +63,7 @@ export default function ViEffects({ offre, metier = 'general' }: { offre: boolea
       const show = pastHero && !diagIn && !calOpen;
       bar.classList.toggle('is-shown', show);
       root?.classList.toggle('is-past-hero', show);
+      root?.classList.toggle('is-fab-off', diagIn || calOpen);
     };
     const ioHero = new IntersectionObserver((es) => {
       const e = es[es.length - 1];
@@ -92,11 +95,6 @@ export default function ViEffects({ offre, metier = 'general' }: { offre: boolea
   // Clarity : clics, ouvertures, étiquettes de session
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      // Bouton WhatsApp flottant (.lpwa, hors de .vi, sans data-cta)
-      if ((e.target as Element | null)?.closest?.('.lpwa a')) {
-        clarity('event', 'whatsapp_flottant');
-        return;
-      }
       const el = (e.target as Element | null)?.closest?.<HTMLElement>('.vi [data-cta], .vi-sticky [data-cta]');
       const where = el?.dataset.cta;
       if (!where) return;
