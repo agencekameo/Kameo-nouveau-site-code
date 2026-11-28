@@ -159,6 +159,9 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-chip-promo { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: #0F1115; color: #fff; font: 400 11px/1 var(--vi-ff-mono); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; flex: none; }
 .vi-count { font: 400 12.5px/1.4 var(--vi-ff-mono); color: var(--vi-ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .vi-count::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: var(--vi-coral); vertical-align: 1px; }
+/* La puce du compte à rebours pulse pour être vue (demande de Benjamin du 28/11/2026), sauf si le visiteur refuse les animations. */
+@media (prefers-reduced-motion: no-preference) { .vi-count::before { animation: vi-dot-pulse 1.6s ease-in-out infinite; } }
+@keyframes vi-dot-pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(237,110,99,.65); } 60% { opacity: .7; box-shadow: 0 0 0 6px rgba(237,110,99,0); } }
 .vi-ai { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 14px 0 12px; border-radius: 999px; background: #fff; border: 1px solid var(--vi-line); font: 500 14px/1 var(--vi-ff-body); color: var(--vi-ink-2); white-space: nowrap; }
 .vi-ai::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--vi-grad); }
 .vi-src { margin-top: 10px; font: 400 12px/1.5 var(--vi-ff-mono); color: var(--vi-muted); }
@@ -233,6 +236,24 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-h1 { margin-top: 16px; font: 900 clamp(2rem, 1.45rem + 2.8vw, 4rem)/1.03 var(--vi-ff-head); letter-spacing: -0.035em; }
 .vi-lead { margin-top: 14px; max-width: 32em; font-size: 17px; line-height: 1.5; color: var(--vi-text); }
 .vi-hero__cta { margin-top: 24px; }
+/* Preuves au bas du haut de page (28/11/2026) : 3 chiffres en petits blocs, puis les logos clients (styles .logos__* de main.css) */
+.vi-proof { position: relative; margin-top: 36px; }
+/* Téléphone : un bloc par ligne, chiffre à gauche ; à partir de 640 px : 3 blocs côte à côte, chiffre au-dessus. */
+.vi-stats { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.vi-stats li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: var(--vi-block); border: 1px solid var(--vi-line); }
+.vi-stats b { font: 900 24px/1 var(--vi-ff-head); letter-spacing: -0.03em; white-space: nowrap; }
+.vi-stats span { font: 500 14px/1.3 var(--vi-ff-body); color: var(--vi-text); }
+.vi-logos { margin-top: 28px; }
+.vi-logos .logos__eyebrow { margin-bottom: 14px; }
+.vi-logos .logos__viewport { max-width: none; }
+.vi-logos .logo-item img { height: 40px; }
+@media (min-width: 640px) {
+  .vi-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .vi-stats li { flex-direction: column; align-items: flex-start; gap: 6px; padding: 18px 20px; }
+  .vi-stats b { font-size: 28px; }
+  .vi-stats span { font-size: 14.5px; }
+}
+@media (min-width: 1024px) { .vi-proof { margin-top: 64px; } .vi-stats b { font-size: 32px; } }
 .vi-hero__note { margin-top: 10px; font: 500 14px/1.35 var(--vi-ff-body); color: var(--vi-muted); text-align: center; }
 @media (min-width: 640px) { .vi-hero__note { text-align: left; padding-left: 4px; } }
 @media (min-width: 768px) {

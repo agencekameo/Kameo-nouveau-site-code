@@ -16,6 +16,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
 import { fr } from '@/components/geo/GeoBlocks';
 import AiRotator from '@/components/landing-geo/AiRotator';
+import LogosClients from '@/components/landing-geo/LogosClients';
 import LogosIA from '@/components/landing-geo/LogosIA';
 import Countdown from '@/components/landing-geo/Countdown';
 import {
@@ -47,8 +48,6 @@ const t = (s: string) => fr(s).replace(/'(?![^<]*>)/g, '’');
 const waHref = (v: Variante) => `${CONTACT.whatsapp}?text=${encodeURIComponent(v.messageWa)}`;
 const TEL_HREF = `tel:${CONTACT.phoneE164}`;
 const FABRIQUE_URL = 'https://www.lafabriquedunet.fr/agences/pages/agences-geo-ile-de-france-paris';
-const ARCOM_URL =
-  'https://www.arcom.fr/en/find-out-more/studies-and-data/studies-reviews-and-reports/artificial-intelligence-services-audience-barometer-1st-edition';
 
 /* ───────────────────────── Icônes ───────────────────────── */
 
@@ -610,6 +609,25 @@ export default function Body({ v }: { v: Variante }) {
               </div>
               <HeroChat v={v} />
             </div>
+            {/* Preuves au bas du haut de page (demande de Benjamin du 28/11/2026) : 3 chiffres en petits blocs, puis les logos
+                clients qui défilent, comme sur l'accueil. « +50 » : PROOF.projetsTotal (50 projets, src/lib/site.ts). */}
+            <div className="vi-wrap vi-proof">
+              <ul className="vi-stats">
+                <li>
+                  <b className="vi-gt">+{PROOF.projetsTotal}</b>
+                  <span>entreprises accompagnées</span>
+                </li>
+                <li>
+                  <b className="vi-gt">100&nbsp;%</b>
+                  <span>de clients satisfaits</span>
+                </li>
+                <li>
+                  <b className="vi-gt">2&nbsp;semaines</b>
+                  <span>en moyenne pour les premiers résultats</span>
+                </li>
+              </ul>
+              <LogosClients />
+            </div>
           </section>
 
           {/* ━━ 2 · Résultats clients (avant « Ce qui a changé » depuis le 28/11/2026, demande de Benjamin) ━━ */}
@@ -629,15 +647,8 @@ export default function Body({ v }: { v: Variante }) {
           {/* ━━ 3 · Ce qui a changé ━━ */}
           <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
             <div className="vi-wrap">
-              <Head
-                id="enjeu-t"
-                eyebrow="Ce qui a changé"
-                sub={
-                  <span className="vi-srcline">
-                    Source&nbsp;: <Ext href={ARCOM_URL}>Arcom et Médiamétrie, juin 2026</Ext>
-                  </span>
-                }
-              >
+              {/* Chiffre Arcom et Médiamétrie (juin 2026) ; mention de la source retirée à la demande de Benjamin du 28/11/2026. */}
+              <Head id="enjeu-t" eyebrow="Ce qui a changé">
                 <span className="vi-gt">33&nbsp;millions</span> de Français utilisent un service d’IA chaque mois.
               </Head>
               <ol className="vi-cards">
