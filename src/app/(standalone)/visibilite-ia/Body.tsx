@@ -553,6 +553,11 @@ export default function Body({ v }: { v: Variante }) {
   );
   /* Sur téléphone, Essentiel s'ouvre par défaut (demande de Benjamin, 27/11/2026) ; « Recommandé » reste sur la formule mise en avant. */
   const defaut = plans.find((p) => p.id === 'essentiel') ?? plans[0];
+  /* Haut de page (proposition 3) : textes tirés de la version. « Vos clients », « Vos futurs élèves »… ; « Votre
+     entreprise », « Votre auto-école »… (place vide de l'illustration, sans le point d'interrogation). */
+  const quiMaj = v.qui.charAt(0).toUpperCase() + v.qui.slice(1);
+  const nomSlot = v.chat.slot.replace(/\s*\?\s*$/, '');
+  const nomCite = nomSlot.charAt(0).toLowerCase() + nomSlot.slice(1);
 
   return (
     <>
@@ -624,9 +629,34 @@ export default function Body({ v }: { v: Variante }) {
                     <AiRotator /> <span className="vi-gt">{`en${nb}1${nb}mois`}</span>
                   </span>
                 </h1>
-                <p className="vi-lead">
-                  <Nw>{v.lead}</Nw>
-                </p>
+                {/* Problème, solution, résultat (proposition 3 retenue le 28/11/2026, à la place de la phrase d'accroche) : on
+                    comprend d'un coup d'œil ce que Kameo résout. Textes tirés de la version (vos clients, vos futurs élèves…). */}
+                <ol className="vi-psr">
+                  <li className="is-pb">
+                    <span className="vi-psr__ico">
+                      <Icon id="solid-magnifying-glass" />
+                    </span>
+                    <span>
+                      <Nw>{`${quiMaj} ne passent plus par Google : ils demandent à ChatGPT.`}</Nw>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="vi-psr__ico">
+                      <Icon id="solid-wand-magic-sparkles" />
+                    </span>
+                    <span>
+                      <Nw>{`Kameo fait citer et recommander ${nomCite} par les IA.`}</Nw>
+                    </span>
+                  </li>
+                  <li className="is-win">
+                    <span className="vi-psr__ico">
+                      <Icon id="solid-arrow-trend-up" />
+                    </span>
+                    <span>
+                      <Nw>{'En moins d’un mois, vous êtes parmi leurs premières recommandations.'}</Nw>
+                    </span>
+                  </li>
+                </ol>
                 {/* Demandes de Benjamin du 28/11/2026 : le bouton mène aux formules, en texte blanc, sans précision dessous. */}
                 <div className="vi-hero__cta">
                   <Cta cta="hero-formules" size="lg" white href="#formules">
@@ -648,6 +678,21 @@ export default function Body({ v }: { v: Variante }) {
                   fetchPriority="high"
                   decoding="async"
                 />
+                {/* Étiquette et petite réponse ChatGPT posées sur la photo (proposition 3, 28/11/2026) : illustration, la
+                    question est celle de la version. */}
+                <span className="vi-hero__chip">Experts du référencement IA</span>
+                <div className="vi-hero__reco" aria-hidden="true">
+                  <p className="vi-hero__reco-q">
+                    ChatGPT · «&nbsp;<Nw>{v.chat.q}</Nw>&nbsp;»
+                  </p>
+                  <p className="vi-hero__win">
+                    <span className="vi-hero__win-n">1</span>
+                    <strong>{nomSlot}</strong>
+                    <span className="vi-hero__win-ok">
+                      <Icon id="solid-circle-check" />
+                    </span>
+                  </p>
+                </div>
               </figure>
             </div>
             {/* Bande de preuves façon Pennylane (28/11/2026) : logos clients qui défilent, coupés à droite par les chiffres et
@@ -669,21 +714,35 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 2 · Résultats clients, juste après le haut de page (28/11/2026) ━━ */}
-          <section className="vi-sec" id="resultats" aria-labelledby="resultats-t">
+          {/* ━━ 2 · « Nos clients nous recommandent », juste après le haut de page (28/11/2026) : note Trustpilot, cas clients cités par les IA, puis tous les avis, avec le lien de chacun, sur deux rangées qui défilent en sens inverse
+              (demande du 28/11/2026). Défilement en pause au survol et au clavier, sans bouton pause (choix du 28/11/2026) ;
+              avec « réduire les animations », les rangées deviennent de simples bandes à faire glisser. Avis sur nos
+              projets web et SEO (src/content/avis.ts), jamais présentés comme des résultats GEO. ━━ */}
+          <section className="vi-sec" id="avis" aria-labelledby="avis-t">
             <div className="vi-wrap">
-              <Head id="resultats-t">
-                Nos clients, cités par les IA
+              <Head id="avis-t">
+                Nos clients <span className="vi-gt">nous recommandent</span>
               </Head>
-              <div className="vi-cases">
+              <div className="vi-avis__note" data-vi-reveal="">
+                <TrustBadge />
+              </div>
+              {/* Cas clients (Défikart, CDP69, OmegaCloud) entre la note Trustpilot et les avis : l'ancienne section « Nos
+                  clients, cités par les IA » est fondue dans celle-ci (28/11/2026). */}
+              <div className="vi-cases vi-avis__cases">
                 {cas.map((c, i) => (
                   <Cas key={c.id} c={c} i={i} />
                 ))}
               </div>
             </div>
+            {/* Pas de bouton pause (demande du 28/11/2026) : le défilement s'arrête seulement le temps du survol d'une carte
+                ou du passage au clavier, pour pouvoir lire et cliquer. */}
+            <div className="vi-avis">
+              <AvisRow avis={AVIS_TRUSTPILOT.filter((_, i) => i % 2 === 0)} />
+              <AvisRow avis={AVIS_TRUSTPILOT.filter((_, i) => i % 2 === 1)} reverse />
+            </div>
           </section>
 
-          {/* ━━ 3 · Méthode et téléphone ChatGPT (après les résultats clients depuis le 28/11/2026), réunis en une section (28/11/2026) : « Et vous, êtes-vous dans la réponse ? »
+          {/* ━━ 3 · Méthode et téléphone ChatGPT (après les avis depuis le 28/11/2026), réunis en une section (28/11/2026) : « Et vous, êtes-vous dans la réponse ? »
               et « 3 étapes pour être cité » ne font plus qu'un. Ordinateur : téléphone à gauche, étapes à droite en cartes
               horizontales (mini-illustration à gauche, texte à droite). Téléphone et tablette : le téléphone, puis les étapes en
               liste compacte, sans les mini-illustrations (le téléphone illustre déjà), pour gagner de la place. ━━ */}
@@ -864,28 +923,7 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 5 · Avis Trustpilot : tous les avis, avec le lien de chacun, sur deux rangées qui défilent en sens inverse
-              (demande du 28/11/2026). Défilement en pause au survol et au clavier, sans bouton pause (choix du 28/11/2026) ;
-              avec « réduire les animations », les rangées deviennent de simples bandes à faire glisser. Avis sur nos
-              projets web et SEO (src/content/avis.ts), jamais présentés comme des résultats GEO. ━━ */}
-          <section className="vi-sec" id="avis" aria-labelledby="avis-t">
-            <div className="vi-wrap">
-              <Head id="avis-t">
-                Nos clients <span className="vi-gt">nous recommandent</span>
-              </Head>
-              <div className="vi-avis__note" data-vi-reveal="">
-                <TrustBadge />
-              </div>
-            </div>
-            {/* Pas de bouton pause (demande du 28/11/2026) : le défilement s'arrête seulement le temps du survol d'une carte
-                ou du passage au clavier, pour pouvoir lire et cliquer. */}
-            <div className="vi-avis">
-              <AvisRow avis={AVIS_TRUSTPILOT.filter((_, i) => i % 2 === 0)} />
-              <AvisRow avis={AVIS_TRUSTPILOT.filter((_, i) => i % 2 === 1)} reverse />
-            </div>
-          </section>
-
-          {/* ━━ 6 · Ce qui a changé (33 millions), à la place de la méthode depuis le 28/11/2026 ━━ */}
+          {/* ━━ 5 · Ce qui a changé (33 millions), à la place de la méthode depuis le 28/11/2026 ━━ */}
           <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
             <div className="vi-wrap">
               {/* Chiffre Arcom et Médiamétrie (juin 2026) ; mention de la source retirée à la demande de Benjamin du 28/11/2026. */}
@@ -915,14 +953,14 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 7 · Réservation, dernière section de la page (équipe retirée le 28/11/2026) : Calendly intégré à la page (demande de Benjamin du 28/11/2026, à la place du dernier appel à
+          {/* ━━ 6 · Réservation, dernière section de la page (équipe retirée le 28/11/2026) : Calendly intégré à la page (demande de Benjamin du 28/11/2026, à la place du dernier appel à
               l'action) ; la FAQ a été retirée le 27/11/2026 à sa demande ━━ */}
           <section className="vi-sec vi-final" id="diagnostic" aria-labelledby="diagnostic-t">
             <div className="vi-wrap vi-final__in">
               <Head id="diagnostic-t">
                 Réservez votre <span className="vi-gt">diagnostic gratuit</span>
               </Head>
-              <CalendlyInline preloadAfter="#resultats" utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
+              <CalendlyInline preloadAfter="#avis" utm={{ utm_source: 'landing', utm_campaign: 'geo', ...(v.metier && { utm_content: v.metier }) }} />
             </div>
             {/* Plus de pied de page (demande de Benjamin, 27/11/2026) : les liens légaux restent, en une ligne discrète,
                 pour la CNIL (retrait du consentement aux cookies) et les régies publicitaires. */}

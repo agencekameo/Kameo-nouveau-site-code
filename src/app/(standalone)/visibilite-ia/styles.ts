@@ -242,14 +242,41 @@ body:has(.vi) { background: #FFFFFF; }
 .vi-hero__halo { position: absolute; inset: -120px 0 auto; height: 620px; pointer-events: none; background: radial-gradient(60% 50% at 85% 20%, rgba(248,144,60,.10), transparent 70%), radial-gradient(50% 45% at 15% 0%, rgba(225,75,137,.08), transparent 70%); }
 /* minmax(0, 1fr) : la bande de logos (largeur max-content) ne doit pas élargir la colonne du héros sur téléphone. */
 .vi-hero__grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
-.vi-hero__text { min-width: 0; }
+/* La colonne du texte sert de repère au titre (container-type) : voir .vi-h1 ci-dessous. */
+.vi-hero__text { min-width: 0; container-type: inline-size; }
 .vi-hero .vi-badge { display: inline-flex; }
 .vi-h1 { margin-top: 16px; font: 900 clamp(2rem, 1.45rem + 2.8vw, 4rem)/1.03 var(--vi-ff-head); letter-spacing: -0.035em; }
+/* La 2e ligne du titre est insécable et le nom de l'IA change ; la plus longue, « Perplexity en 1 mois », mesure 8,83 em.
+   Le titre ne dépasse jamais 11 % de la largeur de sa colonne (11cqi) : cette ligne tient toujours dans la colonne, sans
+   mordre sur l'espace qui la sépare de la photo (28/11/2026). */
+@supports (font-size: 1cqi) { .vi-h1 { font-size: min(clamp(2rem, 1.45rem + 2.8vw, 4rem), 11cqi); } }
 .vi-lead { margin-top: 14px; max-width: 32em; font-size: 17px; line-height: 1.5; color: var(--vi-text); }
 .vi-hero__cta { margin-top: 24px; }
 /* Photo des dirigeants à droite du titre, à la place du téléphone (28/11/2026, format Pennylane) */
-.vi-hero__photo { margin: 0; overflow: hidden; aspect-ratio: 3 / 2; border-radius: 20px; background: var(--vi-bg-sunk); box-shadow: var(--vi-sh-2); }
-.vi-hero__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* La petite réponse ChatGPT déborde du bas de la photo (28/11/2026) : la photo n'est plus coupée (overflow), l'image garde
+   ses coins arrondis. */
+.vi-hero__photo { position: relative; margin: 0 0 30px; aspect-ratio: 3 / 2; border-radius: 20px; background: var(--vi-bg-sunk); box-shadow: var(--vi-sh-2); }
+.vi-hero__photo img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+
+/* Problème, solution, résultat sous le titre (proposition 3 retenue le 28/11/2026, à la place de la phrase d'accroche) */
+.vi-psr { display: grid; gap: 10px; margin-top: 18px; max-width: 34em; }
+.vi-psr li { display: grid; grid-template-columns: 36px minmax(0, 1fr); align-items: center; gap: 12px; font: 500 16px/1.4 var(--vi-ff-body); color: var(--vi-ink-2); }
+.vi-psr__ico { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; background: var(--vi-bg-sunk); }
+.vi-psr__ico .vi-i { width: 16px; height: 16px; fill: var(--vi-muted); }
+.vi-psr li:not(.is-pb) .vi-psr__ico { background: var(--vi-tint); box-shadow: inset 0 0 0 1px rgba(237,110,99,.22); }
+.vi-psr li:not(.is-pb) .vi-psr__ico .vi-i { fill: url(#vi-grad-stroke); }
+.vi-psr li.is-win { font-weight: 700; color: var(--vi-ink); }
+@media (min-width: 1024px) { .vi-psr { margin-top: 22px; gap: 12px; } .vi-psr li { font-size: 17px; } }
+
+/* Étiquette et petite réponse ChatGPT posées sur la photo (illustration) */
+.vi-hero__chip { position: absolute; top: 14px; right: 14px; display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(15,17,21,.78); color: #fff; font: 600 13px/1 var(--vi-ff-body); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.vi-hero__reco { position: absolute; left: 12px; right: 12px; bottom: -28px; padding: 12px 14px; border-radius: 18px; background: #fff; border: 1px solid var(--vi-line); box-shadow: var(--vi-sh-4); }
+.vi-hero__reco-q { font: 400 12px/1.4 var(--vi-ff-mono); color: var(--vi-muted); }
+.vi-hero__win { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding: 9px 12px; border-radius: 14px; background: var(--vi-tint); border: 1px solid rgba(237,110,99,.3); }
+.vi-hero__win-n { display: grid; place-items: center; width: 26px; height: 26px; flex: none; border-radius: 50%; background: var(--vi-grad); color: var(--vi-ink); font: 800 13px/1 var(--vi-ff-head); }
+.vi-hero__win strong { flex: 1; font: 800 15px/1.2 var(--vi-ff-head); color: var(--vi-ink); }
+.vi-hero__win-ok .vi-i { width: 18px; height: 18px; fill: #0F7B4F; }
+@media (min-width: 1024px) { .vi-hero__reco { left: -36px; right: auto; width: 340px; bottom: -32px; } }
 /* Bande de preuves façon Pennylane (28/11/2026) : logos clients qui défilent (styles .logos__* de main.css), coupés à
    droite par les chiffres et le lien vers les avis. Téléphone : logos puis texte, l'un sous l'autre. */
 .vi-proof { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 36px; }
@@ -271,8 +298,9 @@ body:has(.vi) { background: #FFFFFF; }
 }
 @media (min-width: 1024px) {
   .vi-hero { padding: 40px 0 112px; }
-  /* Photo plus grande (28/11/2026) : colonne de droite plus large que le texte, format un peu plus haut (7:5) */
-  .vi-hero__grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); column-gap: clamp(32px, 4vw, 56px); align-items: center; }
+  /* Photo plus grande (28/11/2026) : colonne de droite plus large que le texte, format un peu plus haut (7:5). Écart entre
+     le texte et la photo élargi le même jour (64 à 104 px), le titre s'ajustant à sa colonne (11cqi). */
+  .vi-hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); column-gap: clamp(64px, 6.5vw, 104px); align-items: center; }
   .vi-hero__text, .vi-hero__photo { max-width: none; }
   .vi-hero__photo { aspect-ratio: 7 / 5; border-radius: 24px; }
   /* Logos à gauche, coupés net par un fondu court à droite ; chiffres et lien à droite */
@@ -550,6 +578,9 @@ body:has(.vi) { background: #FFFFFF; }
 
 /* ━━ Avis Trustpilot : deux rangées qui défilent en sens inverse, sur toute la largeur ━━ */
 .vi-avis__note { display: flex; justify-content: center; margin: calc(16px - var(--vi-head-gap)) 0 28px; }
+/* Cas clients entre la note Trustpilot et les avis (28/11/2026) */
+.vi-avis__cases { margin-bottom: 36px; }
+@media (min-width: 1024px) { .vi-avis__cases { margin-bottom: 56px; } }
 .vi-avis__note .vi-badge { display: inline-flex; }
 .vi-avis { position: relative; display: grid; gap: 14px; }
 .vi-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
