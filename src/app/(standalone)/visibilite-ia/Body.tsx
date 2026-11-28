@@ -612,7 +612,21 @@ export default function Body({ v }: { v: Variante }) {
             </div>
           </section>
 
-          {/* ━━ 2 · Ce qui a changé ━━ */}
+          {/* ━━ 2 · Résultats clients (avant « Ce qui a changé » depuis le 28/11/2026, demande de Benjamin) ━━ */}
+          <section className="vi-sec" id="resultats" aria-labelledby="resultats-t">
+            <div className="vi-wrap">
+              <Head id="resultats-t" eyebrow="Résultats clients" sub="Relevés Kameo de novembre 2026 : les réponses des IA varient d’un essai à l’autre.">
+                Nos clients, cités par les IA
+              </Head>
+              <div className="vi-cases">
+                {cas.map((c, i) => (
+                  <Cas key={c.id} c={c} i={i} />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ━━ 3 · Ce qui a changé ━━ */}
           <section className="vi-sec vi-sec--soft" id="enjeu" aria-labelledby="enjeu-t">
             <div className="vi-wrap">
               <Head
@@ -646,20 +660,6 @@ export default function Body({ v }: { v: Variante }) {
                   </li>
                 ))}
               </ol>
-            </div>
-          </section>
-
-          {/* ━━ 3 · Résultats clients ━━ */}
-          <section className="vi-sec" id="resultats" aria-labelledby="resultats-t">
-            <div className="vi-wrap">
-              <Head id="resultats-t" eyebrow="Résultats clients" sub="Relevés Kameo de novembre 2026 : les réponses des IA varient d’un essai à l’autre.">
-                Nos clients, cités par les IA
-              </Head>
-              <div className="vi-cases">
-                {cas.map((c, i) => (
-                  <Cas key={c.id} c={c} i={i} />
-                ))}
-              </div>
             </div>
           </section>
 
